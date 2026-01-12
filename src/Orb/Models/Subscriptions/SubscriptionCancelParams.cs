@@ -65,7 +65,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionCancelParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -80,12 +80,11 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, CancelOption>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNotNullClass<ApiEnum<string, CancelOption>>(
                 "cancel_option"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "cancel_option", value); }
+        init { this._rawBodyData.Set("cancel_option", value); }
     }
 
     /// <summary>
@@ -95,14 +94,8 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     /// </summary>
     public bool? AllowInvoiceCreditOrVoid
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<bool>(
-                this.RawBodyData,
-                "allow_invoice_credit_or_void"
-            );
-        }
-        init { JsonModel.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void"); }
+        init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -113,12 +106,9 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawBodyData,
-                "cancellation_date"
-            );
+            return this._rawBodyData.GetNullableStruct<System::DateTimeOffset>("cancellation_date");
         }
-        init { JsonModel.Set(this._rawBodyData, "cancellation_date", value); }
+        init { this._rawBodyData.Set("cancellation_date", value); }
     }
 
     public SubscriptionCancelParams() { }
@@ -128,7 +118,7 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         this.SubscriptionID = subscriptionCancelParams.SubscriptionID;
 
-        this._rawBodyData = [.. subscriptionCancelParams._rawBodyData];
+        this._rawBodyData = new(subscriptionCancelParams._rawBodyData);
     }
 
     public SubscriptionCancelParams(
@@ -137,9 +127,9 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -150,9 +140,9 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

@@ -16,7 +16,7 @@ namespace Orb.Models.SubscriptionChanges;
 /// </summary>
 public sealed record class SubscriptionChangeApplyParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -29,8 +29,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
-        init { JsonModel.Set(this._rawBodyData, "description", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        init { this._rawBodyData.Set("description", value); }
     }
 
     /// <summary>
@@ -39,8 +39,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public bool? MarkAsPaid
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "mark_as_paid"); }
-        init { JsonModel.Set(this._rawBodyData, "mark_as_paid", value); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("mark_as_paid"); }
+        init { this._rawBodyData.Set("mark_as_paid", value); }
     }
 
     /// <summary>
@@ -49,8 +49,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentExternalID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_external_id"); }
-        init { JsonModel.Set(this._rawBodyData, "payment_external_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("payment_external_id"); }
+        init { this._rawBodyData.Set("payment_external_id", value); }
     }
 
     /// <summary>
@@ -58,8 +58,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentNotes
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_notes"); }
-        init { JsonModel.Set(this._rawBodyData, "payment_notes", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("payment_notes"); }
+        init { this._rawBodyData.Set("payment_notes", value); }
     }
 
     /// <summary>
@@ -68,11 +68,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentReceivedDate
     {
-        get
-        {
-            return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_received_date");
-        }
-        init { JsonModel.Set(this._rawBodyData, "payment_received_date", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("payment_received_date"); }
+        init { this._rawBodyData.Set("payment_received_date", value); }
     }
 
     /// <summary>
@@ -81,14 +78,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PreviouslyCollectedAmount
     {
-        get
-        {
-            return JsonModel.GetNullableClass<string>(
-                this.RawBodyData,
-                "previously_collected_amount"
-            );
-        }
-        init { JsonModel.Set(this._rawBodyData, "previously_collected_amount", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("previously_collected_amount"); }
+        init { this._rawBodyData.Set("previously_collected_amount", value); }
     }
 
     public SubscriptionChangeApplyParams() { }
@@ -100,7 +91,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     {
         this.SubscriptionChangeID = subscriptionChangeApplyParams.SubscriptionChangeID;
 
-        this._rawBodyData = [.. subscriptionChangeApplyParams._rawBodyData];
+        this._rawBodyData = new(subscriptionChangeApplyParams._rawBodyData);
     }
 
     public SubscriptionChangeApplyParams(
@@ -109,9 +100,9 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -122,9 +113,9 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

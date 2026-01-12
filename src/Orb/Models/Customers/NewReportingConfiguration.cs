@@ -14,8 +14,8 @@ public sealed record class NewReportingConfiguration : JsonModel
 {
     public required bool Exempt
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "exempt"); }
-        init { JsonModel.Set(this._rawData, "exempt", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("exempt"); }
+        init { this._rawData.Set("exempt", value); }
     }
 
     /// <inheritdoc/>
@@ -31,14 +31,14 @@ public sealed record class NewReportingConfiguration : JsonModel
 
     public NewReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewReportingConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

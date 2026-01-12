@@ -23,23 +23,20 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     public string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "customer_id"); }
-        init { JsonModel.Set(this._rawQueryData, "customer_id", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("customer_id"); }
+        init { this._rawQueryData.Set("customer_id", value); }
     }
 
     public string? ExternalCustomerID
     {
-        get
-        {
-            return JsonModel.GetNullableClass<string>(this.RawQueryData, "external_customer_id");
-        }
-        init { JsonModel.Set(this._rawQueryData, "external_customer_id", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawQueryData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -47,7 +44,7 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -55,7 +52,7 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
@@ -63,11 +60,11 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawQueryData.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
-            >(this.RawQueryData, "status");
+            >("status");
         }
-        init { JsonModel.Set(this._rawQueryData, "status", value); }
+        init { this._rawQueryData.Set("status", value); }
     }
 
     public SubscriptionChangeListParams() { }
@@ -80,8 +77,8 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -91,8 +88,8 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

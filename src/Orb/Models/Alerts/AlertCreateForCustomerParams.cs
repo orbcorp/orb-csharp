@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertCreateForCustomerParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -34,8 +35,8 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "currency"); }
-        init { JsonModel.Set(this._rawBodyData, "currency", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("currency"); }
+        init { this._rawBodyData.Set("currency", value); }
     }
 
     /// <summary>
@@ -45,12 +46,11 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, global::Orb.Models.Alerts.Type>>(
-                this.RawBodyData,
-                "type"
-            );
+            return this._rawBodyData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Alerts.Type>
+            >("type");
         }
-        init { JsonModel.Set(this._rawBodyData, "type", value); }
+        init { this._rawBodyData.Set("type", value); }
     }
 
     /// <summary>
@@ -58,8 +58,14 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// </summary>
     public IReadOnlyList<Threshold>? Thresholds
     {
-        get { return JsonModel.GetNullableClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
-        init { JsonModel.Set(this._rawBodyData, "thresholds", value); }
+        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<Threshold>>("thresholds"); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<Threshold>?>(
+                "thresholds",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public AlertCreateForCustomerParams() { }
@@ -69,7 +75,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     {
         this.CustomerID = alertCreateForCustomerParams.CustomerID;
 
-        this._rawBodyData = [.. alertCreateForCustomerParams._rawBodyData];
+        this._rawBodyData = new(alertCreateForCustomerParams._rawBodyData);
     }
 
     public AlertCreateForCustomerParams(
@@ -78,9 +84,9 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -91,9 +97,9 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

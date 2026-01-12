@@ -21,24 +21,17 @@ public sealed record class SharedTieredConversionRateConfig : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, ConversionRateType>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, ConversionRateType>>(
                 "conversion_rate_type"
             );
         }
-        init { JsonModel.Set(this._rawData, "conversion_rate_type", value); }
+        init { this._rawData.Set("conversion_rate_type", value); }
     }
 
     public required ConversionRateTieredConfig TieredConfig
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ConversionRateTieredConfig>(
-                this.RawData,
-                "tiered_config"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "tiered_config", value); }
+        get { return this._rawData.GetNotNullClass<ConversionRateTieredConfig>("tiered_config"); }
+        init { this._rawData.Set("tiered_config", value); }
     }
 
     /// <inheritdoc/>
@@ -57,14 +50,14 @@ public sealed record class SharedTieredConversionRateConfig : JsonModel
 
     public SharedTieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SharedTieredConversionRateConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

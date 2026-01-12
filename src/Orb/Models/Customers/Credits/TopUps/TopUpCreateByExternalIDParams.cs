@@ -21,7 +21,7 @@ namespace Orb.Models.Customers.Credits.TopUps;
 /// </summary>
 public sealed record class TopUpCreateByExternalIDParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -34,8 +34,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "amount"); }
-        init { JsonModel.Set(this._rawBodyData, "amount", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("amount"); }
+        init { this._rawBodyData.Set("amount", value); }
     }
 
     /// <summary>
@@ -44,8 +44,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "currency"); }
-        init { JsonModel.Set(this._rawBodyData, "currency", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("currency"); }
+        init { this._rawBodyData.Set("currency", value); }
     }
 
     /// <summary>
@@ -55,12 +55,11 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNotNullClass<TopUpCreateByExternalIDParamsInvoiceSettings>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNotNullClass<TopUpCreateByExternalIDParamsInvoiceSettings>(
                 "invoice_settings"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "invoice_settings", value); }
+        init { this._rawBodyData.Set("invoice_settings", value); }
     }
 
     /// <summary>
@@ -68,8 +67,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "per_unit_cost_basis"); }
-        init { JsonModel.Set(this._rawBodyData, "per_unit_cost_basis", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("per_unit_cost_basis"); }
+        init { this._rawBodyData.Set("per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -78,8 +77,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public required string Threshold
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "threshold"); }
-        init { JsonModel.Set(this._rawBodyData, "threshold", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("threshold"); }
+        init { this._rawBodyData.Set("threshold", value); }
     }
 
     /// <summary>
@@ -88,14 +87,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public System::DateTimeOffset? ActiveFrom
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawBodyData,
-                "active_from"
-            );
-        }
-        init { JsonModel.Set(this._rawBodyData, "active_from", value); }
+        get { return this._rawBodyData.GetNullableStruct<System::DateTimeOffset>("active_from"); }
+        init { this._rawBodyData.Set("active_from", value); }
     }
 
     /// <summary>
@@ -104,8 +97,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "expires_after"); }
-        init { JsonModel.Set(this._rawBodyData, "expires_after", value); }
+        get { return this._rawBodyData.GetNullableStruct<long>("expires_after"); }
+        init { this._rawBodyData.Set("expires_after", value); }
     }
 
     /// <summary>
@@ -115,11 +108,11 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawBodyData.GetNullableClass<
                 ApiEnum<string, TopUpCreateByExternalIDParamsExpiresAfterUnit>
-            >(this.RawBodyData, "expires_after_unit");
+            >("expires_after_unit");
         }
-        init { JsonModel.Set(this._rawBodyData, "expires_after_unit", value); }
+        init { this._rawBodyData.Set("expires_after_unit", value); }
     }
 
     public TopUpCreateByExternalIDParams() { }
@@ -131,7 +124,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     {
         this.ExternalCustomerID = topUpCreateByExternalIDParams.ExternalCustomerID;
 
-        this._rawBodyData = [.. topUpCreateByExternalIDParams._rawBodyData];
+        this._rawBodyData = new(topUpCreateByExternalIDParams._rawBodyData);
     }
 
     public TopUpCreateByExternalIDParams(
@@ -140,9 +133,9 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -153,9 +146,9 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 
@@ -223,8 +216,8 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
     /// </summary>
     public required bool AutoCollection
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
-        init { JsonModel.Set(this._rawData, "auto_collection", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("auto_collection"); }
+        init { this._rawData.Set("auto_collection", value); }
     }
 
     /// <summary>
@@ -234,8 +227,8 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
     /// </summary>
     public required long NetTerms
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "net_terms"); }
-        init { JsonModel.Set(this._rawData, "net_terms", value); }
+        get { return this._rawData.GetNotNullStruct<long>("net_terms"); }
+        init { this._rawData.Set("net_terms", value); }
     }
 
     /// <summary>
@@ -243,8 +236,8 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
     /// </summary>
     public string? Memo
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "memo"); }
-        init { JsonModel.Set(this._rawData, "memo", value); }
+        get { return this._rawData.GetNullableClass<string>("memo"); }
+        init { this._rawData.Set("memo", value); }
     }
 
     /// <summary>
@@ -255,10 +248,7 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
     /// </summary>
     public bool? RequireSuccessfulPayment
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
-        }
+        get { return this._rawData.GetNullableStruct<bool>("require_successful_payment"); }
         init
         {
             if (value == null)
@@ -266,7 +256,7 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
                 return;
             }
 
-            JsonModel.Set(this._rawData, "require_successful_payment", value);
+            this._rawData.Set("require_successful_payment", value);
         }
     }
 
@@ -290,14 +280,14 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     TopUpCreateByExternalIDParamsInvoiceSettings(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

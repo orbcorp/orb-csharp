@@ -24,8 +24,8 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -41,7 +41,7 @@ public sealed record class CouponListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
@@ -50,8 +50,8 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public string? RedemptionCode
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "redemption_code"); }
-        init { JsonModel.Set(this._rawQueryData, "redemption_code", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("redemption_code"); }
+        init { this._rawQueryData.Set("redemption_code", value); }
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public bool? ShowArchived
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "show_archived"); }
-        init { JsonModel.Set(this._rawQueryData, "show_archived", value); }
+        get { return this._rawQueryData.GetNullableStruct<bool>("show_archived"); }
+        init { this._rawQueryData.Set("show_archived", value); }
     }
 
     public CouponListParams() { }
@@ -73,8 +73,8 @@ public sealed record class CouponListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -84,8 +84,8 @@ public sealed record class CouponListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

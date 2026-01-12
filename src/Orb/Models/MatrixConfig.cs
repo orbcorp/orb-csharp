@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,8 +19,8 @@ public sealed record class MatrixConfig : JsonModel
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
-        init { JsonModel.Set(this._rawData, "default_unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("default_unit_amount"); }
+        init { this._rawData.Set("default_unit_amount", value); }
     }
 
     /// <summary>
@@ -27,8 +28,14 @@ public sealed record class MatrixConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
-        init { JsonModel.Set(this._rawData, "dimensions", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -36,8 +43,14 @@ public sealed record class MatrixConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<MatrixValue> MatrixValues
     {
-        get { return JsonModel.GetNotNullClass<List<MatrixValue>>(this.RawData, "matrix_values"); }
-        init { JsonModel.Set(this._rawData, "matrix_values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<MatrixValue>>("matrix_values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MatrixValue>>(
+                "matrix_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -58,14 +71,14 @@ public sealed record class MatrixConfig : JsonModel
 
     public MatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MatrixConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

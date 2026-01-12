@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -177,7 +178,7 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventIngestParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -185,8 +186,14 @@ public sealed record class EventIngestParams : ParamsBase
 
     public required IReadOnlyList<Event> Events
     {
-        get { return JsonModel.GetNotNullClass<List<Event>>(this.RawBodyData, "events"); }
-        init { JsonModel.Set(this._rawBodyData, "events", value); }
+        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<Event>>("events"); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<Event>>(
+                "events",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -195,8 +202,8 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public string? BackfillID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "backfill_id"); }
-        init { JsonModel.Set(this._rawQueryData, "backfill_id", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("backfill_id"); }
+        init { this._rawQueryData.Set("backfill_id", value); }
     }
 
     /// <summary>
@@ -204,7 +211,7 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public bool? Debug
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "debug"); }
+        get { return this._rawQueryData.GetNullableStruct<bool>("debug"); }
         init
         {
             if (value == null)
@@ -212,7 +219,7 @@ public sealed record class EventIngestParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "debug", value);
+            this._rawQueryData.Set("debug", value);
         }
     }
 
@@ -221,7 +228,7 @@ public sealed record class EventIngestParams : ParamsBase
     public EventIngestParams(EventIngestParams eventIngestParams)
         : base(eventIngestParams)
     {
-        this._rawBodyData = [.. eventIngestParams._rawBodyData];
+        this._rawBodyData = new(eventIngestParams._rawBodyData);
     }
 
     public EventIngestParams(
@@ -230,9 +237,9 @@ public sealed record class EventIngestParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -243,9 +250,9 @@ public sealed record class EventIngestParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 
@@ -298,8 +305,8 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required string EventName
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "event_name"); }
-        init { JsonModel.Set(this._rawData, "event_name", value); }
+        get { return this._rawData.GetNotNullClass<string>("event_name"); }
+        init { this._rawData.Set("event_name", value); }
     }
 
     /// <summary>
@@ -309,8 +316,8 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required string IdempotencyKey
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
-        init { JsonModel.Set(this._rawData, "idempotency_key", value); }
+        get { return this._rawData.GetNotNullClass<string>("idempotency_key"); }
+        init { this._rawData.Set("idempotency_key", value); }
     }
 
     /// <summary>
@@ -321,12 +328,17 @@ public sealed record class Event : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, JsonElement>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
         }
-        init { JsonModel.Set(this._rawData, "properties", value); }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>>(
+                "properties",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -336,8 +348,8 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timestamp"); }
-        init { JsonModel.Set(this._rawData, "timestamp", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timestamp"); }
+        init { this._rawData.Set("timestamp", value); }
     }
 
     /// <summary>
@@ -345,8 +357,8 @@ public sealed record class Event : JsonModel
     /// </summary>
     public string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { JsonModel.Set(this._rawData, "customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        init { this._rawData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -354,8 +366,8 @@ public sealed record class Event : JsonModel
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawData.Set("external_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -376,14 +388,14 @@ public sealed record class Event : JsonModel
 
     public Event(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Event(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

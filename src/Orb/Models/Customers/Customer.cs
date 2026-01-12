@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -31,20 +32,26 @@ public sealed record class Customer : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required IReadOnlyList<string> AdditionalEmails
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "additional_emails"); }
-        init { JsonModel.Set(this._rawData, "additional_emails", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("additional_emails"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "additional_emails",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required bool AutoCollection
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
-        init { JsonModel.Set(this._rawData, "auto_collection", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("auto_collection"); }
+        init { this._rawData.Set("auto_collection", value); }
     }
 
     /// <summary>
@@ -54,8 +61,8 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required bool? AutoIssuance
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "auto_issuance"); }
-        init { JsonModel.Set(this._rawData, "auto_issuance", value); }
+        get { return this._rawData.GetNullableStruct<bool>("auto_issuance"); }
+        init { this._rawData.Set("auto_issuance", value); }
     }
 
     /// <summary>
@@ -63,29 +70,26 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Balance
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "balance"); }
-        init { JsonModel.Set(this._rawData, "balance", value); }
+        get { return this._rawData.GetNotNullClass<string>("balance"); }
+        init { this._rawData.Set("balance", value); }
     }
 
     public required Address? BillingAddress
     {
-        get { return JsonModel.GetNullableClass<Address>(this.RawData, "billing_address"); }
-        init { JsonModel.Set(this._rawData, "billing_address", value); }
+        get { return this._rawData.GetNullableClass<Address>("billing_address"); }
+        init { this._rawData.Set("billing_address", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
-        }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     public required string? Currency
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNullableClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -94,20 +98,20 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Email
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "email"); }
-        init { JsonModel.Set(this._rawData, "email", value); }
+        get { return this._rawData.GetNotNullClass<string>("email"); }
+        init { this._rawData.Set("email", value); }
     }
 
     public required bool EmailDelivery
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "email_delivery"); }
-        init { JsonModel.Set(this._rawData, "email_delivery", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("email_delivery"); }
+        init { this._rawData.Set("email_delivery", value); }
     }
 
     public required bool? ExemptFromAutomatedTax
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "exempt_from_automated_tax"); }
-        init { JsonModel.Set(this._rawData, "exempt_from_automated_tax", value); }
+        get { return this._rawData.GetNullableStruct<bool>("exempt_from_automated_tax"); }
+        init { this._rawData.Set("exempt_from_automated_tax", value); }
     }
 
     /// <summary>
@@ -117,8 +121,8 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -126,8 +130,8 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required Hierarchy Hierarchy
     {
-        get { return JsonModel.GetNotNullClass<Hierarchy>(this.RawData, "hierarchy"); }
-        init { JsonModel.Set(this._rawData, "hierarchy", value); }
+        get { return this._rawData.GetNotNullClass<Hierarchy>("hierarchy"); }
+        init { this._rawData.Set("hierarchy", value); }
     }
 
     /// <summary>
@@ -138,11 +142,14 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get
+        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        init
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
-        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -150,8 +157,8 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <summary>
@@ -162,12 +169,11 @@ public sealed record class Customer : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<ApiEnum<string, CustomerPaymentProvider>>(
-                this.RawData,
+            return this._rawData.GetNullableClass<ApiEnum<string, CustomerPaymentProvider>>(
                 "payment_provider"
             );
         }
-        init { JsonModel.Set(this._rawData, "payment_provider", value); }
+        init { this._rawData.Set("payment_provider", value); }
     }
 
     /// <summary>
@@ -176,20 +182,20 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string? PaymentProviderID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "payment_provider_id"); }
-        init { JsonModel.Set(this._rawData, "payment_provider_id", value); }
+        get { return this._rawData.GetNullableClass<string>("payment_provider_id"); }
+        init { this._rawData.Set("payment_provider_id", value); }
     }
 
     public required string? PortalUrl
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "portal_url"); }
-        init { JsonModel.Set(this._rawData, "portal_url", value); }
+        get { return this._rawData.GetNullableClass<string>("portal_url"); }
+        init { this._rawData.Set("portal_url", value); }
     }
 
     public required Address? ShippingAddress
     {
-        get { return JsonModel.GetNullableClass<Address>(this.RawData, "shipping_address"); }
-        init { JsonModel.Set(this._rawData, "shipping_address", value); }
+        get { return this._rawData.GetNullableClass<Address>("shipping_address"); }
+        init { this._rawData.Set("shipping_address", value); }
     }
 
     /// <summary>
@@ -299,8 +305,8 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required CustomerTaxID? TaxID
     {
-        get { return JsonModel.GetNullableClass<CustomerTaxID>(this.RawData, "tax_id"); }
-        init { JsonModel.Set(this._rawData, "tax_id", value); }
+        get { return this._rawData.GetNullableClass<CustomerTaxID>("tax_id"); }
+        init { this._rawData.Set("tax_id", value); }
     }
 
     /// <summary>
@@ -310,20 +316,19 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Timezone
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "timezone"); }
-        init { JsonModel.Set(this._rawData, "timezone", value); }
+        get { return this._rawData.GetNotNullClass<string>("timezone"); }
+        init { this._rawData.Set("timezone", value); }
     }
 
     public AccountingSyncConfiguration? AccountingSyncConfiguration
     {
         get
         {
-            return JsonModel.GetNullableClass<AccountingSyncConfiguration>(
-                this.RawData,
+            return this._rawData.GetNullableClass<AccountingSyncConfiguration>(
                 "accounting_sync_configuration"
             );
         }
-        init { JsonModel.Set(this._rawData, "accounting_sync_configuration", value); }
+        init { this._rawData.Set("accounting_sync_configuration", value); }
     }
 
     /// <summary>
@@ -332,8 +337,8 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
     /// <summary>
@@ -344,24 +349,22 @@ public sealed record class Customer : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<CustomerPaymentConfiguration>(
-                this.RawData,
+            return this._rawData.GetNullableClass<CustomerPaymentConfiguration>(
                 "payment_configuration"
             );
         }
-        init { JsonModel.Set(this._rawData, "payment_configuration", value); }
+        init { this._rawData.Set("payment_configuration", value); }
     }
 
     public ReportingConfiguration? ReportingConfiguration
     {
         get
         {
-            return JsonModel.GetNullableClass<ReportingConfiguration>(
-                this.RawData,
+            return this._rawData.GetNullableClass<ReportingConfiguration>(
                 "reporting_configuration"
             );
         }
-        init { JsonModel.Set(this._rawData, "reporting_configuration", value); }
+        init { this._rawData.Set("reporting_configuration", value); }
     }
 
     /// <inheritdoc/>
@@ -401,14 +404,14 @@ public sealed record class Customer : JsonModel
 
     public Customer(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Customer(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -434,14 +437,20 @@ public sealed record class Hierarchy : JsonModel
 {
     public required IReadOnlyList<CustomerMinified> Children
     {
-        get { return JsonModel.GetNotNullClass<List<CustomerMinified>>(this.RawData, "children"); }
-        init { JsonModel.Set(this._rawData, "children", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<CustomerMinified>>("children"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<CustomerMinified>>(
+                "children",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required CustomerMinified? Parent
     {
-        get { return JsonModel.GetNullableClass<CustomerMinified>(this.RawData, "parent"); }
-        init { JsonModel.Set(this._rawData, "parent", value); }
+        get { return this._rawData.GetNullableClass<CustomerMinified>("parent"); }
+        init { this._rawData.Set("parent", value); }
     }
 
     /// <inheritdoc/>
@@ -461,14 +470,14 @@ public sealed record class Hierarchy : JsonModel
 
     public Hierarchy(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Hierarchy(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -552,18 +561,23 @@ public sealed record class AccountingSyncConfiguration : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<AccountingProvider>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<AccountingProvider>>(
                 "accounting_providers"
             );
         }
-        init { JsonModel.Set(this._rawData, "accounting_providers", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<AccountingProvider>>(
+                "accounting_providers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required bool Excluded
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "excluded"); }
-        init { JsonModel.Set(this._rawData, "excluded", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("excluded"); }
+        init { this._rawData.Set("excluded", value); }
     }
 
     /// <inheritdoc/>
@@ -583,14 +597,14 @@ public sealed record class AccountingSyncConfiguration : JsonModel
 
     public AccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AccountingSyncConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -616,20 +630,19 @@ public sealed record class AccountingProvider : JsonModel
 {
     public required string? ExternalProviderID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_provider_id"); }
-        init { JsonModel.Set(this._rawData, "external_provider_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_provider_id"); }
+        init { this._rawData.Set("external_provider_id", value); }
     }
 
     public required ApiEnum<string, AccountingProviderProviderType> ProviderType
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, AccountingProviderProviderType>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, AccountingProviderProviderType>>(
                 "provider_type"
             );
         }
-        init { JsonModel.Set(this._rawData, "provider_type", value); }
+        init { this._rawData.Set("provider_type", value); }
     }
 
     /// <inheritdoc/>
@@ -646,14 +659,14 @@ public sealed record class AccountingProvider : JsonModel
 
     public AccountingProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AccountingProvider(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -733,10 +746,9 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<CustomerPaymentConfigurationPaymentProvider>>(
-                this.RawData,
-                "payment_providers"
-            );
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<CustomerPaymentConfigurationPaymentProvider>
+            >("payment_providers");
         }
         init
         {
@@ -745,7 +757,10 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "payment_providers", value);
+            this._rawData.Set<ImmutableArray<CustomerPaymentConfigurationPaymentProvider>?>(
+                "payment_providers",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -765,14 +780,14 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
 
     public CustomerPaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CustomerPaymentConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -811,11 +826,11 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, CustomerPaymentConfigurationPaymentProviderProviderType>
-            >(this.RawData, "provider_type");
+            >("provider_type");
         }
-        init { JsonModel.Set(this._rawData, "provider_type", value); }
+        init { this._rawData.Set("provider_type", value); }
     }
 
     /// <summary>
@@ -829,8 +844,7 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
     {
         get
         {
-            return JsonModel.GetNullableClass<List<string>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>(
                 "excluded_payment_method_types"
             );
         }
@@ -841,7 +855,10 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
                 return;
             }
 
-            JsonModel.Set(this._rawData, "excluded_payment_method_types", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "excluded_payment_method_types",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -863,14 +880,14 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CustomerPaymentConfigurationPaymentProvider(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -951,8 +968,8 @@ public sealed record class ReportingConfiguration : JsonModel
 {
     public required bool Exempt
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "exempt"); }
-        init { JsonModel.Set(this._rawData, "exempt", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("exempt"); }
+        init { this._rawData.Set("exempt", value); }
     }
 
     /// <inheritdoc/>
@@ -968,14 +985,14 @@ public sealed record class ReportingConfiguration : JsonModel
 
     public ReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ReportingConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

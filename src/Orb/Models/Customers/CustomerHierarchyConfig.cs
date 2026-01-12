@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,7 +17,10 @@ public sealed record class CustomerHierarchyConfig : JsonModel
     /// </summary>
     public IReadOnlyList<string>? ChildCustomerIds
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "child_customer_ids"); }
+        get
+        {
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("child_customer_ids");
+        }
         init
         {
             if (value == null)
@@ -24,7 +28,10 @@ public sealed record class CustomerHierarchyConfig : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "child_customer_ids", value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "child_customer_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -34,8 +41,8 @@ public sealed record class CustomerHierarchyConfig : JsonModel
     /// </summary>
     public string? ParentCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "parent_customer_id"); }
-        init { JsonModel.Set(this._rawData, "parent_customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("parent_customer_id"); }
+        init { this._rawData.Set("parent_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -52,14 +59,14 @@ public sealed record class CustomerHierarchyConfig : JsonModel
 
     public CustomerHierarchyConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CustomerHierarchyConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -15,12 +16,17 @@ public sealed record class EventVolumes : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<global::Orb.Models.Events.Volume.Data>>(
-                this.RawData,
-                "data"
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<global::Orb.Models.Events.Volume.Data>
+            >("data");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<global::Orb.Models.Events.Volume.Data>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
             );
         }
-        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -39,14 +45,14 @@ public sealed record class EventVolumes : JsonModel
 
     public EventVolumes(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EventVolumes(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -88,20 +94,20 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required long Count
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "count"); }
-        init { JsonModel.Set(this._rawData, "count", value); }
+        get { return this._rawData.GetNotNullStruct<long>("count"); }
+        init { this._rawData.Set("count", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
-        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
-        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <inheritdoc/>
@@ -119,14 +125,14 @@ public sealed record class Data : JsonModel
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Data(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

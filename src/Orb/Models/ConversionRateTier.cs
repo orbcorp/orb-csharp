@@ -15,8 +15,8 @@ public sealed record class ConversionRateTier : JsonModel
     /// </summary>
     public required double FirstUnit
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "first_unit"); }
-        init { JsonModel.Set(this._rawData, "first_unit", value); }
+        get { return this._rawData.GetNotNullStruct<double>("first_unit"); }
+        init { this._rawData.Set("first_unit", value); }
     }
 
     /// <summary>
@@ -24,8 +24,8 @@ public sealed record class ConversionRateTier : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { JsonModel.Set(this._rawData, "unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class ConversionRateTier : JsonModel
     /// </summary>
     public double? LastUnit
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "last_unit"); }
-        init { JsonModel.Set(this._rawData, "last_unit", value); }
+        get { return this._rawData.GetNullableStruct<double>("last_unit"); }
+        init { this._rawData.Set("last_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -52,14 +52,14 @@ public sealed record class ConversionRateTier : JsonModel
 
     public ConversionRateTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ConversionRateTier(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

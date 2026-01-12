@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -22,8 +23,8 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -31,11 +32,8 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
-        }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     /// <summary>
@@ -46,12 +44,17 @@ public sealed record class Item : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<ItemExternalConnection>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<ItemExternalConnection>>(
                 "external_connections"
             );
         }
-        init { JsonModel.Set(this._rawData, "external_connections", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<ItemExternalConnection>>(
+                "external_connections",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -62,11 +65,14 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get
+        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        init
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
-        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -74,8 +80,8 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <summary>
@@ -83,11 +89,8 @@ public sealed record class Item : JsonModel
     /// </summary>
     public System::DateTimeOffset? ArchivedAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "archived_at");
-        }
-        init { JsonModel.Set(this._rawData, "archived_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("archived_at"); }
+        init { this._rawData.Set("archived_at", value); }
     }
 
     /// <inheritdoc/>
@@ -111,14 +114,14 @@ public sealed record class Item : JsonModel
 
     public Item(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Item(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -153,11 +156,11 @@ public sealed record class ItemExternalConnection : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, ItemExternalConnectionExternalConnectionName>
-            >(this.RawData, "external_connection_name");
+            >("external_connection_name");
         }
-        init { JsonModel.Set(this._rawData, "external_connection_name", value); }
+        init { this._rawData.Set("external_connection_name", value); }
     }
 
     /// <summary>
@@ -165,8 +168,8 @@ public sealed record class ItemExternalConnection : JsonModel
     /// </summary>
     public required string ExternalEntityID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
-        init { JsonModel.Set(this._rawData, "external_entity_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("external_entity_id"); }
+        init { this._rawData.Set("external_entity_id", value); }
     }
 
     /// <inheritdoc/>
@@ -183,14 +186,14 @@ public sealed record class ItemExternalConnection : JsonModel
 
     public ItemExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ItemExternalConnection(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,12 +19,17 @@ public sealed record class EventIngestResponse : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<ValidationFailed>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<ValidationFailed>>(
                 "validation_failed"
             );
         }
-        init { JsonModel.Set(this._rawData, "validation_failed", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<ValidationFailed>>(
+                "validation_failed",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -32,8 +38,8 @@ public sealed record class EventIngestResponse : JsonModel
     /// </summary>
     public Debug? Debug
     {
-        get { return JsonModel.GetNullableClass<Debug>(this.RawData, "debug"); }
-        init { JsonModel.Set(this._rawData, "debug", value); }
+        get { return this._rawData.GetNullableClass<Debug>("debug"); }
+        init { this._rawData.Set("debug", value); }
     }
 
     /// <inheritdoc/>
@@ -53,14 +59,14 @@ public sealed record class EventIngestResponse : JsonModel
 
     public EventIngestResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EventIngestResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -95,8 +101,8 @@ public sealed record class ValidationFailed : JsonModel
     /// </summary>
     public required string IdempotencyKey
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
-        init { JsonModel.Set(this._rawData, "idempotency_key", value); }
+        get { return this._rawData.GetNotNullClass<string>("idempotency_key"); }
+        init { this._rawData.Set("idempotency_key", value); }
     }
 
     /// <summary>
@@ -104,8 +110,14 @@ public sealed record class ValidationFailed : JsonModel
     /// </summary>
     public required IReadOnlyList<string> ValidationErrors
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "validation_errors"); }
-        init { JsonModel.Set(this._rawData, "validation_errors", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("validation_errors"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "validation_errors",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -122,14 +134,14 @@ public sealed record class ValidationFailed : JsonModel
 
     public ValidationFailed(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ValidationFailed(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -158,14 +170,26 @@ public sealed record class Debug : JsonModel
 {
     public required IReadOnlyList<string> Duplicate
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "duplicate"); }
-        init { JsonModel.Set(this._rawData, "duplicate", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("duplicate"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "duplicate",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required IReadOnlyList<string> Ingested
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "ingested"); }
-        init { JsonModel.Set(this._rawData, "ingested", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("ingested"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "ingested",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -182,14 +206,14 @@ public sealed record class Debug : JsonModel
 
     public Debug(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Debug(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

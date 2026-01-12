@@ -14,20 +14,19 @@ public sealed record class NewSphereConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("tax_exempt"); }
+        init { this._rawData.Set("tax_exempt", value); }
     }
 
     public required ApiEnum<string, NewSphereConfigurationTaxProvider> TaxProvider
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
-                this.RawData,
-                "tax_provider"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, NewSphereConfigurationTaxProvider>
+            >("tax_provider");
         }
-        init { JsonModel.Set(this._rawData, "tax_provider", value); }
+        init { this._rawData.Set("tax_provider", value); }
     }
 
     /// <summary>
@@ -36,8 +35,8 @@ public sealed record class NewSphereConfiguration : JsonModel
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -55,14 +54,14 @@ public sealed record class NewSphereConfiguration : JsonModel
 
     public NewSphereConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewSphereConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

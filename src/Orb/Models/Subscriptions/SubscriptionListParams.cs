@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -25,48 +26,36 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawQueryData,
-                "created_at[gt]"
-            );
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gt]");
         }
-        init { JsonModel.Set(this._rawQueryData, "created_at[gt]", value); }
+        init { this._rawQueryData.Set("created_at[gt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawQueryData,
-                "created_at[gte]"
-            );
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gte]");
         }
-        init { JsonModel.Set(this._rawQueryData, "created_at[gte]", value); }
+        init { this._rawQueryData.Set("created_at[gte]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawQueryData,
-                "created_at[lt]"
-            );
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lt]");
         }
-        init { JsonModel.Set(this._rawQueryData, "created_at[lt]", value); }
+        init { this._rawQueryData.Set("created_at[lt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawQueryData,
-                "created_at[lte]"
-            );
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lte]");
         }
-        init { JsonModel.Set(this._rawQueryData, "created_at[lte]", value); }
+        init { this._rawQueryData.Set("created_at[lte]", value); }
     }
 
     /// <summary>
@@ -75,32 +64,43 @@ public sealed record class SubscriptionListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     public IReadOnlyList<string>? CustomerID
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawQueryData, "customer_id"); }
-        init { JsonModel.Set(this._rawQueryData, "customer_id", value); }
+        get { return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>("customer_id"); }
+        init
+        {
+            this._rawQueryData.Set<ImmutableArray<string>?>(
+                "customer_id",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public IReadOnlyList<string>? ExternalCustomerID
     {
         get
         {
-            return JsonModel.GetNullableClass<List<string>>(
-                this.RawQueryData,
+            return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>(
                 "external_customer_id"
             );
         }
-        init { JsonModel.Set(this._rawQueryData, "external_customer_id", value); }
+        init
+        {
+            this._rawQueryData.Set<ImmutableArray<string>?>(
+                "external_customer_id",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public string? ExternalPlanID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "external_plan_id"); }
-        init { JsonModel.Set(this._rawQueryData, "external_plan_id", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("external_plan_id"); }
+        init { this._rawQueryData.Set("external_plan_id", value); }
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -116,25 +116,25 @@ public sealed record class SubscriptionListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
     public string? PlanID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "plan_id"); }
-        init { JsonModel.Set(this._rawQueryData, "plan_id", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("plan_id"); }
+        init { this._rawQueryData.Set("plan_id", value); }
     }
 
     public ApiEnum<string, global::Orb.Models.Subscriptions.Status>? Status
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawQueryData.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.Subscriptions.Status>
-            >(this.RawQueryData, "status");
+            >("status");
         }
-        init { JsonModel.Set(this._rawQueryData, "status", value); }
+        init { this._rawQueryData.Set("status", value); }
     }
 
     public SubscriptionListParams() { }
@@ -147,8 +147,8 @@ public sealed record class SubscriptionListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -158,8 +158,8 @@ public sealed record class SubscriptionListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

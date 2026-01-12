@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,8 +19,14 @@ public sealed record class BulkConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<BulkTier> Tiers
     {
-        get { return JsonModel.GetNotNullClass<List<BulkTier>>(this.RawData, "tiers"); }
-        init { JsonModel.Set(this._rawData, "tiers", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<BulkTier>>("tiers"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<BulkTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -38,14 +45,14 @@ public sealed record class BulkConfig : JsonModel
 
     public BulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BulkConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

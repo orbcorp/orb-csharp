@@ -24,8 +24,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public required string ChangeType
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "change_type"); }
-        init { JsonModel.Set(this._rawData, "change_type", value); }
+        get { return this._rawData.GetNotNullClass<string>("change_type"); }
+        init { this._rawData.Set("change_type", value); }
     }
 
     /// <summary>
@@ -42,34 +42,25 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset ExpirationTime
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "expiration_time"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "expiration_time", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time"); }
+        init { this._rawData.Set("expiration_time", value); }
     }
 
     public required ApiEnum<string, SubscriptionChangeRetrieveResponseStatus> Status
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, SubscriptionChangeRetrieveResponseStatus>
-            >(this.RawData, "status");
+            >("status");
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     public required MutatedSubscription? Subscription
     {
-        get
-        {
-            return JsonModel.GetNullableClass<MutatedSubscription>(this.RawData, "subscription");
-        }
-        init { JsonModel.Set(this._rawData, "subscription", value); }
+        get { return this._rawData.GetNullableClass<MutatedSubscription>("subscription"); }
+        init { this._rawData.Set("subscription", value); }
     }
 
     /// <summary>
@@ -77,11 +68,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? AppliedAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "applied_at");
-        }
-        init { JsonModel.Set(this._rawData, "applied_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at"); }
+        init { this._rawData.Set("applied_at", value); }
     }
 
     /// <summary>
@@ -89,8 +77,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public string? BillingCycleAlignment
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "billing_cycle_alignment"); }
-        init { JsonModel.Set(this._rawData, "billing_cycle_alignment", value); }
+        get { return this._rawData.GetNullableClass<string>("billing_cycle_alignment"); }
+        init { this._rawData.Set("billing_cycle_alignment", value); }
     }
 
     /// <summary>
@@ -98,14 +86,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? CancelledAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawData,
-                "cancelled_at"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "cancelled_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at"); }
+        init { this._rawData.Set("cancelled_at", value); }
     }
 
     /// <summary>
@@ -113,8 +95,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public string? ChangeOption
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "change_option"); }
-        init { JsonModel.Set(this._rawData, "change_option", value); }
+        get { return this._rawData.GetNullableClass<string>("change_option"); }
+        init { this._rawData.Set("change_option", value); }
     }
 
     /// <summary>
@@ -122,14 +104,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? EffectiveDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawData,
-                "effective_date"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "effective_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date"); }
+        init { this._rawData.Set("effective_date", value); }
     }
 
     /// <summary>
@@ -137,8 +113,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
     /// </summary>
     public string? PlanID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "plan_id"); }
-        init { JsonModel.Set(this._rawData, "plan_id", value); }
+        get { return this._rawData.GetNullableClass<string>("plan_id"); }
+        init { this._rawData.Set("plan_id", value); }
     }
 
     /// <inheritdoc/>
@@ -166,14 +142,14 @@ public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
 
     public SubscriptionChangeRetrieveResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SubscriptionChangeRetrieveResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

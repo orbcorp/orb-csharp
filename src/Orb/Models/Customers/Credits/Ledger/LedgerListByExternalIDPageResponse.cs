@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,24 +20,23 @@ public sealed record class LedgerListByExternalIDPageResponse : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<LedgerListByExternalIDResponse>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<LedgerListByExternalIDResponse>>(
                 "data"
             );
         }
-        init { JsonModel.Set(this._rawData, "data", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<LedgerListByExternalIDResponse>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<PaginationMetadata>(
-                this.RawData,
-                "pagination_metadata"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
+        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        init { this._rawData.Set("pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -58,14 +58,14 @@ public sealed record class LedgerListByExternalIDPageResponse : JsonModel
 
     public LedgerListByExternalIDPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     LedgerListByExternalIDPageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -21,9 +22,15 @@ public sealed record class Minimum : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -31,8 +38,14 @@ public sealed record class Minimum : JsonModel
     /// </summary>
     public required IReadOnlyList<MinimumFilter> Filters
     {
-        get { return JsonModel.GetNotNullClass<List<MinimumFilter>>(this.RawData, "filters"); }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<MinimumFilter>>("filters"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MinimumFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -40,8 +53,8 @@ public sealed record class Minimum : JsonModel
     /// </summary>
     public required string MinimumAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("minimum_amount"); }
+        init { this._rawData.Set("minimum_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +78,7 @@ public sealed record class Minimum : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
@@ -73,7 +86,7 @@ public sealed record class Minimum : JsonModel
     [SetsRequiredMembers]
     Minimum(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -99,14 +112,8 @@ public sealed record class MinimumFilter : JsonModel
     /// </summary>
     public required ApiEnum<string, MinimumFilterField> Field
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumFilterField>>(
-                this.RawData,
-                "field"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, MinimumFilterField>>("field"); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -116,12 +123,11 @@ public sealed record class MinimumFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumFilterOperator>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, MinimumFilterOperator>>(
                 "operator"
             );
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -129,8 +135,14 @@ public sealed record class MinimumFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -148,14 +160,14 @@ public sealed record class MinimumFilter : JsonModel
 
     public MinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MinimumFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -17,50 +17,41 @@ public sealed record class MatrixSubLineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return JsonModel.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
-        init { JsonModel.Set(this._rawData, "grouping", value); }
+        get { return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping"); }
+        init { this._rawData.Set("grouping", value); }
     }
 
     public required SubLineItemMatrixConfig MatrixConfig
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<SubLineItemMatrixConfig>(
-                this.RawData,
-                "matrix_config"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "matrix_config", value); }
+        get { return this._rawData.GetNotNullClass<SubLineItemMatrixConfig>("matrix_config"); }
+        init { this._rawData.Set("matrix_config", value); }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     public required ApiEnum<string, MatrixSubLineItemType> Type
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, MatrixSubLineItemType>>(
-                this.RawData,
-                "type"
-            );
+            return this._rawData.GetNotNullClass<ApiEnum<string, MatrixSubLineItemType>>("type");
         }
-        init { JsonModel.Set(this._rawData, "type", value); }
+        init { this._rawData.Set("type", value); }
     }
 
     /// <summary>
@@ -68,8 +59,8 @@ public sealed record class MatrixSubLineItem : JsonModel
     /// </summary>
     public double? ScaledQuantity
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "scaled_quantity"); }
-        init { JsonModel.Set(this._rawData, "scaled_quantity", value); }
+        get { return this._rawData.GetNullableStruct<double>("scaled_quantity"); }
+        init { this._rawData.Set("scaled_quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -91,14 +82,14 @@ public sealed record class MatrixSubLineItem : JsonModel
 
     public MatrixSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MatrixSubLineItem(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,14 @@ public sealed record class ConversionRateTieredConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<ConversionRateTier> Tiers
     {
-        get { return JsonModel.GetNotNullClass<List<ConversionRateTier>>(this.RawData, "tiers"); }
-        init { JsonModel.Set(this._rawData, "tiers", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<ConversionRateTier>>("tiers"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<ConversionRateTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -37,14 +44,14 @@ public sealed record class ConversionRateTieredConfig : JsonModel
 
     public ConversionRateTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ConversionRateTieredConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

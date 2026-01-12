@@ -18,8 +18,8 @@ public sealed record class UnitConfig : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { JsonModel.Set(this._rawData, "unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public sealed record class UnitConfig : JsonModel
     /// </summary>
     public bool? Prorated
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorated"); }
+        get { return this._rawData.GetNullableStruct<bool>("prorated"); }
         init
         {
             if (value == null)
@@ -35,7 +35,7 @@ public sealed record class UnitConfig : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "prorated", value);
+            this._rawData.Set("prorated", value);
         }
     }
 
@@ -53,14 +53,14 @@ public sealed record class UnitConfig : JsonModel
 
     public UnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     UnitConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

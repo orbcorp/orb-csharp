@@ -12,8 +12,8 @@ public sealed record class TopLevelPingResponse : JsonModel
 {
     public required string Response
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "response"); }
-        init { JsonModel.Set(this._rawData, "response", value); }
+        get { return this._rawData.GetNotNullClass<string>("response"); }
+        init { this._rawData.Set("response", value); }
     }
 
     /// <inheritdoc/>
@@ -29,14 +29,14 @@ public sealed record class TopLevelPingResponse : JsonModel
 
     public TopLevelPingResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     TopLevelPingResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

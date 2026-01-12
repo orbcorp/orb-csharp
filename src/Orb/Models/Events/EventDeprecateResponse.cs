@@ -15,8 +15,8 @@ public sealed record class EventDeprecateResponse : JsonModel
     /// </summary>
     public required string Deprecated
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "deprecated"); }
-        init { JsonModel.Set(this._rawData, "deprecated", value); }
+        get { return this._rawData.GetNotNullClass<string>("deprecated"); }
+        init { this._rawData.Set("deprecated", value); }
     }
 
     /// <inheritdoc/>
@@ -32,14 +32,14 @@ public sealed record class EventDeprecateResponse : JsonModel
 
     public EventDeprecateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EventDeprecateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

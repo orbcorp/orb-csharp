@@ -16,20 +16,14 @@ public sealed record class NewAvalaraTaxConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("tax_exempt"); }
+        init { this._rawData.Set("tax_exempt", value); }
     }
 
     public required ApiEnum<string, TaxProvider> TaxProvider
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ApiEnum<string, TaxProvider>>(
-                this.RawData,
-                "tax_provider"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "tax_provider", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, TaxProvider>>("tax_provider"); }
+        init { this._rawData.Set("tax_provider", value); }
     }
 
     /// <summary>
@@ -38,14 +32,14 @@ public sealed record class NewAvalaraTaxConfiguration : JsonModel
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
     public string? TaxExemptionCode
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tax_exemption_code"); }
-        init { JsonModel.Set(this._rawData, "tax_exemption_code", value); }
+        get { return this._rawData.GetNullableClass<string>("tax_exemption_code"); }
+        init { this._rawData.Set("tax_exemption_code", value); }
     }
 
     /// <inheritdoc/>
@@ -64,14 +58,14 @@ public sealed record class NewAvalaraTaxConfiguration : JsonModel
 
     public NewAvalaraTaxConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewAvalaraTaxConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -15,20 +15,20 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
 {
     public required DateTimeOffset EffectiveDate
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "effective_date"); }
-        init { JsonModel.Set(this._rawData, "effective_date", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("effective_date"); }
+        init { this._rawData.Set("effective_date", value); }
     }
 
     public required string PriceID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "price_id"); }
-        init { JsonModel.Set(this._rawData, "price_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("price_id"); }
+        init { this._rawData.Set("price_id", value); }
     }
 
     public required long Quantity
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<long>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -46,14 +46,14 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
 
     public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     FixedFeeQuantityTransition(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

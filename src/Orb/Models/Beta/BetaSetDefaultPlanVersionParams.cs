@@ -14,7 +14,7 @@ namespace Orb.Models.Beta;
 /// </summary>
 public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -27,8 +27,8 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
     /// </summary>
     public required long Version
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawBodyData, "version"); }
-        init { JsonModel.Set(this._rawBodyData, "version", value); }
+        get { return this._rawBodyData.GetNotNullStruct<long>("version"); }
+        init { this._rawBodyData.Set("version", value); }
     }
 
     public BetaSetDefaultPlanVersionParams() { }
@@ -40,7 +40,7 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
     {
         this.PlanID = betaSetDefaultPlanVersionParams.PlanID;
 
-        this._rawBodyData = [.. betaSetDefaultPlanVersionParams._rawBodyData];
+        this._rawBodyData = new(betaSetDefaultPlanVersionParams._rawBodyData);
     }
 
     public BetaSetDefaultPlanVersionParams(
@@ -49,9 +49,9 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -62,9 +62,9 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

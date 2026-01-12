@@ -14,14 +14,14 @@ public sealed record class AccountingProviderConfig : JsonModel
 {
     public required string ExternalProviderID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "external_provider_id"); }
-        init { JsonModel.Set(this._rawData, "external_provider_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("external_provider_id"); }
+        init { this._rawData.Set("external_provider_id", value); }
     }
 
     public required string ProviderType
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "provider_type"); }
-        init { JsonModel.Set(this._rawData, "provider_type", value); }
+        get { return this._rawData.GetNotNullClass<string>("provider_type"); }
+        init { this._rawData.Set("provider_type", value); }
     }
 
     /// <inheritdoc/>
@@ -38,14 +38,14 @@ public sealed record class AccountingProviderConfig : JsonModel
 
     public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AccountingProviderConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

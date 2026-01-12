@@ -116,8 +116,8 @@ public sealed record class CostListParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "currency"); }
-        init { JsonModel.Set(this._rawQueryData, "currency", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("currency"); }
+        init { this._rawQueryData.Set("currency", value); }
     }
 
     /// <summary>
@@ -127,12 +127,9 @@ public sealed record class CostListParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawQueryData,
-                "timeframe_end"
-            );
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_end");
         }
-        init { JsonModel.Set(this._rawQueryData, "timeframe_end", value); }
+        init { this._rawQueryData.Set("timeframe_end", value); }
     }
 
     /// <summary>
@@ -142,12 +139,9 @@ public sealed record class CostListParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawQueryData,
-                "timeframe_start"
-            );
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_start");
         }
-        init { JsonModel.Set(this._rawQueryData, "timeframe_start", value); }
+        init { this._rawQueryData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -157,14 +151,8 @@ public sealed record class CostListParams : ParamsBase
     /// </summary>
     public ApiEnum<string, ViewMode>? ViewMode
     {
-        get
-        {
-            return JsonModel.GetNullableClass<ApiEnum<string, ViewMode>>(
-                this.RawQueryData,
-                "view_mode"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "view_mode", value); }
+        get { return this._rawQueryData.GetNullableClass<ApiEnum<string, ViewMode>>("view_mode"); }
+        init { this._rawQueryData.Set("view_mode", value); }
     }
 
     public CostListParams() { }
@@ -180,8 +168,8 @@ public sealed record class CostListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -191,8 +179,8 @@ public sealed record class CostListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

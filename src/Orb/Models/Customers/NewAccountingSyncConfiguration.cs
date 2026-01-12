@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,18 +20,23 @@ public sealed record class NewAccountingSyncConfiguration : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<AccountingProviderConfig>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<AccountingProviderConfig>>(
                 "accounting_providers"
             );
         }
-        init { JsonModel.Set(this._rawData, "accounting_providers", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<AccountingProviderConfig>?>(
+                "accounting_providers",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public bool? Excluded
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "excluded"); }
-        init { JsonModel.Set(this._rawData, "excluded", value); }
+        get { return this._rawData.GetNullableStruct<bool>("excluded"); }
+        init { this._rawData.Set("excluded", value); }
     }
 
     /// <inheritdoc/>
@@ -52,14 +58,14 @@ public sealed record class NewAccountingSyncConfiguration : JsonModel
 
     public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewAccountingSyncConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

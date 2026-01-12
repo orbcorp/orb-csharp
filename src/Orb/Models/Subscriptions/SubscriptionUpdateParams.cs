@@ -15,7 +15,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUpdateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -30,8 +30,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
-        init { JsonModel.Set(this._rawBodyData, "auto_collection", value); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("auto_collection"); }
+        init { this._rawBodyData.Set("auto_collection", value); }
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? DefaultInvoiceMemo
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "default_invoice_memo"); }
-        init { JsonModel.Set(this._rawBodyData, "default_invoice_memo", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("default_invoice_memo"); }
+        init { this._rawBodyData.Set("default_invoice_memo", value); }
     }
 
     /// <summary>
@@ -51,8 +51,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? InvoicingThreshold
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "invoicing_threshold"); }
-        init { JsonModel.Set(this._rawBodyData, "invoicing_threshold", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("invoicing_threshold"); }
+        init { this._rawBodyData.Set("invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -64,12 +64,17 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -80,8 +85,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
-        init { JsonModel.Set(this._rawBodyData, "net_terms", value); }
+        get { return this._rawBodyData.GetNullableStruct<long>("net_terms"); }
+        init { this._rawBodyData.Set("net_terms", value); }
     }
 
     public SubscriptionUpdateParams() { }
@@ -91,7 +96,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     {
         this.SubscriptionID = subscriptionUpdateParams.SubscriptionID;
 
-        this._rawBodyData = [.. subscriptionUpdateParams._rawBodyData];
+        this._rawBodyData = new(subscriptionUpdateParams._rawBodyData);
     }
 
     public SubscriptionUpdateParams(
@@ -100,9 +105,9 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -113,9 +118,9 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

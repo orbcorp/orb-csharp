@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -259,8 +260,11 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return JsonModel.GetNotNullClass<List<Data>>(this.RawData, "data"); }
-        init { JsonModel.Set(this._rawData, "data", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Data>>("data", ImmutableArray.ToImmutableArray(value));
+        }
     }
 
     /// <inheritdoc/>
@@ -279,14 +283,14 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
 
     public UngroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     UngroupedSubscriptionUsage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -319,26 +323,26 @@ public sealed record class Data : JsonModel
 {
     public required BillableMetric BillableMetric
     {
-        get { return JsonModel.GetNotNullClass<BillableMetric>(this.RawData, "billable_metric"); }
-        init { JsonModel.Set(this._rawData, "billable_metric", value); }
+        get { return this._rawData.GetNotNullClass<BillableMetric>("billable_metric"); }
+        init { this._rawData.Set("billable_metric", value); }
     }
 
     public required IReadOnlyList<DataUsage> Usage
     {
-        get { return JsonModel.GetNotNullClass<List<DataUsage>>(this.RawData, "usage"); }
-        init { JsonModel.Set(this._rawData, "usage", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<DataUsage>>("usage"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<DataUsage>>(
+                "usage",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required ApiEnum<string, DataViewMode> ViewMode
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ApiEnum<string, DataViewMode>>(
-                this.RawData,
-                "view_mode"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "view_mode", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, DataViewMode>>("view_mode"); }
+        init { this._rawData.Set("view_mode", value); }
     }
 
     /// <inheritdoc/>
@@ -359,14 +363,14 @@ public sealed record class Data : JsonModel
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Data(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -389,14 +393,14 @@ public sealed record class BillableMetric : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <inheritdoc/>
@@ -413,14 +417,14 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BillableMetric(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -443,32 +447,20 @@ public sealed record class DataUsage : JsonModel
 {
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "timeframe_end"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "timeframe_start"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start"); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <inheritdoc/>
@@ -486,14 +478,14 @@ public sealed record class DataUsage : JsonModel
 
     public DataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     DataUsage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -564,24 +556,23 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<GroupedSubscriptionUsageData>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<GroupedSubscriptionUsageData>>(
                 "data"
             );
         }
-        init { JsonModel.Set(this._rawData, "data", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<GroupedSubscriptionUsageData>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public PaginationMetadata? PaginationMetadata
     {
-        get
-        {
-            return JsonModel.GetNullableClass<PaginationMetadata>(
-                this.RawData,
-                "pagination_metadata"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
+        get { return this._rawData.GetNullableClass<PaginationMetadata>("pagination_metadata"); }
+        init { this._rawData.Set("pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -601,14 +592,14 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
 
     public GroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     GroupedSubscriptionUsage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -645,42 +636,45 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<GroupedSubscriptionUsageDataBillableMetric>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<GroupedSubscriptionUsageDataBillableMetric>(
                 "billable_metric"
             );
         }
-        init { JsonModel.Set(this._rawData, "billable_metric", value); }
+        init { this._rawData.Set("billable_metric", value); }
     }
 
     public required MetricGroup MetricGroup
     {
-        get { return JsonModel.GetNotNullClass<MetricGroup>(this.RawData, "metric_group"); }
-        init { JsonModel.Set(this._rawData, "metric_group", value); }
+        get { return this._rawData.GetNotNullClass<MetricGroup>("metric_group"); }
+        init { this._rawData.Set("metric_group", value); }
     }
 
     public required IReadOnlyList<GroupedSubscriptionUsageDataUsage> Usage
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<GroupedSubscriptionUsageDataUsage>>(
-                this.RawData,
-                "usage"
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<GroupedSubscriptionUsageDataUsage>
+            >("usage");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<GroupedSubscriptionUsageDataUsage>>(
+                "usage",
+                ImmutableArray.ToImmutableArray(value)
             );
         }
-        init { JsonModel.Set(this._rawData, "usage", value); }
     }
 
     public required ApiEnum<string, GroupedSubscriptionUsageDataViewMode> ViewMode
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, GroupedSubscriptionUsageDataViewMode>>(
-                this.RawData,
-                "view_mode"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, GroupedSubscriptionUsageDataViewMode>
+            >("view_mode");
         }
-        init { JsonModel.Set(this._rawData, "view_mode", value); }
+        init { this._rawData.Set("view_mode", value); }
     }
 
     /// <inheritdoc/>
@@ -702,14 +696,14 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
 
     public GroupedSubscriptionUsageData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     GroupedSubscriptionUsageData(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -740,14 +734,14 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonMode
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <inheritdoc/>
@@ -768,14 +762,14 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonMode
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     GroupedSubscriptionUsageDataBillableMetric(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -802,14 +796,14 @@ public sealed record class MetricGroup : JsonModel
 {
     public required string PropertyKey
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_key"); }
-        init { JsonModel.Set(this._rawData, "property_key", value); }
+        get { return this._rawData.GetNotNullClass<string>("property_key"); }
+        init { this._rawData.Set("property_key", value); }
     }
 
     public required string PropertyValue
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_value"); }
-        init { JsonModel.Set(this._rawData, "property_value", value); }
+        get { return this._rawData.GetNotNullClass<string>("property_value"); }
+        init { this._rawData.Set("property_value", value); }
     }
 
     /// <inheritdoc/>
@@ -826,14 +820,14 @@ public sealed record class MetricGroup : JsonModel
 
     public MetricGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MetricGroup(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -861,32 +855,20 @@ public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 {
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "timeframe_end"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "timeframe_start"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start"); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <inheritdoc/>
@@ -906,14 +888,14 @@ public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 
     public GroupedSubscriptionUsageDataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     GroupedSubscriptionUsageDataUsage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

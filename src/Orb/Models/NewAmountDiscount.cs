@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,18 +17,17 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewAmountDiscountAdjustmentType>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewAmountDiscountAdjustmentType>>(
                 "adjustment_type"
             );
         }
-        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
+        init { this._rawData.Set("adjustment_type", value); }
     }
 
     public required string AmountDiscount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_discount"); }
-        init { JsonModel.Set(this._rawData, "amount_discount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount_discount"); }
+        init { this._rawData.Set("amount_discount", value); }
     }
 
     /// <summary>
@@ -37,12 +37,9 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<ApiEnum<bool, AppliesToAll>>(
-                this.RawData,
-                "applies_to_all"
-            );
+            return this._rawData.GetNullableClass<ApiEnum<bool, AppliesToAll>>("applies_to_all");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_all", value); }
+        init { this._rawData.Set("applies_to_all", value); }
     }
 
     /// <summary>
@@ -52,9 +49,15 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_item_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_item_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -64,9 +67,15 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -74,8 +83,8 @@ public sealed record class NewAmountDiscount : JsonModel
     /// </summary>
     public string? Currency
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNullableClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -85,12 +94,17 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<NewAmountDiscountFilter>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<NewAmountDiscountFilter>>(
                 "filters"
             );
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<NewAmountDiscountFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -99,7 +113,7 @@ public sealed record class NewAmountDiscount : JsonModel
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
+        get { return this._rawData.GetNullableStruct<bool>("is_invoice_level"); }
         init
         {
             if (value == null)
@@ -107,7 +121,7 @@ public sealed record class NewAmountDiscount : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "is_invoice_level", value);
+            this._rawData.Set("is_invoice_level", value);
         }
     }
 
@@ -116,14 +130,8 @@ public sealed record class NewAmountDiscount : JsonModel
     /// </summary>
     public ApiEnum<string, PriceType>? PriceType
     {
-        get
-        {
-            return JsonModel.GetNullableClass<ApiEnum<string, PriceType>>(
-                this.RawData,
-                "price_type"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "price_type", value); }
+        get { return this._rawData.GetNullableClass<ApiEnum<string, PriceType>>("price_type"); }
+        init { this._rawData.Set("price_type", value); }
     }
 
     /// <inheritdoc/>
@@ -150,14 +158,14 @@ public sealed record class NewAmountDiscount : JsonModel
 
     public NewAmountDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewAmountDiscount(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -273,12 +281,11 @@ public sealed record class NewAmountDiscountFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterField>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterField>>(
                 "field"
             );
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -288,12 +295,11 @@ public sealed record class NewAmountDiscountFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterOperator>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterOperator>>(
                 "operator"
             );
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -301,8 +307,14 @@ public sealed record class NewAmountDiscountFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -320,14 +332,14 @@ public sealed record class NewAmountDiscountFilter : JsonModel
 
     public NewAmountDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewAmountDiscountFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

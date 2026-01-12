@@ -16,11 +16,11 @@ public sealed record class DiscountOverride : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType>
-            >(this.RawData, "discount_type");
+            >("discount_type");
         }
-        init { JsonModel.Set(this._rawData, "discount_type", value); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     /// <summary>
@@ -28,8 +28,8 @@ public sealed record class DiscountOverride : JsonModel
     /// </summary>
     public string? AmountDiscount
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "amount_discount"); }
-        init { JsonModel.Set(this._rawData, "amount_discount", value); }
+        get { return this._rawData.GetNullableClass<string>("amount_discount"); }
+        init { this._rawData.Set("amount_discount", value); }
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ public sealed record class DiscountOverride : JsonModel
     /// </summary>
     public double? PercentageDiscount
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "percentage_discount"); }
-        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
+        get { return this._rawData.GetNullableStruct<double>("percentage_discount"); }
+        init { this._rawData.Set("percentage_discount", value); }
     }
 
     /// <summary>
@@ -48,8 +48,8 @@ public sealed record class DiscountOverride : JsonModel
     /// </summary>
     public double? UsageDiscount
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "usage_discount"); }
-        init { JsonModel.Set(this._rawData, "usage_discount", value); }
+        get { return this._rawData.GetNullableStruct<double>("usage_discount"); }
+        init { this._rawData.Set("usage_discount", value); }
     }
 
     /// <inheritdoc/>
@@ -68,14 +68,14 @@ public sealed record class DiscountOverride : JsonModel
 
     public DiscountOverride(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     DiscountOverride(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -16,31 +16,31 @@ public sealed record class MigrationRetrieveResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required EffectiveTime? EffectiveTime
     {
-        get { return JsonModel.GetNullableClass<EffectiveTime>(this.RawData, "effective_time"); }
-        init { JsonModel.Set(this._rawData, "effective_time", value); }
+        get { return this._rawData.GetNullableClass<EffectiveTime>("effective_time"); }
+        init { this._rawData.Set("effective_time", value); }
     }
 
     public required string PlanID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "plan_id"); }
-        init { JsonModel.Set(this._rawData, "plan_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("plan_id"); }
+        init { this._rawData.Set("plan_id", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Plans.Migrations.Status> Status
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Plans.Migrations.Status>
-            >(this.RawData, "status");
+            >("status");
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     /// <inheritdoc/>
@@ -59,14 +59,14 @@ public sealed record class MigrationRetrieveResponse : JsonModel
 
     public MigrationRetrieveResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MigrationRetrieveResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

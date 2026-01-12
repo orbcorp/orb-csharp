@@ -24,20 +24,17 @@ public sealed record class SharedUnitConversionRateConfig : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
-            >(this.RawData, "conversion_rate_type");
+            >("conversion_rate_type");
         }
-        init { JsonModel.Set(this._rawData, "conversion_rate_type", value); }
+        init { this._rawData.Set("conversion_rate_type", value); }
     }
 
     public required ConversionRateUnitConfig UnitConfig
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ConversionRateUnitConfig>(this.RawData, "unit_config");
-        }
-        init { JsonModel.Set(this._rawData, "unit_config", value); }
+        get { return this._rawData.GetNotNullClass<ConversionRateUnitConfig>("unit_config"); }
+        init { this._rawData.Set("unit_config", value); }
     }
 
     /// <inheritdoc/>
@@ -56,14 +53,14 @@ public sealed record class SharedUnitConversionRateConfig : JsonModel
 
     public SharedUnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SharedUnitConversionRateConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

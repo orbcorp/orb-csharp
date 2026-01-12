@@ -16,7 +16,7 @@ namespace Orb.Models.Metrics;
 /// </summary>
 public sealed record class MetricCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -27,8 +27,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
-        init { JsonModel.Set(this._rawBodyData, "description", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        init { this._rawBodyData.Set("description", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string ItemID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "item_id"); }
-        init { JsonModel.Set(this._rawBodyData, "item_id", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("item_id"); }
+        init { this._rawBodyData.Set("item_id", value); }
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "name"); }
-        init { JsonModel.Set(this._rawBodyData, "name", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("name"); }
+        init { this._rawBodyData.Set("name", value); }
     }
 
     /// <summary>
@@ -54,8 +54,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string Sql
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "sql"); }
-        init { JsonModel.Set(this._rawBodyData, "sql", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("sql"); }
+        init { this._rawBodyData.Set("sql", value); }
     }
 
     /// <summary>
@@ -67,12 +67,17 @@ public sealed record class MetricCreateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     public MetricCreateParams() { }
@@ -80,7 +85,7 @@ public sealed record class MetricCreateParams : ParamsBase
     public MetricCreateParams(MetricCreateParams metricCreateParams)
         : base(metricCreateParams)
     {
-        this._rawBodyData = [.. metricCreateParams._rawBodyData];
+        this._rawBodyData = new(metricCreateParams._rawBodyData);
     }
 
     public MetricCreateParams(
@@ -89,9 +94,9 @@ public sealed record class MetricCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -102,9 +107,9 @@ public sealed record class MetricCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

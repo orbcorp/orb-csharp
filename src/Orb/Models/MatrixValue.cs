@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,8 +19,14 @@ public sealed record class MatrixValue : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
-        init { JsonModel.Set(this._rawData, "dimension_values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -27,8 +34,8 @@ public sealed record class MatrixValue : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { JsonModel.Set(this._rawData, "unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -45,14 +52,14 @@ public sealed record class MatrixValue : JsonModel
 
     public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MatrixValue(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

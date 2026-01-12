@@ -14,20 +14,19 @@ public sealed record class CustomExpiration : JsonModel
 {
     public required long Duration
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "duration"); }
-        init { JsonModel.Set(this._rawData, "duration", value); }
+        get { return this._rawData.GetNotNullStruct<long>("duration"); }
+        init { this._rawData.Set("duration", value); }
     }
 
     public required ApiEnum<string, CustomExpirationDurationUnit> DurationUnit
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, CustomExpirationDurationUnit>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, CustomExpirationDurationUnit>>(
                 "duration_unit"
             );
         }
-        init { JsonModel.Set(this._rawData, "duration_unit", value); }
+        init { this._rawData.Set("duration_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -44,14 +43,14 @@ public sealed record class CustomExpiration : JsonModel
 
     public CustomExpiration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CustomExpiration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

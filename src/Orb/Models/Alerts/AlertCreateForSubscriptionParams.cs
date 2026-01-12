@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -26,7 +27,7 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertCreateForSubscriptionParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -39,8 +40,14 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get { return JsonModel.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
-        init { JsonModel.Set(this._rawBodyData, "thresholds", value); }
+        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds"); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<Threshold>>(
+                "thresholds",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -50,12 +57,11 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, AlertCreateForSubscriptionParamsType>>(
-                this.RawBodyData,
-                "type"
-            );
+            return this._rawBodyData.GetNotNullClass<
+                ApiEnum<string, AlertCreateForSubscriptionParamsType>
+            >("type");
         }
-        init { JsonModel.Set(this._rawBodyData, "type", value); }
+        init { this._rawBodyData.Set("type", value); }
     }
 
     /// <summary>
@@ -63,8 +69,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public string? MetricID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "metric_id"); }
-        init { JsonModel.Set(this._rawBodyData, "metric_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("metric_id"); }
+        init { this._rawBodyData.Set("metric_id", value); }
     }
 
     public AlertCreateForSubscriptionParams() { }
@@ -76,7 +82,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     {
         this.SubscriptionID = alertCreateForSubscriptionParams.SubscriptionID;
 
-        this._rawBodyData = [.. alertCreateForSubscriptionParams._rawBodyData];
+        this._rawBodyData = new(alertCreateForSubscriptionParams._rawBodyData);
     }
 
     public AlertCreateForSubscriptionParams(
@@ -85,9 +91,9 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -98,9 +104,9 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

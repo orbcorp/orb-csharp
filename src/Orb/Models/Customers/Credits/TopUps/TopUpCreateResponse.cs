@@ -14,8 +14,8 @@ public sealed record class TopUpCreateResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -23,8 +23,8 @@ public sealed record class TopUpCreateResponse : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class TopUpCreateResponse : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -42,14 +42,8 @@ public sealed record class TopUpCreateResponse : JsonModel
     /// </summary>
     public required TopUpInvoiceSettings InvoiceSettings
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<TopUpInvoiceSettings>(
-                this.RawData,
-                "invoice_settings"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "invoice_settings", value); }
+        get { return this._rawData.GetNotNullClass<TopUpInvoiceSettings>("invoice_settings"); }
+        init { this._rawData.Set("invoice_settings", value); }
     }
 
     /// <summary>
@@ -57,8 +51,8 @@ public sealed record class TopUpCreateResponse : JsonModel
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return this._rawData.GetNotNullClass<string>("per_unit_cost_basis"); }
+        init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -67,8 +61,8 @@ public sealed record class TopUpCreateResponse : JsonModel
     /// </summary>
     public required string Threshold
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }
-        init { JsonModel.Set(this._rawData, "threshold", value); }
+        get { return this._rawData.GetNotNullClass<string>("threshold"); }
+        init { this._rawData.Set("threshold", value); }
     }
 
     /// <summary>
@@ -77,8 +71,8 @@ public sealed record class TopUpCreateResponse : JsonModel
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "expires_after"); }
-        init { JsonModel.Set(this._rawData, "expires_after", value); }
+        get { return this._rawData.GetNullableStruct<long>("expires_after"); }
+        init { this._rawData.Set("expires_after", value); }
     }
 
     /// <summary>
@@ -88,12 +82,11 @@ public sealed record class TopUpCreateResponse : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>>(
-                this.RawData,
-                "expires_after_unit"
-            );
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>
+            >("expires_after_unit");
         }
-        init { JsonModel.Set(this._rawData, "expires_after_unit", value); }
+        init { this._rawData.Set("expires_after_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -116,14 +109,14 @@ public sealed record class TopUpCreateResponse : JsonModel
 
     public TopUpCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     TopUpCreateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

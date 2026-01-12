@@ -33,7 +33,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -47,8 +47,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public required TrialEndDate TrialEndDate
     {
-        get { return JsonModel.GetNotNullClass<TrialEndDate>(this.RawBodyData, "trial_end_date"); }
-        init { JsonModel.Set(this._rawBodyData, "trial_end_date", value); }
+        get { return this._rawBodyData.GetNotNullClass<TrialEndDate>("trial_end_date"); }
+        init { this._rawBodyData.Set("trial_end_date", value); }
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public bool? Shift
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "shift"); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("shift"); }
         init
         {
             if (value == null)
@@ -65,7 +65,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "shift", value);
+            this._rawBodyData.Set("shift", value);
         }
     }
 
@@ -78,7 +78,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     {
         this.SubscriptionID = subscriptionUpdateTrialParams.SubscriptionID;
 
-        this._rawBodyData = [.. subscriptionUpdateTrialParams._rawBodyData];
+        this._rawBodyData = new(subscriptionUpdateTrialParams._rawBodyData);
     }
 
     public SubscriptionUpdateTrialParams(
@@ -87,9 +87,9 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -100,9 +100,9 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

@@ -20,14 +20,14 @@ public sealed record class BillableMetric : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
-        init { JsonModel.Set(this._rawData, "description", value); }
+        get { return this._rawData.GetNullableClass<string>("description"); }
+        init { this._rawData.Set("description", value); }
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public sealed record class BillableMetric : JsonModel
     /// </summary>
     public required Item Item
     {
-        get { return JsonModel.GetNotNullClass<Item>(this.RawData, "item"); }
-        init { JsonModel.Set(this._rawData, "item", value); }
+        get { return this._rawData.GetNotNullClass<Item>("item"); }
+        init { this._rawData.Set("item", value); }
     }
 
     /// <summary>
@@ -49,29 +49,31 @@ public sealed record class BillableMetric : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get
+        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        init
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
-        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Metrics.Status> Status
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, global::Orb.Models.Metrics.Status>>(
-                this.RawData,
-                "status"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Metrics.Status>
+            >("status");
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     /// <inheritdoc/>
@@ -92,14 +94,14 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BillableMetric(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

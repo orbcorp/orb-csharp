@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -15,9 +16,15 @@ public sealed record class AggregatedCost : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<PerPriceCost>>(this.RawData, "per_price_costs");
+            return this._rawData.GetNotNullStruct<ImmutableArray<PerPriceCost>>("per_price_costs");
         }
-        init { JsonModel.Set(this._rawData, "per_price_costs", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PerPriceCost>>(
+                "per_price_costs",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -25,20 +32,20 @@ public sealed record class AggregatedCost : JsonModel
     /// </summary>
     public required string Subtotal
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { JsonModel.Set(this._rawData, "subtotal", value); }
+        get { return this._rawData.GetNotNullClass<string>("subtotal"); }
+        init { this._rawData.Set("subtotal", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
-        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
-        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -46,8 +53,8 @@ public sealed record class AggregatedCost : JsonModel
     /// </summary>
     public required string Total
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "total"); }
-        init { JsonModel.Set(this._rawData, "total", value); }
+        get { return this._rawData.GetNotNullClass<string>("total"); }
+        init { this._rawData.Set("total", value); }
     }
 
     /// <inheritdoc/>
@@ -70,14 +77,14 @@ public sealed record class AggregatedCost : JsonModel
 
     public AggregatedCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AggregatedCost(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

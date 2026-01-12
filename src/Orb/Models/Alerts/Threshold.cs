@@ -20,8 +20,8 @@ public sealed record class Threshold : JsonModel
     /// </summary>
     public required double Value
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "value"); }
-        init { JsonModel.Set(this._rawData, "value", value); }
+        get { return this._rawData.GetNotNullStruct<double>("value"); }
+        init { this._rawData.Set("value", value); }
     }
 
     /// <inheritdoc/>
@@ -37,14 +37,14 @@ public sealed record class Threshold : JsonModel
 
     public Threshold(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Threshold(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
