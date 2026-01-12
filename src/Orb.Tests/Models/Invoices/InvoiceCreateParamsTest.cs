@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Invoices;
-using Models = Orb.Models;
+using Orb.Models;
+using Invoices = Orb.Models.Invoices;
 
 namespace Orb.Tests.Models.Invoices;
 
@@ -13,7 +13,7 @@ public class InvoiceCreateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new InvoiceCreateParams
+        var parameters = new Invoices::InvoiceCreateParams
         {
             Currency = "USD",
             InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -23,7 +23,7 @@ public class InvoiceCreateParamsTest : TestBase
                 {
                     EndDate = "2023-09-22",
                     ItemID = "4khy3nwzktxv7",
-                    ModelType = ModelType.Unit,
+                    ModelType = Invoices::ModelType.Unit,
                     Name = "Line Item Name",
                     Quantity = 1,
                     StartDate = "2023-09-22",
@@ -31,17 +31,17 @@ public class InvoiceCreateParamsTest : TestBase
                 },
             ],
             CustomerID = "4khy3nwzktxv7",
-            Discount = new Models::PercentageDiscount()
+            Discount = new PercentageDiscount()
             {
-                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
                 AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::PercentageDiscountFilterField.PriceID,
-                        Operator = Models::PercentageDiscountFilterOperator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -57,13 +57,13 @@ public class InvoiceCreateParamsTest : TestBase
 
         string expectedCurrency = "USD";
         DateTimeOffset expectedInvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<LineItem> expectedLineItems =
+        List<Invoices::LineItem> expectedLineItems =
         [
             new()
             {
                 EndDate = "2023-09-22",
                 ItemID = "4khy3nwzktxv7",
-                ModelType = ModelType.Unit,
+                ModelType = Invoices::ModelType.Unit,
                 Name = "Line Item Name",
                 Quantity = 1,
                 StartDate = "2023-09-22",
@@ -71,23 +71,23 @@ public class InvoiceCreateParamsTest : TestBase
             },
         ];
         string expectedCustomerID = "4khy3nwzktxv7";
-        Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
+        SharedDiscount expectedDiscount = new PercentageDiscount()
         {
-            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+            DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
             AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Models::PercentageDiscountFilterField.PriceID,
-                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             Reason = "reason",
         };
-        DueDate expectedDueDate = "2023-09-22";
+        Invoices::DueDate expectedDueDate = "2023-09-22";
         string expectedExternalCustomerID = "external-customer-id";
         string expectedMemo = "An optional memo for my invoice.";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -121,7 +121,7 @@ public class InvoiceCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new InvoiceCreateParams
+        var parameters = new Invoices::InvoiceCreateParams
         {
             Currency = "USD",
             InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -131,7 +131,7 @@ public class InvoiceCreateParamsTest : TestBase
                 {
                     EndDate = "2023-09-22",
                     ItemID = "4khy3nwzktxv7",
-                    ModelType = ModelType.Unit,
+                    ModelType = Invoices::ModelType.Unit,
                     Name = "Line Item Name",
                     Quantity = 1,
                     StartDate = "2023-09-22",
@@ -139,17 +139,17 @@ public class InvoiceCreateParamsTest : TestBase
                 },
             ],
             CustomerID = "4khy3nwzktxv7",
-            Discount = new Models::PercentageDiscount()
+            Discount = new PercentageDiscount()
             {
-                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
                 AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::PercentageDiscountFilterField.PriceID,
-                        Operator = Models::PercentageDiscountFilterOperator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -169,7 +169,7 @@ public class InvoiceCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new InvoiceCreateParams
+        var parameters = new Invoices::InvoiceCreateParams
         {
             Currency = "USD",
             InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -179,7 +179,7 @@ public class InvoiceCreateParamsTest : TestBase
                 {
                     EndDate = "2023-09-22",
                     ItemID = "4khy3nwzktxv7",
-                    ModelType = ModelType.Unit,
+                    ModelType = Invoices::ModelType.Unit,
                     Name = "Line Item Name",
                     Quantity = 1,
                     StartDate = "2023-09-22",
@@ -187,17 +187,17 @@ public class InvoiceCreateParamsTest : TestBase
                 },
             ],
             CustomerID = "4khy3nwzktxv7",
-            Discount = new Models::PercentageDiscount()
+            Discount = new PercentageDiscount()
             {
-                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
                 AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::PercentageDiscountFilterField.PriceID,
-                        Operator = Models::PercentageDiscountFilterOperator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -220,7 +220,7 @@ public class InvoiceCreateParamsTest : TestBase
     [Fact]
     public void OptionalNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new InvoiceCreateParams
+        var parameters = new Invoices::InvoiceCreateParams
         {
             Currency = "USD",
             InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -230,7 +230,7 @@ public class InvoiceCreateParamsTest : TestBase
                 {
                     EndDate = "2023-09-22",
                     ItemID = "4khy3nwzktxv7",
-                    ModelType = ModelType.Unit,
+                    ModelType = Invoices::ModelType.Unit,
                     Name = "Line Item Name",
                     Quantity = 1,
                     StartDate = "2023-09-22",
@@ -259,7 +259,7 @@ public class InvoiceCreateParamsTest : TestBase
     [Fact]
     public void OptionalNullableParamsSetToNullAreSetToNull_Works()
     {
-        var parameters = new InvoiceCreateParams
+        var parameters = new Invoices::InvoiceCreateParams
         {
             Currency = "USD",
             InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -269,7 +269,7 @@ public class InvoiceCreateParamsTest : TestBase
                 {
                     EndDate = "2023-09-22",
                     ItemID = "4khy3nwzktxv7",
-                    ModelType = ModelType.Unit,
+                    ModelType = Invoices::ModelType.Unit,
                     Name = "Line Item Name",
                     Quantity = 1,
                     StartDate = "2023-09-22",
@@ -306,7 +306,7 @@ public class InvoiceCreateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        InvoiceCreateParams parameters = new()
+        Invoices::InvoiceCreateParams parameters = new()
         {
             Currency = "USD",
             InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -316,7 +316,7 @@ public class InvoiceCreateParamsTest : TestBase
                 {
                     EndDate = "2023-09-22",
                     ItemID = "4khy3nwzktxv7",
-                    ModelType = ModelType.Unit,
+                    ModelType = Invoices::ModelType.Unit,
                     Name = "Line Item Name",
                     Quantity = 1,
                     StartDate = "2023-09-22",
@@ -336,11 +336,11 @@ public class LineItemTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new LineItem
+        var model = new Invoices::LineItem
         {
             EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
-            ModelType = ModelType.Unit,
+            ModelType = Invoices::ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
             StartDate = "2023-09-22",
@@ -349,15 +349,11 @@ public class LineItemTest : TestBase
 
         string expectedEndDate = "2023-09-22";
         string expectedItemID = "4khy3nwzktxv7";
-        ApiEnum<string, ModelType> expectedModelType = ModelType.Unit;
+        ApiEnum<string, Invoices::ModelType> expectedModelType = Invoices::ModelType.Unit;
         string expectedName = "Line Item Name";
         double expectedQuantity = 1;
         string expectedStartDate = "2023-09-22";
-        Models::UnitConfig expectedUnitConfig = new()
-        {
-            UnitAmount = "unit_amount",
-            Prorated = true,
-        };
+        UnitConfig expectedUnitConfig = new() { UnitAmount = "unit_amount", Prorated = true };
 
         Assert.Equal(expectedEndDate, model.EndDate);
         Assert.Equal(expectedItemID, model.ItemID);
@@ -371,11 +367,11 @@ public class LineItemTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new LineItem
+        var model = new Invoices::LineItem
         {
             EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
-            ModelType = ModelType.Unit,
+            ModelType = Invoices::ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
             StartDate = "2023-09-22",
@@ -383,7 +379,7 @@ public class LineItemTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LineItem>(json);
+        var deserialized = JsonSerializer.Deserialize<Invoices::LineItem>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -391,11 +387,11 @@ public class LineItemTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new LineItem
+        var model = new Invoices::LineItem
         {
             EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
-            ModelType = ModelType.Unit,
+            ModelType = Invoices::ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
             StartDate = "2023-09-22",
@@ -403,20 +399,16 @@ public class LineItemTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LineItem>(element);
+        var deserialized = JsonSerializer.Deserialize<Invoices::LineItem>(element);
         Assert.NotNull(deserialized);
 
         string expectedEndDate = "2023-09-22";
         string expectedItemID = "4khy3nwzktxv7";
-        ApiEnum<string, ModelType> expectedModelType = ModelType.Unit;
+        ApiEnum<string, Invoices::ModelType> expectedModelType = Invoices::ModelType.Unit;
         string expectedName = "Line Item Name";
         double expectedQuantity = 1;
         string expectedStartDate = "2023-09-22";
-        Models::UnitConfig expectedUnitConfig = new()
-        {
-            UnitAmount = "unit_amount",
-            Prorated = true,
-        };
+        UnitConfig expectedUnitConfig = new() { UnitAmount = "unit_amount", Prorated = true };
 
         Assert.Equal(expectedEndDate, deserialized.EndDate);
         Assert.Equal(expectedItemID, deserialized.ItemID);
@@ -430,11 +422,11 @@ public class LineItemTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new LineItem
+        var model = new Invoices::LineItem
         {
             EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
-            ModelType = ModelType.Unit,
+            ModelType = Invoices::ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
             StartDate = "2023-09-22",
@@ -448,18 +440,18 @@ public class LineItemTest : TestBase
 public class ModelTypeTest : TestBase
 {
     [Theory]
-    [InlineData(ModelType.Unit)]
-    public void Validation_Works(ModelType rawValue)
+    [InlineData(Invoices::ModelType.Unit)]
+    public void Validation_Works(Invoices::ModelType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, ModelType> value = rawValue;
+        ApiEnum<string, Invoices::ModelType> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Invoices::ModelType>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -469,14 +461,14 @@ public class ModelTypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(ModelType.Unit)]
-    public void SerializationRoundtrip_Works(ModelType rawValue)
+    [InlineData(Invoices::ModelType.Unit)]
+    public void SerializationRoundtrip_Works(Invoices::ModelType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, ModelType> value = rawValue;
+        ApiEnum<string, Invoices::ModelType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Invoices::ModelType>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -487,12 +479,12 @@ public class ModelTypeTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Invoices::ModelType>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ModelType>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Invoices::ModelType>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -506,23 +498,23 @@ public class DueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        DueDate value = new("2019-12-27");
+        Invoices::DueDate value = new("2019-12-27");
         value.Validate();
     }
 
     [Fact]
     public void DateTimeValidationWorks()
     {
-        DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Invoices::DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        DueDate value = new("2019-12-27");
+        Invoices::DueDate value = new("2019-12-27");
         string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DueDate>(element);
+        var deserialized = JsonSerializer.Deserialize<Invoices::DueDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -530,9 +522,9 @@ public class DueDateTest : TestBase
     [Fact]
     public void DateTimeSerializationRoundtripWorks()
     {
-        DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Invoices::DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DueDate>(element);
+        var deserialized = JsonSerializer.Deserialize<Invoices::DueDate>(element);
 
         Assert.Equal(value, deserialized);
     }

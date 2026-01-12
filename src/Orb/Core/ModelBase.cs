@@ -579,6 +579,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Invoices::Status>(),
             new ApiEnumConverter<string, Invoices::InvoiceListSummaryParamsDateType>(),
             new ApiEnumConverter<string, Invoices::InvoiceListSummaryParamsStatus>(),
+            new ApiEnumConverter<string, Invoices::StatusModel>(),
             new ApiEnumConverter<string, ItemExternalConnectionExternalConnectionName>(),
             new ApiEnumConverter<string, ExternalConnectionName>(),
             new ApiEnumConverter<string, Metrics::Status>(),
