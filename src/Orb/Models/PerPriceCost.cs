@@ -15,7 +15,11 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required Price Price
     {
-        get { return this._rawData.GetNotNullClass<Price>("price"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Price>("price");
+        }
         init { this._rawData.Set("price", value); }
     }
 
@@ -24,7 +28,11 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required string PriceID
     {
-        get { return this._rawData.GetNotNullClass<string>("price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("price_id");
+        }
         init { this._rawData.Set("price_id", value); }
     }
 
@@ -33,7 +41,11 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required string Subtotal
     {
-        get { return this._rawData.GetNotNullClass<string>("subtotal"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
+        }
         init { this._rawData.Set("subtotal", value); }
     }
 
@@ -42,7 +54,11 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required string Total
     {
-        get { return this._rawData.GetNotNullClass<string>("total"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
+        }
         init { this._rawData.Set("total", value); }
     }
 
@@ -51,7 +67,11 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public double? Quantity
     {
-        get { return this._rawData.GetNullableStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 

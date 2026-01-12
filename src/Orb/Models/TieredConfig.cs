@@ -19,7 +19,11 @@ public sealed record class TieredConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<SharedTier> Tiers
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<SharedTier>>("tiers"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<SharedTier>>("tiers");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<SharedTier>>(
@@ -34,7 +38,11 @@ public sealed record class TieredConfig : JsonModel
     /// </summary>
     public bool? Prorated
     {
-        get { return this._rawData.GetNullableStruct<bool>("prorated"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
         init
         {
             if (value == null)

@@ -15,7 +15,11 @@ public sealed record class SubscriptionSubscriptions : JsonModel
 {
     public required IReadOnlyList<Subscription> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<Subscription>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Subscription>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<Subscription>>(
@@ -27,7 +31,11 @@ public sealed record class SubscriptionSubscriptions : JsonModel
 
     public required PaginationMetadata PaginationMetadata
     {
-        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
+        }
         init { this._rawData.Set("pagination_metadata", value); }
     }
 

@@ -23,7 +23,11 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -32,7 +36,11 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -44,6 +52,7 @@ public sealed record class Item : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<ItemExternalConnection>>(
                 "external_connections"
             );
@@ -65,7 +74,11 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
         init
         {
             this._rawData.Set<FrozenDictionary<string, string>>(
@@ -80,7 +93,11 @@ public sealed record class Item : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -89,7 +106,11 @@ public sealed record class Item : JsonModel
     /// </summary>
     public System::DateTimeOffset? ArchivedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("archived_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("archived_at");
+        }
         init { this._rawData.Set("archived_at", value); }
     }
 
@@ -156,6 +177,7 @@ public sealed record class ItemExternalConnection : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, ItemExternalConnectionExternalConnectionName>
             >("external_connection_name");
@@ -168,7 +190,11 @@ public sealed record class ItemExternalConnection : JsonModel
     /// </summary>
     public required string ExternalEntityID
     {
-        get { return this._rawData.GetNotNullClass<string>("external_entity_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_entity_id");
+        }
         init { this._rawData.Set("external_entity_id", value); }
     }
 

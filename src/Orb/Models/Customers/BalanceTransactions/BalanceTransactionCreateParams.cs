@@ -27,7 +27,11 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
 
     public required string Amount
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("amount");
+        }
         init { this._rawBodyData.Set("amount", value); }
     }
 
@@ -35,6 +39,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
             >("type");
@@ -47,7 +52,11 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     /// </summary>
     public string? Description
     {
-        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
         init { this._rawBodyData.Set("description", value); }
     }
 

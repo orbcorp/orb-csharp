@@ -20,6 +20,7 @@ public sealed record class UsageDiscountInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
                 "applies_to_price_interval_ids"
             );
@@ -37,6 +38,7 @@ public sealed record class UsageDiscountInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, UsageDiscountIntervalDiscountType>
             >("discount_type");
@@ -49,7 +51,11 @@ public sealed record class UsageDiscountInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
@@ -60,6 +66,7 @@ public sealed record class UsageDiscountInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<UsageDiscountIntervalFilter>>(
                 "filters"
             );
@@ -78,7 +85,11 @@ public sealed record class UsageDiscountInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 
@@ -88,7 +99,11 @@ public sealed record class UsageDiscountInterval : JsonModel
     /// </summary>
     public required double UsageDiscount
     {
-        get { return this._rawData.GetNotNullStruct<double>("usage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("usage_discount");
+        }
         init { this._rawData.Set("usage_discount", value); }
     }
 
@@ -195,6 +210,7 @@ public sealed record class UsageDiscountIntervalFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalFilterField>>(
                 "field"
             );
@@ -209,6 +225,7 @@ public sealed record class UsageDiscountIntervalFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, UsageDiscountIntervalFilterOperator>
             >("operator");
@@ -221,7 +238,11 @@ public sealed record class UsageDiscountIntervalFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

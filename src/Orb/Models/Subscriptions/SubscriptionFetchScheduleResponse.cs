@@ -18,25 +18,41 @@ public sealed record class SubscriptionFetchScheduleResponse : JsonModel
 {
     public required DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
     public required Plan? Plan
     {
-        get { return this._rawData.GetNullableClass<Plan>("plan"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Plan>("plan");
+        }
         init { this._rawData.Set("plan", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 
@@ -91,7 +107,11 @@ public sealed record class Plan : JsonModel
 {
     public required string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -102,13 +122,21 @@ public sealed record class Plan : JsonModel
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return this._rawData.GetNullableClass<string>("external_plan_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_plan_id");
+        }
         init { this._rawData.Set("external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return this._rawData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 

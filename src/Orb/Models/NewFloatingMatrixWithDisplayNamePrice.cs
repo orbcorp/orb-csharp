@@ -25,6 +25,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, NewFloatingMatrixWithDisplayNamePriceCadence>
             >("cadence");
@@ -37,7 +38,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -46,7 +51,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -57,6 +66,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<MatrixWithDisplayNameConfig>(
                 "matrix_with_display_name_config"
             );
@@ -71,6 +81,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, NewFloatingMatrixWithDisplayNamePriceModelType>
             >("model_type");
@@ -83,7 +94,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -92,7 +107,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -102,7 +121,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return this._rawData.GetNullableStruct<bool>("billed_in_advance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
         init { this._rawData.Set("billed_in_advance", value); }
     }
 
@@ -114,6 +137,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "billing_cycle_configuration"
             );
@@ -126,7 +150,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public double? ConversionRate
     {
-        get { return this._rawData.GetNullableStruct<double>("conversion_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
         init { this._rawData.Set("conversion_rate", value); }
     }
 
@@ -137,6 +165,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewFloatingMatrixWithDisplayNamePriceConversionRateConfig>(
                 "conversion_rate_config"
             );
@@ -151,6 +180,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
                 "dimensional_price_configuration"
             );
@@ -163,7 +193,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -172,7 +206,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("fixed_price_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
@@ -181,7 +219,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
         init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
@@ -193,6 +235,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "invoicing_cycle_configuration"
             );
@@ -209,6 +252,7 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -353,7 +397,11 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     /// </summary>
     public required string Dimension
     {
-        get { return this._rawData.GetNotNullClass<string>("dimension"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("dimension");
+        }
         init { this._rawData.Set("dimension", value); }
     }
 
@@ -364,6 +412,7 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<MatrixWithDisplayNameConfigUnitAmount>
             >("unit_amounts");
@@ -438,7 +487,11 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
     /// </summary>
     public required string DimensionValue
     {
-        get { return this._rawData.GetNotNullClass<string>("dimension_value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("dimension_value");
+        }
         init { this._rawData.Set("dimension_value", value); }
     }
 
@@ -447,7 +500,11 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
     /// </summary>
     public required string DisplayName
     {
-        get { return this._rawData.GetNotNullClass<string>("display_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("display_name");
+        }
         init { this._rawData.Set("display_name", value); }
     }
 
@@ -456,7 +513,11 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 

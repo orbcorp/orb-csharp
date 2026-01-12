@@ -17,6 +17,7 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewAmountDiscountAdjustmentType>>(
                 "adjustment_type"
             );
@@ -26,7 +27,11 @@ public sealed record class NewAmountDiscount : JsonModel
 
     public required string AmountDiscount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_discount");
+        }
         init { this._rawData.Set("amount_discount", value); }
     }
 
@@ -37,6 +42,7 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<bool, AppliesToAll>>("applies_to_all");
         }
         init { this._rawData.Set("applies_to_all", value); }
@@ -49,6 +55,7 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
         }
         init
@@ -67,6 +74,7 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -83,7 +91,11 @@ public sealed record class NewAmountDiscount : JsonModel
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -94,6 +106,7 @@ public sealed record class NewAmountDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<NewAmountDiscountFilter>>(
                 "filters"
             );
@@ -113,7 +126,11 @@ public sealed record class NewAmountDiscount : JsonModel
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return this._rawData.GetNullableStruct<bool>("is_invoice_level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
         init
         {
             if (value == null)
@@ -130,7 +147,11 @@ public sealed record class NewAmountDiscount : JsonModel
     /// </summary>
     public ApiEnum<string, PriceType>? PriceType
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, PriceType>>("price_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, PriceType>>("price_type");
+        }
         init { this._rawData.Set("price_type", value); }
     }
 
@@ -281,6 +302,7 @@ public sealed record class NewAmountDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterField>>(
                 "field"
             );
@@ -295,6 +317,7 @@ public sealed record class NewAmountDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterOperator>>(
                 "operator"
             );
@@ -307,7 +330,11 @@ public sealed record class NewAmountDiscountFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

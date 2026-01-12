@@ -12,13 +12,21 @@ public sealed record class CustomerMinified : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string? ExternalCustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawData.Set("external_customer_id", value); }
     }
 

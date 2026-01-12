@@ -16,7 +16,11 @@ public sealed record class SubLineItemMatrixConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string?>>(

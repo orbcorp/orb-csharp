@@ -17,6 +17,7 @@ public sealed record class PercentageDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, PercentageDiscountDiscountType>>(
                 "discount_type"
             );
@@ -30,7 +31,11 @@ public sealed record class PercentageDiscount : JsonModel
     /// </summary>
     public required double PercentageDiscountValue
     {
-        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage_discount");
+        }
         init { this._rawData.Set("percentage_discount", value); }
     }
 
@@ -42,6 +47,7 @@ public sealed record class PercentageDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -60,6 +66,7 @@ public sealed record class PercentageDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<PercentageDiscountFilter>>(
                 "filters"
             );
@@ -75,7 +82,11 @@ public sealed record class PercentageDiscount : JsonModel
 
     public string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -179,6 +190,7 @@ public sealed record class PercentageDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, PercentageDiscountFilterField>>(
                 "field"
             );
@@ -193,6 +205,7 @@ public sealed record class PercentageDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, PercentageDiscountFilterOperator>>(
                 "operator"
             );
@@ -205,7 +218,11 @@ public sealed record class PercentageDiscountFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

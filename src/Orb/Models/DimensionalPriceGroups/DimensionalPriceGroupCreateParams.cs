@@ -30,7 +30,11 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
 
     public required string BillableMetricID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("billable_metric_id");
+        }
         init { this._rawBodyData.Set("billable_metric_id", value); }
     }
 
@@ -39,7 +43,11 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("dimensions"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("dimensions");
+        }
         init
         {
             this._rawBodyData.Set<ImmutableArray<string>>(
@@ -51,7 +59,11 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
 
     public required string Name
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("name");
+        }
         init { this._rawBodyData.Set("name", value); }
     }
 
@@ -59,6 +71,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<string>(
                 "external_dimensional_price_group_id"
             );
@@ -75,6 +88,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );

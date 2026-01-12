@@ -19,25 +19,41 @@ public sealed record class CustomerListParams : ParamsBase
 {
     public DateTimeOffset? CreatedAtGt
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gt]");
+        }
         init { this._rawQueryData.Set("created_at[gt]", value); }
     }
 
     public DateTimeOffset? CreatedAtGte
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gte]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gte]");
+        }
         init { this._rawQueryData.Set("created_at[gte]", value); }
     }
 
     public DateTimeOffset? CreatedAtLt
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lt]");
+        }
         init { this._rawQueryData.Set("created_at[lt]", value); }
     }
 
     public DateTimeOffset? CreatedAtLte
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lte]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lte]");
+        }
         init { this._rawQueryData.Set("created_at[lte]", value); }
     }
 
@@ -47,7 +63,11 @@ public sealed record class CustomerListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -56,7 +76,11 @@ public sealed record class CustomerListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)

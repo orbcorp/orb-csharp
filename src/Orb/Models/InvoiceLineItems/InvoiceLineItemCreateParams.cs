@@ -35,7 +35,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("amount");
+        }
         init { this._rawBodyData.Set("amount", value); }
     }
 
@@ -44,7 +48,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string EndDate
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("end_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("end_date");
+        }
         init { this._rawBodyData.Set("end_date", value); }
     }
 
@@ -53,7 +61,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string InvoiceID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("invoice_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("invoice_id");
+        }
         init { this._rawBodyData.Set("invoice_id", value); }
     }
 
@@ -62,7 +74,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required double Quantity
     {
-        get { return this._rawBodyData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawBodyData.Set("quantity", value); }
     }
 
@@ -71,7 +87,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string StartDate
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("start_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("start_date");
+        }
         init { this._rawBodyData.Set("start_date", value); }
     }
 
@@ -83,7 +103,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? ItemID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("item_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("item_id");
+        }
         init { this._rawBodyData.Set("item_id", value); }
     }
 
@@ -97,7 +121,11 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get { return this._rawBodyData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
         init { this._rawBodyData.Set("name", value); }
     }
 

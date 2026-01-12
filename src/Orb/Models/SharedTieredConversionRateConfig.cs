@@ -21,6 +21,7 @@ public sealed record class SharedTieredConversionRateConfig : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, ConversionRateType>>(
                 "conversion_rate_type"
             );
@@ -30,7 +31,11 @@ public sealed record class SharedTieredConversionRateConfig : JsonModel
 
     public required ConversionRateTieredConfig TieredConfig
     {
-        get { return this._rawData.GetNotNullClass<ConversionRateTieredConfig>("tiered_config"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ConversionRateTieredConfig>("tiered_config");
+        }
         init { this._rawData.Set("tiered_config", value); }
     }
 

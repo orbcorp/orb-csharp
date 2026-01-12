@@ -20,6 +20,7 @@ public sealed record class NewAccountingSyncConfiguration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<AccountingProviderConfig>>(
                 "accounting_providers"
             );
@@ -35,7 +36,11 @@ public sealed record class NewAccountingSyncConfiguration : JsonModel
 
     public bool? Excluded
     {
-        get { return this._rawData.GetNullableStruct<bool>("excluded"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("excluded");
+        }
         init { this._rawData.Set("excluded", value); }
     }
 

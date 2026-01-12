@@ -42,7 +42,11 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public required System::DateTimeOffset TimeframeEnd
     {
-        get { return this._rawBodyData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end");
+        }
         init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
@@ -53,6 +57,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start");
         }
         init { this._rawBodyData.Set("timeframe_start", value); }
@@ -63,7 +68,11 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawBodyData.Set("customer_id", value); }
     }
 
@@ -72,7 +81,11 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public IReadOnlyList<Event>? Events
     {
-        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<Event>>("events"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<Event>>("events");
+        }
         init
         {
             if (value == null)
@@ -92,7 +105,11 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
@@ -103,6 +120,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableStruct<
                 ImmutableArray<PriceEvaluatePreviewEventsParamsPriceEvaluation>
             >("price_evaluations");
@@ -207,7 +225,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required string EventName
     {
-        get { return this._rawData.GetNotNullClass<string>("event_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_name");
+        }
         init { this._rawData.Set("event_name", value); }
     }
 
@@ -219,6 +241,7 @@ public sealed record class Event : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
@@ -239,7 +262,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required System::DateTimeOffset Timestamp
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timestamp"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timestamp");
+        }
         init { this._rawData.Set("timestamp", value); }
     }
 
@@ -248,7 +275,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public string? CustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawData.Set("customer_id", value); }
     }
 
@@ -257,7 +288,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawData.Set("external_customer_id", value); }
     }
 
@@ -316,7 +351,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Jso
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -326,7 +365,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Jso
     /// </summary>
     public string? Filter
     {
-        get { return this._rawData.GetNullableClass<string>("filter"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("filter");
+        }
         init { this._rawData.Set("filter", value); }
     }
 
@@ -336,7 +379,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Jso
     /// </summary>
     public IReadOnlyList<string>? GroupingKeys
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<string>>("grouping_keys"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("grouping_keys");
+        }
         init
         {
             if (value == null)
@@ -358,6 +405,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Jso
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
                 "price"
             );
@@ -370,7 +418,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Jso
     /// </summary>
     public string? PriceID
     {
-        get { return this._rawData.GetNullableClass<string>("price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("price_id");
+        }
         init { this._rawData.Set("price_id", value); }
     }
 
@@ -3212,6 +3264,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
                 "bulk_with_filters_config"
             );
@@ -3229,6 +3282,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
@@ -3244,7 +3298,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -3253,7 +3311,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -3262,7 +3324,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public JsonElement ModelType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("model_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
         init { this._rawData.Set("model_type", value); }
     }
 
@@ -3271,7 +3337,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -3280,7 +3350,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -3290,7 +3364,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return this._rawData.GetNullableStruct<bool>("billed_in_advance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
         init { this._rawData.Set("billed_in_advance", value); }
     }
 
@@ -3302,6 +3380,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "billing_cycle_configuration"
             );
@@ -3314,7 +3393,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public double? ConversionRate
     {
-        get { return this._rawData.GetNullableStruct<double>("conversion_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
         init { this._rawData.Set("conversion_rate", value); }
     }
 
@@ -3325,6 +3408,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
                 "conversion_rate_config"
             );
@@ -3339,6 +3423,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
                 "dimensional_price_configuration"
             );
@@ -3351,7 +3436,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -3360,7 +3449,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("fixed_price_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
@@ -3369,7 +3462,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
         init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
@@ -3381,6 +3478,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "invoicing_cycle_configuration"
             );
@@ -3397,6 +3495,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -3507,6 +3606,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>
             >("filters");
@@ -3526,6 +3626,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>
             >("tiers");
@@ -3616,7 +3717,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string PropertyKey
     {
-        get { return this._rawData.GetNotNullClass<string>("property_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("property_key");
+        }
         init { this._rawData.Set("property_key", value); }
     }
 
@@ -3625,7 +3730,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string PropertyValue
     {
-        get { return this._rawData.GetNotNullClass<string>("property_value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("property_value");
+        }
         init { this._rawData.Set("property_value", value); }
     }
 
@@ -3701,7 +3810,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 
@@ -3710,7 +3823,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? TierLowerBound
     {
-        get { return this._rawData.GetNullableClass<string>("tier_lower_bound"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tier_lower_bound");
+        }
         init { this._rawData.Set("tier_lower_bound", value); }
     }
 
@@ -4159,6 +4276,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
@@ -4174,7 +4292,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -4185,6 +4307,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 "grouped_with_min_max_thresholds_config"
             );
@@ -4197,7 +4320,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -4206,7 +4333,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public JsonElement ModelType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("model_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
         init { this._rawData.Set("model_type", value); }
     }
 
@@ -4215,7 +4346,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -4224,7 +4359,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -4234,7 +4373,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return this._rawData.GetNullableStruct<bool>("billed_in_advance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
         init { this._rawData.Set("billed_in_advance", value); }
     }
 
@@ -4246,6 +4389,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "billing_cycle_configuration"
             );
@@ -4258,7 +4402,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public double? ConversionRate
     {
-        get { return this._rawData.GetNullableStruct<double>("conversion_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
         init { this._rawData.Set("conversion_rate", value); }
     }
 
@@ -4269,6 +4417,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
                 "conversion_rate_config"
             );
@@ -4283,6 +4432,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
                 "dimensional_price_configuration"
             );
@@ -4295,7 +4445,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -4304,7 +4458,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("fixed_price_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
@@ -4313,7 +4471,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
         init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
@@ -4325,6 +4487,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "invoicing_cycle_configuration"
             );
@@ -4341,6 +4504,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -4530,7 +4694,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string GroupingKey
     {
-        get { return this._rawData.GetNotNullClass<string>("grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
         init { this._rawData.Set("grouping_key", value); }
     }
 
@@ -4539,7 +4707,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string MaximumCharge
     {
-        get { return this._rawData.GetNotNullClass<string>("maximum_charge"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("maximum_charge");
+        }
         init { this._rawData.Set("maximum_charge", value); }
     }
 
@@ -4548,7 +4720,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string MinimumCharge
     {
-        get { return this._rawData.GetNotNullClass<string>("minimum_charge"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("minimum_charge");
+        }
         init { this._rawData.Set("minimum_charge", value); }
     }
 
@@ -4557,7 +4733,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string PerUnitRate
     {
-        get { return this._rawData.GetNotNullClass<string>("per_unit_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("per_unit_rate");
+        }
         init { this._rawData.Set("per_unit_rate", value); }
     }
 
@@ -4925,6 +5105,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
@@ -4942,6 +5123,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 "cumulative_grouped_allocation_config"
             );
@@ -4954,7 +5136,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -4963,7 +5149,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -4972,7 +5162,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public JsonElement ModelType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("model_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
         init { this._rawData.Set("model_type", value); }
     }
 
@@ -4981,7 +5175,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -4990,7 +5188,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -5000,7 +5202,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return this._rawData.GetNullableStruct<bool>("billed_in_advance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
         init { this._rawData.Set("billed_in_advance", value); }
     }
 
@@ -5012,6 +5218,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "billing_cycle_configuration"
             );
@@ -5024,7 +5231,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public double? ConversionRate
     {
-        get { return this._rawData.GetNullableStruct<double>("conversion_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
         init { this._rawData.Set("conversion_rate", value); }
     }
 
@@ -5035,6 +5246,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
                 "conversion_rate_config"
             );
@@ -5049,6 +5261,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
                 "dimensional_price_configuration"
             );
@@ -5061,7 +5274,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -5070,7 +5287,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("fixed_price_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
@@ -5079,7 +5300,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
         init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
@@ -5091,6 +5316,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "invoicing_cycle_configuration"
             );
@@ -5107,6 +5333,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -5296,7 +5523,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string CumulativeAllocation
     {
-        get { return this._rawData.GetNotNullClass<string>("cumulative_allocation"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("cumulative_allocation");
+        }
         init { this._rawData.Set("cumulative_allocation", value); }
     }
 
@@ -5305,7 +5536,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string GroupAllocation
     {
-        get { return this._rawData.GetNotNullClass<string>("group_allocation"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("group_allocation");
+        }
         init { this._rawData.Set("group_allocation", value); }
     }
 
@@ -5314,7 +5549,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string GroupingKey
     {
-        get { return this._rawData.GetNotNullClass<string>("grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
         init { this._rawData.Set("grouping_key", value); }
     }
 
@@ -5323,7 +5562,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 
@@ -5690,6 +5933,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
             >("cadence");
@@ -5702,7 +5946,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -5711,7 +5959,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -5720,7 +5972,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public JsonElement ModelType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("model_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
         init { this._rawData.Set("model_type", value); }
     }
 
@@ -5729,7 +5985,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -5740,6 +6000,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
                 "percent_config"
             );
@@ -5752,7 +6013,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -5762,7 +6027,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return this._rawData.GetNullableStruct<bool>("billed_in_advance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
         init { this._rawData.Set("billed_in_advance", value); }
     }
 
@@ -5774,6 +6043,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "billing_cycle_configuration"
             );
@@ -5786,7 +6056,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public double? ConversionRate
     {
-        get { return this._rawData.GetNullableStruct<double>("conversion_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
         init { this._rawData.Set("conversion_rate", value); }
     }
 
@@ -5797,6 +6071,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
                 "conversion_rate_config"
             );
@@ -5811,6 +6086,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
                 "dimensional_price_configuration"
             );
@@ -5823,7 +6099,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -5832,7 +6112,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("fixed_price_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
@@ -5841,7 +6125,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
         init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
@@ -5853,6 +6141,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "invoicing_cycle_configuration"
             );
@@ -5869,6 +6158,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -6043,7 +6333,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required double Percent
     {
-        get { return this._rawData.GetNotNullStruct<double>("percent"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percent");
+        }
         init { this._rawData.Set("percent", value); }
     }
 
@@ -6412,6 +6706,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
@@ -6427,7 +6722,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -6438,6 +6737,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
                 "event_output_config"
             );
@@ -6450,7 +6750,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -6459,7 +6763,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public JsonElement ModelType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("model_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
         init { this._rawData.Set("model_type", value); }
     }
 
@@ -6468,7 +6776,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -6477,7 +6789,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -6487,7 +6803,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return this._rawData.GetNullableStruct<bool>("billed_in_advance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
         init { this._rawData.Set("billed_in_advance", value); }
     }
 
@@ -6499,6 +6819,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "billing_cycle_configuration"
             );
@@ -6511,7 +6832,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public double? ConversionRate
     {
-        get { return this._rawData.GetNullableStruct<double>("conversion_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
         init { this._rawData.Set("conversion_rate", value); }
     }
 
@@ -6522,6 +6847,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
                 "conversion_rate_config"
             );
@@ -6536,6 +6862,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
                 "dimensional_price_configuration"
             );
@@ -6548,7 +6875,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -6557,7 +6888,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("fixed_price_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
@@ -6566,7 +6901,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
         init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
@@ -6578,6 +6917,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
                 "invoicing_cycle_configuration"
             );
@@ -6594,6 +6934,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -6773,7 +7114,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string UnitRatingKey
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_rating_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_rating_key");
+        }
         init { this._rawData.Set("unit_rating_key", value); }
     }
 
@@ -6784,7 +7129,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? DefaultUnitRate
     {
-        get { return this._rawData.GetNullableClass<string>("default_unit_rate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_unit_rate");
+        }
         init { this._rawData.Set("default_unit_rate", value); }
     }
 
@@ -6794,7 +7143,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? GroupingKey
     {
-        get { return this._rawData.GetNullableClass<string>("grouping_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("grouping_key");
+        }
         init { this._rawData.Set("grouping_key", value); }
     }
 

@@ -18,7 +18,11 @@ public sealed record class PriceInterval : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -27,7 +31,11 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required long BillingCycleDay
     {
-        get { return this._rawData.GetNotNullStruct<long>("billing_cycle_day"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("billing_cycle_day");
+        }
         init { this._rawData.Set("billing_cycle_day", value); }
     }
 
@@ -38,7 +46,11 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required bool CanDeferBilling
     {
-        get { return this._rawData.GetNotNullStruct<bool>("can_defer_billing"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("can_defer_billing");
+        }
         init { this._rawData.Set("can_defer_billing", value); }
     }
 
@@ -51,6 +63,7 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<DateTimeOffset>(
                 "current_billing_period_end_date"
             );
@@ -67,6 +80,7 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<DateTimeOffset>(
                 "current_billing_period_start_date"
             );
@@ -80,7 +94,11 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
@@ -89,7 +107,11 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required string? Filter
     {
-        get { return this._rawData.GetNullableClass<string>("filter"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("filter");
+        }
         init { this._rawData.Set("filter", value); }
     }
 
@@ -101,6 +123,7 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<FixedFeeQuantityTransition>>(
                 "fixed_fee_quantity_transitions"
             );
@@ -127,7 +150,11 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required Price Price
     {
-        get { return this._rawData.GetNotNullClass<Price>("price"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Price>("price");
+        }
         init { this._rawData.Set("price", value); }
     }
 
@@ -137,7 +164,11 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 
@@ -149,6 +180,7 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("usage_customer_ids");
         }
         init

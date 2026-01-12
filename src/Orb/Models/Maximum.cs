@@ -22,6 +22,7 @@ public sealed record class Maximum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -38,7 +39,11 @@ public sealed record class Maximum : JsonModel
     /// </summary>
     public required IReadOnlyList<MaximumFilter> Filters
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<MaximumFilter>>("filters"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<MaximumFilter>>("filters");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<MaximumFilter>>(
@@ -53,7 +58,11 @@ public sealed record class Maximum : JsonModel
     /// </summary>
     public required string MaximumAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("maximum_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("maximum_amount");
+        }
         init { this._rawData.Set("maximum_amount", value); }
     }
 
@@ -112,7 +121,11 @@ public sealed record class MaximumFilter : JsonModel
     /// </summary>
     public required ApiEnum<string, MaximumFilterField> Field
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, MaximumFilterField>>("field"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MaximumFilterField>>("field");
+        }
         init { this._rawData.Set("field", value); }
     }
 
@@ -123,6 +136,7 @@ public sealed record class MaximumFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, MaximumFilterOperator>>(
                 "operator"
             );
@@ -135,7 +149,11 @@ public sealed record class MaximumFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

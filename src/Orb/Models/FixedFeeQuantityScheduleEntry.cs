@@ -15,25 +15,41 @@ public sealed record class FixedFeeQuantityScheduleEntry : JsonModel
 {
     public required DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
     public required string PriceID
     {
-        get { return this._rawData.GetNotNullClass<string>("price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("price_id");
+        }
         init { this._rawData.Set("price_id", value); }
     }
 
     public required double Quantity
     {
-        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 

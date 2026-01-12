@@ -17,7 +17,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -25,6 +29,7 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
             >("adjustment_type");
@@ -40,6 +45,7 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -58,6 +64,7 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<PlanPhaseMinimumAdjustmentFilter>>(
                 "filters"
             );
@@ -77,7 +84,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return this._rawData.GetNotNullStruct<bool>("is_invoice_level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_invoice_level");
+        }
         init { this._rawData.Set("is_invoice_level", value); }
     }
 
@@ -86,7 +97,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -96,7 +111,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string MinimumAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("minimum_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("minimum_amount");
+        }
         init { this._rawData.Set("minimum_amount", value); }
     }
 
@@ -105,7 +124,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required long? PlanPhaseOrder
     {
-        get { return this._rawData.GetNullableStruct<long>("plan_phase_order"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("plan_phase_order");
+        }
         init { this._rawData.Set("plan_phase_order", value); }
     }
 
@@ -114,7 +137,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -124,7 +151,11 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return this._rawData.GetNullableClass<string>("replaces_adjustment_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_adjustment_id");
+        }
         init { this._rawData.Set("replaces_adjustment_id", value); }
     }
 
@@ -242,6 +273,7 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
             >("field");
@@ -256,6 +288,7 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
             >("operator");
@@ -268,7 +301,11 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

@@ -18,7 +18,11 @@ public sealed record class PackageConfig : JsonModel
     /// </summary>
     public required string PackageAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("package_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("package_amount");
+        }
         init { this._rawData.Set("package_amount", value); }
     }
 
@@ -28,7 +32,11 @@ public sealed record class PackageConfig : JsonModel
     /// </summary>
     public required long PackageSize
     {
-        get { return this._rawData.GetNotNullStruct<long>("package_size"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("package_size");
+        }
         init { this._rawData.Set("package_size", value); }
     }
 

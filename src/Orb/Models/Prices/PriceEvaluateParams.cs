@@ -50,7 +50,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeEnd
     {
-        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
+        }
         init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
@@ -59,7 +63,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeStart
     {
-        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
+        }
         init { this._rawBodyData.Set("timeframe_start", value); }
     }
 
@@ -68,7 +76,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawBodyData.Set("customer_id", value); }
     }
 
@@ -77,7 +89,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
@@ -87,7 +103,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? Filter
     {
-        get { return this._rawBodyData.GetNullableClass<string>("filter"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("filter");
+        }
         init { this._rawBodyData.Set("filter", value); }
     }
 
@@ -97,7 +117,11 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public IReadOnlyList<string>? GroupingKeys
     {
-        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("grouping_keys"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("grouping_keys");
+        }
         init
         {
             if (value == null)

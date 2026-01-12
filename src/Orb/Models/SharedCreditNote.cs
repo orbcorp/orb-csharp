@@ -22,7 +22,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -31,7 +35,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -40,7 +48,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string CreditNoteNumber
     {
-        get { return this._rawData.GetNotNullClass<string>("credit_note_number"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("credit_note_number");
+        }
         init { this._rawData.Set("credit_note_number", value); }
     }
 
@@ -49,13 +61,21 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string? CreditNotePdf
     {
-        get { return this._rawData.GetNullableClass<string>("credit_note_pdf"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("credit_note_pdf");
+        }
         init { this._rawData.Set("credit_note_pdf", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get { return this._rawData.GetNotNullClass<CustomerMinified>("customer"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<CustomerMinified>("customer");
+        }
         init { this._rawData.Set("customer", value); }
     }
 
@@ -64,7 +84,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string InvoiceID
     {
-        get { return this._rawData.GetNotNullClass<string>("invoice_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("invoice_id");
+        }
         init { this._rawData.Set("invoice_id", value); }
     }
 
@@ -75,6 +99,7 @@ public sealed record class SharedCreditNote : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<SharedCreditNoteLineItem>>(
                 "line_items"
             );
@@ -95,6 +120,7 @@ public sealed record class SharedCreditNote : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<MaximumAmountAdjustment>(
                 "maximum_amount_adjustment"
             );
@@ -107,7 +133,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string? Memo
     {
-        get { return this._rawData.GetNullableClass<string>("memo"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
+        }
         init { this._rawData.Set("memo", value); }
     }
 
@@ -116,13 +146,21 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string? MinimumAmountRefunded
     {
-        get { return this._rawData.GetNullableClass<string>("minimum_amount_refunded"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount_refunded");
+        }
         init { this._rawData.Set("minimum_amount_refunded", value); }
     }
 
     public required ApiEnum<string, Reason>? Reason
     {
-        get { return this._rawData.GetNullableClass<ApiEnum<string, Reason>>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, Reason>>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -131,7 +169,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string Subtotal
     {
-        get { return this._rawData.GetNotNullClass<string>("subtotal"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
+        }
         init { this._rawData.Set("subtotal", value); }
     }
 
@@ -140,13 +182,21 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required string Total
     {
-        get { return this._rawData.GetNotNullClass<string>("total"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
+        }
         init { this._rawData.Set("total", value); }
     }
 
     public required ApiEnum<string, SharedCreditNoteType> Type
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, SharedCreditNoteType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, SharedCreditNoteType>>("type");
+        }
         init { this._rawData.Set("type", value); }
     }
 
@@ -155,7 +205,11 @@ public sealed record class SharedCreditNote : JsonModel
     /// </summary>
     public required System::DateTimeOffset? VoidedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at");
+        }
         init { this._rawData.Set("voided_at", value); }
     }
 
@@ -166,6 +220,7 @@ public sealed record class SharedCreditNote : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<SharedCreditNoteDiscount>>(
                 "discounts"
             );
@@ -255,7 +310,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -264,7 +323,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -273,7 +336,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -282,7 +349,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -291,7 +362,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required double? Quantity
     {
-        get { return this._rawData.GetNullableStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
@@ -300,7 +375,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required string Subtotal
     {
-        get { return this._rawData.GetNotNullClass<string>("subtotal"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
+        }
         init { this._rawData.Set("subtotal", value); }
     }
 
@@ -309,7 +388,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public required IReadOnlyList<TaxAmount> TaxAmounts
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<TaxAmount>>("tax_amounts"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<TaxAmount>>("tax_amounts");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<TaxAmount>>(
@@ -324,7 +407,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     /// </summary>
     public IReadOnlyList<Discount>? Discounts
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<Discount>>("discounts"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Discount>>("discounts");
+        }
         init
         {
             if (value == null)
@@ -346,6 +433,7 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_time_exclusive");
         }
         init { this._rawData.Set("end_time_exclusive", value); }
@@ -358,6 +446,7 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>("start_time_inclusive");
         }
         init { this._rawData.Set("start_time_inclusive", value); }
@@ -424,13 +513,21 @@ public sealed record class Discount : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string AmountApplied
     {
-        get { return this._rawData.GetNotNullClass<string>("amount_applied"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_applied");
+        }
         init { this._rawData.Set("amount_applied", value); }
     }
 
@@ -438,6 +535,7 @@ public sealed record class Discount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -453,6 +551,7 @@ public sealed record class Discount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, DiscountDiscountType>>(
                 "discount_type"
             );
@@ -462,19 +561,31 @@ public sealed record class Discount : JsonModel
 
     public required double PercentageDiscount
     {
-        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage_discount");
+        }
         init { this._rawData.Set("percentage_discount", value); }
     }
 
     public string? AmountDiscount
     {
-        get { return this._rawData.GetNullableClass<string>("amount_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("amount_discount");
+        }
         init { this._rawData.Set("amount_discount", value); }
     }
 
     public string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -574,7 +685,11 @@ public sealed record class MaximumAmountAdjustment : JsonModel
 {
     public required string AmountApplied
     {
-        get { return this._rawData.GetNotNullClass<string>("amount_applied"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_applied");
+        }
         init { this._rawData.Set("amount_applied", value); }
     }
 
@@ -582,6 +697,7 @@ public sealed record class MaximumAmountAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MaximumAmountAdjustmentDiscountType>
             >("discount_type");
@@ -591,7 +707,11 @@ public sealed record class MaximumAmountAdjustment : JsonModel
 
     public required double PercentageDiscount
     {
-        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage_discount");
+        }
         init { this._rawData.Set("percentage_discount", value); }
     }
 
@@ -599,6 +719,7 @@ public sealed record class MaximumAmountAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<AppliesToPrice>>(
                 "applies_to_prices"
             );
@@ -614,7 +735,11 @@ public sealed record class MaximumAmountAdjustment : JsonModel
 
     public string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -713,13 +838,21 @@ public sealed record class AppliesToPrice : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -859,7 +992,11 @@ public sealed record class SharedCreditNoteDiscount : JsonModel
 {
     public required string AmountApplied
     {
-        get { return this._rawData.GetNotNullClass<string>("amount_applied"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_applied");
+        }
         init { this._rawData.Set("amount_applied", value); }
     }
 
@@ -867,6 +1004,7 @@ public sealed record class SharedCreditNoteDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, SharedCreditNoteDiscountDiscountType>
             >("discount_type");
@@ -876,7 +1014,11 @@ public sealed record class SharedCreditNoteDiscount : JsonModel
 
     public required double PercentageDiscount
     {
-        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage_discount");
+        }
         init { this._rawData.Set("percentage_discount", value); }
     }
 
@@ -884,6 +1026,7 @@ public sealed record class SharedCreditNoteDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
                 ImmutableArray<SharedCreditNoteDiscountAppliesToPrice>
             >("applies_to_prices");
@@ -899,7 +1042,11 @@ public sealed record class SharedCreditNoteDiscount : JsonModel
 
     public string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -1003,13 +1150,21 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 

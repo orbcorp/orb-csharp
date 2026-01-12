@@ -22,7 +22,11 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -30,6 +34,7 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, BalanceTransactionListResponseAction>
             >("action");
@@ -42,7 +47,11 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -51,13 +60,21 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
     public required CreditNoteTiny? CreditNote
     {
-        get { return this._rawData.GetNullableClass<CreditNoteTiny>("credit_note"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreditNoteTiny>("credit_note");
+        }
         init { this._rawData.Set("credit_note", value); }
     }
 
@@ -66,7 +83,11 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     /// </summary>
     public required string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -75,13 +96,21 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     /// </summary>
     public required string EndingBalance
     {
-        get { return this._rawData.GetNotNullClass<string>("ending_balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("ending_balance");
+        }
         init { this._rawData.Set("ending_balance", value); }
     }
 
     public required InvoiceTiny? Invoice
     {
-        get { return this._rawData.GetNullableClass<InvoiceTiny>("invoice"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<InvoiceTiny>("invoice");
+        }
         init { this._rawData.Set("invoice", value); }
     }
 
@@ -91,7 +120,11 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     /// </summary>
     public required string StartingBalance
     {
-        get { return this._rawData.GetNotNullClass<string>("starting_balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("starting_balance");
+        }
         init { this._rawData.Set("starting_balance", value); }
     }
 
@@ -99,6 +132,7 @@ public sealed record class BalanceTransactionListResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, BalanceTransactionListResponseType>
             >("type");

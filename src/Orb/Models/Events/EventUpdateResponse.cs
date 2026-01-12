@@ -15,7 +15,11 @@ public sealed record class EventUpdateResponse : JsonModel
     /// </summary>
     public required string Amended
     {
-        get { return this._rawData.GetNotNullClass<string>("amended"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amended");
+        }
         init { this._rawData.Set("amended", value); }
     }
 

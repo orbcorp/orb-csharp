@@ -21,7 +21,11 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     /// </summary>
     public required string Allocation
     {
-        get { return this._rawData.GetNotNullClass<string>("allocation"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("allocation");
+        }
         init { this._rawData.Set("allocation", value); }
     }
 
@@ -30,7 +34,11 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("default_unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
         init { this._rawData.Set("default_unit_amount", value); }
     }
 
@@ -39,7 +47,11 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string?>>(
@@ -56,6 +68,7 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<MatrixWithAllocationConfigMatrixValue>
             >("matrix_values");
@@ -134,7 +147,11 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string?>>(
@@ -149,7 +166,11 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 

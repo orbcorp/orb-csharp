@@ -15,7 +15,11 @@ public sealed record class DimensionalPriceConfiguration : JsonModel
 {
     public required IReadOnlyList<string> DimensionValues
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimension_values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimension_values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -27,7 +31,11 @@ public sealed record class DimensionalPriceConfiguration : JsonModel
 
     public required string DimensionalPriceGroupID
     {
-        get { return this._rawData.GetNotNullClass<string>("dimensional_price_group_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("dimensional_price_group_id");
+        }
         init { this._rawData.Set("dimensional_price_group_id", value); }
     }
 

@@ -25,7 +25,11 @@ public sealed record class ItemCreateParams : ParamsBase
     /// </summary>
     public required string Name
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("name");
+        }
         init { this._rawBodyData.Set("name", value); }
     }
 
@@ -38,6 +42,7 @@ public sealed record class ItemCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );

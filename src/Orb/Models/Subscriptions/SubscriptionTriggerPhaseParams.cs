@@ -29,7 +29,11 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// </summary>
     public bool? AllowInvoiceCreditOrVoid
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void");
+        }
         init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
@@ -39,7 +43,11 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// </summary>
     public string? EffectiveDate
     {
-        get { return this._rawBodyData.GetNullableClass<string>("effective_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("effective_date");
+        }
         init { this._rawBodyData.Set("effective_date", value); }
     }
 

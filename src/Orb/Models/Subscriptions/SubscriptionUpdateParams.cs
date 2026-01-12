@@ -30,7 +30,11 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("auto_collection"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
+        }
         init { this._rawBodyData.Set("auto_collection", value); }
     }
 
@@ -40,7 +44,11 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? DefaultInvoiceMemo
     {
-        get { return this._rawBodyData.GetNullableClass<string>("default_invoice_memo"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("default_invoice_memo");
+        }
         init { this._rawBodyData.Set("default_invoice_memo", value); }
     }
 
@@ -51,7 +59,11 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? InvoicingThreshold
     {
-        get { return this._rawBodyData.GetNullableClass<string>("invoicing_threshold"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("invoicing_threshold");
+        }
         init { this._rawBodyData.Set("invoicing_threshold", value); }
     }
 
@@ -64,6 +76,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
@@ -85,7 +98,11 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("net_terms"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("net_terms");
+        }
         init { this._rawBodyData.Set("net_terms", value); }
     }
 

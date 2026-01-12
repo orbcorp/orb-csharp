@@ -22,6 +22,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gt]");
         }
         init { this._rawQueryData.Set("created_at[gt]", value); }
@@ -31,6 +32,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gte]");
         }
         init { this._rawQueryData.Set("created_at[gte]", value); }
@@ -40,6 +42,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lt]");
         }
         init { this._rawQueryData.Set("created_at[lt]", value); }
@@ -49,6 +52,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lte]");
         }
         init { this._rawQueryData.Set("created_at[lte]", value); }
@@ -60,7 +64,11 @@ public sealed record class PlanListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -69,7 +77,11 @@ public sealed record class PlanListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -88,6 +100,7 @@ public sealed record class PlanListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableClass<ApiEnum<string, PlanListParamsStatus>>(
                 "status"
             );

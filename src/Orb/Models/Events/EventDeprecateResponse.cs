@@ -15,7 +15,11 @@ public sealed record class EventDeprecateResponse : JsonModel
     /// </summary>
     public required string Deprecated
     {
-        get { return this._rawData.GetNotNullClass<string>("deprecated"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("deprecated");
+        }
         init { this._rawData.Set("deprecated", value); }
     }
 

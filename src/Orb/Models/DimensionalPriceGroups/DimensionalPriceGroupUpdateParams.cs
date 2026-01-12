@@ -34,6 +34,7 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<string>(
                 "external_dimensional_price_group_id"
             );
@@ -50,6 +51,7 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );

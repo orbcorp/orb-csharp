@@ -28,7 +28,11 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public required string PaymentReceivedDate
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("payment_received_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("payment_received_date");
+        }
         init { this._rawBodyData.Set("payment_received_date", value); }
     }
 
@@ -37,7 +41,11 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? ExternalID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_id");
+        }
         init { this._rawBodyData.Set("external_id", value); }
     }
 
@@ -46,7 +54,11 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? Notes
     {
-        get { return this._rawBodyData.GetNullableClass<string>("notes"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("notes");
+        }
         init { this._rawBodyData.Set("notes", value); }
     }
 

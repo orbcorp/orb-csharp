@@ -18,7 +18,11 @@ public sealed record class BackfillCreateResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -28,13 +32,21 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? CloseTime
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("close_time"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("close_time");
+        }
         init { this._rawData.Set("close_time", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -44,7 +56,11 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// </summary>
     public required string? CustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawData.Set("customer_id", value); }
     }
 
@@ -53,7 +69,11 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// </summary>
     public required long EventsIngested
     {
-        get { return this._rawData.GetNotNullStruct<long>("events_ingested"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("events_ingested");
+        }
         init { this._rawData.Set("events_ingested", value); }
     }
 
@@ -64,7 +84,11 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// </summary>
     public required bool ReplaceExistingEvents
     {
-        get { return this._rawData.GetNotNullStruct<bool>("replace_existing_events"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("replace_existing_events");
+        }
         init { this._rawData.Set("replace_existing_events", value); }
     }
 
@@ -73,7 +97,11 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? RevertedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("reverted_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("reverted_at");
+        }
         init { this._rawData.Set("reverted_at", value); }
     }
 
@@ -84,6 +112,7 @@ public sealed record class BackfillCreateResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Events.Backfills.Status>
             >("status");
@@ -93,13 +122,21 @@ public sealed record class BackfillCreateResponse : JsonModel
 
     public required System::DateTimeOffset TimeframeEnd
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end");
+        }
         init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start");
+        }
         init { this._rawData.Set("timeframe_start", value); }
     }
 
@@ -109,7 +146,11 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return this._rawData.GetNullableClass<string>("deprecation_filter"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("deprecation_filter");
+        }
         init { this._rawData.Set("deprecation_filter", value); }
     }
 

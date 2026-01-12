@@ -13,7 +13,11 @@ public sealed record class TopUpListPageResponse : JsonModel
 {
     public required IReadOnlyList<TopUpListResponse> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<TopUpListResponse>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<TopUpListResponse>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<TopUpListResponse>>(
@@ -25,7 +29,11 @@ public sealed record class TopUpListPageResponse : JsonModel
 
     public required PaginationMetadata PaginationMetadata
     {
-        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
+        }
         init { this._rawData.Set("pagination_metadata", value); }
     }
 

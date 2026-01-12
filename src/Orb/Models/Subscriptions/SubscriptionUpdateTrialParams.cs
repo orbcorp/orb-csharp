@@ -47,7 +47,11 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public required TrialEndDate TrialEndDate
     {
-        get { return this._rawBodyData.GetNotNullClass<TrialEndDate>("trial_end_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<TrialEndDate>("trial_end_date");
+        }
         init { this._rawBodyData.Set("trial_end_date", value); }
     }
 
@@ -57,7 +61,11 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public bool? Shift
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("shift"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("shift");
+        }
         init
         {
             if (value == null)

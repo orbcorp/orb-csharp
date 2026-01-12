@@ -15,13 +15,21 @@ public sealed record class AdjustmentInterval : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required Adjustment Adjustment
     {
-        get { return this._rawData.GetNotNullClass<Adjustment>("adjustment"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Adjustment>("adjustment");
+        }
         init { this._rawData.Set("adjustment", value); }
     }
 
@@ -32,6 +40,7 @@ public sealed record class AdjustmentInterval : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
                 "applies_to_price_interval_ids"
             );
@@ -50,7 +59,11 @@ public sealed record class AdjustmentInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
@@ -59,7 +72,11 @@ public sealed record class AdjustmentInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 

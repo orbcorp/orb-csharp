@@ -17,7 +17,11 @@ public sealed record class MutatedSubscription : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -26,7 +30,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required long? ActivePlanPhaseOrder
     {
-        get { return this._rawData.GetNullableStruct<long>("active_plan_phase_order"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("active_plan_phase_order");
+        }
         init { this._rawData.Set("active_plan_phase_order", value); }
     }
 
@@ -38,6 +46,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<AdjustmentInterval>>(
                 "adjustment_intervals"
             );
@@ -58,7 +67,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required bool? AutoCollection
     {
-        get { return this._rawData.GetNullableStruct<bool>("auto_collection"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("auto_collection");
+        }
         init { this._rawData.Set("auto_collection", value); }
     }
 
@@ -66,6 +79,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<BillingCycleAnchorConfiguration>(
                 "billing_cycle_anchor_configuration"
             );
@@ -81,13 +95,21 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required long BillingCycleDay
     {
-        get { return this._rawData.GetNotNullStruct<long>("billing_cycle_day"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("billing_cycle_day");
+        }
         init { this._rawData.Set("billing_cycle_day", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -100,6 +122,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>(
                 "current_billing_period_end_date"
             );
@@ -116,6 +139,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>(
                 "current_billing_period_start_date"
             );
@@ -142,7 +166,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required Customer Customer
     {
-        get { return this._rawData.GetNotNullClass<Customer>("customer"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Customer>("customer");
+        }
         init { this._rawData.Set("customer", value); }
     }
 
@@ -152,7 +180,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required string? DefaultInvoiceMemo
     {
-        get { return this._rawData.GetNullableClass<string>("default_invoice_memo"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_invoice_memo");
+        }
         init { this._rawData.Set("default_invoice_memo", value); }
     }
 
@@ -165,6 +197,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<DiscountInterval>>(
                 "discount_intervals"
             );
@@ -183,7 +216,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
@@ -191,6 +228,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<FixedFeeQuantityScheduleEntry>>(
                 "fixed_fee_quantity_schedule"
             );
@@ -206,7 +244,11 @@ public sealed record class MutatedSubscription : JsonModel
 
     public required string? InvoicingThreshold
     {
-        get { return this._rawData.GetNullableClass<string>("invoicing_threshold"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoicing_threshold");
+        }
         init { this._rawData.Set("invoicing_threshold", value); }
     }
 
@@ -219,6 +261,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<MaximumInterval>>(
                 "maximum_intervals"
             );
@@ -240,7 +283,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
         init
         {
             this._rawData.Set<FrozenDictionary<string, string>>(
@@ -259,6 +306,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<MinimumInterval>>(
                 "minimum_intervals"
             );
@@ -277,7 +325,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -289,7 +341,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required long NetTerms
     {
-        get { return this._rawData.GetNotNullStruct<long>("net_terms"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("net_terms");
+        }
         init { this._rawData.Set("net_terms", value); }
     }
 
@@ -300,6 +356,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<SubscriptionChangeMinified>(
                 "pending_subscription_change"
             );
@@ -314,7 +371,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required Plan? Plan
     {
-        get { return this._rawData.GetNullableClass<Plan>("plan"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Plan>("plan");
+        }
         init { this._rawData.Set("plan", value); }
     }
 
@@ -325,6 +386,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<PriceInterval>>("price_intervals");
         }
         init
@@ -338,7 +400,11 @@ public sealed record class MutatedSubscription : JsonModel
 
     public required CouponRedemption? RedeemedCoupon
     {
-        get { return this._rawData.GetNullableClass<CouponRedemption>("redeemed_coupon"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CouponRedemption>("redeemed_coupon");
+        }
         init { this._rawData.Set("redeemed_coupon", value); }
     }
 
@@ -347,7 +413,11 @@ public sealed record class MutatedSubscription : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 
@@ -355,6 +425,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, MutatedSubscriptionStatus>>(
                 "status"
             );
@@ -364,7 +435,11 @@ public sealed record class MutatedSubscription : JsonModel
 
     public required SubscriptionTrialInfo TrialInfo
     {
-        get { return this._rawData.GetNotNullClass<SubscriptionTrialInfo>("trial_info"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubscriptionTrialInfo>("trial_info");
+        }
         init { this._rawData.Set("trial_info", value); }
     }
 
@@ -377,6 +452,7 @@ public sealed record class MutatedSubscription : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ChangedSubscriptionResources>(
                 "changed_resources"
             );

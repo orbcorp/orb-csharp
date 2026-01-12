@@ -114,19 +114,31 @@ public sealed record class CustomerTaxID : JsonModel
 {
     public required ApiEnum<string, Country> Country
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, Country>>("country"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Country>>("country");
+        }
         init { this._rawData.Set("country", value); }
     }
 
     public required ApiEnum<string, CustomerTaxIDType> Type
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>("type");
+        }
         init { this._rawData.Set("type", value); }
     }
 
     public required string Value
     {
-        get { return this._rawData.GetNotNullClass<string>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("value");
+        }
         init { this._rawData.Set("value", value); }
     }
 

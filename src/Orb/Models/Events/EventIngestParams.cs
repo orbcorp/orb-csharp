@@ -186,7 +186,11 @@ public sealed record class EventIngestParams : ParamsBase
 
     public required IReadOnlyList<Event> Events
     {
-        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<Event>>("events"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<Event>>("events");
+        }
         init
         {
             this._rawBodyData.Set<ImmutableArray<Event>>(
@@ -202,7 +206,11 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public string? BackfillID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("backfill_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("backfill_id");
+        }
         init { this._rawQueryData.Set("backfill_id", value); }
     }
 
@@ -211,7 +219,11 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public bool? Debug
     {
-        get { return this._rawQueryData.GetNullableStruct<bool>("debug"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("debug");
+        }
         init
         {
             if (value == null)
@@ -305,7 +317,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required string EventName
     {
-        get { return this._rawData.GetNotNullClass<string>("event_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_name");
+        }
         init { this._rawData.Set("event_name", value); }
     }
 
@@ -316,7 +332,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required string IdempotencyKey
     {
-        get { return this._rawData.GetNotNullClass<string>("idempotency_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("idempotency_key");
+        }
         init { this._rawData.Set("idempotency_key", value); }
     }
 
@@ -328,6 +348,7 @@ public sealed record class Event : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
@@ -348,7 +369,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timestamp"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timestamp");
+        }
         init { this._rawData.Set("timestamp", value); }
     }
 
@@ -357,7 +382,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public string? CustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawData.Set("customer_id", value); }
     }
 
@@ -366,7 +395,11 @@ public sealed record class Event : JsonModel
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawData.Set("external_customer_id", value); }
     }
 

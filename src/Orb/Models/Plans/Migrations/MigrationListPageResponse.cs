@@ -17,6 +17,7 @@ public sealed record class MigrationListPageResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<MigrationListResponse>>("data");
         }
         init
@@ -30,7 +31,11 @@ public sealed record class MigrationListPageResponse : JsonModel
 
     public required PaginationMetadata PaginationMetadata
     {
-        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
+        }
         init { this._rawData.Set("pagination_metadata", value); }
     }
 

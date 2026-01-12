@@ -30,7 +30,11 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return this._rawQueryData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("currency");
+        }
         init { this._rawQueryData.Set("currency", value); }
     }
 
@@ -41,6 +45,7 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_end");
         }
         init { this._rawQueryData.Set("timeframe_end", value); }
@@ -53,6 +58,7 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_start");
         }
         init { this._rawQueryData.Set("timeframe_start", value); }
@@ -65,7 +71,11 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     /// </summary>
     public ApiEnum<string, ViewMode>? ViewMode
     {
-        get { return this._rawQueryData.GetNullableClass<ApiEnum<string, ViewMode>>("view_mode"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, ViewMode>>("view_mode");
+        }
         init { this._rawQueryData.Set("view_mode", value); }
     }
 

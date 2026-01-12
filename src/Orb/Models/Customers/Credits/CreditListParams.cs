@@ -26,7 +26,11 @@ public sealed record class CreditListParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return this._rawQueryData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("currency");
+        }
         init { this._rawQueryData.Set("currency", value); }
     }
 
@@ -36,7 +40,11 @@ public sealed record class CreditListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -46,7 +54,11 @@ public sealed record class CreditListParams : ParamsBase
     /// </summary>
     public bool? IncludeAllBlocks
     {
-        get { return this._rawQueryData.GetNullableStruct<bool>("include_all_blocks"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("include_all_blocks");
+        }
         init
         {
             if (value == null)
@@ -63,7 +75,11 @@ public sealed record class CreditListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)

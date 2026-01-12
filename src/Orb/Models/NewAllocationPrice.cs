@@ -18,7 +18,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -27,7 +31,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public required ApiEnum<string, Cadence> Cadence
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, Cadence>>("cadence"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Cadence>>("cadence");
+        }
         init { this._rawData.Set("cadence", value); }
     }
 
@@ -37,7 +45,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -46,7 +58,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public CustomExpiration? CustomExpiration
     {
-        get { return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration");
+        }
         init { this._rawData.Set("custom_expiration", value); }
     }
 
@@ -56,7 +72,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public bool? ExpiresAtEndOfCadence
     {
-        get { return this._rawData.GetNullableStruct<bool>("expires_at_end_of_cadence"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("expires_at_end_of_cadence");
+        }
         init { this._rawData.Set("expires_at_end_of_cadence", value); }
     }
 
@@ -67,6 +87,7 @@ public sealed record class NewAllocationPrice : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<NewAllocationPriceFilter>>(
                 "filters"
             );
@@ -87,7 +108,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public string? ItemID
     {
-        get { return this._rawData.GetNullableClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -98,7 +123,11 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public string? PerUnitCostBasis
     {
-        get { return this._rawData.GetNullableClass<string>("per_unit_cost_basis"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("per_unit_cost_basis");
+        }
         init
         {
             if (value == null)
@@ -227,6 +256,7 @@ public sealed record class NewAllocationPriceFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterField>>(
                 "field"
             );
@@ -241,6 +271,7 @@ public sealed record class NewAllocationPriceFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterOperator>>(
                 "operator"
             );
@@ -253,7 +284,11 @@ public sealed record class NewAllocationPriceFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

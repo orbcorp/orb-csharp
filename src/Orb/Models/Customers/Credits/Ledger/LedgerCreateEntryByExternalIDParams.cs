@@ -109,6 +109,7 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<LedgerCreateEntryByExternalIDParamsBody>(
                 "body"
             );
@@ -792,13 +793,21 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     /// </summary>
     public required double Amount
     {
-        get { return this._rawData.GetNotNullStruct<double>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("entry_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("entry_type");
+        }
         init { this._rawData.Set("entry_type", value); }
     }
 
@@ -808,7 +817,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -819,7 +832,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     /// </summary>
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -829,7 +846,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     /// </summary>
     public System::DateTimeOffset? EffectiveDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date");
+        }
         init { this._rawData.Set("effective_date", value); }
     }
 
@@ -838,7 +859,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     /// </summary>
     public System::DateTimeOffset? ExpiryDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date");
+        }
         init { this._rawData.Set("expiry_date", value); }
     }
 
@@ -850,6 +875,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
                 ImmutableArray<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
             >("filters");
@@ -872,6 +898,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
                 "invoice_settings"
             );
@@ -888,6 +915,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -905,7 +933,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     /// </summary>
     public string? PerUnitCostBasis
     {
-        get { return this._rawData.GetNullableClass<string>("per_unit_cost_basis"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("per_unit_cost_basis");
+        }
         init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
@@ -1008,6 +1040,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
             >("field");
@@ -1025,6 +1058,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
             >("operator");
@@ -1037,7 +1071,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -1212,7 +1250,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public required bool AutoCollection
     {
-        get { return this._rawData.GetNotNullStruct<bool>("auto_collection"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("auto_collection");
+        }
         init { this._rawData.Set("auto_collection", value); }
     }
 
@@ -1224,6 +1266,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
                 "custom_due_date"
             );
@@ -1240,6 +1283,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
                 "invoice_date"
             );
@@ -1253,7 +1297,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public string? ItemID
     {
-        get { return this._rawData.GetNullableClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
@@ -1262,7 +1310,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public string? Memo
     {
-        get { return this._rawData.GetNullableClass<string>("memo"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
+        }
         init { this._rawData.Set("memo", value); }
     }
 
@@ -1276,7 +1328,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public long? NetTerms
     {
-        get { return this._rawData.GetNullableStruct<long>("net_terms"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("net_terms");
+        }
         init { this._rawData.Set("net_terms", value); }
     }
 
@@ -1286,7 +1342,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public bool? RequireSuccessfulPayment
     {
-        get { return this._rawData.GetNullableStruct<bool>("require_successful_payment"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("require_successful_payment");
+        }
         init
         {
             if (value == null)
@@ -1876,13 +1936,21 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
     /// </summary>
     public required double Amount
     {
-        get { return this._rawData.GetNotNullStruct<double>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("entry_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("entry_type");
+        }
         init { this._rawData.Set("entry_type", value); }
     }
 
@@ -1892,7 +1960,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -1903,7 +1975,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
     /// </summary>
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -1916,6 +1992,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -2007,7 +2084,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
 {
     public JsonElement EntryType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("entry_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("entry_type");
+        }
         init { this._rawData.Set("entry_type", value); }
     }
 
@@ -2018,7 +2099,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public required string TargetExpiryDate
     {
-        get { return this._rawData.GetNotNullClass<string>("target_expiry_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("target_expiry_date");
+        }
         init { this._rawData.Set("target_expiry_date", value); }
     }
 
@@ -2028,7 +2113,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public double? Amount
     {
-        get { return this._rawData.GetNullableStruct<double>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -2038,7 +2127,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public string? BlockID
     {
-        get { return this._rawData.GetNullableClass<string>("block_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("block_id");
+        }
         init { this._rawData.Set("block_id", value); }
     }
 
@@ -2048,7 +2141,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -2059,7 +2156,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -2068,7 +2169,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public System::DateTimeOffset? ExpiryDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date");
+        }
         init { this._rawData.Set("expiry_date", value); }
     }
 
@@ -2081,6 +2186,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -2181,7 +2287,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     /// </summary>
     public required double Amount
     {
-        get { return this._rawData.GetNotNullStruct<double>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -2190,13 +2300,21 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     /// </summary>
     public required string BlockID
     {
-        get { return this._rawData.GetNotNullClass<string>("block_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("block_id");
+        }
         init { this._rawData.Set("block_id", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("entry_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("entry_type");
+        }
         init { this._rawData.Set("entry_type", value); }
     }
 
@@ -2206,7 +2324,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -2217,7 +2339,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     /// </summary>
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -2230,6 +2356,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init
@@ -2248,6 +2375,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
             >("void_reason");
@@ -2379,7 +2507,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     /// </summary>
     public required double Amount
     {
-        get { return this._rawData.GetNotNullStruct<double>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -2388,13 +2520,21 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     /// </summary>
     public required string BlockID
     {
-        get { return this._rawData.GetNotNullClass<string>("block_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("block_id");
+        }
         init { this._rawData.Set("block_id", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("entry_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("entry_type");
+        }
         init { this._rawData.Set("entry_type", value); }
     }
 
@@ -2404,7 +2544,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -2415,7 +2559,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     /// </summary>
     public string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -2428,6 +2576,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
         init

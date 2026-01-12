@@ -24,7 +24,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -33,7 +37,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -42,7 +50,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -51,7 +63,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required CustomerMinified? Customer
     {
-        get { return this._rawData.GetNullableClass<CustomerMinified>("customer"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomerMinified>("customer");
+        }
         init { this._rawData.Set("customer", value); }
     }
 
@@ -60,7 +76,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required bool Enabled
     {
-        get { return this._rawData.GetNotNullStruct<bool>("enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("enabled");
+        }
         init { this._rawData.Set("enabled", value); }
     }
 
@@ -69,7 +89,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required Metric? Metric
     {
-        get { return this._rawData.GetNullableClass<Metric>("metric"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Metric>("metric");
+        }
         init { this._rawData.Set("metric", value); }
     }
 
@@ -78,7 +102,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required Plan? Plan
     {
-        get { return this._rawData.GetNullableClass<Plan>("plan"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Plan>("plan");
+        }
         init { this._rawData.Set("plan", value); }
     }
 
@@ -87,7 +115,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required SubscriptionMinified? Subscription
     {
-        get { return this._rawData.GetNullableClass<SubscriptionMinified>("subscription"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionMinified>("subscription");
+        }
         init { this._rawData.Set("subscription", value); }
     }
 
@@ -96,7 +128,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required IReadOnlyList<Threshold>? Thresholds
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<Threshold>>("thresholds"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Threshold>>("thresholds");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<Threshold>?>(
@@ -111,7 +147,11 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required ApiEnum<string, AlertType> Type
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, AlertType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, AlertType>>("type");
+        }
         init { this._rawData.Set("type", value); }
     }
 
@@ -122,6 +162,7 @@ public sealed record class Alert : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<BalanceAlertStatus>>(
                 "balance_alert_status"
             );
@@ -197,7 +238,11 @@ public sealed record class Metric : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -254,7 +299,11 @@ public sealed record class Plan : JsonModel
 {
     public required string? ID
     {
-        get { return this._rawData.GetNullableClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -265,19 +314,31 @@ public sealed record class Plan : JsonModel
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return this._rawData.GetNullableClass<string>("external_plan_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_plan_id");
+        }
         init { this._rawData.Set("external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return this._rawData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public required string PlanVersion
     {
-        get { return this._rawData.GetNotNullClass<string>("plan_version"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("plan_version");
+        }
         init { this._rawData.Set("plan_version", value); }
     }
 
@@ -389,7 +450,11 @@ public sealed record class BalanceAlertStatus : JsonModel
     /// </summary>
     public required bool InAlert
     {
-        get { return this._rawData.GetNotNullStruct<bool>("in_alert"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("in_alert");
+        }
         init { this._rawData.Set("in_alert", value); }
     }
 
@@ -398,7 +463,11 @@ public sealed record class BalanceAlertStatus : JsonModel
     /// </summary>
     public required double ThresholdValue
     {
-        get { return this._rawData.GetNotNullStruct<double>("threshold_value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("threshold_value");
+        }
         init { this._rawData.Set("threshold_value", value); }
     }
 

@@ -19,7 +19,11 @@ public sealed record class MatrixConfig : JsonModel
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("default_unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
         init { this._rawData.Set("default_unit_amount", value); }
     }
 
@@ -28,7 +32,11 @@ public sealed record class MatrixConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string?>>(
@@ -43,7 +51,11 @@ public sealed record class MatrixConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<MatrixValue> MatrixValues
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<MatrixValue>>("matrix_values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<MatrixValue>>("matrix_values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<MatrixValue>>(

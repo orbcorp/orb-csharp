@@ -14,7 +14,11 @@ public sealed record class EventSearchResponse : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<Data>>("data", ImmutableArray.ToImmutableArray(value));
@@ -86,7 +90,11 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -95,7 +103,11 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string? CustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawData.Set("customer_id", value); }
     }
 
@@ -104,7 +116,11 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required bool Deprecated
     {
-        get { return this._rawData.GetNotNullStruct<bool>("deprecated"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("deprecated");
+        }
         init { this._rawData.Set("deprecated", value); }
     }
 
@@ -113,7 +129,11 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string EventName
     {
-        get { return this._rawData.GetNotNullClass<string>("event_name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_name");
+        }
         init { this._rawData.Set("event_name", value); }
     }
 
@@ -122,7 +142,11 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string? ExternalCustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawData.Set("external_customer_id", value); }
     }
 
@@ -134,6 +158,7 @@ public sealed record class Data : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
@@ -154,7 +179,11 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timestamp"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timestamp");
+        }
         init { this._rawData.Set("timestamp", value); }
     }
 

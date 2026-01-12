@@ -16,19 +16,31 @@ public sealed record class MigrationRetrieveResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required EffectiveTime? EffectiveTime
     {
-        get { return this._rawData.GetNullableClass<EffectiveTime>("effective_time"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<EffectiveTime>("effective_time");
+        }
         init { this._rawData.Set("effective_time", value); }
     }
 
     public required string PlanID
     {
-        get { return this._rawData.GetNotNullClass<string>("plan_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("plan_id");
+        }
         init { this._rawData.Set("plan_id", value); }
     }
 
@@ -36,6 +48,7 @@ public sealed record class MigrationRetrieveResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Plans.Migrations.Status>
             >("status");

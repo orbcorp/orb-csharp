@@ -17,31 +17,51 @@ public sealed record class MatrixSubLineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping");
+        }
         init { this._rawData.Set("grouping", value); }
     }
 
     public required SubLineItemMatrixConfig MatrixConfig
     {
-        get { return this._rawData.GetNotNullClass<SubLineItemMatrixConfig>("matrix_config"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubLineItemMatrixConfig>("matrix_config");
+        }
         init { this._rawData.Set("matrix_config", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public required double Quantity
     {
-        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
@@ -49,6 +69,7 @@ public sealed record class MatrixSubLineItem : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, MatrixSubLineItemType>>("type");
         }
         init { this._rawData.Set("type", value); }
@@ -59,7 +80,11 @@ public sealed record class MatrixSubLineItem : JsonModel
     /// </summary>
     public double? ScaledQuantity
     {
-        get { return this._rawData.GetNullableStruct<double>("scaled_quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("scaled_quantity");
+        }
         init { this._rawData.Set("scaled_quantity", value); }
     }
 

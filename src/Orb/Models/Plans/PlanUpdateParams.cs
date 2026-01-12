@@ -32,7 +32,11 @@ public sealed record class PlanUpdateParams : ParamsBase
     /// </summary>
     public string? ExternalPlanID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_plan_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_plan_id");
+        }
         init { this._rawBodyData.Set("external_plan_id", value); }
     }
 
@@ -45,6 +49,7 @@ public sealed record class PlanUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );

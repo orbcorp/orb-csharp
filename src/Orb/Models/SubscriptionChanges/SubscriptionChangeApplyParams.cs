@@ -29,7 +29,11 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? Description
     {
-        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
         init { this._rawBodyData.Set("description", value); }
     }
 
@@ -39,7 +43,11 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public bool? MarkAsPaid
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("mark_as_paid"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("mark_as_paid");
+        }
         init { this._rawBodyData.Set("mark_as_paid", value); }
     }
 
@@ -49,7 +57,11 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentExternalID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("payment_external_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_external_id");
+        }
         init { this._rawBodyData.Set("payment_external_id", value); }
     }
 
@@ -58,7 +70,11 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentNotes
     {
-        get { return this._rawBodyData.GetNullableClass<string>("payment_notes"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_notes");
+        }
         init { this._rawBodyData.Set("payment_notes", value); }
     }
 
@@ -68,7 +84,11 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentReceivedDate
     {
-        get { return this._rawBodyData.GetNullableClass<string>("payment_received_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_received_date");
+        }
         init { this._rawBodyData.Set("payment_received_date", value); }
     }
 
@@ -78,7 +98,11 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PreviouslyCollectedAmount
     {
-        get { return this._rawBodyData.GetNullableClass<string>("previously_collected_amount"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("previously_collected_amount");
+        }
         init { this._rawBodyData.Set("previously_collected_amount", value); }
     }
 

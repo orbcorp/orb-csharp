@@ -17,6 +17,7 @@ public sealed record class NewMaximum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewMaximumAdjustmentType>>(
                 "adjustment_type"
             );
@@ -26,7 +27,11 @@ public sealed record class NewMaximum : JsonModel
 
     public required string MaximumAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("maximum_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("maximum_amount");
+        }
         init { this._rawData.Set("maximum_amount", value); }
     }
 
@@ -37,6 +42,7 @@ public sealed record class NewMaximum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<bool, NewMaximumAppliesToAll>>(
                 "applies_to_all"
             );
@@ -51,6 +57,7 @@ public sealed record class NewMaximum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
         }
         init
@@ -69,6 +76,7 @@ public sealed record class NewMaximum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -85,7 +93,11 @@ public sealed record class NewMaximum : JsonModel
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -94,7 +106,11 @@ public sealed record class NewMaximum : JsonModel
     /// </summary>
     public IReadOnlyList<NewMaximumFilter>? Filters
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<NewMaximumFilter>>("filters"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<NewMaximumFilter>>("filters");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<NewMaximumFilter>?>(
@@ -110,7 +126,11 @@ public sealed record class NewMaximum : JsonModel
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return this._rawData.GetNullableStruct<bool>("is_invoice_level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
         init
         {
             if (value == null)
@@ -129,6 +149,7 @@ public sealed record class NewMaximum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<string, NewMaximumPriceType>>(
                 "price_type"
             );
@@ -280,6 +301,7 @@ public sealed record class NewMaximumFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewMaximumFilterField>>("field");
         }
         init { this._rawData.Set("field", value); }
@@ -292,6 +314,7 @@ public sealed record class NewMaximumFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewMaximumFilterOperator>>(
                 "operator"
             );
@@ -304,7 +327,11 @@ public sealed record class NewMaximumFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

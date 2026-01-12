@@ -42,7 +42,11 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> EventIds
     {
-        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("event_ids"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("event_ids");
+        }
         init
         {
             this._rawBodyData.Set<ImmutableArray<string>>(
@@ -58,7 +62,11 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public DateTimeOffset? TimeframeEnd
     {
-        get { return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_end");
+        }
         init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
@@ -68,7 +76,11 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public DateTimeOffset? TimeframeStart
     {
-        get { return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_start");
+        }
         init { this._rawBodyData.Set("timeframe_start", value); }
     }
 

@@ -27,7 +27,11 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string? Description
     {
-        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
         init { this._rawBodyData.Set("description", value); }
     }
 
@@ -36,7 +40,11 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawBodyData.Set("item_id", value); }
     }
 
@@ -45,7 +53,11 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string Name
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("name");
+        }
         init { this._rawBodyData.Set("name", value); }
     }
 
@@ -54,7 +66,11 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string Sql
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("sql"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("sql");
+        }
         init { this._rawBodyData.Set("sql", value); }
     }
 
@@ -67,6 +83,7 @@ public sealed record class MetricCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );

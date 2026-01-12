@@ -23,7 +23,11 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
     /// </summary>
     public required long Day
     {
-        get { return this._rawData.GetNotNullStruct<long>("day"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("day");
+        }
         init { this._rawData.Set("day", value); }
     }
 
@@ -33,7 +37,11 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
     /// </summary>
     public long? Month
     {
-        get { return this._rawData.GetNullableStruct<long>("month"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("month");
+        }
         init { this._rawData.Set("month", value); }
     }
 
@@ -43,7 +51,11 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
     /// </summary>
     public long? Year
     {
-        get { return this._rawData.GetNullableStruct<long>("year"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("year");
+        }
         init { this._rawData.Set("year", value); }
     }
 

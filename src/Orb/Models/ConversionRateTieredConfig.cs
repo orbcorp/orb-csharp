@@ -18,7 +18,11 @@ public sealed record class ConversionRateTieredConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<ConversionRateTier> Tiers
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<ConversionRateTier>>("tiers"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<ConversionRateTier>>("tiers");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<ConversionRateTier>>(

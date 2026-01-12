@@ -14,49 +14,81 @@ public sealed record class AmendmentLedgerEntry : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required double Amount
     {
-        get { return this._rawData.GetNotNullStruct<double>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
     public required AffectedBlock CreditBlock
     {
-        get { return this._rawData.GetNotNullClass<AffectedBlock>("credit_block"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<AffectedBlock>("credit_block");
+        }
         init { this._rawData.Set("credit_block", value); }
     }
 
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get { return this._rawData.GetNotNullClass<CustomerMinified>("customer"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<CustomerMinified>("customer");
+        }
         init { this._rawData.Set("customer", value); }
     }
 
     public required string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
     public required double EndingBalance
     {
-        get { return this._rawData.GetNotNullStruct<double>("ending_balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("ending_balance");
+        }
         init { this._rawData.Set("ending_balance", value); }
     }
 
@@ -64,6 +96,7 @@ public sealed record class AmendmentLedgerEntry : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, AmendmentLedgerEntryEntryStatus>>(
                 "entry_status"
             );
@@ -75,6 +108,7 @@ public sealed record class AmendmentLedgerEntry : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, AmendmentLedgerEntryEntryType>>(
                 "entry_type"
             );
@@ -84,7 +118,11 @@ public sealed record class AmendmentLedgerEntry : JsonModel
 
     public required long LedgerSequenceNumber
     {
-        get { return this._rawData.GetNotNullStruct<long>("ledger_sequence_number"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("ledger_sequence_number");
+        }
         init { this._rawData.Set("ledger_sequence_number", value); }
     }
 
@@ -96,7 +134,11 @@ public sealed record class AmendmentLedgerEntry : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
         init
         {
             this._rawData.Set<FrozenDictionary<string, string>>(
@@ -108,7 +150,11 @@ public sealed record class AmendmentLedgerEntry : JsonModel
 
     public required double StartingBalance
     {
-        get { return this._rawData.GetNotNullStruct<double>("starting_balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("starting_balance");
+        }
         init { this._rawData.Set("starting_balance", value); }
     }
 

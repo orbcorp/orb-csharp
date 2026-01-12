@@ -40,13 +40,21 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// </summary>
     public required string PriceID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("price_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("price_id");
+        }
         init { this._rawBodyData.Set("price_id", value); }
     }
 
     public required double Quantity
     {
-        get { return this._rawBodyData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawBodyData.Set("quantity", value); }
     }
 
@@ -57,7 +65,11 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// </summary>
     public bool? AllowInvoiceCreditOrVoid
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void");
+        }
         init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
@@ -70,6 +82,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<
                 ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
             >("change_option");
@@ -92,7 +105,11 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// </summary>
     public string? EffectiveDate
     {
-        get { return this._rawBodyData.GetNullableClass<string>("effective_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("effective_date");
+        }
         init { this._rawBodyData.Set("effective_date", value); }
     }
 

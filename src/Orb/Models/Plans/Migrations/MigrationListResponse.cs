@@ -14,7 +14,11 @@ public sealed record class MigrationListResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -22,6 +26,7 @@ public sealed record class MigrationListResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<MigrationListResponseEffectiveTime>(
                 "effective_time"
             );
@@ -31,7 +36,11 @@ public sealed record class MigrationListResponse : JsonModel
 
     public required string PlanID
     {
-        get { return this._rawData.GetNotNullClass<string>("plan_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("plan_id");
+        }
         init { this._rawData.Set("plan_id", value); }
     }
 
@@ -39,6 +48,7 @@ public sealed record class MigrationListResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, MigrationListResponseStatus>>(
                 "status"
             );

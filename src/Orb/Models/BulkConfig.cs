@@ -19,7 +19,11 @@ public sealed record class BulkConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<BulkTier> Tiers
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<BulkTier>>("tiers"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<BulkTier>>("tiers");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<BulkTier>>(
