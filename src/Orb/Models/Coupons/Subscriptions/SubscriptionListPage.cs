@@ -10,6 +10,9 @@ using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Models.Coupons.Subscriptions;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ISubscriptionService.List(SubscriptionListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class SubscriptionListPage(
     ISubscriptionServiceWithRawResponse service,
     SubscriptionListParams parameters,

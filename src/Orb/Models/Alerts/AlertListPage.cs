@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Alerts;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IAlertService.List(AlertListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class AlertListPage(
     IAlertServiceWithRawResponse service,
     AlertListParams parameters,

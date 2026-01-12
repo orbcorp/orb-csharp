@@ -9,6 +9,9 @@ using Orb.Services.Customers.Credits;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ITopUpService.List(TopUpListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class TopUpListPage(
     ITopUpServiceWithRawResponse service,
     TopUpListParams parameters,

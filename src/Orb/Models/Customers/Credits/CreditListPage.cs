@@ -9,6 +9,9 @@ using Orb.Services.Customers;
 
 namespace Orb.Models.Customers.Credits;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ICreditService.List(CreditListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class CreditListPage(
     ICreditServiceWithRawResponse service,
     CreditListParams parameters,

@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.SubscriptionChanges;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ISubscriptionChangeService.List(SubscriptionChangeListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class SubscriptionChangeListPage(
     ISubscriptionChangeServiceWithRawResponse service,
     SubscriptionChangeListParams parameters,

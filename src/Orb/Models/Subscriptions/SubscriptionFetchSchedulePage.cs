@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Subscriptions;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ISubscriptionService.FetchSchedule(SubscriptionFetchScheduleParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class SubscriptionFetchSchedulePage(
     ISubscriptionServiceWithRawResponse service,
     SubscriptionFetchScheduleParams parameters,

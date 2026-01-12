@@ -9,6 +9,9 @@ using Orb.Services.Events;
 
 namespace Orb.Models.Events.Backfills;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IBackfillService.List(BackfillListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class BackfillListPage(
     IBackfillServiceWithRawResponse service,
     BackfillListParams parameters,

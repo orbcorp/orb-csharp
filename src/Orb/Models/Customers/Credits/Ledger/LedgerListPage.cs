@@ -9,6 +9,9 @@ using Orb.Services.Customers.Credits;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ILedgerService.List(LedgerListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class LedgerListPage(
     ILedgerServiceWithRawResponse service,
     LedgerListParams parameters,

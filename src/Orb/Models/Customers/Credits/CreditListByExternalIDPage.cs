@@ -9,6 +9,9 @@ using Orb.Services.Customers;
 
 namespace Orb.Models.Customers.Credits;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ICreditService.ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class CreditListByExternalIDPage(
     ICreditServiceWithRawResponse service,
     CreditListByExternalIDParams parameters,
