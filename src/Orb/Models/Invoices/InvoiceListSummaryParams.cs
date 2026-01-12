@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -238,6 +239,24 @@ public sealed record class InvoiceListSummaryParams : ParamsBase
         init { this._rawQueryData.Set("status", value); }
     }
 
+    public IReadOnlyList<ApiEnum<string, StatusModel>>? StatusValue
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<
+                ImmutableArray<ApiEnum<string, StatusModel>>
+            >("status");
+        }
+        init
+        {
+            this._rawQueryData.Set<ImmutableArray<ApiEnum<string, StatusModel>>?>(
+                "status",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     public string? SubscriptionID
     {
         get
@@ -393,6 +412,59 @@ sealed class InvoiceListSummaryParamsStatusConverter : JsonConverter<InvoiceList
                 InvoiceListSummaryParamsStatus.Paid => "paid",
                 InvoiceListSummaryParamsStatus.Synced => "synced",
                 InvoiceListSummaryParamsStatus.Void => "void",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(StatusModelConverter))]
+public enum StatusModel
+{
+    Draft,
+    Issued,
+    Paid,
+    Synced,
+    Void,
+}
+
+sealed class StatusModelConverter : JsonConverter<StatusModel>
+{
+    public override StatusModel Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "draft" => StatusModel.Draft,
+            "issued" => StatusModel.Issued,
+            "paid" => StatusModel.Paid,
+            "synced" => StatusModel.Synced,
+            "void" => StatusModel.Void,
+            _ => (StatusModel)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        StatusModel value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                StatusModel.Draft => "draft",
+                StatusModel.Issued => "issued",
+                StatusModel.Paid => "paid",
+                StatusModel.Synced => "synced",
+                StatusModel.Void => "void",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
