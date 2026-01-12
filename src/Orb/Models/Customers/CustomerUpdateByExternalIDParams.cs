@@ -357,6 +357,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     )
         : base(customerUpdateByExternalIDParams)
     {
+        this.ID = customerUpdateByExternalIDParams.ID;
+
         this._rawBodyData = [.. customerUpdateByExternalIDParams._rawBodyData];
     }
 

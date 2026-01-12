@@ -20,7 +20,10 @@ public sealed record class DimensionalPriceGroupRetrieveParams : ParamsBase
     public DimensionalPriceGroupRetrieveParams(
         DimensionalPriceGroupRetrieveParams dimensionalPriceGroupRetrieveParams
     )
-        : base(dimensionalPriceGroupRetrieveParams) { }
+        : base(dimensionalPriceGroupRetrieveParams)
+    {
+        this.DimensionalPriceGroupID = dimensionalPriceGroupRetrieveParams.DimensionalPriceGroupID;
+    }
 
     public DimensionalPriceGroupRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

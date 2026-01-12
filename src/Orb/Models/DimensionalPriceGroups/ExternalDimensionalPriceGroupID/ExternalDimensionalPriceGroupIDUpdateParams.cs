@@ -66,6 +66,9 @@ public sealed record class ExternalDimensionalPriceGroupIDUpdateParams : ParamsB
     )
         : base(externalDimensionalPriceGroupIDUpdateParams)
     {
+        this.ExternalDimensionalPriceGroupID =
+            externalDimensionalPriceGroupIDUpdateParams.ExternalDimensionalPriceGroupID;
+
         this._rawBodyData = [.. externalDimensionalPriceGroupIDUpdateParams._rawBodyData];
     }
 

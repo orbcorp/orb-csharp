@@ -28,7 +28,10 @@ public sealed record class PlanFetchParams : ParamsBase
     public PlanFetchParams() { }
 
     public PlanFetchParams(PlanFetchParams planFetchParams)
-        : base(planFetchParams) { }
+        : base(planFetchParams)
+    {
+        this.PlanID = planFetchParams.PlanID;
+    }
 
     public PlanFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

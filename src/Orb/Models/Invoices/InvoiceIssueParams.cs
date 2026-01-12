@@ -52,6 +52,8 @@ public sealed record class InvoiceIssueParams : ParamsBase
     public InvoiceIssueParams(InvoiceIssueParams invoiceIssueParams)
         : base(invoiceIssueParams)
     {
+        this.InvoiceID = invoiceIssueParams.InvoiceID;
+
         this._rawBodyData = [.. invoiceIssueParams._rawBodyData];
     }
 

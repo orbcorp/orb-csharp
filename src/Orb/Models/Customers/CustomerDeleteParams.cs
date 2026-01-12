@@ -28,7 +28,10 @@ public sealed record class CustomerDeleteParams : ParamsBase
     public CustomerDeleteParams() { }
 
     public CustomerDeleteParams(CustomerDeleteParams customerDeleteParams)
-        : base(customerDeleteParams) { }
+        : base(customerDeleteParams)
+    {
+        this.CustomerID = customerDeleteParams.CustomerID;
+    }
 
     public CustomerDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

@@ -23,7 +23,11 @@ public sealed record class TopUpDeleteByExternalIDParams : ParamsBase
     public TopUpDeleteByExternalIDParams(
         TopUpDeleteByExternalIDParams topUpDeleteByExternalIDParams
     )
-        : base(topUpDeleteByExternalIDParams) { }
+        : base(topUpDeleteByExternalIDParams)
+    {
+        this.ExternalCustomerID = topUpDeleteByExternalIDParams.ExternalCustomerID;
+        this.TopUpID = topUpDeleteByExternalIDParams.TopUpID;
+    }
 
     public TopUpDeleteByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

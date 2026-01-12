@@ -19,7 +19,10 @@ public sealed record class SubscriptionFetchParams : ParamsBase
     public SubscriptionFetchParams() { }
 
     public SubscriptionFetchParams(SubscriptionFetchParams subscriptionFetchParams)
-        : base(subscriptionFetchParams) { }
+        : base(subscriptionFetchParams)
+    {
+        this.SubscriptionID = subscriptionFetchParams.SubscriptionID;
+    }
 
     public SubscriptionFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

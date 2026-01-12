@@ -126,6 +126,8 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     public SubscriptionCancelParams(SubscriptionCancelParams subscriptionCancelParams)
         : base(subscriptionCancelParams)
     {
+        this.SubscriptionID = subscriptionCancelParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionCancelParams._rawBodyData];
     }
 

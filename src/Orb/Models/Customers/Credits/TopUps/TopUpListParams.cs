@@ -45,7 +45,10 @@ public sealed record class TopUpListParams : ParamsBase
     public TopUpListParams() { }
 
     public TopUpListParams(TopUpListParams topUpListParams)
-        : base(topUpListParams) { }
+        : base(topUpListParams)
+    {
+        this.CustomerID = topUpListParams.CustomerID;
+    }
 
     public TopUpListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

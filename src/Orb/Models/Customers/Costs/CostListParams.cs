@@ -170,7 +170,10 @@ public sealed record class CostListParams : ParamsBase
     public CostListParams() { }
 
     public CostListParams(CostListParams costListParams)
-        : base(costListParams) { }
+        : base(costListParams)
+    {
+        this.CustomerID = costListParams.CustomerID;
+    }
 
     public CostListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

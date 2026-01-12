@@ -19,7 +19,10 @@ public sealed record class MetricFetchParams : ParamsBase
     public MetricFetchParams() { }
 
     public MetricFetchParams(MetricFetchParams metricFetchParams)
-        : base(metricFetchParams) { }
+        : base(metricFetchParams)
+    {
+        this.MetricID = metricFetchParams.MetricID;
+    }
 
     public MetricFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

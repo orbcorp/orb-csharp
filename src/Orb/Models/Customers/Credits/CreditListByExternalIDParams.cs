@@ -78,7 +78,10 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     public CreditListByExternalIDParams() { }
 
     public CreditListByExternalIDParams(CreditListByExternalIDParams creditListByExternalIDParams)
-        : base(creditListByExternalIDParams) { }
+        : base(creditListByExternalIDParams)
+    {
+        this.ExternalCustomerID = creditListByExternalIDParams.ExternalCustomerID;
+    }
 
     public CreditListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

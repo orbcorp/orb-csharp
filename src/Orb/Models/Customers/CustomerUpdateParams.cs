@@ -357,6 +357,8 @@ public sealed record class CustomerUpdateParams : ParamsBase
     public CustomerUpdateParams(CustomerUpdateParams customerUpdateParams)
         : base(customerUpdateParams)
     {
+        this.CustomerID = customerUpdateParams.CustomerID;
+
         this._rawBodyData = [.. customerUpdateParams._rawBodyData];
     }
 

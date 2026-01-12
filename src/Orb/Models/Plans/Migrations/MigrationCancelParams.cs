@@ -20,7 +20,11 @@ public sealed record class MigrationCancelParams : ParamsBase
     public MigrationCancelParams() { }
 
     public MigrationCancelParams(MigrationCancelParams migrationCancelParams)
-        : base(migrationCancelParams) { }
+        : base(migrationCancelParams)
+    {
+        this.PlanID = migrationCancelParams.PlanID;
+        this.MigrationID = migrationCancelParams.MigrationID;
+    }
 
     public MigrationCancelParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

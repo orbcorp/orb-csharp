@@ -45,6 +45,8 @@ public sealed record class MetricUpdateParams : ParamsBase
     public MetricUpdateParams(MetricUpdateParams metricUpdateParams)
         : base(metricUpdateParams)
     {
+        this.MetricID = metricUpdateParams.MetricID;
+
         this._rawBodyData = [.. metricUpdateParams._rawBodyData];
     }
 

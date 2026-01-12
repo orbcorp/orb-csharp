@@ -119,6 +119,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     public PriceEvaluateParams(PriceEvaluateParams priceEvaluateParams)
         : base(priceEvaluateParams)
     {
+        this.PriceID = priceEvaluateParams.PriceID;
+
         this._rawBodyData = [.. priceEvaluateParams._rawBodyData];
     }
 

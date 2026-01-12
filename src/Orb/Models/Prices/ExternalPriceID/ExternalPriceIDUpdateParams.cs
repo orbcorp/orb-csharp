@@ -45,6 +45,8 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
     public ExternalPriceIDUpdateParams(ExternalPriceIDUpdateParams externalPriceIDUpdateParams)
         : base(externalPriceIDUpdateParams)
     {
+        this.ExternalPriceID = externalPriceIDUpdateParams.ExternalPriceID;
+
         this._rawBodyData = [.. externalPriceIDUpdateParams._rawBodyData];
     }
 

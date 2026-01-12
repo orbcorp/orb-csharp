@@ -20,7 +20,11 @@ public sealed record class ExternalDimensionalPriceGroupIDRetrieveParams : Param
     public ExternalDimensionalPriceGroupIDRetrieveParams(
         ExternalDimensionalPriceGroupIDRetrieveParams externalDimensionalPriceGroupIDRetrieveParams
     )
-        : base(externalDimensionalPriceGroupIDRetrieveParams) { }
+        : base(externalDimensionalPriceGroupIDRetrieveParams)
+    {
+        this.ExternalDimensionalPriceGroupID =
+            externalDimensionalPriceGroupIDRetrieveParams.ExternalDimensionalPriceGroupID;
+    }
 
     public ExternalDimensionalPriceGroupIDRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

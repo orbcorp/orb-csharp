@@ -118,6 +118,8 @@ public sealed record class EventUpdateParams : ParamsBase
     public EventUpdateParams(EventUpdateParams eventUpdateParams)
         : base(eventUpdateParams)
     {
+        this.EventID = eventUpdateParams.EventID;
+
         this._rawBodyData = [.. eventUpdateParams._rawBodyData];
     }
 

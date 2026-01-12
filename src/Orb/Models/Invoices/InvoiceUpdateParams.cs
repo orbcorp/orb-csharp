@@ -91,6 +91,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     public InvoiceUpdateParams(InvoiceUpdateParams invoiceUpdateParams)
         : base(invoiceUpdateParams)
     {
+        this.InvoiceID = invoiceUpdateParams.InvoiceID;
+
         this._rawBodyData = [.. invoiceUpdateParams._rawBodyData];
     }
 

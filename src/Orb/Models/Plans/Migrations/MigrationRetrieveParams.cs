@@ -20,7 +20,11 @@ public sealed record class MigrationRetrieveParams : ParamsBase
     public MigrationRetrieveParams() { }
 
     public MigrationRetrieveParams(MigrationRetrieveParams migrationRetrieveParams)
-        : base(migrationRetrieveParams) { }
+        : base(migrationRetrieveParams)
+    {
+        this.PlanID = migrationRetrieveParams.PlanID;
+        this.MigrationID = migrationRetrieveParams.MigrationID;
+    }
 
     public MigrationRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

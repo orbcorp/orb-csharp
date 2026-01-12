@@ -38,6 +38,8 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
     )
         : base(betaSetDefaultPlanVersionParams)
     {
+        this.PlanID = betaSetDefaultPlanVersionParams.PlanID;
+
         this._rawBodyData = [.. betaSetDefaultPlanVersionParams._rawBodyData];
     }
 

@@ -38,6 +38,8 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     )
         : base(externalPlanIDSetDefaultPlanVersionParams)
     {
+        this.ExternalPlanID = externalPlanIDSetDefaultPlanVersionParams.ExternalPlanID;
+
         this._rawBodyData = [.. externalPlanIDSetDefaultPlanVersionParams._rawBodyData];
     }
 

@@ -204,6 +204,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     )
         : base(subscriptionPriceIntervalsParams)
     {
+        this.SubscriptionID = subscriptionPriceIntervalsParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionPriceIntervalsParams._rawBodyData];
     }
 

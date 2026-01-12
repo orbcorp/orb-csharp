@@ -18,7 +18,10 @@ public sealed record class InvoiceFetchParams : ParamsBase
     public InvoiceFetchParams() { }
 
     public InvoiceFetchParams(InvoiceFetchParams invoiceFetchParams)
-        : base(invoiceFetchParams) { }
+        : base(invoiceFetchParams)
+    {
+        this.InvoiceID = invoiceFetchParams.InvoiceID;
+    }
 
     public InvoiceFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

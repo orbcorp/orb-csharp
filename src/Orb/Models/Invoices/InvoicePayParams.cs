@@ -19,7 +19,10 @@ public sealed record class InvoicePayParams : ParamsBase
     public InvoicePayParams() { }
 
     public InvoicePayParams(InvoicePayParams invoicePayParams)
-        : base(invoicePayParams) { }
+        : base(invoicePayParams)
+    {
+        this.InvoiceID = invoicePayParams.InvoiceID;
+    }
 
     public InvoicePayParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

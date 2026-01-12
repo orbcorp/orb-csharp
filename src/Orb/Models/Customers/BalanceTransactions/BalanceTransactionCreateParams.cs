@@ -58,6 +58,8 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     )
         : base(balanceTransactionCreateParams)
     {
+        this.CustomerID = balanceTransactionCreateParams.CustomerID;
+
         this._rawBodyData = [.. balanceTransactionCreateParams._rawBodyData];
     }
 

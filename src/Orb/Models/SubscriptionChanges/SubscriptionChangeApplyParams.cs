@@ -98,6 +98,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     )
         : base(subscriptionChangeApplyParams)
     {
+        this.SubscriptionChangeID = subscriptionChangeApplyParams.SubscriptionChangeID;
+
         this._rawBodyData = [.. subscriptionChangeApplyParams._rawBodyData];
     }
 

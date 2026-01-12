@@ -58,6 +58,8 @@ public sealed record class PlanUpdateParams : ParamsBase
     public PlanUpdateParams(PlanUpdateParams planUpdateParams)
         : base(planUpdateParams)
     {
+        this.PlanID = planUpdateParams.PlanID;
+
         this._rawBodyData = [.. planUpdateParams._rawBodyData];
     }
 

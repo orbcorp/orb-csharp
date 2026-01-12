@@ -125,6 +125,8 @@ public sealed record class TopUpCreateParams : ParamsBase
     public TopUpCreateParams(TopUpCreateParams topUpCreateParams)
         : base(topUpCreateParams)
     {
+        this.CustomerID = topUpCreateParams.CustomerID;
+
         this._rawBodyData = [.. topUpCreateParams._rawBodyData];
     }
 

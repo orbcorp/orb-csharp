@@ -55,6 +55,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     public InvoiceMarkPaidParams(InvoiceMarkPaidParams invoiceMarkPaidParams)
         : base(invoiceMarkPaidParams)
     {
+        this.InvoiceID = invoiceMarkPaidParams.InvoiceID;
+
         this._rawBodyData = [.. invoiceMarkPaidParams._rawBodyData];
     }
 

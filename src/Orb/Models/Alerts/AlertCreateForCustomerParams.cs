@@ -67,6 +67,8 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     public AlertCreateForCustomerParams(AlertCreateForCustomerParams alertCreateForCustomerParams)
         : base(alertCreateForCustomerParams)
     {
+        this.CustomerID = alertCreateForCustomerParams.CustomerID;
+
         this._rawBodyData = [.. alertCreateForCustomerParams._rawBodyData];
     }
 

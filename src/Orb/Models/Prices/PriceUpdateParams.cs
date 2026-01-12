@@ -45,6 +45,8 @@ public sealed record class PriceUpdateParams : ParamsBase
     public PriceUpdateParams(PriceUpdateParams priceUpdateParams)
         : base(priceUpdateParams)
     {
+        this.PriceID = priceUpdateParams.PriceID;
+
         this._rawBodyData = [.. priceUpdateParams._rawBodyData];
     }
 

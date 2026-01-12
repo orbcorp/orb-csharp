@@ -66,6 +66,8 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     )
         : base(dimensionalPriceGroupUpdateParams)
     {
+        this.DimensionalPriceGroupID = dimensionalPriceGroupUpdateParams.DimensionalPriceGroupID;
+
         this._rawBodyData = [.. dimensionalPriceGroupUpdateParams._rawBodyData];
     }
 

@@ -111,7 +111,10 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     public BalanceTransactionListParams() { }
 
     public BalanceTransactionListParams(BalanceTransactionListParams balanceTransactionListParams)
-        : base(balanceTransactionListParams) { }
+        : base(balanceTransactionListParams)
+    {
+        this.CustomerID = balanceTransactionListParams.CustomerID;
+    }
 
     public BalanceTransactionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

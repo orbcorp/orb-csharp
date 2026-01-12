@@ -78,7 +78,10 @@ public sealed record class CreditListParams : ParamsBase
     public CreditListParams() { }
 
     public CreditListParams(CreditListParams creditListParams)
-        : base(creditListParams) { }
+        : base(creditListParams)
+    {
+        this.CustomerID = creditListParams.CustomerID;
+    }
 
     public CreditListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

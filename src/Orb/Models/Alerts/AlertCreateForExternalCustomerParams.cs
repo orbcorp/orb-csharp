@@ -68,6 +68,8 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     )
         : base(alertCreateForExternalCustomerParams)
     {
+        this.ExternalCustomerID = alertCreateForExternalCustomerParams.ExternalCustomerID;
+
         this._rawBodyData = [.. alertCreateForExternalCustomerParams._rawBodyData];
     }
 
