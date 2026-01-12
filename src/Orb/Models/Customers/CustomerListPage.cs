@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Customers;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ICustomerService.List(CustomerListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class CustomerListPage(
     ICustomerServiceWithRawResponse service,
     CustomerListParams parameters,

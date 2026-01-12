@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Coupons;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ICouponService.List(CouponListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class CouponListPage(
     ICouponServiceWithRawResponse service,
     CouponListParams parameters,

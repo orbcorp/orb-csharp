@@ -9,6 +9,9 @@ using Orb.Services.Customers;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IBalanceTransactionService.List(BalanceTransactionListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class BalanceTransactionListPage(
     IBalanceTransactionServiceWithRawResponse service,
     BalanceTransactionListParams parameters,

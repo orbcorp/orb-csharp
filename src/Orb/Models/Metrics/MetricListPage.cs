@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Metrics;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IMetricService.List(MetricListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class MetricListPage(
     IMetricServiceWithRawResponse service,
     MetricListParams parameters,

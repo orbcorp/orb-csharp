@@ -9,6 +9,9 @@ using Orb.Services.Plans;
 
 namespace Orb.Models.Plans.Migrations;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IMigrationService.List(MigrationListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class MigrationListPage(
     IMigrationServiceWithRawResponse service,
     MigrationListParams parameters,

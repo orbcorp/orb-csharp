@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.DimensionalPriceGroups;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IDimensionalPriceGroupService.List(DimensionalPriceGroupListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class DimensionalPriceGroupListPage(
     IDimensionalPriceGroupServiceWithRawResponse service,
     DimensionalPriceGroupListParams parameters,

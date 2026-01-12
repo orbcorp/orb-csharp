@@ -10,6 +10,9 @@ using Models = Orb.Models;
 
 namespace Orb.Models.Prices;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IPriceService.List(PriceListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class PriceListPage(
     IPriceServiceWithRawResponse service,
     PriceListParams parameters,

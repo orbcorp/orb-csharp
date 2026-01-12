@@ -9,6 +9,9 @@ using Orb.Services.Customers.Credits;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="ITopUpService.ListByExternalID(TopUpListByExternalIDParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class TopUpListByExternalIDPage(
     ITopUpServiceWithRawResponse service,
     TopUpListByExternalIDParams parameters,

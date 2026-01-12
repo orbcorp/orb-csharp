@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Plans;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IPlanService.List(PlanListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class PlanListPage(
     IPlanServiceWithRawResponse service,
     PlanListParams parameters,

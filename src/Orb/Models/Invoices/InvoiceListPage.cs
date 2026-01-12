@@ -9,6 +9,9 @@ using Orb.Services;
 
 namespace Orb.Models.Invoices;
 
+/// <summary>
+/// A single page from the paginated endpoint that <see cref="IInvoiceService.List(InvoiceListParams, CancellationToken)"/> queries.
+/// </summary>
 public sealed class InvoiceListPage(
     IInvoiceServiceWithRawResponse service,
     InvoiceListParams parameters,
