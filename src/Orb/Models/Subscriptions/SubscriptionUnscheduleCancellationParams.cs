@@ -24,7 +24,10 @@ public sealed record class SubscriptionUnscheduleCancellationParams : ParamsBase
     public SubscriptionUnscheduleCancellationParams(
         SubscriptionUnscheduleCancellationParams subscriptionUnscheduleCancellationParams
     )
-        : base(subscriptionUnscheduleCancellationParams) { }
+        : base(subscriptionUnscheduleCancellationParams)
+    {
+        this.SubscriptionID = subscriptionUnscheduleCancellationParams.SubscriptionID;
+    }
 
     public SubscriptionUnscheduleCancellationParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

@@ -24,7 +24,10 @@ public sealed record class BackfillRevertParams : ParamsBase
     public BackfillRevertParams() { }
 
     public BackfillRevertParams(BackfillRevertParams backfillRevertParams)
-        : base(backfillRevertParams) { }
+        : base(backfillRevertParams)
+    {
+        this.BackfillID = backfillRevertParams.BackfillID;
+    }
 
     public BackfillRevertParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

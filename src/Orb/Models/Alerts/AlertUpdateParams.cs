@@ -36,6 +36,8 @@ public sealed record class AlertUpdateParams : ParamsBase
     public AlertUpdateParams(AlertUpdateParams alertUpdateParams)
         : base(alertUpdateParams)
     {
+        this.AlertConfigurationID = alertUpdateParams.AlertConfigurationID;
+
         this._rawBodyData = [.. alertUpdateParams._rawBodyData];
     }
 

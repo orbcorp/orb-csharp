@@ -170,7 +170,10 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     public CostListByExternalIDParams() { }
 
     public CostListByExternalIDParams(CostListByExternalIDParams costListByExternalIDParams)
-        : base(costListByExternalIDParams) { }
+        : base(costListByExternalIDParams)
+    {
+        this.ExternalCustomerID = costListByExternalIDParams.ExternalCustomerID;
+    }
 
     public CostListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

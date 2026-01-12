@@ -199,7 +199,10 @@ public sealed record class LedgerListParams : ParamsBase
     public LedgerListParams() { }
 
     public LedgerListParams(LedgerListParams ledgerListParams)
-        : base(ledgerListParams) { }
+        : base(ledgerListParams)
+    {
+        this.CustomerID = ledgerListParams.CustomerID;
+    }
 
     public LedgerListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

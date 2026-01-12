@@ -18,7 +18,10 @@ public sealed record class PriceFetchParams : ParamsBase
     public PriceFetchParams() { }
 
     public PriceFetchParams(PriceFetchParams priceFetchParams)
-        : base(priceFetchParams) { }
+        : base(priceFetchParams)
+    {
+        this.PriceID = priceFetchParams.PriceID;
+    }
 
     public PriceFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

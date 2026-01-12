@@ -21,7 +21,11 @@ public sealed record class TopUpDeleteParams : ParamsBase
     public TopUpDeleteParams() { }
 
     public TopUpDeleteParams(TopUpDeleteParams topUpDeleteParams)
-        : base(topUpDeleteParams) { }
+        : base(topUpDeleteParams)
+    {
+        this.CustomerID = topUpDeleteParams.CustomerID;
+        this.TopUpID = topUpDeleteParams.TopUpID;
+    }
 
     public TopUpDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

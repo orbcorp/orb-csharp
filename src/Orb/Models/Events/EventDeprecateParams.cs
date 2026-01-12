@@ -50,7 +50,10 @@ public sealed record class EventDeprecateParams : ParamsBase
     public EventDeprecateParams() { }
 
     public EventDeprecateParams(EventDeprecateParams eventDeprecateParams)
-        : base(eventDeprecateParams) { }
+        : base(eventDeprecateParams)
+    {
+        this.EventID = eventDeprecateParams.EventID;
+    }
 
     public EventDeprecateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

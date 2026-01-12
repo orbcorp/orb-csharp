@@ -23,7 +23,11 @@ public sealed record class InvoiceDeleteLineItemParams : ParamsBase
     public InvoiceDeleteLineItemParams() { }
 
     public InvoiceDeleteLineItemParams(InvoiceDeleteLineItemParams invoiceDeleteLineItemParams)
-        : base(invoiceDeleteLineItemParams) { }
+        : base(invoiceDeleteLineItemParams)
+    {
+        this.InvoiceID = invoiceDeleteLineItemParams.InvoiceID;
+        this.LineItemID = invoiceDeleteLineItemParams.LineItemID;
+    }
 
     public InvoiceDeleteLineItemParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

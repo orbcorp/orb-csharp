@@ -31,7 +31,10 @@ public sealed record class ExternalPlanIDFetchParams : ParamsBase
     public ExternalPlanIDFetchParams() { }
 
     public ExternalPlanIDFetchParams(ExternalPlanIDFetchParams externalPlanIDFetchParams)
-        : base(externalPlanIDFetchParams) { }
+        : base(externalPlanIDFetchParams)
+    {
+        this.ExternalPlanID = externalPlanIDFetchParams.ExternalPlanID;
+    }
 
     public ExternalPlanIDFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

@@ -21,7 +21,10 @@ public sealed record class SubscriptionUnschedulePendingPlanChangesParams : Para
     public SubscriptionUnschedulePendingPlanChangesParams(
         SubscriptionUnschedulePendingPlanChangesParams subscriptionUnschedulePendingPlanChangesParams
     )
-        : base(subscriptionUnschedulePendingPlanChangesParams) { }
+        : base(subscriptionUnschedulePendingPlanChangesParams)
+    {
+        this.SubscriptionID = subscriptionUnschedulePendingPlanChangesParams.SubscriptionID;
+    }
 
     public SubscriptionUnschedulePendingPlanChangesParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

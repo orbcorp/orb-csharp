@@ -48,7 +48,10 @@ public sealed record class SubscriptionListParams : ParamsBase
     public SubscriptionListParams() { }
 
     public SubscriptionListParams(SubscriptionListParams subscriptionListParams)
-        : base(subscriptionListParams) { }
+        : base(subscriptionListParams)
+    {
+        this.CouponID = subscriptionListParams.CouponID;
+    }
 
     public SubscriptionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

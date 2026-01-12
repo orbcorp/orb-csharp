@@ -97,6 +97,8 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     )
         : base(subscriptionRedeemCouponParams)
     {
+        this.SubscriptionID = subscriptionRedeemCouponParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionRedeemCouponParams._rawBodyData];
     }
 

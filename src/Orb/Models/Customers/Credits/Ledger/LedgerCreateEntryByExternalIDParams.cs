@@ -123,6 +123,8 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     )
         : base(ledgerCreateEntryByExternalIDParams)
     {
+        this.ExternalCustomerID = ledgerCreateEntryByExternalIDParams.ExternalCustomerID;
+
         this._rawBodyData = [.. ledgerCreateEntryByExternalIDParams._rawBodyData];
     }
 

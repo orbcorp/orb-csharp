@@ -74,6 +74,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     )
         : base(alertCreateForSubscriptionParams)
     {
+        this.SubscriptionID = alertCreateForSubscriptionParams.SubscriptionID;
+
         this._rawBodyData = [.. alertCreateForSubscriptionParams._rawBodyData];
     }
 

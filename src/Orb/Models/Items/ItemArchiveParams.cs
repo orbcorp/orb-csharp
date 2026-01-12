@@ -18,7 +18,10 @@ public sealed record class ItemArchiveParams : ParamsBase
     public ItemArchiveParams() { }
 
     public ItemArchiveParams(ItemArchiveParams itemArchiveParams)
-        : base(itemArchiveParams) { }
+        : base(itemArchiveParams)
+    {
+        this.ItemID = itemArchiveParams.ItemID;
+    }
 
     public ItemArchiveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

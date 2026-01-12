@@ -20,7 +20,10 @@ public sealed record class CouponArchiveParams : ParamsBase
     public CouponArchiveParams() { }
 
     public CouponArchiveParams(CouponArchiveParams couponArchiveParams)
-        : base(couponArchiveParams) { }
+        : base(couponArchiveParams)
+    {
+        this.CouponID = couponArchiveParams.CouponID;
+    }
 
     public CouponArchiveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

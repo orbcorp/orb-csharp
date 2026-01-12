@@ -28,7 +28,10 @@ public sealed record class CreditBlockDeleteParams : ParamsBase
     public CreditBlockDeleteParams() { }
 
     public CreditBlockDeleteParams(CreditBlockDeleteParams creditBlockDeleteParams)
-        : base(creditBlockDeleteParams) { }
+        : base(creditBlockDeleteParams)
+    {
+        this.BlockID = creditBlockDeleteParams.BlockID;
+    }
 
     public CreditBlockDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

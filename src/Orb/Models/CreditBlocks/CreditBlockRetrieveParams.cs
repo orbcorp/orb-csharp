@@ -18,7 +18,10 @@ public sealed record class CreditBlockRetrieveParams : ParamsBase
     public CreditBlockRetrieveParams() { }
 
     public CreditBlockRetrieveParams(CreditBlockRetrieveParams creditBlockRetrieveParams)
-        : base(creditBlockRetrieveParams) { }
+        : base(creditBlockRetrieveParams)
+    {
+        this.BlockID = creditBlockRetrieveParams.BlockID;
+    }
 
     public CreditBlockRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

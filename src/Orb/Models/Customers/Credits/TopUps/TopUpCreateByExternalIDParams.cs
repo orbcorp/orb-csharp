@@ -129,6 +129,8 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     )
         : base(topUpCreateByExternalIDParams)
     {
+        this.ExternalCustomerID = topUpCreateByExternalIDParams.ExternalCustomerID;
+
         this._rawBodyData = [.. topUpCreateByExternalIDParams._rawBodyData];
     }
 

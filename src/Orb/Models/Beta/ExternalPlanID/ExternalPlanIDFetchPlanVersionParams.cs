@@ -23,7 +23,11 @@ public sealed record class ExternalPlanIDFetchPlanVersionParams : ParamsBase
     public ExternalPlanIDFetchPlanVersionParams(
         ExternalPlanIDFetchPlanVersionParams externalPlanIDFetchPlanVersionParams
     )
-        : base(externalPlanIDFetchPlanVersionParams) { }
+        : base(externalPlanIDFetchPlanVersionParams)
+    {
+        this.ExternalPlanID = externalPlanIDFetchPlanVersionParams.ExternalPlanID;
+        this.Version = externalPlanIDFetchPlanVersionParams.Version;
+    }
 
     public ExternalPlanIDFetchPlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

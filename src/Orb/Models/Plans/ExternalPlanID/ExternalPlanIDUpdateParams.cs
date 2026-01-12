@@ -58,6 +58,8 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     public ExternalPlanIDUpdateParams(ExternalPlanIDUpdateParams externalPlanIDUpdateParams)
         : base(externalPlanIDUpdateParams)
     {
+        this.OtherExternalPlanID = externalPlanIDUpdateParams.OtherExternalPlanID;
+
         this._rawBodyData = [.. externalPlanIDUpdateParams._rawBodyData];
     }
 

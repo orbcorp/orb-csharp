@@ -21,7 +21,11 @@ public sealed record class BetaFetchPlanVersionParams : ParamsBase
     public BetaFetchPlanVersionParams() { }
 
     public BetaFetchPlanVersionParams(BetaFetchPlanVersionParams betaFetchPlanVersionParams)
-        : base(betaFetchPlanVersionParams) { }
+        : base(betaFetchPlanVersionParams)
+    {
+        this.PlanID = betaFetchPlanVersionParams.PlanID;
+        this.Version = betaFetchPlanVersionParams.Version;
+    }
 
     public BetaFetchPlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

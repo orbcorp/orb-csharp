@@ -48,7 +48,10 @@ public sealed record class MigrationListParams : ParamsBase
     public MigrationListParams() { }
 
     public MigrationListParams(MigrationListParams migrationListParams)
-        : base(migrationListParams) { }
+        : base(migrationListParams)
+    {
+        this.PlanID = migrationListParams.PlanID;
+    }
 
     public MigrationListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

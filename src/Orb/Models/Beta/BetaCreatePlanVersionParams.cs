@@ -128,6 +128,8 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
     public BetaCreatePlanVersionParams(BetaCreatePlanVersionParams betaCreatePlanVersionParams)
         : base(betaCreatePlanVersionParams)
     {
+        this.PlanID = betaCreatePlanVersionParams.PlanID;
+
         this._rawBodyData = [.. betaCreatePlanVersionParams._rawBodyData];
     }
 

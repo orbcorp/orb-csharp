@@ -56,6 +56,8 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     )
         : base(subscriptionTriggerPhaseParams)
     {
+        this.SubscriptionID = subscriptionTriggerPhaseParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionTriggerPhaseParams._rawBodyData];
     }
 

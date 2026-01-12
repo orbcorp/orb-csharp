@@ -91,7 +91,10 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     public SubscriptionFetchScheduleParams(
         SubscriptionFetchScheduleParams subscriptionFetchScheduleParams
     )
-        : base(subscriptionFetchScheduleParams) { }
+        : base(subscriptionFetchScheduleParams)
+    {
+        this.SubscriptionID = subscriptionFetchScheduleParams.SubscriptionID;
+    }
 
     public SubscriptionFetchScheduleParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

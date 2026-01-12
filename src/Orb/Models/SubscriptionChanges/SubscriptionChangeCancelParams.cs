@@ -22,7 +22,10 @@ public sealed record class SubscriptionChangeCancelParams : ParamsBase
     public SubscriptionChangeCancelParams(
         SubscriptionChangeCancelParams subscriptionChangeCancelParams
     )
-        : base(subscriptionChangeCancelParams) { }
+        : base(subscriptionChangeCancelParams)
+    {
+        this.SubscriptionChangeID = subscriptionChangeCancelParams.SubscriptionChangeID;
+    }
 
     public SubscriptionChangeCancelParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

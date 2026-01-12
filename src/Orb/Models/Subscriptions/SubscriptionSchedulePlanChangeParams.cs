@@ -524,6 +524,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     )
         : base(subscriptionSchedulePlanChangeParams)
     {
+        this.SubscriptionID = subscriptionSchedulePlanChangeParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionSchedulePlanChangeParams._rawBodyData];
     }
 

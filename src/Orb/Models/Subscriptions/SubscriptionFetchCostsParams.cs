@@ -84,7 +84,10 @@ public sealed record class SubscriptionFetchCostsParams : ParamsBase
     public SubscriptionFetchCostsParams() { }
 
     public SubscriptionFetchCostsParams(SubscriptionFetchCostsParams subscriptionFetchCostsParams)
-        : base(subscriptionFetchCostsParams) { }
+        : base(subscriptionFetchCostsParams)
+    {
+        this.SubscriptionID = subscriptionFetchCostsParams.SubscriptionID;
+    }
 
     public SubscriptionFetchCostsParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

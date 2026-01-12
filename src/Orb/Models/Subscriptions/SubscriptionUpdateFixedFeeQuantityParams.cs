@@ -109,6 +109,8 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     )
         : base(subscriptionUpdateFixedFeeQuantityParams)
     {
+        this.SubscriptionID = subscriptionUpdateFixedFeeQuantityParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionUpdateFixedFeeQuantityParams._rawBodyData];
     }
 

@@ -41,6 +41,8 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     )
         : base(subscriptionUnscheduleFixedFeeQuantityUpdatesParams)
     {
+        this.SubscriptionID = subscriptionUnscheduleFixedFeeQuantityUpdatesParams.SubscriptionID;
+
         this._rawBodyData = [.. subscriptionUnscheduleFixedFeeQuantityUpdatesParams._rawBodyData];
     }
 

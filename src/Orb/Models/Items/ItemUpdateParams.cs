@@ -64,6 +64,8 @@ public sealed record class ItemUpdateParams : ParamsBase
     public ItemUpdateParams(ItemUpdateParams itemUpdateParams)
         : base(itemUpdateParams)
     {
+        this.ItemID = itemUpdateParams.ItemID;
+
         this._rawBodyData = [.. itemUpdateParams._rawBodyData];
     }
 

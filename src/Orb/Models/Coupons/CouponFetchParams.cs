@@ -19,7 +19,10 @@ public sealed record class CouponFetchParams : ParamsBase
     public CouponFetchParams() { }
 
     public CouponFetchParams(CouponFetchParams couponFetchParams)
-        : base(couponFetchParams) { }
+        : base(couponFetchParams)
+    {
+        this.CouponID = couponFetchParams.CouponID;
+    }
 
     public CouponFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,

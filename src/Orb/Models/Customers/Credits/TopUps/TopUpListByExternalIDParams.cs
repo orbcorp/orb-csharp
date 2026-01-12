@@ -45,7 +45,10 @@ public sealed record class TopUpListByExternalIDParams : ParamsBase
     public TopUpListByExternalIDParams() { }
 
     public TopUpListByExternalIDParams(TopUpListByExternalIDParams topUpListByExternalIDParams)
-        : base(topUpListByExternalIDParams) { }
+        : base(topUpListByExternalIDParams)
+    {
+        this.ExternalCustomerID = topUpListByExternalIDParams.ExternalCustomerID;
+    }
 
     public TopUpListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
