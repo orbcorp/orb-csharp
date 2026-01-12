@@ -719,10 +719,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceCadenceTest : Te
                 string,
                 Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -768,10 +765,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceCadenceTest : Te
                 string,
                 Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -810,10 +804,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceModelTypeTest : 
                 string,
                 Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceModelType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -852,10 +843,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceModelTypeTest : 
                 string,
                 Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceModelType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<

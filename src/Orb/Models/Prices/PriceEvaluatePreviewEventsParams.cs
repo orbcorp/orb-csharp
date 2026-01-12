@@ -3517,7 +3517,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+                JsonSerializer.SerializeToElement("bulk_with_filters")
             )
         )
         {
@@ -3539,7 +3539,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
@@ -3553,7 +3553,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
 #pragma warning disable CS8618
@@ -4526,7 +4526,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+                JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds")
             )
         )
         {
@@ -4548,9 +4548,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
@@ -4564,9 +4562,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
 #pragma warning disable CS8618
@@ -5355,7 +5351,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+                JsonSerializer.SerializeToElement("cumulative_grouped_allocation")
             )
         )
         {
@@ -5377,9 +5373,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
@@ -5393,9 +5387,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
 #pragma warning disable CS8618
@@ -6176,12 +6168,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("percent")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -6202,7 +6189,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
@@ -6216,7 +6203,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
 #pragma warning disable CS8618
@@ -6956,7 +6943,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+                JsonSerializer.SerializeToElement("event_output")
             )
         )
         {
@@ -6978,7 +6965,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
@@ -6992,7 +6979,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
 #pragma warning disable CS8618

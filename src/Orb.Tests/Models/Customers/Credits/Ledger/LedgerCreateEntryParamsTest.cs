@@ -387,7 +387,7 @@ public class IncrementTest : TestBase
         };
 
         double expectedAmount = 0;
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("increment");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -515,7 +515,7 @@ public class IncrementTest : TestBase
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("increment");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -786,7 +786,7 @@ public class FieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Field>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -814,7 +814,7 @@ public class FieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Field>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -843,7 +843,7 @@ public class OperatorTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Operator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -872,7 +872,7 @@ public class OperatorTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Operator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1229,7 +1229,7 @@ public class DecrementTest : TestBase
         };
 
         double expectedAmount = 0;
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("decrement");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -1281,7 +1281,7 @@ public class DecrementTest : TestBase
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("decrement");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -1387,9 +1387,7 @@ public class ExpirationChangeTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"expiration_change\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("expiration_change");
         string expectedTargetExpiryDate = "2019-12-27";
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
@@ -1453,9 +1451,7 @@ public class ExpirationChangeTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Ledger::ExpirationChange>(element);
         Assert.NotNull(deserialized);
 
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"expiration_change\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("expiration_change");
         string expectedTargetExpiryDate = "2019-12-27";
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
@@ -1590,7 +1586,7 @@ public class VoidTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("void");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -1650,7 +1646,7 @@ public class VoidTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("void");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -1768,7 +1764,7 @@ public class VoidReasonTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::VoidReason>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -1796,7 +1792,7 @@ public class VoidReasonTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::VoidReason>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1825,7 +1821,7 @@ public class AmendmentTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("amendment");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -1881,7 +1877,7 @@ public class AmendmentTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("amendment");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };

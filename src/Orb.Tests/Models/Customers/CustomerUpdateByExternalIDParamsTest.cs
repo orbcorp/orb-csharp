@@ -680,10 +680,7 @@ public class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
                 string,
                 CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -722,10 +719,7 @@ public class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
                 string,
                 CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -758,10 +752,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CustomerUpdateByExternalIDParamsPaymentProvider>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -793,10 +784,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CustomerUpdateByExternalIDParamsPaymentProvider>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CustomerUpdateByExternalIDParamsPaymentProvider>
@@ -1009,7 +997,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralTest : TestB
         };
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("numeral");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
@@ -1052,7 +1040,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralTest : TestB
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("numeral");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, deserialized.TaxExempt);
@@ -1135,7 +1123,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokTest : TestBas
         };
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("anrok");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
@@ -1176,7 +1164,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokTest : TestBas
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("anrok");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, deserialized.TaxExempt);
@@ -1253,7 +1241,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationStripeTest : TestBa
         };
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("stripe");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
@@ -1296,7 +1284,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationStripeTest : TestBa
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("stripe");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, deserialized.TaxExempt);

@@ -560,10 +560,7 @@ public class NewFloatingMaxGroupTieredPackagePriceCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMaxGroupTieredPackagePriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -594,10 +591,7 @@ public class NewFloatingMaxGroupTieredPackagePriceCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMaxGroupTieredPackagePriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMaxGroupTieredPackagePriceCadence>
@@ -795,10 +789,7 @@ public class NewFloatingMaxGroupTieredPackagePriceModelTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMaxGroupTieredPackagePriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -826,10 +817,7 @@ public class NewFloatingMaxGroupTieredPackagePriceModelTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMaxGroupTieredPackagePriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMaxGroupTieredPackagePriceModelType>

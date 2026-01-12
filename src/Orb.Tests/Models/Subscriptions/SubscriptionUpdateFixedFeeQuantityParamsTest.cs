@@ -148,10 +148,7 @@ public class SubscriptionUpdateFixedFeeQuantityParamsChangeOptionTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -181,10 +178,7 @@ public class SubscriptionUpdateFixedFeeQuantityParamsChangeOptionTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>

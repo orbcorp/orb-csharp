@@ -544,10 +544,7 @@ public class NewPlanGroupedWithProratedMinimumPriceCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -578,10 +575,7 @@ public class NewPlanGroupedWithProratedMinimumPriceCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceCadence>
@@ -687,10 +681,7 @@ public class NewPlanGroupedWithProratedMinimumPriceModelTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -718,10 +709,7 @@ public class NewPlanGroupedWithProratedMinimumPriceModelTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceModelType>

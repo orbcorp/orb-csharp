@@ -8024,7 +8024,7 @@ public class UnitTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"unit\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("unit");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitPriceType> expectedPriceType = UnitPriceType.UsagePrice;
@@ -8405,7 +8405,7 @@ public class UnitTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"unit\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("unit");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitPriceType> expectedPriceType = UnitPriceType.UsagePrice;
@@ -9024,7 +9024,7 @@ public class BillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -9053,7 +9053,7 @@ public class BillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -9086,7 +9086,7 @@ public class UnitCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -9119,7 +9119,7 @@ public class UnitCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -9237,7 +9237,7 @@ public class CompositePriceFilterFieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -9269,7 +9269,7 @@ public class CompositePriceFilterFieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -9298,7 +9298,7 @@ public class CompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -9326,7 +9326,7 @@ public class CompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -9434,7 +9434,7 @@ public class UnitPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -9464,7 +9464,7 @@ public class UnitPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -9701,7 +9701,7 @@ public class TieredTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredPriceType> expectedPriceType = TieredPriceType.UsagePrice;
@@ -10119,7 +10119,7 @@ public class TieredTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredPriceType> expectedPriceType = TieredPriceType.UsagePrice;
@@ -10810,7 +10810,7 @@ public class TieredBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -10839,7 +10839,7 @@ public class TieredBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -10872,7 +10872,7 @@ public class TieredCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -10905,7 +10905,7 @@ public class TieredCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -11023,7 +11023,7 @@ public class TieredCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -11054,7 +11054,7 @@ public class TieredCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -11082,7 +11082,7 @@ public class TieredCompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredCompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -11110,7 +11110,7 @@ public class TieredCompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredCompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -11218,7 +11218,7 @@ public class TieredPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -11248,7 +11248,7 @@ public class TieredPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -11475,7 +11475,7 @@ public class BulkTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkPriceType> expectedPriceType = BulkPriceType.UsagePrice;
@@ -11858,7 +11858,7 @@ public class BulkTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkPriceType> expectedPriceType = BulkPriceType.UsagePrice;
@@ -12476,7 +12476,7 @@ public class BulkBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -12505,7 +12505,7 @@ public class BulkBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -12538,7 +12538,7 @@ public class BulkCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -12571,7 +12571,7 @@ public class BulkCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -12689,7 +12689,7 @@ public class BulkCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -12720,7 +12720,7 @@ public class BulkCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -12748,7 +12748,7 @@ public class BulkCompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkCompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -12776,7 +12776,7 @@ public class BulkCompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkCompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -12884,7 +12884,7 @@ public class BulkPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -12914,7 +12914,7 @@ public class BulkPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -13157,9 +13157,7 @@ public class BulkWithFiltersTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_filters\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkWithFiltersPriceType> expectedPriceType =
@@ -13567,9 +13565,7 @@ public class BulkWithFiltersTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_filters\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkWithFiltersPriceType> expectedPriceType =
@@ -14228,7 +14224,7 @@ public class BulkWithFiltersBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -14257,7 +14253,7 @@ public class BulkWithFiltersBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -14562,7 +14558,7 @@ public class BulkWithFiltersCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -14595,7 +14591,7 @@ public class BulkWithFiltersCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -14714,10 +14710,7 @@ public class BulkWithFiltersCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithFiltersCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -14747,10 +14740,7 @@ public class BulkWithFiltersCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithFiltersCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithFiltersCompositePriceFilterField>
@@ -14777,10 +14767,7 @@ public class BulkWithFiltersCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -14807,10 +14794,7 @@ public class BulkWithFiltersCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator>
@@ -14916,7 +14900,7 @@ public class BulkWithFiltersPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -14946,7 +14930,7 @@ public class BulkWithFiltersPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithFiltersPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -15171,7 +15155,7 @@ public class PackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("package");
         string expectedName = "name";
         PackageConfig expectedPackageConfig = new()
         {
@@ -15557,7 +15541,7 @@ public class PackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("package");
         string expectedName = "name";
         PackageConfig expectedPackageConfig = new()
         {
@@ -16180,7 +16164,7 @@ public class PackageBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -16209,7 +16193,7 @@ public class PackageBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -16242,7 +16226,7 @@ public class PackageCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -16275,7 +16259,7 @@ public class PackageCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -16393,7 +16377,7 @@ public class PackageCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -16424,7 +16408,7 @@ public class PackageCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -16453,10 +16437,7 @@ public class PackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -16483,10 +16464,7 @@ public class PackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PackageCompositePriceFilterOperator>
@@ -16592,7 +16570,7 @@ public class PackagePriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -16622,7 +16600,7 @@ public class PackagePriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -16858,7 +16836,7 @@ public class MatrixTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("matrix");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, MatrixPriceType> expectedPriceType = MatrixPriceType.UsagePrice;
@@ -17255,7 +17233,7 @@ public class MatrixTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("matrix");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, MatrixPriceType> expectedPriceType = MatrixPriceType.UsagePrice;
@@ -17898,7 +17876,7 @@ public class MatrixBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -17927,7 +17905,7 @@ public class MatrixBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -17960,7 +17938,7 @@ public class MatrixCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -17993,7 +17971,7 @@ public class MatrixCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -18111,7 +18089,7 @@ public class MatrixCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -18142,7 +18120,7 @@ public class MatrixCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -18170,7 +18148,7 @@ public class MatrixCompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixCompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -18198,7 +18176,7 @@ public class MatrixCompositePriceFilterOperatorTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixCompositePriceFilterOperator>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -18306,7 +18284,7 @@ public class MatrixPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -18336,7 +18314,7 @@ public class MatrixPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -18571,9 +18549,7 @@ public class ThresholdTotalAmountTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"threshold_total_amount\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("threshold_total_amount");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, ThresholdTotalAmountPriceType> expectedPriceType =
@@ -18982,9 +18958,7 @@ public class ThresholdTotalAmountTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"threshold_total_amount\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("threshold_total_amount");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, ThresholdTotalAmountPriceType> expectedPriceType =
@@ -19652,7 +19626,7 @@ public class ThresholdTotalAmountBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -19680,7 +19654,7 @@ public class ThresholdTotalAmountBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -19712,7 +19686,7 @@ public class ThresholdTotalAmountCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -19745,7 +19719,7 @@ public class ThresholdTotalAmountCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -19868,10 +19842,7 @@ public class ThresholdTotalAmountCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -19901,10 +19872,7 @@ public class ThresholdTotalAmountCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField>
@@ -19931,10 +19899,7 @@ public class ThresholdTotalAmountCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -19963,10 +19928,7 @@ public class ThresholdTotalAmountCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator>
@@ -20076,7 +20038,7 @@ public class ThresholdTotalAmountPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -20105,7 +20067,7 @@ public class ThresholdTotalAmountPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ThresholdTotalAmountPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -20576,9 +20538,7 @@ public class TieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_package\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered_package");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredPackagePriceType> expectedPriceType =
@@ -20986,9 +20946,7 @@ public class TieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_package\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered_package");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredPackagePriceType> expectedPriceType =
@@ -21656,7 +21614,7 @@ public class TieredPackageBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -21685,7 +21643,7 @@ public class TieredPackageBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -21718,7 +21676,7 @@ public class TieredPackageCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -21751,7 +21709,7 @@ public class TieredPackageCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -21870,10 +21828,7 @@ public class TieredPackageCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -21903,10 +21858,7 @@ public class TieredPackageCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageCompositePriceFilterField>
@@ -21933,10 +21885,7 @@ public class TieredPackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -21963,10 +21912,7 @@ public class TieredPackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageCompositePriceFilterOperator>
@@ -22072,7 +22018,7 @@ public class TieredPackagePriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -22102,7 +22048,7 @@ public class TieredPackagePriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -22514,9 +22460,7 @@ public class TieredWithMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_with_minimum\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered_with_minimum");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredWithMinimumPriceType> expectedPriceType =
@@ -22958,9 +22902,7 @@ public class TieredWithMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_with_minimum\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered_with_minimum");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredWithMinimumPriceType> expectedPriceType =
@@ -23694,7 +23636,7 @@ public class TieredWithMinimumBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -23722,7 +23664,7 @@ public class TieredWithMinimumBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -23754,7 +23696,7 @@ public class TieredWithMinimumCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -23787,7 +23729,7 @@ public class TieredWithMinimumCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -23908,10 +23850,7 @@ public class TieredWithMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -23941,10 +23880,7 @@ public class TieredWithMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithMinimumCompositePriceFilterField>
@@ -23971,10 +23907,7 @@ public class TieredWithMinimumCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -24001,10 +23934,7 @@ public class TieredWithMinimumCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator>
@@ -24114,7 +24044,7 @@ public class TieredWithMinimumPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -24144,7 +24074,7 @@ public class TieredWithMinimumPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -24749,9 +24679,7 @@ public class GroupedTieredTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_tiered\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("grouped_tiered");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedTieredPriceType> expectedPriceType =
@@ -25159,9 +25087,7 @@ public class GroupedTieredTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_tiered\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("grouped_tiered");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedTieredPriceType> expectedPriceType =
@@ -25820,7 +25746,7 @@ public class GroupedTieredBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -25849,7 +25775,7 @@ public class GroupedTieredBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -25882,7 +25808,7 @@ public class GroupedTieredCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -25915,7 +25841,7 @@ public class GroupedTieredCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -26034,10 +25960,7 @@ public class GroupedTieredCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -26067,10 +25990,7 @@ public class GroupedTieredCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredCompositePriceFilterField>
@@ -26097,10 +26017,7 @@ public class GroupedTieredCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -26127,10 +26044,7 @@ public class GroupedTieredCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredCompositePriceFilterOperator>
@@ -26402,7 +26316,7 @@ public class GroupedTieredPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -26432,7 +26346,7 @@ public class GroupedTieredPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -26677,8 +26591,8 @@ public class TieredPackageWithMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_package_with_minimum\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "tiered_package_with_minimum"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -27119,8 +27033,8 @@ public class TieredPackageWithMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_package_with_minimum\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "tiered_package_with_minimum"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -27854,10 +27768,7 @@ public class TieredPackageWithMinimumBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -27884,10 +27795,7 @@ public class TieredPackageWithMinimumBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumBillingMode>
@@ -27917,7 +27825,7 @@ public class TieredPackageWithMinimumCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -27949,7 +27857,7 @@ public class TieredPackageWithMinimumCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -28071,10 +27979,7 @@ public class TieredPackageWithMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -28106,10 +28011,7 @@ public class TieredPackageWithMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField>
@@ -28136,10 +28038,7 @@ public class TieredPackageWithMinimumCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -28168,10 +28067,7 @@ public class TieredPackageWithMinimumCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator>
@@ -28281,7 +28177,7 @@ public class TieredPackageWithMinimumPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -28310,7 +28206,7 @@ public class TieredPackageWithMinimumPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredPackageWithMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -28785,8 +28681,8 @@ public class PackageWithAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"package_with_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "package_with_allocation"
         );
         string expectedName = "name";
         PackageWithAllocationPackageWithAllocationConfig expectedPackageWithAllocationConfig = new()
@@ -29187,8 +29083,8 @@ public class PackageWithAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"package_with_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "package_with_allocation"
         );
         string expectedName = "name";
         PackageWithAllocationPackageWithAllocationConfig expectedPackageWithAllocationConfig = new()
@@ -29839,7 +29735,7 @@ public class PackageWithAllocationBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -29867,7 +29763,7 @@ public class PackageWithAllocationBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -29899,7 +29795,7 @@ public class PackageWithAllocationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -29931,7 +29827,7 @@ public class PackageWithAllocationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -30053,10 +29949,7 @@ public class PackageWithAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PackageWithAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -30088,10 +29981,7 @@ public class PackageWithAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PackageWithAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PackageWithAllocationCompositePriceFilterField>
@@ -30118,10 +30008,7 @@ public class PackageWithAllocationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -30150,10 +30037,7 @@ public class PackageWithAllocationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator>
@@ -30339,7 +30223,7 @@ public class PackageWithAllocationPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -30368,7 +30252,7 @@ public class PackageWithAllocationPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PackageWithAllocationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -30593,9 +30477,7 @@ public class UnitWithPercentTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"unit_with_percent\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("unit_with_percent");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitWithPercentPriceType> expectedPriceType =
@@ -30983,9 +30865,7 @@ public class UnitWithPercentTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"unit_with_percent\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("unit_with_percent");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitWithPercentPriceType> expectedPriceType =
@@ -31609,7 +31489,7 @@ public class UnitWithPercentBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -31638,7 +31518,7 @@ public class UnitWithPercentBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -31671,7 +31551,7 @@ public class UnitWithPercentCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -31704,7 +31584,7 @@ public class UnitWithPercentCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -31823,10 +31703,7 @@ public class UnitWithPercentCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithPercentCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -31856,10 +31733,7 @@ public class UnitWithPercentCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithPercentCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithPercentCompositePriceFilterField>
@@ -31886,10 +31760,7 @@ public class UnitWithPercentCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithPercentCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -31916,10 +31787,7 @@ public class UnitWithPercentCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithPercentCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithPercentCompositePriceFilterOperator>
@@ -32025,7 +31893,7 @@ public class UnitWithPercentPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -32055,7 +31923,7 @@ public class UnitWithPercentPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithPercentPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -32363,9 +32231,7 @@ public class MatrixWithAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"matrix_with_allocation\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("matrix_with_allocation");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, MatrixWithAllocationPriceType> expectedPriceType =
@@ -32768,9 +32634,7 @@ public class MatrixWithAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"matrix_with_allocation\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("matrix_with_allocation");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, MatrixWithAllocationPriceType> expectedPriceType =
@@ -33419,7 +33283,7 @@ public class MatrixWithAllocationBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -33447,7 +33311,7 @@ public class MatrixWithAllocationBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -33479,7 +33343,7 @@ public class MatrixWithAllocationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -33512,7 +33376,7 @@ public class MatrixWithAllocationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -33635,10 +33499,7 @@ public class MatrixWithAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -33668,10 +33529,7 @@ public class MatrixWithAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithAllocationCompositePriceFilterField>
@@ -33698,10 +33556,7 @@ public class MatrixWithAllocationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -33730,10 +33585,7 @@ public class MatrixWithAllocationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator>
@@ -33843,7 +33695,7 @@ public class MatrixWithAllocationPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -33872,7 +33724,7 @@ public class MatrixWithAllocationPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithAllocationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -34100,9 +33952,7 @@ public class TieredWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_with_proration\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredWithProrationPriceType> expectedPriceType =
@@ -34493,9 +34343,7 @@ public class TieredWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"tiered_with_proration\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredWithProrationPriceType> expectedPriceType =
@@ -35127,7 +34975,7 @@ public class TieredWithProrationBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -35155,7 +35003,7 @@ public class TieredWithProrationBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -35187,7 +35035,7 @@ public class TieredWithProrationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -35220,7 +35068,7 @@ public class TieredWithProrationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -35343,10 +35191,7 @@ public class TieredWithProrationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithProrationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -35376,10 +35221,7 @@ public class TieredWithProrationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithProrationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithProrationCompositePriceFilterField>
@@ -35406,10 +35248,7 @@ public class TieredWithProrationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithProrationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -35438,10 +35277,7 @@ public class TieredWithProrationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithProrationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TieredWithProrationCompositePriceFilterOperator>
@@ -35551,7 +35387,7 @@ public class TieredWithProrationPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -35580,7 +35416,7 @@ public class TieredWithProrationPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, TieredWithProrationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -35950,9 +35786,7 @@ public class UnitWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"unit_with_proration\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("unit_with_proration");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitWithProrationPriceType> expectedPriceType =
@@ -36339,9 +36173,7 @@ public class UnitWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"unit_with_proration\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("unit_with_proration");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitWithProrationPriceType> expectedPriceType =
@@ -36963,7 +36795,7 @@ public class UnitWithProrationBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -36991,7 +36823,7 @@ public class UnitWithProrationBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -37023,7 +36855,7 @@ public class UnitWithProrationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -37056,7 +36888,7 @@ public class UnitWithProrationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -37177,10 +37009,7 @@ public class UnitWithProrationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithProrationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -37210,10 +37039,7 @@ public class UnitWithProrationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithProrationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithProrationCompositePriceFilterField>
@@ -37240,10 +37066,7 @@ public class UnitWithProrationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithProrationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -37270,10 +37093,7 @@ public class UnitWithProrationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithProrationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, UnitWithProrationCompositePriceFilterOperator>
@@ -37383,7 +37203,7 @@ public class UnitWithProrationPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -37413,7 +37233,7 @@ public class UnitWithProrationPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, UnitWithProrationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -37701,9 +37521,7 @@ public class GroupedAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_allocation\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("grouped_allocation");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedAllocationPriceType> expectedPriceType =
@@ -38103,9 +37921,7 @@ public class GroupedAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_allocation\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("grouped_allocation");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedAllocationPriceType> expectedPriceType =
@@ -38749,7 +38565,7 @@ public class GroupedAllocationBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -38777,7 +38593,7 @@ public class GroupedAllocationBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -38809,7 +38625,7 @@ public class GroupedAllocationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -38842,7 +38658,7 @@ public class GroupedAllocationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -38963,10 +38779,7 @@ public class GroupedAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -38996,10 +38809,7 @@ public class GroupedAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedAllocationCompositePriceFilterField>
@@ -39026,10 +38836,7 @@ public class GroupedAllocationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -39056,10 +38863,7 @@ public class GroupedAllocationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedAllocationCompositePriceFilterOperator>
@@ -39247,7 +39051,7 @@ public class GroupedAllocationPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -39277,7 +39081,7 @@ public class GroupedAllocationPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedAllocationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -39515,9 +39319,7 @@ public class BulkWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_proration\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_proration");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkWithProrationPriceType> expectedPriceType =
@@ -39917,9 +39719,7 @@ public class BulkWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_proration\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_proration");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkWithProrationPriceType> expectedPriceType =
@@ -40563,7 +40363,7 @@ public class BulkWithProrationBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -40591,7 +40391,7 @@ public class BulkWithProrationBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -40831,7 +40631,7 @@ public class BulkWithProrationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -40864,7 +40664,7 @@ public class BulkWithProrationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -40985,10 +40785,7 @@ public class BulkWithProrationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithProrationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -41018,10 +40815,7 @@ public class BulkWithProrationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithProrationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithProrationCompositePriceFilterField>
@@ -41048,10 +40842,7 @@ public class BulkWithProrationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithProrationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -41078,10 +40869,7 @@ public class BulkWithProrationCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithProrationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, BulkWithProrationCompositePriceFilterOperator>
@@ -41191,7 +40979,7 @@ public class BulkWithProrationPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -41221,7 +41009,7 @@ public class BulkWithProrationPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, BulkWithProrationPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -41460,8 +41248,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_prorated_minimum\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_prorated_minimum"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -41866,8 +41654,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_prorated_minimum\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_prorated_minimum"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -42516,10 +42304,7 @@ public class GroupedWithProratedMinimumBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -42546,10 +42331,7 @@ public class GroupedWithProratedMinimumBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumBillingMode>
@@ -42579,7 +42361,7 @@ public class GroupedWithProratedMinimumCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithProratedMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -42611,7 +42393,7 @@ public class GroupedWithProratedMinimumCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithProratedMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -42731,10 +42513,7 @@ public class GroupedWithProratedMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -42766,10 +42545,7 @@ public class GroupedWithProratedMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField>
@@ -42796,10 +42572,7 @@ public class GroupedWithProratedMinimumCompositePriceFilterOperatorTest : TestBa
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -42828,10 +42601,7 @@ public class GroupedWithProratedMinimumCompositePriceFilterOperatorTest : TestBa
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator>
@@ -43020,10 +42790,7 @@ public class GroupedWithProratedMinimumPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -43051,10 +42818,7 @@ public class GroupedWithProratedMinimumPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithProratedMinimumPriceType>
@@ -43308,8 +43072,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_metered_minimum\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_metered_minimum"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -43741,8 +43505,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_metered_minimum\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_metered_minimum"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -44436,10 +44200,7 @@ public class GroupedWithMeteredMinimumBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -44466,10 +44227,7 @@ public class GroupedWithMeteredMinimumBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumBillingMode>
@@ -44499,7 +44257,7 @@ public class GroupedWithMeteredMinimumCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMeteredMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -44531,7 +44289,7 @@ public class GroupedWithMeteredMinimumCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMeteredMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -44651,10 +44409,7 @@ public class GroupedWithMeteredMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -44686,10 +44441,7 @@ public class GroupedWithMeteredMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField>
@@ -44716,10 +44468,7 @@ public class GroupedWithMeteredMinimumCompositePriceFilterOperatorTest : TestBas
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -44748,10 +44497,7 @@ public class GroupedWithMeteredMinimumCompositePriceFilterOperatorTest : TestBas
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator>
@@ -45147,7 +44893,7 @@ public class GroupedWithMeteredMinimumPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMeteredMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -45176,7 +44922,7 @@ public class GroupedWithMeteredMinimumPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMeteredMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -45415,8 +45161,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_min_max_thresholds"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -45823,8 +45569,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_min_max_thresholds"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -46478,10 +46224,7 @@ public class GroupedWithMinMaxThresholdsBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -46508,10 +46251,7 @@ public class GroupedWithMinMaxThresholdsBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsBillingMode>
@@ -46541,7 +46281,7 @@ public class GroupedWithMinMaxThresholdsCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMinMaxThresholdsCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -46573,7 +46313,7 @@ public class GroupedWithMinMaxThresholdsCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMinMaxThresholdsCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -46693,10 +46433,7 @@ public class GroupedWithMinMaxThresholdsCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -46728,10 +46465,7 @@ public class GroupedWithMinMaxThresholdsCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField>
@@ -46758,10 +46492,7 @@ public class GroupedWithMinMaxThresholdsCompositePriceFilterOperatorTest : TestB
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -46790,10 +46521,7 @@ public class GroupedWithMinMaxThresholdsCompositePriceFilterOperatorTest : TestB
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterOperator>
@@ -46984,10 +46712,7 @@ public class GroupedWithMinMaxThresholdsPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -47015,10 +46740,7 @@ public class GroupedWithMinMaxThresholdsPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedWithMinMaxThresholdsPriceType>
@@ -47267,8 +46989,8 @@ public class MatrixWithDisplayNameTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"matrix_with_display_name\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "matrix_with_display_name"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -47690,8 +47412,8 @@ public class MatrixWithDisplayNameTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"matrix_with_display_name\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "matrix_with_display_name"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -48371,7 +48093,7 @@ public class MatrixWithDisplayNameBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNameBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -48399,7 +48121,7 @@ public class MatrixWithDisplayNameBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNameBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -48431,7 +48153,7 @@ public class MatrixWithDisplayNameCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNameCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -48463,7 +48185,7 @@ public class MatrixWithDisplayNameCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNameCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -48585,10 +48307,7 @@ public class MatrixWithDisplayNameCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -48620,10 +48339,7 @@ public class MatrixWithDisplayNameCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField>
@@ -48650,10 +48366,7 @@ public class MatrixWithDisplayNameCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -48682,10 +48395,7 @@ public class MatrixWithDisplayNameCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator>
@@ -48999,7 +48709,7 @@ public class MatrixWithDisplayNamePriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNamePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -49028,7 +48738,7 @@ public class MatrixWithDisplayNamePriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MatrixWithDisplayNamePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -49273,9 +48983,7 @@ public class GroupedTieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_tiered_package\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("grouped_tiered_package");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedTieredPackagePriceType> expectedPriceType =
@@ -49687,9 +49395,7 @@ public class GroupedTieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_tiered_package\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("grouped_tiered_package");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedTieredPackagePriceType> expectedPriceType =
@@ -50353,7 +50059,7 @@ public class GroupedTieredPackageBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -50381,7 +50087,7 @@ public class GroupedTieredPackageBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -50413,7 +50119,7 @@ public class GroupedTieredPackageCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -50446,7 +50152,7 @@ public class GroupedTieredPackageCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -50569,10 +50275,7 @@ public class GroupedTieredPackageCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredPackageCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -50602,10 +50305,7 @@ public class GroupedTieredPackageCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredPackageCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredPackageCompositePriceFilterField>
@@ -50632,10 +50332,7 @@ public class GroupedTieredPackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -50664,10 +50361,7 @@ public class GroupedTieredPackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator>
@@ -50953,7 +50647,7 @@ public class GroupedTieredPackagePriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -50982,7 +50676,7 @@ public class GroupedTieredPackagePriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedTieredPackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -51227,8 +50921,8 @@ public class MaxGroupTieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"max_group_tiered_package\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "max_group_tiered_package"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -51641,8 +51335,8 @@ public class MaxGroupTieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"max_group_tiered_package\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "max_group_tiered_package"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -52307,7 +52001,7 @@ public class MaxGroupTieredPackageBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -52335,7 +52029,7 @@ public class MaxGroupTieredPackageBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackageBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -52367,7 +52061,7 @@ public class MaxGroupTieredPackageCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -52399,7 +52093,7 @@ public class MaxGroupTieredPackageCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackageCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -52521,10 +52215,7 @@ public class MaxGroupTieredPackageCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -52556,10 +52247,7 @@ public class MaxGroupTieredPackageCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField>
@@ -52586,10 +52274,7 @@ public class MaxGroupTieredPackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -52618,10 +52303,7 @@ public class MaxGroupTieredPackageCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator>
@@ -52909,7 +52591,7 @@ public class MaxGroupTieredPackagePriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -52938,7 +52620,7 @@ public class MaxGroupTieredPackagePriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MaxGroupTieredPackagePriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -53179,8 +52861,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_unit_pricing\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "scalable_matrix_with_unit_pricing"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -53615,8 +53297,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_unit_pricing\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "scalable_matrix_with_unit_pricing"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -54332,10 +54014,7 @@ public class ScalableMatrixWithUnitPricingBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -54362,10 +54041,7 @@ public class ScalableMatrixWithUnitPricingBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingBillingMode>
@@ -54396,10 +54072,7 @@ public class ScalableMatrixWithUnitPricingCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -54430,10 +54103,7 @@ public class ScalableMatrixWithUnitPricingCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCadence>
@@ -54555,10 +54225,7 @@ public class ScalableMatrixWithUnitPricingCompositePriceFilterFieldTest : TestBa
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -54590,10 +54257,7 @@ public class ScalableMatrixWithUnitPricingCompositePriceFilterFieldTest : TestBa
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField>
@@ -54620,10 +54284,7 @@ public class ScalableMatrixWithUnitPricingCompositePriceFilterOperatorTest : Tes
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -54652,10 +54313,7 @@ public class ScalableMatrixWithUnitPricingCompositePriceFilterOperatorTest : Tes
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterOperator>
@@ -54764,10 +54422,7 @@ public class ScalableMatrixWithUnitPricingPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -54795,10 +54450,7 @@ public class ScalableMatrixWithUnitPricingPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithUnitPricingPriceType>
@@ -55431,8 +55083,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_tiered_pricing\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "scalable_matrix_with_tiered_pricing"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -55876,8 +55528,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_tiered_pricing\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "scalable_matrix_with_tiered_pricing"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -56611,10 +56263,7 @@ public class ScalableMatrixWithTieredPricingBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -56641,10 +56290,7 @@ public class ScalableMatrixWithTieredPricingBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingBillingMode>
@@ -56675,10 +56321,7 @@ public class ScalableMatrixWithTieredPricingCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -56709,10 +56352,7 @@ public class ScalableMatrixWithTieredPricingCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCadence>
@@ -56836,10 +56476,7 @@ public class ScalableMatrixWithTieredPricingCompositePriceFilterFieldTest : Test
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -56871,10 +56508,7 @@ public class ScalableMatrixWithTieredPricingCompositePriceFilterFieldTest : Test
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField>
@@ -56904,10 +56538,7 @@ public class ScalableMatrixWithTieredPricingCompositePriceFilterOperatorTest : T
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -56937,10 +56568,7 @@ public class ScalableMatrixWithTieredPricingCompositePriceFilterOperatorTest : T
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterOperator>
@@ -57053,10 +56681,7 @@ public class ScalableMatrixWithTieredPricingPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -57084,10 +56709,7 @@ public class ScalableMatrixWithTieredPricingPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ScalableMatrixWithTieredPricingPriceType>
@@ -57833,8 +57455,8 @@ public class CumulativeGroupedBulkTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_bulk\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_bulk"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -58256,8 +57878,8 @@ public class CumulativeGroupedBulkTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_bulk\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_bulk"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -58937,7 +58559,7 @@ public class CumulativeGroupedBulkBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -58965,7 +58587,7 @@ public class CumulativeGroupedBulkBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -58997,7 +58619,7 @@ public class CumulativeGroupedBulkCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -59029,7 +58651,7 @@ public class CumulativeGroupedBulkCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -59151,10 +58773,7 @@ public class CumulativeGroupedBulkCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -59186,10 +58805,7 @@ public class CumulativeGroupedBulkCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField>
@@ -59216,10 +58832,7 @@ public class CumulativeGroupedBulkCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -59248,10 +58861,7 @@ public class CumulativeGroupedBulkCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator>
@@ -59565,7 +59175,7 @@ public class CumulativeGroupedBulkPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -59594,7 +59204,7 @@ public class CumulativeGroupedBulkPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedBulkPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -59833,8 +59443,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_allocation"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -60241,8 +59851,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_allocation"
         );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
@@ -60896,10 +60506,7 @@ public class CumulativeGroupedAllocationBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -60926,10 +60533,7 @@ public class CumulativeGroupedAllocationBillingModeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationBillingMode>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationBillingMode>
@@ -60959,7 +60563,7 @@ public class CumulativeGroupedAllocationCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -60991,7 +60595,7 @@ public class CumulativeGroupedAllocationCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedAllocationCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -61111,10 +60715,7 @@ public class CumulativeGroupedAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -61146,10 +60747,7 @@ public class CumulativeGroupedAllocationCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField>
@@ -61176,10 +60774,7 @@ public class CumulativeGroupedAllocationCompositePriceFilterOperatorTest : TestB
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -61208,10 +60803,7 @@ public class CumulativeGroupedAllocationCompositePriceFilterOperatorTest : TestB
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterOperator>
@@ -61402,10 +60994,7 @@ public class CumulativeGroupedAllocationPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -61433,10 +61022,7 @@ public class CumulativeGroupedAllocationPriceTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationPriceType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationPriceType>
@@ -61664,7 +61250,7 @@ public class PriceMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"minimum\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, PriceMinimumPriceType> expectedPriceType = PriceMinimumPriceType.UsagePrice;
@@ -62051,7 +61637,7 @@ public class PriceMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"minimum\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, PriceMinimumPriceType> expectedPriceType = PriceMinimumPriceType.UsagePrice;
@@ -62669,7 +62255,7 @@ public class PriceMinimumBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -62698,7 +62284,7 @@ public class PriceMinimumBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -62731,7 +62317,7 @@ public class PriceMinimumCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -62764,7 +62350,7 @@ public class PriceMinimumCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -62883,10 +62469,7 @@ public class PriceMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -62916,10 +62499,7 @@ public class PriceMinimumCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceMinimumCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PriceMinimumCompositePriceFilterField>
@@ -62946,10 +62526,7 @@ public class PriceMinimumCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -62976,10 +62553,7 @@ public class PriceMinimumCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
@@ -63197,7 +62771,7 @@ public class PriceMinimumPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -63227,7 +62801,7 @@ public class PriceMinimumPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -63452,7 +63026,7 @@ public class PercentTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "name";
         PercentConfig expectedPercentConfig = new(0);
         long expectedPlanPhaseOrder = 0;
@@ -63834,7 +63408,7 @@ public class PercentTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "name";
         PercentConfig expectedPercentConfig = new(0);
         long expectedPlanPhaseOrder = 0;
@@ -64453,7 +64027,7 @@ public class PercentBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -64482,7 +64056,7 @@ public class PercentBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -64515,7 +64089,7 @@ public class PercentCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -64548,7 +64122,7 @@ public class PercentCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -64666,7 +64240,7 @@ public class PercentCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -64697,7 +64271,7 @@ public class PercentCompositePriceFilterFieldTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentCompositePriceFilterField>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -64726,10 +64300,7 @@ public class PercentCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -64756,10 +64327,7 @@ public class PercentCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PercentCompositePriceFilterOperator>
@@ -64911,7 +64479,7 @@ public class PercentPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -64941,7 +64509,7 @@ public class PercentPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, PercentPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -65178,7 +64746,7 @@ public class EventOutputTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("event_output");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, EventOutputPriceType> expectedPriceType = EventOutputPriceType.UsagePrice;
@@ -65576,7 +65144,7 @@ public class EventOutputTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("event_output");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, EventOutputPriceType> expectedPriceType = EventOutputPriceType.UsagePrice;
@@ -66219,7 +65787,7 @@ public class EventOutputBillingModeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -66248,7 +65816,7 @@ public class EventOutputBillingModeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputBillingMode>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -66281,7 +65849,7 @@ public class EventOutputCadenceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -66314,7 +65882,7 @@ public class EventOutputCadenceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -66433,10 +66001,7 @@ public class EventOutputCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, EventOutputCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -66466,10 +66031,7 @@ public class EventOutputCompositePriceFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, EventOutputCompositePriceFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, EventOutputCompositePriceFilterField>
@@ -66496,10 +66058,7 @@ public class EventOutputCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, EventOutputCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -66526,10 +66085,7 @@ public class EventOutputCompositePriceFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, EventOutputCompositePriceFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, EventOutputCompositePriceFilterOperator>
@@ -66759,7 +66315,7 @@ public class EventOutputPriceTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -66789,7 +66345,7 @@ public class EventOutputPriceTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputPriceType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

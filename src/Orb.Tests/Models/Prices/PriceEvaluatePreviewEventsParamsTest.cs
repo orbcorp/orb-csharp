@@ -4690,9 +4690,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
             PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_filters\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -4881,9 +4879,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
             PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_filters\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -5524,10 +5520,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                 string,
                 PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -5573,10 +5566,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                 string,
                 PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -5745,8 +5735,8 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 PerUnitRate = "per_unit_rate",
             };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_min_max_thresholds"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -5935,8 +5925,8 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 PerUnitRate = "per_unit_rate",
             };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_min_max_thresholds"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -6253,10 +6243,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 string,
                 PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -6310,10 +6297,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 string,
                 PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -6575,8 +6559,8 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
             };
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_allocation"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -6765,8 +6749,8 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
             };
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_allocation"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -7083,10 +7067,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                 string,
                 PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -7140,10 +7121,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                 string,
                 PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
             >
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
@@ -7388,7 +7366,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "Annual fee";
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig expectedPercentConfig =
             new(0);
@@ -7551,7 +7529,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "Annual fee";
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig expectedPercentConfig =
             new(0);
@@ -7808,10 +7786,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadenceT
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -7845,10 +7820,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadenceT
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
@@ -8069,7 +8041,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputTest
                 GroupingKey = "grouping_key",
             };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("event_output");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -8247,7 +8219,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputTest
                 GroupingKey = "grouping_key",
             };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("event_output");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -8529,10 +8501,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCade
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -8568,10 +8537,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCade
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence>

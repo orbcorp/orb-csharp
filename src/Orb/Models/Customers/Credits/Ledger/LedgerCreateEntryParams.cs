@@ -866,12 +866,7 @@ public sealed record class Increment : JsonModel
     public override void Validate()
     {
         _ = this.Amount;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"increment\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("increment")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -890,7 +885,7 @@ public sealed record class Increment : JsonModel
 
     public Increment()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
     public Increment(Increment increment)
@@ -900,7 +895,7 @@ public sealed record class Increment : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
 #pragma warning disable CS8618
@@ -1835,12 +1830,7 @@ public sealed record class Decrement : JsonModel
     public override void Validate()
     {
         _ = this.Amount;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"decrement\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("decrement")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -1851,7 +1841,7 @@ public sealed record class Decrement : JsonModel
 
     public Decrement()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
     public Decrement(Decrement decrement)
@@ -1861,7 +1851,7 @@ public sealed record class Decrement : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
 #pragma warning disable CS8618
@@ -2018,7 +2008,7 @@ public sealed record class ExpirationChange : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"")
+                JsonSerializer.SerializeToElement("expiration_change")
             )
         )
         {
@@ -2035,7 +2025,7 @@ public sealed record class ExpirationChange : JsonModel
 
     public ExpirationChange()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
     public ExpirationChange(ExpirationChange expirationChange)
@@ -2045,7 +2035,7 @@ public sealed record class ExpirationChange : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
 #pragma warning disable CS8618
@@ -2187,12 +2177,7 @@ public sealed record class Void : JsonModel
     {
         _ = this.Amount;
         _ = this.BlockID;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"void\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("void")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -2204,7 +2189,7 @@ public sealed record class Void : JsonModel
 
     public Void()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
     public Void(Void void_)
@@ -2214,7 +2199,7 @@ public sealed record class Void : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
 #pragma warning disable CS8618
@@ -2378,12 +2363,7 @@ public sealed record class Amendment : JsonModel
     {
         _ = this.Amount;
         _ = this.BlockID;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"amendment\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("amendment")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -2394,7 +2374,7 @@ public sealed record class Amendment : JsonModel
 
     public Amendment()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
     public Amendment(Amendment amendment)
@@ -2404,7 +2384,7 @@ public sealed record class Amendment : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
 #pragma warning disable CS8618

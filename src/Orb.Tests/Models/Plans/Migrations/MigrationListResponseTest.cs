@@ -168,10 +168,7 @@ public class MigrationListResponseEffectiveTimeUnionMember2Test : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MigrationListResponseEffectiveTimeUnionMember2>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -199,10 +196,7 @@ public class MigrationListResponseEffectiveTimeUnionMember2Test : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MigrationListResponseEffectiveTimeUnionMember2>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MigrationListResponseEffectiveTimeUnionMember2>
@@ -231,7 +225,7 @@ public class MigrationListResponseStatusTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MigrationListResponseStatus>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -263,7 +257,7 @@ public class MigrationListResponseStatusTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, MigrationListResponseStatus>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

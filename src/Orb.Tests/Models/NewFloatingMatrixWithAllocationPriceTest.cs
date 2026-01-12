@@ -530,10 +530,7 @@ public class NewFloatingMatrixWithAllocationPriceCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMatrixWithAllocationPriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -564,10 +561,7 @@ public class NewFloatingMatrixWithAllocationPriceCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMatrixWithAllocationPriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMatrixWithAllocationPriceCadence>
@@ -593,10 +587,7 @@ public class NewFloatingMatrixWithAllocationPriceModelTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMatrixWithAllocationPriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -622,10 +613,7 @@ public class NewFloatingMatrixWithAllocationPriceModelTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMatrixWithAllocationPriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingMatrixWithAllocationPriceModelType>

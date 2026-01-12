@@ -210,10 +210,7 @@ public class MonetaryUsageDiscountAdjustmentAdjustmentTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -239,10 +236,7 @@ public class MonetaryUsageDiscountAdjustmentAdjustmentTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
@@ -360,10 +354,7 @@ public class MonetaryUsageDiscountAdjustmentFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -393,10 +384,7 @@ public class MonetaryUsageDiscountAdjustmentFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
@@ -423,10 +411,7 @@ public class MonetaryUsageDiscountAdjustmentFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -453,10 +438,7 @@ public class MonetaryUsageDiscountAdjustmentFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>

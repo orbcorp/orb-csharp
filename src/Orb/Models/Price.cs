@@ -3202,12 +3202,7 @@ public sealed record class Unit : JsonModel
         _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"unit\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("unit")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -3224,7 +3219,7 @@ public sealed record class Unit : JsonModel
     )]
     public Unit()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit\"");
+        this.ModelType = JsonSerializer.SerializeToElement("unit");
     }
 
     [System::Obsolete(
@@ -3240,7 +3235,7 @@ public sealed record class Unit : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit\"");
+        this.ModelType = JsonSerializer.SerializeToElement("unit");
     }
 
 #pragma warning disable CS8618
@@ -4249,12 +4244,7 @@ public sealed record class Tiered : JsonModel
         _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("tiered")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -4271,7 +4261,7 @@ public sealed record class Tiered : JsonModel
     )]
     public Tiered()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered");
     }
 
     [System::Obsolete(
@@ -4287,7 +4277,7 @@ public sealed record class Tiered : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered");
     }
 
 #pragma warning disable CS8618
@@ -5299,12 +5289,7 @@ public sealed record class Bulk : JsonModel
         _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("bulk")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -5320,7 +5305,7 @@ public sealed record class Bulk : JsonModel
     )]
     public Bulk()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk");
     }
 
     [System::Obsolete(
@@ -5336,7 +5321,7 @@ public sealed record class Bulk : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk");
     }
 
 #pragma warning disable CS8618
@@ -6356,7 +6341,7 @@ public sealed record class BulkWithFilters : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+                JsonSerializer.SerializeToElement("bulk_with_filters")
             )
         )
         {
@@ -6374,7 +6359,7 @@ public sealed record class BulkWithFilters : JsonModel
     )]
     public BulkWithFilters()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
     [System::Obsolete(
@@ -6390,7 +6375,7 @@ public sealed record class BulkWithFilters : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
 #pragma warning disable CS8618
@@ -7664,12 +7649,7 @@ public sealed record class Package : JsonModel
         _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"package\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("package")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -7686,7 +7666,7 @@ public sealed record class Package : JsonModel
     )]
     public Package()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("package");
     }
 
     [System::Obsolete(
@@ -7702,7 +7682,7 @@ public sealed record class Package : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("package");
     }
 
 #pragma warning disable CS8618
@@ -8716,12 +8696,7 @@ public sealed record class Matrix : JsonModel
         _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"matrix\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("matrix")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -8737,7 +8712,7 @@ public sealed record class Matrix : JsonModel
     )]
     public Matrix()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix\"");
+        this.ModelType = JsonSerializer.SerializeToElement("matrix");
     }
 
     [System::Obsolete(
@@ -8753,7 +8728,7 @@ public sealed record class Matrix : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix\"");
+        this.ModelType = JsonSerializer.SerializeToElement("matrix");
     }
 
 #pragma warning disable CS8618
@@ -9775,7 +9750,7 @@ public sealed record class ThresholdTotalAmount : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"threshold_total_amount\"")
+                JsonSerializer.SerializeToElement("threshold_total_amount")
             )
         )
         {
@@ -9794,7 +9769,7 @@ public sealed record class ThresholdTotalAmount : JsonModel
     )]
     public ThresholdTotalAmount()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"threshold_total_amount\"");
+        this.ModelType = JsonSerializer.SerializeToElement("threshold_total_amount");
     }
 
     [System::Obsolete(
@@ -9810,7 +9785,7 @@ public sealed record class ThresholdTotalAmount : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"threshold_total_amount\"");
+        this.ModelType = JsonSerializer.SerializeToElement("threshold_total_amount");
     }
 
 #pragma warning disable CS8618
@@ -11031,7 +11006,7 @@ public sealed record class TieredPackage : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered_package\"")
+                JsonSerializer.SerializeToElement("tiered_package")
             )
         )
         {
@@ -11050,7 +11025,7 @@ public sealed record class TieredPackage : JsonModel
     )]
     public TieredPackage()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_package");
     }
 
     [System::Obsolete(
@@ -11066,7 +11041,7 @@ public sealed record class TieredPackage : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_package");
     }
 
 #pragma warning disable CS8618
@@ -12265,7 +12240,7 @@ public sealed record class TieredWithMinimum : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_minimum\"")
+                JsonSerializer.SerializeToElement("tiered_with_minimum")
             )
         )
         {
@@ -12284,7 +12259,7 @@ public sealed record class TieredWithMinimum : JsonModel
     )]
     public TieredWithMinimum()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_minimum\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_minimum");
     }
 
     [System::Obsolete(
@@ -12300,7 +12275,7 @@ public sealed record class TieredWithMinimum : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_minimum\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_minimum");
     }
 
 #pragma warning disable CS8618
@@ -13557,7 +13532,7 @@ public sealed record class GroupedTiered : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_tiered\"")
+                JsonSerializer.SerializeToElement("grouped_tiered")
             )
         )
         {
@@ -13575,7 +13550,7 @@ public sealed record class GroupedTiered : JsonModel
     )]
     public GroupedTiered()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"grouped_tiered\"");
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_tiered");
     }
 
     [System::Obsolete(
@@ -13591,7 +13566,7 @@ public sealed record class GroupedTiered : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"grouped_tiered\"");
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_tiered");
     }
 
 #pragma warning disable CS8618
@@ -14792,7 +14767,7 @@ public sealed record class TieredPackageWithMinimum : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered_package_with_minimum\"")
+                JsonSerializer.SerializeToElement("tiered_package_with_minimum")
             )
         )
         {
@@ -14811,7 +14786,7 @@ public sealed record class TieredPackageWithMinimum : JsonModel
     )]
     public TieredPackageWithMinimum()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_package_with_minimum\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_package_with_minimum");
     }
 
     [System::Obsolete(
@@ -14827,7 +14802,7 @@ public sealed record class TieredPackageWithMinimum : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_package_with_minimum\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_package_with_minimum");
     }
 
 #pragma warning disable CS8618
@@ -16050,7 +16025,7 @@ public sealed record class PackageWithAllocation : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"package_with_allocation\"")
+                JsonSerializer.SerializeToElement("package_with_allocation")
             )
         )
         {
@@ -16069,7 +16044,7 @@ public sealed record class PackageWithAllocation : JsonModel
     )]
     public PackageWithAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"package_with_allocation\"");
+        this.ModelType = JsonSerializer.SerializeToElement("package_with_allocation");
     }
 
     [System::Obsolete(
@@ -16085,7 +16060,7 @@ public sealed record class PackageWithAllocation : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"package_with_allocation\"");
+        this.ModelType = JsonSerializer.SerializeToElement("package_with_allocation");
     }
 
 #pragma warning disable CS8618
@@ -17209,7 +17184,7 @@ public sealed record class UnitWithPercent : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"unit_with_percent\"")
+                JsonSerializer.SerializeToElement("unit_with_percent")
             )
         )
         {
@@ -17228,7 +17203,7 @@ public sealed record class UnitWithPercent : JsonModel
     )]
     public UnitWithPercent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit_with_percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("unit_with_percent");
     }
 
     [System::Obsolete(
@@ -17244,7 +17219,7 @@ public sealed record class UnitWithPercent : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit_with_percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("unit_with_percent");
     }
 
 #pragma warning disable CS8618
@@ -18355,7 +18330,7 @@ public sealed record class MatrixWithAllocation : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"matrix_with_allocation\"")
+                JsonSerializer.SerializeToElement("matrix_with_allocation")
             )
         )
         {
@@ -18373,7 +18348,7 @@ public sealed record class MatrixWithAllocation : JsonModel
     )]
     public MatrixWithAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix_with_allocation\"");
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_allocation");
     }
 
     [System::Obsolete(
@@ -18389,7 +18364,7 @@ public sealed record class MatrixWithAllocation : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix_with_allocation\"");
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_allocation");
     }
 
 #pragma warning disable CS8618
@@ -19424,7 +19399,7 @@ public sealed record class TieredWithProration : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+                JsonSerializer.SerializeToElement("tiered_with_proration")
             )
         )
         {
@@ -19443,7 +19418,7 @@ public sealed record class TieredWithProration : JsonModel
     )]
     public TieredWithProration()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
     [System::Obsolete(
@@ -19459,7 +19434,7 @@ public sealed record class TieredWithProration : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
 #pragma warning disable CS8618
@@ -20665,7 +20640,7 @@ public sealed record class UnitWithProration : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"unit_with_proration\"")
+                JsonSerializer.SerializeToElement("unit_with_proration")
             )
         )
         {
@@ -20684,7 +20659,7 @@ public sealed record class UnitWithProration : JsonModel
     )]
     public UnitWithProration()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("unit_with_proration");
     }
 
     [System::Obsolete(
@@ -20700,7 +20675,7 @@ public sealed record class UnitWithProration : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"unit_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("unit_with_proration");
     }
 
 #pragma warning disable CS8618
@@ -21809,7 +21784,7 @@ public sealed record class GroupedAllocation : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_allocation\"")
+                JsonSerializer.SerializeToElement("grouped_allocation")
             )
         )
         {
@@ -21827,7 +21802,7 @@ public sealed record class GroupedAllocation : JsonModel
     )]
     public GroupedAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"grouped_allocation\"");
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_allocation");
     }
 
     [System::Obsolete(
@@ -21843,7 +21818,7 @@ public sealed record class GroupedAllocation : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"grouped_allocation\"");
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_allocation");
     }
 
 #pragma warning disable CS8618
@@ -22973,7 +22948,7 @@ public sealed record class BulkWithProration : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_proration\"")
+                JsonSerializer.SerializeToElement("bulk_with_proration")
             )
         )
         {
@@ -22991,7 +22966,7 @@ public sealed record class BulkWithProration : JsonModel
     )]
     public BulkWithProration()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_proration");
     }
 
     [System::Obsolete(
@@ -23007,7 +22982,7 @@ public sealed record class BulkWithProration : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_proration");
     }
 
 #pragma warning disable CS8618
@@ -24222,7 +24197,7 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_prorated_minimum\"")
+                JsonSerializer.SerializeToElement("grouped_with_prorated_minimum")
             )
         )
         {
@@ -24240,9 +24215,7 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
     )]
     public GroupedWithProratedMinimum()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_prorated_minimum\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_prorated_minimum");
     }
 
     [System::Obsolete(
@@ -24258,9 +24231,7 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_prorated_minimum\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_prorated_minimum");
     }
 
 #pragma warning disable CS8618
@@ -25401,7 +25372,7 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_metered_minimum\"")
+                JsonSerializer.SerializeToElement("grouped_with_metered_minimum")
             )
         )
         {
@@ -25419,9 +25390,7 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
     )]
     public GroupedWithMeteredMinimum()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_metered_minimum\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_metered_minimum");
     }
 
     [System::Obsolete(
@@ -25437,9 +25406,7 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_metered_minimum\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_metered_minimum");
     }
 
 #pragma warning disable CS8618
@@ -26815,7 +26782,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+                JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds")
             )
         )
         {
@@ -26833,9 +26800,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     )]
     public GroupedWithMinMaxThresholds()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
     [System::Obsolete(
@@ -26851,9 +26816,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
 #pragma warning disable CS8618
@@ -28004,7 +27967,7 @@ public sealed record class MatrixWithDisplayName : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"matrix_with_display_name\"")
+                JsonSerializer.SerializeToElement("matrix_with_display_name")
             )
         )
         {
@@ -28022,7 +27985,7 @@ public sealed record class MatrixWithDisplayName : JsonModel
     )]
     public MatrixWithDisplayName()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix_with_display_name\"");
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_display_name");
     }
 
     [System::Obsolete(
@@ -28038,7 +28001,7 @@ public sealed record class MatrixWithDisplayName : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix_with_display_name\"");
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_display_name");
     }
 
 #pragma warning disable CS8618
@@ -29268,7 +29231,7 @@ public sealed record class GroupedTieredPackage : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_tiered_package\"")
+                JsonSerializer.SerializeToElement("grouped_tiered_package")
             )
         )
         {
@@ -29286,7 +29249,7 @@ public sealed record class GroupedTieredPackage : JsonModel
     )]
     public GroupedTieredPackage()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"grouped_tiered_package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_tiered_package");
     }
 
     [System::Obsolete(
@@ -29302,7 +29265,7 @@ public sealed record class GroupedTieredPackage : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"grouped_tiered_package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_tiered_package");
     }
 
 #pragma warning disable CS8618
@@ -30528,7 +30491,7 @@ public sealed record class MaxGroupTieredPackage : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"max_group_tiered_package\"")
+                JsonSerializer.SerializeToElement("max_group_tiered_package")
             )
         )
         {
@@ -30546,7 +30509,7 @@ public sealed record class MaxGroupTieredPackage : JsonModel
     )]
     public MaxGroupTieredPackage()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"max_group_tiered_package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("max_group_tiered_package");
     }
 
     [System::Obsolete(
@@ -30562,7 +30525,7 @@ public sealed record class MaxGroupTieredPackage : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"max_group_tiered_package\"");
+        this.ModelType = JsonSerializer.SerializeToElement("max_group_tiered_package");
     }
 
 #pragma warning disable CS8618
@@ -31788,7 +31751,7 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"scalable_matrix_with_unit_pricing\"")
+                JsonSerializer.SerializeToElement("scalable_matrix_with_unit_pricing")
             )
         )
         {
@@ -31807,9 +31770,7 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
     )]
     public ScalableMatrixWithUnitPricing()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_unit_pricing\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("scalable_matrix_with_unit_pricing");
     }
 
     [System::Obsolete(
@@ -31827,9 +31788,7 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_unit_pricing\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("scalable_matrix_with_unit_pricing");
     }
 
 #pragma warning disable CS8618
@@ -33111,7 +33070,7 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"scalable_matrix_with_tiered_pricing\"")
+                JsonSerializer.SerializeToElement("scalable_matrix_with_tiered_pricing")
             )
         )
         {
@@ -33130,9 +33089,7 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
     )]
     public ScalableMatrixWithTieredPricing()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_tiered_pricing\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("scalable_matrix_with_tiered_pricing");
     }
 
     [System::Obsolete(
@@ -33150,9 +33107,7 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"scalable_matrix_with_tiered_pricing\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("scalable_matrix_with_tiered_pricing");
     }
 
 #pragma warning disable CS8618
@@ -34514,7 +34469,7 @@ public sealed record class CumulativeGroupedBulk : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_bulk\"")
+                JsonSerializer.SerializeToElement("cumulative_grouped_bulk")
             )
         )
         {
@@ -34532,7 +34487,7 @@ public sealed record class CumulativeGroupedBulk : JsonModel
     )]
     public CumulativeGroupedBulk()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_bulk\"");
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_bulk");
     }
 
     [System::Obsolete(
@@ -34548,7 +34503,7 @@ public sealed record class CumulativeGroupedBulk : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_bulk\"");
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_bulk");
     }
 
 #pragma warning disable CS8618
@@ -35778,7 +35733,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+                JsonSerializer.SerializeToElement("cumulative_grouped_allocation")
             )
         )
         {
@@ -35796,9 +35751,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     )]
     public CumulativeGroupedAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
     [System::Obsolete(
@@ -35814,9 +35767,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
 #pragma warning disable CS8618
@@ -36960,12 +36911,7 @@ public sealed record class PriceMinimum : JsonModel
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
         this.MinimumConfig.Validate();
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"minimum\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("minimum")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -36981,7 +36927,7 @@ public sealed record class PriceMinimum : JsonModel
     )]
     public PriceMinimum()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"minimum\"");
+        this.ModelType = JsonSerializer.SerializeToElement("minimum");
     }
 
     [System::Obsolete(
@@ -36997,7 +36943,7 @@ public sealed record class PriceMinimum : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"minimum\"");
+        this.ModelType = JsonSerializer.SerializeToElement("minimum");
     }
 
 #pragma warning disable CS8618
@@ -38107,12 +38053,7 @@ public sealed record class Percent : JsonModel
         _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("percent")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -38129,7 +38070,7 @@ public sealed record class Percent : JsonModel
     )]
     public Percent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
     [System::Obsolete(
@@ -38145,7 +38086,7 @@ public sealed record class Percent : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
 #pragma warning disable CS8618
@@ -39228,7 +39169,7 @@ public sealed record class EventOutput : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+                JsonSerializer.SerializeToElement("event_output")
             )
         )
         {
@@ -39246,7 +39187,7 @@ public sealed record class EventOutput : JsonModel
     )]
     public EventOutput()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
     [System::Obsolete(
@@ -39262,7 +39203,7 @@ public sealed record class EventOutput : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
 #pragma warning disable CS8618

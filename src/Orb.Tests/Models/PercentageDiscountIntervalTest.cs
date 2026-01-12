@@ -196,10 +196,7 @@ public class PercentageDiscountIntervalDiscountTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalDiscountType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -225,10 +222,7 @@ public class PercentageDiscountIntervalDiscountTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalDiscountType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalDiscountType>
@@ -344,10 +338,7 @@ public class PercentageDiscountIntervalFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -377,10 +368,7 @@ public class PercentageDiscountIntervalFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalFilterField>
@@ -407,10 +395,7 @@ public class PercentageDiscountIntervalFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -437,10 +422,7 @@ public class PercentageDiscountIntervalFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PercentageDiscountIntervalFilterOperator>

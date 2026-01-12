@@ -945,12 +945,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     public override void Validate()
     {
         _ = this.Amount;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"increment\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("increment")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -969,7 +964,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrement()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrement(
@@ -983,7 +978,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
 #pragma warning disable CS8618
@@ -2008,12 +2003,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
     public override void Validate()
     {
         _ = this.Amount;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"decrement\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("decrement")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -2024,7 +2014,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
 
     public LedgerCreateEntryByExternalIDParamsBodyDecrement()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyDecrement(
@@ -2038,7 +2028,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
+        this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
 #pragma warning disable CS8618
@@ -2204,7 +2194,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
         if (
             !JsonElement.DeepEquals(
                 this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"")
+                JsonSerializer.SerializeToElement("expiration_change")
             )
         )
         {
@@ -2221,7 +2211,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
 
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
@@ -2235,7 +2225,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
 #pragma warning disable CS8618
@@ -2388,12 +2378,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     {
         _ = this.Amount;
         _ = this.BlockID;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"void\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("void")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -2405,7 +2390,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
 
     public LedgerCreateEntryByExternalIDParamsBodyVoid()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyVoid(
@@ -2419,7 +2404,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
+        this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
 #pragma warning disable CS8618
@@ -2593,12 +2578,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     {
         _ = this.Amount;
         _ = this.BlockID;
-        if (
-            !JsonElement.DeepEquals(
-                this.EntryType,
-                JsonSerializer.Deserialize<JsonElement>("\"amendment\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.EntryType, JsonSerializer.SerializeToElement("amendment")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -2609,7 +2589,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
 
     public LedgerCreateEntryByExternalIDParamsBodyAmendment()
     {
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyAmendment(
@@ -2623,7 +2603,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
     {
         this._rawData = new(rawData);
 
-        this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
+        this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
 #pragma warning disable CS8618

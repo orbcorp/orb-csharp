@@ -299,10 +299,7 @@ public class ExpirationChangeLedgerEntryEntryStatusTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -329,10 +326,7 @@ public class ExpirationChangeLedgerEntryEntryStatusTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ExpirationChangeLedgerEntryEntryStatus>
@@ -358,10 +352,7 @@ public class ExpirationChangeLedgerEntryEntryTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ExpirationChangeLedgerEntryEntryType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -387,10 +378,7 @@ public class ExpirationChangeLedgerEntryEntryTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, ExpirationChangeLedgerEntryEntryType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, ExpirationChangeLedgerEntryEntryType>

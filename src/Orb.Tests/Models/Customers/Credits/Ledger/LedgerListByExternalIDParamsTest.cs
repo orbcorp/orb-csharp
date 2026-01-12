@@ -212,10 +212,7 @@ public class LedgerListByExternalIDParamsEntryStatusTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, LedgerListByExternalIDParamsEntryStatus>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -242,10 +239,7 @@ public class LedgerListByExternalIDParamsEntryStatusTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, LedgerListByExternalIDParamsEntryStatus>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, LedgerListByExternalIDParamsEntryStatus>
@@ -277,10 +271,7 @@ public class LedgerListByExternalIDParamsEntryTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, LedgerListByExternalIDParamsEntryType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -312,10 +303,7 @@ public class LedgerListByExternalIDParamsEntryTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, LedgerListByExternalIDParamsEntryType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, LedgerListByExternalIDParamsEntryType>

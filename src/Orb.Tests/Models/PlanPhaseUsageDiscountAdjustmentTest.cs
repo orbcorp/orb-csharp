@@ -210,10 +210,7 @@ public class PlanPhaseUsageDiscountAdjustmentAdjustmentTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentAdjustmentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -241,10 +238,7 @@ public class PlanPhaseUsageDiscountAdjustmentAdjustmentTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentAdjustmentType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentAdjustmentType>
@@ -362,10 +356,7 @@ public class PlanPhaseUsageDiscountAdjustmentFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -395,10 +386,7 @@ public class PlanPhaseUsageDiscountAdjustmentFilterFieldTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField>
@@ -425,10 +413,7 @@ public class PlanPhaseUsageDiscountAdjustmentFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -457,10 +442,7 @@ public class PlanPhaseUsageDiscountAdjustmentFilterOperatorTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator>

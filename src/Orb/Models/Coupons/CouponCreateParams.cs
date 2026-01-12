@@ -435,7 +435,7 @@ public sealed record class Percentage : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.DiscountType,
-                JsonSerializer.Deserialize<JsonElement>("\"percentage\"")
+                JsonSerializer.SerializeToElement("percentage")
             )
         )
         {
@@ -446,7 +446,7 @@ public sealed record class Percentage : JsonModel
 
     public Percentage()
     {
-        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
+        this.DiscountType = JsonSerializer.SerializeToElement("percentage");
     }
 
     public Percentage(Percentage percentage)
@@ -456,7 +456,7 @@ public sealed record class Percentage : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
+        this.DiscountType = JsonSerializer.SerializeToElement("percentage");
     }
 
 #pragma warning disable CS8618
@@ -515,12 +515,7 @@ public sealed record class Amount : JsonModel
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        if (
-            !JsonElement.DeepEquals(
-                this.DiscountType,
-                JsonSerializer.Deserialize<JsonElement>("\"amount\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.DiscountType, JsonSerializer.SerializeToElement("amount")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -528,7 +523,7 @@ public sealed record class Amount : JsonModel
 
     public Amount()
     {
-        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        this.DiscountType = JsonSerializer.SerializeToElement("amount");
     }
 
     public Amount(Amount amount)
@@ -538,7 +533,7 @@ public sealed record class Amount : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        this.DiscountType = JsonSerializer.SerializeToElement("amount");
     }
 
 #pragma warning disable CS8618

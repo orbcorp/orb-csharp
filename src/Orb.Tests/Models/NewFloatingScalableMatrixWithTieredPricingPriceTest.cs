@@ -670,10 +670,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceCadenceTest : TestBa
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -706,10 +703,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceCadenceTest : TestBa
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
@@ -737,10 +731,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceModelTypeTest : Test
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -770,10 +761,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceModelTypeTest : Test
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
