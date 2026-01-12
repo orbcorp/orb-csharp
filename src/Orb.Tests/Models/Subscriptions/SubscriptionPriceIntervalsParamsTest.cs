@@ -1527,7 +1527,7 @@ public class AmountTest : TestBase
         var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
         double expectedAmountDiscount = 0;
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("amount");
 
         Assert.Equal(expectedAmountDiscount, model.AmountDiscount);
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
@@ -1554,7 +1554,7 @@ public class AmountTest : TestBase
         Assert.NotNull(deserialized);
 
         double expectedAmountDiscount = 0;
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("amount");
 
         Assert.Equal(expectedAmountDiscount, deserialized.AmountDiscount);
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));
@@ -1576,9 +1576,7 @@ public class PercentageTest : TestBase
     {
         var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
-            "\"percentage\""
-        );
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("percentage");
         double expectedPercentageDiscount = 0.15;
 
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
@@ -1605,9 +1603,7 @@ public class PercentageTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(element);
         Assert.NotNull(deserialized);
 
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
-            "\"percentage\""
-        );
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("percentage");
         double expectedPercentageDiscount = 0.15;
 
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));
@@ -1630,7 +1626,7 @@ public class UsageTest : TestBase
     {
         var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("usage");
         double expectedUsageDiscount = 2;
 
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
@@ -1657,7 +1653,7 @@ public class UsageTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(element);
         Assert.NotNull(deserialized);
 
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("usage");
         double expectedUsageDiscount = 2;
 
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));
@@ -5190,9 +5186,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
             Subscriptions::PriceModelBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_filters\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -5374,9 +5368,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
             Subscriptions::PriceModelBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"bulk_with_filters\""
-        );
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -5980,10 +5972,7 @@ public class PriceModelBulkWithFiltersCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelBulkWithFiltersCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -6016,10 +6005,7 @@ public class PriceModelBulkWithFiltersCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelBulkWithFiltersCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelBulkWithFiltersCadence>
@@ -6176,8 +6162,8 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
                 PerUnitRate = "per_unit_rate",
             };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_min_max_thresholds"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -6359,8 +6345,8 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
                 PerUnitRate = "per_unit_rate",
             };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "grouped_with_min_max_thresholds"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -6649,10 +6635,7 @@ public class PriceModelGroupedWithMinMaxThresholdsCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -6686,10 +6669,7 @@ public class PriceModelGroupedWithMinMaxThresholdsCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence>
@@ -6938,8 +6918,8 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             };
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_allocation"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -7121,8 +7101,8 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             };
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "cumulative_grouped_allocation"
         );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
@@ -7411,10 +7391,7 @@ public class PriceModelCumulativeGroupedAllocationCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelCumulativeGroupedAllocationCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -7448,10 +7425,7 @@ public class PriceModelCumulativeGroupedAllocationCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelCumulativeGroupedAllocationCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelCumulativeGroupedAllocationCadence>
@@ -7684,7 +7658,7 @@ public class PriceModelPercentTest : TestBase
             Subscriptions::PriceModelPercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "Annual fee";
         Subscriptions::PriceModelPercentPercentConfig expectedPercentConfig = new(0);
         string expectedBillableMetricID = "billable_metric_id";
@@ -7837,7 +7811,7 @@ public class PriceModelPercentTest : TestBase
             Subscriptions::PriceModelPercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "Annual fee";
         Subscriptions::PriceModelPercentPercentConfig expectedPercentConfig = new(0);
         string expectedBillableMetricID = "billable_metric_id";
@@ -8090,10 +8064,7 @@ public class PriceModelPercentCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelPercentCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -8124,10 +8095,7 @@ public class PriceModelPercentCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelPercentCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelPercentCadence>
@@ -8327,7 +8295,7 @@ public class PriceModelEventOutputTest : TestBase
             GroupingKey = "grouping_key",
         };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("event_output");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -8497,7 +8465,7 @@ public class PriceModelEventOutputTest : TestBase
             GroupingKey = "grouping_key",
         };
         string expectedItemID = "item_id";
-        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("event_output");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -8774,10 +8742,7 @@ public class PriceModelEventOutputCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelEventOutputCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -8808,10 +8773,7 @@ public class PriceModelEventOutputCadenceTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelEventOutputCadence>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, Subscriptions::PriceModelEventOutputCadence>

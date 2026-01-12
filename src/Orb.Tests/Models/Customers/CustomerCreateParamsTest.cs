@@ -610,7 +610,7 @@ public class ProviderTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ProviderType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -638,7 +638,7 @@ public class ProviderTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, ProviderType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -671,10 +671,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CustomerCreateParamsPaymentProvider>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -704,10 +701,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, CustomerCreateParamsPaymentProvider>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CustomerCreateParamsPaymentProvider>
@@ -878,7 +872,7 @@ public class NumeralTest : TestBase
         var model = new Numeral { TaxExempt = true, AutomaticTaxEnabled = true };
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("numeral");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
@@ -907,7 +901,7 @@ public class NumeralTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("numeral");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, deserialized.TaxExempt);
@@ -976,7 +970,7 @@ public class AnrokTest : TestBase
         var model = new Anrok { TaxExempt = true, AutomaticTaxEnabled = true };
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("anrok");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
@@ -1005,7 +999,7 @@ public class AnrokTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("anrok");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, deserialized.TaxExempt);
@@ -1074,7 +1068,7 @@ public class StripeTest : TestBase
         var model = new Stripe { TaxExempt = true, AutomaticTaxEnabled = true };
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("stripe");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
@@ -1103,7 +1097,7 @@ public class StripeTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
-        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        JsonElement expectedTaxProvider = JsonSerializer.SerializeToElement("stripe");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, deserialized.TaxExempt);

@@ -120,9 +120,7 @@ public class PercentageTest : TestBase
     {
         var model = new Percentage { PercentageDiscount = 0 };
 
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
-            "\"percentage\""
-        );
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("percentage");
         double expectedPercentageDiscount = 0;
 
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
@@ -149,9 +147,7 @@ public class PercentageTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Percentage>(element);
         Assert.NotNull(deserialized);
 
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
-            "\"percentage\""
-        );
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("percentage");
         double expectedPercentageDiscount = 0;
 
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));
@@ -175,7 +171,7 @@ public class AmountTest : TestBase
         var model = new Amount { AmountDiscount = "amount_discount" };
 
         string expectedAmountDiscount = "amount_discount";
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("amount");
 
         Assert.Equal(expectedAmountDiscount, model.AmountDiscount);
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
@@ -202,7 +198,7 @@ public class AmountTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedAmountDiscount = "amount_discount";
-        JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("amount");
 
         Assert.Equal(expectedAmountDiscount, deserialized.AmountDiscount);
         Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));

@@ -93,10 +93,7 @@ public class SharedUnitConversionRateConfigConversionRateTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -124,10 +121,7 @@ public class SharedUnitConversionRateConfigConversionRateTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>

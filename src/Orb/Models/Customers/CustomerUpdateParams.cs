@@ -1421,12 +1421,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : JsonMod
     public override void Validate()
     {
         _ = this.TaxExempt;
-        if (
-            !JsonElement.DeepEquals(
-                this.TaxProvider,
-                JsonSerializer.Deserialize<JsonElement>("\"numeral\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.TaxProvider, JsonSerializer.SerializeToElement("numeral")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -1435,7 +1430,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : JsonMod
 
     public CustomerUpdateParamsTaxConfigurationNumeral()
     {
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
     public CustomerUpdateParamsTaxConfigurationNumeral(
@@ -1449,7 +1444,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : JsonMod
     {
         this._rawData = new(rawData);
 
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
 #pragma warning disable CS8618
@@ -1531,12 +1526,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : JsonModel
     public override void Validate()
     {
         _ = this.TaxExempt;
-        if (
-            !JsonElement.DeepEquals(
-                this.TaxProvider,
-                JsonSerializer.Deserialize<JsonElement>("\"anrok\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.TaxProvider, JsonSerializer.SerializeToElement("anrok")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -1545,7 +1535,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : JsonModel
 
     public CustomerUpdateParamsTaxConfigurationAnrok()
     {
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
     public CustomerUpdateParamsTaxConfigurationAnrok(
@@ -1559,7 +1549,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
 #pragma warning disable CS8618
@@ -1641,12 +1631,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : JsonMode
     public override void Validate()
     {
         _ = this.TaxExempt;
-        if (
-            !JsonElement.DeepEquals(
-                this.TaxProvider,
-                JsonSerializer.Deserialize<JsonElement>("\"stripe\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.TaxProvider, JsonSerializer.SerializeToElement("stripe")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -1655,7 +1640,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : JsonMode
 
     public CustomerUpdateParamsTaxConfigurationStripe()
     {
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
     public CustomerUpdateParamsTaxConfigurationStripe(
@@ -1669,7 +1654,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : JsonMode
     {
         this._rawData = new(rawData);
 
-        this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
 #pragma warning disable CS8618

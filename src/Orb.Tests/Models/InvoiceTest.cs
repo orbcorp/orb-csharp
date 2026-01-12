@@ -2546,10 +2546,7 @@ public class InvoiceCustomerBalanceTransactionActionTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceCustomerBalanceTransactionAction>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -2584,10 +2581,7 @@ public class InvoiceCustomerBalanceTransactionActionTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceCustomerBalanceTransactionAction>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceCustomerBalanceTransactionAction>
@@ -2614,10 +2608,7 @@ public class InvoiceCustomerBalanceTransactionTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceCustomerBalanceTransactionType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -2644,10 +2635,7 @@ public class InvoiceCustomerBalanceTransactionTypeTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceCustomerBalanceTransactionType>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceCustomerBalanceTransactionType>
@@ -2674,7 +2662,7 @@ public class InvoiceInvoiceSourceTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, InvoiceInvoiceSource>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -2704,7 +2692,7 @@ public class InvoiceInvoiceSourceTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, InvoiceInvoiceSource>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4381,10 +4369,7 @@ public class InvoicePaymentAttemptPaymentProviderTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, InvoicePaymentAttemptPaymentProvider>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -4410,10 +4395,7 @@ public class InvoicePaymentAttemptPaymentProviderTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, InvoicePaymentAttemptPaymentProvider>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, InvoicePaymentAttemptPaymentProvider>
@@ -4442,7 +4424,7 @@ public class InvoiceStatusTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, InvoiceStatus>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -4474,7 +4456,7 @@ public class InvoiceStatusTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, InvoiceStatus>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

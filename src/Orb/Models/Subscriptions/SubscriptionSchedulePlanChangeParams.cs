@@ -4730,7 +4730,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+                JsonSerializer.SerializeToElement("bulk_with_filters")
             )
         )
         {
@@ -4754,7 +4754,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters(
@@ -4768,7 +4768,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
 #pragma warning disable CS8618
@@ -5751,7 +5751,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+                JsonSerializer.SerializeToElement("tiered_with_proration")
             )
         )
         {
@@ -5776,7 +5776,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration(
@@ -5790,7 +5790,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
 #pragma warning disable CS8618
@@ -6661,7 +6661,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+                JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds")
             )
         )
         {
@@ -6685,9 +6685,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds(
@@ -6701,9 +6699,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
 #pragma warning disable CS8618
@@ -7506,7 +7502,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+                JsonSerializer.SerializeToElement("cumulative_grouped_allocation")
             )
         )
         {
@@ -7530,9 +7526,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation(
@@ -7546,9 +7540,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
 #pragma warning disable CS8618
@@ -8343,12 +8335,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("percent")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -8371,7 +8358,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent(
@@ -8385,7 +8372,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
 #pragma warning disable CS8618
@@ -9132,7 +9119,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+                JsonSerializer.SerializeToElement("event_output")
             )
         )
         {
@@ -9156,7 +9143,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput(
@@ -9170,7 +9157,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
 #pragma warning disable CS8618
@@ -13833,7 +13820,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+                JsonSerializer.SerializeToElement("bulk_with_filters")
             )
         )
         {
@@ -13857,7 +13844,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters(
@@ -13871,7 +13858,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
 #pragma warning disable CS8618
@@ -14857,7 +14844,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+                JsonSerializer.SerializeToElement("tiered_with_proration")
             )
         )
         {
@@ -14882,7 +14869,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration(
@@ -14896,7 +14883,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
+        this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
 #pragma warning disable CS8618
@@ -15769,7 +15756,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+                JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds")
             )
         )
         {
@@ -15793,9 +15780,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds(
@@ -15809,9 +15794,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
 #pragma warning disable CS8618
@@ -16614,7 +16597,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+                JsonSerializer.SerializeToElement("cumulative_grouped_allocation")
             )
         )
         {
@@ -16638,9 +16621,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation(
@@ -16654,9 +16635,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
 #pragma warning disable CS8618
@@ -17451,12 +17430,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("percent")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -17479,7 +17453,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent(
@@ -17493,7 +17467,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
 #pragma warning disable CS8618
@@ -18250,7 +18224,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+                JsonSerializer.SerializeToElement("event_output")
             )
         )
         {
@@ -18274,7 +18248,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput(
@@ -18288,7 +18262,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
 #pragma warning disable CS8618

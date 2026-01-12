@@ -315,10 +315,7 @@ public class VoidInitiatedLedgerEntryEntryStatusTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
@@ -345,10 +342,7 @@ public class VoidInitiatedLedgerEntryEntryStatusTest : TestBase
     {
         var value = JsonSerializer.Deserialize<
             ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
-        >(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
-            ModelBase.SerializerOptions
-        );
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
@@ -373,7 +367,7 @@ public class VoidInitiatedLedgerEntryEntryTypeTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, VoidInitiatedLedgerEntryEntryType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
 
@@ -400,7 +394,7 @@ public class VoidInitiatedLedgerEntryEntryTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<ApiEnum<string, VoidInitiatedLedgerEntryEntryType>>(
-            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

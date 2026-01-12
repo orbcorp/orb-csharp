@@ -3209,7 +3209,7 @@ public sealed record class PriceBulkWithFilters : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+                JsonSerializer.SerializeToElement("bulk_with_filters")
             )
         )
         {
@@ -3231,7 +3231,7 @@ public sealed record class PriceBulkWithFilters : JsonModel
 
     public PriceBulkWithFilters()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
     public PriceBulkWithFilters(PriceBulkWithFilters priceBulkWithFilters)
@@ -3241,7 +3241,7 @@ public sealed record class PriceBulkWithFilters : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
+        this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
 #pragma warning disable CS8618
@@ -4150,7 +4150,7 @@ public sealed record class PriceGroupedWithMinMaxThresholds : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+                JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds")
             )
         )
         {
@@ -4172,9 +4172,7 @@ public sealed record class PriceGroupedWithMinMaxThresholds : JsonModel
 
     public PriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
     public PriceGroupedWithMinMaxThresholds(
@@ -4186,9 +4184,7 @@ public sealed record class PriceGroupedWithMinMaxThresholds : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"grouped_with_min_max_thresholds\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
 #pragma warning disable CS8618
@@ -4933,7 +4929,7 @@ public sealed record class PriceCumulativeGroupedAllocation : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+                JsonSerializer.SerializeToElement("cumulative_grouped_allocation")
             )
         )
         {
@@ -4955,9 +4951,7 @@ public sealed record class PriceCumulativeGroupedAllocation : JsonModel
 
     public PriceCumulativeGroupedAllocation()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
     public PriceCumulativeGroupedAllocation(
@@ -4969,9 +4963,7 @@ public sealed record class PriceCumulativeGroupedAllocation : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"cumulative_grouped_allocation\""
-        );
+        this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
 #pragma warning disable CS8618
@@ -5703,12 +5695,7 @@ public sealed record class PricePercent : JsonModel
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;
-        if (
-            !JsonElement.DeepEquals(
-                this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
-            )
-        )
+        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("percent")))
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -5729,7 +5716,7 @@ public sealed record class PricePercent : JsonModel
 
     public PricePercent()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
     public PricePercent(PricePercent pricePercent)
@@ -5739,7 +5726,7 @@ public sealed record class PricePercent : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
 #pragma warning disable CS8618
@@ -6428,7 +6415,7 @@ public sealed record class PriceEventOutput : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.ModelType,
-                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+                JsonSerializer.SerializeToElement("event_output")
             )
         )
         {
@@ -6450,7 +6437,7 @@ public sealed record class PriceEventOutput : JsonModel
 
     public PriceEventOutput()
     {
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
     public PriceEventOutput(PriceEventOutput priceEventOutput)
@@ -6460,7 +6447,7 @@ public sealed record class PriceEventOutput : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
+        this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
 #pragma warning disable CS8618
