@@ -14,13 +14,21 @@ public sealed record class AccountingProviderConfig : JsonModel
 {
     public required string ExternalProviderID
     {
-        get { return this._rawData.GetNotNullClass<string>("external_provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_provider_id");
+        }
         init { this._rawData.Set("external_provider_id", value); }
     }
 
     public required string ProviderType
     {
-        get { return this._rawData.GetNotNullClass<string>("provider_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("provider_type");
+        }
         init { this._rawData.Set("provider_type", value); }
     }
 

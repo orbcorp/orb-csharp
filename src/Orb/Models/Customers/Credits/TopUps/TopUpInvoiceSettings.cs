@@ -16,7 +16,11 @@ public sealed record class TopUpInvoiceSettings : JsonModel
     /// </summary>
     public required bool AutoCollection
     {
-        get { return this._rawData.GetNotNullStruct<bool>("auto_collection"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("auto_collection");
+        }
         init { this._rawData.Set("auto_collection", value); }
     }
 
@@ -27,7 +31,11 @@ public sealed record class TopUpInvoiceSettings : JsonModel
     /// </summary>
     public required long NetTerms
     {
-        get { return this._rawData.GetNotNullStruct<long>("net_terms"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("net_terms");
+        }
         init { this._rawData.Set("net_terms", value); }
     }
 
@@ -36,7 +44,11 @@ public sealed record class TopUpInvoiceSettings : JsonModel
     /// </summary>
     public string? Memo
     {
-        get { return this._rawData.GetNullableClass<string>("memo"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
+        }
         init { this._rawData.Set("memo", value); }
     }
 
@@ -48,7 +60,11 @@ public sealed record class TopUpInvoiceSettings : JsonModel
     /// </summary>
     public bool? RequireSuccessfulPayment
     {
-        get { return this._rawData.GetNullableStruct<bool>("require_successful_payment"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("require_successful_payment");
+        }
         init
         {
             if (value == null)

@@ -17,7 +17,11 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -25,6 +29,7 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
             >("adjustment_type");
@@ -37,7 +42,11 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -49,6 +58,7 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -67,6 +77,7 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<MonetaryMaximumAdjustmentFilter>>(
                 "filters"
             );
@@ -86,7 +97,11 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return this._rawData.GetNotNullStruct<bool>("is_invoice_level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_invoice_level");
+        }
         init { this._rawData.Set("is_invoice_level", value); }
     }
 
@@ -96,7 +111,11 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     /// </summary>
     public required string MaximumAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("maximum_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("maximum_amount");
+        }
         init { this._rawData.Set("maximum_amount", value); }
     }
 
@@ -105,7 +124,11 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     /// </summary>
     public required string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -115,7 +138,11 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return this._rawData.GetNullableClass<string>("replaces_adjustment_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_adjustment_id");
+        }
         init { this._rawData.Set("replaces_adjustment_id", value); }
     }
 
@@ -232,6 +259,7 @@ public sealed record class MonetaryMaximumAdjustmentFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MonetaryMaximumAdjustmentFilterField>
             >("field");
@@ -246,6 +274,7 @@ public sealed record class MonetaryMaximumAdjustmentFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator>
             >("operator");
@@ -258,7 +287,11 @@ public sealed record class MonetaryMaximumAdjustmentFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

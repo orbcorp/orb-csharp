@@ -16,6 +16,7 @@ public sealed record class EventVolumes : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<global::Orb.Models.Events.Volume.Data>
             >("data");
@@ -94,19 +95,31 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required long Count
     {
-        get { return this._rawData.GetNotNullStruct<long>("count"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("count");
+        }
         init { this._rawData.Set("count", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
+        }
         init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
+        }
         init { this._rawData.Set("timeframe_start", value); }
     }
 

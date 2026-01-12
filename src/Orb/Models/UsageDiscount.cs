@@ -17,6 +17,7 @@ public sealed record class UsageDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountDiscountType>>(
                 "discount_type"
             );
@@ -30,7 +31,11 @@ public sealed record class UsageDiscount : JsonModel
     /// </summary>
     public required double UsageDiscountValue
     {
-        get { return this._rawData.GetNotNullStruct<double>("usage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("usage_discount");
+        }
         init { this._rawData.Set("usage_discount", value); }
     }
 
@@ -42,6 +47,7 @@ public sealed record class UsageDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -60,6 +66,7 @@ public sealed record class UsageDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<UsageDiscountFilter>>("filters");
         }
         init
@@ -73,7 +80,11 @@ public sealed record class UsageDiscount : JsonModel
 
     public string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -173,6 +184,7 @@ public sealed record class UsageDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountFilterField>>(
                 "field"
             );
@@ -187,6 +199,7 @@ public sealed record class UsageDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountFilterOperator>>(
                 "operator"
             );
@@ -199,7 +212,11 @@ public sealed record class UsageDiscountFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

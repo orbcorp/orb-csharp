@@ -27,7 +27,11 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     /// </summary>
     public required long Version
     {
-        get { return this._rawBodyData.GetNotNullStruct<long>("version"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<long>("version");
+        }
         init { this._rawBodyData.Set("version", value); }
     }
 

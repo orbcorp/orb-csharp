@@ -15,13 +15,21 @@ public sealed record class AffectedBlock : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required System::DateTimeOffset? ExpiryDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date");
+        }
         init { this._rawData.Set("expiry_date", value); }
     }
 
@@ -29,6 +37,7 @@ public sealed record class AffectedBlock : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<AffectedBlockFilter>>("filters");
         }
         init
@@ -42,7 +51,11 @@ public sealed record class AffectedBlock : JsonModel
 
     public required string? PerUnitCostBasis
     {
-        get { return this._rawData.GetNullableClass<string>("per_unit_cost_basis"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("per_unit_cost_basis");
+        }
         init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
@@ -100,6 +113,7 @@ public sealed record class AffectedBlockFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, AffectedBlockFilterField>>(
                 "field"
             );
@@ -114,6 +128,7 @@ public sealed record class AffectedBlockFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, AffectedBlockFilterOperator>>(
                 "operator"
             );
@@ -126,7 +141,11 @@ public sealed record class AffectedBlockFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

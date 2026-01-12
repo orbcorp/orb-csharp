@@ -32,13 +32,21 @@ public sealed record class Customer : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required IReadOnlyList<string> AdditionalEmails
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("additional_emails"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("additional_emails");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -50,7 +58,11 @@ public sealed record class Customer : JsonModel
 
     public required bool AutoCollection
     {
-        get { return this._rawData.GetNotNullStruct<bool>("auto_collection"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("auto_collection");
+        }
         init { this._rawData.Set("auto_collection", value); }
     }
 
@@ -61,7 +73,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required bool? AutoIssuance
     {
-        get { return this._rawData.GetNullableStruct<bool>("auto_issuance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("auto_issuance");
+        }
         init { this._rawData.Set("auto_issuance", value); }
     }
 
@@ -70,25 +86,41 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Balance
     {
-        get { return this._rawData.GetNotNullClass<string>("balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("balance");
+        }
         init { this._rawData.Set("balance", value); }
     }
 
     public required Address? BillingAddress
     {
-        get { return this._rawData.GetNullableClass<Address>("billing_address"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Address>("billing_address");
+        }
         init { this._rawData.Set("billing_address", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
     public required string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -98,19 +130,31 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Email
     {
-        get { return this._rawData.GetNotNullClass<string>("email"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("email");
+        }
         init { this._rawData.Set("email", value); }
     }
 
     public required bool EmailDelivery
     {
-        get { return this._rawData.GetNotNullStruct<bool>("email_delivery"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("email_delivery");
+        }
         init { this._rawData.Set("email_delivery", value); }
     }
 
     public required bool? ExemptFromAutomatedTax
     {
-        get { return this._rawData.GetNullableStruct<bool>("exempt_from_automated_tax"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("exempt_from_automated_tax");
+        }
         init { this._rawData.Set("exempt_from_automated_tax", value); }
     }
 
@@ -121,7 +165,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string? ExternalCustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawData.Set("external_customer_id", value); }
     }
 
@@ -130,7 +178,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required Hierarchy Hierarchy
     {
-        get { return this._rawData.GetNotNullClass<Hierarchy>("hierarchy"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Hierarchy>("hierarchy");
+        }
         init { this._rawData.Set("hierarchy", value); }
     }
 
@@ -142,7 +194,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
         init
         {
             this._rawData.Set<FrozenDictionary<string, string>>(
@@ -157,7 +213,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -169,6 +229,7 @@ public sealed record class Customer : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<string, CustomerPaymentProvider>>(
                 "payment_provider"
             );
@@ -182,19 +243,31 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string? PaymentProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("payment_provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("payment_provider_id");
+        }
         init { this._rawData.Set("payment_provider_id", value); }
     }
 
     public required string? PortalUrl
     {
-        get { return this._rawData.GetNullableClass<string>("portal_url"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("portal_url");
+        }
         init { this._rawData.Set("portal_url", value); }
     }
 
     public required Address? ShippingAddress
     {
-        get { return this._rawData.GetNullableClass<Address>("shipping_address"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Address>("shipping_address");
+        }
         init { this._rawData.Set("shipping_address", value); }
     }
 
@@ -305,7 +378,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required CustomerTaxID? TaxID
     {
-        get { return this._rawData.GetNullableClass<CustomerTaxID>("tax_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomerTaxID>("tax_id");
+        }
         init { this._rawData.Set("tax_id", value); }
     }
 
@@ -316,7 +393,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public required string Timezone
     {
-        get { return this._rawData.GetNotNullClass<string>("timezone"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("timezone");
+        }
         init { this._rawData.Set("timezone", value); }
     }
 
@@ -324,6 +405,7 @@ public sealed record class Customer : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<AccountingSyncConfiguration>(
                 "accounting_sync_configuration"
             );
@@ -337,7 +419,11 @@ public sealed record class Customer : JsonModel
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
         init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
@@ -349,6 +435,7 @@ public sealed record class Customer : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<CustomerPaymentConfiguration>(
                 "payment_configuration"
             );
@@ -360,6 +447,7 @@ public sealed record class Customer : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ReportingConfiguration>(
                 "reporting_configuration"
             );
@@ -437,7 +525,11 @@ public sealed record class Hierarchy : JsonModel
 {
     public required IReadOnlyList<CustomerMinified> Children
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<CustomerMinified>>("children"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<CustomerMinified>>("children");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<CustomerMinified>>(
@@ -449,7 +541,11 @@ public sealed record class Hierarchy : JsonModel
 
     public required CustomerMinified? Parent
     {
-        get { return this._rawData.GetNullableClass<CustomerMinified>("parent"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomerMinified>("parent");
+        }
         init { this._rawData.Set("parent", value); }
     }
 
@@ -561,6 +657,7 @@ public sealed record class AccountingSyncConfiguration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<AccountingProvider>>(
                 "accounting_providers"
             );
@@ -576,7 +673,11 @@ public sealed record class AccountingSyncConfiguration : JsonModel
 
     public required bool Excluded
     {
-        get { return this._rawData.GetNotNullStruct<bool>("excluded"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("excluded");
+        }
         init { this._rawData.Set("excluded", value); }
     }
 
@@ -630,7 +731,11 @@ public sealed record class AccountingProvider : JsonModel
 {
     public required string? ExternalProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("external_provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_provider_id");
+        }
         init { this._rawData.Set("external_provider_id", value); }
     }
 
@@ -638,6 +743,7 @@ public sealed record class AccountingProvider : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, AccountingProviderProviderType>>(
                 "provider_type"
             );
@@ -746,6 +852,7 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
                 ImmutableArray<CustomerPaymentConfigurationPaymentProvider>
             >("payment_providers");
@@ -826,6 +933,7 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, CustomerPaymentConfigurationPaymentProviderProviderType>
             >("provider_type");
@@ -844,6 +952,7 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>(
                 "excluded_payment_method_types"
             );
@@ -968,7 +1077,11 @@ public sealed record class ReportingConfiguration : JsonModel
 {
     public required bool Exempt
     {
-        get { return this._rawData.GetNotNullStruct<bool>("exempt"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("exempt");
+        }
         init { this._rawData.Set("exempt", value); }
     }
 

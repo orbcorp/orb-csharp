@@ -20,6 +20,7 @@ public sealed record class TopUpListByExternalIDPageResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<TopUpListByExternalIDResponse>>(
                 "data"
             );
@@ -35,7 +36,11 @@ public sealed record class TopUpListByExternalIDPageResponse : JsonModel
 
     public required PaginationMetadata PaginationMetadata
     {
-        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
+        }
         init { this._rawData.Set("pagination_metadata", value); }
     }
 

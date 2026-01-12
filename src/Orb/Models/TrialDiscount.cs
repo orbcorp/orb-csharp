@@ -17,6 +17,7 @@ public sealed record class TrialDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, TrialDiscountDiscountType>>(
                 "discount_type"
             );
@@ -32,6 +33,7 @@ public sealed record class TrialDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -50,6 +52,7 @@ public sealed record class TrialDiscount : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<TrialDiscountFilter>>("filters");
         }
         init
@@ -63,7 +66,11 @@ public sealed record class TrialDiscount : JsonModel
 
     public string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -72,7 +79,11 @@ public sealed record class TrialDiscount : JsonModel
     /// </summary>
     public string? TrialAmountDiscount
     {
-        get { return this._rawData.GetNullableClass<string>("trial_amount_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("trial_amount_discount");
+        }
         init { this._rawData.Set("trial_amount_discount", value); }
     }
 
@@ -81,7 +92,11 @@ public sealed record class TrialDiscount : JsonModel
     /// </summary>
     public double? TrialPercentageDiscount
     {
-        get { return this._rawData.GetNullableStruct<double>("trial_percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("trial_percentage_discount");
+        }
         init { this._rawData.Set("trial_percentage_discount", value); }
     }
 
@@ -189,6 +204,7 @@ public sealed record class TrialDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, TrialDiscountFilterField>>(
                 "field"
             );
@@ -203,6 +219,7 @@ public sealed record class TrialDiscountFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, TrialDiscountFilterOperator>>(
                 "operator"
             );
@@ -215,7 +232,11 @@ public sealed record class TrialDiscountFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

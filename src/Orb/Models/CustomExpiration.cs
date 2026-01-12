@@ -14,7 +14,11 @@ public sealed record class CustomExpiration : JsonModel
 {
     public required long Duration
     {
-        get { return this._rawData.GetNotNullStruct<long>("duration"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("duration");
+        }
         init { this._rawData.Set("duration", value); }
     }
 
@@ -22,6 +26,7 @@ public sealed record class CustomExpiration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, CustomExpirationDurationUnit>>(
                 "duration_unit"
             );

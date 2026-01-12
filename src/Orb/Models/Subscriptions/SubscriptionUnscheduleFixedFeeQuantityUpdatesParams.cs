@@ -30,7 +30,11 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     /// </summary>
     public required string PriceID
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("price_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("price_id");
+        }
         init { this._rawBodyData.Set("price_id", value); }
     }
 

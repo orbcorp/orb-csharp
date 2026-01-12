@@ -22,7 +22,11 @@ public sealed record class AlertDisableParams : ParamsBase
     /// </summary>
     public string? SubscriptionID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("subscription_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("subscription_id");
+        }
         init { this._rawQueryData.Set("subscription_id", value); }
     }
 

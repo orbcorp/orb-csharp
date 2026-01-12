@@ -16,6 +16,7 @@ public sealed record class AggregatedCost : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<PerPriceCost>>("per_price_costs");
         }
         init
@@ -32,19 +33,31 @@ public sealed record class AggregatedCost : JsonModel
     /// </summary>
     public required string Subtotal
     {
-        get { return this._rawData.GetNotNullClass<string>("subtotal"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
+        }
         init { this._rawData.Set("subtotal", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
+        }
         init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
+        }
         init { this._rawData.Set("timeframe_start", value); }
     }
 
@@ -53,7 +66,11 @@ public sealed record class AggregatedCost : JsonModel
     /// </summary>
     public required string Total
     {
-        get { return this._rawData.GetNotNullClass<string>("total"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
+        }
         init { this._rawData.Set("total", value); }
     }
 

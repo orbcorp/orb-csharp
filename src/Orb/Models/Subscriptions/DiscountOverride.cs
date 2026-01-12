@@ -16,6 +16,7 @@ public sealed record class DiscountOverride : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType>
             >("discount_type");
@@ -28,7 +29,11 @@ public sealed record class DiscountOverride : JsonModel
     /// </summary>
     public string? AmountDiscount
     {
-        get { return this._rawData.GetNullableClass<string>("amount_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("amount_discount");
+        }
         init { this._rawData.Set("amount_discount", value); }
     }
 
@@ -38,7 +43,11 @@ public sealed record class DiscountOverride : JsonModel
     /// </summary>
     public double? PercentageDiscount
     {
-        get { return this._rawData.GetNullableStruct<double>("percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("percentage_discount");
+        }
         init { this._rawData.Set("percentage_discount", value); }
     }
 
@@ -48,7 +57,11 @@ public sealed record class DiscountOverride : JsonModel
     /// </summary>
     public double? UsageDiscount
     {
-        get { return this._rawData.GetNullableStruct<double>("usage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("usage_discount");
+        }
         init { this._rawData.Set("usage_discount", value); }
     }
 

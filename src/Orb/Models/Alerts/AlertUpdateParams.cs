@@ -28,7 +28,11 @@ public sealed record class AlertUpdateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds");
+        }
         init
         {
             this._rawBodyData.Set<ImmutableArray<Threshold>>(

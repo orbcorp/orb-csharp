@@ -23,7 +23,11 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -32,7 +36,11 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -46,25 +54,41 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
 
     public DateTimeOffset? StartDateGt
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[gt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[gt]");
+        }
         init { this._rawQueryData.Set("start_date[gt]", value); }
     }
 
     public DateTimeOffset? StartDateGte
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[gte]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[gte]");
+        }
         init { this._rawQueryData.Set("start_date[gte]", value); }
     }
 
     public DateTimeOffset? StartDateLt
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[lt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[lt]");
+        }
         init { this._rawQueryData.Set("start_date[lt]", value); }
     }
 
     public DateTimeOffset? StartDateLte
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[lte]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[lte]");
+        }
         init { this._rawQueryData.Set("start_date[lte]", value); }
     }
 

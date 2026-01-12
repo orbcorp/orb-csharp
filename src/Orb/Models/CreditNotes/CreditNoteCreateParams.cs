@@ -51,6 +51,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullStruct<
                 ImmutableArray<global::Orb.Models.CreditNotes.LineItem>
             >("line_items");
@@ -71,6 +72,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.CreditNotes.Reason>
             >("reason");
@@ -87,7 +89,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// </summary>
     public string? EndDate
     {
-        get { return this._rawBodyData.GetNullableClass<string>("end_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("end_date");
+        }
         init { this._rawBodyData.Set("end_date", value); }
     }
 
@@ -96,7 +102,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// </summary>
     public string? Memo
     {
-        get { return this._rawBodyData.GetNullableClass<string>("memo"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("memo");
+        }
         init { this._rawBodyData.Set("memo", value); }
     }
 
@@ -109,7 +119,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// </summary>
     public string? StartDate
     {
-        get { return this._rawBodyData.GetNullableClass<string>("start_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("start_date");
+        }
         init { this._rawBodyData.Set("start_date", value); }
     }
 
@@ -200,7 +214,11 @@ public sealed record class LineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -209,7 +227,11 @@ public sealed record class LineItem : JsonModel
     /// </summary>
     public required string InvoiceLineItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("invoice_line_item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("invoice_line_item_id");
+        }
         init { this._rawData.Set("invoice_line_item_id", value); }
     }
 
@@ -221,7 +243,11 @@ public sealed record class LineItem : JsonModel
     /// </summary>
     public string? EndDate
     {
-        get { return this._rawData.GetNullableClass<string>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
@@ -234,7 +260,11 @@ public sealed record class LineItem : JsonModel
     /// </summary>
     public string? StartDate
     {
-        get { return this._rawData.GetNullableClass<string>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 

@@ -16,7 +16,11 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
 {
     public required string SubscriptionID
     {
-        get { return this._rawQueryData.GetNotNullClass<string>("subscription_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNotNullClass<string>("subscription_id");
+        }
         init { this._rawQueryData.Set("subscription_id", value); }
     }
 

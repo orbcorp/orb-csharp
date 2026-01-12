@@ -13,7 +13,11 @@ public sealed record class SubscriptionTrialInfo : JsonModel
 {
     public required DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 

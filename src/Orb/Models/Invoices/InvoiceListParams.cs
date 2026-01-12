@@ -29,19 +29,31 @@ public sealed record class InvoiceListParams : ParamsBase
 {
     public string? Amount
     {
-        get { return this._rawQueryData.GetNullableClass<string>("amount"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("amount");
+        }
         init { this._rawQueryData.Set("amount", value); }
     }
 
     public string? AmountGt
     {
-        get { return this._rawQueryData.GetNullableClass<string>("amount[gt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("amount[gt]");
+        }
         init { this._rawQueryData.Set("amount[gt]", value); }
     }
 
     public string? AmountLt
     {
-        get { return this._rawQueryData.GetNullableClass<string>("amount[lt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("amount[lt]");
+        }
         init { this._rawQueryData.Set("amount[lt]", value); }
     }
 
@@ -51,25 +63,41 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
     public string? CustomerID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawQueryData.Set("customer_id", value); }
     }
 
     public ApiEnum<string, DateType>? DateType
     {
-        get { return this._rawQueryData.GetNullableClass<ApiEnum<string, DateType>>("date_type"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, DateType>>("date_type");
+        }
         init { this._rawQueryData.Set("date_type", value); }
     }
 
     public string? DueDate
     {
-        get { return this._rawQueryData.GetNullableClass<string>("due_date"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("due_date");
+        }
         init { this._rawQueryData.Set("due_date", value); }
     }
 
@@ -81,25 +109,41 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public string? DueDateWindow
     {
-        get { return this._rawQueryData.GetNullableClass<string>("due_date_window"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("due_date_window");
+        }
         init { this._rawQueryData.Set("due_date_window", value); }
     }
 
     public string? DueDateGt
     {
-        get { return this._rawQueryData.GetNullableClass<string>("due_date[gt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("due_date[gt]");
+        }
         init { this._rawQueryData.Set("due_date[gt]", value); }
     }
 
     public string? DueDateLt
     {
-        get { return this._rawQueryData.GetNullableClass<string>("due_date[lt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("due_date[lt]");
+        }
         init { this._rawQueryData.Set("due_date[lt]", value); }
     }
 
     public string? ExternalCustomerID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawQueryData.Set("external_customer_id", value); }
     }
 
@@ -107,6 +151,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("invoice_date[gt]");
         }
         init { this._rawQueryData.Set("invoice_date[gt]", value); }
@@ -116,6 +161,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>(
                 "invoice_date[gte]"
             );
@@ -127,6 +173,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("invoice_date[lt]");
         }
         init { this._rawQueryData.Set("invoice_date[lt]", value); }
@@ -136,6 +183,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>(
                 "invoice_date[lte]"
             );
@@ -145,7 +193,11 @@ public sealed record class InvoiceListParams : ParamsBase
 
     public bool? IsRecurring
     {
-        get { return this._rawQueryData.GetNullableStruct<bool>("is_recurring"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("is_recurring");
+        }
         init { this._rawQueryData.Set("is_recurring", value); }
     }
 
@@ -154,7 +206,11 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -170,6 +226,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<
                 ImmutableArray<ApiEnum<string, global::Orb.Models.Invoices.Status>>
             >("status");
@@ -184,7 +241,11 @@ public sealed record class InvoiceListParams : ParamsBase
 
     public string? SubscriptionID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("subscription_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("subscription_id");
+        }
         init { this._rawQueryData.Set("subscription_id", value); }
     }
 

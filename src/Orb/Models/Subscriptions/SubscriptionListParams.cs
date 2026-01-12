@@ -26,6 +26,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gt]");
         }
         init { this._rawQueryData.Set("created_at[gt]", value); }
@@ -35,6 +36,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gte]");
         }
         init { this._rawQueryData.Set("created_at[gte]", value); }
@@ -44,6 +46,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lt]");
         }
         init { this._rawQueryData.Set("created_at[lt]", value); }
@@ -53,6 +56,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lte]");
         }
         init { this._rawQueryData.Set("created_at[lte]", value); }
@@ -64,13 +68,21 @@ public sealed record class SubscriptionListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
     public IReadOnlyList<string>? CustomerID
     {
-        get { return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>("customer_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>("customer_id");
+        }
         init
         {
             this._rawQueryData.Set<ImmutableArray<string>?>(
@@ -84,6 +96,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>(
                 "external_customer_id"
             );
@@ -99,7 +112,11 @@ public sealed record class SubscriptionListParams : ParamsBase
 
     public string? ExternalPlanID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("external_plan_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("external_plan_id");
+        }
         init { this._rawQueryData.Set("external_plan_id", value); }
     }
 
@@ -108,7 +125,11 @@ public sealed record class SubscriptionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -122,7 +143,11 @@ public sealed record class SubscriptionListParams : ParamsBase
 
     public string? PlanID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("plan_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("plan_id");
+        }
         init { this._rawQueryData.Set("plan_id", value); }
     }
 
@@ -130,6 +155,7 @@ public sealed record class SubscriptionListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.Subscriptions.Status>
             >("status");

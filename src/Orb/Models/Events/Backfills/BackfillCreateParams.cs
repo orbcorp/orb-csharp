@@ -61,7 +61,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeEnd
     {
-        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
+        }
         init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
@@ -72,7 +76,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeStart
     {
-        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
+        }
         init { this._rawBodyData.Set("timeframe_start", value); }
     }
 
@@ -83,7 +91,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public DateTimeOffset? CloseTime
     {
-        get { return this._rawBodyData.GetNullableStruct<DateTimeOffset>("close_time"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<DateTimeOffset>("close_time");
+        }
         init { this._rawBodyData.Set("close_time", value); }
     }
 
@@ -93,7 +105,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawBodyData.Set("customer_id", value); }
     }
 
@@ -103,7 +119,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return this._rawBodyData.GetNullableClass<string>("deprecation_filter"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("deprecation_filter");
+        }
         init { this._rawBodyData.Set("deprecation_filter", value); }
     }
 
@@ -113,7 +133,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
@@ -123,7 +147,11 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public bool? ReplaceExistingEvents
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("replace_existing_events"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("replace_existing_events");
+        }
         init
         {
             if (value == null)

@@ -15,19 +15,31 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
 {
     public required DateTimeOffset EffectiveDate
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("effective_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("effective_date");
+        }
         init { this._rawData.Set("effective_date", value); }
     }
 
     public required string PriceID
     {
-        get { return this._rawData.GetNotNullClass<string>("price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("price_id");
+        }
         init { this._rawData.Set("price_id", value); }
     }
 
     public required long Quantity
     {
-        get { return this._rawData.GetNotNullStruct<long>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 

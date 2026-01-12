@@ -19,6 +19,7 @@ public sealed record class EventIngestResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<ValidationFailed>>(
                 "validation_failed"
             );
@@ -38,7 +39,11 @@ public sealed record class EventIngestResponse : JsonModel
     /// </summary>
     public Debug? Debug
     {
-        get { return this._rawData.GetNullableClass<Debug>("debug"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Debug>("debug");
+        }
         init { this._rawData.Set("debug", value); }
     }
 
@@ -101,7 +106,11 @@ public sealed record class ValidationFailed : JsonModel
     /// </summary>
     public required string IdempotencyKey
     {
-        get { return this._rawData.GetNotNullClass<string>("idempotency_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("idempotency_key");
+        }
         init { this._rawData.Set("idempotency_key", value); }
     }
 
@@ -110,7 +119,11 @@ public sealed record class ValidationFailed : JsonModel
     /// </summary>
     public required IReadOnlyList<string> ValidationErrors
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("validation_errors"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("validation_errors");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -170,7 +183,11 @@ public sealed record class Debug : JsonModel
 {
     public required IReadOnlyList<string> Duplicate
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("duplicate"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("duplicate");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -182,7 +199,11 @@ public sealed record class Debug : JsonModel
 
     public required IReadOnlyList<string> Ingested
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("ingested"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("ingested");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

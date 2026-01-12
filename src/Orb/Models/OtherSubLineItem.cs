@@ -17,31 +17,51 @@ public sealed record class OtherSubLineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping");
+        }
         init { this._rawData.Set("grouping", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public required double Quantity
     {
-        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
     public required ApiEnum<string, OtherSubLineItemType> Type
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, OtherSubLineItemType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, OtherSubLineItemType>>("type");
+        }
         init { this._rawData.Set("type", value); }
     }
 

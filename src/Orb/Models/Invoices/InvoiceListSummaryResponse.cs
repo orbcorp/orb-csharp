@@ -20,7 +20,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -30,7 +34,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string AmountDue
     {
-        get { return this._rawData.GetNotNullClass<string>("amount_due"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_due");
+        }
         init { this._rawData.Set("amount_due", value); }
     }
 
@@ -38,6 +46,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<InvoiceListSummaryResponseAutoCollection>(
                 "auto_collection"
             );
@@ -47,7 +56,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
 
     public required Address? BillingAddress
     {
-        get { return this._rawData.GetNullableClass<Address>("billing_address"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Address>("billing_address");
+        }
         init { this._rawData.Set("billing_address", value); }
     }
 
@@ -56,7 +69,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -67,6 +84,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<InvoiceListSummaryResponseCreditNote>
             >("credit_notes");
@@ -85,13 +103,21 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get { return this._rawData.GetNotNullClass<CustomerMinified>("customer"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<CustomerMinified>("customer");
+        }
         init { this._rawData.Set("customer", value); }
     }
 
@@ -99,6 +125,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<InvoiceListSummaryResponseCustomerBalanceTransaction>
             >("customer_balance_transactions");
@@ -219,7 +246,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required CustomerTaxID? CustomerTaxID
     {
-        get { return this._rawData.GetNullableClass<CustomerTaxID>("customer_tax_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomerTaxID>("customer_tax_id");
+        }
         init { this._rawData.Set("customer_tax_id", value); }
     }
 
@@ -229,7 +260,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? DueDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("due_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("due_date");
+        }
         init { this._rawData.Set("due_date", value); }
     }
 
@@ -242,6 +277,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>("eligible_to_issue_at");
         }
         init { this._rawData.Set("eligible_to_issue_at", value); }
@@ -253,7 +289,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string? HostedInvoiceUrl
     {
-        get { return this._rawData.GetNullableClass<string>("hosted_invoice_url"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hosted_invoice_url");
+        }
         init { this._rawData.Set("hosted_invoice_url", value); }
     }
 
@@ -262,7 +302,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset InvoiceDate
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("invoice_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("invoice_date");
+        }
         init { this._rawData.Set("invoice_date", value); }
     }
 
@@ -273,7 +317,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string InvoiceNumber
     {
-        get { return this._rawData.GetNotNullClass<string>("invoice_number"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("invoice_number");
+        }
         init { this._rawData.Set("invoice_number", value); }
     }
 
@@ -282,7 +330,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string? InvoicePdf
     {
-        get { return this._rawData.GetNullableClass<string>("invoice_pdf"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_pdf");
+        }
         init { this._rawData.Set("invoice_pdf", value); }
     }
 
@@ -290,6 +342,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, InvoiceListSummaryResponseInvoiceSource>
             >("invoice_source");
@@ -303,7 +356,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? IssueFailedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("issue_failed_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("issue_failed_at");
+        }
         init { this._rawData.Set("issue_failed_at", value); }
     }
 
@@ -313,7 +370,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? IssuedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("issued_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("issued_at");
+        }
         init { this._rawData.Set("issued_at", value); }
     }
 
@@ -322,7 +383,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string? Memo
     {
-        get { return this._rawData.GetNullableClass<string>("memo"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
+        }
         init { this._rawData.Set("memo", value); }
     }
 
@@ -334,7 +399,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
         init
         {
             this._rawData.Set<FrozenDictionary<string, string>>(
@@ -350,7 +419,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? PaidAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("paid_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("paid_at");
+        }
         init { this._rawData.Set("paid_at", value); }
     }
 
@@ -361,6 +434,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<InvoiceListSummaryResponsePaymentAttempt>
             >("payment_attempts");
@@ -380,7 +454,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? PaymentFailedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("payment_failed_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("payment_failed_at");
+        }
         init { this._rawData.Set("payment_failed_at", value); }
     }
 
@@ -393,6 +471,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>("payment_started_at");
         }
         init { this._rawData.Set("payment_started_at", value); }
@@ -406,6 +485,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>("scheduled_issue_at");
         }
         init { this._rawData.Set("scheduled_issue_at", value); }
@@ -413,7 +493,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
 
     public required Address? ShippingAddress
     {
-        get { return this._rawData.GetNullableClass<Address>("shipping_address"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Address>("shipping_address");
+        }
         init { this._rawData.Set("shipping_address", value); }
     }
 
@@ -421,6 +505,7 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, InvoiceListSummaryResponseStatus>>(
                 "status"
             );
@@ -430,7 +515,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
 
     public required SubscriptionMinified? Subscription
     {
-        get { return this._rawData.GetNullableClass<SubscriptionMinified>("subscription"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionMinified>("subscription");
+        }
         init { this._rawData.Set("subscription", value); }
     }
 
@@ -441,7 +530,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? SyncFailedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("sync_failed_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("sync_failed_at");
+        }
         init { this._rawData.Set("sync_failed_at", value); }
     }
 
@@ -450,7 +543,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required string Total
     {
-        get { return this._rawData.GetNotNullClass<string>("total"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
+        }
         init { this._rawData.Set("total", value); }
     }
 
@@ -460,7 +557,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? VoidedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at");
+        }
         init { this._rawData.Set("voided_at", value); }
     }
 
@@ -470,7 +571,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
     /// </summary>
     public required bool WillAutoIssue
     {
-        get { return this._rawData.GetNotNullStruct<bool>("will_auto_issue"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("will_auto_issue");
+        }
         init { this._rawData.Set("will_auto_issue", value); }
     }
 
@@ -569,7 +674,11 @@ public sealed record class InvoiceListSummaryResponseAutoCollection : JsonModel
     /// </summary>
     public required bool? Enabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("enabled");
+        }
         init { this._rawData.Set("enabled", value); }
     }
 
@@ -580,7 +689,11 @@ public sealed record class InvoiceListSummaryResponseAutoCollection : JsonModel
     /// </summary>
     public required System::DateTimeOffset? NextAttemptAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("next_attempt_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("next_attempt_at");
+        }
         init { this._rawData.Set("next_attempt_at", value); }
     }
 
@@ -589,7 +702,11 @@ public sealed record class InvoiceListSummaryResponseAutoCollection : JsonModel
     /// </summary>
     public required long? NumAttempts
     {
-        get { return this._rawData.GetNullableStruct<long>("num_attempts"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("num_attempts");
+        }
         init { this._rawData.Set("num_attempts", value); }
     }
 
@@ -605,6 +722,7 @@ public sealed record class InvoiceListSummaryResponseAutoCollection : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<System::DateTimeOffset>(
                 "previously_attempted_at"
             );
@@ -671,13 +789,21 @@ public sealed record class InvoiceListSummaryResponseCreditNote : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string CreditNoteNumber
     {
-        get { return this._rawData.GetNotNullClass<string>("credit_note_number"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("credit_note_number");
+        }
         init { this._rawData.Set("credit_note_number", value); }
     }
 
@@ -686,25 +812,41 @@ public sealed record class InvoiceListSummaryResponseCreditNote : JsonModel
     /// </summary>
     public required string? Memo
     {
-        get { return this._rawData.GetNullableClass<string>("memo"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
+        }
         init { this._rawData.Set("memo", value); }
     }
 
     public required string Reason
     {
-        get { return this._rawData.GetNotNullClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
     public required string Total
     {
-        get { return this._rawData.GetNotNullClass<string>("total"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
+        }
         init { this._rawData.Set("total", value); }
     }
 
     public required string Type
     {
-        get { return this._rawData.GetNotNullClass<string>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("type");
+        }
         init { this._rawData.Set("type", value); }
     }
 
@@ -714,7 +856,11 @@ public sealed record class InvoiceListSummaryResponseCreditNote : JsonModel
     /// </summary>
     public required System::DateTimeOffset? VoidedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at");
+        }
         init { this._rawData.Set("voided_at", value); }
     }
 
@@ -781,7 +927,11 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -792,6 +942,7 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, InvoiceListSummaryResponseCustomerBalanceTransactionAction>
             >("action");
@@ -804,7 +955,11 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -813,13 +968,21 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
     public required CreditNoteTiny? CreditNote
     {
-        get { return this._rawData.GetNullableClass<CreditNoteTiny>("credit_note"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreditNoteTiny>("credit_note");
+        }
         init { this._rawData.Set("credit_note", value); }
     }
 
@@ -828,7 +991,11 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     /// </summary>
     public required string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -837,13 +1004,21 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     /// </summary>
     public required string EndingBalance
     {
-        get { return this._rawData.GetNotNullClass<string>("ending_balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("ending_balance");
+        }
         init { this._rawData.Set("ending_balance", value); }
     }
 
     public required InvoiceTiny? Invoice
     {
-        get { return this._rawData.GetNullableClass<InvoiceTiny>("invoice"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<InvoiceTiny>("invoice");
+        }
         init { this._rawData.Set("invoice", value); }
     }
 
@@ -853,7 +1028,11 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     /// </summary>
     public required string StartingBalance
     {
-        get { return this._rawData.GetNotNullClass<string>("starting_balance"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("starting_balance");
+        }
         init { this._rawData.Set("starting_balance", value); }
     }
 
@@ -861,6 +1040,7 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, InvoiceListSummaryResponseCustomerBalanceTransactionType>
             >("type");
@@ -1120,7 +1300,11 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -1129,7 +1313,11 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -1138,7 +1326,11 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -1152,6 +1344,7 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, InvoiceListSummaryResponsePaymentAttemptPaymentProvider>
             >("payment_provider");
@@ -1164,7 +1357,11 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     /// </summary>
     public required string? PaymentProviderID
     {
-        get { return this._rawData.GetNullableClass<string>("payment_provider_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("payment_provider_id");
+        }
         init { this._rawData.Set("payment_provider_id", value); }
     }
 
@@ -1174,7 +1371,11 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     /// </summary>
     public required string? ReceiptPdf
     {
-        get { return this._rawData.GetNullableClass<string>("receipt_pdf"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("receipt_pdf");
+        }
         init { this._rawData.Set("receipt_pdf", value); }
     }
 
@@ -1183,7 +1384,11 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
     /// </summary>
     public required bool Succeeded
     {
-        get { return this._rawData.GetNotNullStruct<bool>("succeeded"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("succeeded");
+        }
         init { this._rawData.Set("succeeded", value); }
     }
 

@@ -30,7 +30,11 @@ public sealed record class VolumeListParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeStart
     {
-        get { return this._rawQueryData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
+        }
         init { this._rawQueryData.Set("timeframe_start", value); }
     }
 
@@ -40,7 +44,11 @@ public sealed record class VolumeListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -49,7 +57,11 @@ public sealed record class VolumeListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -69,7 +81,11 @@ public sealed record class VolumeListParams : ParamsBase
     /// </summary>
     public DateTimeOffset? TimeframeEnd
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("timeframe_end");
+        }
         init
         {
             if (value == null)

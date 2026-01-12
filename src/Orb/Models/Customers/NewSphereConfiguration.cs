@@ -14,7 +14,11 @@ public sealed record class NewSphereConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return this._rawData.GetNotNullStruct<bool>("tax_exempt"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("tax_exempt");
+        }
         init { this._rawData.Set("tax_exempt", value); }
     }
 
@@ -22,6 +26,7 @@ public sealed record class NewSphereConfiguration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, NewSphereConfigurationTaxProvider>
             >("tax_provider");
@@ -35,7 +40,11 @@ public sealed record class NewSphereConfiguration : JsonModel
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
         init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 

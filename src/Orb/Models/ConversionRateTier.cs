@@ -15,7 +15,11 @@ public sealed record class ConversionRateTier : JsonModel
     /// </summary>
     public required double FirstUnit
     {
-        get { return this._rawData.GetNotNullStruct<double>("first_unit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("first_unit");
+        }
         init { this._rawData.Set("first_unit", value); }
     }
 
@@ -24,7 +28,11 @@ public sealed record class ConversionRateTier : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 
@@ -33,7 +41,11 @@ public sealed record class ConversionRateTier : JsonModel
     /// </summary>
     public double? LastUnit
     {
-        get { return this._rawData.GetNullableStruct<double>("last_unit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("last_unit");
+        }
         init { this._rawData.Set("last_unit", value); }
     }
 

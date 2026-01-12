@@ -18,7 +18,11 @@ public sealed record class UnitConfig : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 
@@ -27,7 +31,11 @@ public sealed record class UnitConfig : JsonModel
     /// </summary>
     public bool? Prorated
     {
-        get { return this._rawData.GetNullableStruct<bool>("prorated"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
         init
         {
             if (value == null)

@@ -24,7 +24,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -33,7 +37,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public required string ChangeType
     {
-        get { return this._rawData.GetNotNullClass<string>("change_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("change_type");
+        }
         init { this._rawData.Set("change_type", value); }
     }
 
@@ -42,7 +50,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset ExpirationTime
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time");
+        }
         init { this._rawData.Set("expiration_time", value); }
     }
 
@@ -50,6 +62,7 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, SubscriptionChangeCancelResponseStatus>
             >("status");
@@ -59,7 +72,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
 
     public required MutatedSubscription? Subscription
     {
-        get { return this._rawData.GetNullableClass<MutatedSubscription>("subscription"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MutatedSubscription>("subscription");
+        }
         init { this._rawData.Set("subscription", value); }
     }
 
@@ -68,7 +85,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? AppliedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at");
+        }
         init { this._rawData.Set("applied_at", value); }
     }
 
@@ -77,7 +98,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public string? BillingCycleAlignment
     {
-        get { return this._rawData.GetNullableClass<string>("billing_cycle_alignment"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billing_cycle_alignment");
+        }
         init { this._rawData.Set("billing_cycle_alignment", value); }
     }
 
@@ -86,7 +111,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? CancelledAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at");
+        }
         init { this._rawData.Set("cancelled_at", value); }
     }
 
@@ -95,7 +124,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public string? ChangeOption
     {
-        get { return this._rawData.GetNullableClass<string>("change_option"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("change_option");
+        }
         init { this._rawData.Set("change_option", value); }
     }
 
@@ -104,7 +137,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? EffectiveDate
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date");
+        }
         init { this._rawData.Set("effective_date", value); }
     }
 
@@ -113,7 +150,11 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
     /// </summary>
     public string? PlanID
     {
-        get { return this._rawData.GetNullableClass<string>("plan_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("plan_id");
+        }
         init { this._rawData.Set("plan_id", value); }
     }
 

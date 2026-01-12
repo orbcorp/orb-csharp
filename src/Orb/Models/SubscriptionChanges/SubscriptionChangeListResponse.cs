@@ -19,7 +19,11 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -28,7 +32,11 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset ExpirationTime
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time");
+        }
         init { this._rawData.Set("expiration_time", value); }
     }
 
@@ -36,6 +44,7 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, SubscriptionChangeListResponseStatus>
             >("status");
@@ -45,7 +54,11 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
 
     public required string? SubscriptionID
     {
-        get { return this._rawData.GetNullableClass<string>("subscription_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("subscription_id");
+        }
         init { this._rawData.Set("subscription_id", value); }
     }
 
@@ -54,7 +67,11 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? AppliedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at");
+        }
         init { this._rawData.Set("applied_at", value); }
     }
 
@@ -63,7 +80,11 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? CancelledAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at");
+        }
         init { this._rawData.Set("cancelled_at", value); }
     }
 

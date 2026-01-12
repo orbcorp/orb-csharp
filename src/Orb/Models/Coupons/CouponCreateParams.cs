@@ -27,6 +27,7 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
                 "discount"
             );
@@ -39,7 +40,11 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public required string RedemptionCode
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("redemption_code"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("redemption_code");
+        }
         init { this._rawBodyData.Set("redemption_code", value); }
     }
 
@@ -49,7 +54,11 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public long? DurationInMonths
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("duration_in_months"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("duration_in_months");
+        }
         init { this._rawBodyData.Set("duration_in_months", value); }
     }
 
@@ -59,7 +68,11 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public long? MaxRedemptions
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("max_redemptions"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("max_redemptions");
+        }
         init { this._rawBodyData.Set("max_redemptions", value); }
     }
 
@@ -398,13 +411,21 @@ public sealed record class Percentage : JsonModel
 {
     public JsonElement DiscountType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("discount_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("discount_type");
+        }
         init { this._rawData.Set("discount_type", value); }
     }
 
     public required double PercentageDiscount
     {
-        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage_discount");
+        }
         init { this._rawData.Set("percentage_discount", value); }
     }
 
@@ -472,13 +493,21 @@ public sealed record class Amount : JsonModel
 {
     public required string AmountDiscount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_discount");
+        }
         init { this._rawData.Set("amount_discount", value); }
     }
 
     public JsonElement DiscountType
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("discount_type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("discount_type");
+        }
         init { this._rawData.Set("discount_type", value); }
     }
 

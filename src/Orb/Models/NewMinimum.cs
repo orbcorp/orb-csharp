@@ -17,6 +17,7 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewMinimumAdjustmentType>>(
                 "adjustment_type"
             );
@@ -29,13 +30,21 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public required string ItemID
     {
-        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
         init { this._rawData.Set("item_id", value); }
     }
 
     public required string MinimumAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("minimum_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("minimum_amount");
+        }
         init { this._rawData.Set("minimum_amount", value); }
     }
 
@@ -46,6 +55,7 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<bool, NewMinimumAppliesToAll>>(
                 "applies_to_all"
             );
@@ -60,6 +70,7 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
         }
         init
@@ -78,6 +89,7 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -94,7 +106,11 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public string? Currency
     {
-        get { return this._rawData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -103,7 +119,11 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public IReadOnlyList<NewMinimumFilter>? Filters
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<NewMinimumFilter>>("filters"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<NewMinimumFilter>>("filters");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<NewMinimumFilter>?>(
@@ -119,7 +139,11 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return this._rawData.GetNullableStruct<bool>("is_invoice_level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
         init
         {
             if (value == null)
@@ -138,6 +162,7 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<ApiEnum<string, NewMinimumPriceType>>(
                 "price_type"
             );
@@ -290,6 +315,7 @@ public sealed record class NewMinimumFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewMinimumFilterField>>("field");
         }
         init { this._rawData.Set("field", value); }
@@ -302,6 +328,7 @@ public sealed record class NewMinimumFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, NewMinimumFilterOperator>>(
                 "operator"
             );
@@ -314,7 +341,11 @@ public sealed record class NewMinimumFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

@@ -149,19 +149,31 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// </summary>
     public string? BillableMetricID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("billable_metric_id");
+        }
         init { this._rawQueryData.Set("billable_metric_id", value); }
     }
 
     public string? FirstDimensionKey
     {
-        get { return this._rawQueryData.GetNullableClass<string>("first_dimension_key"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("first_dimension_key");
+        }
         init { this._rawQueryData.Set("first_dimension_key", value); }
     }
 
     public string? FirstDimensionValue
     {
-        get { return this._rawQueryData.GetNullableClass<string>("first_dimension_value"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("first_dimension_value");
+        }
         init { this._rawQueryData.Set("first_dimension_value", value); }
     }
 
@@ -172,6 +184,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableClass<ApiEnum<string, Granularity>>("granularity");
         }
         init { this._rawQueryData.Set("granularity", value); }
@@ -182,19 +195,31 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// </summary>
     public string? GroupBy
     {
-        get { return this._rawQueryData.GetNullableClass<string>("group_by"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("group_by");
+        }
         init { this._rawQueryData.Set("group_by", value); }
     }
 
     public string? SecondDimensionKey
     {
-        get { return this._rawQueryData.GetNullableClass<string>("second_dimension_key"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("second_dimension_key");
+        }
         init { this._rawQueryData.Set("second_dimension_key", value); }
     }
 
     public string? SecondDimensionValue
     {
-        get { return this._rawQueryData.GetNullableClass<string>("second_dimension_value"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("second_dimension_value");
+        }
         init { this._rawQueryData.Set("second_dimension_value", value); }
     }
 
@@ -205,6 +230,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_end");
         }
         init { this._rawQueryData.Set("timeframe_end", value); }
@@ -217,6 +243,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_start");
         }
         init { this._rawQueryData.Set("timeframe_start", value); }
@@ -231,6 +258,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableClass<
                 ApiEnum<string, SubscriptionFetchUsageParamsViewMode>
             >("view_mode");

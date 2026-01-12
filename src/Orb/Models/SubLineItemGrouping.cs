@@ -12,7 +12,11 @@ public sealed record class SubLineItemGrouping : JsonModel
 {
     public required string Key
     {
-        get { return this._rawData.GetNotNullClass<string>("key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("key");
+        }
         init { this._rawData.Set("key", value); }
     }
 
@@ -21,7 +25,11 @@ public sealed record class SubLineItemGrouping : JsonModel
     /// </summary>
     public required string? Value
     {
-        get { return this._rawData.GetNullableClass<string>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("value");
+        }
         init { this._rawData.Set("value", value); }
     }
 

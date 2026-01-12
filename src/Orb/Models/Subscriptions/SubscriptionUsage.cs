@@ -260,7 +260,11 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<Data>>("data", ImmutableArray.ToImmutableArray(value));
@@ -323,13 +327,21 @@ public sealed record class Data : JsonModel
 {
     public required BillableMetric BillableMetric
     {
-        get { return this._rawData.GetNotNullClass<BillableMetric>("billable_metric"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<BillableMetric>("billable_metric");
+        }
         init { this._rawData.Set("billable_metric", value); }
     }
 
     public required IReadOnlyList<DataUsage> Usage
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<DataUsage>>("usage"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<DataUsage>>("usage");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<DataUsage>>(
@@ -341,7 +353,11 @@ public sealed record class Data : JsonModel
 
     public required ApiEnum<string, DataViewMode> ViewMode
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, DataViewMode>>("view_mode"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, DataViewMode>>("view_mode");
+        }
         init { this._rawData.Set("view_mode", value); }
     }
 
@@ -393,13 +409,21 @@ public sealed record class BillableMetric : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -447,19 +471,31 @@ public sealed record class DataUsage : JsonModel
 {
     public required double Quantity
     {
-        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end");
+        }
         init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start");
+        }
         init { this._rawData.Set("timeframe_start", value); }
     }
 
@@ -556,6 +592,7 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<GroupedSubscriptionUsageData>>(
                 "data"
             );
@@ -571,7 +608,11 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
 
     public PaginationMetadata? PaginationMetadata
     {
-        get { return this._rawData.GetNullableClass<PaginationMetadata>("pagination_metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PaginationMetadata>("pagination_metadata");
+        }
         init { this._rawData.Set("pagination_metadata", value); }
     }
 
@@ -636,6 +677,7 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<GroupedSubscriptionUsageDataBillableMetric>(
                 "billable_metric"
             );
@@ -645,7 +687,11 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
 
     public required MetricGroup MetricGroup
     {
-        get { return this._rawData.GetNotNullClass<MetricGroup>("metric_group"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<MetricGroup>("metric_group");
+        }
         init { this._rawData.Set("metric_group", value); }
     }
 
@@ -653,6 +699,7 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<GroupedSubscriptionUsageDataUsage>
             >("usage");
@@ -670,6 +717,7 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, GroupedSubscriptionUsageDataViewMode>
             >("view_mode");
@@ -734,13 +782,21 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonMode
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -796,13 +852,21 @@ public sealed record class MetricGroup : JsonModel
 {
     public required string PropertyKey
     {
-        get { return this._rawData.GetNotNullClass<string>("property_key"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("property_key");
+        }
         init { this._rawData.Set("property_key", value); }
     }
 
     public required string PropertyValue
     {
-        get { return this._rawData.GetNotNullClass<string>("property_value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("property_value");
+        }
         init { this._rawData.Set("property_value", value); }
     }
 
@@ -855,19 +919,31 @@ public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 {
     public required double Quantity
     {
-        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end");
+        }
         init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start");
+        }
         init { this._rawData.Set("timeframe_start", value); }
     }
 

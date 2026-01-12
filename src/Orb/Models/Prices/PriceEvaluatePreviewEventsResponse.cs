@@ -20,6 +20,7 @@ public sealed record class PriceEvaluatePreviewEventsResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<PriceEvaluatePreviewEventsResponseData>
             >("data");
@@ -99,7 +100,11 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -110,6 +115,7 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<EvaluatePriceGroup>>(
                 "price_groups"
             );
@@ -128,7 +134,11 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return this._rawData.GetNullableClass<string>("external_price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
         init { this._rawData.Set("external_price_id", value); }
     }
 
@@ -137,7 +147,11 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
     /// </summary>
     public long? InlinePriceIndex
     {
-        get { return this._rawData.GetNullableStruct<long>("inline_price_index"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("inline_price_index");
+        }
         init { this._rawData.Set("inline_price_index", value); }
     }
 
@@ -146,7 +160,11 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
     /// </summary>
     public string? PriceID
     {
-        get { return this._rawData.GetNullableClass<string>("price_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("price_id");
+        }
         init { this._rawData.Set("price_id", value); }
     }
 

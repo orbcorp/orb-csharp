@@ -15,7 +15,11 @@ public sealed record class BackfillListPageResponse : JsonModel
 {
     public required IReadOnlyList<BackfillListResponse> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<BackfillListResponse>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<BackfillListResponse>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<BackfillListResponse>>(
@@ -27,7 +31,11 @@ public sealed record class BackfillListPageResponse : JsonModel
 
     public required PaginationMetadata PaginationMetadata
     {
-        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
+        }
         init { this._rawData.Set("pagination_metadata", value); }
     }
 

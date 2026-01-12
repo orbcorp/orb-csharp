@@ -23,7 +23,11 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -33,13 +37,21 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required System::DateTimeOffset? ArchivedAt
     {
-        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("archived_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("archived_at");
+        }
         init { this._rawData.Set("archived_at", value); }
     }
 
     public required CouponDiscount Discount
     {
-        get { return this._rawData.GetNotNullClass<CouponDiscount>("discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<CouponDiscount>("discount");
+        }
         init { this._rawData.Set("discount", value); }
     }
 
@@ -49,7 +61,11 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required long? DurationInMonths
     {
-        get { return this._rawData.GetNullableStruct<long>("duration_in_months"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("duration_in_months");
+        }
         init { this._rawData.Set("duration_in_months", value); }
     }
 
@@ -59,7 +75,11 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required long? MaxRedemptions
     {
-        get { return this._rawData.GetNullableStruct<long>("max_redemptions"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("max_redemptions");
+        }
         init { this._rawData.Set("max_redemptions", value); }
     }
 
@@ -68,7 +88,11 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required string RedemptionCode
     {
-        get { return this._rawData.GetNotNullClass<string>("redemption_code"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("redemption_code");
+        }
         init { this._rawData.Set("redemption_code", value); }
     }
 
@@ -77,7 +101,11 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required long TimesRedeemed
     {
-        get { return this._rawData.GetNotNullStruct<long>("times_redeemed"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("times_redeemed");
+        }
         init { this._rawData.Set("times_redeemed", value); }
     }
 

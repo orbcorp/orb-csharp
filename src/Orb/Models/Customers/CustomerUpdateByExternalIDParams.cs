@@ -31,6 +31,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<NewAccountingSyncConfiguration>(
                 "accounting_sync_configuration"
             );
@@ -47,6 +48,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("additional_emails");
         }
         init
@@ -65,7 +67,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("auto_collection"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
+        }
         init { this._rawBodyData.Set("auto_collection", value); }
     }
 
@@ -77,13 +83,21 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public bool? AutoIssuance
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("auto_issuance"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_issuance");
+        }
         init { this._rawBodyData.Set("auto_issuance", value); }
     }
 
     public AddressInput? BillingAddress
     {
-        get { return this._rawBodyData.GetNullableClass<AddressInput>("billing_address"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<AddressInput>("billing_address");
+        }
         init { this._rawBodyData.Set("billing_address", value); }
     }
 
@@ -93,7 +107,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return this._rawBodyData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("currency");
+        }
         init { this._rawBodyData.Set("currency", value); }
     }
 
@@ -102,13 +120,21 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Email
     {
-        get { return this._rawBodyData.GetNullableClass<string>("email"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("email");
+        }
         init { this._rawBodyData.Set("email", value); }
     }
 
     public bool? EmailDelivery
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("email_delivery"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("email_delivery");
+        }
         init { this._rawBodyData.Set("email_delivery", value); }
     }
 
@@ -120,7 +146,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
@@ -129,7 +159,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public CustomerHierarchyConfig? Hierarchy
     {
-        get { return this._rawBodyData.GetNullableClass<CustomerHierarchyConfig>("hierarchy"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<CustomerHierarchyConfig>("hierarchy");
+        }
         init { this._rawBodyData.Set("hierarchy", value); }
     }
 
@@ -142,6 +176,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
@@ -160,7 +195,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get { return this._rawBodyData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
         init { this._rawBodyData.Set("name", value); }
     }
 
@@ -172,6 +211,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<CustomerUpdateByExternalIDParamsPaymentConfiguration>(
                 "payment_configuration"
             );
@@ -190,6 +230,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<
                 ApiEnum<string, CustomerUpdateByExternalIDParamsPaymentProvider>
             >("payment_provider");
@@ -203,7 +244,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? PaymentProviderID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("payment_provider_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_provider_id");
+        }
         init { this._rawBodyData.Set("payment_provider_id", value); }
     }
 
@@ -211,6 +256,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<NewReportingConfiguration>(
                 "reporting_configuration"
             );
@@ -220,7 +266,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
     public AddressInput? ShippingAddress
     {
-        get { return this._rawBodyData.GetNullableClass<AddressInput>("shipping_address"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<AddressInput>("shipping_address");
+        }
         init { this._rawBodyData.Set("shipping_address", value); }
     }
 
@@ -228,6 +278,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<CustomerUpdateByExternalIDParamsTaxConfiguration>(
                 "tax_configuration"
             );
@@ -342,7 +393,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public CustomerTaxID? TaxID
     {
-        get { return this._rawBodyData.GetNullableClass<CustomerTaxID>("tax_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<CustomerTaxID>("tax_id");
+        }
         init { this._rawBodyData.Set("tax_id", value); }
     }
 
@@ -446,6 +501,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
                 ImmutableArray<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>
             >("payment_providers");
@@ -534,6 +590,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
@@ -555,6 +612,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>(
                 "excluded_payment_method_types"
             );
@@ -1340,13 +1398,21 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
 {
     public required bool TaxExempt
     {
-        get { return this._rawData.GetNotNullStruct<bool>("tax_exempt"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("tax_exempt");
+        }
         init { this._rawData.Set("tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("tax_provider"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("tax_provider");
+        }
         init { this._rawData.Set("tax_provider", value); }
     }
 
@@ -1356,7 +1422,11 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
         init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
@@ -1440,13 +1510,21 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
 {
     public required bool TaxExempt
     {
-        get { return this._rawData.GetNotNullStruct<bool>("tax_exempt"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("tax_exempt");
+        }
         init { this._rawData.Set("tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("tax_provider"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("tax_provider");
+        }
         init { this._rawData.Set("tax_provider", value); }
     }
 
@@ -1456,7 +1534,11 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
         init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
@@ -1540,13 +1622,21 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
 {
     public required bool TaxExempt
     {
-        get { return this._rawData.GetNotNullStruct<bool>("tax_exempt"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("tax_exempt");
+        }
         init { this._rawData.Set("tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return this._rawData.GetNotNullStruct<JsonElement>("tax_provider"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("tax_provider");
+        }
         init { this._rawData.Set("tax_provider", value); }
     }
 
@@ -1556,7 +1646,11 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
         init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 

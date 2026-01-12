@@ -35,7 +35,11 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("currency");
+        }
         init { this._rawBodyData.Set("currency", value); }
     }
 
@@ -46,6 +50,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Alerts.Type>
             >("type");
@@ -58,7 +63,11 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// </summary>
     public IReadOnlyList<Threshold>? Thresholds
     {
-        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<Threshold>>("thresholds"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<Threshold>>("thresholds");
+        }
         init
         {
             this._rawBodyData.Set<ImmutableArray<Threshold>?>(

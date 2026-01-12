@@ -15,7 +15,11 @@ public sealed record class TaxAmount : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -24,7 +28,11 @@ public sealed record class TaxAmount : JsonModel
     /// </summary>
     public required string TaxRateDescription
     {
-        get { return this._rawData.GetNotNullClass<string>("tax_rate_description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("tax_rate_description");
+        }
         init { this._rawData.Set("tax_rate_description", value); }
     }
 
@@ -33,7 +41,11 @@ public sealed record class TaxAmount : JsonModel
     /// </summary>
     public required string? TaxRatePercentage
     {
-        get { return this._rawData.GetNullableClass<string>("tax_rate_percentage"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tax_rate_percentage");
+        }
         init { this._rawData.Set("tax_rate_percentage", value); }
     }
 

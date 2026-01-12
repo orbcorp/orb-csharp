@@ -15,25 +15,41 @@ public sealed record class Allocation : JsonModel
 {
     public required bool AllowsRollover
     {
-        get { return this._rawData.GetNotNullStruct<bool>("allows_rollover"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("allows_rollover");
+        }
         init { this._rawData.Set("allows_rollover", value); }
     }
 
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
     public required CustomExpiration? CustomExpiration
     {
-        get { return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration");
+        }
         init { this._rawData.Set("custom_expiration", value); }
     }
 
     public IReadOnlyList<Filter>? Filters
     {
-        get { return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters");
+        }
         init
         {
             if (value == null)
@@ -100,7 +116,11 @@ public sealed record class Filter : JsonModel
     /// </summary>
     public required ApiEnum<string, Field> Field
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
+        }
         init { this._rawData.Set("field", value); }
     }
 
@@ -109,7 +129,11 @@ public sealed record class Filter : JsonModel
     /// </summary>
     public required ApiEnum<string, Operator> Operator
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
+        }
         init { this._rawData.Set("operator", value); }
     }
 
@@ -118,7 +142,11 @@ public sealed record class Filter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

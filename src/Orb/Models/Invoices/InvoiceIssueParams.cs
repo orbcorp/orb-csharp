@@ -35,7 +35,11 @@ public sealed record class InvoiceIssueParams : ParamsBase
     /// </summary>
     public bool? Synchronous
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("synchronous"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("synchronous");
+        }
         init
         {
             if (value == null)

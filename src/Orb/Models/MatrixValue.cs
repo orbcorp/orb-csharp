@@ -19,7 +19,11 @@ public sealed record class MatrixValue : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string?>>(
@@ -34,7 +38,11 @@ public sealed record class MatrixValue : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 

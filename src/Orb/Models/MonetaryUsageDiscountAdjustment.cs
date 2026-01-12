@@ -20,7 +20,11 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -28,6 +32,7 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
             >("adjustment_type");
@@ -40,7 +45,11 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -52,6 +61,7 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
         init
@@ -70,6 +80,7 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
                 ImmutableArray<MonetaryUsageDiscountAdjustmentFilter>
             >("filters");
@@ -89,7 +100,11 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return this._rawData.GetNotNullStruct<bool>("is_invoice_level"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_invoice_level");
+        }
         init { this._rawData.Set("is_invoice_level", value); }
     }
 
@@ -98,7 +113,11 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     /// </summary>
     public required string? Reason
     {
-        get { return this._rawData.GetNullableClass<string>("reason"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
         init { this._rawData.Set("reason", value); }
     }
 
@@ -108,7 +127,11 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return this._rawData.GetNullableClass<string>("replaces_adjustment_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_adjustment_id");
+        }
         init { this._rawData.Set("replaces_adjustment_id", value); }
     }
 
@@ -118,7 +141,11 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     /// </summary>
     public required double UsageDiscount
     {
-        get { return this._rawData.GetNotNullStruct<double>("usage_discount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("usage_discount");
+        }
         init { this._rawData.Set("usage_discount", value); }
     }
 
@@ -237,6 +264,7 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
             >("field");
@@ -251,6 +279,7 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
                 ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
             >("operator");
@@ -263,7 +292,11 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(

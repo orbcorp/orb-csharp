@@ -14,7 +14,11 @@ public sealed record class PriceListPageResponse : JsonModel
 {
     public required IReadOnlyList<Models::Price> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<Models::Price>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Models::Price>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<Models::Price>>(
@@ -28,6 +32,7 @@ public sealed record class PriceListPageResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<Models::PaginationMetadata>("pagination_metadata");
         }
         init { this._rawData.Set("pagination_metadata", value); }

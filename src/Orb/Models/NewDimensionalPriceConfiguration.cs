@@ -21,7 +21,11 @@ public sealed record class NewDimensionalPriceConfiguration : JsonModel
     /// </summary>
     public required IReadOnlyList<string> DimensionValues
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimension_values"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimension_values");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -36,7 +40,11 @@ public sealed record class NewDimensionalPriceConfiguration : JsonModel
     /// </summary>
     public string? DimensionalPriceGroupID
     {
-        get { return this._rawData.GetNullableClass<string>("dimensional_price_group_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("dimensional_price_group_id");
+        }
         init { this._rawData.Set("dimensional_price_group_id", value); }
     }
 
@@ -47,6 +55,7 @@ public sealed record class NewDimensionalPriceConfiguration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<string>("external_dimensional_price_group_id");
         }
         init { this._rawData.Set("external_dimensional_price_group_id", value); }

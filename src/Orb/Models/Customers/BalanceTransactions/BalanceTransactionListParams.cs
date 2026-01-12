@@ -39,7 +39,11 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -48,7 +52,11 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -62,25 +70,41 @@ public sealed record class BalanceTransactionListParams : ParamsBase
 
     public DateTimeOffset? OperationTimeGt
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gt]");
+        }
         init { this._rawQueryData.Set("operation_time[gt]", value); }
     }
 
     public DateTimeOffset? OperationTimeGte
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gte]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gte]");
+        }
         init { this._rawQueryData.Set("operation_time[gte]", value); }
     }
 
     public DateTimeOffset? OperationTimeLt
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lt]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lt]");
+        }
         init { this._rawQueryData.Set("operation_time[lt]", value); }
     }
 
     public DateTimeOffset? OperationTimeLte
     {
-        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lte]"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lte]");
+        }
         init { this._rawQueryData.Set("operation_time[lte]", value); }
     }
 

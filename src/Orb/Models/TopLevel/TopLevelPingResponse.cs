@@ -12,7 +12,11 @@ public sealed record class TopLevelPingResponse : JsonModel
 {
     public required string Response
     {
-        get { return this._rawData.GetNotNullClass<string>("response"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("response");
+        }
         init { this._rawData.Set("response", value); }
     }
 

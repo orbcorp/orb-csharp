@@ -14,13 +14,21 @@ public sealed record class PlanVersionPhase : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
     public required string? Description
     {
-        get { return this._rawData.GetNullableClass<string>("description"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
         init { this._rawData.Set("description", value); }
     }
 
@@ -30,7 +38,11 @@ public sealed record class PlanVersionPhase : JsonModel
     /// </summary>
     public required long? Duration
     {
-        get { return this._rawData.GetNullableStruct<long>("duration"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("duration");
+        }
         init { this._rawData.Set("duration", value); }
     }
 
@@ -38,6 +50,7 @@ public sealed record class PlanVersionPhase : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.Beta.DurationUnit>
             >("duration_unit");
@@ -47,7 +60,11 @@ public sealed record class PlanVersionPhase : JsonModel
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
@@ -56,7 +73,11 @@ public sealed record class PlanVersionPhase : JsonModel
     /// </summary>
     public required long Order
     {
-        get { return this._rawData.GetNotNullStruct<long>("order"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("order");
+        }
         init { this._rawData.Set("order", value); }
     }
 

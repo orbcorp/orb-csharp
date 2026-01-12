@@ -13,7 +13,11 @@ public sealed record class PriceEvaluateResponse : JsonModel
 {
     public required IReadOnlyList<EvaluatePriceGroup> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<EvaluatePriceGroup>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<EvaluatePriceGroup>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<EvaluatePriceGroup>>(

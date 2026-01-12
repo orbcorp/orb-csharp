@@ -19,6 +19,7 @@ public sealed record class CustomerHierarchyConfig : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<string>>("child_customer_ids");
         }
         init
@@ -41,7 +42,11 @@ public sealed record class CustomerHierarchyConfig : JsonModel
     /// </summary>
     public string? ParentCustomerID
     {
-        get { return this._rawData.GetNullableClass<string>("parent_customer_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("parent_customer_id");
+        }
         init { this._rawData.Set("parent_customer_id", value); }
     }
 

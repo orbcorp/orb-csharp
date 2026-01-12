@@ -23,19 +23,31 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
     public string? CustomerID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawQueryData.Set("customer_id", value); }
     }
 
     public string? ExternalCustomerID
     {
-        get { return this._rawQueryData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawQueryData.Set("external_customer_id", value); }
     }
 
@@ -44,7 +56,11 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -60,6 +76,7 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
             >("status");

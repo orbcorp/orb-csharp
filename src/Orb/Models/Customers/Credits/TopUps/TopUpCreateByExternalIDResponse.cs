@@ -19,7 +19,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -28,7 +32,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
@@ -38,7 +46,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
         init { this._rawData.Set("currency", value); }
     }
 
@@ -47,7 +59,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     /// </summary>
     public required TopUpInvoiceSettings InvoiceSettings
     {
-        get { return this._rawData.GetNotNullClass<TopUpInvoiceSettings>("invoice_settings"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<TopUpInvoiceSettings>("invoice_settings");
+        }
         init { this._rawData.Set("invoice_settings", value); }
     }
 
@@ -56,7 +72,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return this._rawData.GetNotNullClass<string>("per_unit_cost_basis"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("per_unit_cost_basis");
+        }
         init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
@@ -66,7 +86,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     /// </summary>
     public required string Threshold
     {
-        get { return this._rawData.GetNotNullClass<string>("threshold"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("threshold");
+        }
         init { this._rawData.Set("threshold", value); }
     }
 
@@ -76,7 +100,11 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return this._rawData.GetNullableStruct<long>("expires_after"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("expires_after");
+        }
         init { this._rawData.Set("expires_after", value); }
     }
 
@@ -87,6 +115,7 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<
                 ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
             >("expires_after_unit");

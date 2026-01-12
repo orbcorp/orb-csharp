@@ -15,7 +15,11 @@ public sealed record class CostListByExternalIDResponse : JsonModel
 {
     public required IReadOnlyList<AggregatedCost> Data
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<AggregatedCost>>("data"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<AggregatedCost>>("data");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<AggregatedCost>>(

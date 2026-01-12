@@ -12,37 +12,61 @@ public sealed record class AddressInput : JsonModel
 {
     public string? City
     {
-        get { return this._rawData.GetNullableClass<string>("city"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("city");
+        }
         init { this._rawData.Set("city", value); }
     }
 
     public string? Country
     {
-        get { return this._rawData.GetNullableClass<string>("country"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("country");
+        }
         init { this._rawData.Set("country", value); }
     }
 
     public string? Line1
     {
-        get { return this._rawData.GetNullableClass<string>("line1"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("line1");
+        }
         init { this._rawData.Set("line1", value); }
     }
 
     public string? Line2
     {
-        get { return this._rawData.GetNullableClass<string>("line2"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("line2");
+        }
         init { this._rawData.Set("line2", value); }
     }
 
     public string? PostalCode
     {
-        get { return this._rawData.GetNullableClass<string>("postal_code"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("postal_code");
+        }
         init { this._rawData.Set("postal_code", value); }
     }
 
     public string? State
     {
-        get { return this._rawData.GetNullableClass<string>("state"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("state");
+        }
         init { this._rawData.Set("state", value); }
     }
 

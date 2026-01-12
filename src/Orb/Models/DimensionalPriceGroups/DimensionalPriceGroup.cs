@@ -18,7 +18,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
 {
     public required string ID
     {
-        get { return this._rawData.GetNotNullClass<string>("id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
         init { this._rawData.Set("id", value); }
     }
 
@@ -29,7 +33,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required string BillableMetricID
     {
-        get { return this._rawData.GetNotNullClass<string>("billable_metric_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("billable_metric_id");
+        }
         init { this._rawData.Set("billable_metric_id", value); }
     }
 
@@ -38,7 +46,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimensions"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimensions");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<string>>(
@@ -55,6 +67,7 @@ public sealed record class DimensionalPriceGroup : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableClass<string>("external_dimensional_price_group_id");
         }
         init { this._rawData.Set("external_dimensional_price_group_id", value); }
@@ -68,7 +81,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
         init
         {
             this._rawData.Set<FrozenDictionary<string, string>>(
@@ -83,7 +100,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 

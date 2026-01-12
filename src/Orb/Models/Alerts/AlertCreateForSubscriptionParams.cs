@@ -40,7 +40,11 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds");
+        }
         init
         {
             this._rawBodyData.Set<ImmutableArray<Threshold>>(
@@ -57,6 +61,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<
                 ApiEnum<string, AlertCreateForSubscriptionParamsType>
             >("type");
@@ -69,7 +74,11 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public string? MetricID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("metric_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("metric_id");
+        }
         init { this._rawBodyData.Set("metric_id", value); }
     }
 

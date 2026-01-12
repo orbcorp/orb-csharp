@@ -13,19 +13,31 @@ public sealed record class CouponRedemption : JsonModel
 {
     public required string CouponID
     {
-        get { return this._rawData.GetNotNullClass<string>("coupon_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("coupon_id");
+        }
         init { this._rawData.Set("coupon_id", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
+        }
         init { this._rawData.Set("end_date", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
+        }
         init { this._rawData.Set("start_date", value); }
     }
 

@@ -17,37 +17,61 @@ public sealed record class TierSubLineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
         init { this._rawData.Set("amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping");
+        }
         init { this._rawData.Set("grouping", value); }
     }
 
     public required string Name
     {
-        get { return this._rawData.GetNotNullClass<string>("name"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
         init { this._rawData.Set("name", value); }
     }
 
     public required double Quantity
     {
-        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
         init { this._rawData.Set("quantity", value); }
     }
 
     public required TierConfig TierConfig
     {
-        get { return this._rawData.GetNotNullClass<TierConfig>("tier_config"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<TierConfig>("tier_config");
+        }
         init { this._rawData.Set("tier_config", value); }
     }
 
     public required ApiEnum<string, TierSubLineItemType> Type
     {
-        get { return this._rawData.GetNotNullClass<ApiEnum<string, TierSubLineItemType>>("type"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, TierSubLineItemType>>("type");
+        }
         init { this._rawData.Set("type", value); }
     }
 
@@ -99,19 +123,31 @@ public sealed record class TierConfig : JsonModel
 {
     public required double FirstUnit
     {
-        get { return this._rawData.GetNotNullStruct<double>("first_unit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("first_unit");
+        }
         init { this._rawData.Set("first_unit", value); }
     }
 
     public required double? LastUnit
     {
-        get { return this._rawData.GetNullableStruct<double>("last_unit"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("last_unit");
+        }
         init { this._rawData.Set("last_unit", value); }
     }
 
     public required string UnitAmount
     {
-        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
         init { this._rawData.Set("unit_amount", value); }
     }
 

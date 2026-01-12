@@ -16,7 +16,11 @@ public sealed record class BillingCycleConfiguration : JsonModel
 {
     public required long Duration
     {
-        get { return this._rawData.GetNotNullStruct<long>("duration"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("duration");
+        }
         init { this._rawData.Set("duration", value); }
     }
 
@@ -24,6 +28,7 @@ public sealed record class BillingCycleConfiguration : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, DurationUnit>>("duration_unit");
         }
         init { this._rawData.Set("duration_unit", value); }

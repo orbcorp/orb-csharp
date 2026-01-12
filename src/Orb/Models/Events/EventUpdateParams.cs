@@ -64,7 +64,11 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public required string EventName
     {
-        get { return this._rawBodyData.GetNotNullClass<string>("event_name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("event_name");
+        }
         init { this._rawBodyData.Set("event_name", value); }
     }
 
@@ -76,6 +80,7 @@ public sealed record class EventUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
@@ -96,7 +101,11 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timestamp"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timestamp");
+        }
         init { this._rawBodyData.Set("timestamp", value); }
     }
 
@@ -105,7 +114,11 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("customer_id");
+        }
         init { this._rawBodyData.Set("customer_id", value); }
     }
 
@@ -114,7 +127,11 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
+        }
         init { this._rawBodyData.Set("external_customer_id", value); }
     }
 

@@ -26,6 +26,7 @@ public sealed record class PlanVersion : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<ImmutableArray<PlanVersionAdjustment>>(
                 "adjustments"
             );
@@ -41,7 +42,11 @@ public sealed record class PlanVersion : JsonModel
 
     public required System::DateTimeOffset CreatedAt
     {
-        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
         init { this._rawData.Set("created_at", value); }
     }
 
@@ -49,6 +54,7 @@ public sealed record class PlanVersion : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNullableStruct<ImmutableArray<PlanVersionPhase>>("plan_phases");
         }
         init
@@ -66,7 +72,11 @@ public sealed record class PlanVersion : JsonModel
     /// </summary>
     public required IReadOnlyList<Models::Price> Prices
     {
-        get { return this._rawData.GetNotNullStruct<ImmutableArray<Models::Price>>("prices"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Models::Price>>("prices");
+        }
         init
         {
             this._rawData.Set<ImmutableArray<Models::Price>>(
@@ -78,7 +88,11 @@ public sealed record class PlanVersion : JsonModel
 
     public required long Version
     {
-        get { return this._rawData.GetNotNullStruct<long>("version"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("version");
+        }
         init { this._rawData.Set("version", value); }
     }
 

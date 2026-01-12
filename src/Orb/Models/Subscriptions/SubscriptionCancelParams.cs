@@ -80,6 +80,7 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<ApiEnum<string, CancelOption>>(
                 "cancel_option"
             );
@@ -94,7 +95,11 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     /// </summary>
     public bool? AllowInvoiceCreditOrVoid
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void");
+        }
         init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
@@ -106,6 +111,7 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableStruct<System::DateTimeOffset>("cancellation_date");
         }
         init { this._rawBodyData.Set("cancellation_date", value); }

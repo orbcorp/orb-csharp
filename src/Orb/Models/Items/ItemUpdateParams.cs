@@ -29,6 +29,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableStruct<ImmutableArray<ExternalConnection>>(
                 "external_connections"
             );
@@ -51,6 +52,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
@@ -66,7 +68,11 @@ public sealed record class ItemUpdateParams : ParamsBase
 
     public string? Name
     {
-        get { return this._rawBodyData.GetNullableClass<string>("name"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
         init { this._rawBodyData.Set("name", value); }
     }
 
@@ -162,6 +168,7 @@ public sealed record class ExternalConnection : JsonModel
     {
         get
         {
+            this._rawData.Freeze();
             return this._rawData.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
                 "external_connection_name"
             );
@@ -174,7 +181,11 @@ public sealed record class ExternalConnection : JsonModel
     /// </summary>
     public required string ExternalEntityID
     {
-        get { return this._rawData.GetNotNullClass<string>("external_entity_id"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_entity_id");
+        }
         init { this._rawData.Set("external_entity_id", value); }
     }
 

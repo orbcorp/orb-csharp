@@ -116,7 +116,11 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return this._rawQueryData.GetNullableClass<string>("currency"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("currency");
+        }
         init { this._rawQueryData.Set("currency", value); }
     }
 
@@ -127,6 +131,7 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_end");
         }
         init { this._rawQueryData.Set("timeframe_end", value); }
@@ -139,6 +144,7 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_start");
         }
         init { this._rawQueryData.Set("timeframe_start", value); }
@@ -153,6 +159,7 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     {
         get
         {
+            this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableClass<
                 ApiEnum<string, CostListByExternalIDParamsViewMode>
             >("view_mode");

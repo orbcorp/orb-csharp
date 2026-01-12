@@ -20,7 +20,11 @@ public sealed record class Threshold : JsonModel
     /// </summary>
     public required double Value
     {
-        get { return this._rawData.GetNotNullStruct<double>("value"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("value");
+        }
         init { this._rawData.Set("value", value); }
     }
 

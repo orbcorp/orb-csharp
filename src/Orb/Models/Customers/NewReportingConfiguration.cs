@@ -14,7 +14,11 @@ public sealed record class NewReportingConfiguration : JsonModel
 {
     public required bool Exempt
     {
-        get { return this._rawData.GetNotNullStruct<bool>("exempt"); }
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("exempt");
+        }
         init { this._rawData.Set("exempt", value); }
     }
 

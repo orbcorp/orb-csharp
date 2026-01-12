@@ -36,7 +36,11 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public InvoiceUpdateParamsDueDate? DueDate
     {
-        get { return this._rawBodyData.GetNullableClass<InvoiceUpdateParamsDueDate>("due_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<InvoiceUpdateParamsDueDate>("due_date");
+        }
         init { this._rawBodyData.Set("due_date", value); }
     }
 
@@ -45,7 +49,11 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public InvoiceDate? InvoiceDate
     {
-        get { return this._rawBodyData.GetNullableClass<InvoiceDate>("invoice_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<InvoiceDate>("invoice_date");
+        }
         init { this._rawBodyData.Set("invoice_date", value); }
     }
 
@@ -58,6 +66,7 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
@@ -81,7 +90,11 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return this._rawBodyData.GetNullableStruct<long>("net_terms"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("net_terms");
+        }
         init { this._rawBodyData.Set("net_terms", value); }
     }
 

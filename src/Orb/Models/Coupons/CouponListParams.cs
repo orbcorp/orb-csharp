@@ -24,7 +24,11 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
         init { this._rawQueryData.Set("cursor", value); }
     }
 
@@ -33,7 +37,11 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
         init
         {
             if (value == null)
@@ -50,7 +58,11 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public string? RedemptionCode
     {
-        get { return this._rawQueryData.GetNullableClass<string>("redemption_code"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("redemption_code");
+        }
         init { this._rawQueryData.Set("redemption_code", value); }
     }
 
@@ -59,7 +71,11 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public bool? ShowArchived
     {
-        get { return this._rawQueryData.GetNullableStruct<bool>("show_archived"); }
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("show_archived");
+        }
         init { this._rawQueryData.Set("show_archived", value); }
     }
 

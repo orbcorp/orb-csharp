@@ -28,6 +28,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
+            this._rawBodyData.Freeze();
             return this._rawBodyData.GetNotNullClass<ApiEnum<string, ChangeOption>>(
                 "change_option"
             );
@@ -42,7 +43,11 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// </summary>
     public bool? AllowInvoiceCreditOrVoid
     {
-        get { return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void");
+        }
         init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
@@ -52,7 +57,11 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// </summary>
     public System::DateTimeOffset? ChangeDate
     {
-        get { return this._rawBodyData.GetNullableStruct<System::DateTimeOffset>("change_date"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<System::DateTimeOffset>("change_date");
+        }
         init { this._rawBodyData.Set("change_date", value); }
     }
 
@@ -61,7 +70,11 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// </summary>
     public string? CouponID
     {
-        get { return this._rawBodyData.GetNullableClass<string>("coupon_id"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("coupon_id");
+        }
         init { this._rawBodyData.Set("coupon_id", value); }
     }
 
@@ -70,7 +83,11 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// </summary>
     public string? CouponRedemptionCode
     {
-        get { return this._rawBodyData.GetNullableClass<string>("coupon_redemption_code"); }
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("coupon_redemption_code");
+        }
         init { this._rawBodyData.Set("coupon_redemption_code", value); }
     }
 
