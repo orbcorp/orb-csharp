@@ -105,15 +105,12 @@ public sealed class CustomerService : ICustomerService
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
+    public Task Delete(
         CustomerDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Delete(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -184,15 +181,12 @@ public sealed class CustomerService : ICustomerService
     }
 
     /// <inheritdoc/>
-    public async Task SyncPaymentMethodsFromGateway(
+    public Task SyncPaymentMethodsFromGateway(
         CustomerSyncPaymentMethodsFromGatewayParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.SyncPaymentMethodsFromGateway(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.SyncPaymentMethodsFromGateway(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -215,18 +209,15 @@ public sealed class CustomerService : ICustomerService
     }
 
     /// <inheritdoc/>
-    public async Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
+    public Task SyncPaymentMethodsFromGatewayByExternalCustomerID(
         CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.SyncPaymentMethodsFromGatewayByExternalCustomerID(
-                parameters,
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.SyncPaymentMethodsFromGatewayByExternalCustomerID(
+            parameters,
+            cancellationToken
+        );
     }
 
     /// <inheritdoc/>

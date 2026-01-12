@@ -81,15 +81,9 @@ public sealed class TopUpService : ITopUpService
     }
 
     /// <inheritdoc/>
-    public async Task Delete(
-        TopUpDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    )
+    public Task Delete(TopUpDeleteParams parameters, CancellationToken cancellationToken = default)
     {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Delete(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -132,15 +126,12 @@ public sealed class TopUpService : ITopUpService
     }
 
     /// <inheritdoc/>
-    public async Task DeleteByExternalID(
+    public Task DeleteByExternalID(
         TopUpDeleteByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.DeleteByExternalID(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.DeleteByExternalID(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
