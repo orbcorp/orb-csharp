@@ -61,7 +61,7 @@ public sealed record class EventSearchResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public EventSearchResponse(List<Data> data)
+    public EventSearchResponse(IReadOnlyList<Data> data)
         : this()
     {
         this.Data = data;

@@ -64,7 +64,7 @@ public sealed record class PriceEvaluateMultipleResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public PriceEvaluateMultipleResponse(List<Data> data)
+    public PriceEvaluateMultipleResponse(IReadOnlyList<Data> data)
         : this()
     {
         this.Data = data;

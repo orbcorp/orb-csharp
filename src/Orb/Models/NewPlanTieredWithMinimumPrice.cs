@@ -560,7 +560,7 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig 
 
     [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
-        List<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> tiers
+        IReadOnlyList<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> tiers
     )
         : this()
     {

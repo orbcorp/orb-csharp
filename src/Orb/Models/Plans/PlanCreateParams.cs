@@ -4416,7 +4416,7 @@ public sealed record class TieredWithProrationConfig : JsonModel
 
     [SetsRequiredMembers]
     public TieredWithProrationConfig(
-        List<global::Orb.Models.Plans.TieredWithProrationConfigTier> tiers
+        IReadOnlyList<global::Orb.Models.Plans.TieredWithProrationConfigTier> tiers
     )
         : this()
     {

@@ -70,7 +70,7 @@ public sealed record class SubscriptionFetchCostsResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public SubscriptionFetchCostsResponse(List<AggregatedCost> data)
+    public SubscriptionFetchCostsResponse(IReadOnlyList<AggregatedCost> data)
         : this()
     {
         this.Data = data;

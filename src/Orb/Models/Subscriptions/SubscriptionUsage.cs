@@ -313,7 +313,7 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
     }
 
     [SetsRequiredMembers]
-    public UngroupedSubscriptionUsage(List<Data> data)
+    public UngroupedSubscriptionUsage(IReadOnlyList<Data> data)
         : this()
     {
         this.Data = data;
@@ -659,7 +659,7 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
     }
 
     [SetsRequiredMembers]
-    public GroupedSubscriptionUsage(List<GroupedSubscriptionUsageData> data)
+    public GroupedSubscriptionUsage(IReadOnlyList<GroupedSubscriptionUsageData> data)
         : this()
     {
         this.Data = data;

@@ -63,7 +63,7 @@ public sealed record class SubLineItemMatrixConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public SubLineItemMatrixConfig(List<string?> dimensionValues)
+    public SubLineItemMatrixConfig(IReadOnlyList<string?> dimensionValues)
         : this()
     {
         this.DimensionValues = dimensionValues;

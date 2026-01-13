@@ -84,7 +84,7 @@ public sealed record class EventIngestResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public EventIngestResponse(List<ValidationFailed> validationFailed)
+    public EventIngestResponse(IReadOnlyList<ValidationFailed> validationFailed)
         : this()
     {
         this.ValidationFailed = validationFailed;

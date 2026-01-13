@@ -98,7 +98,7 @@ public sealed record class NewDimensionalPriceConfiguration : JsonModel
     }
 
     [SetsRequiredMembers]
-    public NewDimensionalPriceConfiguration(List<string> dimensionValues)
+    public NewDimensionalPriceConfiguration(IReadOnlyList<string> dimensionValues)
         : this()
     {
         this.DimensionValues = dimensionValues;
