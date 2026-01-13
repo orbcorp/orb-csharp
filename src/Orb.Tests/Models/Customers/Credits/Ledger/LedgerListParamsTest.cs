@@ -182,7 +182,7 @@ public class LedgerListParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/customers/customer_id/credits/ledger?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117Z&currency=currency&cursor=cursor&entry_status=committed&entry_type=increment&limit=1&minimum_amount=minimum_amount"
+                "https://api.withorb.com/v1/customers/customer_id/credits/ledger?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&currency=currency&cursor=cursor&entry_status=committed&entry_type=increment&limit=1&minimum_amount=minimum_amount"
             ),
             url
         );
