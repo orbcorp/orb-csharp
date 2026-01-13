@@ -99,14 +99,14 @@ public class VolumeListParamsTest : TestBase
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Cursor = "cursor",
             Limit = 1,
-            TimeframeEnd = DateTimeOffset.Parse("2024-10-11T06:00:00Z"),
+            TimeframeEnd = DateTimeOffset.Parse("2024-10-11T06:00:00+00:00"),
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/events/volume?timeframe_start=2019-12-27T18%3a11%3a19.117Z&cursor=cursor&limit=1&timeframe_end=2024-10-11T06%3a00%3a00Z"
+                "https://api.withorb.com/v1/events/volume?timeframe_start=2019-12-27T18%3a11%3a19.117Z&cursor=cursor&limit=1&timeframe_end=2024-10-11T06%3a00%3a00%2b00%3a00"
             ),
             url
         );

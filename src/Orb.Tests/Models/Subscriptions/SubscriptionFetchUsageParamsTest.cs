@@ -133,8 +133,8 @@ public class SubscriptionFetchUsageParamsTest : TestBase
             GroupBy = "group_by",
             SecondDimensionKey = "second_dimension_key",
             SecondDimensionValue = "second_dimension_value",
-            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
-            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00+00:00"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00+00:00"),
             ViewMode = SubscriptionFetchUsageParamsViewMode.Periodic,
         };
 
@@ -142,7 +142,7 @@ public class SubscriptionFetchUsageParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/subscriptions/subscription_id/usage?billable_metric_id=billable_metric_id&first_dimension_key=first_dimension_key&first_dimension_value=first_dimension_value&granularity=day&group_by=group_by&second_dimension_key=second_dimension_key&second_dimension_value=second_dimension_value&timeframe_end=2022-03-01T05%3a00%3a00Z&timeframe_start=2022-02-01T05%3a00%3a00Z&view_mode=periodic"
+                "https://api.withorb.com/v1/subscriptions/subscription_id/usage?billable_metric_id=billable_metric_id&first_dimension_key=first_dimension_key&first_dimension_value=first_dimension_value&granularity=day&group_by=group_by&second_dimension_key=second_dimension_key&second_dimension_value=second_dimension_value&timeframe_end=2022-03-01T05%3a00%3a00%2b00%3a00&timeframe_start=2022-02-01T05%3a00%3a00%2b00%3a00&view_mode=periodic"
             ),
             url
         );

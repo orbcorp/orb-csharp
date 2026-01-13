@@ -78,8 +78,8 @@ public class CostListParamsTest : TestBase
         {
             CustomerID = "customer_id",
             Currency = "currency",
-            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
-            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00+00:00"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00+00:00"),
             ViewMode = ViewMode.Periodic,
         };
 
@@ -87,7 +87,7 @@ public class CostListParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/customers/customer_id/costs?currency=currency&timeframe_end=2022-03-01T05%3a00%3a00Z&timeframe_start=2022-02-01T05%3a00%3a00Z&view_mode=periodic"
+                "https://api.withorb.com/v1/customers/customer_id/costs?currency=currency&timeframe_end=2022-03-01T05%3a00%3a00%2b00%3a00&timeframe_start=2022-02-01T05%3a00%3a00%2b00%3a00&view_mode=periodic"
             ),
             url
         );
