@@ -13,25 +13,23 @@ public class SubscriptionUsageTest : TestBase
     [Fact]
     public void UngroupedValidationWorks()
     {
-        SubscriptionUsage value = new(
-            new UngroupedSubscriptionUsage(
-                [
-                    new()
-                    {
-                        BillableMetric = new() { ID = "id", Name = "name" },
-                        Usage =
-                        [
-                            new()
-                            {
-                                Quantity = 0,
-                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            },
-                        ],
-                        ViewMode = DataViewMode.Periodic,
-                    },
-                ]
-            )
+        SubscriptionUsage value = new UngroupedSubscriptionUsage(
+            [
+                new()
+                {
+                    BillableMetric = new() { ID = "id", Name = "name" },
+                    Usage =
+                    [
+                        new()
+                        {
+                            Quantity = 0,
+                            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    ViewMode = DataViewMode.Periodic,
+                },
+            ]
         );
         value.Validate();
     }
@@ -39,59 +37,55 @@ public class SubscriptionUsageTest : TestBase
     [Fact]
     public void GroupedValidationWorks()
     {
-        SubscriptionUsage value = new(
-            new GroupedSubscriptionUsage()
-            {
-                Data =
-                [
-                    new()
+        SubscriptionUsage value = new GroupedSubscriptionUsage()
+        {
+            Data =
+            [
+                new()
+                {
+                    BillableMetric = new() { ID = "id", Name = "name" },
+                    MetricGroup = new()
                     {
-                        BillableMetric = new() { ID = "id", Name = "name" },
-                        MetricGroup = new()
-                        {
-                            PropertyKey = "property_key",
-                            PropertyValue = "property_value",
-                        },
-                        Usage =
-                        [
-                            new()
-                            {
-                                Quantity = 0,
-                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            },
-                        ],
-                        ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                        PropertyKey = "property_key",
+                        PropertyValue = "property_value",
                     },
-                ],
-                PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
-            }
-        );
+                    Usage =
+                    [
+                        new()
+                        {
+                            Quantity = 0,
+                            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
         value.Validate();
     }
 
     [Fact]
     public void UngroupedSerializationRoundtripWorks()
     {
-        SubscriptionUsage value = new(
-            new UngroupedSubscriptionUsage(
-                [
-                    new()
-                    {
-                        BillableMetric = new() { ID = "id", Name = "name" },
-                        Usage =
-                        [
-                            new()
-                            {
-                                Quantity = 0,
-                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            },
-                        ],
-                        ViewMode = DataViewMode.Periodic,
-                    },
-                ]
-            )
+        SubscriptionUsage value = new UngroupedSubscriptionUsage(
+            [
+                new()
+                {
+                    BillableMetric = new() { ID = "id", Name = "name" },
+                    Usage =
+                    [
+                        new()
+                        {
+                            Quantity = 0,
+                            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    ViewMode = DataViewMode.Periodic,
+                },
+            ]
         );
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(element);
@@ -102,34 +96,32 @@ public class SubscriptionUsageTest : TestBase
     [Fact]
     public void GroupedSerializationRoundtripWorks()
     {
-        SubscriptionUsage value = new(
-            new GroupedSubscriptionUsage()
-            {
-                Data =
-                [
-                    new()
+        SubscriptionUsage value = new GroupedSubscriptionUsage()
+        {
+            Data =
+            [
+                new()
+                {
+                    BillableMetric = new() { ID = "id", Name = "name" },
+                    MetricGroup = new()
                     {
-                        BillableMetric = new() { ID = "id", Name = "name" },
-                        MetricGroup = new()
-                        {
-                            PropertyKey = "property_key",
-                            PropertyValue = "property_value",
-                        },
-                        Usage =
-                        [
-                            new()
-                            {
-                                Quantity = 0,
-                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            },
-                        ],
-                        ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                        PropertyKey = "property_key",
+                        PropertyValue = "property_value",
                     },
-                ],
-                PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
-            }
-        );
+                    Usage =
+                    [
+                        new()
+                        {
+                            Quantity = 0,
+                            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(element);
 

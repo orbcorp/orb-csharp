@@ -841,20 +841,19 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -868,21 +867,19 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig>(
@@ -895,7 +892,7 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -909,8 +906,7 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig>(

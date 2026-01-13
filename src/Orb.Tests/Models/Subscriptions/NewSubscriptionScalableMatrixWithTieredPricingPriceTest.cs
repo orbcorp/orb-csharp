@@ -1342,13 +1342,11 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -1356,22 +1354,20 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -1379,13 +1375,11 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig>(
@@ -1399,22 +1393,20 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig>(

@@ -91,28 +91,28 @@ public class GroupingValueTest : TestBase
     [Fact]
     public void StringValidationWorks()
     {
-        GroupingValue value = new("string");
+        GroupingValue value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        GroupingValue value = new(0);
+        GroupingValue value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        GroupingValue value = new(true);
+        GroupingValue value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        GroupingValue value = new("string");
+        GroupingValue value = "string";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<GroupingValue>(element);
 
@@ -122,7 +122,7 @@ public class GroupingValueTest : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        GroupingValue value = new(0);
+        GroupingValue value = 0;
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<GroupingValue>(element);
 
@@ -132,7 +132,7 @@ public class GroupingValueTest : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        GroupingValue value = new(true);
+        GroupingValue value = true;
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<GroupingValue>(element);
 

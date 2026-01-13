@@ -1032,20 +1032,19 @@ public class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigTest : Tes
     [Fact]
     public void UnitValidationWorks()
     {
-        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value = new(
+        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value = new(
+        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1059,21 +1058,19 @@ public class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value = new(
+        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig>(
@@ -1086,7 +1083,7 @@ public class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigTest : Tes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value = new(
+        NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1100,8 +1097,7 @@ public class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig>(

@@ -873,20 +873,19 @@ public class NewSubscriptionBulkWithProrationPriceConversionRateConfigTest : Tes
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -900,21 +899,19 @@ public class NewSubscriptionBulkWithProrationPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig>(
@@ -927,7 +924,7 @@ public class NewSubscriptionBulkWithProrationPriceConversionRateConfigTest : Tes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -941,8 +938,7 @@ public class NewSubscriptionBulkWithProrationPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig>(

@@ -1716,169 +1716,157 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void NewPercentageDiscountValidationWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewPercentageDiscount()
-            {
-                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
-                PercentageDiscount = 0,
-                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewPercentageDiscountFilterField.PriceID,
-                        Operator = NewPercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewPercentageDiscount()
+        {
+            AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+            PercentageDiscount = 0,
+            AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewPercentageDiscountFilterField.PriceID,
+                    Operator = NewPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewPercentageDiscountPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewUsageDiscountValidationWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewUsageDiscount()
-            {
-                AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
-                UsageDiscount = 0,
-                AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewUsageDiscountFilterField.PriceID,
-                        Operator = NewUsageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewUsageDiscount()
+        {
+            AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
+            UsageDiscount = 0,
+            AppliesToAll = NewUsageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewUsageDiscountFilterField.PriceID,
+                    Operator = NewUsageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewUsageDiscountPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewAmountDiscountValidationWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewAmountDiscount()
-            {
-                AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
-                AmountDiscount = "amount_discount",
-                AppliesToAll = AppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewAmountDiscountFilterField.PriceID,
-                        Operator = NewAmountDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = PriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewAmountDiscount()
+        {
+            AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewMinimumValidationWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewMinimum()
-            {
-                AdjustmentType = NewMinimumAdjustmentType.Minimum,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMinimumFilterField.PriceID,
-                        Operator = NewMinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewMinimum()
+        {
+            AdjustmentType = NewMinimumAdjustmentType.Minimum,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            AppliesToAll = NewMinimumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMinimumPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewMaximumValidationWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewMaximum()
-            {
-                AdjustmentType = NewMaximumAdjustmentType.Maximum,
-                MaximumAmount = "maximum_amount",
-                AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMaximumFilterField.PriceID,
-                        Operator = NewMaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewMaximum()
+        {
+            AdjustmentType = NewMaximumAdjustmentType.Maximum,
+            MaximumAmount = "maximum_amount",
+            AppliesToAll = NewMaximumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMaximumPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewPercentageDiscount()
-            {
-                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
-                PercentageDiscount = 0,
-                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewPercentageDiscountFilterField.PriceID,
-                        Operator = NewPercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewPercentageDiscount()
+        {
+            AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+            PercentageDiscount = 0,
+            AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewPercentageDiscountFilterField.PriceID,
+                    Operator = NewPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewPercentageDiscountPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Adjustment>(element);
 
@@ -1888,28 +1876,26 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void NewUsageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewUsageDiscount()
-            {
-                AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
-                UsageDiscount = 0,
-                AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewUsageDiscountFilterField.PriceID,
-                        Operator = NewUsageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewUsageDiscount()
+        {
+            AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
+            UsageDiscount = 0,
+            AppliesToAll = NewUsageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewUsageDiscountFilterField.PriceID,
+                    Operator = NewUsageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewUsageDiscountPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Adjustment>(element);
 
@@ -1919,28 +1905,26 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void NewAmountDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewAmountDiscount()
-            {
-                AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
-                AmountDiscount = "amount_discount",
-                AppliesToAll = AppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewAmountDiscountFilterField.PriceID,
-                        Operator = NewAmountDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = PriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewAmountDiscount()
+        {
+            AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Adjustment>(element);
 
@@ -1950,29 +1934,27 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void NewMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewMinimum()
-            {
-                AdjustmentType = NewMinimumAdjustmentType.Minimum,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMinimumFilterField.PriceID,
-                        Operator = NewMinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewMinimum()
+        {
+            AdjustmentType = NewMinimumAdjustmentType.Minimum,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            AppliesToAll = NewMinimumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMinimumPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Adjustment>(element);
 
@@ -1982,28 +1964,26 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void NewMaximumSerializationRoundtripWorks()
     {
-        Subscriptions::Adjustment value = new(
-            new NewMaximum()
-            {
-                AdjustmentType = NewMaximumAdjustmentType.Maximum,
-                MaximumAmount = "maximum_amount",
-                AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMaximumFilterField.PriceID,
-                        Operator = NewMaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+        Subscriptions::Adjustment value = new NewMaximum()
+        {
+            AdjustmentType = NewMaximumAdjustmentType.Maximum,
+            MaximumAmount = "maximum_amount",
+            AppliesToAll = NewMaximumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMaximumPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Adjustment>(element);
 
@@ -2658,539 +2638,516 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionUnitPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionUnitPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+            Name = "Annual fee",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
-                Name = "Annual fee",
-                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionTieredPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionTieredPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
+            Name = "Annual fee",
+            TieredConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
-                Name = "Annual fee",
-                TieredConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ],
-                    Prorated = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionBulkPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionBulkPrice()
+        {
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::ModelType.Bulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-                Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::ModelType.Bulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void BulkWithFiltersValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::BulkWithFilters()
+        Subscriptions::Price value = new Subscriptions::BulkWithFilters()
+        {
+            BulkWithFiltersConfig = new()
             {
-                BulkWithFiltersConfig = new()
-                {
-                    Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-                    Tiers =
-                    [
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                    ],
-                },
-                Cadence = Subscriptions::Cadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            Cadence = Subscriptions::Cadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
+            Name = "Annual fee",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
-                Name = "Annual fee",
-                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMatrixPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMatrixPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixConfig = new()
-                {
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionThresholdTotalAmountValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            Name = "Annual fee",
+            ThresholdTotalAmountConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
-                Name = "Annual fee",
-                ThresholdTotalAmountConfig = new()
-                {
-                    ConsumptionTable =
-                    [
-                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
-                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
-                    ],
-                    Prorate = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                ConsumptionTable =
+                [
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                ],
+                Prorate = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionTieredPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionTieredPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPackagePriceModelType.TieredPackage,
+            Name = "Annual fee",
+            TieredPackageConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionTieredPackagePriceModelType.TieredPackage,
-                Name = "Annual fee",
-                TieredPackageConfig = new()
-                {
-                    PackageSize = "package_size",
-                    Tiers =
-                    [
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                    ],
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredWithMinimumValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            Name = "Annual fee",
+            TieredWithMinimumConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
-                Name = "Annual fee",
-                TieredWithMinimumConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            MinimumAmount = "minimum_amount",
-                            TierLowerBound = "tier_lower_bound",
-                            UnitAmount = "unit_amount",
-                        },
-                        new()
-                        {
-                            MinimumAmount = "minimum_amount",
-                            TierLowerBound = "tier_lower_bound",
-                            UnitAmount = "unit_amount",
-                        },
-                    ],
-                    HideZeroAmountTiers = true,
-                    Prorate = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                HideZeroAmountTiers = true,
+                Prorate = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionGroupedTieredPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionGroupedTieredPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
+            GroupedTieredConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
-                GroupedTieredConfig = new()
-                {
-                    GroupingKey = "x",
-                    Tiers =
-                    [
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                    ],
-                },
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionGroupedTieredPriceModelType.GroupedTiered,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionGroupedTieredPriceModelType.GroupedTiered,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumValidationWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -3247,368 +3204,349 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageWithAllocationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            Name = "Annual fee",
+            PackageWithAllocationConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
-                Name = "Annual fee",
-                PackageWithAllocationConfig = new()
-                {
-                    Allocation = "allocation",
-                    PackageAmount = "package_amount",
-                    PackageSize = "package_size",
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Allocation = "allocation",
+                PackageAmount = "package_amount",
+                PackageSize = "package_size",
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithPercentValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionUnitWithPercentPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionUnitWithPercentPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            Name = "Annual fee",
+            UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
-                Name = "Annual fee",
-                UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithAllocationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixWithAllocationConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixWithAllocationConfig = new()
-                {
-                    Allocation = "allocation",
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType =
-                    Subscriptions::NewSubscriptionMatrixWithAllocationPriceModelType.MatrixWithAllocation,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Allocation = "allocation",
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithAllocationPriceModelType.MatrixWithAllocation,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void TieredWithProrationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::TieredWithProration()
+        Subscriptions::Price value = new Subscriptions::TieredWithProration()
+        {
+            Cadence = Subscriptions::TieredWithProrationCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            TieredWithProrationConfig = new(
+                [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+            ),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::TieredWithProrationCadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                TieredWithProrationConfig = new(
-                    [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
-                ),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithProrationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionUnitWithProrationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionUnitWithProrationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionUnitWithProrationPriceModelType.UnitWithProration,
+            Name = "Annual fee",
+            UnitWithProrationConfig = new("unit_amount"),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionUnitWithProrationPriceModelType.UnitWithProration,
-                Name = "Annual fee",
-                UnitWithProrationConfig = new("unit_amount"),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedAllocationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionGroupedAllocationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionGroupedAllocationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            GroupedAllocationConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
-                GroupedAllocationConfig = new()
-                {
-                    Allocation = "allocation",
-                    GroupingKey = "x",
-                    OverageUnitRate = "overage_unit_rate",
-                },
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Allocation = "allocation",
+                GroupingKey = "x",
+                OverageUnitRate = "overage_unit_rate",
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkWithProrationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionBulkWithProrationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionBulkWithProrationPrice()
+        {
+            BulkWithProrationConfig = new(
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ]
+            ),
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkWithProrationConfig = new(
-                    [
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                    ]
-                ),
-                Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumValidationWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -3653,15 +3591,14 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumValidationWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -3719,237 +3656,228 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void GroupedWithMinMaxThresholdsValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::GroupedWithMinMaxThresholds()
+        Subscriptions::Price value = new Subscriptions::GroupedWithMinMaxThresholds()
+        {
+            Cadence = Subscriptions::GroupedWithMinMaxThresholdsCadence.Annual,
+            GroupedWithMinMaxThresholdsConfig = new()
             {
-                Cadence = Subscriptions::GroupedWithMinMaxThresholdsCadence.Annual,
-                GroupedWithMinMaxThresholdsConfig = new()
-                {
-                    GroupingKey = "x",
-                    MaximumCharge = "maximum_charge",
-                    MinimumCharge = "minimum_charge",
-                    PerUnitRate = "per_unit_rate",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixWithDisplayNameConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixWithDisplayNameConfig = new()
-                {
-                    Dimension = "dimension",
-                    UnitAmounts =
-                    [
-                        new()
-                        {
-                            DimensionValue = "dimension_value",
-                            DisplayName = "display_name",
-                            UnitAmount = "unit_amount",
-                        },
-                    ],
-                },
-                ModelType =
-                    Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Dimension = "dimension",
+                UnitAmounts =
+                [
+                    new()
+                    {
+                        DimensionValue = "dimension_value",
+                        DisplayName = "display_name",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredPackageValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            GroupedTieredPackageConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
-                GroupedTieredPackageConfig = new()
-                {
-                    GroupingKey = "x",
-                    PackageSize = "package_size",
-                    Tiers =
-                    [
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                    ],
-                },
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            MaxGroupTieredPackageConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                MaxGroupTieredPackageConfig = new()
-                {
-                    GroupingKey = "x",
-                    PackageSize = "package_size",
-                    Tiers =
-                    [
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType =
-                    Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceModelType.MaxGroupTieredPackage,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceModelType.MaxGroupTieredPackage,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingValidationWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -4004,15 +3932,14 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingValidationWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -4070,305 +3997,292 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            CumulativeGroupedBulkConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
-                CumulativeGroupedBulkConfig = new()
-                {
-                    DimensionValues =
-                    [
-                        new()
-                        {
-                            GroupingKey = "x",
-                            TierLowerBound = "tier_lower_bound",
-                            UnitAmount = "unit_amount",
-                        },
-                    ],
-                    Group = "group",
-                },
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                DimensionValues =
+                [
+                    new()
+                    {
+                        GroupingKey = "x",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                Group = "group",
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void CumulativeGroupedAllocationValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::CumulativeGroupedAllocation()
+        Subscriptions::Price value = new Subscriptions::CumulativeGroupedAllocation()
+        {
+            Cadence = Subscriptions::CumulativeGroupedAllocationCadence.Annual,
+            CumulativeGroupedAllocationConfig = new()
             {
-                Cadence = Subscriptions::CumulativeGroupedAllocationCadence.Annual,
-                CumulativeGroupedAllocationConfig = new()
-                {
-                    CumulativeAllocation = "cumulative_allocation",
-                    GroupAllocation = "group_allocation",
-                    GroupingKey = "x",
-                    UnitAmount = "unit_amount",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMinimumCompositePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMinimumCompositePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
+            ItemID = "item_id",
+            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
-                ItemID = "item_id",
-                MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-                ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void PercentValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::Percent()
+        Subscriptions::Price value = new Subscriptions::Percent()
+        {
+            Cadence = Subscriptions::PercentCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::PercentCadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                PercentConfig = new(0),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void EventOutputValidationWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::EventOutput()
+        Subscriptions::Price value = new Subscriptions::EventOutput()
+        {
+            Cadence = Subscriptions::EventOutputCadence.Annual,
+            EventOutputConfig = new()
             {
-                Cadence = Subscriptions::EventOutputCadence.Annual,
-                EventOutputConfig = new()
-                {
-                    UnitRatingKey = "x",
-                    DefaultUnitRate = "default_unit_rate",
-                    GroupingKey = "grouping_key",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionUnitPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionUnitPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+            Name = "Annual fee",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
-                Name = "Annual fee",
-                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4378,58 +4292,56 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionTieredPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionTieredPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
+            Name = "Annual fee",
+            TieredConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
-                Name = "Annual fee",
-                TieredConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ],
-                    Prorated = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4439,46 +4351,44 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionBulkSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionBulkPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionBulkPrice()
+        {
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::ModelType.Bulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-                Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::ModelType.Bulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4488,53 +4398,51 @@ public class PriceTest : TestBase
     [Fact]
     public void BulkWithFiltersSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::BulkWithFilters()
+        Subscriptions::Price value = new Subscriptions::BulkWithFilters()
+        {
+            BulkWithFiltersConfig = new()
             {
-                BulkWithFiltersConfig = new()
-                {
-                    Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-                    Tiers =
-                    [
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                    ],
-                },
-                Cadence = Subscriptions::Cadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            Cadence = Subscriptions::Cadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4544,46 +4452,44 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionPackageSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
+            Name = "Annual fee",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
-                Name = "Annual fee",
-                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4593,54 +4499,49 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMatrixPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMatrixPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixConfig = new()
-                {
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4650,55 +4551,53 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionThresholdTotalAmountSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            Name = "Annual fee",
+            ThresholdTotalAmountConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
-                Name = "Annual fee",
-                ThresholdTotalAmountConfig = new()
-                {
-                    ConsumptionTable =
-                    [
-                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
-                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
-                    ],
-                    Prorate = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                ConsumptionTable =
+                [
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                ],
+                Prorate = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4708,54 +4607,52 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionTieredPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionTieredPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPackagePriceModelType.TieredPackage,
+            Name = "Annual fee",
+            TieredPackageConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionTieredPackagePriceModelType.TieredPackage,
-                Name = "Annual fee",
-                TieredPackageConfig = new()
-                {
-                    PackageSize = "package_size",
-                    Tiers =
-                    [
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                    ],
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4765,66 +4662,64 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            Name = "Annual fee",
+            TieredWithMinimumConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
-                Name = "Annual fee",
-                TieredWithMinimumConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            MinimumAmount = "minimum_amount",
-                            TierLowerBound = "tier_lower_bound",
-                            UnitAmount = "unit_amount",
-                        },
-                        new()
-                        {
-                            MinimumAmount = "minimum_amount",
-                            TierLowerBound = "tier_lower_bound",
-                            UnitAmount = "unit_amount",
-                        },
-                    ],
-                    HideZeroAmountTiers = true,
-                    Prorate = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                HideZeroAmountTiers = true,
+                Prorate = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4834,54 +4729,52 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedTieredSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionGroupedTieredPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionGroupedTieredPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
+            GroupedTieredConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
-                GroupedTieredConfig = new()
-                {
-                    GroupingKey = "x",
-                    Tiers =
-                    [
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                    ],
-                },
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionGroupedTieredPriceModelType.GroupedTiered,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionGroupedTieredPriceModelType.GroupedTiered,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4891,7 +4784,7 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -4948,8 +4841,7 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -4959,52 +4851,50 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionPackageWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            Name = "Annual fee",
+            PackageWithAllocationConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
-                Name = "Annual fee",
-                PackageWithAllocationConfig = new()
-                {
-                    Allocation = "allocation",
-                    PackageAmount = "package_amount",
-                    PackageSize = "package_size",
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Allocation = "allocation",
+                PackageAmount = "package_amount",
+                PackageSize = "package_size",
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5014,47 +4904,44 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitWithPercentSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionUnitWithPercentPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionUnitWithPercentPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            Name = "Annual fee",
+            UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
-                Name = "Annual fee",
-                UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5064,56 +4951,51 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixWithAllocationConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixWithAllocationConfig = new()
-                {
-                    Allocation = "allocation",
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType =
-                    Subscriptions::NewSubscriptionMatrixWithAllocationPriceModelType.MatrixWithAllocation,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Allocation = "allocation",
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithAllocationPriceModelType.MatrixWithAllocation,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5123,47 +5005,45 @@ public class PriceTest : TestBase
     [Fact]
     public void TieredWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::TieredWithProration()
+        Subscriptions::Price value = new Subscriptions::TieredWithProration()
+        {
+            Cadence = Subscriptions::TieredWithProrationCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            TieredWithProrationConfig = new(
+                [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+            ),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::TieredWithProrationCadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                TieredWithProrationConfig = new(
-                    [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
-                ),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5173,47 +5053,45 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionUnitWithProrationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionUnitWithProrationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionUnitWithProrationPriceModelType.UnitWithProration,
+            Name = "Annual fee",
+            UnitWithProrationConfig = new("unit_amount"),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionUnitWithProrationPriceModelType.UnitWithProration,
-                Name = "Annual fee",
-                UnitWithProrationConfig = new("unit_amount"),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5223,52 +5101,50 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionGroupedAllocationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionGroupedAllocationPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            GroupedAllocationConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
-                GroupedAllocationConfig = new()
-                {
-                    Allocation = "allocation",
-                    GroupingKey = "x",
-                    OverageUnitRate = "overage_unit_rate",
-                },
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Allocation = "allocation",
+                GroupingKey = "x",
+                OverageUnitRate = "overage_unit_rate",
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5278,52 +5154,50 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionBulkWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionBulkWithProrationPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionBulkWithProrationPrice()
+        {
+            BulkWithProrationConfig = new(
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ]
+            ),
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkWithProrationConfig = new(
-                    [
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                    ]
-                ),
-                Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5333,7 +5207,7 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -5378,8 +5252,7 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5389,7 +5262,7 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -5447,8 +5320,7 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5458,51 +5330,49 @@ public class PriceTest : TestBase
     [Fact]
     public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::GroupedWithMinMaxThresholds()
+        Subscriptions::Price value = new Subscriptions::GroupedWithMinMaxThresholds()
+        {
+            Cadence = Subscriptions::GroupedWithMinMaxThresholdsCadence.Annual,
+            GroupedWithMinMaxThresholdsConfig = new()
             {
-                Cadence = Subscriptions::GroupedWithMinMaxThresholdsCadence.Annual,
-                GroupedWithMinMaxThresholdsConfig = new()
-                {
-                    GroupingKey = "x",
-                    MaximumCharge = "maximum_charge",
-                    MinimumCharge = "minimum_charge",
-                    PerUnitRate = "per_unit_rate",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5512,59 +5382,57 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixWithDisplayNameConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixWithDisplayNameConfig = new()
-                {
-                    Dimension = "dimension",
-                    UnitAmounts =
-                    [
-                        new()
-                        {
-                            DimensionValue = "dimension_value",
-                            DisplayName = "display_name",
-                            UnitAmount = "unit_amount",
-                        },
-                    ],
-                },
-                ModelType =
-                    Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Dimension = "dimension",
+                UnitAmounts =
+                [
+                    new()
+                    {
+                        DimensionValue = "dimension_value",
+                        DisplayName = "display_name",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5574,56 +5442,54 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            GroupedTieredPackageConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
-                GroupedTieredPackageConfig = new()
-                {
-                    GroupingKey = "x",
-                    PackageSize = "package_size",
-                    Tiers =
-                    [
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
-                    ],
-                },
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5633,56 +5499,54 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            MaxGroupTieredPackageConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                MaxGroupTieredPackageConfig = new()
-                {
-                    GroupingKey = "x",
-                    PackageSize = "package_size",
-                    Tiers =
-                    [
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType =
-                    Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceModelType.MaxGroupTieredPackage,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                GroupingKey = "x",
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceModelType.MaxGroupTieredPackage,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5692,7 +5556,7 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -5747,8 +5611,7 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5758,7 +5621,7 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
+        Subscriptions::Price value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -5816,8 +5679,7 @@ public class PriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5827,59 +5689,57 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            CumulativeGroupedBulkConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
-                CumulativeGroupedBulkConfig = new()
-                {
-                    DimensionValues =
-                    [
-                        new()
-                        {
-                            GroupingKey = "x",
-                            TierLowerBound = "tier_lower_bound",
-                            UnitAmount = "unit_amount",
-                        },
-                    ],
-                    Group = "group",
-                },
-                ItemID = "item_id",
-                ModelType =
-                    Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                DimensionValues =
+                [
+                    new()
+                    {
+                        GroupingKey = "x",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                Group = "group",
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5889,51 +5749,49 @@ public class PriceTest : TestBase
     [Fact]
     public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::CumulativeGroupedAllocation()
+        Subscriptions::Price value = new Subscriptions::CumulativeGroupedAllocation()
+        {
+            Cadence = Subscriptions::CumulativeGroupedAllocationCadence.Annual,
+            CumulativeGroupedAllocationConfig = new()
             {
-                Cadence = Subscriptions::CumulativeGroupedAllocationCadence.Annual,
-                CumulativeGroupedAllocationConfig = new()
-                {
-                    CumulativeAllocation = "cumulative_allocation",
-                    GroupAllocation = "group_allocation",
-                    GroupingKey = "x",
-                    UnitAmount = "unit_amount",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5943,46 +5801,44 @@ public class PriceTest : TestBase
     [Fact]
     public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::NewSubscriptionMinimumCompositePrice()
+        Subscriptions::Price value = new Subscriptions::NewSubscriptionMinimumCompositePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
+            ItemID = "item_id",
+            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
-                ItemID = "item_id",
-                MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-                ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -5992,45 +5848,43 @@ public class PriceTest : TestBase
     [Fact]
     public void PercentSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::Percent()
+        Subscriptions::Price value = new Subscriptions::Percent()
+        {
+            Cadence = Subscriptions::PercentCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::PercentCadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                PercentConfig = new(0),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -6040,50 +5894,48 @@ public class PriceTest : TestBase
     [Fact]
     public void EventOutputSerializationRoundtripWorks()
     {
-        Subscriptions::Price value = new(
-            new Subscriptions::EventOutput()
+        Subscriptions::Price value = new Subscriptions::EventOutput()
+        {
+            Cadence = Subscriptions::EventOutputCadence.Annual,
+            EventOutputConfig = new()
             {
-                Cadence = Subscriptions::EventOutputCadence.Annual,
-                EventOutputConfig = new()
-                {
-                    UnitRatingKey = "x",
-                    DefaultUnitRate = "default_unit_rate",
-                    GroupingKey = "grouping_key",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(element);
 
@@ -6961,48 +6813,42 @@ public class ConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        Subscriptions::ConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ConversionRateConfig value = new(
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            }
-        );
+        Subscriptions::ConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        Subscriptions::ConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ConversionRateConfig>(element);
 
@@ -7012,22 +6858,20 @@ public class ConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ConversionRateConfig value = new(
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            }
-        );
+        Subscriptions::ConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ConversionRateConfig>(element);
 
@@ -7715,20 +7559,19 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::TieredWithProrationConversionRateConfig value = new(
+        Subscriptions::TieredWithProrationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::TieredWithProrationConversionRateConfig value = new(
+        Subscriptions::TieredWithProrationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -7742,21 +7585,19 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::TieredWithProrationConversionRateConfig value = new(
+        Subscriptions::TieredWithProrationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::TieredWithProrationConversionRateConfig>(
@@ -7769,7 +7610,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::TieredWithProrationConversionRateConfig value = new(
+        Subscriptions::TieredWithProrationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -7783,8 +7624,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::TieredWithProrationConversionRateConfig>(
@@ -8471,20 +8311,19 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -8498,21 +8337,19 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -8525,7 +8362,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -8539,8 +8376,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::GroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -9227,20 +9063,19 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -9254,21 +9089,19 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::CumulativeGroupedAllocationConversionRateConfig>(
@@ -9281,7 +9114,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::CumulativeGroupedAllocationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -9295,8 +9128,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::CumulativeGroupedAllocationConversionRateConfig>(
@@ -9869,48 +9701,42 @@ public class PercentConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::PercentConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        Subscriptions::PercentConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::PercentConversionRateConfig value = new(
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            }
-        );
+        Subscriptions::PercentConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::PercentConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        Subscriptions::PercentConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::PercentConversionRateConfig>(
             element
@@ -9922,22 +9748,20 @@ public class PercentConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::PercentConversionRateConfig value = new(
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            }
-        );
+        Subscriptions::PercentConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::PercentConversionRateConfig>(
             element
@@ -10637,20 +10461,18 @@ public class EventOutputConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::EventOutputConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        Subscriptions::EventOutputConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::EventOutputConversionRateConfig value = new(
+        Subscriptions::EventOutputConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -10664,21 +10486,18 @@ public class EventOutputConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::EventOutputConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        Subscriptions::EventOutputConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::EventOutputConversionRateConfig>(element);
@@ -10689,7 +10508,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::EventOutputConversionRateConfig value = new(
+        Subscriptions::EventOutputConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -10703,8 +10522,7 @@ public class EventOutputConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::EventOutputConversionRateConfig>(element);
@@ -11106,169 +10924,157 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     [Fact]
     public void NewPercentageDiscountValidationWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewPercentageDiscount()
-            {
-                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
-                PercentageDiscount = 0,
-                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewPercentageDiscountFilterField.PriceID,
-                        Operator = NewPercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewPercentageDiscount()
+        {
+            AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+            PercentageDiscount = 0,
+            AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewPercentageDiscountFilterField.PriceID,
+                    Operator = NewPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewPercentageDiscountPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewUsageDiscountValidationWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewUsageDiscount()
-            {
-                AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
-                UsageDiscount = 0,
-                AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewUsageDiscountFilterField.PriceID,
-                        Operator = NewUsageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewUsageDiscount()
+        {
+            AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
+            UsageDiscount = 0,
+            AppliesToAll = NewUsageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewUsageDiscountFilterField.PriceID,
+                    Operator = NewUsageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewUsageDiscountPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewAmountDiscountValidationWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewAmountDiscount()
-            {
-                AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
-                AmountDiscount = "amount_discount",
-                AppliesToAll = AppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewAmountDiscountFilterField.PriceID,
-                        Operator = NewAmountDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = PriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewAmountDiscount()
+        {
+            AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewMinimumValidationWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewMinimum()
-            {
-                AdjustmentType = NewMinimumAdjustmentType.Minimum,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMinimumFilterField.PriceID,
-                        Operator = NewMinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewMinimum()
+        {
+            AdjustmentType = NewMinimumAdjustmentType.Minimum,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            AppliesToAll = NewMinimumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMinimumPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewMaximumValidationWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewMaximum()
-            {
-                AdjustmentType = NewMaximumAdjustmentType.Maximum,
-                MaximumAmount = "maximum_amount",
-                AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMaximumFilterField.PriceID,
-                        Operator = NewMaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewMaximum()
+        {
+            AdjustmentType = NewMaximumAdjustmentType.Maximum,
+            MaximumAmount = "maximum_amount",
+            AppliesToAll = NewMaximumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMaximumPriceType.Usage,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewPercentageDiscount()
-            {
-                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
-                PercentageDiscount = 0,
-                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewPercentageDiscountFilterField.PriceID,
-                        Operator = NewPercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewPercentageDiscount()
+        {
+            AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+            PercentageDiscount = 0,
+            AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewPercentageDiscountFilterField.PriceID,
+                    Operator = NewPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewPercentageDiscountPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplaceAdjustmentAdjustment>(
             element
@@ -11280,28 +11086,26 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     [Fact]
     public void NewUsageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewUsageDiscount()
-            {
-                AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
-                UsageDiscount = 0,
-                AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewUsageDiscountFilterField.PriceID,
-                        Operator = NewUsageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewUsageDiscount()
+        {
+            AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
+            UsageDiscount = 0,
+            AppliesToAll = NewUsageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewUsageDiscountFilterField.PriceID,
+                    Operator = NewUsageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewUsageDiscountPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplaceAdjustmentAdjustment>(
             element
@@ -11313,28 +11117,26 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     [Fact]
     public void NewAmountDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewAmountDiscount()
-            {
-                AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
-                AmountDiscount = "amount_discount",
-                AppliesToAll = AppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewAmountDiscountFilterField.PriceID,
-                        Operator = NewAmountDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = PriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewAmountDiscount()
+        {
+            AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplaceAdjustmentAdjustment>(
             element
@@ -11346,29 +11148,27 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     [Fact]
     public void NewMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewMinimum()
-            {
-                AdjustmentType = NewMinimumAdjustmentType.Minimum,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMinimumFilterField.PriceID,
-                        Operator = NewMinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewMinimum()
+        {
+            AdjustmentType = NewMinimumAdjustmentType.Minimum,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            AppliesToAll = NewMinimumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMinimumPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplaceAdjustmentAdjustment>(
             element
@@ -11380,28 +11180,26 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     [Fact]
     public void NewMaximumSerializationRoundtripWorks()
     {
-        Subscriptions::ReplaceAdjustmentAdjustment value = new(
-            new NewMaximum()
-            {
-                AdjustmentType = NewMaximumAdjustmentType.Maximum,
-                MaximumAmount = "maximum_amount",
-                AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIds = ["item_1", "item_2"],
-                AppliesToPriceIds = ["price_1", "price_2"],
-                Currency = "currency",
-                Filters =
-                [
-                    new()
-                    {
-                        Field = NewMaximumFilterField.PriceID,
-                        Operator = NewMaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+        Subscriptions::ReplaceAdjustmentAdjustment value = new NewMaximum()
+        {
+            AdjustmentType = NewMaximumAdjustmentType.Maximum,
+            MaximumAmount = "maximum_amount",
+            AppliesToAll = NewMaximumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMaximumPriceType.Usage,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplaceAdjustmentAdjustment>(
             element
@@ -12044,157 +11842,151 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionUnitPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionUnitPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+            Name = "Annual fee",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
-                Name = "Annual fee",
-                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionTieredPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionTieredPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
+            Name = "Annual fee",
+            TieredConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
-                Name = "Annual fee",
-                TieredConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ],
-                    Prorated = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionBulkPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionBulkPrice()
+        {
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::ModelType.Bulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-                Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::ModelType.Bulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void BulkWithFiltersValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -12239,115 +12031,107 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionPackagePrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
+            Name = "Annual fee",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
-                Name = "Annual fee",
-                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionMatrixPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionMatrixPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixConfig = new()
-                {
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionThresholdTotalAmountValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
@@ -12394,15 +12178,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
@@ -12448,15 +12231,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredWithMinimumValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
@@ -12514,15 +12296,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
@@ -12568,15 +12349,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -12633,15 +12413,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageWithAllocationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
@@ -12685,15 +12464,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithPercentValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
@@ -12732,15 +12510,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithAllocationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
@@ -12788,15 +12565,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredWithProrationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceTieredWithProration()
             {
                 Cadence = Subscriptions::ReplacePricePriceTieredWithProrationCadence.Annual,
@@ -12835,15 +12611,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithProrationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
@@ -12882,15 +12657,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedAllocationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
@@ -12934,15 +12708,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkWithProrationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -12986,15 +12759,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -13039,15 +12811,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -13105,15 +12876,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void GroupedWithMinMaxThresholdsValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholds()
             {
                 Cadence = Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsCadence.Annual,
@@ -13156,15 +12926,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
@@ -13215,15 +12984,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredPackageValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
@@ -13271,15 +13039,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
@@ -13327,15 +13094,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -13390,15 +13156,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -13456,15 +13221,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
@@ -13515,15 +13279,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void CumulativeGroupedAllocationValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceCumulativeGroupedAllocation()
             {
                 Cadence = Subscriptions::ReplacePricePriceCumulativeGroupedAllocationCadence.Annual,
@@ -13566,15 +13329,14 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
@@ -13612,149 +13374,142 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void PercentValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::ReplacePricePricePercent()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::ReplacePricePricePercent()
+        {
+            Cadence = Subscriptions::ReplacePricePricePercentCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::ReplacePricePricePercentCadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                PercentConfig = new(0),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void EventOutputValidationWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::ReplacePricePriceEventOutput()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::ReplacePricePriceEventOutput()
+        {
+            Cadence = Subscriptions::ReplacePricePriceEventOutputCadence.Annual,
+            EventOutputConfig = new()
             {
-                Cadence = Subscriptions::ReplacePricePriceEventOutputCadence.Annual,
-                EventOutputConfig = new()
-                {
-                    UnitRatingKey = "x",
-                    DefaultUnitRate = "default_unit_rate",
-                    GroupingKey = "grouping_key",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionUnitPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionUnitPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+            Name = "Annual fee",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
-                Name = "Annual fee",
-                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -13764,58 +13519,56 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionTieredPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionTieredPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
+            Name = "Annual fee",
+            TieredConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionTieredPriceModelType.Tiered,
-                Name = "Annual fee",
-                TieredConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ],
-                    Prorated = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -13825,46 +13578,44 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionBulkSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionBulkPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionBulkPrice()
+        {
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::ModelType.Bulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-                Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::ModelType.Bulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -13874,7 +13625,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void BulkWithFiltersSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -13919,8 +13670,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -13930,46 +13680,44 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionPackageSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionPackagePrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionPackagePrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
+            Name = "Annual fee",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
-                ItemID = "item_id",
-                ModelType = Subscriptions::NewSubscriptionPackagePriceModelType.Package,
-                Name = "Annual fee",
-                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -13979,54 +13727,49 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::NewSubscriptionMatrixPrice()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::NewSubscriptionMatrixPrice()
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixConfig = new()
             {
-                Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
-                ItemID = "item_id",
-                MatrixConfig = new()
-                {
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType = Subscriptions::NewSubscriptionMatrixPriceModelType.Matrix,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14036,7 +13779,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionThresholdTotalAmountSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
@@ -14083,8 +13826,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14094,7 +13836,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
@@ -14140,8 +13882,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14151,7 +13892,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
@@ -14209,8 +13950,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14220,7 +13960,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedTieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
@@ -14266,8 +14006,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14277,7 +14016,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -14334,8 +14073,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14345,7 +14083,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionPackageWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
@@ -14389,8 +14127,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14400,7 +14137,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitWithPercentSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
@@ -14439,8 +14176,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14450,7 +14186,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
@@ -14498,8 +14234,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14509,7 +14244,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void TieredWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceTieredWithProration()
             {
                 Cadence = Subscriptions::ReplacePricePriceTieredWithProrationCadence.Annual,
@@ -14548,8 +14283,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14559,7 +14293,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
@@ -14598,8 +14332,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14609,7 +14342,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
@@ -14653,8 +14386,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14664,7 +14396,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionBulkWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -14708,8 +14440,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14719,7 +14450,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -14764,8 +14495,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14775,7 +14505,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -14833,8 +14563,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14844,7 +14573,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholds()
             {
                 Cadence = Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsCadence.Annual,
@@ -14887,8 +14616,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14898,7 +14626,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
@@ -14949,8 +14677,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -14960,7 +14687,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
@@ -15008,8 +14735,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15019,7 +14745,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
@@ -15067,8 +14793,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15078,7 +14803,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -15133,8 +14858,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15144,7 +14868,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -15202,8 +14926,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15213,7 +14936,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
@@ -15264,8 +14987,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15275,7 +14997,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::ReplacePricePriceCumulativeGroupedAllocation()
             {
                 Cadence = Subscriptions::ReplacePricePriceCumulativeGroupedAllocationCadence.Annual,
@@ -15318,8 +15040,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15329,7 +15050,7 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
+        Subscriptions::ReplacePricePrice value =
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
@@ -15367,8 +15088,7 @@ public class ReplacePricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15378,45 +15098,43 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void PercentSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::ReplacePricePricePercent()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::ReplacePricePricePercent()
+        {
+            Cadence = Subscriptions::ReplacePricePricePercentCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = Subscriptions::ReplacePricePricePercentCadence.Annual,
-                ItemID = "item_id",
-                Name = "Annual fee",
-                PercentConfig = new(0),
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -15426,50 +15144,48 @@ public class ReplacePricePriceTest : TestBase
     [Fact]
     public void EventOutputSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePrice value = new(
-            new Subscriptions::ReplacePricePriceEventOutput()
+        Subscriptions::ReplacePricePrice value = new Subscriptions::ReplacePricePriceEventOutput()
+        {
+            Cadence = Subscriptions::ReplacePricePriceEventOutputCadence.Annual,
+            EventOutputConfig = new()
             {
-                Cadence = Subscriptions::ReplacePricePriceEventOutputCadence.Annual,
-                EventOutputConfig = new()
-                {
-                    UnitRatingKey = "x",
-                    DefaultUnitRate = "default_unit_rate",
-                    GroupingKey = "grouping_key",
-                },
-                ItemID = "item_id",
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                Currency = "currency",
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                ReferenceID = "reference_id",
-            }
-        );
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(element);
 
@@ -16389,20 +16105,19 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -16416,21 +16131,19 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig>(
@@ -16443,7 +16156,7 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -16457,8 +16170,7 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceBulkWithFiltersConversionRateConfig>(
@@ -17169,20 +16881,19 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -17196,21 +16907,19 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig>(
@@ -17223,7 +16932,7 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -17237,8 +16946,7 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceTieredWithProrationConversionRateConfig>(
@@ -17946,20 +17654,19 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -17973,21 +17680,19 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -18000,7 +17705,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -18014,8 +17719,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -18723,20 +18427,19 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -18750,21 +18453,19 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -18777,7 +18478,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -18791,8 +18492,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -19373,20 +19073,19 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ReplacePricePricePercentConversionRateConfig value = new(
+        Subscriptions::ReplacePricePricePercentConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ReplacePricePricePercentConversionRateConfig value = new(
+        Subscriptions::ReplacePricePricePercentConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -19400,21 +19099,19 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePricePercentConversionRateConfig value = new(
+        Subscriptions::ReplacePricePricePercentConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePricePercentConversionRateConfig>(
@@ -19427,7 +19124,7 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePricePercentConversionRateConfig value = new(
+        Subscriptions::ReplacePricePricePercentConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -19441,8 +19138,7 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePricePercentConversionRateConfig>(
@@ -20161,20 +19857,19 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -20188,21 +19883,19 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceEventOutputConversionRateConfig>(
@@ -20215,7 +19908,7 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value = new(
+        Subscriptions::ReplacePricePriceEventOutputConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -20229,8 +19922,7 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceEventOutputConversionRateConfig>(

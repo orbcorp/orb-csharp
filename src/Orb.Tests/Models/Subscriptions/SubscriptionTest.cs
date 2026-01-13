@@ -3912,100 +3912,92 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void AmountValidationWorks()
     {
-        DiscountInterval value = new(
-            new AmountDiscountInterval()
-            {
-                AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIds = ["string"],
-                DiscountType = AmountDiscountIntervalDiscountType.Amount,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = AmountDiscountIntervalFilterField.PriceID,
-                        Operator = AmountDiscountIntervalFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
-        );
+        DiscountInterval value = new AmountDiscountInterval()
+        {
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = AmountDiscountIntervalDiscountType.Amount,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = AmountDiscountIntervalFilterField.PriceID,
+                    Operator = AmountDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
         value.Validate();
     }
 
     [Fact]
     public void PercentageValidationWorks()
     {
-        DiscountInterval value = new(
-            new PercentageDiscountInterval()
-            {
-                AppliesToPriceIntervalIds = ["string"],
-                DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountIntervalFilterField.PriceID,
-                        Operator = PercentageDiscountIntervalFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                PercentageDiscount = 0.15,
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
-        );
+        DiscountInterval value = new PercentageDiscountInterval()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PercentageDiscount = 0.15,
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
         value.Validate();
     }
 
     [Fact]
     public void UsageValidationWorks()
     {
-        DiscountInterval value = new(
-            new UsageDiscountInterval()
-            {
-                AppliesToPriceIntervalIds = ["string"],
-                DiscountType = UsageDiscountIntervalDiscountType.Usage,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = UsageDiscountIntervalFilterField.PriceID,
-                        Operator = UsageDiscountIntervalFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageDiscount = 0,
-            }
-        );
+        DiscountInterval value = new UsageDiscountInterval()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = UsageDiscountIntervalDiscountType.Usage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            UsageDiscount = 0,
+        };
         value.Validate();
     }
 
     [Fact]
     public void AmountSerializationRoundtripWorks()
     {
-        DiscountInterval value = new(
-            new AmountDiscountInterval()
-            {
-                AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIds = ["string"],
-                DiscountType = AmountDiscountIntervalDiscountType.Amount,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = AmountDiscountIntervalFilterField.PriceID,
-                        Operator = AmountDiscountIntervalFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
-        );
+        DiscountInterval value = new AmountDiscountInterval()
+        {
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = AmountDiscountIntervalDiscountType.Amount,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = AmountDiscountIntervalFilterField.PriceID,
+                    Operator = AmountDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<DiscountInterval>(element);
 
@@ -4015,25 +4007,23 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void PercentageSerializationRoundtripWorks()
     {
-        DiscountInterval value = new(
-            new PercentageDiscountInterval()
-            {
-                AppliesToPriceIntervalIds = ["string"],
-                DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountIntervalFilterField.PriceID,
-                        Operator = PercentageDiscountIntervalFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                PercentageDiscount = 0.15,
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
-        );
+        DiscountInterval value = new PercentageDiscountInterval()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PercentageDiscount = 0.15,
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<DiscountInterval>(element);
 
@@ -4043,25 +4033,23 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void UsageSerializationRoundtripWorks()
     {
-        DiscountInterval value = new(
-            new UsageDiscountInterval()
-            {
-                AppliesToPriceIntervalIds = ["string"],
-                DiscountType = UsageDiscountIntervalDiscountType.Usage,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = UsageDiscountIntervalFilterField.PriceID,
-                        Operator = UsageDiscountIntervalFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageDiscount = 0,
-            }
-        );
+        DiscountInterval value = new UsageDiscountInterval()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = UsageDiscountIntervalDiscountType.Usage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            UsageDiscount = 0,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<DiscountInterval>(element);
 

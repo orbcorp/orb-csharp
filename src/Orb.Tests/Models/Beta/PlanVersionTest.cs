@@ -1031,174 +1031,158 @@ public class PlanVersionAdjustmentTest : TestBase
     [Fact]
     public void PlanPhaseUsageDiscountValidationWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseUsageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-                UsageDiscount = 0,
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseUsageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
         value.Validate();
     }
 
     [Fact]
     public void PlanPhaseAmountDiscountValidationWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseAmountDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
-                AmountDiscount = "amount_discount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseAmountDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void PlanPhasePercentageDiscountValidationWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhasePercentageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhasePercentageDiscountAdjustmentFilterField.PriceID,
-                        Operator =
-                            Models::PlanPhasePercentageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PercentageDiscount = 0,
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhasePercentageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType =
+                Models::PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhasePercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhasePercentageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PercentageDiscount = 0,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void PlanPhaseMinimumValidationWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseMinimumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseMinimumAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseMinimumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseMinimumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseMinimumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void PlanPhaseMaximumValidationWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseMaximumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseMaximumAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseMaximumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                MaximumAmount = "maximum_amount",
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseMaximumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseMaximumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            MaximumAmount = "maximum_amount",
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void PlanPhaseUsageDiscountSerializationRoundtripWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseUsageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-                UsageDiscount = 0,
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseUsageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
@@ -1208,29 +1192,26 @@ public class PlanVersionAdjustmentTest : TestBase
     [Fact]
     public void PlanPhaseAmountDiscountSerializationRoundtripWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseAmountDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
-                AmountDiscount = "amount_discount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseAmountDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
@@ -1240,30 +1221,27 @@ public class PlanVersionAdjustmentTest : TestBase
     [Fact]
     public void PlanPhasePercentageDiscountSerializationRoundtripWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhasePercentageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhasePercentageDiscountAdjustmentFilterField.PriceID,
-                        Operator =
-                            Models::PlanPhasePercentageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PercentageDiscount = 0,
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhasePercentageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType =
+                Models::PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhasePercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhasePercentageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PercentageDiscount = 0,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
@@ -1273,29 +1251,27 @@ public class PlanVersionAdjustmentTest : TestBase
     [Fact]
     public void PlanPhaseMinimumSerializationRoundtripWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseMinimumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseMinimumAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseMinimumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseMinimumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseMinimumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
@@ -1305,28 +1281,26 @@ public class PlanVersionAdjustmentTest : TestBase
     [Fact]
     public void PlanPhaseMaximumSerializationRoundtripWorks()
     {
-        PlanVersionAdjustment value = new(
-            new Models::PlanPhaseMaximumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::PlanPhaseMaximumAdjustmentFilterField.PriceID,
-                        Operator = Models::PlanPhaseMaximumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                MaximumAmount = "maximum_amount",
-                PlanPhaseOrder = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        PlanVersionAdjustment value = new Models::PlanPhaseMaximumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = Models::PlanPhaseMaximumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            MaximumAmount = "maximum_amount",
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 

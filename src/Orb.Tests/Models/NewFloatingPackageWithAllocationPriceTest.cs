@@ -694,20 +694,19 @@ public class NewFloatingPackageWithAllocationPriceConversionRateConfigTest : Tes
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingPackageWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingPackageWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingPackageWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingPackageWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -721,21 +720,19 @@ public class NewFloatingPackageWithAllocationPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingPackageWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingPackageWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPriceConversionRateConfig>(
@@ -748,7 +745,7 @@ public class NewFloatingPackageWithAllocationPriceConversionRateConfigTest : Tes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingPackageWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingPackageWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -762,8 +759,7 @@ public class NewFloatingPackageWithAllocationPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPriceConversionRateConfig>(

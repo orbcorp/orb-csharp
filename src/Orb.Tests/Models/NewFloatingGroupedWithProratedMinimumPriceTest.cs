@@ -712,20 +712,19 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
+        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
+        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -739,21 +738,19 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
+        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig>(
@@ -766,7 +763,7 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
+        NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -780,8 +777,7 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig>(

@@ -937,20 +937,19 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -964,21 +963,19 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig>(
@@ -991,7 +988,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1005,8 +1002,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig>(

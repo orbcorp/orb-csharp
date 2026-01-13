@@ -771,97 +771,85 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NewAvalaraValidationWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new NewAvalaraTaxConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = TaxProvider.Avalara,
-                AutomaticTaxEnabled = true,
-                TaxExemptionCode = "tax_exemption_code",
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new NewAvalaraTaxConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = TaxProvider.Avalara,
+            AutomaticTaxEnabled = true,
+            TaxExemptionCode = "tax_exemption_code",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewTaxJarValidationWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new NewTaxJarConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new NewTaxJarConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+            AutomaticTaxEnabled = true,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSphereValidationWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new NewSphereConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new NewSphereConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
+            AutomaticTaxEnabled = true,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NumeralValidationWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
+        CustomerUpdateParamsTaxConfiguration value =
             new CustomerUpdateParamsTaxConfigurationNumeral()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void AnrokValidationWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new CustomerUpdateParamsTaxConfigurationAnrok()
-            {
-                TaxExempt = true,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new CustomerUpdateParamsTaxConfigurationAnrok()
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
         value.Validate();
     }
 
     [Fact]
     public void StripeValidationWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
+        CustomerUpdateParamsTaxConfiguration value =
             new CustomerUpdateParamsTaxConfigurationStripe()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewAvalaraSerializationRoundtripWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new NewAvalaraTaxConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = TaxProvider.Avalara,
-                AutomaticTaxEnabled = true,
-                TaxExemptionCode = "tax_exemption_code",
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new NewAvalaraTaxConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = TaxProvider.Avalara,
+            AutomaticTaxEnabled = true,
+            TaxExemptionCode = "tax_exemption_code",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
             element
@@ -873,14 +861,12 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NewTaxJarSerializationRoundtripWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new NewTaxJarConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new NewTaxJarConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+            AutomaticTaxEnabled = true,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
             element
@@ -892,14 +878,12 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NewSphereSerializationRoundtripWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new NewSphereConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new NewSphereConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
+            AutomaticTaxEnabled = true,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
             element
@@ -911,13 +895,12 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NumeralSerializationRoundtripWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
+        CustomerUpdateParamsTaxConfiguration value =
             new CustomerUpdateParamsTaxConfigurationNumeral()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
             element
@@ -929,13 +912,11 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     [Fact]
     public void AnrokSerializationRoundtripWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
-            new CustomerUpdateParamsTaxConfigurationAnrok()
-            {
-                TaxExempt = true,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateParamsTaxConfiguration value = new CustomerUpdateParamsTaxConfigurationAnrok()
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
             element
@@ -947,13 +928,12 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     [Fact]
     public void StripeSerializationRoundtripWorks()
     {
-        CustomerUpdateParamsTaxConfiguration value = new(
+        CustomerUpdateParamsTaxConfiguration value =
             new CustomerUpdateParamsTaxConfigurationStripe()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
             element

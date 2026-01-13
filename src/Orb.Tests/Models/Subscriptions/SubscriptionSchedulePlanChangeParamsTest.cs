@@ -1198,7 +1198,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     [Fact]
     public void NewPercentageDiscountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -1218,15 +1218,14 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewUsageDiscountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewUsageDiscount()
             {
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
@@ -1246,15 +1245,14 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewAmountDiscountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewAmountDiscount()
             {
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
@@ -1274,15 +1272,14 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewMinimum()
             {
                 AdjustmentType = NewMinimumAdjustmentType.Minimum,
@@ -1303,15 +1300,14 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewMaximumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewMaximum()
             {
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
@@ -1331,15 +1327,14 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -1359,8 +1354,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
@@ -1373,7 +1367,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     [Fact]
     public void NewUsageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewUsageDiscount()
             {
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
@@ -1393,8 +1387,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
@@ -1407,7 +1400,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     [Fact]
     public void NewAmountDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewAmountDiscount()
             {
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
@@ -1427,8 +1420,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
@@ -1441,7 +1433,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     [Fact]
     public void NewMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewMinimum()
             {
                 AdjustmentType = NewMinimumAdjustmentType.Minimum,
@@ -1462,8 +1454,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
@@ -1476,7 +1467,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     [Fact]
     public void NewMaximumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
             new NewMaximum()
             {
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
@@ -1496,8 +1487,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
@@ -2163,7 +2153,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionUnitPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
@@ -2201,15 +2191,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
@@ -2259,15 +2248,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
@@ -2305,15 +2293,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void BulkWithFiltersValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -2359,15 +2346,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
@@ -2405,15 +2391,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMatrixPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
@@ -2459,15 +2444,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionThresholdTotalAmountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
@@ -2514,15 +2498,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
@@ -2568,15 +2551,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredWithMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
@@ -2634,15 +2616,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
@@ -2688,15 +2669,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -2753,15 +2733,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageWithAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
@@ -2805,15 +2784,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithPercentValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
@@ -2852,15 +2830,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
@@ -2908,15 +2885,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredWithProrationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration()
             {
                 Cadence =
@@ -2956,15 +2932,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithProrationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
@@ -3003,15 +2978,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
@@ -3055,15 +3029,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkWithProrationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -3107,15 +3080,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -3160,15 +3132,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -3226,15 +3197,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void GroupedWithMinMaxThresholdsValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
@@ -3278,15 +3248,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
@@ -3337,15 +3306,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
@@ -3393,15 +3361,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
@@ -3449,15 +3416,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -3512,15 +3478,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -3578,15 +3543,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
@@ -3637,15 +3601,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void CumulativeGroupedAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation()
             {
                 Cadence =
@@ -3689,15 +3652,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
@@ -3735,15 +3697,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void PercentValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercent()
             {
                 Cadence =
@@ -3781,15 +3742,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void EventOutputValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput()
             {
                 Cadence =
@@ -3832,15 +3792,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionUnitPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
@@ -3878,8 +3837,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -3892,7 +3850,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
@@ -3942,8 +3900,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -3956,7 +3913,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionBulkSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
@@ -3994,8 +3951,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4008,7 +3964,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void BulkWithFiltersSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -4054,8 +4010,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4068,7 +4023,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
@@ -4106,8 +4061,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4120,7 +4074,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMatrixPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
@@ -4166,8 +4120,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4180,7 +4133,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionThresholdTotalAmountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
@@ -4227,8 +4180,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4241,7 +4193,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
@@ -4287,8 +4239,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4301,7 +4252,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
@@ -4359,8 +4310,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4373,7 +4323,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedTieredSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
@@ -4419,8 +4369,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4433,7 +4382,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -4490,8 +4439,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4504,7 +4452,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionPackageWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
@@ -4548,8 +4496,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4562,7 +4509,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitWithPercentSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
@@ -4601,8 +4548,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4615,7 +4561,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
@@ -4663,8 +4609,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4677,7 +4622,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void TieredWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration()
             {
                 Cadence =
@@ -4717,8 +4662,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4731,7 +4675,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionUnitWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
@@ -4770,8 +4714,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4784,7 +4727,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
@@ -4828,8 +4771,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4842,7 +4784,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionBulkWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -4886,8 +4828,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4900,7 +4841,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -4945,8 +4886,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -4959,7 +4899,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -5017,8 +4957,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5031,7 +4970,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
@@ -5075,8 +5014,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5089,7 +5027,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
@@ -5140,8 +5078,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5154,7 +5091,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionGroupedTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
@@ -5202,8 +5139,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5216,7 +5152,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
@@ -5264,8 +5200,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5278,7 +5213,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -5333,8 +5268,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5347,7 +5281,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -5405,8 +5339,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5419,7 +5352,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
@@ -5470,8 +5403,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5484,7 +5416,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation()
             {
                 Cadence =
@@ -5528,8 +5460,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5542,7 +5473,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
@@ -5580,8 +5511,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5594,7 +5524,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void PercentSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercent()
             {
                 Cadence =
@@ -5632,8 +5562,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -5646,7 +5575,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     [Fact]
     public void EventOutputSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput()
             {
                 Cadence =
@@ -5689,8 +5618,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
@@ -6704,13 +6632,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -6718,22 +6644,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -6741,13 +6665,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig>(
@@ -6761,22 +6683,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig>(
@@ -7556,13 +7476,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -7570,22 +7488,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -7593,13 +7509,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig>(
@@ -7613,22 +7527,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig>(
@@ -8396,13 +8308,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -8410,22 +8320,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -8433,13 +8341,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -8453,22 +8359,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -9236,13 +9140,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -9250,22 +9152,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -9273,13 +9173,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -9293,22 +9191,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -9971,13 +9867,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -9985,22 +9879,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -10008,13 +9900,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig>(
@@ -10028,22 +9918,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig>(
@@ -10833,13 +10721,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -10847,22 +10733,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -10870,13 +10754,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig>(
@@ -10890,22 +10772,20 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig>(
@@ -11347,7 +11227,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     [Fact]
     public void NewPercentageDiscountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -11367,15 +11247,14 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewUsageDiscountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewUsageDiscount()
             {
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
@@ -11395,15 +11274,14 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewAmountDiscountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewAmountDiscount()
             {
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
@@ -11423,15 +11301,14 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewMinimum()
             {
                 AdjustmentType = NewMinimumAdjustmentType.Minimum,
@@ -11452,15 +11329,14 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewMaximumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewMaximum()
             {
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
@@ -11480,15 +11356,14 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -11508,8 +11383,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
@@ -11522,7 +11396,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     [Fact]
     public void NewUsageDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewUsageDiscount()
             {
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
@@ -11542,8 +11416,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
@@ -11556,7 +11429,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     [Fact]
     public void NewAmountDiscountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewAmountDiscount()
             {
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
@@ -11576,8 +11449,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
@@ -11590,7 +11462,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     [Fact]
     public void NewMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewMinimum()
             {
                 AdjustmentType = NewMinimumAdjustmentType.Minimum,
@@ -11611,8 +11483,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
@@ -11625,7 +11496,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     [Fact]
     public void NewMaximumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
             new NewMaximum()
             {
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
@@ -11645,8 +11516,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 ],
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
@@ -12302,7 +12172,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionUnitValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
@@ -12340,15 +12210,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
@@ -12398,15 +12267,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
@@ -12444,15 +12312,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void BulkWithFiltersValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -12498,15 +12365,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
@@ -12544,15 +12410,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
@@ -12598,15 +12463,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionThresholdTotalAmountValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
@@ -12653,15 +12517,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
@@ -12707,15 +12570,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredWithMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
@@ -12773,15 +12635,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
@@ -12827,15 +12688,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -12892,15 +12752,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionPackageWithAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
@@ -12944,15 +12803,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithPercentValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
@@ -12991,15 +12849,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
@@ -13047,15 +12904,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredWithProrationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration()
             {
                 Cadence =
@@ -13095,15 +12951,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitWithProrationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
@@ -13142,15 +12997,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
@@ -13194,15 +13048,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionBulkWithProrationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -13246,15 +13099,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -13299,15 +13151,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -13365,15 +13216,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void GroupedWithMinMaxThresholdsValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
@@ -13417,15 +13267,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
@@ -13476,15 +13325,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionGroupedTieredPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
@@ -13532,15 +13380,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
@@ -13588,15 +13435,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -13651,15 +13497,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -13717,15 +13562,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
@@ -13776,15 +13620,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void CumulativeGroupedAllocationValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation()
             {
                 Cadence =
@@ -13828,15 +13671,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
@@ -13874,15 +13716,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void PercentValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercent()
             {
                 Cadence =
@@ -13920,15 +13761,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void EventOutputValidationWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput()
             {
                 Cadence =
@@ -13971,15 +13811,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewSubscriptionUnitSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
@@ -14017,8 +13856,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14031,7 +13869,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionTieredSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPriceCadence.Annual,
@@ -14081,8 +13919,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14095,7 +13932,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionBulkSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
@@ -14133,8 +13970,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14147,7 +13983,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void BulkWithFiltersSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -14193,8 +14029,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14207,7 +14042,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackagePriceCadence.Annual,
@@ -14245,8 +14080,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14259,7 +14093,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionMatrixSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixPriceCadence.Annual,
@@ -14305,8 +14139,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14319,7 +14152,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionThresholdTotalAmountSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
@@ -14366,8 +14199,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14380,7 +14212,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
@@ -14426,8 +14258,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14440,7 +14271,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionTieredWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
@@ -14498,8 +14329,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14512,7 +14342,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionGroupedTieredSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPriceCadence.Annual,
@@ -14558,8 +14388,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14572,7 +14401,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionTieredPackageWithMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual,
@@ -14629,8 +14458,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14643,7 +14471,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionPackageWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
@@ -14687,8 +14515,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14701,7 +14528,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionUnitWithPercentSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
@@ -14740,8 +14567,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14754,7 +14580,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionMatrixWithAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithAllocationPriceCadence.Annual,
@@ -14802,8 +14628,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14816,7 +14641,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void TieredWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration()
             {
                 Cadence =
@@ -14856,8 +14681,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14870,7 +14694,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionUnitWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionUnitWithProrationPriceCadence.Annual,
@@ -14909,8 +14733,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14923,7 +14746,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
@@ -14967,8 +14790,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -14981,7 +14803,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionBulkWithProrationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -15025,8 +14847,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15039,7 +14860,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
             {
                 Cadence =
@@ -15084,8 +14905,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15098,7 +14918,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
             {
                 Cadence =
@@ -15156,8 +14976,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15170,7 +14989,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
@@ -15214,8 +15033,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15228,7 +15046,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionMatrixWithDisplayNameSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
@@ -15279,8 +15097,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15293,7 +15110,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionGroupedTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
@@ -15341,8 +15158,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15355,7 +15171,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionMaxGroupTieredPackageSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceCadence.Annual,
@@ -15403,8 +15219,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15417,7 +15232,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
             {
                 Cadence =
@@ -15472,8 +15287,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15486,7 +15300,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
             {
                 Cadence =
@@ -15544,8 +15358,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15558,7 +15371,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionCumulativeGroupedBulkSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
             {
                 Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
@@ -15609,8 +15422,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15623,7 +15435,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation()
             {
                 Cadence =
@@ -15667,8 +15479,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15681,7 +15492,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
             {
                 Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
@@ -15719,8 +15530,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15733,7 +15543,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void PercentSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercent()
             {
                 Cadence =
@@ -15771,8 +15581,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -15785,7 +15594,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     [Fact]
     public void EventOutputSerializationRoundtripWorks()
     {
-        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value =
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput()
             {
                 Cadence =
@@ -15828,8 +15637,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
@@ -16844,13 +16652,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -16858,22 +16664,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -16881,13 +16685,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig>(
@@ -16901,22 +16703,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig>(
@@ -17696,13 +17496,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -17710,22 +17508,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -17733,13 +17529,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig>(
@@ -17753,22 +17547,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig>(
@@ -18536,13 +18328,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -18550,22 +18340,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -18573,13 +18361,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -18593,22 +18379,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -19376,13 +19160,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -19390,22 +19172,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -19413,13 +19193,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -19433,22 +19211,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -20112,13 +19888,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -20126,22 +19900,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -20149,13 +19921,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig>(
@@ -20169,22 +19939,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig>(
@@ -20982,13 +20750,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -20996,22 +20762,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -21019,13 +20783,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig>(
@@ -21039,22 +20801,20 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig>(

@@ -907,20 +907,19 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewPlanThresholdTotalAmountPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewPlanThresholdTotalAmountPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -934,21 +933,19 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewPlanThresholdTotalAmountPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig>(
@@ -961,7 +958,7 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewPlanThresholdTotalAmountPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -975,8 +972,7 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig>(

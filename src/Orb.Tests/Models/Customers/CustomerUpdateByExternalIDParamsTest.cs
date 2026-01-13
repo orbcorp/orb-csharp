@@ -799,97 +799,86 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NewAvalaraValidationWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new NewAvalaraTaxConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = TaxProvider.Avalara,
-                AutomaticTaxEnabled = true,
-                TaxExemptionCode = "tax_exemption_code",
-            }
-        );
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new NewAvalaraTaxConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = TaxProvider.Avalara,
+            AutomaticTaxEnabled = true,
+            TaxExemptionCode = "tax_exemption_code",
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewTaxJarValidationWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new NewTaxJarConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new NewTaxJarConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+            AutomaticTaxEnabled = true,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewSphereValidationWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new NewSphereConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new NewSphereConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
+            AutomaticTaxEnabled = true,
+        };
         value.Validate();
     }
 
     [Fact]
     public void NumeralValidationWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+        CustomerUpdateByExternalIDParamsTaxConfiguration value =
             new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void AnrokValidationWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+        CustomerUpdateByExternalIDParamsTaxConfiguration value =
             new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void StripeValidationWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+        CustomerUpdateByExternalIDParamsTaxConfiguration value =
             new CustomerUpdateByExternalIDParamsTaxConfigurationStripe()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewAvalaraSerializationRoundtripWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new NewAvalaraTaxConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = TaxProvider.Avalara,
-                AutomaticTaxEnabled = true,
-                TaxExemptionCode = "tax_exemption_code",
-            }
-        );
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new NewAvalaraTaxConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = TaxProvider.Avalara,
+            AutomaticTaxEnabled = true,
+            TaxExemptionCode = "tax_exemption_code",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
@@ -900,14 +889,12 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NewTaxJarSerializationRoundtripWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new NewTaxJarConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new NewTaxJarConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+            AutomaticTaxEnabled = true,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
@@ -918,14 +905,12 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NewSphereSerializationRoundtripWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new NewSphereConfiguration()
-            {
-                TaxExempt = true,
-                TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
-                AutomaticTaxEnabled = true,
-            }
-        );
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new NewSphereConfiguration()
+        {
+            TaxExempt = true,
+            TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
+            AutomaticTaxEnabled = true,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
@@ -936,13 +921,12 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     [Fact]
     public void NumeralSerializationRoundtripWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+        CustomerUpdateByExternalIDParamsTaxConfiguration value =
             new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
@@ -953,13 +937,12 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     [Fact]
     public void AnrokSerializationRoundtripWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+        CustomerUpdateByExternalIDParamsTaxConfiguration value =
             new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
@@ -970,13 +953,12 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     [Fact]
     public void StripeSerializationRoundtripWorks()
     {
-        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+        CustomerUpdateByExternalIDParamsTaxConfiguration value =
             new CustomerUpdateByExternalIDParamsTaxConfigurationStripe()
             {
                 TaxExempt = true,
                 AutomaticTaxEnabled = true,
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);

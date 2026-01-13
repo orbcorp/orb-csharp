@@ -862,20 +862,19 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewFloatingThresholdTotalAmountPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewFloatingThresholdTotalAmountPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -889,21 +888,19 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewFloatingThresholdTotalAmountPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPriceConversionRateConfig>(
@@ -916,7 +913,7 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
+        NewFloatingThresholdTotalAmountPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -930,8 +927,7 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPriceConversionRateConfig>(

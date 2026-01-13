@@ -1148,20 +1148,19 @@ public class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigTest :
     [Fact]
     public void UnitValidationWorks()
     {
-        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1175,21 +1174,19 @@ public class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig>(
@@ -1202,7 +1199,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigTest :
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1216,8 +1213,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig>(

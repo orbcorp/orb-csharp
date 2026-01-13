@@ -1062,13 +1062,11 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -1076,22 +1074,20 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -1099,13 +1095,11 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig>(
@@ -1119,22 +1113,20 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig>(
