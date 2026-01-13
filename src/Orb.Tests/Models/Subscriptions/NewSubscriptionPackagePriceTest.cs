@@ -163,8 +163,11 @@ public class NewSubscriptionPackagePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -211,8 +214,11 @@ public class NewSubscriptionPackagePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewSubscriptionPackagePriceCadence> expectedCadence =
@@ -630,9 +636,12 @@ public class NewSubscriptionPackagePriceConversionRateConfigTest : TestBase
             ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
             UnitConfig = new("unit_amount"),
         };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionPackagePriceConversionRateConfig>(element);
+            JsonSerializer.Deserialize<NewSubscriptionPackagePriceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -655,9 +664,12 @@ public class NewSubscriptionPackagePriceConversionRateConfigTest : TestBase
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionPackagePriceConversionRateConfig>(element);
+            JsonSerializer.Deserialize<NewSubscriptionPackagePriceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }

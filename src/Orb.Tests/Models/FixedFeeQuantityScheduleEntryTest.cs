@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -39,8 +40,11 @@ public class FixedFeeQuantityScheduleEntryTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityScheduleEntry>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityScheduleEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -56,8 +60,11 @@ public class FixedFeeQuantityScheduleEntryTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityScheduleEntry>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityScheduleEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Beta;
 using Models = Orb.Models;
 
@@ -510,8 +511,11 @@ public class PlanVersionTest : TestBase
             Version = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanVersion>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersion>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -679,8 +683,11 @@ public class PlanVersionTest : TestBase
             Version = 0,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanVersion>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersion>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<PlanVersionAdjustment> expectedAdjustments =
@@ -1183,8 +1190,11 @@ public class PlanVersionAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
             UsageDiscount = 0,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1212,8 +1222,11 @@ public class PlanVersionAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1242,8 +1255,11 @@ public class PlanVersionAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1272,8 +1288,11 @@ public class PlanVersionAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1301,8 +1320,11 @@ public class PlanVersionAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }

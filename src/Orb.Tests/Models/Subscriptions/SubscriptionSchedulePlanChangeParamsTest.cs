@@ -944,10 +944,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustment>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -983,10 +984,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -1355,10 +1357,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1388,10 +1391,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1421,10 +1425,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1455,10 +1460,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1488,10 +1494,11 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1767,10 +1774,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPrice>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -1861,10 +1869,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -3838,10 +3847,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -3901,10 +3911,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -3952,10 +3963,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4011,10 +4023,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4062,10 +4075,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4121,10 +4135,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4181,10 +4196,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4240,10 +4256,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4311,10 +4328,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4370,10 +4388,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4440,10 +4459,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4497,10 +4517,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4549,10 +4570,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4610,10 +4632,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4663,10 +4686,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4715,10 +4739,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4772,10 +4797,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4829,10 +4855,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4887,10 +4914,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -4958,10 +4986,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5015,10 +5044,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5079,10 +5109,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5140,10 +5171,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5201,10 +5233,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5269,10 +5302,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5340,10 +5374,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5404,10 +5439,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5461,10 +5497,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5512,10 +5549,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5563,10 +5601,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5619,10 +5658,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5810,10 +5850,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -5870,10 +5911,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -6239,10 +6281,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBul
                 ],
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -6262,10 +6305,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBul
                 ],
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -6339,10 +6383,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBul
                 PropertyValue = "x",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -6358,10 +6403,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBul
                 PropertyValue = "x",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -6416,10 +6462,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBul
                 TierLowerBound = "tier_lower_bound",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -6435,10 +6482,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBul
                 TierLowerBound = "tier_lower_bound",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -6670,10 +6718,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -6697,10 +6746,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -6868,10 +6918,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -6922,10 +6973,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -7342,10 +7394,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -7360,10 +7413,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -7422,10 +7476,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -7441,10 +7496,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 UnitAmount = "unit_amount",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -7514,10 +7570,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -7541,10 +7598,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -7732,10 +7790,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -7790,10 +7849,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -8246,10 +8306,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 PerUnitRate = "per_unit_rate",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -8267,10 +8328,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 PerUnitRate = "per_unit_rate",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -8346,10 +8408,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -8373,10 +8436,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -8564,10 +8628,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -8622,10 +8687,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -9078,10 +9144,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -9099,10 +9166,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 UnitAmount = "unit_amount",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -9178,10 +9246,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9205,10 +9274,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9370,10 +9440,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercent>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -9421,10 +9492,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercent>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -9817,10 +9889,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConf
                 Percent = 0,
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -9835,10 +9908,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConf
                 Percent = 0,
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -9905,10 +9979,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9932,10 +10007,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -10112,10 +10188,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -10168,10 +10245,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -10603,10 +10681,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOu
                 GroupingKey = "grouping_key",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -10623,10 +10702,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOu
                 GroupingKey = "grouping_key",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -10759,10 +10839,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -10786,10 +10867,11 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -10875,10 +10957,11 @@ public class SubscriptionSchedulePlanChangeParamsRemoveAdjustmentTest : TestBase
             AdjustmentID = "h74gfhdjvn7ujokd",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsRemoveAdjustment>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -10892,10 +10975,11 @@ public class SubscriptionSchedulePlanChangeParamsRemoveAdjustmentTest : TestBase
             AdjustmentID = "h74gfhdjvn7ujokd",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsRemoveAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -10943,10 +11027,11 @@ public class SubscriptionSchedulePlanChangeParamsRemovePriceTest : TestBase
             PriceID = "h74gfhdjvn7ujokd",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsRemovePrice>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -10961,10 +11046,11 @@ public class SubscriptionSchedulePlanChangeParamsRemovePriceTest : TestBase
             PriceID = "h74gfhdjvn7ujokd",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsRemovePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -11119,10 +11205,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentTest : TestBas
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustment>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -11156,10 +11243,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentTest : TestBas
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -11384,10 +11472,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -11417,10 +11506,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -11450,10 +11540,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -11484,10 +11575,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -11517,10 +11609,11 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -11792,10 +11885,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             PriceID = "h74gfhdjvn7ujokd",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePrice>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -11885,10 +11979,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             PriceID = "h74gfhdjvn7ujokd",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -13857,10 +13952,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -13920,10 +14016,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -13971,10 +14068,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14030,10 +14128,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14081,10 +14180,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14140,10 +14240,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14200,10 +14301,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14259,10 +14361,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14330,10 +14433,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14389,10 +14493,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14459,10 +14564,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14516,10 +14622,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14568,10 +14675,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14629,10 +14737,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14682,10 +14791,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14734,10 +14844,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14791,10 +14902,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14848,10 +14960,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14906,10 +15019,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -14977,10 +15091,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15034,10 +15149,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15098,10 +15214,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15159,10 +15276,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15220,10 +15338,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15288,10 +15407,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15359,10 +15479,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15423,10 +15544,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15480,10 +15602,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15531,10 +15654,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15582,10 +15706,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15638,10 +15763,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -15829,10 +15955,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -15889,10 +16016,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -16258,10 +16386,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 ],
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -16281,10 +16410,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 ],
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -16358,10 +16488,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 PropertyValue = "x",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -16377,10 +16508,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 PropertyValue = "x",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -16435,10 +16567,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 TierLowerBound = "tier_lower_bound",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -16454,10 +16587,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 TierLowerBound = "tier_lower_bound",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -16690,10 +16824,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -16717,10 +16852,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -16888,10 +17024,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -16942,10 +17079,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -17362,10 +17500,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -17380,10 +17519,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -17442,10 +17582,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -17461,10 +17602,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 UnitAmount = "unit_amount",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -17534,10 +17676,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -17561,10 +17704,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -17752,10 +17896,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -17810,10 +17955,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -18266,10 +18412,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 PerUnitRate = "per_unit_rate",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -18287,10 +18434,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 PerUnitRate = "per_unit_rate",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -18366,10 +18514,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -18393,10 +18542,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -18584,10 +18734,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -18642,10 +18793,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -19098,10 +19250,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -19119,10 +19272,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 UnitAmount = "unit_amount",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -19198,10 +19352,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -19225,10 +19380,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -19390,10 +19546,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercent>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -19441,10 +19598,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercent>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -19838,10 +19996,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercent
                 Percent = 0,
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -19856,10 +20015,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercent
                 Percent = 0,
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -19926,10 +20086,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -19953,10 +20114,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -20135,10 +20297,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                 ReferenceID = "reference_id",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -20192,10 +20355,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                 ReferenceID = "reference_id",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -20632,10 +20796,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEve
                 GroupingKey = "grouping_key",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -20652,10 +20817,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEve
                 GroupingKey = "grouping_key",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -20788,10 +20954,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -20815,10 +20982,11 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);

@@ -75,8 +75,11 @@ public class TopUpListByExternalIDResponseTest : TestBase
             ExpiresAfterUnit = TopUpListByExternalIDResponseExpiresAfterUnit.Day,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -102,8 +105,11 @@ public class TopUpListByExternalIDResponseTest : TestBase
             ExpiresAfterUnit = TopUpListByExternalIDResponseExpiresAfterUnit.Day,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

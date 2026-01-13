@@ -204,9 +204,12 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPrice>(json);
+            JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPrice>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -268,9 +271,12 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPrice>(element);
+            JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPrice>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingScalableMatrixWithUnitPricingPriceCadence> expectedCadence =
@@ -802,8 +808,11 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
             SecondDimension = "second_dimension",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -828,8 +837,11 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
             SecondDimension = "second_dimension",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
@@ -1008,10 +1020,11 @@ public class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest : TestBa
             SecondDimensionValue = "second_dimension_value",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -1027,10 +1040,11 @@ public class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest : TestBa
             SecondDimensionValue = "second_dimension_value",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -1155,10 +1169,11 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigTe
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1182,10 +1197,11 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigTe
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);

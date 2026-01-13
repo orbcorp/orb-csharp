@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -20,8 +21,11 @@ public class SubscriptionMinifiedTest : TestBase
     {
         var model = new SubscriptionMinified { ID = "VDGsT23osdLb84KD" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionMinified>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionMinified>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -31,8 +35,11 @@ public class SubscriptionMinifiedTest : TestBase
     {
         var model = new SubscriptionMinified { ID = "VDGsT23osdLb84KD" };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionMinified>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionMinified>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "VDGsT23osdLb84KD";

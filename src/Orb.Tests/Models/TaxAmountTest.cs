@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -34,8 +35,8 @@ public class TaxAmountTest : TestBase
             TaxRatePercentage = "tax_rate_percentage",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxAmount>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TaxAmount>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -50,8 +51,11 @@ public class TaxAmountTest : TestBase
             TaxRatePercentage = "tax_rate_percentage",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxAmount>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TaxAmount>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedAmount = "amount";

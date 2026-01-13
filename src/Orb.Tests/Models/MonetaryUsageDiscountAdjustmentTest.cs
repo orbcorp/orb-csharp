@@ -94,8 +94,11 @@ public class MonetaryUsageDiscountAdjustmentTest : TestBase
             UsageDiscount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -124,8 +127,11 @@ public class MonetaryUsageDiscountAdjustmentTest : TestBase
             UsageDiscount = 0,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -283,8 +289,11 @@ public class MonetaryUsageDiscountAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustmentFilter>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustmentFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -299,9 +308,10 @@ public class MonetaryUsageDiscountAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustmentFilter>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 

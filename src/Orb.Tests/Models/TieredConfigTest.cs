@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -59,8 +60,11 @@ public class TieredConfigTest : TestBase
             Prorated = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredConfig>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -82,8 +86,11 @@ public class TieredConfigTest : TestBase
             Prorated = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredConfig>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<SharedTier> expectedTiers =

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Events;
 
 namespace Orb.Tests.Models.Events;
@@ -262,8 +263,8 @@ public class EventTest : TestBase
             ExternalCustomerID = "external_customer_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Event>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Event>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -284,8 +285,8 @@ public class EventTest : TestBase
             ExternalCustomerID = "external_customer_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Event>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Event>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedEventName = "event_name";

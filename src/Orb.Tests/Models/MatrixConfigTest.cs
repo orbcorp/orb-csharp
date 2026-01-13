@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -46,8 +47,11 @@ public class MatrixConfigTest : TestBase
             MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixConfig>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -62,8 +66,11 @@ public class MatrixConfigTest : TestBase
             MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixConfig>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedDefaultUnitAmount = "default_unit_amount";

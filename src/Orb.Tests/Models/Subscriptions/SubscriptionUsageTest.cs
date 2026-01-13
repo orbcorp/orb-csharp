@@ -87,8 +87,11 @@ public class SubscriptionUsageTest : TestBase
                 },
             ]
         );
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -122,8 +125,11 @@ public class SubscriptionUsageTest : TestBase
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -204,8 +210,11 @@ public class UngroupedSubscriptionUsageTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UngroupedSubscriptionUsage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UngroupedSubscriptionUsage>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -234,8 +243,11 @@ public class UngroupedSubscriptionUsageTest : TestBase
             ],
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UngroupedSubscriptionUsage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UngroupedSubscriptionUsage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<Data> expectedData =
@@ -350,8 +362,8 @@ public class DataTest : TestBase
             ViewMode = DataViewMode.Periodic,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Data>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -374,8 +386,8 @@ public class DataTest : TestBase
             ViewMode = DataViewMode.Periodic,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Data>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         BillableMetric expectedBillableMetric = new() { ID = "id", Name = "name" };
@@ -440,8 +452,11 @@ public class BillableMetricTest : TestBase
     {
         var model = new BillableMetric { ID = "id", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BillableMetric>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BillableMetric>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -451,8 +466,11 @@ public class BillableMetricTest : TestBase
     {
         var model = new BillableMetric { ID = "id", Name = "name" };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BillableMetric>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BillableMetric>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -502,8 +520,8 @@ public class DataUsageTest : TestBase
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataUsage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DataUsage>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -518,8 +536,11 @@ public class DataUsageTest : TestBase
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataUsage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DataUsage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         double expectedQuantity = 0;
@@ -701,8 +722,11 @@ public class GroupedSubscriptionUsageTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -737,8 +761,11 @@ public class GroupedSubscriptionUsageTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<GroupedSubscriptionUsageData> expectedData =
@@ -1017,8 +1044,11 @@ public class GroupedSubscriptionUsageDataTest : TestBase
             ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageData>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageData>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1042,8 +1072,11 @@ public class GroupedSubscriptionUsageDataTest : TestBase
             ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageData>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageData>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         GroupedSubscriptionUsageDataBillableMetric expectedBillableMetric = new()
@@ -1120,9 +1153,10 @@ public class GroupedSubscriptionUsageDataBillableMetricTest : TestBase
     {
         var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataBillableMetric>(
-            json
+            json,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(model, deserialized);
@@ -1133,9 +1167,10 @@ public class GroupedSubscriptionUsageDataBillableMetricTest : TestBase
     {
         var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataBillableMetric>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -1182,8 +1217,11 @@ public class MetricGroupTest : TestBase
             PropertyValue = "property_value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MetricGroup>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MetricGroup>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1197,8 +1235,11 @@ public class MetricGroupTest : TestBase
             PropertyValue = "property_value",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MetricGroup>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MetricGroup>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "property_key";
@@ -1252,8 +1293,11 @@ public class GroupedSubscriptionUsageDataUsageTest : TestBase
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataUsage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataUsage>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1268,8 +1312,11 @@ public class GroupedSubscriptionUsageDataUsageTest : TestBase
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataUsage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataUsage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         double expectedQuantity = 0;

@@ -173,8 +173,11 @@ public class NewPlanMatrixPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -226,8 +229,11 @@ public class NewPlanMatrixPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanMatrixPriceCadence> expectedCadence =
@@ -676,9 +682,10 @@ public class NewPlanMatrixPriceConversionRateConfigTest : TestBase
             ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
             UnitConfig = new("unit_amount"),
         };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPriceConversionRateConfig>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
@@ -701,9 +708,10 @@ public class NewPlanMatrixPriceConversionRateConfigTest : TestBase
                 ]
             ),
         };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPriceConversionRateConfig>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);

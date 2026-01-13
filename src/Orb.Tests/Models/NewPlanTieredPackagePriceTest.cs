@@ -182,8 +182,11 @@ public class NewPlanTieredPackagePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePrice>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePrice>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -238,8 +241,11 @@ public class NewPlanTieredPackagePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePrice>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePrice>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanTieredPackagePriceCadence> expectedCadence =
@@ -704,9 +710,10 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfig>(
-            json
+            json,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(model, deserialized);
@@ -725,9 +732,10 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTest : TestBase
             ],
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfig>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -790,9 +798,12 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfigTier>(json);
+            JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfigTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -806,9 +817,12 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfigTier>(element);
+            JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfigTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -872,9 +886,12 @@ public class NewPlanTieredPackagePriceConversionRateConfigTest : TestBase
             ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
             UnitConfig = new("unit_amount"),
         };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredPackagePriceConversionRateConfig>(element);
+            JsonSerializer.Deserialize<NewPlanTieredPackagePriceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -896,9 +913,12 @@ public class NewPlanTieredPackagePriceConversionRateConfigTest : TestBase
                 ]
             ),
         };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredPackagePriceConversionRateConfig>(element);
+            JsonSerializer.Deserialize<NewPlanTieredPackagePriceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }

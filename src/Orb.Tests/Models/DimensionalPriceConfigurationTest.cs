@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -35,8 +36,11 @@ public class DimensionalPriceConfigurationTest : TestBase
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionalPriceConfiguration>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DimensionalPriceConfiguration>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -50,8 +54,11 @@ public class DimensionalPriceConfigurationTest : TestBase
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionalPriceConfiguration>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DimensionalPriceConfiguration>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<string> expectedDimensionValues = ["string"];

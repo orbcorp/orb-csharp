@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
@@ -30,8 +31,11 @@ public class AccountingProviderConfigTest : TestBase
             ProviderType = "provider_type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AccountingProviderConfig>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AccountingProviderConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -45,8 +49,11 @@ public class AccountingProviderConfigTest : TestBase
             ProviderType = "provider_type",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AccountingProviderConfig>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AccountingProviderConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedExternalProviderID = "external_provider_id";

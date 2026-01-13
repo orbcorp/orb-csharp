@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 using Orb.Models.Coupons;
 
@@ -97,8 +98,8 @@ public class CouponTest : TestBase
             TimesRedeemed = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Coupon>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Coupon>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -132,8 +133,8 @@ public class CouponTest : TestBase
             TimesRedeemed = 0,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Coupon>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Coupon>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedID = "7iz2yanVjQoBZhyH";
@@ -266,8 +267,11 @@ public class CouponDiscountTest : TestBase
             ],
             Reason = "reason",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -291,8 +295,11 @@ public class CouponDiscountTest : TestBase
             ],
             Reason = "reason",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }

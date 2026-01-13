@@ -68,9 +68,12 @@ public class BalanceTransactionCreateResponseTest : TestBase
             Type = BalanceTransactions::BalanceTransactionCreateResponseType.Increment,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(json);
+            JsonSerializer.Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -92,10 +95,11 @@ public class BalanceTransactionCreateResponseTest : TestBase
             Type = BalanceTransactions::BalanceTransactionCreateResponseType.Increment,
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 

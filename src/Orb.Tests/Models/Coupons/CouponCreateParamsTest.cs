@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Coupons;
 
 namespace Orb.Tests.Models.Coupons;
@@ -96,8 +97,11 @@ public class DiscountTest : TestBase
     public void PercentageSerializationRoundtripWorks()
     {
         Discount value = new Percentage(0);
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Discount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Discount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -106,8 +110,11 @@ public class DiscountTest : TestBase
     public void AmountSerializationRoundtripWorks()
     {
         Discount value = new Amount("amount_discount");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Discount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Discount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -132,8 +139,11 @@ public class PercentageTest : TestBase
     {
         var model = new Percentage { PercentageDiscount = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Percentage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Percentage>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -143,8 +153,11 @@ public class PercentageTest : TestBase
     {
         var model = new Percentage { PercentageDiscount = 0 };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Percentage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Percentage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("percentage");
@@ -182,8 +195,8 @@ public class AmountTest : TestBase
     {
         var model = new Amount { AmountDiscount = "amount_discount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Amount>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Amount>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -193,8 +206,8 @@ public class AmountTest : TestBase
     {
         var model = new Amount { AmountDiscount = "amount_discount" };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Amount>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Amount>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedAmountDiscount = "amount_discount";

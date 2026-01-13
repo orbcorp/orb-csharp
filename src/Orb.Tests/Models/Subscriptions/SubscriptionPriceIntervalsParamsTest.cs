@@ -1011,8 +1011,11 @@ public class AddTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Add>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Add>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1102,8 +1105,11 @@ public class AddTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Add>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Add>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         Subscriptions::StartDate expectedStartDate = DateTimeOffset.Parse(
@@ -1448,8 +1454,11 @@ public class StartDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::StartDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::StartDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::StartDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1458,8 +1467,11 @@ public class StartDateTest : TestBase
     public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::StartDate value = BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::StartDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::StartDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1492,8 +1504,11 @@ public class DiscountTest : TestBase
     public void AmountSerializationRoundtripWorks()
     {
         Subscriptions::Discount value = new Subscriptions::Amount(0);
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Discount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Discount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1502,8 +1517,11 @@ public class DiscountTest : TestBase
     public void PercentageSerializationRoundtripWorks()
     {
         Subscriptions::Discount value = new Subscriptions::Percentage(0.15);
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Discount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Discount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1512,8 +1530,11 @@ public class DiscountTest : TestBase
     public void UsageSerializationRoundtripWorks()
     {
         Subscriptions::Discount value = new Subscriptions::Usage(2);
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Discount>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Discount>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1538,8 +1559,11 @@ public class AmountTest : TestBase
     {
         var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Amount>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Amount>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1549,8 +1573,11 @@ public class AmountTest : TestBase
     {
         var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Amount>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Amount>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         double expectedAmountDiscount = 0;
@@ -1588,8 +1615,11 @@ public class PercentageTest : TestBase
     {
         var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1599,8 +1629,11 @@ public class PercentageTest : TestBase
     {
         var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("percentage");
@@ -1638,8 +1671,11 @@ public class UsageTest : TestBase
     {
         var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1649,8 +1685,11 @@ public class UsageTest : TestBase
     {
         var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("usage");
@@ -1689,8 +1728,11 @@ public class EndDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EndDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EndDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EndDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1699,8 +1741,11 @@ public class EndDateTest : TestBase
     public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EndDate value = BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EndDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EndDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1733,9 +1778,10 @@ public class FixedFeeQuantityTransitionTest : TestBase
             Quantity = 5,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::FixedFeeQuantityTransition>(
-            json
+            json,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(model, deserialized);
@@ -1750,9 +1796,10 @@ public class FixedFeeQuantityTransitionTest : TestBase
             Quantity = 5,
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::FixedFeeQuantityTransition>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -3370,8 +3417,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3428,8 +3478,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3474,8 +3527,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3527,8 +3583,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3573,8 +3632,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3624,8 +3686,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3678,8 +3743,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3732,8 +3800,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3797,8 +3868,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3851,8 +3925,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3915,8 +3992,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3966,8 +4046,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4012,8 +4095,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4064,8 +4150,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4112,8 +4201,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4158,8 +4250,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4209,8 +4304,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4260,8 +4358,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4312,8 +4413,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4373,8 +4477,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4424,8 +4531,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4482,8 +4592,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4537,8 +4650,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4592,8 +4708,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4654,8 +4773,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4719,8 +4841,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4777,8 +4902,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4828,8 +4956,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4874,8 +5005,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4919,8 +5053,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4969,8 +5106,11 @@ public class PriceModelTest : TestBase
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModel>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -5146,9 +5286,10 @@ public class PriceModelBulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFilters>(
-            json
+            json,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(model, deserialized);
@@ -5202,9 +5343,10 @@ public class PriceModelBulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFilters>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -5543,10 +5685,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -5565,10 +5708,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -5638,10 +5782,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
             PropertyValue = "x",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -5656,10 +5801,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
             PropertyValue = "x",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -5710,10 +5856,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -5728,10 +5875,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -5913,10 +6061,11 @@ public class PriceModelBulkWithFiltersConversionRateConfigTest : TestBase
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -5940,10 +6089,11 @@ public class PriceModelBulkWithFiltersConversionRateConfigTest : TestBase
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -6121,9 +6271,12 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholds>(json);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholds>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -6174,10 +6327,11 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholds>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -6566,10 +6720,11 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
                 PerUnitRate = "per_unit_rate",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -6587,10 +6742,11 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
                 PerUnitRate = "per_unit_rate",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -6665,10 +6821,11 @@ public class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigTest : Tes
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -6692,10 +6849,11 @@ public class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigTest : Tes
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -6873,9 +7031,12 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocation>(json);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocation>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -6926,10 +7087,11 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocation>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -7318,10 +7480,11 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -7339,10 +7502,11 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
                 UnitAmount = "unit_amount",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -7417,10 +7581,11 @@ public class PriceModelCumulativeGroupedAllocationConversionRateConfigTest : Tes
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -7444,10 +7609,11 @@ public class PriceModelCumulativeGroupedAllocationConversionRateConfigTest : Tes
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -7599,8 +7765,11 @@ public class PriceModelPercentTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelPercent>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelPercent>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -7645,8 +7814,11 @@ public class PriceModelPercentTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelPercent>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelPercent>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Subscriptions::PriceModelPercentCadence> expectedCadence =
@@ -7964,9 +8136,12 @@ public class PriceModelPercentPercentConfigTest : TestBase
     {
         var model = new Subscriptions::PriceModelPercentPercentConfig { Percent = 0 };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::PriceModelPercentPercentConfig>(json);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelPercentPercentConfig>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -7976,9 +8151,12 @@ public class PriceModelPercentPercentConfigTest : TestBase
     {
         var model = new Subscriptions::PriceModelPercentPercentConfig { Percent = 0 };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::PriceModelPercentPercentConfig>(element);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelPercentPercentConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         double expectedPercent = 0;
@@ -8039,10 +8217,11 @@ public class PriceModelPercentConversionRateConfigTest : TestBase
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelPercentConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -8066,10 +8245,11 @@ public class PriceModelPercentConversionRateConfigTest : TestBase
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelPercentConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -8236,8 +8416,11 @@ public class PriceModelEventOutputTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutput>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutput>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8287,9 +8470,10 @@ public class PriceModelEventOutputTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutput>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -8652,9 +8836,12 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
             GroupingKey = "grouping_key",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputEventOutputConfig>(json);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputEventOutputConfig>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -8669,10 +8856,11 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
             GroupingKey = "grouping_key",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputEventOutputConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -8799,10 +8987,11 @@ public class PriceModelEventOutputConversionRateConfigTest : TestBase
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -8826,10 +9015,11 @@ public class PriceModelEventOutputConversionRateConfigTest : TestBase
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -8931,10 +9121,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -8970,10 +9161,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -9129,10 +9321,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBa
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value =
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9143,10 +9336,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBa
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value =
             BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9315,10 +9509,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 IsInvoiceLevel = true,
                 PriceType = NewPercentageDiscountPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9348,10 +9543,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 IsInvoiceLevel = true,
                 PriceType = NewUsageDiscountPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9381,10 +9577,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 IsInvoiceLevel = true,
                 PriceType = PriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9415,10 +9612,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 IsInvoiceLevel = true,
                 PriceType = NewMinimumPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9448,10 +9646,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 IsInvoiceLevel = true,
                 PriceType = NewMaximumPriceType.Usage,
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9481,10 +9680,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateTest : TestBase
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate value =
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9495,10 +9695,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateTest : TestBase
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate value =
             BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -9597,8 +9798,11 @@ public class EditTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Edit>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Edit>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -9625,8 +9829,11 @@ public class EditTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Edit>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Edit>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedPriceIntervalID = "sdfs6wdjvn7ujokd";
@@ -9909,8 +10116,11 @@ public class EditEndDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EditEndDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditEndDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditEndDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -9919,8 +10129,11 @@ public class EditEndDateTest : TestBase
     public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditEndDate value = BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditEndDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditEndDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -9953,9 +10166,12 @@ public class EditFixedFeeQuantityTransitionTest : TestBase
             Quantity = 5,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::EditFixedFeeQuantityTransition>(json);
+            JsonSerializer.Deserialize<Subscriptions::EditFixedFeeQuantityTransition>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -9969,9 +10185,12 @@ public class EditFixedFeeQuantityTransitionTest : TestBase
             Quantity = 5,
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::EditFixedFeeQuantityTransition>(element);
+            JsonSerializer.Deserialize<Subscriptions::EditFixedFeeQuantityTransition>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -10014,8 +10233,11 @@ public class EditStartDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EditStartDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditStartDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditStartDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -10024,8 +10246,11 @@ public class EditStartDateTest : TestBase
     public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditStartDate value = BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditStartDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditStartDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -10066,8 +10291,11 @@ public class EditAdjustmentTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustment>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustment>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -10082,8 +10310,11 @@ public class EditAdjustmentTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustment>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedAdjustmentIntervalID = "sdfs6wdjvn7ujokd";
@@ -10247,9 +10478,10 @@ public class EditAdjustmentEndDateTest : TestBase
         Subscriptions::EditAdjustmentEndDate value = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustmentEndDate>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
@@ -10259,9 +10491,10 @@ public class EditAdjustmentEndDateTest : TestBase
     public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditAdjustmentEndDate value = BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustmentEndDate>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
@@ -10292,9 +10525,10 @@ public class EditAdjustmentStartDateTest : TestBase
         Subscriptions::EditAdjustmentStartDate value = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustmentStartDate>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
@@ -10304,9 +10538,10 @@ public class EditAdjustmentStartDateTest : TestBase
     public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditAdjustmentStartDate value = BillingCycleRelativeDate.StartOfTerm;
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustmentStartDate>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);

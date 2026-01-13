@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -25,8 +26,11 @@ public class SubLineItemMatrixConfigTest : TestBase
     {
         var model = new SubLineItemMatrixConfig { DimensionValues = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubLineItemMatrixConfig>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<SubLineItemMatrixConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -36,8 +40,11 @@ public class SubLineItemMatrixConfigTest : TestBase
     {
         var model = new SubLineItemMatrixConfig { DimensionValues = ["string"] };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubLineItemMatrixConfig>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<SubLineItemMatrixConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<string?> expectedDimensionValues = ["string"];

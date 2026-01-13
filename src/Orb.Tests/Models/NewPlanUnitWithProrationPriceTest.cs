@@ -160,8 +160,11 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithProrationPrice>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithProrationPrice>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -208,8 +211,11 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithProrationPrice>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithProrationPrice>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanUnitWithProrationPriceCadence> expectedCadence =
@@ -604,9 +610,12 @@ public class NewPlanUnitWithProrationPriceUnitWithProrationConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceUnitWithProrationConfig>(json);
+            JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceUnitWithProrationConfig>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -619,10 +628,11 @@ public class NewPlanUnitWithProrationPriceUnitWithProrationConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceUnitWithProrationConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -687,9 +697,12 @@ public class NewPlanUnitWithProrationPriceConversionRateConfigTest : TestBase
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceConversionRateConfig>(element);
+            JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -712,9 +725,12 @@ public class NewPlanUnitWithProrationPriceConversionRateConfigTest : TestBase
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceConversionRateConfig>(element);
+            JsonSerializer.Deserialize<NewPlanUnitWithProrationPriceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }

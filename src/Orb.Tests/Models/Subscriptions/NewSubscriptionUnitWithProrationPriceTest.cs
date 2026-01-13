@@ -166,9 +166,12 @@ public class NewSubscriptionUnitWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPrice>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -216,10 +219,11 @@ public class NewSubscriptionUnitWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPrice>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -629,8 +633,11 @@ public class UnitWithProrationConfigTest : TestBase
     {
         var model = new Subscriptions::UnitWithProrationConfig { UnitAmount = "unit_amount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithProrationConfig>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithProrationConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -640,9 +647,10 @@ public class UnitWithProrationConfigTest : TestBase
     {
         var model = new Subscriptions::UnitWithProrationConfig { UnitAmount = "unit_amount" };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithProrationConfig>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -704,10 +712,11 @@ public class NewSubscriptionUnitWithProrationPriceConversionRateConfigTest : Tes
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPriceConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -731,10 +740,11 @@ public class NewSubscriptionUnitWithProrationPriceConversionRateConfigTest : Tes
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPriceConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);

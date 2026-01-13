@@ -204,8 +204,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPrice>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPrice>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -266,9 +269,10 @@ public class NewPlanGroupedWithMeteredMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPrice>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
@@ -738,10 +742,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
             UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -763,10 +768,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
             UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" }],
         };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -849,10 +855,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
                 ScalingValue = "scaling_value",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -868,10 +875,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
                 ScalingValue = "scaling_value",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -926,10 +934,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount>(
-                json
+                json,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(model, deserialized);
@@ -945,10 +954,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
                 UnitAmount = "unit_amount",
             };
 
-        string element = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
@@ -1071,10 +1081,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigTest : Tes
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);
@@ -1098,10 +1109,11 @@ public class NewPlanGroupedWithMeteredMinimumPriceConversionRateConfigTest : Tes
                     ]
                 ),
             };
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceConversionRateConfig>(
-                element
+                element,
+                ModelBase.SerializerOptions
             );
 
         Assert.Equal(value, deserialized);

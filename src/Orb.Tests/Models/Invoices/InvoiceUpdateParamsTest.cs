@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Invoices;
 
 namespace Orb.Tests.Models.Invoices;
@@ -108,8 +109,11 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     public void DateSerializationRoundtripWorks()
     {
         InvoiceUpdateParamsDueDate value = "2019-12-27";
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -118,8 +122,11 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         InvoiceUpdateParamsDueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -145,8 +152,11 @@ public class InvoiceDateTest : TestBase
     public void DateSerializationRoundtripWorks()
     {
         InvoiceDate value = "2019-12-27";
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -155,8 +165,11 @@ public class InvoiceDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         InvoiceDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }

@@ -42,8 +42,11 @@ public class MigrationListResponseTest : TestBase
             Status = MigrationListResponseStatus.NotStarted,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MigrationListResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationListResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -59,8 +62,11 @@ public class MigrationListResponseTest : TestBase
             Status = MigrationListResponseStatus.NotStarted,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MigrationListResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationListResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -118,8 +124,11 @@ public class MigrationListResponseEffectiveTimeTest : TestBase
     public void StringSerializationRoundtripWorks()
     {
         MigrationListResponseEffectiveTime value = "2019-12-27";
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -128,8 +137,11 @@ public class MigrationListResponseEffectiveTimeTest : TestBase
     public void DateTimeOffsetSerializationRoundtripWorks()
     {
         MigrationListResponseEffectiveTime value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -139,8 +151,11 @@ public class MigrationListResponseEffectiveTimeTest : TestBase
     {
         MigrationListResponseEffectiveTime value =
             MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm;
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
