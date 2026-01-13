@@ -584,7 +584,13 @@ public record class StartDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public StartDate(System::DateTimeOffset value, JsonElement? element = null)
@@ -816,7 +822,13 @@ public record class Discount : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public JsonElement DiscountType
@@ -1398,7 +1410,13 @@ public record class EndDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public EndDate(System::DateTimeOffset value, JsonElement? element = null)
@@ -1708,7 +1726,13 @@ public record class PriceModel : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string Currency
@@ -4976,7 +5000,13 @@ public record class PriceModelBulkWithFiltersConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceModelBulkWithFiltersConversionRateConfig(
@@ -5758,7 +5788,13 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig : 
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceModelGroupedWithMinMaxThresholdsConversionRateConfig(
@@ -6540,7 +6576,13 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig : 
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceModelCumulativeGroupedAllocationConversionRateConfig(
@@ -7261,7 +7303,13 @@ public record class PriceModelPercentConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceModelPercentConversionRateConfig(
@@ -8022,7 +8070,13 @@ public record class PriceModelEventOutputConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceModelEventOutputConversionRateConfig(
@@ -8439,7 +8493,13 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate : Mod
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(
@@ -8692,7 +8752,13 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment : Mo
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Currency
@@ -9197,7 +9263,13 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate : Model
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(
@@ -9650,7 +9722,13 @@ public record class EditEndDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public EditEndDate(System::DateTimeOffset value, JsonElement? element = null)
@@ -9964,7 +10042,13 @@ public record class EditStartDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public EditStartDate(System::DateTimeOffset value, JsonElement? element = null)
@@ -10307,7 +10391,13 @@ public record class EditAdjustmentEndDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public EditAdjustmentEndDate(System::DateTimeOffset value, JsonElement? element = null)
@@ -10555,7 +10645,13 @@ public record class EditAdjustmentStartDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public EditAdjustmentStartDate(System::DateTimeOffset value, JsonElement? element = null)

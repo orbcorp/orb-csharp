@@ -616,7 +616,13 @@ public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig : 
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public NewFloatingMaxGroupTieredPackagePriceConversionRateConfig(

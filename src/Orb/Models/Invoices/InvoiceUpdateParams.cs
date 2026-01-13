@@ -189,7 +189,13 @@ public record class InvoiceUpdateParamsDueDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public InvoiceUpdateParamsDueDate(string value, JsonElement? element = null)
@@ -422,7 +428,13 @@ public record class InvoiceDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public InvoiceDate(string value, JsonElement? element = null)
