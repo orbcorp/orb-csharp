@@ -420,7 +420,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
 
             if (response != null && (++retries > maxRetries || !ShouldRetry(response)))
             {
-                if (response.Message.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     return response;
                 }
@@ -428,7 +428,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
                 try
                 {
                     throw OrbExceptionFactory.CreateApiException(
-                        response.Message.StatusCode,
+                        response.StatusCode,
                         await response.ReadAsString(cancellationToken).ConfigureAwait(false)
                     );
                 }
@@ -494,7 +494,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
         {
             throw new OrbIOException("I/O exception", e);
         }
-        return new() { Message = responseMessage, CancellationToken = cts.Token };
+        return new() { RawMessage = responseMessage, CancellationToken = cts.Token };
     }
 
     static TimeSpan ComputeRetryBackoff(int retries, HttpResponse? response)
@@ -516,7 +516,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
     static TimeSpan? ParseRetryAfterMsHeader(HttpResponse? response)
     {
         IEnumerable<string>? headerValues = null;
-        response?.Message.Headers.TryGetValues("Retry-After-Ms", out headerValues);
+        response?.TryGetHeaderValues("Retry-After-Ms", out headerValues);
         var headerValue = headerValues == null ? null : Enumerable.FirstOrDefault(headerValues);
         if (headerValue == null)
         {
@@ -534,7 +534,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
     static TimeSpan? ParseRetryAfterHeader(HttpResponse? response)
     {
         IEnumerable<string>? headerValues = null;
-        response?.Message.Headers.TryGetValues("Retry-After", out headerValues);
+        response?.TryGetHeaderValues("Retry-After", out headerValues);
         var headerValue = headerValues == null ? null : Enumerable.FirstOrDefault(headerValues);
         if (headerValue == null)
         {
@@ -556,7 +556,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
     static bool ShouldRetry(HttpResponse response)
     {
         if (
-            response.Message.Headers.TryGetValues("X-Should-Retry", out var headerValues)
+            response.TryGetHeaderValues("X-Should-Retry", out var headerValues)
             && bool.TryParse(Enumerable.FirstOrDefault(headerValues), out var shouldRetry)
         )
         {
@@ -564,7 +564,7 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
             return shouldRetry;
         }
 
-        return (int)response.Message.StatusCode switch
+        return (int)response.StatusCode switch
         {
             // Retry on request timeouts
             408
