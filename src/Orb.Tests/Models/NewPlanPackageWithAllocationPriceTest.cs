@@ -714,20 +714,19 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
     [Fact]
     public void UnitValidationWorks()
     {
-        NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
+        NewPlanPackageWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
+        NewPlanPackageWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -741,21 +740,19 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
+        NewPlanPackageWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanPackageWithAllocationPriceConversionRateConfig>(
@@ -768,7 +765,7 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
+        NewPlanPackageWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -782,8 +779,7 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanPackageWithAllocationPriceConversionRateConfig>(

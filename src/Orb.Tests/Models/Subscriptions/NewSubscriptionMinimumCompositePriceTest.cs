@@ -727,20 +727,19 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -754,21 +753,19 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig>(
@@ -781,7 +778,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -795,8 +792,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig>(

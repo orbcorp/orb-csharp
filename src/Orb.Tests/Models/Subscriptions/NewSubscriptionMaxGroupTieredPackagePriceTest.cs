@@ -891,20 +891,19 @@ public class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigTest :
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -918,21 +917,19 @@ public class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig>(
@@ -945,7 +942,7 @@ public class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigTest :
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -959,8 +956,7 @@ public class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig>(

@@ -612,20 +612,19 @@ public class NewFloatingUnitWithProrationPriceConversionRateConfigTest : TestBas
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingUnitWithProrationPriceConversionRateConfig value = new(
+        NewFloatingUnitWithProrationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingUnitWithProrationPriceConversionRateConfig value = new(
+        NewFloatingUnitWithProrationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -639,21 +638,19 @@ public class NewFloatingUnitWithProrationPriceConversionRateConfigTest : TestBas
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingUnitWithProrationPriceConversionRateConfig value = new(
+        NewFloatingUnitWithProrationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingUnitWithProrationPriceConversionRateConfig>(
@@ -666,7 +663,7 @@ public class NewFloatingUnitWithProrationPriceConversionRateConfigTest : TestBas
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingUnitWithProrationPriceConversionRateConfig value = new(
+        NewFloatingUnitWithProrationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -680,8 +677,7 @@ public class NewFloatingUnitWithProrationPriceConversionRateConfigTest : TestBas
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingUnitWithProrationPriceConversionRateConfig>(

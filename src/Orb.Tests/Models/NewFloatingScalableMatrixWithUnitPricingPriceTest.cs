@@ -1116,20 +1116,19 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigTe
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1143,21 +1142,19 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigTe
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig>(
@@ -1170,7 +1167,7 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigTe
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value = new(
+        NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1184,8 +1181,7 @@ public class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigTe
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig>(

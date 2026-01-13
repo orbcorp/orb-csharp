@@ -498,21 +498,21 @@ public class DueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        Invoices::DueDate value = new("2019-12-27");
+        Invoices::DueDate value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeValidationWorks()
     {
-        Invoices::DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Invoices::DueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        Invoices::DueDate value = new("2019-12-27");
+        Invoices::DueDate value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Invoices::DueDate>(element);
 
@@ -522,7 +522,7 @@ public class DueDateTest : TestBase
     [Fact]
     public void DateTimeSerializationRoundtripWorks()
     {
-        Invoices::DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Invoices::DueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Invoices::DueDate>(element);
 

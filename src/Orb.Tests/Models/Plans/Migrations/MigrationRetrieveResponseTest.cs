@@ -93,28 +93,28 @@ public class EffectiveTimeTest : TestBase
     [Fact]
     public void StringValidationWorks()
     {
-        EffectiveTime value = new("2019-12-27");
+        EffectiveTime value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeOffsetValidationWorks()
     {
-        EffectiveTime value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        EffectiveTime value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void UnionMember2ValidationWorks()
     {
-        EffectiveTime value = new(UnionMember2.EndOfTerm);
+        EffectiveTime value = UnionMember2.EndOfTerm;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        EffectiveTime value = new("2019-12-27");
+        EffectiveTime value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<EffectiveTime>(element);
 
@@ -124,7 +124,7 @@ public class EffectiveTimeTest : TestBase
     [Fact]
     public void DateTimeOffsetSerializationRoundtripWorks()
     {
-        EffectiveTime value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        EffectiveTime value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<EffectiveTime>(element);
 
@@ -134,7 +134,7 @@ public class EffectiveTimeTest : TestBase
     [Fact]
     public void UnionMember2SerializationRoundtripWorks()
     {
-        EffectiveTime value = new(UnionMember2.EndOfTerm);
+        EffectiveTime value = UnionMember2.EndOfTerm;
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<EffectiveTime>(element);
 

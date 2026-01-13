@@ -886,20 +886,19 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
+        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
+        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -913,21 +912,19 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
+        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPriceConversionRateConfig>(
@@ -940,7 +937,7 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
+        NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -954,8 +951,7 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPriceConversionRateConfig>(

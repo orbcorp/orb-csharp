@@ -670,20 +670,19 @@ public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+        NewFloatingMinimumCompositePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+        NewFloatingMinimumCompositePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -697,21 +696,19 @@ public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+        NewFloatingMinimumCompositePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(
@@ -724,7 +721,7 @@ public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+        NewFloatingMinimumCompositePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -738,8 +735,7 @@ public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(

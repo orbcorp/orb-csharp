@@ -95,32 +95,29 @@ public class MigrationListResponseEffectiveTimeTest : TestBase
     [Fact]
     public void StringValidationWorks()
     {
-        MigrationListResponseEffectiveTime value = new("2019-12-27");
+        MigrationListResponseEffectiveTime value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeOffsetValidationWorks()
     {
-        MigrationListResponseEffectiveTime value = new(
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
-        );
+        MigrationListResponseEffectiveTime value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void MigrationListResponseEffectiveTimeUnionMember2ValidationWorks()
     {
-        MigrationListResponseEffectiveTime value = new(
-            MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm
-        );
+        MigrationListResponseEffectiveTime value =
+            MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        MigrationListResponseEffectiveTime value = new("2019-12-27");
+        MigrationListResponseEffectiveTime value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(element);
 
@@ -130,9 +127,7 @@ public class MigrationListResponseEffectiveTimeTest : TestBase
     [Fact]
     public void DateTimeOffsetSerializationRoundtripWorks()
     {
-        MigrationListResponseEffectiveTime value = new(
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
-        );
+        MigrationListResponseEffectiveTime value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(element);
 
@@ -142,9 +137,8 @@ public class MigrationListResponseEffectiveTimeTest : TestBase
     [Fact]
     public void MigrationListResponseEffectiveTimeUnionMember2SerializationRoundtripWorks()
     {
-        MigrationListResponseEffectiveTime value = new(
-            MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm
-        );
+        MigrationListResponseEffectiveTime value =
+            MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm;
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MigrationListResponseEffectiveTime>(element);
 

@@ -628,20 +628,19 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
     [Fact]
     public void UnitValidationWorks()
     {
-        NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingMatrixWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingMatrixWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -655,21 +654,19 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingMatrixWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingMatrixWithAllocationPriceConversionRateConfig>(
@@ -682,7 +679,7 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
+        NewFloatingMatrixWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -696,8 +693,7 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingMatrixWithAllocationPriceConversionRateConfig>(

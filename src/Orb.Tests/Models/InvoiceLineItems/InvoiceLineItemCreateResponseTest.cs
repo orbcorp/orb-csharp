@@ -1169,173 +1169,158 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void MonetaryUsageDiscountValidationWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryUsageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-                UsageDiscount = 0,
-            }
-        );
+        Adjustment value = new Models::MonetaryUsageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
         value.Validate();
     }
 
     [Fact]
     public void MonetaryAmountDiscountValidationWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryAmountDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::AdjustmentType.AmountDiscount,
-                Amount = "amount",
-                AmountDiscount = "amount_discount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryAmountDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryAmountDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::AdjustmentType.AmountDiscount,
+            Amount = "amount",
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void MonetaryPercentageDiscountValidationWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryPercentageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
-                        Operator =
-                            Models::MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PercentageDiscount = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryPercentageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType =
+                Models::MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PercentageDiscount = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void MonetaryMinimumValidationWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryMinimumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryMinimumAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryMinimumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryMinimumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryMinimumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void MonetaryMaximumValidationWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryMaximumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryMaximumAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryMaximumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                MaximumAmount = "maximum_amount",
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryMaximumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryMaximumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            MaximumAmount = "maximum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         value.Validate();
     }
 
     [Fact]
     public void MonetaryUsageDiscountSerializationRoundtripWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryUsageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-                UsageDiscount = 0,
-            }
-        );
+        Adjustment value = new Models::MonetaryUsageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            UsageDiscount = 0,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
@@ -1345,28 +1330,26 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void MonetaryAmountDiscountSerializationRoundtripWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryAmountDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::AdjustmentType.AmountDiscount,
-                Amount = "amount",
-                AmountDiscount = "amount_discount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryAmountDiscountAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryAmountDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::AdjustmentType.AmountDiscount,
+            Amount = "amount",
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
@@ -1376,30 +1359,27 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void MonetaryPercentageDiscountSerializationRoundtripWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryPercentageDiscountAdjustment()
-            {
-                ID = "id",
-                AdjustmentType =
-                    Models::MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
-                        Operator =
-                            Models::MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                PercentageDiscount = 0,
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryPercentageDiscountAdjustment()
+        {
+            ID = "id",
+            AdjustmentType =
+                Models::MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PercentageDiscount = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
@@ -1409,29 +1389,27 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void MonetaryMinimumSerializationRoundtripWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryMinimumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryMinimumAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryMinimumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                ItemID = "item_id",
-                MinimumAmount = "minimum_amount",
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryMinimumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryMinimumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
@@ -1441,28 +1419,26 @@ public class AdjustmentTest : TestBase
     [Fact]
     public void MonetaryMaximumSerializationRoundtripWorks()
     {
-        Adjustment value = new(
-            new Models::MonetaryMaximumAdjustment()
-            {
-                ID = "id",
-                AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
-                Amount = "amount",
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Models::MonetaryMaximumAdjustmentFilterField.PriceID,
-                        Operator = Models::MonetaryMaximumAdjustmentFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                IsInvoiceLevel = true,
-                MaximumAmount = "maximum_amount",
-                Reason = "reason",
-                ReplacesAdjustmentID = "replaces_adjustment_id",
-            }
-        );
+        Adjustment value = new Models::MonetaryMaximumAdjustment()
+        {
+            ID = "id",
+            AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = Models::MonetaryMaximumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            MaximumAmount = "maximum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
@@ -1475,74 +1451,66 @@ public class SubLineItemTest : TestBase
     [Fact]
     public void MatrixValidationWorks()
     {
-        SubLineItem value = new(
-            new Models::MatrixSubLineItem()
-            {
-                Amount = "9.00",
-                Grouping = new() { Key = "region", Value = "west" },
-                MatrixConfig = new(["string"]),
-                Name = "Tier One",
-                Quantity = 5,
-                Type = Models::MatrixSubLineItemType.Matrix,
-                ScaledQuantity = 0,
-            }
-        );
+        SubLineItem value = new Models::MatrixSubLineItem()
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            MatrixConfig = new(["string"]),
+            Name = "Tier One",
+            Quantity = 5,
+            Type = Models::MatrixSubLineItemType.Matrix,
+            ScaledQuantity = 0,
+        };
         value.Validate();
     }
 
     [Fact]
     public void TierValidationWorks()
     {
-        SubLineItem value = new(
-            new Models::TierSubLineItem()
+        SubLineItem value = new Models::TierSubLineItem()
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            Name = "Tier One",
+            Quantity = 5,
+            TierConfig = new()
             {
-                Amount = "9.00",
-                Grouping = new() { Key = "region", Value = "west" },
-                Name = "Tier One",
-                Quantity = 5,
-                TierConfig = new()
-                {
-                    FirstUnit = 1,
-                    LastUnit = 1000,
-                    UnitAmount = "3.00",
-                },
-                Type = Models::TierSubLineItemType.Tier,
-            }
-        );
+                FirstUnit = 1,
+                LastUnit = 1000,
+                UnitAmount = "3.00",
+            },
+            Type = Models::TierSubLineItemType.Tier,
+        };
         value.Validate();
     }
 
     [Fact]
     public void OtherValidationWorks()
     {
-        SubLineItem value = new(
-            new Models::OtherSubLineItem()
-            {
-                Amount = "9.00",
-                Grouping = new() { Key = "region", Value = "west" },
-                Name = "Tier One",
-                Quantity = 5,
-                Type = Models::OtherSubLineItemType.Null,
-            }
-        );
+        SubLineItem value = new Models::OtherSubLineItem()
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            Name = "Tier One",
+            Quantity = 5,
+            Type = Models::OtherSubLineItemType.Null,
+        };
         value.Validate();
     }
 
     [Fact]
     public void MatrixSerializationRoundtripWorks()
     {
-        SubLineItem value = new(
-            new Models::MatrixSubLineItem()
-            {
-                Amount = "9.00",
-                Grouping = new() { Key = "region", Value = "west" },
-                MatrixConfig = new(["string"]),
-                Name = "Tier One",
-                Quantity = 5,
-                Type = Models::MatrixSubLineItemType.Matrix,
-                ScaledQuantity = 0,
-            }
-        );
+        SubLineItem value = new Models::MatrixSubLineItem()
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            MatrixConfig = new(["string"]),
+            Name = "Tier One",
+            Quantity = 5,
+            Type = Models::MatrixSubLineItemType.Matrix,
+            ScaledQuantity = 0,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<SubLineItem>(element);
 
@@ -1552,22 +1520,20 @@ public class SubLineItemTest : TestBase
     [Fact]
     public void TierSerializationRoundtripWorks()
     {
-        SubLineItem value = new(
-            new Models::TierSubLineItem()
+        SubLineItem value = new Models::TierSubLineItem()
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            Name = "Tier One",
+            Quantity = 5,
+            TierConfig = new()
             {
-                Amount = "9.00",
-                Grouping = new() { Key = "region", Value = "west" },
-                Name = "Tier One",
-                Quantity = 5,
-                TierConfig = new()
-                {
-                    FirstUnit = 1,
-                    LastUnit = 1000,
-                    UnitAmount = "3.00",
-                },
-                Type = Models::TierSubLineItemType.Tier,
-            }
-        );
+                FirstUnit = 1,
+                LastUnit = 1000,
+                UnitAmount = "3.00",
+            },
+            Type = Models::TierSubLineItemType.Tier,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<SubLineItem>(element);
 
@@ -1577,16 +1543,14 @@ public class SubLineItemTest : TestBase
     [Fact]
     public void OtherSerializationRoundtripWorks()
     {
-        SubLineItem value = new(
-            new Models::OtherSubLineItem()
-            {
-                Amount = "9.00",
-                Grouping = new() { Key = "region", Value = "west" },
-                Name = "Tier One",
-                Quantity = 5,
-                Type = Models::OtherSubLineItemType.Null,
-            }
-        );
+        SubLineItem value = new Models::OtherSubLineItem()
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            Name = "Tier One",
+            Quantity = 5,
+            Type = Models::OtherSubLineItemType.Null,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<SubLineItem>(element);
 

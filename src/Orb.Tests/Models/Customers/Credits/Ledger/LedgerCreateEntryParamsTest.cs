@@ -132,140 +132,128 @@ public class BodyTest : TestBase
     [Fact]
     public void IncrementValidationWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Increment()
-            {
-                Amount = 0,
-                Currency = "currency",
-                Description = "description",
-                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Ledger::Field.ItemID,
-                        Operator = Ledger::Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                InvoiceSettings = new()
+        Ledger::Body value = new Ledger::Increment()
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
                 {
-                    AutoCollection = true,
-                    CustomDueDate = "2019-12-27",
-                    InvoiceDate = "2019-12-27",
-                    ItemID = "item_id",
-                    Memo = "memo",
-                    NetTerms = 0,
-                    RequireSuccessfulPayment = true,
+                    Field = Ledger::Field.ItemID,
+                    Operator = Ledger::Operator.Includes,
+                    Values = ["string"],
                 },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                PerUnitCostBasis = "per_unit_cost_basis",
-            }
-        );
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
         value.Validate();
     }
 
     [Fact]
     public void DecrementValidationWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Decrement()
-            {
-                Amount = 0,
-                Currency = "currency",
-                Description = "description",
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+        Ledger::Body value = new Ledger::Decrement()
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void ExpirationChangeValidationWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::ExpirationChange()
-            {
-                TargetExpiryDate = "2019-12-27",
-                Amount = 0,
-                BlockID = "block_id",
-                Currency = "currency",
-                Description = "description",
-                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+        Ledger::Body value = new Ledger::ExpirationChange()
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void VoidValidationWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Void()
-            {
-                Amount = 0,
-                BlockID = "block_id",
-                Currency = "currency",
-                Description = "description",
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                VoidReason = Ledger::VoidReason.Refund,
-            }
-        );
+        Ledger::Body value = new Ledger::Void()
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = Ledger::VoidReason.Refund,
+        };
         value.Validate();
     }
 
     [Fact]
     public void AmendmentValidationWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Amendment()
-            {
-                Amount = 0,
-                BlockID = "block_id",
-                Currency = "currency",
-                Description = "description",
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+        Ledger::Body value = new Ledger::Amendment()
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void IncrementSerializationRoundtripWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Increment()
-            {
-                Amount = 0,
-                Currency = "currency",
-                Description = "description",
-                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Ledger::Field.ItemID,
-                        Operator = Ledger::Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                InvoiceSettings = new()
+        Ledger::Body value = new Ledger::Increment()
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
                 {
-                    AutoCollection = true,
-                    CustomDueDate = "2019-12-27",
-                    InvoiceDate = "2019-12-27",
-                    ItemID = "item_id",
-                    Memo = "memo",
-                    NetTerms = 0,
-                    RequireSuccessfulPayment = true,
+                    Field = Ledger::Field.ItemID,
+                    Operator = Ledger::Operator.Includes,
+                    Values = ["string"],
                 },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                PerUnitCostBasis = "per_unit_cost_basis",
-            }
-        );
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
@@ -275,15 +263,13 @@ public class BodyTest : TestBase
     [Fact]
     public void DecrementSerializationRoundtripWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Decrement()
-            {
-                Amount = 0,
-                Currency = "currency",
-                Description = "description",
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+        Ledger::Body value = new Ledger::Decrement()
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
@@ -293,18 +279,16 @@ public class BodyTest : TestBase
     [Fact]
     public void ExpirationChangeSerializationRoundtripWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::ExpirationChange()
-            {
-                TargetExpiryDate = "2019-12-27",
-                Amount = 0,
-                BlockID = "block_id",
-                Currency = "currency",
-                Description = "description",
-                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+        Ledger::Body value = new Ledger::ExpirationChange()
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
@@ -314,17 +298,15 @@ public class BodyTest : TestBase
     [Fact]
     public void VoidSerializationRoundtripWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Void()
-            {
-                Amount = 0,
-                BlockID = "block_id",
-                Currency = "currency",
-                Description = "description",
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-                VoidReason = Ledger::VoidReason.Refund,
-            }
-        );
+        Ledger::Body value = new Ledger::Void()
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = Ledger::VoidReason.Refund,
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
@@ -334,16 +316,14 @@ public class BodyTest : TestBase
     [Fact]
     public void AmendmentSerializationRoundtripWorks()
     {
-        Ledger::Body value = new(
-            new Ledger::Amendment()
-            {
-                Amount = 0,
-                BlockID = "block_id",
-                Currency = "currency",
-                Description = "description",
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+        Ledger::Body value = new Ledger::Amendment()
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
@@ -1146,21 +1126,21 @@ public class CustomDueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        Ledger::CustomDueDate value = new("2019-12-27");
+        Ledger::CustomDueDate value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeValidationWorks()
     {
-        Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Ledger::CustomDueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        Ledger::CustomDueDate value = new("2019-12-27");
+        Ledger::CustomDueDate value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(element);
 
@@ -1170,7 +1150,7 @@ public class CustomDueDateTest : TestBase
     [Fact]
     public void DateTimeSerializationRoundtripWorks()
     {
-        Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Ledger::CustomDueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(element);
 
@@ -1183,21 +1163,21 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        Ledger::InvoiceDate value = new("2019-12-27");
+        Ledger::InvoiceDate value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeValidationWorks()
     {
-        Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Ledger::InvoiceDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        Ledger::InvoiceDate value = new("2019-12-27");
+        Ledger::InvoiceDate value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(element);
 
@@ -1207,7 +1187,7 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateTimeSerializationRoundtripWorks()
     {
-        Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        Ledger::InvoiceDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(element);
 

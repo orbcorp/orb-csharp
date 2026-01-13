@@ -1180,154 +1180,148 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingUnitValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingUnitPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingUnitPrice()
+        {
+            Cadence = NewFloatingUnitPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingUnitPriceModelType.Unit,
+            Name = "Annual fee",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = NewFloatingUnitPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = NewFloatingUnitPriceModelType.Unit,
-                Name = "Annual fee",
-                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingTieredValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingTieredPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingTieredPrice()
+        {
+            Cadence = NewFloatingTieredPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingTieredPriceModelType.Tiered,
+            Name = "Annual fee",
+            TieredConfig = new()
             {
-                Cadence = NewFloatingTieredPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = NewFloatingTieredPriceModelType.Tiered,
-                Name = "Annual fee",
-                TieredConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ],
-                    Prorated = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingBulkValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingBulkPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingBulkPrice()
+        {
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = NewFloatingBulkPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = ModelType.Bulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-                Cadence = NewFloatingBulkPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = ModelType.Bulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void BulkWithFiltersValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -1372,113 +1366,105 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingPackageValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingPackagePrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingPackagePrice()
+        {
+            Cadence = NewFloatingPackagePriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingPackagePriceModelType.Package,
+            Name = "Annual fee",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = NewFloatingPackagePriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = NewFloatingPackagePriceModelType.Package,
-                Name = "Annual fee",
-                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingMatrixValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingMatrixPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingMatrixPrice()
+        {
+            Cadence = NewFloatingMatrixPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            MatrixConfig = new()
             {
-                Cadence = NewFloatingMatrixPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                MatrixConfig = new()
-                {
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType = NewFloatingMatrixPriceModelType.Matrix,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType = NewFloatingMatrixPriceModelType.Matrix,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingThresholdTotalAmountValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingThresholdTotalAmountPrice()
             {
                 Cadence = NewFloatingThresholdTotalAmountPriceCadence.Annual,
@@ -1523,15 +1509,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingTieredPackageValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredPackagePrice()
             {
                 Cadence = NewFloatingTieredPackagePriceCadence.Annual,
@@ -1576,15 +1561,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingTieredWithMinimumValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredWithMinimumPriceCadence.Annual,
@@ -1640,15 +1624,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingGroupedTieredValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedTieredPrice()
             {
                 Cadence = NewFloatingGroupedTieredPriceCadence.Annual,
@@ -1693,15 +1676,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingTieredPackageWithMinimumValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredPackageWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
@@ -1757,15 +1739,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingPackageWithAllocationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingPackageWithAllocationPrice()
             {
                 Cadence = NewFloatingPackageWithAllocationPriceCadence.Annual,
@@ -1807,15 +1788,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingUnitWithPercentValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingUnitWithPercentPrice()
             {
                 Cadence = NewFloatingUnitWithPercentPriceCadence.Annual,
@@ -1852,15 +1832,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingMatrixWithAllocationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMatrixWithAllocationPrice()
             {
                 Cadence = NewFloatingMatrixWithAllocationPriceCadence.Annual,
@@ -1906,15 +1885,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingTieredWithProrationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredWithProrationPrice()
             {
                 Cadence = NewFloatingTieredWithProrationPriceCadence.Annual,
@@ -1953,15 +1931,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingUnitWithProrationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingUnitWithProrationPrice()
             {
                 Cadence = NewFloatingUnitWithProrationPriceCadence.Annual,
@@ -1998,15 +1975,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingGroupedAllocationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedAllocationPrice()
             {
                 Cadence = NewFloatingGroupedAllocationPriceCadence.Annual,
@@ -2048,15 +2024,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingBulkWithProrationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -2098,15 +2073,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingGroupedWithProratedMinimumValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedWithProratedMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
@@ -2149,15 +2123,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingGroupedWithMeteredMinimumValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedWithMeteredMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual,
@@ -2213,15 +2186,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void GroupedWithMinMaxThresholdsValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
@@ -2264,15 +2236,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingMatrixWithDisplayNameValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMatrixWithDisplayNamePrice()
             {
                 Cadence = NewFloatingMatrixWithDisplayNamePriceCadence.Annual,
@@ -2321,15 +2292,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingGroupedTieredPackageValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedTieredPackagePrice()
             {
                 Cadence = NewFloatingGroupedTieredPackagePriceCadence.Annual,
@@ -2375,15 +2345,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingMaxGroupTieredPackageValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMaxGroupTieredPackagePrice()
             {
                 Cadence = NewFloatingMaxGroupTieredPackagePriceCadence.Annual,
@@ -2429,15 +2398,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingScalableMatrixWithUnitPricingValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithUnitPricingPriceCadence.Annual,
@@ -2490,15 +2458,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingScalableMatrixWithTieredPricingValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual,
@@ -2554,15 +2521,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingCumulativeGroupedBulkValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingCumulativeGroupedBulkPrice()
             {
                 Cadence = NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
@@ -2611,15 +2577,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void CumulativeGroupedAllocationValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
             {
                 Cadence =
@@ -2662,15 +2627,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingMinimumCompositeValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMinimumCompositePrice()
             {
                 Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
@@ -2707,15 +2671,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void PercentValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
             {
                 Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
@@ -2751,15 +2714,14 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void EventOutputValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
             {
                 Cadence =
@@ -2801,53 +2763,50 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void NewFloatingUnitSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingUnitPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingUnitPrice()
+        {
+            Cadence = NewFloatingUnitPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingUnitPriceModelType.Unit,
+            Name = "Annual fee",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = NewFloatingUnitPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = NewFloatingUnitPriceModelType.Unit,
-                Name = "Annual fee",
-                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -2860,57 +2819,55 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingTieredSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingTieredPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingTieredPrice()
+        {
+            Cadence = NewFloatingTieredPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingTieredPriceModelType.Tiered,
+            Name = "Annual fee",
+            TieredConfig = new()
             {
-                Cadence = NewFloatingTieredPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = NewFloatingTieredPriceModelType.Tiered,
-                Name = "Annual fee",
-                TieredConfig = new()
-                {
-                    Tiers =
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ],
-                    Prorated = true,
-                },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -2923,45 +2880,43 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingBulkSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingBulkPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingBulkPrice()
+        {
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = NewFloatingBulkPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = ModelType.Bulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-                Cadence = NewFloatingBulkPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = ModelType.Bulk,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -2974,7 +2929,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void BulkWithFiltersSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
@@ -3019,8 +2974,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3033,45 +2987,43 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingPackageSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingPackagePrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingPackagePrice()
+        {
+            Cadence = NewFloatingPackagePriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingPackagePriceModelType.Package,
+            Name = "Annual fee",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
             {
-                Cadence = NewFloatingPackagePriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                ModelType = NewFloatingPackagePriceModelType.Package,
-                Name = "Annual fee",
-                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3084,53 +3036,48 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingMatrixSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new NewFloatingMatrixPrice()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new NewFloatingMatrixPrice()
+        {
+            Cadence = NewFloatingMatrixPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            MatrixConfig = new()
             {
-                Cadence = NewFloatingMatrixPriceCadence.Annual,
-                Currency = "currency",
-                ItemID = "item_id",
-                MatrixConfig = new()
-                {
-                    DefaultUnitAmount = "default_unit_amount",
-                    Dimensions = ["string"],
-                    MatrixValues =
-                    [
-                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
-                    ],
-                },
-                ModelType = NewFloatingMatrixPriceModelType.Matrix,
-                Name = "Annual fee",
-                BillableMetricID = "billable_metric_id",
-                BilledInAdvance = true,
-                BillingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                ConversionRate = 0,
-                ConversionRateConfig = new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                },
-                DimensionalPriceConfiguration = new()
-                {
-                    DimensionValues = ["string"],
-                    DimensionalPriceGroupID = "dimensional_price_group_id",
-                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-                },
-                ExternalPriceID = "external_price_id",
-                FixedPriceQuantity = 0,
-                InvoiceGroupingKey = "x",
-                InvoicingCycleConfiguration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-                },
-                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            ModelType = NewFloatingMatrixPriceModelType.Matrix,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3143,7 +3090,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingThresholdTotalAmountSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingThresholdTotalAmountPrice()
             {
                 Cadence = NewFloatingThresholdTotalAmountPriceCadence.Annual,
@@ -3188,8 +3135,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3202,7 +3148,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingTieredPackageSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredPackagePrice()
             {
                 Cadence = NewFloatingTieredPackagePriceCadence.Annual,
@@ -3247,8 +3193,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3261,7 +3206,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingTieredWithMinimumSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredWithMinimumPriceCadence.Annual,
@@ -3317,8 +3262,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3331,7 +3275,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingGroupedTieredSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedTieredPrice()
             {
                 Cadence = NewFloatingGroupedTieredPriceCadence.Annual,
@@ -3376,8 +3320,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3390,7 +3333,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingTieredPackageWithMinimumSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredPackageWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
@@ -3446,8 +3389,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3460,7 +3402,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingPackageWithAllocationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingPackageWithAllocationPrice()
             {
                 Cadence = NewFloatingPackageWithAllocationPriceCadence.Annual,
@@ -3502,8 +3444,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3516,7 +3457,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingUnitWithPercentSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingUnitWithPercentPrice()
             {
                 Cadence = NewFloatingUnitWithPercentPriceCadence.Annual,
@@ -3553,8 +3494,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3567,7 +3507,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingMatrixWithAllocationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMatrixWithAllocationPrice()
             {
                 Cadence = NewFloatingMatrixWithAllocationPriceCadence.Annual,
@@ -3613,8 +3553,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3627,7 +3566,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingTieredWithProrationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingTieredWithProrationPrice()
             {
                 Cadence = NewFloatingTieredWithProrationPriceCadence.Annual,
@@ -3666,8 +3605,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3680,7 +3618,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingUnitWithProrationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingUnitWithProrationPrice()
             {
                 Cadence = NewFloatingUnitWithProrationPriceCadence.Annual,
@@ -3717,8 +3655,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3731,7 +3668,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingGroupedAllocationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedAllocationPrice()
             {
                 Cadence = NewFloatingGroupedAllocationPriceCadence.Annual,
@@ -3773,8 +3710,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3787,7 +3723,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingBulkWithProrationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
@@ -3829,8 +3765,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3843,7 +3778,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedWithProratedMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
@@ -3886,8 +3821,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3900,7 +3834,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedWithMeteredMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual,
@@ -3956,8 +3890,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -3970,7 +3903,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
@@ -4013,8 +3946,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4027,7 +3959,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingMatrixWithDisplayNameSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMatrixWithDisplayNamePrice()
             {
                 Cadence = NewFloatingMatrixWithDisplayNamePriceCadence.Annual,
@@ -4076,8 +4008,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4090,7 +4021,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingGroupedTieredPackageSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingGroupedTieredPackagePrice()
             {
                 Cadence = NewFloatingGroupedTieredPackagePriceCadence.Annual,
@@ -4136,8 +4067,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4150,7 +4080,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingMaxGroupTieredPackageSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMaxGroupTieredPackagePrice()
             {
                 Cadence = NewFloatingMaxGroupTieredPackagePriceCadence.Annual,
@@ -4196,8 +4126,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4210,7 +4139,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithUnitPricingPriceCadence.Annual,
@@ -4263,8 +4192,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4277,7 +4205,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual,
@@ -4333,8 +4261,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4347,7 +4274,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingCumulativeGroupedBulkSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingCumulativeGroupedBulkPrice()
             {
                 Cadence = NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
@@ -4396,8 +4323,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4410,7 +4336,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
             {
                 Cadence =
@@ -4453,8 +4379,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4467,7 +4392,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void NewFloatingMinimumCompositeSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new NewFloatingMinimumCompositePrice()
             {
                 Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
@@ -4504,8 +4429,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4518,7 +4442,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void PercentSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
             {
                 Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
@@ -4554,8 +4478,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -4568,7 +4491,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     [Fact]
     public void EventOutputSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value =
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
             {
                 Cadence =
@@ -4610,8 +4533,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
@@ -5586,13 +5508,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -5600,22 +5520,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -5623,13 +5541,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
@@ -5643,22 +5559,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
@@ -6410,13 +6324,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -6424,22 +6336,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -6447,13 +6357,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -6467,22 +6375,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
@@ -7234,13 +7140,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -7248,22 +7152,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -7271,13 +7173,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -7291,22 +7191,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
@@ -7900,20 +7798,19 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     [Fact]
     public void UnitValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -7927,21 +7824,19 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
@@ -7954,7 +7849,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -7968,8 +7863,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
@@ -8699,13 +8593,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         value.Validate();
     }
 
@@ -8713,22 +8605,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         value.Validate();
     }
 
@@ -8736,13 +8626,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
-            new(
-                new SharedUnitConversionRateConfig()
-                {
-                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                    UnitConfig = new("unit_amount"),
-                }
-            );
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
@@ -8756,22 +8644,20 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
-            new(
-                new SharedTieredConversionRateConfig()
-                {
-                    ConversionRateType = ConversionRateType.Tiered,
-                    TieredConfig = new(
-                        [
-                            new()
-                            {
-                                FirstUnit = 0,
-                                UnitAmount = "unit_amount",
-                                LastUnit = 0,
-                            },
-                        ]
-                    ),
-                }
-            );
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(

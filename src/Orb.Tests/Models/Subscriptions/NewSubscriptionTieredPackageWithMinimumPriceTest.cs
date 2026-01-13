@@ -1048,20 +1048,19 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1075,21 +1074,19 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig>(
@@ -1102,7 +1099,7 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1116,8 +1113,7 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig>(

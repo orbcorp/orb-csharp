@@ -751,20 +751,19 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -778,21 +777,19 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig>(
@@ -805,7 +802,7 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -819,8 +816,7 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig>(

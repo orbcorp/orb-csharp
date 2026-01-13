@@ -95,15 +95,15 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
     [Fact]
     public void StringValidationWorks()
     {
-        MigrationCancelResponseEffectiveTime value = new("2019-12-27");
+        MigrationCancelResponseEffectiveTime value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeOffsetValidationWorks()
     {
-        MigrationCancelResponseEffectiveTime value = new(
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
+        MigrationCancelResponseEffectiveTime value = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
         );
         value.Validate();
     }
@@ -111,16 +111,15 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
     [Fact]
     public void MigrationCancelResponseEffectiveTimeUnionMember2ValidationWorks()
     {
-        MigrationCancelResponseEffectiveTime value = new(
-            MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm
-        );
+        MigrationCancelResponseEffectiveTime value =
+            MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        MigrationCancelResponseEffectiveTime value = new("2019-12-27");
+        MigrationCancelResponseEffectiveTime value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MigrationCancelResponseEffectiveTime>(
             element
@@ -132,8 +131,8 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
     [Fact]
     public void DateTimeOffsetSerializationRoundtripWorks()
     {
-        MigrationCancelResponseEffectiveTime value = new(
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
+        MigrationCancelResponseEffectiveTime value = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
         );
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MigrationCancelResponseEffectiveTime>(
@@ -146,9 +145,8 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
     [Fact]
     public void MigrationCancelResponseEffectiveTimeUnionMember2SerializationRoundtripWorks()
     {
-        MigrationCancelResponseEffectiveTime value = new(
-            MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm
-        );
+        MigrationCancelResponseEffectiveTime value =
+            MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm;
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MigrationCancelResponseEffectiveTime>(
             element

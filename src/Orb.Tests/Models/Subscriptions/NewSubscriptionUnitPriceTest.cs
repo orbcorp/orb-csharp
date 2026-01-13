@@ -587,48 +587,42 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
     [Fact]
     public void UnitValidationWorks()
     {
-        NewSubscriptionUnitPriceConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        NewSubscriptionUnitPriceConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        NewSubscriptionUnitPriceConversionRateConfig value = new(
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            }
-        );
+        NewSubscriptionUnitPriceConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        NewSubscriptionUnitPriceConversionRateConfig value = new(
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            }
-        );
+        NewSubscriptionUnitPriceConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPriceConversionRateConfig>(
             element
@@ -640,22 +634,20 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        NewSubscriptionUnitPriceConversionRateConfig value = new(
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            }
-        );
+        NewSubscriptionUnitPriceConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPriceConversionRateConfig>(
             element

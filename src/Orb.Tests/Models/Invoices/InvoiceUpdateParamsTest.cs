@@ -93,21 +93,21 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        InvoiceUpdateParamsDueDate value = new("2019-12-27");
+        InvoiceUpdateParamsDueDate value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeValidationWorks()
     {
-        InvoiceUpdateParamsDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        InvoiceUpdateParamsDueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        InvoiceUpdateParamsDueDate value = new("2019-12-27");
+        InvoiceUpdateParamsDueDate value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
 
@@ -117,7 +117,7 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     [Fact]
     public void DateTimeSerializationRoundtripWorks()
     {
-        InvoiceUpdateParamsDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        InvoiceUpdateParamsDueDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
 
@@ -130,21 +130,21 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        InvoiceDate value = new("2019-12-27");
+        InvoiceDate value = "2019-12-27";
         value.Validate();
     }
 
     [Fact]
     public void DateTimeValidationWorks()
     {
-        InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        InvoiceDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         value.Validate();
     }
 
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        InvoiceDate value = new("2019-12-27");
+        InvoiceDate value = "2019-12-27";
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
 
@@ -154,7 +154,7 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateTimeSerializationRoundtripWorks()
     {
-        InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        InvoiceDate value = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
 

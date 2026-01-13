@@ -947,20 +947,19 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
     [Fact]
     public void UnitValidationWorks()
     {
-        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void TieredValidationWorks()
     {
-        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -974,21 +973,19 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         value.Validate();
     }
 
     [Fact]
     public void UnitSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value =
             new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig>(
@@ -1001,7 +998,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
     [Fact]
     public void TieredSerializationRoundtripWorks()
     {
-        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value =
             new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
@@ -1015,8 +1012,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
                         },
                     ]
                 ),
-            }
-        );
+            };
         string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig>(
