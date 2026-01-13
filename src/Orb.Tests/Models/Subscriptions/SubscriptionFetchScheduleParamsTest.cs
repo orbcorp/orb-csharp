@@ -139,7 +139,7 @@ public class SubscriptionFetchScheduleParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/subscriptions/subscription_id/schedule?cursor=cursor&limit=1&start_date%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&start_date%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&start_date%5blt%5d=2019-12-27T18%3a11%3a19.117Z&start_date%5blte%5d=2019-12-27T18%3a11%3a19.117Z"
+                "https://api.withorb.com/v1/subscriptions/subscription_id/schedule?cursor=cursor&limit=1&start_date%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&start_date%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&start_date%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&start_date%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00"
             ),
             url
         );

@@ -133,8 +133,8 @@ public class SubscriptionFetchUsageParamsTest : TestBase
             GroupBy = "group_by",
             SecondDimensionKey = "second_dimension_key",
             SecondDimensionValue = "second_dimension_value",
-            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00+00:00"),
-            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00+00:00"),
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
             ViewMode = SubscriptionFetchUsageParamsViewMode.Periodic,
         };
 

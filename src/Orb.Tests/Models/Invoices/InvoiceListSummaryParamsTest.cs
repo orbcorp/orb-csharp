@@ -293,7 +293,7 @@ public class InvoiceListSummaryParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/invoices/summary?amount=amount&amount%5bgt%5d=amount%5bgt%5d&amount%5blt%5d=amount%5blt%5d&cursor=cursor&customer_id=customer_id&date_type=due_date&due_date=2019-12-27&due_date_window=due_date_window&due_date%5bgt%5d=2019-12-27&due_date%5blt%5d=2019-12-27&external_customer_id=external_customer_id&invoice_date%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&invoice_date%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&invoice_date%5blt%5d=2019-12-27T18%3a11%3a19.117Z&invoice_date%5blte%5d=2019-12-27T18%3a11%3a19.117Z&is_recurring=true&limit=1&status%5b%5d=draft&subscription_id=subscription_id"
+                "https://api.withorb.com/v1/invoices/summary?amount=amount&amount%5bgt%5d=amount%5bgt%5d&amount%5blt%5d=amount%5blt%5d&cursor=cursor&customer_id=customer_id&date_type=due_date&due_date=2019-12-27&due_date_window=due_date_window&due_date%5bgt%5d=2019-12-27&due_date%5blt%5d=2019-12-27&external_customer_id=external_customer_id&invoice_date%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&is_recurring=true&limit=1&status%5b%5d=draft&subscription_id=subscription_id"
             ),
             url
         );
