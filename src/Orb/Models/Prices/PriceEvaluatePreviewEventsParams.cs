@@ -488,7 +488,13 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string Currency
@@ -3981,7 +3987,13 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
@@ -4806,7 +4818,13 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
@@ -5631,7 +5649,13 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
@@ -6398,7 +6422,13 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
@@ -7212,7 +7242,13 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(

@@ -335,7 +335,13 @@ public record class Price : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string Currency
@@ -3618,7 +3624,13 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceBulkWithFiltersConversionRateConfig(
@@ -4397,7 +4409,13 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceGroupedWithMinMaxThresholdsConversionRateConfig(
@@ -5176,7 +5194,13 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceCumulativeGroupedAllocationConversionRateConfig(
@@ -5888,7 +5912,13 @@ public record class PricePercentConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PricePercentConversionRateConfig(
@@ -6647,7 +6677,13 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PriceEventOutputConversionRateConfig(

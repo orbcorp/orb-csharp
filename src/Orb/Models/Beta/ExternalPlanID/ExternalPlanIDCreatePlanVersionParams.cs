@@ -355,7 +355,13 @@ public record class Adjustment : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Currency
@@ -927,7 +933,13 @@ public record class Price : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string ItemID
@@ -4290,7 +4302,13 @@ public record class ConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ConversionRateConfig(SharedUnitConversionRateConfig value, JsonElement? element = null)
@@ -5158,7 +5176,13 @@ public record class TieredWithProrationConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public TieredWithProrationConversionRateConfig(
@@ -6012,7 +6036,13 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public GroupedWithMinMaxThresholdsConversionRateConfig(
@@ -6866,7 +6896,13 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public CumulativeGroupedAllocationConversionRateConfig(
@@ -7614,7 +7650,13 @@ public record class PercentConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public PercentConversionRateConfig(
@@ -8407,7 +8449,13 @@ public record class EventOutputConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public EventOutputConversionRateConfig(
@@ -8957,7 +9005,13 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string? Currency
@@ -9561,7 +9615,13 @@ public record class ReplacePricePrice : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public string ItemID
@@ -13071,7 +13131,13 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig : Model
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ReplacePricePriceBulkWithFiltersConversionRateConfig(
@@ -14016,7 +14082,13 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig : M
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ReplacePricePriceTieredWithProrationConversionRateConfig(
@@ -14896,7 +14968,13 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
@@ -15776,7 +15854,13 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
@@ -16579,7 +16663,13 @@ public record class ReplacePricePricePercentConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ReplacePricePricePercentConversionRateConfig(
@@ -17439,7 +17529,13 @@ public record class ReplacePricePriceEventOutputConversionRateConfig : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public ReplacePricePriceEventOutputConversionRateConfig(

@@ -520,7 +520,13 @@ public record class NewFloatingMinimumCompositePriceConversionRateConfig : Model
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public NewFloatingMinimumCompositePriceConversionRateConfig(

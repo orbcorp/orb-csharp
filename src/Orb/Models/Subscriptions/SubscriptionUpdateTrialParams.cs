@@ -171,7 +171,13 @@ public record class TrialEndDate : ModelBase
 
     public JsonElement Json
     {
-        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
     }
 
     public TrialEndDate(System::DateTimeOffset value, JsonElement? element = null)
