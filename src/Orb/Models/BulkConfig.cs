@@ -67,7 +67,7 @@ public sealed record class BulkConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public BulkConfig(List<BulkTier> tiers)
+    public BulkConfig(IReadOnlyList<BulkTier> tiers)
         : this()
     {
         this.Tiers = tiers;

@@ -562,7 +562,7 @@ public sealed record class TieredWithMinimumConfig : JsonModel
 
     [SetsRequiredMembers]
     public TieredWithMinimumConfig(
-        List<global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier> tiers
+        IReadOnlyList<global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier> tiers
     )
         : this()
     {

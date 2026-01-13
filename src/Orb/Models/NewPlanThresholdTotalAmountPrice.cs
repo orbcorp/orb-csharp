@@ -535,7 +535,7 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
 
     [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
-        List<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable> consumptionTable
+        IReadOnlyList<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable> consumptionTable
     )
         : this()
     {

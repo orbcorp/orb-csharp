@@ -537,7 +537,7 @@ public sealed record class TieredWithMinimumConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TieredWithMinimumConfig(List<TieredWithMinimumConfigTier> tiers)
+    public TieredWithMinimumConfig(IReadOnlyList<TieredWithMinimumConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;

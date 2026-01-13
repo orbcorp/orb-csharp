@@ -384,7 +384,7 @@ public sealed record class BulkWithProrationConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public BulkWithProrationConfig(List<Tier> tiers)
+    public BulkWithProrationConfig(IReadOnlyList<Tier> tiers)
         : this()
     {
         this.Tiers = tiers;

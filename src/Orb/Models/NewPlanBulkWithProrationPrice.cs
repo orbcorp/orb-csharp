@@ -410,7 +410,7 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig 
 
     [SetsRequiredMembers]
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig(
-        List<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> tiers
+        IReadOnlyList<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> tiers
     )
         : this()
     {

@@ -5793,7 +5793,7 @@ public sealed record class TieredWithProrationConfig : JsonModel
 
     [SetsRequiredMembers]
     public TieredWithProrationConfig(
-        List<global::Orb.Models.Subscriptions.TieredWithProrationConfigTier> tiers
+        IReadOnlyList<global::Orb.Models.Subscriptions.TieredWithProrationConfigTier> tiers
     )
         : this()
     {
@@ -14549,7 +14549,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 
     [SetsRequiredMembers]
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
-        List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
+        IReadOnlyList<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
     )
         : this()
     {

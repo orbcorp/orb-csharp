@@ -496,7 +496,7 @@ public sealed record class TieredWithProrationConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationConfig(List<TieredWithProrationConfigTier> tiers)
+    public TieredWithProrationConfig(IReadOnlyList<TieredWithProrationConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;

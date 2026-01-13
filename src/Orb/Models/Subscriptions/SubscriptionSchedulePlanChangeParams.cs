@@ -5995,7 +5995,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 
     [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig(
-        List<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
+        IReadOnlyList<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
     )
         : this()
     {
@@ -15138,7 +15138,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig(
-        List<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
+        IReadOnlyList<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
     )
         : this()
     {

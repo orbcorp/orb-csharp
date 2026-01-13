@@ -535,7 +535,7 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
 
     [SetsRequiredMembers]
     public ThresholdTotalAmountConfig(
-        List<global::Orb.Models.Subscriptions.ConsumptionTable> consumptionTable
+        IReadOnlyList<global::Orb.Models.Subscriptions.ConsumptionTable> consumptionTable
     )
         : this()
     {

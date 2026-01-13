@@ -64,7 +64,7 @@ public sealed record class EventVolumes : JsonModel
     }
 
     [SetsRequiredMembers]
-    public EventVolumes(List<global::Orb.Models.Events.Volume.Data> data)
+    public EventVolumes(IReadOnlyList<global::Orb.Models.Events.Volume.Data> data)
         : this()
     {
         this.Data = data;

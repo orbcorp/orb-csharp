@@ -68,7 +68,7 @@ public sealed record class ConversionRateTieredConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public ConversionRateTieredConfig(List<ConversionRateTier> tiers)
+    public ConversionRateTieredConfig(IReadOnlyList<ConversionRateTier> tiers)
         : this()
     {
         this.Tiers = tiers;

@@ -511,7 +511,7 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public ThresholdTotalAmountConfig(List<ConsumptionTable> consumptionTable)
+    public ThresholdTotalAmountConfig(IReadOnlyList<ConsumptionTable> consumptionTable)
         : this()
     {
         this.ConsumptionTable = consumptionTable;

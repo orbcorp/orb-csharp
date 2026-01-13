@@ -10588,7 +10588,7 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : Json
 
     [SetsRequiredMembers]
     public ThresholdTotalAmountThresholdTotalAmountConfig(
-        List<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> consumptionTable
+        IReadOnlyList<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> consumptionTable
     )
         : this()
     {
@@ -13117,7 +13117,7 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig : JsonModel
 
     [SetsRequiredMembers]
     public TieredWithMinimumTieredWithMinimumConfig(
-        List<TieredWithMinimumTieredWithMinimumConfigTier> tiers
+        IReadOnlyList<TieredWithMinimumTieredWithMinimumConfigTier> tiers
     )
         : this()
     {
@@ -20268,7 +20268,7 @@ public sealed record class TieredWithProrationTieredWithProrationConfig : JsonMo
 
     [SetsRequiredMembers]
     public TieredWithProrationTieredWithProrationConfig(
-        List<TieredWithProrationTieredWithProrationConfigTier> tiers
+        IReadOnlyList<TieredWithProrationTieredWithProrationConfigTier> tiers
     )
         : this()
     {
@@ -23237,7 +23237,7 @@ public sealed record class BulkWithProrationBulkWithProrationConfig : JsonModel
 
     [SetsRequiredMembers]
     public BulkWithProrationBulkWithProrationConfig(
-        List<BulkWithProrationBulkWithProrationConfigTier> tiers
+        IReadOnlyList<BulkWithProrationBulkWithProrationConfigTier> tiers
     )
         : this()
     {

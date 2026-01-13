@@ -65,7 +65,7 @@ public sealed record class CostListByExternalIDResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public CostListByExternalIDResponse(List<AggregatedCost> data)
+    public CostListByExternalIDResponse(IReadOnlyList<AggregatedCost> data)
         : this()
     {
         this.Data = data;

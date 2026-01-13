@@ -63,7 +63,7 @@ public sealed record class CostListResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public CostListResponse(List<AggregatedCost> data)
+    public CostListResponse(IReadOnlyList<AggregatedCost> data)
         : this()
     {
         this.Data = data;

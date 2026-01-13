@@ -72,7 +72,9 @@ public sealed record class PriceEvaluatePreviewEventsResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public PriceEvaluatePreviewEventsResponse(List<PriceEvaluatePreviewEventsResponseData> data)
+    public PriceEvaluatePreviewEventsResponse(
+        IReadOnlyList<PriceEvaluatePreviewEventsResponseData> data
+    )
         : this()
     {
         this.Data = data;

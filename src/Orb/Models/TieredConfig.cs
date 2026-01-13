@@ -89,7 +89,7 @@ public sealed record class TieredConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TieredConfig(List<SharedTier> tiers)
+    public TieredConfig(IReadOnlyList<SharedTier> tiers)
         : this()
     {
         this.Tiers = tiers;
