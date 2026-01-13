@@ -1095,8 +1095,8 @@ public class InvoiceTest : TestBase
             WillAutoIssue = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Invoice>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoice>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -1439,8 +1439,11 @@ public class InvoiceTest : TestBase
             WillAutoIssue = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Invoice>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoice>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -2232,8 +2235,11 @@ public class InvoiceAutoCollectionTest : TestBase
             PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceAutoCollection>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceAutoCollection>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -2249,8 +2255,11 @@ public class InvoiceAutoCollectionTest : TestBase
             PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceAutoCollection>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceAutoCollection>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         bool expectedEnabled = true;
@@ -2328,8 +2337,11 @@ public class InvoiceCreditNoteTest : TestBase
             VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceCreditNote>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceCreditNote>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -2348,8 +2360,11 @@ public class InvoiceCreditNoteTest : TestBase
             VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceCreditNote>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceCreditNote>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -2448,8 +2463,11 @@ public class InvoiceCustomerBalanceTransactionTest : TestBase
             Type = InvoiceCustomerBalanceTransactionType.Increment,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceCustomerBalanceTransaction>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceCustomerBalanceTransaction>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -2471,8 +2489,11 @@ public class InvoiceCustomerBalanceTransactionTest : TestBase
             Type = InvoiceCustomerBalanceTransactionType.Increment,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceCustomerBalanceTransaction>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceCustomerBalanceTransaction>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "cgZa3SXcsPTVyC4Y";
@@ -3255,8 +3276,11 @@ public class InvoiceLineItemTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItem>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItem>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -3435,8 +3459,11 @@ public class InvoiceLineItemTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItem>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItem>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -3973,8 +4000,11 @@ public class InvoiceLineItemAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
             UsageDiscount = 0,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4002,8 +4032,11 @@ public class InvoiceLineItemAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4031,8 +4064,11 @@ public class InvoiceLineItemAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4061,8 +4097,11 @@ public class InvoiceLineItemAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4090,8 +4129,11 @@ public class InvoiceLineItemAdjustmentTest : TestBase
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4162,8 +4204,11 @@ public class InvoiceLineItemSubLineItemTest : TestBase
             Type = MatrixSubLineItemType.Matrix,
             ScaledQuantity = 0,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemSubLineItem>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemSubLineItem>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4185,8 +4230,11 @@ public class InvoiceLineItemSubLineItemTest : TestBase
             },
             Type = TierSubLineItemType.Tier,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemSubLineItem>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemSubLineItem>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4202,8 +4250,11 @@ public class InvoiceLineItemSubLineItemTest : TestBase
             Quantity = 5,
             Type = OtherSubLineItemType.Null,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemSubLineItem>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemSubLineItem>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -4258,8 +4309,11 @@ public class InvoicePaymentAttemptTest : TestBase
             Succeeded = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoicePaymentAttempt>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoicePaymentAttempt>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -4278,8 +4332,11 @@ public class InvoicePaymentAttemptTest : TestBase
             Succeeded = true,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoicePaymentAttempt>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoicePaymentAttempt>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

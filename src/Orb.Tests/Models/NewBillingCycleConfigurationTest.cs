@@ -33,8 +33,11 @@ public class NewBillingCycleConfigurationTest : TestBase
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewBillingCycleConfiguration>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewBillingCycleConfiguration>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -48,8 +51,11 @@ public class NewBillingCycleConfigurationTest : TestBase
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewBillingCycleConfiguration>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<NewBillingCycleConfiguration>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         long expectedDuration = 0;

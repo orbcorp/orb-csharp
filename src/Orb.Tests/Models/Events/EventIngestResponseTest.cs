@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Events;
 
 namespace Orb.Tests.Models.Events;
@@ -44,8 +45,11 @@ public class EventIngestResponseTest : TestBase
             Debug = new() { Duplicate = ["string"], Ingested = ["string"] },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventIngestResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<EventIngestResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -62,8 +66,11 @@ public class EventIngestResponseTest : TestBase
             Debug = new() { Duplicate = ["string"], Ingested = ["string"] },
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventIngestResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<EventIngestResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<ValidationFailed> expectedValidationFailed =
@@ -189,8 +196,11 @@ public class ValidationFailedTest : TestBase
             ValidationErrors = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ValidationFailed>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ValidationFailed>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -204,8 +214,11 @@ public class ValidationFailedTest : TestBase
             ValidationErrors = ["string"],
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ValidationFailed>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ValidationFailed>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedIdempotencyKey = "idempotency_key";
@@ -259,8 +272,8 @@ public class DebugTest : TestBase
     {
         var model = new Debug { Duplicate = ["string"], Ingested = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Debug>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Debug>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -270,8 +283,8 @@ public class DebugTest : TestBase
     {
         var model = new Debug { Duplicate = ["string"], Ingested = ["string"] };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Debug>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Debug>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         List<string> expectedDuplicate = ["string"];

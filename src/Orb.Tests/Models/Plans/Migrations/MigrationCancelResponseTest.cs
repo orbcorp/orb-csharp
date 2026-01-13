@@ -42,8 +42,11 @@ public class MigrationCancelResponseTest : TestBase
             Status = MigrationCancelResponseStatus.NotStarted,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MigrationCancelResponse>(json);
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationCancelResponse>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -59,8 +62,11 @@ public class MigrationCancelResponseTest : TestBase
             Status = MigrationCancelResponseStatus.NotStarted,
         };
 
-        string element = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MigrationCancelResponse>(element);
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MigrationCancelResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -120,9 +126,10 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
     public void StringSerializationRoundtripWorks()
     {
         MigrationCancelResponseEffectiveTime value = "2019-12-27";
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MigrationCancelResponseEffectiveTime>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
@@ -134,9 +141,10 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
         MigrationCancelResponseEffectiveTime value = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MigrationCancelResponseEffectiveTime>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
@@ -147,9 +155,10 @@ public class MigrationCancelResponseEffectiveTimeTest : TestBase
     {
         MigrationCancelResponseEffectiveTime value =
             MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm;
-        string element = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MigrationCancelResponseEffectiveTime>(
-            element
+            element,
+            ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);

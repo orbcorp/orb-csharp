@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Customers.Credits.Ledger;
 using Models = Orb.Models;
 
@@ -986,8 +987,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
                 },
             ],
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1028,8 +1032,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
             InvoiceID = "invoice_id",
             PriceID = "price_id",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1068,8 +1075,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
             NewBlockExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             StartingBalance = 0,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1107,8 +1117,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             StartingBalance = 0,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1148,8 +1161,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
             VoidAmount = 0,
             VoidReason = "void_reason",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1190,8 +1206,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
             VoidAmount = 0,
             VoidReason = "void_reason",
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1229,8 +1248,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             StartingBalance = 0,
         };
-        string element = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(element);
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDResponse>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }
