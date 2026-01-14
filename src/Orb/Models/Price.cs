@@ -73,6 +73,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ID,
                 cumulativeGroupedAllocation: (x) => x.ID,
                 minimum: (x) => x.ID,
+                minimumComposite: (x) => x.ID,
                 percent: (x) => x.ID,
                 eventOutput: (x) => x.ID
             );
@@ -113,6 +114,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.BillableMetric,
                 cumulativeGroupedAllocation: (x) => x.BillableMetric,
                 minimum: (x) => x.BillableMetric,
+                minimumComposite: (x) => x.BillableMetric,
                 percent: (x) => x.BillableMetric,
                 eventOutput: (x) => x.BillableMetric
             );
@@ -153,6 +155,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
                 minimum: (x) => x.BillingCycleConfiguration,
+                minimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
             );
@@ -193,6 +196,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
                 minimum: (x) => x.ConversionRate,
+                minimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
             );
@@ -233,6 +237,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.CreatedAt,
                 cumulativeGroupedAllocation: (x) => x.CreatedAt,
                 minimum: (x) => x.CreatedAt,
+                minimumComposite: (x) => x.CreatedAt,
                 percent: (x) => x.CreatedAt,
                 eventOutput: (x) => x.CreatedAt
             );
@@ -273,6 +278,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.CreditAllocation,
                 cumulativeGroupedAllocation: (x) => x.CreditAllocation,
                 minimum: (x) => x.CreditAllocation,
+                minimumComposite: (x) => x.CreditAllocation,
                 percent: (x) => x.CreditAllocation,
                 eventOutput: (x) => x.CreditAllocation
             );
@@ -313,6 +319,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
                 minimum: (x) => x.Currency,
+                minimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
             );
@@ -353,6 +360,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Discount,
                 cumulativeGroupedAllocation: (x) => x.Discount,
                 minimum: (x) => x.Discount,
+                minimumComposite: (x) => x.Discount,
                 percent: (x) => x.Discount,
                 eventOutput: (x) => x.Discount
             );
@@ -393,6 +401,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
                 minimum: (x) => x.ExternalPriceID,
+                minimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
             );
@@ -433,6 +442,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
                 minimum: (x) => x.FixedPriceQuantity,
+                minimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
             );
@@ -473,6 +483,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
                 minimum: (x) => x.InvoicingCycleConfiguration,
+                minimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
             );
@@ -513,6 +524,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Item,
                 cumulativeGroupedAllocation: (x) => x.Item,
                 minimum: (x) => x.Item,
+                minimumComposite: (x) => x.Item,
                 percent: (x) => x.Item,
                 eventOutput: (x) => x.Item
             );
@@ -553,6 +565,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Maximum,
                 cumulativeGroupedAllocation: (x) => x.Maximum,
                 minimum: (x) => x.Maximum,
+                minimumComposite: (x) => x.Maximum,
                 percent: (x) => x.Maximum,
                 eventOutput: (x) => x.Maximum
             );
@@ -593,6 +606,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.MaximumAmount,
                 cumulativeGroupedAllocation: (x) => x.MaximumAmount,
                 minimum: (x) => x.MaximumAmount,
+                minimumComposite: (x) => x.MaximumAmount,
                 percent: (x) => x.MaximumAmount,
                 eventOutput: (x) => x.MaximumAmount
             );
@@ -633,6 +647,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Minimum,
                 cumulativeGroupedAllocation: (x) => x.Minimum,
                 minimum: (x) => x.Minimum,
+                minimumComposite: (x) => x.Minimum,
                 percent: (x) => x.Minimum,
                 eventOutput: (x) => x.Minimum
             );
@@ -673,6 +688,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.MinimumAmount,
                 cumulativeGroupedAllocation: (x) => x.MinimumAmount,
                 minimum: (x) => x.MinimumAmount,
+                minimumComposite: (x) => x.MinimumAmount,
                 percent: (x) => x.MinimumAmount,
                 eventOutput: (x) => x.MinimumAmount
             );
@@ -713,6 +729,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ModelType,
                 cumulativeGroupedAllocation: (x) => x.ModelType,
                 minimum: (x) => x.ModelType,
+                minimumComposite: (x) => x.ModelType,
                 percent: (x) => x.ModelType,
                 eventOutput: (x) => x.ModelType
             );
@@ -753,6 +770,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
                 minimum: (x) => x.Name,
+                minimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
             );
@@ -793,6 +811,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedAllocation: (x) => x.PlanPhaseOrder,
                 minimum: (x) => x.PlanPhaseOrder,
+                minimumComposite: (x) => x.PlanPhaseOrder,
                 percent: (x) => x.PlanPhaseOrder,
                 eventOutput: (x) => x.PlanPhaseOrder
             );
@@ -833,6 +852,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ReplacesPriceID,
                 cumulativeGroupedAllocation: (x) => x.ReplacesPriceID,
                 minimum: (x) => x.ReplacesPriceID,
+                minimumComposite: (x) => x.ReplacesPriceID,
                 percent: (x) => x.ReplacesPriceID,
                 eventOutput: (x) => x.ReplacesPriceID
             );
@@ -873,6 +893,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
                 minimum: (x) => x.DimensionalPriceConfiguration,
+                minimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
             );
@@ -1048,6 +1069,12 @@ public record class Price : ModelBase
     }
 
     public Price(PriceMinimum value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(MinimumComposite value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1695,6 +1722,27 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MinimumComposite"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMinimumComposite(out var value)) {
+    ///     // `value` is of type `MinimumComposite`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMinimumComposite([NotNullWhen(true)] out MinimumComposite? value)
+    {
+        value = this.Value as MinimumComposite;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Percent"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
@@ -1778,6 +1826,7 @@ public record class Price : ModelBase
     ///     (CumulativeGroupedBulk value) => {...},
     ///     (CumulativeGroupedAllocation value) => {...},
     ///     (PriceMinimum value) => {...},
+    ///     (MinimumComposite value) => {...},
     ///     (Percent value) => {...},
     ///     (EventOutput value) => {...}
     /// );
@@ -1814,6 +1863,7 @@ public record class Price : ModelBase
         System::Action<CumulativeGroupedBulk> cumulativeGroupedBulk,
         System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
         System::Action<PriceMinimum> minimum,
+        System::Action<MinimumComposite> minimumComposite,
         System::Action<Percent> percent,
         System::Action<EventOutput> eventOutput
     )
@@ -1907,6 +1957,9 @@ public record class Price : ModelBase
             case PriceMinimum value:
                 minimum(value);
                 break;
+            case MinimumComposite value:
+                minimumComposite(value);
+                break;
             case Percent value:
                 percent(value);
                 break;
@@ -1962,6 +2015,7 @@ public record class Price : ModelBase
     ///     (CumulativeGroupedBulk value) => {...},
     ///     (CumulativeGroupedAllocation value) => {...},
     ///     (PriceMinimum value) => {...},
+    ///     (MinimumComposite value) => {...},
     ///     (Percent value) => {...},
     ///     (EventOutput value) => {...}
     /// );
@@ -1998,6 +2052,7 @@ public record class Price : ModelBase
         System::Func<CumulativeGroupedBulk, T> cumulativeGroupedBulk,
         System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
         System::Func<PriceMinimum, T> minimum,
+        System::Func<MinimumComposite, T> minimumComposite,
         System::Func<Percent, T> percent,
         System::Func<EventOutput, T> eventOutput
     )
@@ -2033,6 +2088,7 @@ public record class Price : ModelBase
             CumulativeGroupedBulk value => cumulativeGroupedBulk(value),
             CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
             PriceMinimum value => minimum(value),
+            MinimumComposite value => minimumComposite(value),
             Percent value => percent(value),
             EventOutput value => eventOutput(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
@@ -2097,6 +2153,8 @@ public record class Price : ModelBase
 
     public static implicit operator Price(PriceMinimum value) => new(value);
 
+    public static implicit operator Price(MinimumComposite value) => new(value);
+
     public static implicit operator Price(Percent value) => new(value);
 
     public static implicit operator Price(EventOutput value) => new(value);
@@ -2147,6 +2205,7 @@ public record class Price : ModelBase
             (cumulativeGroupedBulk) => cumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
             (minimum) => minimum.Validate(),
+            (minimumComposite) => minimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
         );
@@ -2787,6 +2846,28 @@ sealed class PriceConverter : JsonConverter<Price>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PriceMinimum>(element, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "minimum_composite":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MinimumComposite>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -36976,12 +37057,12 @@ public sealed record class PriceMinimum : JsonModel
     /// <summary>
     /// Configuration for minimum pricing
     /// </summary>
-    public required PriceMinimumMinimumConfig MinimumConfig
+    public required MinimumConfig MinimumConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<PriceMinimumMinimumConfig>("minimum_config");
+            return this._rawData.GetNotNullClass<MinimumConfig>("minimum_config");
         }
         init { this._rawData.Set("minimum_config", value); }
     }
@@ -37740,10 +37821,8 @@ sealed class PriceMinimumConversionRateConfigConverter
 /// <summary>
 /// Configuration for minimum pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<PriceMinimumMinimumConfig, PriceMinimumMinimumConfigFromRaw>)
-)]
-public sealed record class PriceMinimumMinimumConfig : JsonModel
+[JsonConverter(typeof(JsonModelConverter<MinimumConfig, MinimumConfigFromRaw>))]
+public sealed record class MinimumConfig : JsonModel
 {
     /// <summary>
     /// The minimum amount to apply
@@ -37786,46 +37865,43 @@ public sealed record class PriceMinimumMinimumConfig : JsonModel
         _ = this.Prorated;
     }
 
-    public PriceMinimumMinimumConfig() { }
+    public MinimumConfig() { }
 
-    public PriceMinimumMinimumConfig(PriceMinimumMinimumConfig priceMinimumMinimumConfig)
-        : base(priceMinimumMinimumConfig) { }
+    public MinimumConfig(MinimumConfig minimumConfig)
+        : base(minimumConfig) { }
 
-    public PriceMinimumMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceMinimumMinimumConfig(FrozenDictionary<string, JsonElement> rawData)
+    MinimumConfig(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="PriceMinimumMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static PriceMinimumMinimumConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="MinimumConfigFromRaw.FromRawUnchecked"/>
+    public static MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public PriceMinimumMinimumConfig(string minimumAmount)
+    public MinimumConfig(string minimumAmount)
         : this()
     {
         this.MinimumAmount = minimumAmount;
     }
 }
 
-class PriceMinimumMinimumConfigFromRaw : IFromRawJson<PriceMinimumMinimumConfig>
+class MinimumConfigFromRaw : IFromRawJson<MinimumConfig>
 {
     /// <inheritdoc/>
-    public PriceMinimumMinimumConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceMinimumMinimumConfig.FromRawUnchecked(rawData);
+    public MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MinimumConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(PriceMinimumPriceTypeConverter))]
@@ -37866,6 +37942,1175 @@ sealed class PriceMinimumPriceTypeConverter : JsonConverter<PriceMinimumPriceTyp
                 PriceMinimumPriceType.UsagePrice => "usage_price",
                 PriceMinimumPriceType.FixedPrice => "fixed_price",
                 PriceMinimumPriceType.CompositePrice => "composite_price",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<MinimumComposite, MinimumCompositeFromRaw>))]
+public sealed record class MinimumComposite : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public required BillableMetricTiny? BillableMetric
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BillableMetricTiny>("billable_metric");
+        }
+        init { this._rawData.Set("billable_metric", value); }
+    }
+
+    public required BillingCycleConfiguration BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<BillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    public required ApiEnum<string, MinimumCompositeBillingMode> BillingMode
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MinimumCompositeBillingMode>>(
+                "billing_mode"
+            );
+        }
+        init { this._rawData.Set("billing_mode", value); }
+    }
+
+    public required ApiEnum<string, MinimumCompositeCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MinimumCompositeCadence>>(
+                "cadence"
+            );
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    public required IReadOnlyList<MinimumCompositeCompositePriceFilter>? CompositePriceFilters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<MinimumCompositeCompositePriceFilter>
+            >("composite_price_filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MinimumCompositeCompositePriceFilter>?>(
+                "composite_price_filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public required double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    public required MinimumCompositeConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MinimumCompositeConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    public required Allocation? CreditAllocation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Allocation>("credit_allocation");
+        }
+        init { this._rawData.Set("credit_allocation", value); }
+    }
+
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required SharedDiscount? Discount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SharedDiscount>("discount");
+        }
+        init { this._rawData.Set("discount", value); }
+    }
+
+    public required string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    public required double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    public required BillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
+    public required ItemSlim Item
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ItemSlim>("item");
+        }
+        init { this._rawData.Set("item", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Maximum? Maximum
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Maximum>("maximum");
+        }
+        init { this._rawData.Set("maximum", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MaximumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("maximum_amount");
+        }
+        init { this._rawData.Set("maximum_amount", value); }
+    }
+
+    /// <summary>
+    /// User specified key-value pairs for the resource. If not present, this defaults
+    /// to an empty dictionary. Individual keys can be removed by setting the value
+    /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
+    /// to `null`.
+    /// </summary>
+    public required IReadOnlyDictionary<string, string> Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Minimum? Minimum
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Minimum>("minimum");
+        }
+        init { this._rawData.Set("minimum", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MinimumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount");
+        }
+        init { this._rawData.Set("minimum_amount", value); }
+    }
+
+    /// <summary>
+    /// Configuration for minimum_composite pricing
+    /// </summary>
+    public required MinimumCompositeMinimumCompositeConfig MinimumCompositeConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<MinimumCompositeMinimumCompositeConfig>(
+                "minimum_composite_config"
+            );
+        }
+        init { this._rawData.Set("minimum_composite_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    public required long? PlanPhaseOrder
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("plan_phase_order");
+        }
+        init { this._rawData.Set("plan_phase_order", value); }
+    }
+
+    public required ApiEnum<string, MinimumCompositePriceType> PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MinimumCompositePriceType>>(
+                "price_type"
+            );
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <summary>
+    /// The price id this price replaces. This price will take the place of the replaced
+    /// price in plan version migrations.
+    /// </summary>
+    public required string? ReplacesPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_price_id");
+        }
+        init { this._rawData.Set("replaces_price_id", value); }
+    }
+
+    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.BillableMetric?.Validate();
+        this.BillingCycleConfiguration.Validate();
+        this.BillingMode.Validate();
+        this.Cadence.Validate();
+        foreach (var item in this.CompositePriceFilters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.CreatedAt;
+        this.CreditAllocation?.Validate();
+        _ = this.Currency;
+        this.Discount?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        this.InvoicingCycleConfiguration?.Validate();
+        this.Item.Validate();
+        this.Maximum?.Validate();
+        _ = this.MaximumAmount;
+        _ = this.Metadata;
+        this.Minimum?.Validate();
+        _ = this.MinimumAmount;
+        this.MinimumCompositeConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("minimum_composite")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.PlanPhaseOrder;
+        this.PriceType.Validate();
+        _ = this.ReplacesPriceID;
+        this.DimensionalPriceConfiguration?.Validate();
+    }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public MinimumComposite()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("minimum_composite");
+    }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public MinimumComposite(MinimumComposite minimumComposite)
+        : base(minimumComposite) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public MinimumComposite(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("minimum_composite");
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    [SetsRequiredMembers]
+    MinimumComposite(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MinimumCompositeFromRaw.FromRawUnchecked"/>
+    public static MinimumComposite FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MinimumCompositeFromRaw : IFromRawJson<MinimumComposite>
+{
+    /// <inheritdoc/>
+    public MinimumComposite FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MinimumComposite.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(MinimumCompositeBillingModeConverter))]
+public enum MinimumCompositeBillingMode
+{
+    InAdvance,
+    InArrear,
+}
+
+sealed class MinimumCompositeBillingModeConverter : JsonConverter<MinimumCompositeBillingMode>
+{
+    public override MinimumCompositeBillingMode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "in_advance" => MinimumCompositeBillingMode.InAdvance,
+            "in_arrear" => MinimumCompositeBillingMode.InArrear,
+            _ => (MinimumCompositeBillingMode)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MinimumCompositeBillingMode value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MinimumCompositeBillingMode.InAdvance => "in_advance",
+                MinimumCompositeBillingMode.InArrear => "in_arrear",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(MinimumCompositeCadenceConverter))]
+public enum MinimumCompositeCadence
+{
+    OneTime,
+    Monthly,
+    Quarterly,
+    SemiAnnual,
+    Annual,
+    Custom,
+}
+
+sealed class MinimumCompositeCadenceConverter : JsonConverter<MinimumCompositeCadence>
+{
+    public override MinimumCompositeCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "one_time" => MinimumCompositeCadence.OneTime,
+            "monthly" => MinimumCompositeCadence.Monthly,
+            "quarterly" => MinimumCompositeCadence.Quarterly,
+            "semi_annual" => MinimumCompositeCadence.SemiAnnual,
+            "annual" => MinimumCompositeCadence.Annual,
+            "custom" => MinimumCompositeCadence.Custom,
+            _ => (MinimumCompositeCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MinimumCompositeCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MinimumCompositeCadence.OneTime => "one_time",
+                MinimumCompositeCadence.Monthly => "monthly",
+                MinimumCompositeCadence.Quarterly => "quarterly",
+                MinimumCompositeCadence.SemiAnnual => "semi_annual",
+                MinimumCompositeCadence.Annual => "annual",
+                MinimumCompositeCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MinimumCompositeCompositePriceFilter,
+        MinimumCompositeCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class MinimumCompositeCompositePriceFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, MinimumCompositeCompositePriceFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, MinimumCompositeCompositePriceFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, MinimumCompositeCompositePriceFilterOperator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, MinimumCompositeCompositePriceFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public MinimumCompositeCompositePriceFilter() { }
+
+    public MinimumCompositeCompositePriceFilter(
+        MinimumCompositeCompositePriceFilter minimumCompositeCompositePriceFilter
+    )
+        : base(minimumCompositeCompositePriceFilter) { }
+
+    public MinimumCompositeCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MinimumCompositeCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MinimumCompositeCompositePriceFilterFromRaw.FromRawUnchecked"/>
+    public static MinimumCompositeCompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MinimumCompositeCompositePriceFilterFromRaw
+    : IFromRawJson<MinimumCompositeCompositePriceFilter>
+{
+    /// <inheritdoc/>
+    public MinimumCompositeCompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MinimumCompositeCompositePriceFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(MinimumCompositeCompositePriceFilterFieldConverter))]
+public enum MinimumCompositeCompositePriceFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class MinimumCompositeCompositePriceFilterFieldConverter
+    : JsonConverter<MinimumCompositeCompositePriceFilterField>
+{
+    public override MinimumCompositeCompositePriceFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => MinimumCompositeCompositePriceFilterField.PriceID,
+            "item_id" => MinimumCompositeCompositePriceFilterField.ItemID,
+            "price_type" => MinimumCompositeCompositePriceFilterField.PriceType,
+            "currency" => MinimumCompositeCompositePriceFilterField.Currency,
+            "pricing_unit_id" => MinimumCompositeCompositePriceFilterField.PricingUnitID,
+            _ => (MinimumCompositeCompositePriceFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MinimumCompositeCompositePriceFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MinimumCompositeCompositePriceFilterField.PriceID => "price_id",
+                MinimumCompositeCompositePriceFilterField.ItemID => "item_id",
+                MinimumCompositeCompositePriceFilterField.PriceType => "price_type",
+                MinimumCompositeCompositePriceFilterField.Currency => "currency",
+                MinimumCompositeCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(MinimumCompositeCompositePriceFilterOperatorConverter))]
+public enum MinimumCompositeCompositePriceFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class MinimumCompositeCompositePriceFilterOperatorConverter
+    : JsonConverter<MinimumCompositeCompositePriceFilterOperator>
+{
+    public override MinimumCompositeCompositePriceFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => MinimumCompositeCompositePriceFilterOperator.Includes,
+            "excludes" => MinimumCompositeCompositePriceFilterOperator.Excludes,
+            _ => (MinimumCompositeCompositePriceFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MinimumCompositeCompositePriceFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MinimumCompositeCompositePriceFilterOperator.Includes => "includes",
+                MinimumCompositeCompositePriceFilterOperator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(MinimumCompositeConversionRateConfigConverter))]
+public record class MinimumCompositeConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public MinimumCompositeConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public MinimumCompositeConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public MinimumCompositeConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of MinimumCompositeConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of MinimumCompositeConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator MinimumCompositeConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator MinimumCompositeConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of MinimumCompositeConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(MinimumCompositeConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+}
+
+sealed class MinimumCompositeConversionRateConfigConverter
+    : JsonConverter<MinimumCompositeConversionRateConfig>
+{
+    public override MinimumCompositeConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new MinimumCompositeConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MinimumCompositeConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+/// <summary>
+/// Configuration for minimum_composite pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MinimumCompositeMinimumCompositeConfig,
+        MinimumCompositeMinimumCompositeConfigFromRaw
+    >)
+)]
+public sealed record class MinimumCompositeMinimumCompositeConfig : JsonModel
+{
+    /// <summary>
+    /// The minimum amount to apply
+    /// </summary>
+    public required string MinimumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("minimum_amount");
+        }
+        init { this._rawData.Set("minimum_amount", value); }
+    }
+
+    /// <summary>
+    /// If true, subtotals from this price are prorated based on the service period
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("prorated", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.MinimumAmount;
+        _ = this.Prorated;
+    }
+
+    public MinimumCompositeMinimumCompositeConfig() { }
+
+    public MinimumCompositeMinimumCompositeConfig(
+        MinimumCompositeMinimumCompositeConfig minimumCompositeMinimumCompositeConfig
+    )
+        : base(minimumCompositeMinimumCompositeConfig) { }
+
+    public MinimumCompositeMinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MinimumCompositeMinimumCompositeConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MinimumCompositeMinimumCompositeConfigFromRaw.FromRawUnchecked"/>
+    public static MinimumCompositeMinimumCompositeConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public MinimumCompositeMinimumCompositeConfig(string minimumAmount)
+        : this()
+    {
+        this.MinimumAmount = minimumAmount;
+    }
+}
+
+class MinimumCompositeMinimumCompositeConfigFromRaw
+    : IFromRawJson<MinimumCompositeMinimumCompositeConfig>
+{
+    /// <inheritdoc/>
+    public MinimumCompositeMinimumCompositeConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MinimumCompositeMinimumCompositeConfig.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(MinimumCompositePriceTypeConverter))]
+public enum MinimumCompositePriceType
+{
+    UsagePrice,
+    FixedPrice,
+    CompositePrice,
+}
+
+sealed class MinimumCompositePriceTypeConverter : JsonConverter<MinimumCompositePriceType>
+{
+    public override MinimumCompositePriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage_price" => MinimumCompositePriceType.UsagePrice,
+            "fixed_price" => MinimumCompositePriceType.FixedPrice,
+            "composite_price" => MinimumCompositePriceType.CompositePrice,
+            _ => (MinimumCompositePriceType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MinimumCompositePriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MinimumCompositePriceType.UsagePrice => "usage_price",
+                MinimumCompositePriceType.FixedPrice => "fixed_price",
+                MinimumCompositePriceType.CompositePrice => "composite_price",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

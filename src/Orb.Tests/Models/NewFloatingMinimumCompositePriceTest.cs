@@ -16,8 +16,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -53,13 +53,13 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             NewFloatingMinimumCompositePriceCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        MinimumConfig expectedMinimumConfig = new()
+        MinimumCompositeConfig expectedMinimumCompositeConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
         ApiEnum<string, NewFloatingMinimumCompositePriceModelType> expectedModelType =
-            NewFloatingMinimumCompositePriceModelType.Minimum;
+            NewFloatingMinimumCompositePriceModelType.MinimumComposite;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -94,7 +94,7 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
         Assert.Equal(expectedCadence, model.Cadence);
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
+        Assert.Equal(expectedMinimumCompositeConfig, model.MinimumCompositeConfig);
         Assert.Equal(expectedModelType, model.ModelType);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
@@ -125,8 +125,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -175,8 +175,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -219,13 +219,13 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             NewFloatingMinimumCompositePriceCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        MinimumConfig expectedMinimumConfig = new()
+        MinimumCompositeConfig expectedMinimumCompositeConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
         ApiEnum<string, NewFloatingMinimumCompositePriceModelType> expectedModelType =
-            NewFloatingMinimumCompositePriceModelType.Minimum;
+            NewFloatingMinimumCompositePriceModelType.MinimumComposite;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -260,7 +260,7 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
         Assert.Equal(expectedCadence, deserialized.Cadence);
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedItemID, deserialized.ItemID);
-        Assert.Equal(expectedMinimumConfig, deserialized.MinimumConfig);
+        Assert.Equal(expectedMinimumCompositeConfig, deserialized.MinimumCompositeConfig);
         Assert.Equal(expectedModelType, deserialized.ModelType);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
@@ -294,8 +294,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -338,8 +338,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
         };
 
@@ -375,8 +375,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
         };
 
@@ -391,8 +391,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -440,8 +440,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewFloatingMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -523,12 +523,16 @@ public class NewFloatingMinimumCompositePriceCadenceTest : TestBase
     }
 }
 
-public class MinimumConfigTest : TestBase
+public class MinimumCompositeConfigTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
+        var model = new MinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
 
         string expectedMinimumAmount = "minimum_amount";
         bool expectedProrated = true;
@@ -540,10 +544,14 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
+        var model = new MinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeConfig>(
             json,
             ModelBase.SerializerOptions
         );
@@ -554,10 +562,14 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
+        var model = new MinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeConfig>(
             element,
             ModelBase.SerializerOptions
         );
@@ -573,7 +585,11 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
+        var model = new MinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
 
         model.Validate();
     }
@@ -581,7 +597,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount" };
+        var model = new MinimumCompositeConfig { MinimumAmount = "minimum_amount" };
 
         Assert.Null(model.Prorated);
         Assert.False(model.RawData.ContainsKey("prorated"));
@@ -590,7 +606,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount" };
+        var model = new MinimumCompositeConfig { MinimumAmount = "minimum_amount" };
 
         model.Validate();
     }
@@ -598,7 +614,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new MinimumConfig
+        var model = new MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -613,7 +629,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new MinimumConfig
+        var model = new MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -628,7 +644,7 @@ public class MinimumConfigTest : TestBase
 public class NewFloatingMinimumCompositePriceModelTypeTest : TestBase
 {
     [Theory]
-    [InlineData(NewFloatingMinimumCompositePriceModelType.Minimum)]
+    [InlineData(NewFloatingMinimumCompositePriceModelType.MinimumComposite)]
     public void Validation_Works(NewFloatingMinimumCompositePriceModelType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -648,7 +664,7 @@ public class NewFloatingMinimumCompositePriceModelTypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(NewFloatingMinimumCompositePriceModelType.Minimum)]
+    [InlineData(NewFloatingMinimumCompositePriceModelType.MinimumComposite)]
     public void SerializationRoundtrip_Works(NewFloatingMinimumCompositePriceModelType rawValue)
     {
         // force implicit conversion because Theory can't do that for us

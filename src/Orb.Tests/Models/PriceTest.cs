@@ -3444,6 +3444,117 @@ public class PriceTest : TestBase
     }
 
     [Fact]
+    public void MinimumCompositeValidationWorks()
+    {
+        Price value = new MinimumComposite()
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void PercentValidationWorks()
     {
         Price value = new Percent()
@@ -7178,6 +7289,120 @@ public class PriceTest : TestBase
             Name = "name",
             PlanPhaseOrder = 0,
             PriceType = PriceMinimumPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void MinimumCompositeSerializationRoundtripWorks()
+    {
+        Price value = new MinimumComposite()
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
             ReplacesPriceID = "replaces_price_id",
             DimensionalPriceConfiguration = new()
             {
@@ -61170,7 +61395,7 @@ public class PriceMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        PriceMinimumMinimumConfig expectedMinimumConfig = new()
+        MinimumConfig expectedMinimumConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -61563,7 +61788,7 @@ public class PriceMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        PriceMinimumMinimumConfig expectedMinimumConfig = new()
+        MinimumConfig expectedMinimumConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -62577,16 +62802,12 @@ public class PriceMinimumConversionRateConfigTest : TestBase
     }
 }
 
-public class PriceMinimumMinimumConfigTest : TestBase
+public class MinimumConfigTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
+        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
 
         string expectedMinimumAmount = "minimum_amount";
         bool expectedProrated = true;
@@ -62598,14 +62819,10 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
+        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumMinimumConfig>(
+        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(
             json,
             ModelBase.SerializerOptions
         );
@@ -62616,14 +62833,10 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
+        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumMinimumConfig>(
+        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(
             element,
             ModelBase.SerializerOptions
         );
@@ -62639,11 +62852,7 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
+        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
 
         model.Validate();
     }
@@ -62651,7 +62860,7 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceMinimumMinimumConfig { MinimumAmount = "minimum_amount" };
+        var model = new MinimumConfig { MinimumAmount = "minimum_amount" };
 
         Assert.Null(model.Prorated);
         Assert.False(model.RawData.ContainsKey("prorated"));
@@ -62660,7 +62869,7 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceMinimumMinimumConfig { MinimumAmount = "minimum_amount" };
+        var model = new MinimumConfig { MinimumAmount = "minimum_amount" };
 
         model.Validate();
     }
@@ -62668,7 +62877,7 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PriceMinimumMinimumConfig
+        var model = new MinimumConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -62683,7 +62892,7 @@ public class PriceMinimumMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceMinimumMinimumConfig
+        var model = new MinimumConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -62747,6 +62956,1806 @@ public class PriceMinimumPriceTypeTest : TestBase
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MinimumCompositeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        string expectedID = "id";
+        BillableMetricTiny expectedBillableMetric = new("id");
+        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ApiEnum<string, MinimumCompositeBillingMode> expectedBillingMode =
+            MinimumCompositeBillingMode.InAdvance;
+        ApiEnum<string, MinimumCompositeCadence> expectedCadence = MinimumCompositeCadence.OneTime;
+        List<MinimumCompositeCompositePriceFilter> expectedCompositePriceFilters =
+        [
+            new()
+            {
+                Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        double expectedConversionRate = 0;
+        MinimumCompositeConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Allocation expectedCreditAllocation = new()
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+        };
+        string expectedCurrency = "currency";
+        SharedDiscount expectedDiscount = new PercentageDiscount()
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
+        Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        MinimumCompositeMinimumCompositeConfig expectedMinimumCompositeConfig = new()
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum_composite");
+        string expectedName = "name";
+        long expectedPlanPhaseOrder = 0;
+        ApiEnum<string, MinimumCompositePriceType> expectedPriceType =
+            MinimumCompositePriceType.UsagePrice;
+        string expectedReplacesPriceID = "replaces_price_id";
+        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedBillableMetric, model.BillableMetric);
+        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
+        Assert.Equal(expectedBillingMode, model.BillingMode);
+        Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
+        Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
+        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedCompositePriceFilters[i], model.CompositePriceFilters[i]);
+        }
+        Assert.Equal(expectedConversionRate, model.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCreditAllocation, model.CreditAllocation);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDiscount, model.Discount);
+        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedItem, model.Item);
+        Assert.Equal(expectedMaximum, model.Maximum);
+        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMinimum, model.Minimum);
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.Equal(expectedMinimumCompositeConfig, model.MinimumCompositeConfig);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
+        Assert.Equal(expectedPriceType, model.PriceType);
+        Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
+        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumComposite>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumComposite>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        BillableMetricTiny expectedBillableMetric = new("id");
+        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ApiEnum<string, MinimumCompositeBillingMode> expectedBillingMode =
+            MinimumCompositeBillingMode.InAdvance;
+        ApiEnum<string, MinimumCompositeCadence> expectedCadence = MinimumCompositeCadence.OneTime;
+        List<MinimumCompositeCompositePriceFilter> expectedCompositePriceFilters =
+        [
+            new()
+            {
+                Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        double expectedConversionRate = 0;
+        MinimumCompositeConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Allocation expectedCreditAllocation = new()
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+        };
+        string expectedCurrency = "currency";
+        SharedDiscount expectedDiscount = new PercentageDiscount()
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
+        Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        MinimumCompositeMinimumCompositeConfig expectedMinimumCompositeConfig = new()
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum_composite");
+        string expectedName = "name";
+        long expectedPlanPhaseOrder = 0;
+        ApiEnum<string, MinimumCompositePriceType> expectedPriceType =
+            MinimumCompositePriceType.UsagePrice;
+        string expectedReplacesPriceID = "replaces_price_id";
+        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
+        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
+        Assert.Equal(expectedBillingMode, deserialized.BillingMode);
+        Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
+        Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
+        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedCompositePriceFilters[i], deserialized.CompositePriceFilters[i]);
+        }
+        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
+        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCreditAllocation, deserialized.CreditAllocation);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDiscount, deserialized.Discount);
+        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedItem, deserialized.Item);
+        Assert.Equal(expectedMaximum, deserialized.Maximum);
+        Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMinimum, deserialized.Minimum);
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+        Assert.Equal(expectedMinimumCompositeConfig, deserialized.MinimumCompositeConfig);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
+        Assert.Equal(expectedName, deserialized.Name);
+        Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+        Assert.Equal(expectedReplacesPriceID, deserialized.ReplacesPriceID);
+        Assert.Equal(
+            expectedDimensionalPriceConfiguration,
+            deserialized.DimensionalPriceConfiguration
+        );
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+        };
+
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+
+            DimensionalPriceConfiguration = null,
+        };
+
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+
+            DimensionalPriceConfiguration = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class MinimumCompositeBillingModeTest : TestBase
+{
+    [Theory]
+    [InlineData(MinimumCompositeBillingMode.InAdvance)]
+    [InlineData(MinimumCompositeBillingMode.InArrear)]
+    public void Validation_Works(MinimumCompositeBillingMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeBillingMode> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeBillingMode>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MinimumCompositeBillingMode.InAdvance)]
+    [InlineData(MinimumCompositeBillingMode.InArrear)]
+    public void SerializationRoundtrip_Works(MinimumCompositeBillingMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeBillingMode> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeBillingMode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeBillingMode>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeBillingMode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MinimumCompositeCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(MinimumCompositeCadence.OneTime)]
+    [InlineData(MinimumCompositeCadence.Monthly)]
+    [InlineData(MinimumCompositeCadence.Quarterly)]
+    [InlineData(MinimumCompositeCadence.SemiAnnual)]
+    [InlineData(MinimumCompositeCadence.Annual)]
+    [InlineData(MinimumCompositeCadence.Custom)]
+    public void Validation_Works(MinimumCompositeCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeCadence>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MinimumCompositeCadence.OneTime)]
+    [InlineData(MinimumCompositeCadence.Monthly)]
+    [InlineData(MinimumCompositeCadence.Quarterly)]
+    [InlineData(MinimumCompositeCadence.SemiAnnual)]
+    [InlineData(MinimumCompositeCadence.Annual)]
+    [InlineData(MinimumCompositeCadence.Custom)]
+    public void SerializationRoundtrip_Works(MinimumCompositeCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeCadence>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositeCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MinimumCompositeCompositePriceFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MinimumCompositeCompositePriceFilter
+        {
+            Field = MinimumCompositeCompositePriceFilterField.PriceID,
+            Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, MinimumCompositeCompositePriceFilterField> expectedField =
+            MinimumCompositeCompositePriceFilterField.PriceID;
+        ApiEnum<string, MinimumCompositeCompositePriceFilterOperator> expectedOperator =
+            MinimumCompositeCompositePriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MinimumCompositeCompositePriceFilter
+        {
+            Field = MinimumCompositeCompositePriceFilterField.PriceID,
+            Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeCompositePriceFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MinimumCompositeCompositePriceFilter
+        {
+            Field = MinimumCompositeCompositePriceFilterField.PriceID,
+            Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeCompositePriceFilter>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, MinimumCompositeCompositePriceFilterField> expectedField =
+            MinimumCompositeCompositePriceFilterField.PriceID;
+        ApiEnum<string, MinimumCompositeCompositePriceFilterOperator> expectedOperator =
+            MinimumCompositeCompositePriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MinimumCompositeCompositePriceFilter
+        {
+            Field = MinimumCompositeCompositePriceFilterField.PriceID,
+            Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+}
+
+public class MinimumCompositeCompositePriceFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MinimumCompositeCompositePriceFilterField.PriceID)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.ItemID)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.PriceType)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.Currency)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.PricingUnitID)]
+    public void Validation_Works(MinimumCompositeCompositePriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeCompositePriceFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MinimumCompositeCompositePriceFilterField.PriceID)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.ItemID)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.PriceType)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.Currency)]
+    [InlineData(MinimumCompositeCompositePriceFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(MinimumCompositeCompositePriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeCompositePriceFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MinimumCompositeCompositePriceFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MinimumCompositeCompositePriceFilterOperator.Includes)]
+    [InlineData(MinimumCompositeCompositePriceFilterOperator.Excludes)]
+    public void Validation_Works(MinimumCompositeCompositePriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeCompositePriceFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MinimumCompositeCompositePriceFilterOperator.Includes)]
+    [InlineData(MinimumCompositeCompositePriceFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(MinimumCompositeCompositePriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositeCompositePriceFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MinimumCompositeCompositePriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MinimumCompositeConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void UnitValidationWorks()
+    {
+        MinimumCompositeConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void TieredValidationWorks()
+    {
+        MinimumCompositeConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UnitSerializationRoundtripWorks()
+    {
+        MinimumCompositeConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeConversionRateConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredSerializationRoundtripWorks()
+    {
+        MinimumCompositeConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeConversionRateConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MinimumCompositeMinimumCompositeConfigTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        string expectedMinimumAmount = "minimum_amount";
+        bool expectedProrated = true;
+
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.Equal(expectedProrated, model.Prorated);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeMinimumCompositeConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeMinimumCompositeConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedMinimumAmount = "minimum_amount";
+        bool expectedProrated = true;
+
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+        Assert.Equal(expectedProrated, deserialized.Prorated);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig { MinimumAmount = "minimum_amount" };
+
+        Assert.Null(model.Prorated);
+        Assert.False(model.RawData.ContainsKey("prorated"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig { MinimumAmount = "minimum_amount" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+
+            // Null should be interpreted as omitted for these properties
+            Prorated = null,
+        };
+
+        Assert.Null(model.Prorated);
+        Assert.False(model.RawData.ContainsKey("prorated"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+
+            // Null should be interpreted as omitted for these properties
+            Prorated = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class MinimumCompositePriceTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MinimumCompositePriceType.UsagePrice)]
+    [InlineData(MinimumCompositePriceType.FixedPrice)]
+    [InlineData(MinimumCompositePriceType.CompositePrice)]
+    public void Validation_Works(MinimumCompositePriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositePriceType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositePriceType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MinimumCompositePriceType.UsagePrice)]
+    [InlineData(MinimumCompositePriceType.FixedPrice)]
+    [InlineData(MinimumCompositePriceType.CompositePrice)]
+    public void SerializationRoundtrip_Works(MinimumCompositePriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MinimumCompositePriceType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositePriceType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositePriceType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MinimumCompositePriceType>>(
             json,
             ModelBase.SerializerOptions
         );
