@@ -46,18 +46,18 @@ public sealed record class NewSubscriptionMinimumCompositePrice : JsonModel
     }
 
     /// <summary>
-    /// Configuration for minimum pricing
+    /// Configuration for minimum_composite pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.MinimumConfig MinimumConfig
+    public required global::Orb.Models.Subscriptions.MinimumCompositeConfig MinimumCompositeConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MinimumConfig>(
-                "minimum_config"
+            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MinimumCompositeConfig>(
+                "minimum_composite_config"
             );
         }
-        init { this._rawData.Set("minimum_config", value); }
+        init { this._rawData.Set("minimum_composite_config", value); }
     }
 
     /// <summary>
@@ -283,7 +283,7 @@ public sealed record class NewSubscriptionMinimumCompositePrice : JsonModel
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.MinimumConfig.Validate();
+        this.MinimumCompositeConfig.Validate();
         this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;
@@ -400,15 +400,15 @@ sealed class NewSubscriptionMinimumCompositePriceCadenceConverter
 }
 
 /// <summary>
-/// Configuration for minimum pricing
+/// Configuration for minimum_composite pricing
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MinimumConfig,
-        global::Orb.Models.Subscriptions.MinimumConfigFromRaw
+        global::Orb.Models.Subscriptions.MinimumCompositeConfig,
+        global::Orb.Models.Subscriptions.MinimumCompositeConfigFromRaw
     >)
 )]
-public sealed record class MinimumConfig : JsonModel
+public sealed record class MinimumCompositeConfig : JsonModel
 {
     /// <summary>
     /// The minimum amount to apply
@@ -451,26 +451,28 @@ public sealed record class MinimumConfig : JsonModel
         _ = this.Prorated;
     }
 
-    public MinimumConfig() { }
+    public MinimumCompositeConfig() { }
 
-    public MinimumConfig(global::Orb.Models.Subscriptions.MinimumConfig minimumConfig)
-        : base(minimumConfig) { }
+    public MinimumCompositeConfig(
+        global::Orb.Models.Subscriptions.MinimumCompositeConfig minimumCompositeConfig
+    )
+        : base(minimumCompositeConfig) { }
 
-    public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MinimumConfig(FrozenDictionary<string, JsonElement> rawData)
+    MinimumCompositeConfig(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MinimumConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MinimumCompositeConfigFromRaw.FromRawUnchecked"/>
+    public static global::Orb.Models.Subscriptions.MinimumCompositeConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -478,19 +480,20 @@ public sealed record class MinimumConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public MinimumConfig(string minimumAmount)
+    public MinimumCompositeConfig(string minimumAmount)
         : this()
     {
         this.MinimumAmount = minimumAmount;
     }
 }
 
-class MinimumConfigFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.MinimumConfig>
+class MinimumCompositeConfigFromRaw
+    : IFromRawJson<global::Orb.Models.Subscriptions.MinimumCompositeConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MinimumConfig FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.MinimumCompositeConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MinimumConfig.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Subscriptions.MinimumCompositeConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -499,7 +502,7 @@ class MinimumConfigFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.Minim
 [JsonConverter(typeof(NewSubscriptionMinimumCompositePriceModelTypeConverter))]
 public enum NewSubscriptionMinimumCompositePriceModelType
 {
-    Minimum,
+    MinimumComposite,
 }
 
 sealed class NewSubscriptionMinimumCompositePriceModelTypeConverter
@@ -513,7 +516,7 @@ sealed class NewSubscriptionMinimumCompositePriceModelTypeConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "minimum" => NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            "minimum_composite" => NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             _ => (NewSubscriptionMinimumCompositePriceModelType)(-1),
         };
     }
@@ -528,7 +531,8 @@ sealed class NewSubscriptionMinimumCompositePriceModelTypeConverter
             writer,
             value switch
             {
-                NewSubscriptionMinimumCompositePriceModelType.Minimum => "minimum",
+                NewSubscriptionMinimumCompositePriceModelType.MinimumComposite =>
+                    "minimum_composite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -16,8 +16,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -56,7 +57,7 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
             Subscriptions::NewSubscriptionMinimumCompositePriceCadence
         > expectedCadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual;
         string expectedItemID = "item_id";
-        Subscriptions::MinimumConfig expectedMinimumConfig = new()
+        Subscriptions::MinimumCompositeConfig expectedMinimumCompositeConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -64,7 +65,8 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         ApiEnum<
             string,
             Subscriptions::NewSubscriptionMinimumCompositePriceModelType
-        > expectedModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum;
+        > expectedModelType =
+            Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -100,7 +102,7 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
 
         Assert.Equal(expectedCadence, model.Cadence);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
+        Assert.Equal(expectedMinimumCompositeConfig, model.MinimumCompositeConfig);
         Assert.Equal(expectedModelType, model.ModelType);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
@@ -132,8 +134,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -184,8 +187,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -232,7 +236,7 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
             Subscriptions::NewSubscriptionMinimumCompositePriceCadence
         > expectedCadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual;
         string expectedItemID = "item_id";
-        Subscriptions::MinimumConfig expectedMinimumConfig = new()
+        Subscriptions::MinimumCompositeConfig expectedMinimumCompositeConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -240,7 +244,8 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         ApiEnum<
             string,
             Subscriptions::NewSubscriptionMinimumCompositePriceModelType
-        > expectedModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum;
+        > expectedModelType =
+            Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -276,7 +281,7 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
 
         Assert.Equal(expectedCadence, deserialized.Cadence);
         Assert.Equal(expectedItemID, deserialized.ItemID);
-        Assert.Equal(expectedMinimumConfig, deserialized.MinimumConfig);
+        Assert.Equal(expectedMinimumCompositeConfig, deserialized.MinimumCompositeConfig);
         Assert.Equal(expectedModelType, deserialized.ModelType);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
@@ -311,8 +316,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -356,8 +362,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
         };
 
@@ -396,8 +403,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
         };
 
@@ -411,8 +419,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -465,8 +474,9 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
         {
             Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -556,12 +566,12 @@ public class NewSubscriptionMinimumCompositePriceCadenceTest : TestBase
     }
 }
 
-public class MinimumConfigTest : TestBase
+public class MinimumCompositeConfigTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Subscriptions::MinimumConfig
+        var model = new Subscriptions::MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -577,14 +587,14 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Subscriptions::MinimumConfig
+        var model = new Subscriptions::MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConfig>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumCompositeConfig>(
             json,
             ModelBase.SerializerOptions
         );
@@ -595,14 +605,14 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Subscriptions::MinimumConfig
+        var model = new Subscriptions::MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConfig>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumCompositeConfig>(
             element,
             ModelBase.SerializerOptions
         );
@@ -618,7 +628,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Subscriptions::MinimumConfig
+        var model = new Subscriptions::MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -630,7 +640,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Subscriptions::MinimumConfig { MinimumAmount = "minimum_amount" };
+        var model = new Subscriptions::MinimumCompositeConfig { MinimumAmount = "minimum_amount" };
 
         Assert.Null(model.Prorated);
         Assert.False(model.RawData.ContainsKey("prorated"));
@@ -639,7 +649,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Subscriptions::MinimumConfig { MinimumAmount = "minimum_amount" };
+        var model = new Subscriptions::MinimumCompositeConfig { MinimumAmount = "minimum_amount" };
 
         model.Validate();
     }
@@ -647,7 +657,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Subscriptions::MinimumConfig
+        var model = new Subscriptions::MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -662,7 +672,7 @@ public class MinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Subscriptions::MinimumConfig
+        var model = new Subscriptions::MinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -677,7 +687,7 @@ public class MinimumConfigTest : TestBase
 public class NewSubscriptionMinimumCompositePriceModelTypeTest : TestBase
 {
     [Theory]
-    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite)]
     public void Validation_Works(
         Subscriptions::NewSubscriptionMinimumCompositePriceModelType rawValue
     )
@@ -700,7 +710,7 @@ public class NewSubscriptionMinimumCompositePriceModelTypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite)]
     public void SerializationRoundtrip_Works(
         Subscriptions::NewSubscriptionMinimumCompositePriceModelType rawValue
     )

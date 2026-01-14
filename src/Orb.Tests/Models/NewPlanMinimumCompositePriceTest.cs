@@ -15,8 +15,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -53,13 +53,13 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         ApiEnum<string, NewPlanMinimumCompositePriceCadence> expectedCadence =
             NewPlanMinimumCompositePriceCadence.Annual;
         string expectedItemID = "item_id";
-        NewPlanMinimumCompositePriceMinimumConfig expectedMinimumConfig = new()
+        NewPlanMinimumCompositePriceMinimumCompositeConfig expectedMinimumCompositeConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
         ApiEnum<string, NewPlanMinimumCompositePriceModelType> expectedModelType =
-            NewPlanMinimumCompositePriceModelType.Minimum;
+            NewPlanMinimumCompositePriceModelType.MinimumComposite;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -95,7 +95,7 @@ public class NewPlanMinimumCompositePriceTest : TestBase
 
         Assert.Equal(expectedCadence, model.Cadence);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
+        Assert.Equal(expectedMinimumCompositeConfig, model.MinimumCompositeConfig);
         Assert.Equal(expectedModelType, model.ModelType);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
@@ -127,8 +127,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -178,8 +178,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -223,13 +223,13 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         ApiEnum<string, NewPlanMinimumCompositePriceCadence> expectedCadence =
             NewPlanMinimumCompositePriceCadence.Annual;
         string expectedItemID = "item_id";
-        NewPlanMinimumCompositePriceMinimumConfig expectedMinimumConfig = new()
+        NewPlanMinimumCompositePriceMinimumCompositeConfig expectedMinimumCompositeConfig = new()
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
         ApiEnum<string, NewPlanMinimumCompositePriceModelType> expectedModelType =
-            NewPlanMinimumCompositePriceModelType.Minimum;
+            NewPlanMinimumCompositePriceModelType.MinimumComposite;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -265,7 +265,7 @@ public class NewPlanMinimumCompositePriceTest : TestBase
 
         Assert.Equal(expectedCadence, deserialized.Cadence);
         Assert.Equal(expectedItemID, deserialized.ItemID);
-        Assert.Equal(expectedMinimumConfig, deserialized.MinimumConfig);
+        Assert.Equal(expectedMinimumCompositeConfig, deserialized.MinimumCompositeConfig);
         Assert.Equal(expectedModelType, deserialized.ModelType);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
@@ -300,8 +300,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -345,8 +345,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
         };
 
@@ -385,8 +385,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
         };
 
@@ -400,8 +400,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -454,8 +454,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
         {
             Cadence = NewPlanMinimumCompositePriceCadence.Annual,
             ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            ModelType = NewPlanMinimumCompositePriceModelType.Minimum,
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType = NewPlanMinimumCompositePriceModelType.MinimumComposite,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -539,12 +539,12 @@ public class NewPlanMinimumCompositePriceCadenceTest : TestBase
     }
 }
 
-public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
+public class NewPlanMinimumCompositePriceMinimumCompositeConfigTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -560,17 +560,18 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePriceMinimumConfig>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanMinimumCompositePriceMinimumCompositeConfig>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -578,17 +579,18 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePriceMinimumConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanMinimumCompositePriceMinimumCompositeConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -601,7 +603,7 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
             Prorated = true,
@@ -613,7 +615,7 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
         };
@@ -625,7 +627,7 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
         };
@@ -636,7 +638,7 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -651,7 +653,7 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewPlanMinimumCompositePriceMinimumConfig
+        var model = new NewPlanMinimumCompositePriceMinimumCompositeConfig
         {
             MinimumAmount = "minimum_amount",
 
@@ -666,7 +668,7 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
 public class NewPlanMinimumCompositePriceModelTypeTest : TestBase
 {
     [Theory]
-    [InlineData(NewPlanMinimumCompositePriceModelType.Minimum)]
+    [InlineData(NewPlanMinimumCompositePriceModelType.MinimumComposite)]
     public void Validation_Works(NewPlanMinimumCompositePriceModelType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -686,7 +688,7 @@ public class NewPlanMinimumCompositePriceModelTypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(NewPlanMinimumCompositePriceModelType.Minimum)]
+    [InlineData(NewPlanMinimumCompositePriceModelType.MinimumComposite)]
     public void SerializationRoundtrip_Works(NewPlanMinimumCompositePriceModelType rawValue)
     {
         // force implicit conversion because Theory can't do that for us

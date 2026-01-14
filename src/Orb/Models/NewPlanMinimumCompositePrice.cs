@@ -43,18 +43,18 @@ public sealed record class NewPlanMinimumCompositePrice : JsonModel
     }
 
     /// <summary>
-    /// Configuration for minimum pricing
+    /// Configuration for minimum_composite pricing
     /// </summary>
-    public required NewPlanMinimumCompositePriceMinimumConfig MinimumConfig
+    public required NewPlanMinimumCompositePriceMinimumCompositeConfig MinimumCompositeConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<NewPlanMinimumCompositePriceMinimumConfig>(
-                "minimum_config"
+            return this._rawData.GetNotNullClass<NewPlanMinimumCompositePriceMinimumCompositeConfig>(
+                "minimum_composite_config"
             );
         }
-        init { this._rawData.Set("minimum_config", value); }
+        init { this._rawData.Set("minimum_composite_config", value); }
     }
 
     /// <summary>
@@ -280,7 +280,7 @@ public sealed record class NewPlanMinimumCompositePrice : JsonModel
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.MinimumConfig.Validate();
+        this.MinimumCompositeConfig.Validate();
         this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;
@@ -394,15 +394,15 @@ sealed class NewPlanMinimumCompositePriceCadenceConverter
 }
 
 /// <summary>
-/// Configuration for minimum pricing
+/// Configuration for minimum_composite pricing
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        NewPlanMinimumCompositePriceMinimumConfig,
-        NewPlanMinimumCompositePriceMinimumConfigFromRaw
+        NewPlanMinimumCompositePriceMinimumCompositeConfig,
+        NewPlanMinimumCompositePriceMinimumCompositeConfigFromRaw
     >)
 )]
-public sealed record class NewPlanMinimumCompositePriceMinimumConfig : JsonModel
+public sealed record class NewPlanMinimumCompositePriceMinimumCompositeConfig : JsonModel
 {
     /// <summary>
     /// The minimum amount to apply
@@ -445,14 +445,14 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : JsonModel
         _ = this.Prorated;
     }
 
-    public NewPlanMinimumCompositePriceMinimumConfig() { }
+    public NewPlanMinimumCompositePriceMinimumCompositeConfig() { }
 
-    public NewPlanMinimumCompositePriceMinimumConfig(
-        NewPlanMinimumCompositePriceMinimumConfig newPlanMinimumCompositePriceMinimumConfig
+    public NewPlanMinimumCompositePriceMinimumCompositeConfig(
+        NewPlanMinimumCompositePriceMinimumCompositeConfig newPlanMinimumCompositePriceMinimumCompositeConfig
     )
-        : base(newPlanMinimumCompositePriceMinimumConfig) { }
+        : base(newPlanMinimumCompositePriceMinimumCompositeConfig) { }
 
-    public NewPlanMinimumCompositePriceMinimumConfig(
+    public NewPlanMinimumCompositePriceMinimumCompositeConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -461,14 +461,16 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    NewPlanMinimumCompositePriceMinimumConfig(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanMinimumCompositePriceMinimumCompositeConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="NewPlanMinimumCompositePriceMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static NewPlanMinimumCompositePriceMinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="NewPlanMinimumCompositePriceMinimumCompositeConfigFromRaw.FromRawUnchecked"/>
+    public static NewPlanMinimumCompositePriceMinimumCompositeConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -476,20 +478,20 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public NewPlanMinimumCompositePriceMinimumConfig(string minimumAmount)
+    public NewPlanMinimumCompositePriceMinimumCompositeConfig(string minimumAmount)
         : this()
     {
         this.MinimumAmount = minimumAmount;
     }
 }
 
-class NewPlanMinimumCompositePriceMinimumConfigFromRaw
-    : IFromRawJson<NewPlanMinimumCompositePriceMinimumConfig>
+class NewPlanMinimumCompositePriceMinimumCompositeConfigFromRaw
+    : IFromRawJson<NewPlanMinimumCompositePriceMinimumCompositeConfig>
 {
     /// <inheritdoc/>
-    public NewPlanMinimumCompositePriceMinimumConfig FromRawUnchecked(
+    public NewPlanMinimumCompositePriceMinimumCompositeConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => NewPlanMinimumCompositePriceMinimumConfig.FromRawUnchecked(rawData);
+    ) => NewPlanMinimumCompositePriceMinimumCompositeConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -498,7 +500,7 @@ class NewPlanMinimumCompositePriceMinimumConfigFromRaw
 [JsonConverter(typeof(NewPlanMinimumCompositePriceModelTypeConverter))]
 public enum NewPlanMinimumCompositePriceModelType
 {
-    Minimum,
+    MinimumComposite,
 }
 
 sealed class NewPlanMinimumCompositePriceModelTypeConverter
@@ -512,7 +514,7 @@ sealed class NewPlanMinimumCompositePriceModelTypeConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "minimum" => NewPlanMinimumCompositePriceModelType.Minimum,
+            "minimum_composite" => NewPlanMinimumCompositePriceModelType.MinimumComposite,
             _ => (NewPlanMinimumCompositePriceModelType)(-1),
         };
     }
@@ -527,7 +529,7 @@ sealed class NewPlanMinimumCompositePriceModelTypeConverter
             writer,
             value switch
             {
-                NewPlanMinimumCompositePriceModelType.Minimum => "minimum",
+                NewPlanMinimumCompositePriceModelType.MinimumComposite => "minimum_composite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

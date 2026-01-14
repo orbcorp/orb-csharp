@@ -59,16 +59,18 @@ public sealed record class NewFloatingMinimumCompositePrice : JsonModel
     }
 
     /// <summary>
-    /// Configuration for minimum pricing
+    /// Configuration for minimum_composite pricing
     /// </summary>
-    public required MinimumConfig MinimumConfig
+    public required MinimumCompositeConfig MinimumCompositeConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<MinimumConfig>("minimum_config");
+            return this._rawData.GetNotNullClass<MinimumCompositeConfig>(
+                "minimum_composite_config"
+            );
         }
-        init { this._rawData.Set("minimum_config", value); }
+        init { this._rawData.Set("minimum_composite_config", value); }
     }
 
     /// <summary>
@@ -267,7 +269,7 @@ public sealed record class NewFloatingMinimumCompositePrice : JsonModel
         this.Cadence.Validate();
         _ = this.Currency;
         _ = this.ItemID;
-        this.MinimumConfig.Validate();
+        this.MinimumCompositeConfig.Validate();
         this.ModelType.Validate();
         _ = this.Name;
         _ = this.BillableMetricID;
@@ -381,10 +383,10 @@ sealed class NewFloatingMinimumCompositePriceCadenceConverter
 }
 
 /// <summary>
-/// Configuration for minimum pricing
+/// Configuration for minimum_composite pricing
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<MinimumConfig, MinimumConfigFromRaw>))]
-public sealed record class MinimumConfig : JsonModel
+[JsonConverter(typeof(JsonModelConverter<MinimumCompositeConfig, MinimumCompositeConfigFromRaw>))]
+public sealed record class MinimumCompositeConfig : JsonModel
 {
     /// <summary>
     /// The minimum amount to apply
@@ -427,43 +429,46 @@ public sealed record class MinimumConfig : JsonModel
         _ = this.Prorated;
     }
 
-    public MinimumConfig() { }
+    public MinimumCompositeConfig() { }
 
-    public MinimumConfig(MinimumConfig minimumConfig)
-        : base(minimumConfig) { }
+    public MinimumCompositeConfig(MinimumCompositeConfig minimumCompositeConfig)
+        : base(minimumCompositeConfig) { }
 
-    public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MinimumConfig(FrozenDictionary<string, JsonElement> rawData)
+    MinimumCompositeConfig(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="MinimumConfigFromRaw.FromRawUnchecked"/>
-    public static MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="MinimumCompositeConfigFromRaw.FromRawUnchecked"/>
+    public static MinimumCompositeConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public MinimumConfig(string minimumAmount)
+    public MinimumCompositeConfig(string minimumAmount)
         : this()
     {
         this.MinimumAmount = minimumAmount;
     }
 }
 
-class MinimumConfigFromRaw : IFromRawJson<MinimumConfig>
+class MinimumCompositeConfigFromRaw : IFromRawJson<MinimumCompositeConfig>
 {
     /// <inheritdoc/>
-    public MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        MinimumConfig.FromRawUnchecked(rawData);
+    public MinimumCompositeConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MinimumCompositeConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -472,7 +477,7 @@ class MinimumConfigFromRaw : IFromRawJson<MinimumConfig>
 [JsonConverter(typeof(NewFloatingMinimumCompositePriceModelTypeConverter))]
 public enum NewFloatingMinimumCompositePriceModelType
 {
-    Minimum,
+    MinimumComposite,
 }
 
 sealed class NewFloatingMinimumCompositePriceModelTypeConverter
@@ -486,7 +491,7 @@ sealed class NewFloatingMinimumCompositePriceModelTypeConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "minimum" => NewFloatingMinimumCompositePriceModelType.Minimum,
+            "minimum_composite" => NewFloatingMinimumCompositePriceModelType.MinimumComposite,
             _ => (NewFloatingMinimumCompositePriceModelType)(-1),
         };
     }
@@ -501,7 +506,7 @@ sealed class NewFloatingMinimumCompositePriceModelTypeConverter
             writer,
             value switch
             {
-                NewFloatingMinimumCompositePriceModelType.Minimum => "minimum",
+                NewFloatingMinimumCompositePriceModelType.MinimumComposite => "minimum_composite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
