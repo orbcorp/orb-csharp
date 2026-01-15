@@ -1,39 +1,86 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.SubscriptionChanges;
 
 /// <summary>
 /// This endpoint returns a subscription change given an identifier.
 ///
-/// A subscription change is created by including `Create-Pending-Subscription-Change:
+/// <para>A subscription change is created by including `Create-Pending-Subscription-Change:
 /// True` in the header of a subscription mutation API call (e.g. [create subscription
 /// endpoint](/api-reference/subscription/create-subscription), [schedule plan change
 /// endpoint](/api-reference/subscription/schedule-plan-change), ...). The subscription
-/// change will be referenced by the `pending_subscription_change` field in the response.
+/// change will be referenced by the `pending_subscription_change` field in the response.</para>
 /// </summary>
-public sealed record class SubscriptionChangeRetrieveParams : Orb::ParamsBase
+public sealed record class SubscriptionChangeRetrieveParams : ParamsBase
 {
-    public required string SubscriptionChangeID;
+    public string? SubscriptionChangeID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionChangeRetrieveParams() { }
+
+    public SubscriptionChangeRetrieveParams(
+        SubscriptionChangeRetrieveParams subscriptionChangeRetrieveParams
+    )
+        : base(subscriptionChangeRetrieveParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionChangeID = subscriptionChangeRetrieveParams.SubscriptionChangeID;
+    }
+
+    public SubscriptionChangeRetrieveParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionChangeRetrieveParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionChangeRetrieveParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscription_changes/{0}", this.SubscriptionChangeID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

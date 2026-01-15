@@ -1,6 +1,10 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -9,27 +13,70 @@ namespace Orb.Models.SubscriptionChanges;
 /// can only have one "pending" change at a time - use this endpoint to cancel an
 /// existing change before creating a new one.
 /// </summary>
-public sealed record class SubscriptionChangeCancelParams : Orb::ParamsBase
+public sealed record class SubscriptionChangeCancelParams : ParamsBase
 {
-    public required string SubscriptionChangeID;
+    public string? SubscriptionChangeID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionChangeCancelParams() { }
+
+    public SubscriptionChangeCancelParams(
+        SubscriptionChangeCancelParams subscriptionChangeCancelParams
+    )
+        : base(subscriptionChangeCancelParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionChangeID = subscriptionChangeCancelParams.SubscriptionChangeID;
+    }
+
+    public SubscriptionChangeCancelParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionChangeCancelParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionChangeCancelParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscription_changes/{0}/cancel", this.SubscriptionChangeID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

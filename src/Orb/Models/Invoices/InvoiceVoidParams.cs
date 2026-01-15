@@ -1,43 +1,88 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Invoices;
 
 /// <summary>
-/// This endpoint allows an invoice's status to be set the `void` status. This can
-/// only be done to invoices that are in the `issued` status.
+/// This endpoint allows an invoice's status to be set to the `void` status. This
+/// can only be done to invoices that are in the `issued` status.
 ///
-/// If the associated invoice has used the customer balance to change the amount
+/// <para>If the associated invoice has used the customer balance to change the amount
 /// due, the customer balance operation will be reverted. For example, if the invoice
 /// used \$10 of customer balance, that amount will be added back to the customer
-/// balance upon voiding.
+/// balance upon voiding.</para>
 ///
-/// If the invoice was used to purchase a credit block, but the invoice is not yet
-/// paid, the credit block will be voided. If the invoice was created due to a top-up,
-/// the top-up will be disabled.
+/// <para>If the invoice was used to purchase a credit block, but the invoice is
+/// not yet paid, the credit block will be voided. If the invoice was created due
+/// to a top-up, the top-up will be disabled.</para>
 /// </summary>
-public sealed record class InvoiceVoidParams : Orb::ParamsBase
+public sealed record class InvoiceVoidParams : ParamsBase
 {
-    public required string InvoiceID;
+    public string? InvoiceID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public InvoiceVoidParams() { }
+
+    public InvoiceVoidParams(InvoiceVoidParams invoiceVoidParams)
+        : base(invoiceVoidParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.InvoiceID = invoiceVoidParams.InvoiceID;
+    }
+
+    public InvoiceVoidParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceVoidParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static InvoiceVoidParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/invoices/{0}/void", this.InvoiceID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

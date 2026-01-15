@@ -1,6 +1,10 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Metrics;
 
@@ -8,26 +12,67 @@ namespace Orb.Models.Metrics;
 /// This endpoint is used to list [metrics](/core-concepts#metric). It returns information
 /// about the metrics including its name, description, and item.
 /// </summary>
-public sealed record class MetricFetchParams : Orb::ParamsBase
+public sealed record class MetricFetchParams : ParamsBase
 {
-    public required string MetricID;
+    public string? MetricID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public MetricFetchParams() { }
+
+    public MetricFetchParams(MetricFetchParams metricFetchParams)
+        : base(metricFetchParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/') + string.Format("/metrics/{0}", this.MetricID)
+        this.MetricID = metricFetchParams.MetricID;
+    }
+
+    public MetricFetchParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MetricFetchParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static MetricFetchParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/metrics/{0}", this.MetricID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

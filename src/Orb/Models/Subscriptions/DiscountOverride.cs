@@ -1,31 +1,27 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using DiscountOverrideProperties = Orb.Models.Subscriptions.DiscountOverrideProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<DiscountOverride>))]
-public sealed record class DiscountOverride : Orb::ModelBase, Orb::IFromRaw<DiscountOverride>
+[JsonConverter(typeof(JsonModelConverter<DiscountOverride, DiscountOverrideFromRaw>))]
+public sealed record class DiscountOverride : JsonModel
 {
-    public required DiscountOverrideProperties::DiscountType DiscountType
+    public required ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType> DiscountType
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<DiscountOverrideProperties::DiscountType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("discount_type");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType>
+            >("discount_type");
         }
-        set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     /// <summary>
@@ -35,31 +31,24 @@ public sealed record class DiscountOverride : Orb::ModelBase, Orb::IFromRaw<Disc
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_discount", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("amount_discount");
         }
-        set { this.Properties["amount_discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amount_discount", value); }
     }
 
     /// <summary>
-    /// Only available if discount_type is `percentage`. This is a number between 0
-    /// and 1.
+    /// Only available if discount_type is `percentage`. This is a number between
+    /// 0 and 1.
     /// </summary>
     public double? PercentageDiscount
     {
         get
         {
-            if (!this.Properties.TryGetValue("percentage_discount", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("percentage_discount");
         }
-        set
-        {
-            this.Properties["percentage_discount"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("percentage_discount", value); }
     }
 
     /// <summary>
@@ -70,14 +59,13 @@ public sealed record class DiscountOverride : Orb::ModelBase, Orb::IFromRaw<Disc
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_discount", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("usage_discount");
         }
-        set { this.Properties["usage_discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("usage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.DiscountType.Validate();
@@ -88,18 +76,90 @@ public sealed record class DiscountOverride : Orb::ModelBase, Orb::IFromRaw<Disc
 
     public DiscountOverride() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    DiscountOverride(Generic::Dictionary<string, Json::JsonElement> properties)
+    public DiscountOverride(DiscountOverride discountOverride)
+        : base(discountOverride) { }
+
+    public DiscountOverride(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DiscountOverride(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DiscountOverrideFromRaw.FromRawUnchecked"/>
     public static DiscountOverride FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public DiscountOverride(
+        ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType> discountType
+    )
+        : this()
+    {
+        this.DiscountType = discountType;
+    }
+}
+
+class DiscountOverrideFromRaw : IFromRawJson<DiscountOverride>
+{
+    /// <inheritdoc/>
+    public DiscountOverride FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DiscountOverride.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.DiscountTypeConverter))]
+public enum DiscountType
+{
+    Percentage,
+    Usage,
+    Amount,
+}
+
+sealed class DiscountTypeConverter : JsonConverter<global::Orb.Models.Subscriptions.DiscountType>
+{
+    public override global::Orb.Models.Subscriptions.DiscountType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "percentage" => global::Orb.Models.Subscriptions.DiscountType.Percentage,
+            "usage" => global::Orb.Models.Subscriptions.DiscountType.Usage,
+            "amount" => global::Orb.Models.Subscriptions.DiscountType.Amount,
+            _ => (global::Orb.Models.Subscriptions.DiscountType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.DiscountType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.DiscountType.Percentage => "percentage",
+                global::Orb.Models.Subscriptions.DiscountType.Usage => "usage",
+                global::Orb.Models.Subscriptions.DiscountType.Amount => "amount",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

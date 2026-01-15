@@ -1,17 +1,17 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Alerts;
 
 /// <summary>
 /// Thresholds are used to define the conditions under which an alert will be triggered.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Threshold>))]
-public sealed record class Threshold : Orb::ModelBase, Orb::IFromRaw<Threshold>
+[JsonConverter(typeof(JsonModelConverter<Threshold, ThresholdFromRaw>))]
+public sealed record class Threshold : JsonModel
 {
     /// <summary>
     /// The value at which an alert will fire. For credit balance alerts, the alert
@@ -22,14 +22,13 @@ public sealed record class Threshold : Orb::ModelBase, Orb::IFromRaw<Threshold>
     {
         get
         {
-            if (!this.Properties.TryGetValue("value", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("value");
         }
-        set { this.Properties["value"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Value;
@@ -37,18 +36,39 @@ public sealed record class Threshold : Orb::ModelBase, Orb::IFromRaw<Threshold>
 
     public Threshold() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Threshold(Generic::Dictionary<string, Json::JsonElement> properties)
+    public Threshold(Threshold threshold)
+        : base(threshold) { }
+
+    public Threshold(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Threshold(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static Threshold FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="ThresholdFromRaw.FromRawUnchecked"/>
+    public static Threshold FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public Threshold(double value)
+        : this()
+    {
+        this.Value = value;
+    }
+}
+
+class ThresholdFromRaw : IFromRawJson<Threshold>
+{
+    /// <inheritdoc/>
+    public Threshold FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Threshold.FromRawUnchecked(rawData);
 }

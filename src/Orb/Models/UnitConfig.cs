@@ -1,14 +1,17 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<UnitConfig>))]
-public sealed record class UnitConfig : Orb::ModelBase, Orb::IFromRaw<UnitConfig>
+/// <summary>
+/// Configuration for unit pricing
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<UnitConfig, UnitConfigFromRaw>))]
+public sealed record class UnitConfig : JsonModel
 {
     /// <summary>
     /// Rate per unit of usage
@@ -17,37 +20,75 @@ public sealed record class UnitConfig : Orb::ModelBase, Orb::IFromRaw<UnitConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "unit_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("unit_amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
         }
-        set { this.Properties["unit_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
+    /// <summary>
+    /// If true, subtotals from this price are prorated based on the service period
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("prorated", value);
+        }
+    }
+
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
+        _ = this.Prorated;
     }
 
     public UnitConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    UnitConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public UnitConfig(UnitConfig unitConfig)
+        : base(unitConfig) { }
+
+    public UnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UnitConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static UnitConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="UnitConfigFromRaw.FromRawUnchecked"/>
+    public static UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public UnitConfig(string unitAmount)
+        : this()
+    {
+        this.UnitAmount = unitAmount;
+    }
+}
+
+class UnitConfigFromRaw : IFromRawJson<UnitConfig>
+{
+    /// <inheritdoc/>
+    public UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitConfig.FromRawUnchecked(rawData);
 }

@@ -1,68 +1,60 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
-using UsageDiscountProperties = Orb.Models.UsageDiscountProperties;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<UsageDiscount>))]
-public sealed record class UsageDiscount : Orb::ModelBase, Orb::IFromRaw<UsageDiscount>
+[JsonConverter(typeof(JsonModelConverter<UsageDiscount, UsageDiscountFromRaw>))]
+public sealed record class UsageDiscount : JsonModel
 {
-    public required UsageDiscountProperties::DiscountType DiscountType
+    public required ApiEnum<string, UsageDiscountDiscountType> DiscountType
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_type",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<UsageDiscountProperties::DiscountType>(element)
-                ?? throw new System::ArgumentNullException("discount_type");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountDiscountType>>(
+                "discount_type"
+            );
         }
-        set { this.Properties["discount_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     /// <summary>
     /// Only available if discount_type is `usage`. Number of usage units that this
     /// discount is for
     /// </summary>
-    public required double UsageDiscount1
+    public required double UsageDiscountValue
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_discount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "usage_discount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("usage_discount");
         }
-        set { this.Properties["usage_discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("usage_discount", value); }
     }
 
     /// <summary>
     /// List of price_ids that this discount applies to. For plan/plan phase discounts,
     /// this can be a subset of prices.
     /// </summary>
-    public Generic::List<string>? AppliesToPriceIDs
+    public IReadOnlyList<string>? AppliesToPriceIds
     {
         get
         {
-            if (!this.Properties.TryGetValue("applies_to_price_ids", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
-        set
+        init
         {
-            this.Properties["applies_to_price_ids"] = Json::JsonSerializer.SerializeToElement(
-                value
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -70,38 +62,38 @@ public sealed record class UsageDiscount : Orb::ModelBase, Orb::IFromRaw<UsageDi
     /// <summary>
     /// The filters that determine which prices to apply this discount to.
     /// </summary>
-    public Generic::List<TransformPriceFilter>? Filters
+    public IReadOnlyList<UsageDiscountFilter>? Filters
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<TransformPriceFilter>?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<UsageDiscountFilter>>("filters");
         }
-        set { this.Properties["filters"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<UsageDiscountFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public string? Reason
     {
         get
         {
-            if (!this.Properties.TryGetValue("reason", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
         }
-        set { this.Properties["reason"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.DiscountType.Validate();
-        _ = this.UsageDiscount1;
-        foreach (var item in this.AppliesToPriceIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.UsageDiscountValue;
+        _ = this.AppliesToPriceIds;
         foreach (var item in this.Filters ?? [])
         {
             item.Validate();
@@ -111,18 +103,270 @@ public sealed record class UsageDiscount : Orb::ModelBase, Orb::IFromRaw<UsageDi
 
     public UsageDiscount() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    UsageDiscount(Generic::Dictionary<string, Json::JsonElement> properties)
+    public UsageDiscount(UsageDiscount usageDiscount)
+        : base(usageDiscount) { }
+
+    public UsageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UsageDiscount(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static UsageDiscount FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+    /// <inheritdoc cref="UsageDiscountFromRaw.FromRawUnchecked"/>
+    public static UsageDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class UsageDiscountFromRaw : IFromRawJson<UsageDiscount>
+{
+    /// <inheritdoc/>
+    public UsageDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UsageDiscount.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(UsageDiscountDiscountTypeConverter))]
+public enum UsageDiscountDiscountType
+{
+    Usage,
+}
+
+sealed class UsageDiscountDiscountTypeConverter : JsonConverter<UsageDiscountDiscountType>
+{
+    public override UsageDiscountDiscountType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
     )
     {
-        return new(properties);
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" => UsageDiscountDiscountType.Usage,
+            _ => (UsageDiscountDiscountType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        UsageDiscountDiscountType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UsageDiscountDiscountType.Usage => "usage",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<UsageDiscountFilter, UsageDiscountFilterFromRaw>))]
+public sealed record class UsageDiscountFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, UsageDiscountFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountFilterField>>(
+                "field"
+            );
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, UsageDiscountFilterOperator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, UsageDiscountFilterOperator>>(
+                "operator"
+            );
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public UsageDiscountFilter() { }
+
+    public UsageDiscountFilter(UsageDiscountFilter usageDiscountFilter)
+        : base(usageDiscountFilter) { }
+
+    public UsageDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UsageDiscountFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="UsageDiscountFilterFromRaw.FromRawUnchecked"/>
+    public static UsageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class UsageDiscountFilterFromRaw : IFromRawJson<UsageDiscountFilter>
+{
+    /// <inheritdoc/>
+    public UsageDiscountFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UsageDiscountFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(UsageDiscountFilterFieldConverter))]
+public enum UsageDiscountFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class UsageDiscountFilterFieldConverter : JsonConverter<UsageDiscountFilterField>
+{
+    public override UsageDiscountFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => UsageDiscountFilterField.PriceID,
+            "item_id" => UsageDiscountFilterField.ItemID,
+            "price_type" => UsageDiscountFilterField.PriceType,
+            "currency" => UsageDiscountFilterField.Currency,
+            "pricing_unit_id" => UsageDiscountFilterField.PricingUnitID,
+            _ => (UsageDiscountFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        UsageDiscountFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UsageDiscountFilterField.PriceID => "price_id",
+                UsageDiscountFilterField.ItemID => "item_id",
+                UsageDiscountFilterField.PriceType => "price_type",
+                UsageDiscountFilterField.Currency => "currency",
+                UsageDiscountFilterField.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(UsageDiscountFilterOperatorConverter))]
+public enum UsageDiscountFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class UsageDiscountFilterOperatorConverter : JsonConverter<UsageDiscountFilterOperator>
+{
+    public override UsageDiscountFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => UsageDiscountFilterOperator.Includes,
+            "excludes" => UsageDiscountFilterOperator.Excludes,
+            _ => (UsageDiscountFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        UsageDiscountFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UsageDiscountFilterOperator.Includes => "includes",
+                UsageDiscountFilterOperator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

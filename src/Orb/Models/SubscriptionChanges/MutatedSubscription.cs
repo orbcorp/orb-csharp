@@ -1,30 +1,28 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Customers = Orb.Models.Customers;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using MutatedSubscriptionProperties = Orb.Models.SubscriptionChanges.MutatedSubscriptionProperties;
-using Orb = Orb;
-using Plans = Orb.Models.Plans;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
+using Orb.Models.Customers;
+using Orb.Models.Plans;
 using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<MutatedSubscription>))]
-public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<MutatedSubscription>
+[JsonConverter(typeof(JsonModelConverter<MutatedSubscription, MutatedSubscriptionFromRaw>))]
+public sealed record class MutatedSubscription : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -34,49 +32,30 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "active_plan_phase_order",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "active_plan_phase_order",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("active_plan_phase_order");
         }
-        set
-        {
-            this.Properties["active_plan_phase_order"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("active_plan_phase_order", value); }
     }
 
     /// <summary>
     /// The adjustment intervals for this subscription sorted by the start_date of
     /// the adjustment interval.
     /// </summary>
-    public required Generic::List<Models::AdjustmentInterval> AdjustmentIntervals
+    public required IReadOnlyList<AdjustmentInterval> AdjustmentIntervals
     {
         get
         {
-            if (!this.Properties.TryGetValue("adjustment_intervals", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "adjustment_intervals",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::AdjustmentInterval>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("adjustment_intervals");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<AdjustmentInterval>>(
+                "adjustment_intervals"
+            );
         }
-        set
+        init
         {
-            this.Properties["adjustment_intervals"] = Json::JsonSerializer.SerializeToElement(
-                value
+            this._rawData.Set<ImmutableArray<AdjustmentInterval>>(
+                "adjustment_intervals",
+                ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -90,80 +69,48 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     {
         get
         {
-            if (!this.Properties.TryGetValue("auto_collection", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "auto_collection",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("auto_collection");
         }
-        set { this.Properties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("auto_collection", value); }
     }
 
-    public required Models::BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
+    public required BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "billing_cycle_anchor_configuration",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "billing_cycle_anchor_configuration",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::BillingCycleAnchorConfiguration>(
-                    element
-                ) ?? throw new System::ArgumentNullException("billing_cycle_anchor_configuration");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<BillingCycleAnchorConfiguration>(
+                "billing_cycle_anchor_configuration"
+            );
         }
-        set
-        {
-            this.Properties["billing_cycle_anchor_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("billing_cycle_anchor_configuration", value); }
     }
 
     /// <summary>
     /// The day of the month on which the billing cycle is anchored. If the maximum
-    /// number of days in a month is greater than this value, the last day of the month
-    /// is the billing cycle day (e.g. billing_cycle_day=31 for April means the billing
-    /// period begins on the 30th.
+    /// number of days in a month is greater than this value, the last day of the
+    /// month is the billing cycle day (e.g. billing_cycle_day=31 for April means
+    /// the billing period begins on the 30th.
     /// </summary>
     public required long BillingCycleDay
     {
         get
         {
-            if (!this.Properties.TryGetValue("billing_cycle_day", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "billing_cycle_day",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("billing_cycle_day");
         }
-        set
-        {
-            this.Properties["billing_cycle_day"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("billing_cycle_day", value); }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     /// <summary>
@@ -171,28 +118,16 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     /// that the instant returned is not part of the billing period. Set to null for
     /// subscriptions that are not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodEndDate
+    public required System::DateTimeOffset? CurrentBillingPeriodEndDate
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "current_billing_period_end_date",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "current_billing_period_end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>(
+                "current_billing_period_end_date"
+            );
         }
-        set
-        {
-            this.Properties["current_billing_period_end_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("current_billing_period_end_date", value); }
     }
 
     /// <summary>
@@ -200,152 +135,110 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     /// the instant returned is exactly the beginning of the billing period. Set to
     /// null if the subscription is not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodStartDate
+    public required System::DateTimeOffset? CurrentBillingPeriodStartDate
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "current_billing_period_start_date",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "current_billing_period_start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>(
+                "current_billing_period_start_date"
+            );
         }
-        set
-        {
-            this.Properties["current_billing_period_start_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("current_billing_period_start_date", value); }
     }
 
     /// <summary>
     /// A customer is a buyer of your products, and the other party to the billing relationship.
     ///
-    /// In Orb, customers are assigned system generated identifiers automatically,
-    /// but it's often desirable to have these match existing identifiers in your system.
-    /// To avoid having to denormalize Orb ID information, you can pass in an `external_customer_id`
-    /// with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
-    /// for further information about how these aliases work in Orb.
+    /// <para>In Orb, customers are assigned system generated identifiers automatically,
+    /// but it's often desirable to have these match existing identifiers in your
+    /// system. To avoid having to denormalize Orb ID information, you can pass in
+    /// an `external_customer_id` with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
+    /// for further information about how these aliases work in Orb.</para>
     ///
-    /// In addition to having an identifier in your system, a customer may exist in
-    /// a payment provider solution like Stripe. Use the `payment_provider_id` and the
-    /// `payment_provider` enum field to express this mapping.
+    /// <para>In addition to having an identifier in your system, a customer may
+    /// exist in a payment provider solution like Stripe. Use the `payment_provider_id`
+    /// and the `payment_provider` enum field to express this mapping.</para>
     ///
-    /// A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
+    /// <para>A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
     /// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
-    /// for information on what this timezone parameter influences within Orb.
+    /// for information on what this timezone parameter influences within Orb.</para>
     /// </summary>
-    public required Customers::Customer Customer
+    public required Customer Customer
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Customers::Customer>(element)
-                ?? throw new System::ArgumentNullException("customer");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Customer>("customer");
         }
-        set { this.Properties["customer"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("customer", value); }
     }
 
     /// <summary>
-    /// Determines the default memo on this subscriptions' invoices. Note that if this
-    /// is not provided, it is determined by the plan configuration.
+    /// Determines the default memo on this subscriptions' invoices. Note that if
+    /// this is not provided, it is determined by the plan configuration.
     /// </summary>
     public required string? DefaultInvoiceMemo
     {
         get
         {
-            if (!this.Properties.TryGetValue("default_invoice_memo", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "default_invoice_memo",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_invoice_memo");
         }
-        set
-        {
-            this.Properties["default_invoice_memo"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("default_invoice_memo", value); }
     }
 
     /// <summary>
     /// The discount intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
-    public required Generic::List<MutatedSubscriptionProperties::DiscountInterval> DiscountIntervals
+    [System::Obsolete("deprecated")]
+    public required IReadOnlyList<DiscountInterval> DiscountIntervals
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount_intervals", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount_intervals",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<MutatedSubscriptionProperties::DiscountInterval>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("discount_intervals");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<DiscountInterval>>(
+                "discount_intervals"
+            );
         }
-        set
+        init
         {
-            this.Properties["discount_intervals"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<DiscountInterval>>(
+                "discount_intervals",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     /// <summary>
     /// The date Orb stops billing for this subscription.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required System::DateTimeOffset? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date");
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("end_date", value); }
     }
 
-    public required Generic::List<Models::FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
+    public required IReadOnlyList<FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "fixed_fee_quantity_schedule",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "fixed_fee_quantity_schedule",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::FixedFeeQuantityScheduleEntry>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("fixed_fee_quantity_schedule");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<FixedFeeQuantityScheduleEntry>>(
+                "fixed_fee_quantity_schedule"
+            );
         }
-        set
+        init
         {
-            this.Properties["fixed_fee_quantity_schedule"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<FixedFeeQuantityScheduleEntry>>(
+                "fixed_fee_quantity_schedule",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -353,40 +246,32 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoicing_threshold", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoicing_threshold",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoicing_threshold");
         }
-        set
-        {
-            this.Properties["invoicing_threshold"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("invoicing_threshold", value); }
     }
 
     /// <summary>
     /// The maximum intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
-    public required Generic::List<Models::MaximumInterval> MaximumIntervals
+    [System::Obsolete("deprecated")]
+    public required IReadOnlyList<MaximumInterval> MaximumIntervals
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_intervals", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "maximum_intervals",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::MaximumInterval>>(element)
-                ?? throw new System::ArgumentNullException("maximum_intervals");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<MaximumInterval>>(
+                "maximum_intervals"
+            );
         }
-        set
+        init
         {
-            this.Properties["maximum_intervals"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<MaximumInterval>>(
+                "maximum_intervals",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -396,42 +281,42 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Generic::Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string>>(element)
-                ?? throw new System::ArgumentNullException("metadata");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
     /// The minimum intervals for this subscription sorted by the start_date. This
     /// field is deprecated in favor of `adjustment_intervals`.
     /// </summary>
-    public required Generic::List<Models::MinimumInterval> MinimumIntervals
+    [System::Obsolete("deprecated")]
+    public required IReadOnlyList<MinimumInterval> MinimumIntervals
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_intervals", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "minimum_intervals",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::MinimumInterval>>(element)
-                ?? throw new System::ArgumentNullException("minimum_intervals");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<MinimumInterval>>(
+                "minimum_intervals"
+            );
         }
-        set
+        init
         {
-            this.Properties["minimum_intervals"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<MinimumInterval>>(
+                "minimum_intervals",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -442,162 +327,120 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date for subscription invoices
-    /// as the date that they are due. A value of `0` here represents that the invoice
-    /// is due on issue, whereas a value of `30` represents that the customer has a
-    /// month to pay the invoice.
+    /// Determines the difference between the invoice issue date for subscription
+    /// invoices as the date that they are due. A value of `0` here represents that
+    /// the invoice is due on issue, whereas a value of `30` represents that the customer
+    /// has a month to pay the invoice.
     /// </summary>
     public required long NetTerms
     {
         get
         {
-            if (!this.Properties.TryGetValue("net_terms", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "net_terms",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("net_terms");
         }
-        set { this.Properties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("net_terms", value); }
     }
 
     /// <summary>
     /// A pending subscription change if one exists on this subscription.
     /// </summary>
-    public required Models::SubscriptionChangeMinified? PendingSubscriptionChange
+    public required SubscriptionChangeMinified? PendingSubscriptionChange
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "pending_subscription_change",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "pending_subscription_change",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::SubscriptionChangeMinified?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionChangeMinified>(
+                "pending_subscription_change"
+            );
         }
-        set
-        {
-            this.Properties["pending_subscription_change"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("pending_subscription_change", value); }
     }
 
     /// <summary>
-    /// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
-    /// be subscribed to by a customer. Plans define the billing behavior of the subscription.
-    /// You can see more about how to configure prices in the [Price resource](/reference/price).
+    /// The [Plan](/core-concepts#plan-and-price) resource represents a plan that
+    /// can be subscribed to by a customer. Plans define the billing behavior of
+    /// the subscription. You can see more about how to configure prices in the [Price resource](/reference/price).
     /// </summary>
-    public required Plans::Plan? Plan
+    public required Plan? Plan
     {
         get
         {
-            if (!this.Properties.TryGetValue("plan", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("plan", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Plans::Plan?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Plan>("plan");
         }
-        set { this.Properties["plan"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("plan", value); }
     }
 
     /// <summary>
     /// The price intervals for this subscription.
     /// </summary>
-    public required Generic::List<Models::PriceInterval> PriceIntervals
+    public required IReadOnlyList<PriceInterval> PriceIntervals
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_intervals", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_intervals",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::PriceInterval>>(element)
-                ?? throw new System::ArgumentNullException("price_intervals");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<PriceInterval>>("price_intervals");
         }
-        set { this.Properties["price_intervals"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PriceInterval>>(
+                "price_intervals",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
-    public required Models::CouponRedemption? RedeemedCoupon
+    public required CouponRedemption? RedeemedCoupon
     {
         get
         {
-            if (!this.Properties.TryGetValue("redeemed_coupon", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "redeemed_coupon",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::CouponRedemption?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CouponRedemption>("redeemed_coupon");
         }
-        set { this.Properties["redeemed_coupon"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("redeemed_coupon", value); }
     }
 
     /// <summary>
     /// The date Orb starts billing for this subscription.
     /// </summary>
-    public required System::DateTime StartDate
+    public required System::DateTimeOffset StartDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("start_date", value); }
     }
 
-    public required MutatedSubscriptionProperties::Status Status
+    public required ApiEnum<string, MutatedSubscriptionStatus> Status
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "status",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<MutatedSubscriptionProperties::Status>(element)
-                ?? throw new System::ArgumentNullException("status");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MutatedSubscriptionStatus>>(
+                "status"
+            );
         }
-        set { this.Properties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("status", value); }
     }
 
-    public required Models::SubscriptionTrialInfo TrialInfo
+    public required SubscriptionTrialInfo TrialInfo
     {
         get
         {
-            if (!this.Properties.TryGetValue("trial_info", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "trial_info",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::SubscriptionTrialInfo>(element)
-                ?? throw new System::ArgumentNullException("trial_info");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubscriptionTrialInfo>("trial_info");
         }
-        set { this.Properties["trial_info"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("trial_info", value); }
     }
 
     /// <summary>
@@ -605,21 +448,19 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
     /// fetched through the subscription changes API or if the `include_changed_resources`
     /// parameter was passed in the request.
     /// </summary>
-    public Models::ChangedSubscriptionResources? ChangedResources
+    public ChangedSubscriptionResources? ChangedResources
     {
         get
         {
-            if (!this.Properties.TryGetValue("changed_resources", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Models::ChangedSubscriptionResources?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ChangedSubscriptionResources>(
+                "changed_resources"
+            );
         }
-        set
-        {
-            this.Properties["changed_resources"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("changed_resources", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -650,10 +491,7 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
         {
             item.Validate();
         }
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         foreach (var item in this.MinimumIntervals)
         {
             item.Validate();
@@ -673,20 +511,455 @@ public sealed record class MutatedSubscription : Orb::ModelBase, Orb::IFromRaw<M
         this.ChangedResources?.Validate();
     }
 
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
     public MutatedSubscription() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    MutatedSubscription(Generic::Dictionary<string, Json::JsonElement> properties)
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
+    public MutatedSubscription(MutatedSubscription mutatedSubscription)
+        : base(mutatedSubscription) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
+    public MutatedSubscription(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
+    [SetsRequiredMembers]
+    MutatedSubscription(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MutatedSubscriptionFromRaw.FromRawUnchecked"/>
     public static MutatedSubscription FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MutatedSubscriptionFromRaw : IFromRawJson<MutatedSubscription>
+{
+    /// <inheritdoc/>
+    public MutatedSubscription FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MutatedSubscription.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(DiscountIntervalConverter))]
+public record class DiscountInterval : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public System::DateTimeOffset? EndDate
+    {
+        get
+        {
+            return Match<System::DateTimeOffset?>(
+                amount: (x) => x.EndDate,
+                percentage: (x) => x.EndDate,
+                usage: (x) => x.EndDate
+            );
+        }
+    }
+
+    public System::DateTimeOffset StartDate
+    {
+        get
+        {
+            return Match(
+                amount: (x) => x.StartDate,
+                percentage: (x) => x.StartDate,
+                usage: (x) => x.StartDate
+            );
+        }
+    }
+
+    public DiscountInterval(AmountDiscountInterval value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DiscountInterval(PercentageDiscountInterval value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DiscountInterval(UsageDiscountInterval value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DiscountInterval(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="AmountDiscountInterval"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAmount(out var value)) {
+    ///     // `value` is of type `AmountDiscountInterval`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickAmount([NotNullWhen(true)] out AmountDiscountInterval? value)
+    {
+        value = this.Value as AmountDiscountInterval;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PercentageDiscountInterval"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercentage(out var value)) {
+    ///     // `value` is of type `PercentageDiscountInterval`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscountInterval? value)
+    {
+        value = this.Value as PercentageDiscountInterval;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="UsageDiscountInterval"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUsage(out var value)) {
+    ///     // `value` is of type `UsageDiscountInterval`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUsage([NotNullWhen(true)] out UsageDiscountInterval? value)
+    {
+        value = this.Value as UsageDiscountInterval;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (AmountDiscountInterval value) => {...},
+    ///     (PercentageDiscountInterval value) => {...},
+    ///     (UsageDiscountInterval value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<AmountDiscountInterval> amount,
+        System::Action<PercentageDiscountInterval> percentage,
+        System::Action<UsageDiscountInterval> usage
+    )
+    {
+        switch (this.Value)
+        {
+            case AmountDiscountInterval value:
+                amount(value);
+                break;
+            case PercentageDiscountInterval value:
+                percentage(value);
+                break;
+            case UsageDiscountInterval value:
+                usage(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of DiscountInterval"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (AmountDiscountInterval value) => {...},
+    ///     (PercentageDiscountInterval value) => {...},
+    ///     (UsageDiscountInterval value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<AmountDiscountInterval, T> amount,
+        System::Func<PercentageDiscountInterval, T> percentage,
+        System::Func<UsageDiscountInterval, T> usage
+    )
+    {
+        return this.Value switch
+        {
+            AmountDiscountInterval value => amount(value),
+            PercentageDiscountInterval value => percentage(value),
+            UsageDiscountInterval value => usage(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DiscountInterval"
+            ),
+        };
+    }
+
+    public static implicit operator DiscountInterval(AmountDiscountInterval value) => new(value);
+
+    public static implicit operator DiscountInterval(PercentageDiscountInterval value) =>
+        new(value);
+
+    public static implicit operator DiscountInterval(UsageDiscountInterval value) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException("Data did not match any variant of DiscountInterval");
+        }
+        this.Switch(
+            (amount) => amount.Validate(),
+            (percentage) => percentage.Validate(),
+            (usage) => usage.Validate()
+        );
+    }
+
+    public virtual bool Equals(DiscountInterval? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+}
+
+sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
+{
+    public override DiscountInterval? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? discountType;
+        try
+        {
+            discountType = element.GetProperty("discount_type").GetString();
+        }
+        catch
+        {
+            discountType = null;
+        }
+
+        switch (discountType)
+        {
+            case "amount":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscountInterval>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "percentage":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PercentageDiscountInterval>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "usage":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new DiscountInterval(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DiscountInterval value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(typeof(MutatedSubscriptionStatusConverter))]
+public enum MutatedSubscriptionStatus
+{
+    Active,
+    Ended,
+    Upcoming,
+}
+
+sealed class MutatedSubscriptionStatusConverter : JsonConverter<MutatedSubscriptionStatus>
+{
+    public override MutatedSubscriptionStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => MutatedSubscriptionStatus.Active,
+            "ended" => MutatedSubscriptionStatus.Ended,
+            "upcoming" => MutatedSubscriptionStatus.Upcoming,
+            _ => (MutatedSubscriptionStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MutatedSubscriptionStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MutatedSubscriptionStatus.Active => "active",
+                MutatedSubscriptionStatus.Ended => "ended",
+                MutatedSubscriptionStatus.Upcoming => "upcoming",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -1,14 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<InvoiceTiny>))]
-public sealed record class InvoiceTiny : Orb::ModelBase, Orb::IFromRaw<InvoiceTiny>
+[JsonConverter(typeof(JsonModelConverter<InvoiceTiny, InvoiceTinyFromRaw>))]
+public sealed record class InvoiceTiny : JsonModel
 {
     /// <summary>
     /// The Invoice id
@@ -17,15 +17,13 @@ public sealed record class InvoiceTiny : Orb::ModelBase, Orb::IFromRaw<InvoiceTi
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -33,18 +31,39 @@ public sealed record class InvoiceTiny : Orb::ModelBase, Orb::IFromRaw<InvoiceTi
 
     public InvoiceTiny() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    InvoiceTiny(Generic::Dictionary<string, Json::JsonElement> properties)
+    public InvoiceTiny(InvoiceTiny invoiceTiny)
+        : base(invoiceTiny) { }
+
+    public InvoiceTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceTiny(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static InvoiceTiny FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="InvoiceTinyFromRaw.FromRawUnchecked"/>
+    public static InvoiceTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public InvoiceTiny(string id)
+        : this()
+    {
+        this.ID = id;
+    }
+}
+
+class InvoiceTinyFromRaw : IFromRawJson<InvoiceTiny>
+{
+    /// <inheritdoc/>
+    public InvoiceTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceTiny.FromRawUnchecked(rawData);
 }

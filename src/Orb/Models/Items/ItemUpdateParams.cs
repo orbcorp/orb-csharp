@@ -1,42 +1,44 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using ItemUpdateParamsProperties = Orb.Models.Items.ItemUpdateParamsProperties;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Items;
 
 /// <summary>
 /// This endpoint can be used to update properties on the Item.
 /// </summary>
-public sealed record class ItemUpdateParams : Orb::ParamsBase
+public sealed record class ItemUpdateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string ItemID;
+    public string? ItemID { get; init; }
 
-    public Generic::List<ItemUpdateParamsProperties::ExternalConnection>? ExternalConnections
+    public IReadOnlyList<ExternalConnection>? ExternalConnections
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_connections",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<ItemUpdateParamsProperties::ExternalConnection>?>(
-                element
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<ExternalConnection>>(
+                "external_connections"
             );
         }
-        set
+        init
         {
-            this.BodyProperties["external_connections"] = Json::JsonSerializer.SerializeToElement(
-                value
+            this._rawBodyData.Set<ImmutableArray<ExternalConnection>?>(
+                "external_connections",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -46,55 +48,249 @@ public sealed record class ItemUpdateParams : Orb::ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
+                "metadata"
+            );
         }
-        set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     public string? Name
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("name", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
         }
-        set { this.BodyProperties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("name", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public ItemUpdateParams() { }
+
+    public ItemUpdateParams(ItemUpdateParams itemUpdateParams)
+        : base(itemUpdateParams)
+    {
+        this.ItemID = itemUpdateParams.ItemID;
+
+        this._rawBodyData = new(itemUpdateParams._rawBodyData);
+    }
+
+    public ItemUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ItemUpdateParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static ItemUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/') + string.Format("/items/{0}", this.ItemID)
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/items/{0}", this.ItemID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// Represents a connection between an Item and an external system for invoicing
+/// or tax calculation purposes.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<ExternalConnection, ExternalConnectionFromRaw>))]
+public sealed record class ExternalConnection : JsonModel
+{
+    /// <summary>
+    /// The name of the external system this item is connected to.
+    /// </summary>
+    public required ApiEnum<string, ExternalConnectionName> ExternalConnectionName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
+                "external_connection_name"
+            );
+        }
+        init { this._rawData.Set("external_connection_name", value); }
+    }
+
+    /// <summary>
+    /// The identifier of this item in the external system.
+    /// </summary>
+    public required string ExternalEntityID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_entity_id");
+        }
+        init { this._rawData.Set("external_entity_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.ExternalConnectionName.Validate();
+        _ = this.ExternalEntityID;
+    }
+
+    public ExternalConnection() { }
+
+    public ExternalConnection(ExternalConnection externalConnection)
+        : base(externalConnection) { }
+
+    public ExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ExternalConnection(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ExternalConnectionFromRaw.FromRawUnchecked"/>
+    public static ExternalConnection FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ExternalConnectionFromRaw : IFromRawJson<ExternalConnection>
+{
+    /// <inheritdoc/>
+    public ExternalConnection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ExternalConnection.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The name of the external system this item is connected to.
+/// </summary>
+[JsonConverter(typeof(ExternalConnectionNameConverter))]
+public enum ExternalConnectionName
+{
+    Stripe,
+    Quickbooks,
+    BillCom,
+    Netsuite,
+    Taxjar,
+    Avalara,
+    Anrok,
+    Numeral,
+}
+
+sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionName>
+{
+    public override ExternalConnectionName Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "stripe" => ExternalConnectionName.Stripe,
+            "quickbooks" => ExternalConnectionName.Quickbooks,
+            "bill.com" => ExternalConnectionName.BillCom,
+            "netsuite" => ExternalConnectionName.Netsuite,
+            "taxjar" => ExternalConnectionName.Taxjar,
+            "avalara" => ExternalConnectionName.Avalara,
+            "anrok" => ExternalConnectionName.Anrok,
+            "numeral" => ExternalConnectionName.Numeral,
+            _ => (ExternalConnectionName)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExternalConnectionName value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExternalConnectionName.Stripe => "stripe",
+                ExternalConnectionName.Quickbooks => "quickbooks",
+                ExternalConnectionName.BillCom => "bill.com",
+                ExternalConnectionName.Netsuite => "netsuite",
+                ExternalConnectionName.Taxjar => "taxjar",
+                ExternalConnectionName.Avalara => "avalara",
+                ExternalConnectionName.Anrok => "anrok",
+                ExternalConnectionName.Numeral => "numeral",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

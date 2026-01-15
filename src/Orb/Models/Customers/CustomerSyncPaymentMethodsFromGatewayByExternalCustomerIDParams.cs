@@ -1,42 +1,90 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
 /// <summary>
 /// Sync Orb's payment methods for the customer with their gateway.
 ///
-/// This method can be called before taking an action that may cause the customer
-/// to be charged, ensuring that the most up-to-date payment method is charged.
+/// <para>This method can be called before taking an action that may cause the customer
+/// to be charged, ensuring that the most up-to-date payment method is charged.</para>
 ///
-/// **Note**: This functionality is currently only available for Stripe.
+/// <para>**Note**: This functionality is currently only available for Stripe.</para>
 /// </summary>
 public sealed record class CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams
-    : Orb::ParamsBase
+    : ParamsBase
 {
-    public required string ExternalCustomerID;
+    public string? ExternalCustomerID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams() { }
+
+    public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams(
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams customerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams
+    )
+        : base(customerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.ExternalCustomerID =
+            customerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams.ExternalCustomerID;
+    }
+
+    public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format(
                     "/customers/external_customer_id/{0}/sync_payment_methods_from_gateway",
                     this.ExternalCustomerID
                 )
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

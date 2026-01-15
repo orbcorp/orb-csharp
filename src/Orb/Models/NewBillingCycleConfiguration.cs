@@ -1,17 +1,18 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using NewBillingCycleConfigurationProperties = Orb.Models.NewBillingCycleConfigurationProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewBillingCycleConfiguration>))]
-public sealed record class NewBillingCycleConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewBillingCycleConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<NewBillingCycleConfiguration, NewBillingCycleConfigurationFromRaw>)
+)]
+public sealed record class NewBillingCycleConfiguration : JsonModel
 {
     /// <summary>
     /// The duration of the billing period.
@@ -20,37 +21,28 @@ public sealed record class NewBillingCycleConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "duration",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("duration");
         }
-        set { this.Properties["duration"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("duration", value); }
     }
 
     /// <summary>
     /// The unit of billing period duration.
     /// </summary>
-    public required NewBillingCycleConfigurationProperties::DurationUnit DurationUnit
+    public required ApiEnum<string, NewBillingCycleConfigurationDurationUnit> DurationUnit
     {
         get
         {
-            if (!this.Properties.TryGetValue("duration_unit", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "duration_unit",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<NewBillingCycleConfigurationProperties::DurationUnit>(
-                    element
-                ) ?? throw new System::ArgumentNullException("duration_unit");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, NewBillingCycleConfigurationDurationUnit>
+            >("duration_unit");
         }
-        set { this.Properties["duration_unit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("duration_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Duration;
@@ -59,18 +51,83 @@ public sealed record class NewBillingCycleConfiguration
 
     public NewBillingCycleConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewBillingCycleConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewBillingCycleConfiguration(NewBillingCycleConfiguration newBillingCycleConfiguration)
+        : base(newBillingCycleConfiguration) { }
+
+    public NewBillingCycleConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewBillingCycleConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewBillingCycleConfigurationFromRaw.FromRawUnchecked"/>
     public static NewBillingCycleConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NewBillingCycleConfigurationFromRaw : IFromRawJson<NewBillingCycleConfiguration>
+{
+    /// <inheritdoc/>
+    public NewBillingCycleConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewBillingCycleConfiguration.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The unit of billing period duration.
+/// </summary>
+[JsonConverter(typeof(NewBillingCycleConfigurationDurationUnitConverter))]
+public enum NewBillingCycleConfigurationDurationUnit
+{
+    Day,
+    Month,
+}
+
+sealed class NewBillingCycleConfigurationDurationUnitConverter
+    : JsonConverter<NewBillingCycleConfigurationDurationUnit>
+{
+    public override NewBillingCycleConfigurationDurationUnit Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => NewBillingCycleConfigurationDurationUnit.Day,
+            "month" => NewBillingCycleConfigurationDurationUnit.Month,
+            _ => (NewBillingCycleConfigurationDurationUnit)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        NewBillingCycleConfigurationDurationUnit value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                NewBillingCycleConfigurationDurationUnit.Day => "day",
+                NewBillingCycleConfigurationDurationUnit.Month => "month",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

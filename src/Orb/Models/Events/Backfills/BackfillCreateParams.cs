@@ -1,9 +1,11 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -12,100 +14,89 @@ namespace Orb.Models.Events.Backfills;
 /// are older than the ingestion grace period. Performing a backfill in Orb involves
 /// 3 steps:
 ///
-/// 1. Create the backfill, specifying its parameters. 2. [Ingest](ingest) usage events,
-/// referencing the backfill (query parameter `backfill_id`). 3. [Close](close-backfill)
-/// the backfill, propagating the update in past usage throughout Orb.
+/// <para>1. Create the backfill, specifying its parameters. 2. [Ingest](ingest) usage
+/// events, referencing the backfill (query parameter `backfill_id`). 3. [Close](close-backfill)
+/// the backfill, propagating the update in past usage throughout Orb.</para>
 ///
-/// Changes from a backfill are not reflected until the backfill is closed, so you
-/// won’t need to worry about your customers seeing partially updated usage data.
-/// Backfills are also reversible, so you’ll be able to revert a backfill if you’ve
-/// made a mistake.
+/// <para>Changes from a backfill are not reflected until the backfill is closed,
+/// so you won’t need to worry about your customers seeing partially updated usage
+/// data. Backfills are also reversible, so you’ll be able to revert a backfill if
+/// you’ve made a mistake.</para>
 ///
-/// This endpoint will return a backfill object, which contains an `id`. That `id`
-/// can then be used as the `backfill_id` query parameter to the event ingestion endpoint
-/// to associate ingested events with this backfill. The effects (e.g. updated usage
-/// graphs) of this backfill will not take place until the backfill is closed.
+/// <para>This endpoint will return a backfill object, which contains an `id`. That
+/// `id` can then be used as the `backfill_id` query parameter to the event ingestion
+/// endpoint to associate ingested events with this backfill. The effects (e.g. updated
+/// usage graphs) of this backfill will not take place until the backfill is closed.</para>
 ///
-/// If the `replace_existing_events` is `true`, existing events in the backfill's
+/// <para>If the `replace_existing_events` is `true`, existing events in the backfill's
 /// timeframe will be replaced with the newly ingested events associated with the
-/// backfill. If `false`, newly ingested events will be added to the existing events.
+/// backfill. If `false`, newly ingested events will be added to the existing events.</para>
 ///
-/// If a `customer_id` or `external_customer_id` is specified, the backfill will only
-/// affect events for that customer. If neither is specified, the backfill will affect
-/// all customers.
+/// <para>If a `customer_id` or `external_customer_id` is specified, the backfill
+/// will only affect events for that customer. If neither is specified, the backfill
+/// will affect all customers.</para>
 ///
-/// When `replace_existing_events` is `true`, this indicates that existing events
-/// in the timeframe should no longer be counted towards invoiced usage. In this scenario,
-/// the parameter `filter` can be optionally added which enables filtering using [computed
-/// properties](/extensibility/advanced-metrics#computed-properties). The expressiveness
-/// of computed properties allows you to deprecate existing events based on both a
-/// period of time and specific property values.
+/// <para>When `replace_existing_events` is `true`, this indicates that existing
+/// events in the timeframe should no longer be counted towards invoiced usage. In
+/// this scenario, the parameter `deprecation_filter` can be optionally added which
+/// enables filtering using [computed properties](/extensibility/advanced-metrics#computed-properties).
+/// The expressiveness of computed properties allows you to deprecate existing events
+/// based on both a period of time and specific property values.</para>
+///
+/// <para>You may not have multiple backfills in a pending or pending_revert state
+/// with overlapping timeframes.</para>
 /// </summary>
-public sealed record class BackfillCreateParams : Orb::ParamsBase
+public sealed record class BackfillCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
-
-    /// <summary>
-    /// The (exclusive) end of the usage timeframe affected by this backfill. By default,
-    /// Orb allows backfills up to 31 days in duration at a time. Reach out to discuss
-    /// extending this limit and your use case.
-    /// </summary>
-    public required System::DateTime TimeframeEnd
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
-        get
-        {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
-        }
-        set
-        {
-            this.BodyProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        get { return this._rawBodyData.Freeze(); }
     }
 
     /// <summary>
-    /// The (inclusive) start of the usage timeframe affected by this backfill. By default,
-    /// Orb allows backfills up to 31 days in duration at a time. Reach out to discuss
-    /// extending this limit and your use case.
+    /// The (exclusive) end of the usage timeframe affected by this backfill. By
+    /// default, Orb allows backfills up to 31 days in duration at a time. Reach
+    /// out to discuss extending this limit and your use case.
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required DateTimeOffset TimeframeEnd
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
         }
-        set
-        {
-            this.BodyProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
     /// <summary>
-    /// The time at which no more events will be accepted for this backfill. The backfill
-    /// will automatically begin reflecting throughout Orb at the close time. If not
-    /// specified, it will default to 1 day after the creation of the backfill.
+    /// The (inclusive) start of the usage timeframe affected by this backfill. By
+    /// default, Orb allows backfills up to 31 days in duration at a time. Reach
+    /// out to discuss extending this limit and your use case.
     /// </summary>
-    public System::DateTime? CloseTime
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("close_time", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
         }
-        set { this.BodyProperties["close_time"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("timeframe_start", value); }
+    }
+
+    /// <summary>
+    /// The time at which no more events will be accepted for this backfill. The
+    /// backfill will automatically begin reflecting throughout Orb at the close
+    /// time. If not specified, it will default to 1 day after the creation of the backfill.
+    /// </summary>
+    public DateTimeOffset? CloseTime
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<DateTimeOffset>("close_time");
+        }
+        init { this._rawBodyData.Set("close_time", value); }
     }
 
     /// <summary>
@@ -116,12 +107,10 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("customer_id");
         }
-        set { this.BodyProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -132,22 +121,10 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "deprecation_filter",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("deprecation_filter");
         }
-        set
-        {
-            this.BodyProperties["deprecation_filter"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawBodyData.Set("deprecation_filter", value); }
     }
 
     /// <summary>
@@ -158,22 +135,10 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
         }
-        set
-        {
-            this.BodyProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -184,46 +149,90 @@ public sealed record class BackfillCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "replace_existing_events",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("replace_existing_events");
         }
-        set
+        init
         {
-            this.BodyProperties["replace_existing_events"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("replace_existing_events", value);
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public BackfillCreateParams() { }
+
+    public BackfillCreateParams(BackfillCreateParams backfillCreateParams)
+        : base(backfillCreateParams)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/backfills")
+        this._rawBodyData = new(backfillCreateParams._rawBodyData);
+    }
+
+    public BackfillCreateParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BackfillCreateParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static BackfillCreateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/events/backfills")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

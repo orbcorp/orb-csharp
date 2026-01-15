@@ -1,51 +1,50 @@
-using BalanceTransactionCreateParamsProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateParamsProperties;
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
 /// <summary>
-/// Creates an immutable balance transaction that updates the customer's balance and
-/// returns back the newly created transaction.
+/// Creates an immutable balance transaction that updates the customer's balance
+/// and returns back the newly created transaction.
 /// </summary>
-public sealed record class BalanceTransactionCreateParams : Orb::ParamsBase
+public sealed record class BalanceTransactionCreateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string CustomerID;
+    public string? CustomerID { get; init; }
 
     public required string Amount
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("amount");
         }
-        set { this.BodyProperties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("amount", value); }
     }
 
-    public required BalanceTransactionCreateParamsProperties::Type Type
+    public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type> Type
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<BalanceTransactionCreateParamsProperties::Type>(
-                    element
-                ) ?? throw new System::ArgumentNullException("type");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
+            >("type");
         }
-        set { this.BodyProperties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("type", value); }
     }
 
     /// <summary>
@@ -55,40 +54,133 @@ public sealed record class BalanceTransactionCreateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("description", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
         }
-        set { this.BodyProperties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("description", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public BalanceTransactionCreateParams() { }
+
+    public BalanceTransactionCreateParams(
+        BalanceTransactionCreateParams balanceTransactionCreateParams
+    )
+        : base(balanceTransactionCreateParams)
+    {
+        this.CustomerID = balanceTransactionCreateParams.CustomerID;
+
+        this._rawBodyData = new(balanceTransactionCreateParams._rawBodyData);
+    }
+
+    public BalanceTransactionCreateParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BalanceTransactionCreateParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static BalanceTransactionCreateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/balance_transactions", this.CustomerID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.TypeConverter))]
+public enum Type
+{
+    Increment,
+    Decrement,
+}
+
+sealed class TypeConverter : JsonConverter<global::Orb.Models.Customers.BalanceTransactions.Type>
+{
+    public override global::Orb.Models.Customers.BalanceTransactions.Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => global::Orb.Models.Customers.BalanceTransactions.Type.Increment,
+            "decrement" => global::Orb.Models.Customers.BalanceTransactions.Type.Decrement,
+            _ => (global::Orb.Models.Customers.BalanceTransactions.Type)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Customers.BalanceTransactions.Type value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Customers.BalanceTransactions.Type.Increment => "increment",
+                global::Orb.Models.Customers.BalanceTransactions.Type.Decrement => "decrement",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

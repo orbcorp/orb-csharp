@@ -1,36 +1,37 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewDimensionalPriceConfiguration>))]
-public sealed record class NewDimensionalPriceConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewDimensionalPriceConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        NewDimensionalPriceConfiguration,
+        NewDimensionalPriceConfigurationFromRaw
+    >)
+)]
+public sealed record class NewDimensionalPriceConfiguration : JsonModel
 {
     /// <summary>
     /// The list of dimension values matching (in order) the dimensions of the price group
     /// </summary>
-    public required Generic::List<string> DimensionValues
+    public required IReadOnlyList<string> DimensionValues
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimension_values", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "dimension_values",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("dimension_values");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimension_values");
         }
-        set
+        init
         {
-            this.Properties["dimension_values"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<string>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -41,22 +42,10 @@ public sealed record class NewDimensionalPriceConfiguration
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "dimensional_price_group_id",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("dimensional_price_group_id");
         }
-        set
-        {
-            this.Properties["dimensional_price_group_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -66,47 +55,60 @@ public sealed record class NewDimensionalPriceConfiguration
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "external_dimensional_price_group_id",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_dimensional_price_group_id");
         }
-        set
-        {
-            this.Properties["external_dimensional_price_group_id"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("external_dimensional_price_group_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.DimensionValues)
-        {
-            _ = item;
-        }
+        _ = this.DimensionValues;
         _ = this.DimensionalPriceGroupID;
         _ = this.ExternalDimensionalPriceGroupID;
     }
 
     public NewDimensionalPriceConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewDimensionalPriceConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewDimensionalPriceConfiguration(
+        NewDimensionalPriceConfiguration newDimensionalPriceConfiguration
+    )
+        : base(newDimensionalPriceConfiguration) { }
+
+    public NewDimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewDimensionalPriceConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewDimensionalPriceConfigurationFromRaw.FromRawUnchecked"/>
     public static NewDimensionalPriceConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public NewDimensionalPriceConfiguration(IReadOnlyList<string> dimensionValues)
+        : this()
+    {
+        this.DimensionValues = dimensionValues;
+    }
+}
+
+class NewDimensionalPriceConfigurationFromRaw : IFromRawJson<NewDimensionalPriceConfiguration>
+{
+    /// <inheritdoc/>
+    public NewDimensionalPriceConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewDimensionalPriceConfiguration.FromRawUnchecked(rawData);
 }

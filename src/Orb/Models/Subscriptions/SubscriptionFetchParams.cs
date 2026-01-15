@@ -1,6 +1,10 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Subscriptions;
 
@@ -8,27 +12,68 @@ namespace Orb.Models.Subscriptions;
 /// This endpoint is used to fetch a [Subscription](/core-concepts##subscription)
 /// given an identifier.
 /// </summary>
-public sealed record class SubscriptionFetchParams : Orb::ParamsBase
+public sealed record class SubscriptionFetchParams : ParamsBase
 {
-    public required string SubscriptionID;
+    public string? SubscriptionID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionFetchParams() { }
+
+    public SubscriptionFetchParams(SubscriptionFetchParams subscriptionFetchParams)
+        : base(subscriptionFetchParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionID = subscriptionFetchParams.SubscriptionID;
+    }
+
+    public SubscriptionFetchParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionFetchParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionFetchParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}", this.SubscriptionID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

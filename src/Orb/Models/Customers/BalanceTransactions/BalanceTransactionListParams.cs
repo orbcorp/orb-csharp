@@ -1,35 +1,37 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
 /// <summary>
 /// ## The customer balance
 ///
-/// The customer balance is an amount in the customer's currency, which Orb automatically
-/// applies to subsequent invoices. This balance can be adjusted manually via Orb's
-/// webapp on the customer details page. You can use this balance to provide a fixed
-/// mid-period credit to the customer. Commonly, this is done due to system downtime/SLA
-/// violation, or an adhoc adjustment discussed with the customer.
+/// <para>The customer balance is an amount in the customer's currency, which Orb
+/// automatically applies to subsequent invoices. This balance can be adjusted manually
+/// via Orb's webapp on the customer details page. You can use this balance to provide
+/// a fixed mid-period credit to the customer. Commonly, this is done due to system
+/// downtime/SLA violation, or an adhoc adjustment discussed with the customer.</para>
 ///
-/// If the balance is a positive value at the time of invoicing, it represents that
-/// the customer has credit that should be used to offset the amount due on the next
-/// issued invoice. In this case, Orb will automatically reduce the next invoice
-/// by the balance amount, and roll over any remaining balance if the invoice is
-/// fully discounted.
+/// <para>If the balance is a positive value at the time of invoicing, it represents
+/// that the customer has credit that should be used to offset the amount due on the
+/// next issued invoice. In this case, Orb will automatically reduce the next invoice
+/// by the balance amount, and roll over any remaining balance if the invoice is fully discounted.</para>
 ///
-/// If the balance is a negative value at the time of invoicing, Orb will increase
-/// the invoice's amount due with a positive adjustment, and reset the balance to 0.
+/// <para>If the balance is a negative value at the time of invoicing, Orb will increase
+/// the invoice's amount due with a positive adjustment, and reset the balance to 0.</para>
 ///
-/// This endpoint retrieves all customer balance transactions in reverse chronological
+/// <para>This endpoint retrieves all customer balance transactions in reverse chronological
 /// order for a single customer, providing a complete audit trail of all adjustments
-/// and invoice applications.
+/// and invoice applications.</para>
 /// </summary>
-public sealed record class BalanceTransactionListParams : Orb::ParamsBase
+public sealed record class BalanceTransactionListParams : ParamsBase
 {
-    public required string CustomerID;
+    public string? CustomerID { get; init; }
 
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -39,12 +41,10 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -54,119 +54,118 @@ public sealed record class BalanceTransactionListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
-    public System::DateTime? OperationTimeGt
+    public DateTimeOffset? OperationTimeGt
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[gt]",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gt]");
         }
-        set
-        {
-            this.QueryProperties["operation_time[gt]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("operation_time[gt]", value); }
     }
 
-    public System::DateTime? OperationTimeGte
+    public DateTimeOffset? OperationTimeGte
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[gte]",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gte]");
         }
-        set
-        {
-            this.QueryProperties["operation_time[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("operation_time[gte]", value); }
     }
 
-    public System::DateTime? OperationTimeLt
+    public DateTimeOffset? OperationTimeLt
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[lt]",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lt]");
         }
-        set
-        {
-            this.QueryProperties["operation_time[lt]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("operation_time[lt]", value); }
     }
 
-    public System::DateTime? OperationTimeLte
+    public DateTimeOffset? OperationTimeLte
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "operation_time[lte]",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lte]");
         }
-        set
-        {
-            this.QueryProperties["operation_time[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("operation_time[lte]", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public BalanceTransactionListParams() { }
+
+    public BalanceTransactionListParams(BalanceTransactionListParams balanceTransactionListParams)
+        : base(balanceTransactionListParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.CustomerID = balanceTransactionListParams.CustomerID;
+    }
+
+    public BalanceTransactionListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BalanceTransactionListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static BalanceTransactionListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/balance_transactions", this.CustomerID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

@@ -1,30 +1,36 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using EventVolumesProperties = Orb.Models.Events.Volume.EventVolumesProperties;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Events.Volume;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<EventVolumes>))]
-public sealed record class EventVolumes : Orb::ModelBase, Orb::IFromRaw<EventVolumes>
+[JsonConverter(typeof(JsonModelConverter<EventVolumes, EventVolumesFromRaw>))]
+public sealed record class EventVolumes : JsonModel
 {
-    public required Generic::List<EventVolumesProperties::Data> Data
+    public required IReadOnlyList<global::Orb.Models.Events.Volume.Data> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<EventVolumesProperties::Data>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("data");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<global::Orb.Models.Events.Volume.Data>
+            >("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<global::Orb.Models.Events.Volume.Data>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -35,18 +41,127 @@ public sealed record class EventVolumes : Orb::ModelBase, Orb::IFromRaw<EventVol
 
     public EventVolumes() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    EventVolumes(Generic::Dictionary<string, Json::JsonElement> properties)
+    public EventVolumes(EventVolumes eventVolumes)
+        : base(eventVolumes) { }
+
+    public EventVolumes(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventVolumes(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static EventVolumes FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+    /// <inheritdoc cref="EventVolumesFromRaw.FromRawUnchecked"/>
+    public static EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public EventVolumes(IReadOnlyList<global::Orb.Models.Events.Volume.Data> data)
+        : this()
+    {
+        this.Data = data;
+    }
+}
+
+class EventVolumesFromRaw : IFromRawJson<EventVolumes>
+{
+    /// <inheritdoc/>
+    public EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventVolumes.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// An EventVolume contains the event volume ingested in an hourly window. The timestamp
+/// used for the aggregation is the `timestamp` datetime field on events.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        global::Orb.Models.Events.Volume.Data,
+        global::Orb.Models.Events.Volume.DataFromRaw
+    >)
+)]
+public sealed record class Data : JsonModel
+{
+    /// <summary>
+    /// The number of events ingested with a timestamp between the timeframe
+    /// </summary>
+    public required long Count
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("count");
+        }
+        init { this._rawData.Set("count", value); }
+    }
+
+    public required DateTimeOffset TimeframeEnd
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
+        }
+        init { this._rawData.Set("timeframe_end", value); }
+    }
+
+    public required DateTimeOffset TimeframeStart
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
+        }
+        init { this._rawData.Set("timeframe_start", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Count;
+        _ = this.TimeframeEnd;
+        _ = this.TimeframeStart;
+    }
+
+    public Data() { }
+
+    public Data(global::Orb.Models.Events.Volume.Data data)
+        : base(data) { }
+
+    public Data(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Data(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="global::Orb.Models.Events.Volume.DataFromRaw.FromRawUnchecked"/>
+    public static global::Orb.Models.Events.Volume.Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DataFromRaw : IFromRawJson<global::Orb.Models.Events.Volume.Data>
+{
+    /// <inheritdoc/>
+    public global::Orb.Models.Events.Volume.Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Events.Volume.Data.FromRawUnchecked(rawData);
 }

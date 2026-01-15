@@ -1,30 +1,33 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Prices;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PriceEvaluateResponse>))]
-public sealed record class PriceEvaluateResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<PriceEvaluateResponse>
+[JsonConverter(typeof(JsonModelConverter<PriceEvaluateResponse, PriceEvaluateResponseFromRaw>))]
+public sealed record class PriceEvaluateResponse : JsonModel
 {
-    public required Generic::List<EvaluatePriceGroup> Data
+    public required IReadOnlyList<EvaluatePriceGroup> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<EvaluatePriceGroup>>(element)
-                ?? throw new System::ArgumentNullException("data");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<EvaluatePriceGroup>>("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<EvaluatePriceGroup>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -35,18 +38,42 @@ public sealed record class PriceEvaluateResponse
 
     public PriceEvaluateResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PriceEvaluateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public PriceEvaluateResponse(PriceEvaluateResponse priceEvaluateResponse)
+        : base(priceEvaluateResponse) { }
+
+    public PriceEvaluateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceEvaluateResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PriceEvaluateResponseFromRaw.FromRawUnchecked"/>
     public static PriceEvaluateResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public PriceEvaluateResponse(IReadOnlyList<EvaluatePriceGroup> data)
+        : this()
+    {
+        this.Data = data;
+    }
+}
+
+class PriceEvaluateResponseFromRaw : IFromRawJson<PriceEvaluateResponse>
+{
+    /// <inheritdoc/>
+    public PriceEvaluateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceEvaluateResponse.FromRawUnchecked(rawData);
 }

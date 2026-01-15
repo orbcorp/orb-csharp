@@ -1,9 +1,11 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
@@ -11,20 +13,17 @@ namespace Orb.Models;
 /// The Price Interval resource represents a period of time for which a price will
 /// bill on a subscription. A subscription’s price intervals define its billing behavior.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PriceInterval>))]
-public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceInterval>
+[JsonConverter(typeof(JsonModelConverter<PriceInterval, PriceIntervalFromRaw>))]
+public sealed record class PriceInterval : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -34,18 +33,25 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("billing_cycle_day", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "billing_cycle_day",
-                    "Missing required argument"
-                );
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("billing_cycle_day");
+        }
+        init { this._rawData.Set("billing_cycle_day", value); }
+    }
 
-            return Json::JsonSerializer.Deserialize<long>(element);
-        }
-        set
+    /// <summary>
+    /// For in-arrears prices. If true, and the price interval ends mid-cycle, the
+    /// final line item will be deferred to the next scheduled invoice instead of
+    /// being billed mid-cycle.
+    /// </summary>
+    public required bool CanDeferBilling
+    {
+        get
         {
-            this.Properties["billing_cycle_day"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("can_defer_billing");
         }
+        init { this._rawData.Set("can_defer_billing", value); }
     }
 
     /// <summary>
@@ -53,28 +59,16 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     /// that the instant returned is exactly the end of the billing period. Set to
     /// null if this price interval is not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodEndDate
+    public required DateTimeOffset? CurrentBillingPeriodEndDate
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "current_billing_period_end_date",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "current_billing_period_end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>(
+                "current_billing_period_end_date"
+            );
         }
-        set
-        {
-            this.Properties["current_billing_period_end_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("current_billing_period_end_date", value); }
     }
 
     /// <summary>
@@ -82,47 +76,30 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     /// the instant returned is exactly the beginning of the billing period. Set to
     /// null if this price interval is not currently active.
     /// </summary>
-    public required System::DateTime? CurrentBillingPeriodStartDate
+    public required DateTimeOffset? CurrentBillingPeriodStartDate
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "current_billing_period_start_date",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "current_billing_period_start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>(
+                "current_billing_period_start_date"
+            );
         }
-        set
-        {
-            this.Properties["current_billing_period_start_date"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("current_billing_period_start_date", value); }
     }
 
     /// <summary>
     /// The end date of the price interval. This is the date that Orb stops billing
     /// for this price.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required DateTimeOffset? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -132,116 +109,95 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
     {
         get
         {
-            if (!this.Properties.TryGetValue("filter", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "filter",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("filter");
         }
-        set { this.Properties["filter"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("filter", value); }
     }
 
     /// <summary>
-    /// The fixed fee quantity transitions for this price interval. This is only relevant
-    /// for fixed fees.
+    /// The fixed fee quantity transitions for this price interval. This is only
+    /// relevant for fixed fees.
     /// </summary>
-    public required Generic::List<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
+    public required IReadOnlyList<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "fixed_fee_quantity_transitions",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "fixed_fee_quantity_transitions",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<FixedFeeQuantityTransition>?>(
-                element
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<FixedFeeQuantityTransition>>(
+                "fixed_fee_quantity_transitions"
             );
         }
-        set
+        init
         {
-            this.Properties["fixed_fee_quantity_transitions"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<FixedFeeQuantityTransition>?>(
+                "fixed_fee_quantity_transitions",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     /// <summary>
     /// The Price resource represents a price that can be billed on a subscription,
-    /// resulting in a charge on an invoice in the form of an invoice line item. Prices
-    /// take a quantity and determine an amount to bill.
+    /// resulting in a charge on an invoice in the form of an invoice line item.
+    /// Prices take a quantity and determine an amount to bill.
     ///
-    /// Orb supports a few different pricing models out of the box. Each of these models
-    /// is serialized differently in a given Price object. The model_type field determines
-    /// the key for the configuration object that is present.
+    /// <para>Orb supports a few different pricing models out of the box. Each of
+    /// these models is serialized differently in a given Price object. The model_type
+    /// field determines the key for the configuration object that is present.</para>
     ///
-    /// For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)
+    /// <para>For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)</para>
     /// </summary>
     public required Price Price
     {
         get
         {
-            if (!this.Properties.TryGetValue("price", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("price", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Price>(element)
-                ?? throw new System::ArgumentNullException("price");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Price>("price");
         }
-        set { this.Properties["price"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("price", value); }
     }
 
     /// <summary>
     /// The start date of the price interval. This is the date that Orb starts billing
     /// for this price.
     /// </summary>
-    public required System::DateTime StartDate
+    public required DateTimeOffset StartDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <summary>
     /// A list of customer IDs whose usage events will be aggregated and billed under
     /// this price interval.
     /// </summary>
-    public required Generic::List<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIds
     {
         get
         {
-            if (!this.Properties.TryGetValue("usage_customer_ids", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "usage_customer_ids",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("usage_customer_ids");
         }
-        set
+        init
         {
-            this.Properties["usage_customer_ids"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<string>?>(
+                "usage_customer_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
         _ = this.BillingCycleDay;
+        _ = this.CanDeferBilling;
         _ = this.CurrentBillingPeriodEndDate;
         _ = this.CurrentBillingPeriodStartDate;
         _ = this.EndDate;
@@ -252,26 +208,37 @@ public sealed record class PriceInterval : Orb::ModelBase, Orb::IFromRaw<PriceIn
         }
         this.Price.Validate();
         _ = this.StartDate;
-        foreach (var item in this.UsageCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.UsageCustomerIds;
     }
 
     public PriceInterval() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PriceInterval(Generic::Dictionary<string, Json::JsonElement> properties)
+    public PriceInterval(PriceInterval priceInterval)
+        : base(priceInterval) { }
+
+    public PriceInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceInterval(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static PriceInterval FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="PriceIntervalFromRaw.FromRawUnchecked"/>
+    public static PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PriceIntervalFromRaw : IFromRawJson<PriceInterval>
+{
+    /// <inheritdoc/>
+    public PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PriceInterval.FromRawUnchecked(rawData);
 }

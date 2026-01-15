@@ -1,50 +1,40 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Plans;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PlanListPageResponse>))]
-public sealed record class PlanListPageResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<PlanListPageResponse>
+[JsonConverter(typeof(JsonModelConverter<PlanListPageResponse, PlanListPageResponseFromRaw>))]
+public sealed record class PlanListPageResponse : JsonModel
 {
-    public required Generic::List<Plan> Data
+    public required IReadOnlyList<Plan> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Plan>>(element)
-                ?? throw new System::ArgumentNullException("data");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Plan>>("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Plan>>("data", ImmutableArray.ToImmutableArray(value));
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "pagination_metadata",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
         }
-        set
-        {
-            this.Properties["pagination_metadata"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -56,18 +46,35 @@ public sealed record class PlanListPageResponse
 
     public PlanListPageResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PlanListPageResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public PlanListPageResponse(PlanListPageResponse planListPageResponse)
+        : base(planListPageResponse) { }
+
+    public PlanListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PlanListPageResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanListPageResponseFromRaw.FromRawUnchecked"/>
     public static PlanListPageResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PlanListPageResponseFromRaw : IFromRawJson<PlanListPageResponse>
+{
+    /// <inheritdoc/>
+    public PlanListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PlanListPageResponse.FromRawUnchecked(rawData);
 }

@@ -1,9 +1,11 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.SubscriptionChanges;
 
@@ -12,11 +14,15 @@ namespace Orb.Models.SubscriptionChanges;
 /// is passed with a request to this endpoint, any eligible invoices that were created
 /// will be issued immediately if they only contain in-advance fees.
 /// </summary>
-public sealed record class SubscriptionChangeApplyParams : Orb::ParamsBase
+public sealed record class SubscriptionChangeApplyParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string SubscriptionChangeID;
+    public string? SubscriptionChangeID { get; init; }
 
     /// <summary>
     /// Description to apply to the balance transaction representing this credit.
@@ -25,64 +31,158 @@ public sealed record class SubscriptionChangeApplyParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("description", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
         }
-        set { this.BodyProperties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("description", value); }
     }
 
     /// <summary>
-    /// Amount already collected to apply to the customer's balance.
+    /// Mark all pending invoices that are payable as paid. If amount is also provided,
+    /// mark as paid and credit the difference to the customer's balance.
+    /// </summary>
+    public bool? MarkAsPaid
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("mark_as_paid");
+        }
+        init { this._rawBodyData.Set("mark_as_paid", value); }
+    }
+
+    /// <summary>
+    /// An optional external ID to associate with the payment. Only applicable when
+    /// mark_as_paid is true.
+    /// </summary>
+    public string? PaymentExternalID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_external_id");
+        }
+        init { this._rawBodyData.Set("payment_external_id", value); }
+    }
+
+    /// <summary>
+    /// Optional notes about the payment. Only applicable when mark_as_paid is true.
+    /// </summary>
+    public string? PaymentNotes
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_notes");
+        }
+        init { this._rawBodyData.Set("payment_notes", value); }
+    }
+
+    /// <summary>
+    /// A date string to specify the date the payment was received. Only applicable
+    /// when mark_as_paid is true. If not provided, defaults to the current date.
+    /// </summary>
+    public string? PaymentReceivedDate
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("payment_received_date");
+        }
+        init { this._rawBodyData.Set("payment_received_date", value); }
+    }
+
+    /// <summary>
+    /// Amount already collected to apply to the customer's balance. If mark_as_paid
+    /// is also provided, credit the difference to the customer's balance.
     /// </summary>
     public string? PreviouslyCollectedAmount
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "previously_collected_amount",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("previously_collected_amount");
         }
-        set
-        {
-            this.BodyProperties["previously_collected_amount"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("previously_collected_amount", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionChangeApplyParams() { }
+
+    public SubscriptionChangeApplyParams(
+        SubscriptionChangeApplyParams subscriptionChangeApplyParams
+    )
+        : base(subscriptionChangeApplyParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionChangeID = subscriptionChangeApplyParams.SubscriptionChangeID;
+
+        this._rawBodyData = new(subscriptionChangeApplyParams._rawBodyData);
+    }
+
+    public SubscriptionChangeApplyParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionChangeApplyParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionChangeApplyParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscription_changes/{0}/apply", this.SubscriptionChangeID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

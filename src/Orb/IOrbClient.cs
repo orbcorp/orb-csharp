@@ -1,61 +1,164 @@
-using Alerts = Orb.Service.Alerts;
-using Beta = Orb.Service.Beta;
-using Coupons = Orb.Service.Coupons;
-using CreditNotes = Orb.Service.CreditNotes;
-using Customers = Orb.Service.Customers;
-using DimensionalPriceGroups = Orb.Service.DimensionalPriceGroups;
-using Events = Orb.Service.Events;
-using Http = System.Net.Http;
-using InvoiceLineItems = Orb.Service.InvoiceLineItems;
-using Invoices = Orb.Service.Invoices;
-using Items = Orb.Service.Items;
-using Metrics = Orb.Service.Metrics;
-using Plans = Orb.Service.Plans;
-using Prices = Orb.Service.Prices;
-using SubscriptionChanges = Orb.Service.SubscriptionChanges;
-using Subscriptions = Orb.Service.Subscriptions;
-using System = System;
-using TopLevel = Orb.Service.TopLevel;
+using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Services;
 
 namespace Orb;
 
-public interface IOrbClient
+/// <summary>
+/// A client for interacting with the Orb REST API.
+///
+/// <para>This client performs best when you create a single instance and reuse it
+/// for all interactions with the REST API. This is because each client holds its
+/// own connection pool and thread pools. Reusing connections and threads reduces
+/// latency and saves memory.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
+/// </summary>
+public interface IOrbClient : IDisposable
 {
-    Http::HttpClient HttpClient { get; init; }
+    /// <inheritdoc cref="ClientOptions.HttpClient" />
+    HttpClient HttpClient { get; init; }
 
-    System::Uri BaseUrl { get; init; }
+    /// <inheritdoc cref="ClientOptions.BaseUrl" />
+    string BaseUrl { get; init; }
 
-    string APIKey { get; init; }
+    /// <inheritdoc cref="ClientOptions.ResponseValidation" />
+    bool ResponseValidation { get; init; }
 
-    TopLevel::ITopLevelService TopLevel { get; }
+    /// <inheritdoc cref="ClientOptions.MaxRetries" />
+    int? MaxRetries { get; init; }
 
-    Beta::IBetaService Beta { get; }
+    /// <inheritdoc cref="ClientOptions.Timeout" />
+    TimeSpan? Timeout { get; init; }
 
-    Coupons::ICouponService Coupons { get; }
+    string ApiKey { get; init; }
 
-    CreditNotes::ICreditNoteService CreditNotes { get; }
+    string? WebhookSecret { get; init; }
 
-    Customers::ICustomerService Customers { get; }
+    /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IOrbClientWithRawResponse WithRawResponse { get; }
 
-    Events::IEventService Events { get; }
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IOrbClient WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
-    InvoiceLineItems::IInvoiceLineItemService InvoiceLineItems { get; }
+    ITopLevelService TopLevel { get; }
 
-    Invoices::IInvoiceService Invoices { get; }
+    IBetaService Beta { get; }
 
-    Items::IItemService Items { get; }
+    ICouponService Coupons { get; }
 
-    Metrics::IMetricService Metrics { get; }
+    ICreditNoteService CreditNotes { get; }
 
-    Plans::IPlanService Plans { get; }
+    ICustomerService Customers { get; }
 
-    Prices::IPriceService Prices { get; }
+    IEventService Events { get; }
 
-    Subscriptions::ISubscriptionService Subscriptions { get; }
+    IInvoiceLineItemService InvoiceLineItems { get; }
 
-    Alerts::IAlertService Alerts { get; }
+    IInvoiceService Invoices { get; }
 
-    DimensionalPriceGroups::IDimensionalPriceGroupService DimensionalPriceGroups { get; }
+    IItemService Items { get; }
 
-    SubscriptionChanges::ISubscriptionChangeService SubscriptionChanges { get; }
+    IMetricService Metrics { get; }
+
+    IPlanService Plans { get; }
+
+    IPriceService Prices { get; }
+
+    ISubscriptionService Subscriptions { get; }
+
+    IAlertService Alerts { get; }
+
+    IDimensionalPriceGroupService DimensionalPriceGroups { get; }
+
+    ISubscriptionChangeService SubscriptionChanges { get; }
+
+    ICreditBlockService CreditBlocks { get; }
+}
+
+/// <summary>
+/// A view of <see cref="IOrbClient"/> that provides access to raw HTTP responses for each method.
+/// </summary>
+public interface IOrbClientWithRawResponse : IDisposable
+{
+    /// <inheritdoc cref="ClientOptions.HttpClient" />
+    HttpClient HttpClient { get; init; }
+
+    /// <inheritdoc cref="ClientOptions.BaseUrl" />
+    string BaseUrl { get; init; }
+
+    /// <inheritdoc cref="ClientOptions.ResponseValidation" />
+    bool ResponseValidation { get; init; }
+
+    /// <inheritdoc cref="ClientOptions.MaxRetries" />
+    int? MaxRetries { get; init; }
+
+    /// <inheritdoc cref="ClientOptions.Timeout" />
+    TimeSpan? Timeout { get; init; }
+
+    string ApiKey { get; init; }
+
+    string? WebhookSecret { get; init; }
+
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IOrbClientWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    ITopLevelServiceWithRawResponse TopLevel { get; }
+
+    IBetaServiceWithRawResponse Beta { get; }
+
+    ICouponServiceWithRawResponse Coupons { get; }
+
+    ICreditNoteServiceWithRawResponse CreditNotes { get; }
+
+    ICustomerServiceWithRawResponse Customers { get; }
+
+    IEventServiceWithRawResponse Events { get; }
+
+    IInvoiceLineItemServiceWithRawResponse InvoiceLineItems { get; }
+
+    IInvoiceServiceWithRawResponse Invoices { get; }
+
+    IItemServiceWithRawResponse Items { get; }
+
+    IMetricServiceWithRawResponse Metrics { get; }
+
+    IPlanServiceWithRawResponse Plans { get; }
+
+    IPriceServiceWithRawResponse Prices { get; }
+
+    ISubscriptionServiceWithRawResponse Subscriptions { get; }
+
+    IAlertServiceWithRawResponse Alerts { get; }
+
+    IDimensionalPriceGroupServiceWithRawResponse DimensionalPriceGroups { get; }
+
+    ISubscriptionChangeServiceWithRawResponse SubscriptionChanges { get; }
+
+    ICreditBlockServiceWithRawResponse CreditBlocks { get; }
+
+    /// <summary>
+    /// Sends a request to the Orb REST API.
+    /// </summary>
+    Task<HttpResponse> Execute<T>(
+        HttpRequest<T> request,
+        CancellationToken cancellationToken = default
+    )
+        where T : ParamsBase;
 }

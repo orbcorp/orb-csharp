@@ -1,63 +1,49 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<FixedFeeQuantityTransition>))]
-public sealed record class FixedFeeQuantityTransition
-    : Orb::ModelBase,
-        Orb::IFromRaw<FixedFeeQuantityTransition>
+[JsonConverter(
+    typeof(JsonModelConverter<FixedFeeQuantityTransition, FixedFeeQuantityTransitionFromRaw>)
+)]
+public sealed record class FixedFeeQuantityTransition : JsonModel
 {
-    public required System::DateTime EffectiveDate
+    public required DateTimeOffset EffectiveDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("effective_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "effective_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("effective_date");
         }
-        set { this.Properties["effective_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("effective_date", value); }
     }
 
     public required string PriceID
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("price_id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("price_id");
         }
-        set { this.Properties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("price_id", value); }
     }
 
     public required long Quantity
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("quantity");
         }
-        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("quantity", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EffectiveDate;
@@ -67,18 +53,35 @@ public sealed record class FixedFeeQuantityTransition
 
     public FixedFeeQuantityTransition() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    FixedFeeQuantityTransition(Generic::Dictionary<string, Json::JsonElement> properties)
+    public FixedFeeQuantityTransition(FixedFeeQuantityTransition fixedFeeQuantityTransition)
+        : base(fixedFeeQuantityTransition) { }
+
+    public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    FixedFeeQuantityTransition(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FixedFeeQuantityTransitionFromRaw.FromRawUnchecked"/>
     public static FixedFeeQuantityTransition FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FixedFeeQuantityTransitionFromRaw : IFromRawJson<FixedFeeQuantityTransition>
+{
+    /// <inheritdoc/>
+    public FixedFeeQuantityTransition FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FixedFeeQuantityTransition.FromRawUnchecked(rawData);
 }

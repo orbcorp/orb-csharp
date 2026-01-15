@@ -1,7 +1,10 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Subscriptions;
 
@@ -10,9 +13,9 @@ namespace Orb.Models.Subscriptions;
 /// associated with a subscription along with their start and end dates. This list
 /// contains the subscription's initial plan along with past and future plan changes.
 /// </summary>
-public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
+public sealed record class SubscriptionFetchScheduleParams : ParamsBase
 {
-    public required string SubscriptionID;
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -22,12 +25,10 @@ public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -37,95 +38,120 @@ public sealed record class SubscriptionFetchScheduleParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
-    public System::DateTime? StartDateGt
+    public DateTimeOffset? StartDateGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[gt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[gt]");
         }
-        set
-        {
-            this.QueryProperties["start_date[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("start_date[gt]", value); }
     }
 
-    public System::DateTime? StartDateGte
+    public DateTimeOffset? StartDateGte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[gte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[gte]");
         }
-        set
-        {
-            this.QueryProperties["start_date[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("start_date[gte]", value); }
     }
 
-    public System::DateTime? StartDateLt
+    public DateTimeOffset? StartDateLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[lt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[lt]");
         }
-        set
-        {
-            this.QueryProperties["start_date[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("start_date[lt]", value); }
     }
 
-    public System::DateTime? StartDateLte
+    public DateTimeOffset? StartDateLte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("start_date[lte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("start_date[lte]");
         }
-        set
-        {
-            this.QueryProperties["start_date[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("start_date[lte]", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionFetchScheduleParams() { }
+
+    public SubscriptionFetchScheduleParams(
+        SubscriptionFetchScheduleParams subscriptionFetchScheduleParams
+    )
+        : base(subscriptionFetchScheduleParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionID = subscriptionFetchScheduleParams.SubscriptionID;
+    }
+
+    public SubscriptionFetchScheduleParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionFetchScheduleParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionFetchScheduleParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/schedule", this.SubscriptionID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

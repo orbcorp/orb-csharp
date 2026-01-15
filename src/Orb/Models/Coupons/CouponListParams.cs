@@ -1,19 +1,22 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Coupons;
 
 /// <summary>
 /// This endpoint returns a list of all coupons for an account in a list format.
 ///
-/// The list of coupons is ordered starting from the most recently created coupon.
-/// The response also includes `pagination_metadata`, which lets the caller retrieve
-/// the next page of results if they exist. More information about pagination can
-/// be found in the Pagination-metadata schema.
+/// <para>The list of coupons is ordered starting from the most recently created
+/// coupon. The response also includes `pagination_metadata`, which lets the caller
+/// retrieve the next page of results if they exist. More information about pagination
+/// can be found in the Pagination-metadata schema.</para>
 /// </summary>
-public sealed record class CouponListParams : Orb::ParamsBase
+public sealed record class CouponListParams : ParamsBase
 {
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -23,12 +26,10 @@ public sealed record class CouponListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -38,12 +39,18 @@ public sealed record class CouponListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
     /// <summary>
@@ -53,17 +60,10 @@ public sealed record class CouponListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("redemption_code", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("redemption_code");
         }
-        set
-        {
-            this.QueryProperties["redemption_code"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("redemption_code", value); }
     }
 
     /// <summary>
@@ -73,31 +73,64 @@ public sealed record class CouponListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("show_archived", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("show_archived");
         }
-        set
-        {
-            this.QueryProperties["show_archived"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("show_archived", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public CouponListParams() { }
+
+    public CouponListParams(CouponListParams couponListParams)
+        : base(couponListParams) { }
+
+    public CouponListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/coupons")
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CouponListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static CouponListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/coupons")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

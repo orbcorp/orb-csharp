@@ -1,9 +1,12 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Events;
 
@@ -11,103 +14,146 @@ namespace Orb.Models.Events;
 /// This endpoint returns a filtered set of events for an account in a [paginated
 /// list format](/api-reference/pagination).
 ///
-/// Note that this is a `POST` endpoint rather than a `GET` endpoint because it employs
-/// a JSON body for search criteria rather than query parameters, allowing for a more
-/// flexible search syntax.
+/// <para>Note that this is a `POST` endpoint rather than a `GET` endpoint because
+/// it employs a JSON body for search criteria rather than query parameters, allowing
+/// for a more flexible search syntax.</para>
 ///
-/// Note that a search criteria _must_ be specified. Currently, Orb supports the following
-/// criteria: - `event_ids`: This is an explicit array of IDs to filter by. Note
-/// that an event's ID is the `idempotency_key` that   was originally used for ingestion.
+/// <para>Note that a search criteria _must_ be specified. Currently, Orb supports
+/// the following criteria: - `event_ids`: This is an explicit array of IDs to filter
+/// by. Note that an event's ID is the `idempotency_key` that   was originally used
+/// for ingestion.</para>
 ///
-/// By default, Orb will not throw a `404` if no events matched, Orb will return
-/// an empty array for `data` instead.
+/// <para>By default, Orb will not throw a `404` if no events matched, Orb will return
+/// an empty array for `data` instead.</para>
 /// </summary>
-public sealed record class EventSearchParams : Orb::ParamsBase
+public sealed record class EventSearchParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
     /// <summary>
-    /// This is an explicit array of IDs to filter by. Note that an event's ID is the
-    /// idempotency_key that was originally used for ingestion, and this only supports
-    /// events that have not been amended. Values in this array will be treated case sensitively.
+    /// This is an explicit array of IDs to filter by. Note that an event's ID is
+    /// the idempotency_key that was originally used for ingestion, and this only
+    /// supports events that have not been amended. Values in this array will be
+    /// treated case sensitively.
     /// </summary>
-    public required Generic::List<string> EventIDs
+    public required IReadOnlyList<string> EventIds
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("event_ids", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "event_ids",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("event_ids");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("event_ids");
         }
-        set { this.BodyProperties["event_ids"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<string>>(
+                "event_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
     /// The end of the timeframe, exclusive, in which to search events. If not specified,
     /// the current time is used.
     /// </summary>
-    public System::DateTime? TimeframeEnd
+    public DateTimeOffset? TimeframeEnd
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_end");
         }
-        set
-        {
-            this.BodyProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
     /// <summary>
     /// The start of the timeframe, inclusive, in which to search events. If not specified,
     /// the one week ago is used.
     /// </summary>
-    public System::DateTime? TimeframeStart
+    public DateTimeOffset? TimeframeStart
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_start");
         }
-        set
-        {
-            this.BodyProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("timeframe_start", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public EventSearchParams() { }
+
+    public EventSearchParams(EventSearchParams eventSearchParams)
+        : base(eventSearchParams)
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/search")
+        this._rawBodyData = new(eventSearchParams._rawBodyData);
+    }
+
+    public EventSearchParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventSearchParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static EventSearchParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/events/search")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

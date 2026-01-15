@@ -1,50 +1,45 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<CustomerListPageResponse>))]
-public sealed record class CustomerListPageResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<CustomerListPageResponse>
+[JsonConverter(
+    typeof(JsonModelConverter<CustomerListPageResponse, CustomerListPageResponseFromRaw>)
+)]
+public sealed record class CustomerListPageResponse : JsonModel
 {
-    public required Generic::List<Customer> Data
+    public required IReadOnlyList<Customer> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Customer>>(element)
-                ?? throw new System::ArgumentNullException("data");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Customer>>("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Customer>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "pagination_metadata",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
         }
-        set
-        {
-            this.Properties["pagination_metadata"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -56,18 +51,35 @@ public sealed record class CustomerListPageResponse
 
     public CustomerListPageResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    CustomerListPageResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public CustomerListPageResponse(CustomerListPageResponse customerListPageResponse)
+        : base(customerListPageResponse) { }
+
+    public CustomerListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CustomerListPageResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerListPageResponseFromRaw.FromRawUnchecked"/>
     public static CustomerListPageResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomerListPageResponseFromRaw : IFromRawJson<CustomerListPageResponse>
+{
+    /// <inheritdoc/>
+    public CustomerListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CustomerListPageResponse.FromRawUnchecked(rawData);
 }

@@ -1,54 +1,38 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AccountingProviderConfig>))]
-public sealed record class AccountingProviderConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<AccountingProviderConfig>
+[JsonConverter(
+    typeof(JsonModelConverter<AccountingProviderConfig, AccountingProviderConfigFromRaw>)
+)]
+public sealed record class AccountingProviderConfig : JsonModel
 {
     public required string ExternalProviderID
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_provider_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "external_provider_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("external_provider_id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_provider_id");
         }
-        set
-        {
-            this.Properties["external_provider_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("external_provider_id", value); }
     }
 
     public required string ProviderType
     {
         get
         {
-            if (!this.Properties.TryGetValue("provider_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "provider_type",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("provider_type");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("provider_type");
         }
-        set { this.Properties["provider_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("provider_type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ExternalProviderID;
@@ -57,18 +41,35 @@ public sealed record class AccountingProviderConfig
 
     public AccountingProviderConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AccountingProviderConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public AccountingProviderConfig(AccountingProviderConfig accountingProviderConfig)
+        : base(accountingProviderConfig) { }
+
+    public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AccountingProviderConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AccountingProviderConfigFromRaw.FromRawUnchecked"/>
     public static AccountingProviderConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AccountingProviderConfigFromRaw : IFromRawJson<AccountingProviderConfig>
+{
+    /// <inheritdoc/>
+    public AccountingProviderConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AccountingProviderConfig.FromRawUnchecked(rawData);
 }

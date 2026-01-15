@@ -1,0 +1,138 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Models.Plans.Migrations;
+
+namespace Orb.Services.Plans;
+
+/// <summary>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
+/// </summary>
+public interface IMigrationService
+{
+    /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IMigrationServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IMigrationService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Fetch migration
+    /// </summary>
+    Task<MigrationRetrieveResponse> Retrieve(
+        MigrationRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(MigrationRetrieveParams, CancellationToken)"/>
+    Task<MigrationRetrieveResponse> Retrieve(
+        string migrationID,
+        MigrationRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint returns a list of all migrations for a plan. The list of migrations
+    /// is ordered starting from the most recently created migration. The response
+    /// also includes pagination_metadata, which lets the caller retrieve the next
+    /// page of results if they exist.
+    /// </summary>
+    Task<MigrationListPage> List(
+        MigrationListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="List(MigrationListParams, CancellationToken)"/>
+    Task<MigrationListPage> List(
+        string planID,
+        MigrationListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint cancels a migration.
+    /// </summary>
+    Task<MigrationCancelResponse> Cancel(
+        MigrationCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Cancel(MigrationCancelParams, CancellationToken)"/>
+    Task<MigrationCancelResponse> Cancel(
+        string migrationID,
+        MigrationCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IMigrationService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IMigrationServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IMigrationServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans/{plan_id}/migrations/{migration_id}`, but is otherwise the
+    /// same as <see cref="IMigrationService.Retrieve(MigrationRetrieveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<MigrationRetrieveResponse>> Retrieve(
+        MigrationRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(MigrationRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<MigrationRetrieveResponse>> Retrieve(
+        string migrationID,
+        MigrationRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans/{plan_id}/migrations`, but is otherwise the
+    /// same as <see cref="IMigrationService.List(MigrationListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<MigrationListPage>> List(
+        MigrationListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="List(MigrationListParams, CancellationToken)"/>
+    Task<HttpResponse<MigrationListPage>> List(
+        string planID,
+        MigrationListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /plans/{plan_id}/migrations/{migration_id}/cancel`, but is otherwise the
+    /// same as <see cref="IMigrationService.Cancel(MigrationCancelParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<MigrationCancelResponse>> Cancel(
+        MigrationCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Cancel(MigrationCancelParams, CancellationToken)"/>
+    Task<HttpResponse<MigrationCancelResponse>> Cancel(
+        string migrationID,
+        MigrationCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}

@@ -1,62 +1,51 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using NewPlanCumulativeGroupedBulkPriceProperties = Orb.Models.NewPlanCumulativeGroupedBulkPriceProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewPlanCumulativeGroupedBulkPrice>))]
-public sealed record class NewPlanCumulativeGroupedBulkPrice
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewPlanCumulativeGroupedBulkPrice>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        NewPlanCumulativeGroupedBulkPrice,
+        NewPlanCumulativeGroupedBulkPriceFromRaw
+    >)
+)]
+public sealed record class NewPlanCumulativeGroupedBulkPrice : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required NewPlanCumulativeGroupedBulkPriceProperties::Cadence Cadence
+    public required ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence> Cadence
     {
         get
         {
-            if (!this.Properties.TryGetValue("cadence", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "cadence",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceProperties::Cadence>(
-                    element
-                ) ?? throw new System::ArgumentNullException("cadence");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence>
+            >("cadence");
         }
-        set { this.Properties["cadence"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("cadence", value); }
     }
 
-    public required Generic::Dictionary<string, Json::JsonElement> CumulativeGroupedBulkConfig
+    /// <summary>
+    /// Configuration for cumulative_grouped_bulk pricing
+    /// </summary>
+    public required NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig CumulativeGroupedBulkConfig
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "cumulative_grouped_bulk_config",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "cumulative_grouped_bulk_config",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, Json::JsonElement>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("cumulative_grouped_bulk_config");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig>(
+                "cumulative_grouped_bulk_config"
+            );
         }
-        set
-        {
-            this.Properties["cumulative_grouped_bulk_config"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("cumulative_grouped_bulk_config", value); }
     }
 
     /// <summary>
@@ -66,33 +55,25 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("item_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "item_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("item_id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
         }
-        set { this.Properties["item_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("item_id", value); }
     }
 
-    public required NewPlanCumulativeGroupedBulkPriceProperties::ModelType ModelType
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public required ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType> ModelType
     {
         get
         {
-            if (!this.Properties.TryGetValue("model_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "model_type",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceProperties::ModelType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("model_type");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType>
+            >("model_type");
         }
-        set { this.Properties["model_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("model_type", value); }
     }
 
     /// <summary>
@@ -102,13 +83,10 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("name", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("name");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
         }
-        set { this.Properties["name"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <summary>
@@ -118,58 +96,40 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("billable_metric_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
         }
-        set
-        {
-            this.Properties["billable_metric_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("billable_metric_id", value); }
     }
 
     /// <summary>
-    /// If the Price represents a fixed cost, the price will be billed in-advance if
-    /// this is true, and in-arrears if this is false.
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
     /// </summary>
     public bool? BilledInAdvance
     {
         get
         {
-            if (!this.Properties.TryGetValue("billed_in_advance", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
         }
-        set
-        {
-            this.Properties["billed_in_advance"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("billed_in_advance", value); }
     }
 
     /// <summary>
-    /// For custom cadence: specifies the duration of the billing period in days or months.
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
     /// </summary>
     public NewBillingCycleConfiguration? BillingCycleConfiguration
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "billing_cycle_configuration",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
         }
-        set
-        {
-            this.Properties["billing_cycle_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -179,55 +139,39 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("conversion_rate", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
         }
-        set { this.Properties["conversion_rate"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("conversion_rate", value); }
     }
 
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public NewPlanCumulativeGroupedBulkPriceProperties::ConversionRateConfig? ConversionRateConfig
+    public NewPlanCumulativeGroupedBulkPriceConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "conversion_rate_config",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceProperties::ConversionRateConfig?>(
-                element
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewPlanCumulativeGroupedBulkPriceConversionRateConfig>(
+                "conversion_rate_config"
             );
         }
-        set
-        {
-            this.Properties["conversion_rate_config"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("conversion_rate_config", value); }
     }
 
     /// <summary>
-    /// An ISO 4217 currency string, or custom pricing unit identifier, in which this
-    /// price is billed.
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
     /// </summary>
     public string? Currency
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -237,21 +181,12 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "dimensional_price_configuration",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<NewDimensionalPriceConfiguration?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
         }
-        set
-        {
-            this.Properties["dimensional_price_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -261,15 +196,10 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_price_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
         }
-        set
-        {
-            this.Properties["external_price_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("external_price_id", value); }
     }
 
     /// <summary>
@@ -279,17 +209,10 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("fixed_price_quantity", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
         }
-        set
-        {
-            this.Properties["fixed_price_quantity"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -299,17 +222,10 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_grouping_key", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
         }
-        set
-        {
-            this.Properties["invoice_grouping_key"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -320,21 +236,12 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "invoicing_cycle_configuration",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<NewBillingCycleConfiguration?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
         }
-        set
-        {
-            this.Properties["invoicing_cycle_configuration"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -342,16 +249,20 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -362,21 +273,17 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
     {
         get
         {
-            if (!this.Properties.TryGetValue("reference_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
         }
-        set { this.Properties["reference_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
-        foreach (var item in this.CumulativeGroupedBulkConfig.Values)
-        {
-            _ = item;
-        }
+        this.CumulativeGroupedBulkConfig.Validate();
         _ = this.ItemID;
         this.ModelType.Validate();
         _ = this.Name;
@@ -391,30 +298,632 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
-        if (this.Metadata != null)
-        {
-            foreach (var item in this.Metadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewPlanCumulativeGroupedBulkPrice() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewPlanCumulativeGroupedBulkPrice(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewPlanCumulativeGroupedBulkPrice(
+        NewPlanCumulativeGroupedBulkPrice newPlanCumulativeGroupedBulkPrice
+    )
+        : base(newPlanCumulativeGroupedBulkPrice) { }
+
+    public NewPlanCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewPlanCumulativeGroupedBulkPrice(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewPlanCumulativeGroupedBulkPriceFromRaw.FromRawUnchecked"/>
     public static NewPlanCumulativeGroupedBulkPrice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NewPlanCumulativeGroupedBulkPriceFromRaw : IFromRawJson<NewPlanCumulativeGroupedBulkPrice>
+{
+    /// <inheritdoc/>
+    public NewPlanCumulativeGroupedBulkPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanCumulativeGroupedBulkPrice.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(NewPlanCumulativeGroupedBulkPriceCadenceConverter))]
+public enum NewPlanCumulativeGroupedBulkPriceCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class NewPlanCumulativeGroupedBulkPriceCadenceConverter
+    : JsonConverter<NewPlanCumulativeGroupedBulkPriceCadence>
+{
+    public override NewPlanCumulativeGroupedBulkPriceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => NewPlanCumulativeGroupedBulkPriceCadence.Annual,
+            "semi_annual" => NewPlanCumulativeGroupedBulkPriceCadence.SemiAnnual,
+            "monthly" => NewPlanCumulativeGroupedBulkPriceCadence.Monthly,
+            "quarterly" => NewPlanCumulativeGroupedBulkPriceCadence.Quarterly,
+            "one_time" => NewPlanCumulativeGroupedBulkPriceCadence.OneTime,
+            "custom" => NewPlanCumulativeGroupedBulkPriceCadence.Custom,
+            _ => (NewPlanCumulativeGroupedBulkPriceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        NewPlanCumulativeGroupedBulkPriceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                NewPlanCumulativeGroupedBulkPriceCadence.Annual => "annual",
+                NewPlanCumulativeGroupedBulkPriceCadence.SemiAnnual => "semi_annual",
+                NewPlanCumulativeGroupedBulkPriceCadence.Monthly => "monthly",
+                NewPlanCumulativeGroupedBulkPriceCadence.Quarterly => "quarterly",
+                NewPlanCumulativeGroupedBulkPriceCadence.OneTime => "one_time",
+                NewPlanCumulativeGroupedBulkPriceCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for cumulative_grouped_bulk pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig,
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigFromRaw
+    >)
+)]
+public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig : JsonModel
+{
+    /// <summary>
+    /// Each tier lower bound must have the same group of values.
+    /// </summary>
+    public required IReadOnlyList<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue> DimensionValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>
+            >("dimension_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>
+            >("dimension_values", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    public required string Group
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("group");
+        }
+        init { this._rawData.Set("group", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        foreach (var item in this.DimensionValues)
+        {
+            item.Validate();
+        }
+        _ = this.Group;
+    }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig() { }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig
+    )
+        : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig) { }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigFromRaw.FromRawUnchecked"/>
+    public static NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigFromRaw
+    : IFromRawJson<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig>
+{
+    /// <inheritdoc/>
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Configuration for a dimension value entry
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue,
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueFromRaw
+    >)
+)]
+public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
+    : JsonModel
+{
+    /// <summary>
+    /// Grouping key value
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Tier lower bound
+    /// </summary>
+    public required string TierLowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("tier_lower_bound");
+        }
+        init { this._rawData.Set("tier_lower_bound", value); }
+    }
+
+    /// <summary>
+    /// Unit amount for this combination
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.GroupingKey;
+        _ = this.TierLowerBound;
+        _ = this.UnitAmount;
+    }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue() { }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
+    )
+        : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue) { }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueFromRaw.FromRawUnchecked"/>
+    public static NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueFromRaw
+    : IFromRawJson<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>
+{
+    /// <inheritdoc/>
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// The pricing model type
+/// </summary>
+[JsonConverter(typeof(NewPlanCumulativeGroupedBulkPriceModelTypeConverter))]
+public enum NewPlanCumulativeGroupedBulkPriceModelType
+{
+    CumulativeGroupedBulk,
+}
+
+sealed class NewPlanCumulativeGroupedBulkPriceModelTypeConverter
+    : JsonConverter<NewPlanCumulativeGroupedBulkPriceModelType>
+{
+    public override NewPlanCumulativeGroupedBulkPriceModelType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "cumulative_grouped_bulk" =>
+                NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            _ => (NewPlanCumulativeGroupedBulkPriceModelType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        NewPlanCumulativeGroupedBulkPriceModelType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk =>
+                    "cumulative_grouped_bulk",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(NewPlanCumulativeGroupedBulkPriceConversionRateConfigConverter))]
+public record class NewPlanCumulativeGroupedBulkPriceConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public NewPlanCumulativeGroupedBulkPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public NewPlanCumulativeGroupedBulkPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public NewPlanCumulativeGroupedBulkPriceConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of NewPlanCumulativeGroupedBulkPriceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of NewPlanCumulativeGroupedBulkPriceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator NewPlanCumulativeGroupedBulkPriceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator NewPlanCumulativeGroupedBulkPriceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of NewPlanCumulativeGroupedBulkPriceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(NewPlanCumulativeGroupedBulkPriceConversionRateConfig? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+}
+
+sealed class NewPlanCumulativeGroupedBulkPriceConversionRateConfigConverter
+    : JsonConverter<NewPlanCumulativeGroupedBulkPriceConversionRateConfig>
+{
+    public override NewPlanCumulativeGroupedBulkPriceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new NewPlanCumulativeGroupedBulkPriceConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        NewPlanCumulativeGroupedBulkPriceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }

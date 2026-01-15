@@ -1,78 +1,69 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<MaximumInterval>))]
-public sealed record class MaximumInterval : Orb::ModelBase, Orb::IFromRaw<MaximumInterval>
+[JsonConverter(typeof(JsonModelConverter<MaximumInterval, MaximumIntervalFromRaw>))]
+public sealed record class MaximumInterval : JsonModel
 {
     /// <summary>
     /// The price interval ids that this maximum interval applies to.
     /// </summary>
-    public required Generic::List<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIds
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "applies_to_price_interval_ids",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "applies_to_price_interval_ids",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("applies_to_price_interval_ids");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
+                "applies_to_price_interval_ids"
+            );
         }
-        set
+        init
         {
-            this.Properties["applies_to_price_interval_ids"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_interval_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     /// <summary>
     /// The end date of the maximum interval.
     /// </summary>
-    public required System::DateTime? EndDate
+    public required System::DateTimeOffset? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date");
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
     /// The filters that determine which prices this maximum interval applies to.
     /// </summary>
-    public required Generic::List<TransformPriceFilter> Filters
+    public required IReadOnlyList<MaximumIntervalFilter> Filters
     {
         get
         {
-            if (!this.Properties.TryGetValue("filters", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "filters",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<TransformPriceFilter>>(element)
-                ?? throw new System::ArgumentNullException("filters");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<MaximumIntervalFilter>>("filters");
         }
-        set { this.Properties["filters"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MaximumIntervalFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -83,42 +74,29 @@ public sealed record class MaximumInterval : Orb::ModelBase, Orb::IFromRaw<Maxim
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("maximum_amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("maximum_amount");
         }
-        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("maximum_amount", value); }
     }
 
     /// <summary>
     /// The start date of the maximum interval.
     /// </summary>
-    public required System::DateTime StartDate
+    public required System::DateTimeOffset StartDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.AppliesToPriceIntervalIDs)
-        {
-            _ = item;
-        }
+        _ = this.AppliesToPriceIntervalIds;
         _ = this.EndDate;
         foreach (var item in this.Filters)
         {
@@ -130,18 +108,230 @@ public sealed record class MaximumInterval : Orb::ModelBase, Orb::IFromRaw<Maxim
 
     public MaximumInterval() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    MaximumInterval(Generic::Dictionary<string, Json::JsonElement> properties)
+    public MaximumInterval(MaximumInterval maximumInterval)
+        : base(maximumInterval) { }
+
+    public MaximumInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MaximumInterval(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static MaximumInterval FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+    /// <inheritdoc cref="MaximumIntervalFromRaw.FromRawUnchecked"/>
+    public static MaximumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MaximumIntervalFromRaw : IFromRawJson<MaximumInterval>
+{
+    /// <inheritdoc/>
+    public MaximumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MaximumInterval.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<MaximumIntervalFilter, MaximumIntervalFilterFromRaw>))]
+public sealed record class MaximumIntervalFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, MaximumIntervalFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MaximumIntervalFilterField>>(
+                "field"
+            );
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, MaximumIntervalFilterOperator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MaximumIntervalFilterOperator>>(
+                "operator"
+            );
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public MaximumIntervalFilter() { }
+
+    public MaximumIntervalFilter(MaximumIntervalFilter maximumIntervalFilter)
+        : base(maximumIntervalFilter) { }
+
+    public MaximumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MaximumIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MaximumIntervalFilterFromRaw.FromRawUnchecked"/>
+    public static MaximumIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MaximumIntervalFilterFromRaw : IFromRawJson<MaximumIntervalFilter>
+{
+    /// <inheritdoc/>
+    public MaximumIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaximumIntervalFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(MaximumIntervalFilterFieldConverter))]
+public enum MaximumIntervalFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class MaximumIntervalFilterFieldConverter : JsonConverter<MaximumIntervalFilterField>
+{
+    public override MaximumIntervalFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => MaximumIntervalFilterField.PriceID,
+            "item_id" => MaximumIntervalFilterField.ItemID,
+            "price_type" => MaximumIntervalFilterField.PriceType,
+            "currency" => MaximumIntervalFilterField.Currency,
+            "pricing_unit_id" => MaximumIntervalFilterField.PricingUnitID,
+            _ => (MaximumIntervalFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MaximumIntervalFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MaximumIntervalFilterField.PriceID => "price_id",
+                MaximumIntervalFilterField.ItemID => "item_id",
+                MaximumIntervalFilterField.PriceType => "price_type",
+                MaximumIntervalFilterField.Currency => "currency",
+                MaximumIntervalFilterField.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(MaximumIntervalFilterOperatorConverter))]
+public enum MaximumIntervalFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class MaximumIntervalFilterOperatorConverter : JsonConverter<MaximumIntervalFilterOperator>
+{
+    public override MaximumIntervalFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => MaximumIntervalFilterOperator.Includes,
+            "excludes" => MaximumIntervalFilterOperator.Excludes,
+            _ => (MaximumIntervalFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MaximumIntervalFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MaximumIntervalFilterOperator.Includes => "includes",
+                MaximumIntervalFilterOperator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -1,52 +1,50 @@
-using BalanceTransactionListPageResponseProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionListPageResponseProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BalanceTransactionListPageResponse>))]
-public sealed record class BalanceTransactionListPageResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<BalanceTransactionListPageResponse>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        BalanceTransactionListPageResponse,
+        BalanceTransactionListPageResponseFromRaw
+    >)
+)]
+public sealed record class BalanceTransactionListPageResponse : JsonModel
 {
-    public required Generic::List<BalanceTransactionListPageResponseProperties::Data> Data
+    public required IReadOnlyList<BalanceTransactionListResponse> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<BalanceTransactionListPageResponseProperties::Data>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("data");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<BalanceTransactionListResponse>>(
+                "data"
+            );
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<BalanceTransactionListResponse>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
-    public required Models::PaginationMetadata PaginationMetadata
+    public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("pagination_metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "pagination_metadata",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::PaginationMetadata>(element)
-                ?? throw new System::ArgumentNullException("pagination_metadata");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata");
         }
-        set
-        {
-            this.Properties["pagination_metadata"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -58,18 +56,37 @@ public sealed record class BalanceTransactionListPageResponse
 
     public BalanceTransactionListPageResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BalanceTransactionListPageResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public BalanceTransactionListPageResponse(
+        BalanceTransactionListPageResponse balanceTransactionListPageResponse
+    )
+        : base(balanceTransactionListPageResponse) { }
+
+    public BalanceTransactionListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BalanceTransactionListPageResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BalanceTransactionListPageResponseFromRaw.FromRawUnchecked"/>
     public static BalanceTransactionListPageResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class BalanceTransactionListPageResponseFromRaw : IFromRawJson<BalanceTransactionListPageResponse>
+{
+    /// <inheritdoc/>
+    public BalanceTransactionListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BalanceTransactionListPageResponse.FromRawUnchecked(rawData);
 }

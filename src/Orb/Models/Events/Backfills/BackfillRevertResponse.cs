@@ -1,9 +1,10 @@
-using BackfillRevertResponseProperties = Orb.Models.Events.Backfills.BackfillRevertResponseProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Events.Backfills;
@@ -12,75 +13,55 @@ namespace Orb.Models.Events.Backfills;
 /// A backfill represents an update to historical usage data, adding or replacing
 /// events in a timeframe.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BackfillRevertResponse>))]
-public sealed record class BackfillRevertResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<BackfillRevertResponse>
+[JsonConverter(typeof(JsonModelConverter<BackfillRevertResponse, BackfillRevertResponseFromRaw>))]
+public sealed record class BackfillRevertResponse : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
     /// If in the future, the time at which the backfill will automatically close.
     /// If in the past, the time at which the backfill was closed.
     /// </summary>
-    public required System::DateTime? CloseTime
+    public required System::DateTimeOffset? CloseTime
     {
         get
         {
-            if (!this.Properties.TryGetValue("close_time", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "close_time",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("close_time");
         }
-        set { this.Properties["close_time"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("close_time", value); }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     /// <summary>
-    /// The Orb-generated ID of the customer to which this backfill is scoped. If `null`,
-    /// this backfill is scoped to all customers.
+    /// The Orb-generated ID of the customer to which this backfill is scoped. If
+    /// `null`, this backfill is scoped to all customers.
     /// </summary>
     public required string? CustomerID
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("customer_id");
         }
-        set { this.Properties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -90,113 +71,73 @@ public sealed record class BackfillRevertResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("events_ingested", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "events_ingested",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("events_ingested");
         }
-        set { this.Properties["events_ingested"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("events_ingested", value); }
     }
 
     /// <summary>
     /// If `true`, existing events in the backfill's timeframe will be replaced with
-    /// the newly ingested events associated with the backfill. If `false`, newly ingested
-    /// events will be added to the existing events.
+    /// the newly ingested events associated with the backfill. If `false`, newly
+    /// ingested events will be added to the existing events.
     /// </summary>
     public required bool ReplaceExistingEvents
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "replace_existing_events",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "replace_existing_events",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("replace_existing_events");
         }
-        set
-        {
-            this.Properties["replace_existing_events"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("replace_existing_events", value); }
     }
 
     /// <summary>
     /// The time at which this backfill was reverted.
     /// </summary>
-    public required System::DateTime? RevertedAt
+    public required System::DateTimeOffset? RevertedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("reverted_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "reverted_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("reverted_at");
         }
-        set { this.Properties["reverted_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("reverted_at", value); }
     }
 
     /// <summary>
     /// The status of the backfill.
     /// </summary>
-    public required BackfillRevertResponseProperties::Status Status
+    public required ApiEnum<string, BackfillRevertResponseStatus> Status
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "status",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<BackfillRevertResponseProperties::Status>(
-                    element
-                ) ?? throw new System::ArgumentNullException("status");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, BackfillRevertResponseStatus>>(
+                "status"
+            );
         }
-        set { this.Properties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("status", value); }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end");
         }
-        set { this.Properties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
-    public required System::DateTime TimeframeStart
+    public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start");
         }
-        set { this.Properties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -207,17 +148,13 @@ public sealed record class BackfillRevertResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("deprecation_filter", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("deprecation_filter");
         }
-        set
-        {
-            this.Properties["deprecation_filter"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("deprecation_filter", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -235,18 +172,88 @@ public sealed record class BackfillRevertResponse
 
     public BackfillRevertResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BackfillRevertResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public BackfillRevertResponse(BackfillRevertResponse backfillRevertResponse)
+        : base(backfillRevertResponse) { }
+
+    public BackfillRevertResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BackfillRevertResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BackfillRevertResponseFromRaw.FromRawUnchecked"/>
     public static BackfillRevertResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class BackfillRevertResponseFromRaw : IFromRawJson<BackfillRevertResponse>
+{
+    /// <inheritdoc/>
+    public BackfillRevertResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BackfillRevertResponse.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The status of the backfill.
+/// </summary>
+[JsonConverter(typeof(BackfillRevertResponseStatusConverter))]
+public enum BackfillRevertResponseStatus
+{
+    Pending,
+    Reflected,
+    PendingRevert,
+    Reverted,
+}
+
+sealed class BackfillRevertResponseStatusConverter : JsonConverter<BackfillRevertResponseStatus>
+{
+    public override BackfillRevertResponseStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "pending" => BackfillRevertResponseStatus.Pending,
+            "reflected" => BackfillRevertResponseStatus.Reflected,
+            "pending_revert" => BackfillRevertResponseStatus.PendingRevert,
+            "reverted" => BackfillRevertResponseStatus.Reverted,
+            _ => (BackfillRevertResponseStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        BackfillRevertResponseStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                BackfillRevertResponseStatus.Pending => "pending",
+                BackfillRevertResponseStatus.Reflected => "reflected",
+                BackfillRevertResponseStatus.PendingRevert => "pending_revert",
+                BackfillRevertResponseStatus.Reverted => "reverted",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

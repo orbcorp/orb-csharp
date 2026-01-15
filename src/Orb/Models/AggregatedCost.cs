@@ -1,29 +1,31 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AggregatedCost>))]
-public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<AggregatedCost>
+[JsonConverter(typeof(JsonModelConverter<AggregatedCost, AggregatedCostFromRaw>))]
+public sealed record class AggregatedCost : JsonModel
 {
-    public required Generic::List<PerPriceCost> PerPriceCosts
+    public required IReadOnlyList<PerPriceCost> PerPriceCosts
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_price_costs", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "per_price_costs",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<PerPriceCost>>(element)
-                ?? throw new System::ArgumentNullException("per_price_costs");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<PerPriceCost>>("per_price_costs");
         }
-        set { this.Properties["per_price_costs"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PerPriceCost>>(
+                "per_price_costs",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -33,46 +35,30 @@ public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<Aggreg
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "subtotal",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("subtotal");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
         }
-        set { this.Properties["subtotal"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("subtotal", value); }
     }
 
-    public required System::DateTime TimeframeEnd
+    public required DateTimeOffset TimeframeEnd
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_end",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_end");
         }
-        set { this.Properties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
-    public required System::DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this.Properties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
         }
-        set { this.Properties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -82,15 +68,13 @@ public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<Aggreg
     {
         get
         {
-            if (!this.Properties.TryGetValue("total", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("total");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
         }
-        set { this.Properties["total"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("total", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.PerPriceCosts)
@@ -105,18 +89,32 @@ public sealed record class AggregatedCost : Orb::ModelBase, Orb::IFromRaw<Aggreg
 
     public AggregatedCost() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AggregatedCost(Generic::Dictionary<string, Json::JsonElement> properties)
+    public AggregatedCost(AggregatedCost aggregatedCost)
+        : base(aggregatedCost) { }
+
+    public AggregatedCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AggregatedCost(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static AggregatedCost FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="AggregatedCostFromRaw.FromRawUnchecked"/>
+    public static AggregatedCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AggregatedCostFromRaw : IFromRawJson<AggregatedCost>
+{
+    /// <inheritdoc/>
+    public AggregatedCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AggregatedCost.FromRawUnchecked(rawData);
 }

@@ -1,37 +1,84 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Subscriptions;
 
 /// <summary>
 /// This endpoint can be used to unschedule any pending cancellations for a subscription.
 ///
-/// To be eligible, the subscription must currently be active and have a future cancellation.
-/// This operation will turn on auto-renew, ensuring that the subscription does not
-/// end at the currently scheduled cancellation time.
+/// <para>To be eligible, the subscription must currently be active and have a future
+/// cancellation. This operation will turn on auto-renew, ensuring that the subscription
+/// does not end at the currently scheduled cancellation time.</para>
 /// </summary>
-public sealed record class SubscriptionUnscheduleCancellationParams : Orb::ParamsBase
+public sealed record class SubscriptionUnscheduleCancellationParams : ParamsBase
 {
-    public required string SubscriptionID;
+    public string? SubscriptionID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionUnscheduleCancellationParams() { }
+
+    public SubscriptionUnscheduleCancellationParams(
+        SubscriptionUnscheduleCancellationParams subscriptionUnscheduleCancellationParams
+    )
+        : base(subscriptionUnscheduleCancellationParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionID = subscriptionUnscheduleCancellationParams.SubscriptionID;
+    }
+
+    public SubscriptionUnscheduleCancellationParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionUnscheduleCancellationParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionUnscheduleCancellationParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/unschedule_cancellation", this.SubscriptionID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

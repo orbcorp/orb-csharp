@@ -1,86 +1,144 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using NewAvalaraTaxConfigurationProperties = Orb.Models.Customers.NewAvalaraTaxConfigurationProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewAvalaraTaxConfiguration>))]
-public sealed record class NewAvalaraTaxConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewAvalaraTaxConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<NewAvalaraTaxConfiguration, NewAvalaraTaxConfigurationFromRaw>)
+)]
+public sealed record class NewAvalaraTaxConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_exempt", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_exempt",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("tax_exempt");
         }
-        set { this.Properties["tax_exempt"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("tax_exempt", value); }
     }
 
-    public required NewAvalaraTaxConfigurationProperties::TaxProvider TaxProvider
+    public required ApiEnum<string, TaxProvider> TaxProvider
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_provider", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_provider",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<NewAvalaraTaxConfigurationProperties::TaxProvider>(
-                    element
-                ) ?? throw new System::ArgumentNullException("tax_provider");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, TaxProvider>>("tax_provider");
         }
-        set { this.Properties["tax_provider"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("tax_provider", value); }
+    }
+
+    /// <summary>
+    /// Whether to automatically calculate tax for this customer. When null, inherits
+    /// from account-level setting. When true or false, overrides the account setting.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
+        init { this._rawData.Set("automatic_tax_enabled", value); }
     }
 
     public string? TaxExemptionCode
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_exemption_code", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tax_exemption_code");
         }
-        set
-        {
-            this.Properties["tax_exemption_code"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("tax_exemption_code", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
         this.TaxProvider.Validate();
+        _ = this.AutomaticTaxEnabled;
         _ = this.TaxExemptionCode;
     }
 
     public NewAvalaraTaxConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewAvalaraTaxConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewAvalaraTaxConfiguration(NewAvalaraTaxConfiguration newAvalaraTaxConfiguration)
+        : base(newAvalaraTaxConfiguration) { }
+
+    public NewAvalaraTaxConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewAvalaraTaxConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewAvalaraTaxConfigurationFromRaw.FromRawUnchecked"/>
     public static NewAvalaraTaxConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NewAvalaraTaxConfigurationFromRaw : IFromRawJson<NewAvalaraTaxConfiguration>
+{
+    /// <inheritdoc/>
+    public NewAvalaraTaxConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewAvalaraTaxConfiguration.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(TaxProviderConverter))]
+public enum TaxProvider
+{
+    Avalara,
+}
+
+sealed class TaxProviderConverter : JsonConverter<TaxProvider>
+{
+    public override TaxProvider Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "avalara" => TaxProvider.Avalara,
+            _ => (TaxProvider)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TaxProvider value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TaxProvider.Avalara => "avalara",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

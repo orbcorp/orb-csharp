@@ -1,9 +1,11 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Subscriptions;
 
@@ -11,11 +13,15 @@ namespace Orb.Models.Subscriptions;
 /// This endpoint can be used to update the `metadata`, `net terms`, `auto_collection`,
 /// `invoicing_threshold`, and `default_invoice_memo` properties on a subscription.
 /// </summary>
-public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
+public sealed record class SubscriptionUpdateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string SubscriptionID;
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// Determines whether issued invoices for this subscription will automatically
@@ -26,68 +32,39 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("auto_collection", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
         }
-        set
-        {
-            this.BodyProperties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("auto_collection", value); }
     }
 
     /// <summary>
-    /// Determines the default memo on this subscription's invoices. Note that if this
-    /// is not provided, it is determined by the plan configuration.
+    /// Determines the default memo on this subscription's invoices. Note that if
+    /// this is not provided, it is determined by the plan configuration.
     /// </summary>
     public string? DefaultInvoiceMemo
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "default_invoice_memo",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("default_invoice_memo");
         }
-        set
-        {
-            this.BodyProperties["default_invoice_memo"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawBodyData.Set("default_invoice_memo", value); }
     }
 
     /// <summary>
-    /// When this subscription's accrued usage reaches this threshold, an invoice will
-    /// be issued for the subscription. If not specified, invoices will only be issued
-    /// at the end of the billing period.
+    /// When this subscription's accrued usage reaches this threshold, an invoice
+    /// will be issued for the subscription. If not specified, invoices will only
+    /// be issued at the end of the billing period.
     /// </summary>
     public string? InvoicingThreshold
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "invoicing_threshold",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("invoicing_threshold");
         }
-        set
-        {
-            this.BodyProperties["invoicing_threshold"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawBodyData.Set("invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -95,62 +72,115 @@ public sealed record class SubscriptionUpdateParams : Orb::ParamsBase
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
     /// </summary>
-    public Generic::Dictionary<string, string?>? Metadata
+    public IReadOnlyDictionary<string, string?>? Metadata
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("metadata", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string?>?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
+                "metadata"
+            );
         }
-        set { this.BodyProperties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
-    /// Determines the difference between the invoice issue date for subscription invoices
-    /// as the date that they are due. A value of `0` here represents that the invoice
-    /// is due on issue, whereas a value of `30` represents that the customer has a
-    /// month to pay the invoice.
+    /// Determines the difference between the invoice issue date for subscription
+    /// invoices as the date that they are due. A value of `0` here represents that
+    /// the invoice is due on issue, whereas a value of `30` represents that the customer
+    /// has a month to pay the invoice.
     /// </summary>
     public long? NetTerms
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("net_terms", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("net_terms");
         }
-        set { this.BodyProperties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("net_terms", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionUpdateParams() { }
+
+    public SubscriptionUpdateParams(SubscriptionUpdateParams subscriptionUpdateParams)
+        : base(subscriptionUpdateParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.SubscriptionID = subscriptionUpdateParams.SubscriptionID;
+
+        this._rawBodyData = new(subscriptionUpdateParams._rawBodyData);
+    }
+
+    public SubscriptionUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionUpdateParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}", this.SubscriptionID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

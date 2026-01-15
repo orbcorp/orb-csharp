@@ -1,110 +1,115 @@
-using CostListByExternalIDParamsProperties = Orb.Models.Customers.Costs.CostListByExternalIDParamsProperties;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Customers.Costs;
 
 /// <summary>
 /// This endpoint is used to fetch a day-by-day snapshot of a customer's costs in
-/// Orb, calculated by applying pricing information to the underlying usage (see
-/// the [subscription usage endpoint](/api-reference/subscription/fetch-subscription-usage)
+/// Orb, calculated by applying pricing information to the underlying usage (see the
+/// [subscription usage endpoint](/api-reference/subscription/fetch-subscription-usage)
 /// to fetch usage per metric, in usage units rather than a currency).
 ///
-/// This endpoint can be leveraged for internal tooling and to provide a more transparent
-/// billing experience for your end users:
+/// <para>This endpoint can be leveraged for internal tooling and to provide a more
+/// transparent billing experience for your end users:</para>
 ///
-/// 1. Understand the cost breakdown per line item historically and in real-time for
-/// the current billing period. 2. Provide customer visibility into how different
-/// services are contributing to the overall invoice with a per-day   timeseries
-/// (as compared to the [upcoming invoice](/api-reference/invoice/fetch-upcoming-invoice)
+/// <para>1. Understand the cost breakdown per line item historically and in real-time
+/// for the current billing period. 2. Provide customer visibility into how different
+/// services are contributing to the overall invoice with a per-day   timeseries (as
+/// compared to the [upcoming invoice](/api-reference/invoice/fetch-upcoming-invoice)
 /// resource,   which represents a snapshot for the current period). 3. Assess how
-/// minimums and discounts affect your customers by teasing apart costs directly as
-/// a result of usage,   as opposed to minimums and discounts at the plan and price
-/// level. 4. Gain insight into key customer health metrics, such as the percent
-/// utilization of the minimum committed spend.
+/// minimums and discounts affect your customers by teasing apart costs directly
+/// as a result of usage,   as opposed to minimums and discounts at the plan and price
+/// level. 4. Gain insight into key customer health metrics, such as the percent utilization
+/// of the minimum committed spend.</para>
 ///
-/// ## Fetching subscriptions By default, this endpoint fetches the currently active
-/// subscription for the customer, and returns cost information for the subscription's
+/// <para>## Fetching subscriptions By default, this endpoint fetches the currently
+/// active subscription for the customer, and returns cost information for the subscription's
 /// current billing period, broken down by each participating price. If there are
 /// no currently active subscriptions, this will instead default to the most recently
 /// active subscription or return an empty series if none are found. For example,
 /// if your plan charges for compute hours, job runs, and data syncs, then this endpoint
-/// would provide a daily breakdown of your customer's cost for each of those axes.
+/// would provide a daily breakdown of your customer's cost for each of those axes.</para>
 ///
-/// If timeframe bounds are specified, Orb fetches all subscriptions that were active
-/// in that timeframe. If two subscriptions overlap on a single day, costs from each
-/// price will be summed, and prices for both subscriptions will be included in the breakdown.
+/// <para>If timeframe bounds are specified, Orb fetches all subscriptions that were
+/// active in that timeframe. If two subscriptions overlap on a single day, costs
+/// from each price will be summed, and prices for both subscriptions will be included
+/// in the breakdown.</para>
 ///
-/// ## Prepaid plans For plans that include prices which deduct credits rather than
-/// accrue in-arrears charges in a billable currency, this endpoint will return the
-/// total deduction amount, in credits, for the specified timeframe.
+/// <para>## Prepaid plans For plans that include prices which deduct credits rather
+/// than accrue in-arrears charges in a billable currency, this endpoint will return
+/// the total deduction amount, in credits, for the specified timeframe.</para>
 ///
-/// ## Cumulative subtotals and totals Since the subtotal and total must factor in
-/// any billing-period level discounts and minimums, it's most meaningful to consider
+/// <para>## Cumulative subtotals and totals Since the subtotal and total must factor
+/// in any billing-period level discounts and minimums, it's most meaningful to consider
 /// costs relative to the start of the subscription's billing period. As a result,
 /// by default this endpoint returns cumulative totals since the beginning of the
-/// billing period. In particular, the `timeframe_start` of a returned timeframe
-/// window is *always* the beginning of the billing period and `timeframe_end` is
-/// incremented one day at a time to build the result.
+/// billing period. In particular, the `timeframe_start` of a returned timeframe window
+/// is *always* the beginning of the billing period and `timeframe_end` is incremented
+/// one day at a time to build the result.</para>
 ///
-/// A customer that uses a few API calls a day but has a minimum commitment might
-/// exhibit the following pattern for their subtotal and total in the first few days
-/// of the month. Here, we assume that each API call is \$2.50, the customer's plan
-/// has a monthly minimum of \$50 for this price, and that the subscription's billing
-/// period bounds are aligned to the first of the month:
+/// <para>A customer that uses a few API calls a day but has a minimum commitment
+/// might exhibit the following pattern for their subtotal and total in the first
+/// few days of the month. Here, we assume that each API call is \$2.50, the customer's
+/// plan has a monthly minimum of \$50 for this price, and that the subscription's
+/// billing period bounds are aligned to the first of the month:</para>
 ///
-/// | timeframe_start | timeframe_end | Cumulative usage | Subtotal | Total (incl.
-/// commitment)  | | -----------| ----------- | ----------- | ----------- |-----------
+/// <para>| timeframe_start | timeframe_end | Cumulative usage | Subtotal | Total
+/// (incl. commitment)  | | -----------| ----------- | ----------- | ----------- |-----------
 /// | | 2023-02-01 | 2023-02-02 | 9 | \$22.50 | \$50.00 | | 2023-02-01 | 2023-02-03
 /// | 19 | \$47.50 | \$50.00 | | 2023-02-01 | 2023-02-04 | 20 | \$50.00 | \$50.00
 /// | | 2023-02-01 | 2023-02-05 | 28 | \$70.00 | \$70.00 | | 2023-02-01 | 2023-02-06
-/// | 36 | \$90.00 | \$90.00 |
+/// | 36 | \$90.00 | \$90.00 |</para>
 ///
-/// ### Periodic values When the query parameter `view_mode=periodic` is specified,
-/// Orb will return an incremental day-by-day view of costs. In this case, there
-/// will always be a one-day difference between `timeframe_start` and `timeframe_end`
-/// for the timeframes returned. This is a transform on top of the cumulative costs,
-/// calculated by taking the difference of each timeframe with the last. Note that
-/// in the above example, the `Total` value would be 0 for the second two data points,
-/// since the minimum commitment has not yet been hit and each day is not contributing
-/// anything to the total cost.
+/// <para>### Periodic values When the query parameter `view_mode=periodic` is specified,
+/// Orb will return an incremental day-by-day view of costs. In this case, there will
+/// always be a one-day difference between `timeframe_start` and `timeframe_end` for
+/// the timeframes returned. This is a transform on top of the cumulative costs, calculated
+/// by taking the difference of each timeframe with the last. Note that in the above
+/// example, the `Total` value would be 0 for the second two data points, since the
+/// minimum commitment has not yet been hit and each day is not contributing anything
+/// to the total cost.</para>
 ///
-/// ## Timeframe bounds For an active subscription, both timeframes should be specified
-/// in the request. If a subscription starts or ends within the timeframe, the response
-/// will only include windows where the subscription is active. If a subscription
-/// has ended, no timeframe bounds need to be specified and the response will default
-/// to the billing period when the subscription was last active.
+/// <para>## Timeframe bounds For an active subscription, both timeframes should
+/// be specified in the request. If a subscription starts or ends within the timeframe,
+/// the response will only include windows where the subscription is active. If a
+/// subscription has ended, no timeframe bounds need to be specified and the response
+/// will default to the billing period when the subscription was last active.</para>
 ///
-/// As noted above, `timeframe_start` for a given cumulative datapoint is always
+/// <para>As noted above, `timeframe_start` for a given cumulative datapoint is always
 /// the beginning of the billing period, and `timeframe_end` is incremented one day
 /// at a time to construct the response. When a timeframe is passed in that is not
 /// aligned to the current subscription's billing period, the response will contain
-/// cumulative totals from multiple billing periods.
+/// cumulative totals from multiple billing periods.</para>
 ///
-/// Suppose the queried customer has a subscription aligned to the 15th of every
-/// month. If this endpoint is queried with the date range `2023-06-01` - `2023-07-01`,
+/// <para>Suppose the queried customer has a subscription aligned to the 15th of
+/// every month. If this endpoint is queried with the date range `2023-06-01` - `2023-07-01`,
 /// the first data point will represent about half a billing period's worth of costs,
 /// accounting for accruals from the start of the billing period and inclusive of
 /// the first day of the timeframe (`timeframe_start = 2023-05-15 00:00:00`, `timeframe_end
-/// = 2023-06-02 00:00:00`)
+/// = 2023-06-02 00:00:00`)</para>
 ///
-/// | datapoint index | timeframe_start | timeframe_end | | ----------- | -----------|
+/// <para>| datapoint index | timeframe_start | timeframe_end | | ----------- | -----------|
 /// ----------- | | 0 | 2023-05-15 | 2023-06-02 | | 1 | 2023-05-15 | 2023-06-03 |
 /// | 2 | ... | ... | | 3 | 2023-05-15 | 2023-06-14 | | 4 | 2023-06-15 | 2023-06-16
-/// | | 5 | 2023-06-15 | 2023-06-17 | | 6 | ... | ... | | 7 | 2023-06-15 | 2023-07-01 |
+/// | | 5 | 2023-06-15 | 2023-06-17 | | 6 | ... | ... | | 7 | 2023-06-15 | 2023-07-01 |</para>
 ///
-/// You can see this sliced timeframe visualized [here](https://i.imgur.com/TXhYgme.png).
+/// <para>You can see this sliced timeframe visualized [here](https://i.imgur.com/TXhYgme.png).</para>
 ///
-/// ### Matrix prices When a price uses matrix pricing, it's important to view costs
-/// grouped by those matrix dimensions. Orb will return `price_groups` with the `grouping_key`
-/// and `secondary_grouping_key` based on the matrix price definition, for each `grouping_value`
-/// and `secondary_grouping_value` available.
+/// <para>### Matrix prices When a price uses matrix pricing, it's important to view
+/// costs grouped by those matrix dimensions. Orb will return `price_groups` with
+/// the `grouping_key` and `secondary_grouping_key` based on the matrix price definition,
+/// for each `grouping_value` and `secondary_grouping_value` available.</para>
 /// </summary>
-public sealed record class CostListByExternalIDParams : Orb::ParamsBase
+public sealed record class CostListByExternalIDParams : ParamsBase
 {
-    public required string ExternalCustomerID;
+    public string? ExternalCustomerID { get; init; }
 
     /// <summary>
     /// The currency or custom pricing unit to use.
@@ -113,91 +118,166 @@ public sealed record class CostListByExternalIDParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("currency", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("currency");
         }
-        set { this.QueryProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("currency", value); }
     }
 
     /// <summary>
     /// Costs returned are exclusive of `timeframe_end`.
     /// </summary>
-    public System::DateTime? TimeframeEnd
+    public System::DateTimeOffset? TimeframeEnd
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_end");
         }
-        set
-        {
-            this.QueryProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("timeframe_end", value); }
     }
 
     /// <summary>
     /// Costs returned are inclusive of `timeframe_start`.
     /// </summary>
-    public System::DateTime? TimeframeStart
+    public System::DateTimeOffset? TimeframeStart
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("timeframe_start");
         }
-        set
-        {
-            this.QueryProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("timeframe_start", value); }
     }
 
     /// <summary>
     /// Controls whether Orb returns cumulative costs since the start of the billing
-    /// period, or incremental day-by-day costs. If your customer has minimums or discounts,
-    /// it's strongly recommended that you use the default cumulative behavior.
+    /// period, or incremental day-by-day costs. If your customer has minimums or
+    /// discounts, it's strongly recommended that you use the default cumulative behavior.
     /// </summary>
-    public CostListByExternalIDParamsProperties::ViewMode? ViewMode
+    public ApiEnum<string, CostListByExternalIDParamsViewMode>? ViewMode
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("view_mode", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<CostListByExternalIDParamsProperties::ViewMode?>(
-                element
-            );
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<
+                ApiEnum<string, CostListByExternalIDParamsViewMode>
+            >("view_mode");
         }
-        set { this.QueryProperties["view_mode"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("view_mode", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public CostListByExternalIDParams() { }
+
+    public CostListByExternalIDParams(CostListByExternalIDParams costListByExternalIDParams)
+        : base(costListByExternalIDParams)
+    {
+        this.ExternalCustomerID = costListByExternalIDParams.ExternalCustomerID;
+    }
+
+    public CostListByExternalIDParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CostListByExternalIDParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static CostListByExternalIDParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format(
                     "/customers/external_customer_id/{0}/costs",
                     this.ExternalCustomerID
                 )
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// Controls whether Orb returns cumulative costs since the start of the billing
+/// period, or incremental day-by-day costs. If your customer has minimums or discounts,
+/// it's strongly recommended that you use the default cumulative behavior.
+/// </summary>
+[JsonConverter(typeof(CostListByExternalIDParamsViewModeConverter))]
+public enum CostListByExternalIDParamsViewMode
+{
+    Periodic,
+    Cumulative,
+}
+
+sealed class CostListByExternalIDParamsViewModeConverter
+    : JsonConverter<CostListByExternalIDParamsViewMode>
+{
+    public override CostListByExternalIDParamsViewMode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "periodic" => CostListByExternalIDParamsViewMode.Periodic,
+            "cumulative" => CostListByExternalIDParamsViewMode.Cumulative,
+            _ => (CostListByExternalIDParamsViewMode)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CostListByExternalIDParamsViewMode value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CostListByExternalIDParamsViewMode.Periodic => "periodic",
+                CostListByExternalIDParamsViewMode.Cumulative => "cumulative",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

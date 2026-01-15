@@ -1,8 +1,12 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using SubscriptionListParamsProperties = Orb.Models.Subscriptions.SubscriptionListParamsProperties;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Subscriptions;
@@ -12,74 +16,50 @@ namespace Orb.Models.Subscriptions;
 /// list, ordered starting from the most recently created subscription. For a full
 /// discussion of the subscription resource, see [Subscription](/core-concepts##subscription).
 ///
-/// Subscriptions can be filtered for a specific customer by using either the customer_id
-/// or external_customer_id query parameters. To filter subscriptions for multiple
-/// customers, use the customer_id[] or external_customer_id[] query parameters.
+/// <para>Subscriptions can be filtered for a specific customer by using either the
+/// customer_id or external_customer_id query parameters. To filter subscriptions
+/// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.</para>
 /// </summary>
-public sealed record class SubscriptionListParams : Orb::ParamsBase
+public sealed record class SubscriptionListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public System::DateTimeOffset? CreatedAtGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gt]");
         }
-        set
-        {
-            this.QueryProperties["created_at[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("created_at[gt]", value); }
     }
 
-    public System::DateTime? CreatedAtGte
+    public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gte]");
         }
-        set
-        {
-            this.QueryProperties["created_at[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("created_at[gte]", value); }
     }
 
-    public System::DateTime? CreatedAtLt
+    public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lt]");
         }
-        set
-        {
-            this.QueryProperties["created_at[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("created_at[lt]", value); }
     }
 
-    public System::DateTime? CreatedAtLte
+    public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lte]");
         }
-        set
-        {
-            this.QueryProperties["created_at[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("created_at[lte]", value); }
     }
 
     /// <summary>
@@ -90,49 +70,54 @@ public sealed record class SubscriptionListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
-    public Generic::List<string>? CustomerID
+    public IReadOnlyList<string>? CustomerID
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("customer_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>("customer_id");
         }
-        set
+        init
         {
-            this.QueryProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
-    }
-
-    public Generic::List<string>? ExternalCustomerID
-    {
-        get
-        {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
-        }
-        set
-        {
-            this.QueryProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
+            this._rawQueryData.Set<ImmutableArray<string>?>(
+                "customer_id",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
+    }
+
+    public IReadOnlyList<string>? ExternalCustomerID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>(
+                "external_customer_id"
+            );
+        }
+        init
+        {
+            this._rawQueryData.Set<ImmutableArray<string>?>(
+                "external_customer_id",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public string? ExternalPlanID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("external_plan_id");
+        }
+        init { this._rawQueryData.Set("external_plan_id", value); }
     }
 
     /// <summary>
@@ -142,42 +127,141 @@ public sealed record class SubscriptionListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
-    public SubscriptionListParamsProperties::Status? Status
+    public string? PlanID
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("status", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<SubscriptionListParamsProperties::Status?>(
-                element
-            );
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("plan_id");
         }
-        set { this.QueryProperties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("plan_id", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public ApiEnum<string, global::Orb.Models.Subscriptions.Status>? Status
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
+        get
         {
-            Query = this.QueryString(client),
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<
+                ApiEnum<string, global::Orb.Models.Subscriptions.Status>
+            >("status");
+        }
+        init { this._rawQueryData.Set("status", value); }
+    }
+
+    public SubscriptionListParams() { }
+
+    public SubscriptionListParams(SubscriptionListParams subscriptionListParams)
+        : base(subscriptionListParams) { }
+
+    public SubscriptionListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
+    {
+        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
+        {
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(global::Orb.Models.Subscriptions.StatusConverter))]
+public enum Status
+{
+    Active,
+    Ended,
+    Upcoming,
+}
+
+sealed class StatusConverter : JsonConverter<global::Orb.Models.Subscriptions.Status>
+{
+    public override global::Orb.Models.Subscriptions.Status Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => global::Orb.Models.Subscriptions.Status.Active,
+            "ended" => global::Orb.Models.Subscriptions.Status.Ended,
+            "upcoming" => global::Orb.Models.Subscriptions.Status.Upcoming,
+            _ => (global::Orb.Models.Subscriptions.Status)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Subscriptions.Status value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Subscriptions.Status.Active => "active",
+                global::Orb.Models.Subscriptions.Status.Ended => "ended",
+                global::Orb.Models.Subscriptions.Status.Upcoming => "upcoming",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

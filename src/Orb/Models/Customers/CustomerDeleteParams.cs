@@ -1,6 +1,10 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
@@ -10,33 +14,75 @@ namespace Orb.Models.Customers;
 /// invoices cannot be deleted. This operation is irreversible. Note that this is
 /// a _soft_ deletion, but the data will be inaccessible through the API and Orb dashboard.
 ///
-/// For a hard-deletion, please reach out to the Orb team directly.
+/// <para>For a hard-deletion, please reach out to the Orb team directly.</para>
 ///
-/// **Note**: This operation happens asynchronously and can be expected to take a
-/// few minutes to propagate to related resources. However, querying for the customer
-/// on subsequent GET requests while deletion is in process will reflect its deletion.
+/// <para>**Note**: This operation happens asynchronously and can be expected to
+/// take a few minutes to propagate to related resources. However, querying for the
+/// customer on subsequent GET requests while deletion is in process will reflect
+/// its deletion.</para>
 /// </summary>
-public sealed record class CustomerDeleteParams : Orb::ParamsBase
+public sealed record class CustomerDeleteParams : ParamsBase
 {
-    public required string CustomerID;
+    public string? CustomerID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public CustomerDeleteParams() { }
+
+    public CustomerDeleteParams(CustomerDeleteParams customerDeleteParams)
+        : base(customerDeleteParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.CustomerID = customerDeleteParams.CustomerID;
+    }
+
+    public CustomerDeleteParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CustomerDeleteParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static CustomerDeleteParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}", this.CustomerID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

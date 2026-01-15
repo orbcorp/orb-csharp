@@ -1,27 +1,25 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
-using TopUpCreateResponseProperties = Orb.Models.Customers.Credits.TopUps.TopUpCreateResponseProperties;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TopUpCreateResponse>))]
-public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<TopUpCreateResponse>
+[JsonConverter(typeof(JsonModelConverter<TopUpCreateResponse, TopUpCreateResponseFromRaw>))]
+public sealed record class TopUpCreateResponse : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -31,16 +29,10 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
@@ -51,16 +43,10 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -70,19 +56,10 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_settings", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice_settings",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<TopUpInvoiceSettings>(element)
-                ?? throw new System::ArgumentNullException("invoice_settings");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<TopUpInvoiceSettings>("invoice_settings");
         }
-        set
-        {
-            this.Properties["invoice_settings"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("invoice_settings", value); }
     }
 
     /// <summary>
@@ -92,19 +69,10 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
     {
         get
         {
-            if (!this.Properties.TryGetValue("per_unit_cost_basis", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "per_unit_cost_basis",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("per_unit_cost_basis");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("per_unit_cost_basis");
         }
-        set
-        {
-            this.Properties["per_unit_cost_basis"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -115,16 +83,10 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
     {
         get
         {
-            if (!this.Properties.TryGetValue("threshold", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "threshold",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("threshold");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("threshold");
         }
-        set { this.Properties["threshold"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("threshold", value); }
     }
 
     /// <summary>
@@ -135,34 +97,28 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
     {
         get
         {
-            if (!this.Properties.TryGetValue("expires_after", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("expires_after");
         }
-        set { this.Properties["expires_after"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("expires_after", value); }
     }
 
     /// <summary>
     /// The unit of expires_after.
     /// </summary>
-    public TopUpCreateResponseProperties::ExpiresAfterUnit? ExpiresAfterUnit
+    public ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>? ExpiresAfterUnit
     {
         get
         {
-            if (!this.Properties.TryGetValue("expires_after_unit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<TopUpCreateResponseProperties::ExpiresAfterUnit?>(
-                element
-            );
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>
+            >("expires_after_unit");
         }
-        set
-        {
-            this.Properties["expires_after_unit"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("expires_after_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -177,18 +133,82 @@ public sealed record class TopUpCreateResponse : Orb::ModelBase, Orb::IFromRaw<T
 
     public TopUpCreateResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TopUpCreateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public TopUpCreateResponse(TopUpCreateResponse topUpCreateResponse)
+        : base(topUpCreateResponse) { }
+
+    public TopUpCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TopUpCreateResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpCreateResponseFromRaw.FromRawUnchecked"/>
     public static TopUpCreateResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TopUpCreateResponseFromRaw : IFromRawJson<TopUpCreateResponse>
+{
+    /// <inheritdoc/>
+    public TopUpCreateResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TopUpCreateResponse.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The unit of expires_after.
+/// </summary>
+[JsonConverter(typeof(TopUpCreateResponseExpiresAfterUnitConverter))]
+public enum TopUpCreateResponseExpiresAfterUnit
+{
+    Day,
+    Month,
+}
+
+sealed class TopUpCreateResponseExpiresAfterUnitConverter
+    : JsonConverter<TopUpCreateResponseExpiresAfterUnit>
+{
+    public override TopUpCreateResponseExpiresAfterUnit Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "day" => TopUpCreateResponseExpiresAfterUnit.Day,
+            "month" => TopUpCreateResponseExpiresAfterUnit.Month,
+            _ => (TopUpCreateResponseExpiresAfterUnit)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TopUpCreateResponseExpiresAfterUnit value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TopUpCreateResponseExpiresAfterUnit.Day => "day",
+                TopUpCreateResponseExpiresAfterUnit.Month => "month",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

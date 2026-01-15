@@ -1,31 +1,39 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BulkConfig>))]
-public sealed record class BulkConfig : Orb::ModelBase, Orb::IFromRaw<BulkConfig>
+/// <summary>
+/// Configuration for bulk pricing
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<BulkConfig, BulkConfigFromRaw>))]
+public sealed record class BulkConfig : JsonModel
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required Generic::List<BulkTier> Tiers
+    public required IReadOnlyList<BulkTier> Tiers
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<BulkTier>>(element)
-                ?? throw new System::ArgumentNullException("tiers");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<BulkTier>>("tiers");
         }
-        set { this.Properties["tiers"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<BulkTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -36,18 +44,39 @@ public sealed record class BulkConfig : Orb::ModelBase, Orb::IFromRaw<BulkConfig
 
     public BulkConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BulkConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public BulkConfig(BulkConfig bulkConfig)
+        : base(bulkConfig) { }
+
+    public BulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BulkConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static BulkConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="BulkConfigFromRaw.FromRawUnchecked"/>
+    public static BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public BulkConfig(IReadOnlyList<BulkTier> tiers)
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class BulkConfigFromRaw : IFromRawJson<BulkConfig>
+{
+    /// <inheritdoc/>
+    public BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkConfig.FromRawUnchecked(rawData);
 }

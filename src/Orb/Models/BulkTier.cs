@@ -1,14 +1,17 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BulkTier>))]
-public sealed record class BulkTier : Orb::ModelBase, Orb::IFromRaw<BulkTier>
+/// <summary>
+/// Configuration for a single bulk pricing tier
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<BulkTier, BulkTierFromRaw>))]
+public sealed record class BulkTier : JsonModel
 {
     /// <summary>
     /// Amount per unit
@@ -17,16 +20,10 @@ public sealed record class BulkTier : Orb::ModelBase, Orb::IFromRaw<BulkTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("unit_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "unit_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("unit_amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
         }
-        set { this.Properties["unit_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <summary>
@@ -36,14 +33,13 @@ public sealed record class BulkTier : Orb::ModelBase, Orb::IFromRaw<BulkTier>
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_units", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<double?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("maximum_units");
         }
-        set { this.Properties["maximum_units"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("maximum_units", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -52,18 +48,39 @@ public sealed record class BulkTier : Orb::ModelBase, Orb::IFromRaw<BulkTier>
 
     public BulkTier() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BulkTier(Generic::Dictionary<string, Json::JsonElement> properties)
+    public BulkTier(BulkTier bulkTier)
+        : base(bulkTier) { }
+
+    public BulkTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BulkTier(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static BulkTier FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="BulkTierFromRaw.FromRawUnchecked"/>
+    public static BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public BulkTier(string unitAmount)
+        : this()
+    {
+        this.UnitAmount = unitAmount;
+    }
+}
+
+class BulkTierFromRaw : IFromRawJson<BulkTier>
+{
+    /// <inheritdoc/>
+    public BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkTier.FromRawUnchecked(rawData);
 }

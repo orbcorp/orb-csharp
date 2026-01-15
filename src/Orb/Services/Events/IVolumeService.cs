@@ -1,0 +1,69 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Models.Events.Volume;
+
+namespace Orb.Services.Events;
+
+/// <summary>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
+/// </summary>
+public interface IVolumeService
+{
+    /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IVolumeServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IVolumeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// This endpoint returns the event volume for an account in a [paginated list format](/api-reference/pagination).
+    ///
+    /// <para>The event volume is aggregated by the hour and the [timestamp](/api-reference/event/ingest-events)
+    /// field is used to determine which hour an event is associated with. Note,
+    /// this means that late-arriving events increment the volume count for the hour
+    /// window the timestamp is in, not the latest hour window.</para>
+    ///
+    /// <para>Each item in the response contains the count of events aggregated by
+    /// the hour where the start and end time are hour-aligned and in UTC. When a
+    /// specific timestamp is passed in for either start or end time, the response
+    /// includes the hours the timestamp falls in.</para>
+    /// </summary>
+    Task<EventVolumes> List(
+        VolumeListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IVolumeService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IVolumeServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IVolumeServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /events/volume`, but is otherwise the
+    /// same as <see cref="IVolumeService.List(VolumeListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<EventVolumes>> List(
+        VolumeListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}

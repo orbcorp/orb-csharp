@@ -1,9 +1,11 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using InvoiceProperties = Orb.Models.InvoiceProperties;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models;
@@ -12,23 +14,20 @@ namespace Orb.Models;
 /// An [`Invoice`](/core-concepts#invoice) is a fundamental billing entity, representing
 /// the request for payment for a single subscription. This includes a set of line
 /// items, which correspond to prices in the subscription's plan and can represent
-/// fixed recurring fees or usage-based fees. They are generated at the end of a billing
-/// period, or as the result of an action, such as a cancellation.
+/// fixed recurring fees or usage-based fees. They are generated at the end of a
+/// billing period, or as the result of an action, such as a cancellation.
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<Invoice>))]
-public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
+[JsonConverter(typeof(JsonModelConverter<Invoice, InvoiceFromRaw>))]
+public sealed record class Invoice : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -39,85 +38,64 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount_due", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount_due",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount_due");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount_due");
         }
-        set { this.Properties["amount_due"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amount_due", value); }
     }
 
-    public required InvoiceProperties::AutoCollection AutoCollection
+    public required InvoiceAutoCollection AutoCollection
     {
         get
         {
-            if (!this.Properties.TryGetValue("auto_collection", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "auto_collection",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<InvoiceProperties::AutoCollection>(element)
-                ?? throw new System::ArgumentNullException("auto_collection");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<InvoiceAutoCollection>("auto_collection");
         }
-        set { this.Properties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("auto_collection", value); }
     }
 
     public required Address? BillingAddress
     {
         get
         {
-            if (!this.Properties.TryGetValue("billing_address", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "billing_address",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Address?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Address>("billing_address");
         }
-        set { this.Properties["billing_address"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("billing_address", value); }
     }
 
     /// <summary>
     /// The creation time of the resource in Orb.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     /// <summary>
     /// A list of credit notes associated with the invoice
     /// </summary>
-    public required Generic::List<InvoiceProperties::CreditNote> CreditNotes
+    public required IReadOnlyList<InvoiceCreditNote> CreditNotes
     {
         get
         {
-            if (!this.Properties.TryGetValue("credit_notes", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "credit_notes",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceProperties::CreditNote>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("credit_notes");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<InvoiceCreditNote>>(
+                "credit_notes"
+            );
         }
-        set { this.Properties["credit_notes"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<InvoiceCreditNote>>(
+                "credit_notes",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -127,240 +105,201 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("currency", value); }
     }
 
     public required CustomerMinified Customer
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<CustomerMinified>(element)
-                ?? throw new System::ArgumentNullException("customer");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<CustomerMinified>("customer");
         }
-        set { this.Properties["customer"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("customer", value); }
     }
 
-    public required Generic::List<InvoiceProperties::CustomerBalanceTransaction> CustomerBalanceTransactions
+    public required IReadOnlyList<InvoiceCustomerBalanceTransaction> CustomerBalanceTransactions
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "customer_balance_transactions",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "customer_balance_transactions",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceProperties::CustomerBalanceTransaction>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("customer_balance_transactions");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<InvoiceCustomerBalanceTransaction>
+            >("customer_balance_transactions");
         }
-        set
+        init
         {
-            this.Properties["customer_balance_transactions"] =
-                Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<InvoiceCustomerBalanceTransaction>>(
+                "customer_balance_transactions",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     /// <summary>
-    /// Tax IDs are commonly required to be displayed on customer invoices, which are
-    /// added to the headers of invoices.
+    /// Tax IDs are commonly required to be displayed on customer invoices, which
+    /// are added to the headers of invoices.
     ///
-    /// ### Supported Tax ID Countries and Types
+    /// <para>### Supported Tax ID Countries and Types</para>
     ///
-    /// | Country        | Type         | Description
-    ///   | |----------------|--------------|---------------------------------------------|
-    /// | Andorra        | `ad_nrt`     | Andorran NRT Number
-    ///   | | Argentina      | `ar_cuit`    | Argentinian Tax ID Number
-    ///       | | Australia      | `au_abn`     | Australian Business Number (AU ABN)
-    ///               | | Australia      | `au_arn`     | Australian Taxation Office
-    /// Reference Number | | Austria        | `eu_vat`     | European VAT Number
-    ///                       | | Bahrain        | `bh_vat`     | Bahraini VAT Number
-    ///                         | | Belgium        | `eu_vat`     | European VAT Number
-    ///                         | | Bolivia        | `bo_tin`     | Bolivian Tax ID
-    ///                             | | Brazil         | `br_cnpj`    | Brazilian CNPJ
-    /// Number                       | | Brazil         | `br_cpf`     | Brazilian CPF
-    /// Number                             | | Bulgaria       | `bg_uic`     | Bulgaria
-    /// Unified Identification Code        | | Bulgaria       | `eu_vat`     | European
-    /// VAT Number                         | | Canada         | `ca_bn`      | Canadian
-    /// BN                                 | | Canada         | `ca_gst_hst` | Canadian
-    /// GST/HST Number                     | | Canada         | `ca_pst_bc`  | Canadian
-    /// PST Number (British Columbia)      | | Canada         | `ca_pst_mb`  | Canadian
-    /// PST Number (Manitoba)              | | Canada         | `ca_pst_sk`  | Canadian
-    /// PST Number (Saskatchewan)          | | Canada         | `ca_qst`     | Canadian
-    /// QST Number (Québec)                | | Chile          | `cl_tin`     | Chilean
-    /// TIN                                 | | China          | `cn_tin`     | Chinese
-    /// Tax ID                              | | Colombia       | `co_nit`     | Colombian
-    /// NIT Number                        | | Costa Rica     | `cr_tin`     | Costa
-    /// Rican Tax ID                          | | Croatia        | `eu_vat`     | European
-    /// VAT Number                         | | Cyprus         | `eu_vat`     | European
-    /// VAT Number                         | | Czech Republic | `eu_vat`     | European
-    /// VAT Number                         | | Denmark        | `eu_vat`     | European
-    /// VAT Number                         | | Dominican Republic | `do_rcn` | Dominican
-    /// RCN Number                        | | Ecuador        | `ec_ruc`     | Ecuadorian
-    /// RUC Number                       | | Egypt          | `eg_tin`     | Egyptian
-    /// Tax Identification Number                 | | El Salvador    | `sv_nit`
-    /// | El Salvadorian NIT Number                   | | Estonia   | `eu_vat`     |
-    /// European VAT Number   | | EU        | `eu_oss_vat` | European One Stop Shop
-    /// VAT Number for non-Union scheme | | Finland   | `eu_vat`     | European VAT
-    /// Number                                    | | France    | `eu_vat`     | European
-    /// VAT Number                                    | | Georgia   | `ge_vat`     |
-    /// Georgian VAT                                           | | Germany   | `eu_vat`
-    ///     | European VAT Number                                    | | Greece
-    /// | `eu_vat`     | European VAT Number                                    | |
-    /// Hong Kong | `hk_br`      | Hong Kong BR Number
-    ///       | | Hungary   | `eu_vat`     | European VAT Number
-    ///                  | | Hungary   | `hu_tin`     | Hungary Tax Number (adószám)
-    ///                           | | Iceland   | `is_vat`     | Icelandic VAT
-    ///                                      | | India     | `in_gst`     | Indian GST
-    /// Number                                      | | Indonesia | `id_npwp`    | Indonesian
-    /// NPWP Number                                 | | Ireland   | `eu_vat`     |
-    /// European VAT Number                                    | | Israel    | `il_vat`
-    ///     | Israel VAT                                             | | Italy
-    /// | `eu_vat`     | European VAT Number                                    | |
-    /// Japan     | `jp_cn`      | Japanese Corporate Number (*Hōjin Bangō*)
-    ///       | | Japan     | `jp_rn`      | Japanese Registered Foreign Businesses'
-    /// Registration Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*)         | |
-    /// Japan     | `jp_trn`     | Japanese Tax Registration Number (*Tōroku Bangō*)
-    ///          | | Kazakhstan    | `kz_bin` | Kazakhstani Business Identification
-    /// Number                 | | Kenya     | `ke_pin`     | Kenya Revenue Authority
-    /// Personal Identification Number | | Latvia    | `eu_vat`     | European VAT Number
-    ///                                    | | Liechtenstein | `li_uid`  | Liechtensteinian
-    /// UID Number           | | Lithuania     | `eu_vat`  | European VAT Number
-    ///                   | | Luxembourg    | `eu_vat`  | European VAT Number
-    ///               | | Malaysia      | `my_frp`  | Malaysian FRP Number
-    ///          | | Malaysia      | `my_itn`  | Malaysian ITN
-    ///     | | Malaysia      | `my_sst`  | Malaysian SST Number                  |
-    /// | Malta         | `eu_vat ` | European VAT Number                   | | Mexico
-    ///        | `mx_rfc`  | Mexican RFC Number                    | | Netherlands
-    ///  | `eu_vat`  | European VAT Number                     | | New Zealand   |
-    /// `nz_gst`  | New Zealand GST Number                       | | Nigeria       |
-    /// `ng_tin`  | Nigerian Tax Identification Number    | | Norway        | `no_vat`
-    ///  | Norwegian VAT Number                  | | Norway        | `no_voec` | Norwegian
-    /// VAT on e-commerce Number    | | Oman          | `om_vat`  | Omani VAT Number
-    ///                      | | Peru          | `pe_ruc`  | Peruvian RUC Number
-    ///                 | | Philippines   | `ph_tin   ` | Philippines Tax Identification
-    /// Number | | Poland        | `eu_vat`  | European VAT Number
-    ///   | | Portugal      | `eu_vat`  | European VAT Number                   | |
-    /// Romania       | `eu_vat`  | European VAT Number                   | | Romania
-    ///       | `ro_tin`  | Romanian Tax ID Number                | | Russia
-    /// | `ru_inn`  | Russian INN                           | | Russia        | `ru_kpp`
-    ///  | Russian KPP                           | | Saudi Arabia  | `sa_vat`  | Saudi
-    /// Arabia VAT                      | | Serbia        | `rs_pib`  | Serbian PIB
-    /// Number                    | | Singapore     | `sg_gst`  | Singaporean GST
-    ///                     | | Singapore     | `sg_uen`  | Singaporean UEN
-    ///                     | | Slovakia      | `eu_vat`  | European VAT Number
-    ///                | | Slovenia      | `eu_vat`  | European VAT Number
-    ///          | | Slovenia             | `si_tin` | Slovenia Tax Number (davčna številka)
-    ///                | | South Africa              | `za_vat` | South African VAT
-    /// Number                           | | South Korea          | `kr_brn` | Korean
-    /// BRN                                         | | Spain                | `es_cif`
-    /// | Spanish NIF Number (previously Spanish CIF Number) | | Spain
-    ///    | `eu_vat` | European VAT Number                                    | |
-    /// Sweden               | `eu_vat` | European VAT Number
-    ///          | | Switzerland          | `ch_vat` | Switzerland VAT Number
-    ///                         | | Taiwan               | `tw_vat` | Taiwanese VAT
-    ///                                        | | Thailand             | `th_vat` |
-    /// Thai VAT                                           | | Turkey
-    /// | `tr_tin` | Turkish Tax Identification Number                  | | Ukraine
-    ///              | `ua_vat` | Ukrainian VAT
-    ///   | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN
-    ///                        | | United Kingdom       | `eu_vat` | Northern Ireland
-    /// VAT Number                        | | United Kingdom       | `gb_vat` | United
-    /// Kingdom VAT Number                          | | United States        | `us_ein`
-    /// | United States EIN                                  | | Uruguay
-    ///   | `uy_ruc` | Uruguayan RUC Number                               | | Venezuela
-    ///            | `ve_rif` | Venezuelan RIF Number
-    /// | | Vietnam              | `vn_tin` | Vietnamese Tax ID Number
-    ///               |
+    /// <para>| Country | Type | Description | |---------|------|-------------| |
+    /// Albania | `al_tin` | Albania Tax Identification Number | | Andorra | `ad_nrt`
+    /// | Andorran NRT Number | | Angola | `ao_tin` | Angola Tax Identification Number
+    /// | | Argentina | `ar_cuit` | Argentinian Tax ID Number | | Armenia | `am_tin`
+    /// | Armenia Tax Identification Number | | Aruba | `aw_tin` | Aruba Tax Identification
+    /// Number | | Australia | `au_abn` | Australian Business Number (AU ABN) | |
+    /// Australia | `au_arn` | Australian Taxation Office Reference Number | | Austria
+    /// | `eu_vat` | European VAT Number | | Azerbaijan | `az_tin` | Azerbaijan Tax
+    /// Identification Number | | Bahamas | `bs_tin` | Bahamas Tax Identification
+    /// Number | | Bahrain | `bh_vat` | Bahraini VAT Number | | Bangladesh | `bd_bin`
+    /// | Bangladesh Business Identification Number | | Barbados | `bb_tin` | Barbados
+    /// Tax Identification Number | | Belarus | `by_tin` | Belarus TIN Number | |
+    /// Belgium | `eu_vat` | European VAT Number | | Benin | `bj_ifu` | Benin Tax
+    /// Identification Number (Identifiant Fiscal Unique) | | Bolivia | `bo_tin`
+    /// | Bolivian Tax ID | | Bosnia and Herzegovina | `ba_tin` | Bosnia and Herzegovina
+    /// Tax Identification Number | | Brazil | `br_cnpj` | Brazilian CNPJ Number |
+    /// | Brazil | `br_cpf` | Brazilian CPF Number | | Bulgaria | `bg_uic` | Bulgaria
+    /// Unified Identification Code | | Bulgaria | `eu_vat` | European VAT Number
+    /// | | Burkina Faso | `bf_ifu` | Burkina Faso Tax Identification Number (Numéro
+    /// d'Identifiant Fiscal Unique) | | Cambodia | `kh_tin` | Cambodia Tax Identification
+    /// Number | | Cameroon | `cm_niu` | Cameroon Tax Identification Number (Numéro
+    /// d'Identifiant fiscal Unique) | | Canada | `ca_bn` | Canadian BN | | Canada
+    /// | `ca_gst_hst` | Canadian GST/HST Number | | Canada | `ca_pst_bc` | Canadian
+    /// PST Number (British Columbia) | | Canada | `ca_pst_mb` | Canadian PST Number
+    /// (Manitoba) | | Canada | `ca_pst_sk` | Canadian PST Number (Saskatchewan) |
+    /// | Canada | `ca_qst` | Canadian QST Number (Québec) | | Cape Verde | `cv_nif`
+    /// | Cape Verde Tax Identification Number (Número de Identificação Fiscal) |
+    /// | Chile | `cl_tin` | Chilean TIN | | China | `cn_tin` | Chinese Tax ID | |
+    /// Colombia | `co_nit` | Colombian NIT Number | | Congo-Kinshasa | `cd_nif`
+    /// | Congo (DR) Tax Identification Number (Número de Identificação Fiscal) |
+    /// | Costa Rica | `cr_tin` | Costa Rican Tax ID | | Croatia | `eu_vat` | European
+    /// VAT Number | | Croatia | `hr_oib` | Croatian Personal Identification Number
+    /// (OIB) | | Cyprus | `eu_vat` | European VAT Number | | Czech Republic | `eu_vat`
+    /// | European VAT Number | | Denmark | `eu_vat` | European VAT Number | | Dominican
+    /// Republic | `do_rcn` | Dominican RCN Number | | Ecuador | `ec_ruc` | Ecuadorian
+    /// RUC Number | | Egypt | `eg_tin` | Egyptian Tax Identification Number | |
+    /// El Salvador | `sv_nit` | El Salvadorian NIT Number | | Estonia | `eu_vat`
+    /// | European VAT Number | | Ethiopia | `et_tin` | Ethiopia Tax Identification
+    /// Number | | European Union | `eu_oss_vat` | European One Stop Shop VAT Number
+    /// for non-Union scheme | | Finland | `eu_vat` | European VAT Number | | France
+    /// | `eu_vat` | European VAT Number | | Georgia | `ge_vat` | Georgian VAT | |
+    /// Germany | `de_stn` | German Tax Number (Steuernummer) | | Germany | `eu_vat`
+    /// | European VAT Number | | Greece | `eu_vat` | European VAT Number | | Guinea
+    /// | `gn_nif` | Guinea Tax Identification Number (Número de Identificação Fiscal)
+    /// | | Hong Kong | `hk_br` | Hong Kong BR Number | | Hungary | `eu_vat` | European
+    /// VAT Number | | Hungary | `hu_tin` | Hungary Tax Number (adószám) | | Iceland
+    /// | `is_vat` | Icelandic VAT | | India | `in_gst` | Indian GST Number | | Indonesia
+    /// | `id_npwp` | Indonesian NPWP Number | | Ireland | `eu_vat` | European VAT
+    /// Number | | Israel | `il_vat` | Israel VAT | | Italy | `eu_vat` | European
+    /// VAT Number | | Japan | `jp_cn` | Japanese Corporate Number (*Hōjin Bangō*)
+    /// | | Japan | `jp_rn` | Japanese Registered Foreign Businesses' Registration
+    /// Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan | `jp_trn` |
+    /// Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan | `kz_bin`
+    /// | Kazakhstani Business Identification Number | | Kenya | `ke_pin` | Kenya
+    /// Revenue Authority Personal Identification Number | | Kyrgyzstan | `kg_tin`
+    /// | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos Tax Identification
+    /// Number | | Latvia | `eu_vat` | European VAT Number | | Liechtenstein | `li_uid`
+    /// | Liechtensteinian UID Number | | Liechtenstein | `li_vat` | Liechtenstein
+    /// VAT Number | | Lithuania | `eu_vat` | European VAT Number | | Luxembourg
+    /// | `eu_vat` | European VAT Number | | Malaysia | `my_frp` | Malaysian FRP
+    /// Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia | `my_sst` | Malaysian
+    /// SST Number | | Malta | `eu_vat` | European VAT Number | | Mauritania | `mr_nif`
+    /// | Mauritania Tax Identification Number (Número de Identificação Fiscal) |
+    /// | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova | `md_vat` | Moldova
+    /// VAT Number | | Montenegro | `me_pib` | Montenegro PIB Number | | Morocco |
+    /// `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` | Nepal PAN Number | |
+    /// Netherlands | `eu_vat` | European VAT Number | | New Zealand | `nz_gst` |
+    /// New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian Tax Identification
+    /// Number | | North Macedonia | `mk_vat` | North Macedonia VAT Number | | Northern
+    /// Ireland | `eu_vat` | Northern Ireland VAT Number | | Norway | `no_vat` |
+    /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
+    /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
+    /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
+    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
+    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
+    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
+    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
+    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
+    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
+    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
+    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
+    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
+    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
+    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
+    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
+    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
+    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
+    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
+    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
+    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
+    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
+    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
+    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
+    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
+    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
+    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
+    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
+    /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public required CustomerTaxID? CustomerTaxID
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer_tax_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer_tax_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<CustomerTaxID?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomerTaxID>("customer_tax_id");
         }
-        set { this.Properties["customer_tax_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("customer_tax_id", value); }
     }
 
     /// <summary>
     /// This field is deprecated in favor of `discounts`. If a `discounts` list is
-    /// provided, the first discount in the list will be returned. If the list is empty,
-    /// `None` will be returned.
+    /// provided, the first discount in the list will be returned. If the list is
+    /// empty, `None` will be returned.
     /// </summary>
-    public required Json::JsonElement Discount
+    [System::Obsolete("deprecated")]
+    public required JsonElement Discount
     {
         get
         {
-            if (!this.Properties.TryGetValue("discount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Json::JsonElement>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("discount");
         }
-        set { this.Properties["discount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("discount", value); }
     }
 
-    public required Generic::List<InvoiceLevelDiscount> Discounts
+    public required IReadOnlyList<InvoiceLevelDiscount> Discounts
     {
         get
         {
-            if (!this.Properties.TryGetValue("discounts", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "discounts",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceLevelDiscount>>(element)
-                ?? throw new System::ArgumentNullException("discounts");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<InvoiceLevelDiscount>>(
+                "discounts"
+            );
         }
-        set { this.Properties["discounts"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<InvoiceLevelDiscount>>(
+                "discounts",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
     /// When the invoice payment is due. The due date is null if the invoice is not
     /// yet finalized.
     /// </summary>
-    public required System::DateTime? DueDate
+    public required System::DateTimeOffset? DueDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("due_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "due_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("due_date");
         }
-        set { this.Properties["due_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("due_date", value); }
     }
 
     /// <summary>
@@ -368,64 +307,41 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     /// will be eligible to be issued, otherwise it will be `null`. If `auto-issue`
     /// is true, the invoice will automatically begin issuing at this time.
     /// </summary>
-    public required System::DateTime? EligibleToIssueAt
+    public required System::DateTimeOffset? EligibleToIssueAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("eligible_to_issue_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "eligible_to_issue_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("eligible_to_issue_at");
         }
-        set
-        {
-            this.Properties["eligible_to_issue_at"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("eligible_to_issue_at", value); }
     }
 
     /// <summary>
     /// A URL for the customer-facing invoice portal. This URL expires 30 days after
     /// the invoice's due date, or 60 days after being re-generated through the UI.
     /// </summary>
-    public required string? HostedInvoiceURL
+    public required string? HostedInvoiceUrl
     {
         get
         {
-            if (!this.Properties.TryGetValue("hosted_invoice_url", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "hosted_invoice_url",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("hosted_invoice_url");
         }
-        set
-        {
-            this.Properties["hosted_invoice_url"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("hosted_invoice_url", value); }
     }
 
     /// <summary>
     /// The scheduled date of the invoice
     /// </summary>
-    public required System::DateTime InvoiceDate
+    public required System::DateTimeOffset InvoiceDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("invoice_date");
         }
-        set { this.Properties["invoice_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("invoice_date", value); }
     }
 
     /// <summary>
@@ -437,16 +353,10 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_number", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice_number",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("invoice_number");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("invoice_number");
         }
-        set { this.Properties["invoice_number"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("invoice_number", value); }
     }
 
     /// <summary>
@@ -456,119 +366,89 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_pdf", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice_pdf",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_pdf");
         }
-        set { this.Properties["invoice_pdf"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("invoice_pdf", value); }
     }
 
-    public required InvoiceProperties::InvoiceSource InvoiceSource
+    public required ApiEnum<string, InvoiceInvoiceSource> InvoiceSource
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice_source", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice_source",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<InvoiceProperties::InvoiceSource>(element)
-                ?? throw new System::ArgumentNullException("invoice_source");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, InvoiceInvoiceSource>>(
+                "invoice_source"
+            );
         }
-        set { this.Properties["invoice_source"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("invoice_source", value); }
     }
 
     /// <summary>
     /// If the invoice failed to issue, this will be the last time it failed to issue
     /// (even if it is now in a different state.)
     /// </summary>
-    public required System::DateTime? IssueFailedAt
+    public required System::DateTimeOffset? IssueFailedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("issue_failed_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "issue_failed_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("issue_failed_at");
         }
-        set { this.Properties["issue_failed_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("issue_failed_at", value); }
     }
 
     /// <summary>
-    /// If the invoice has been issued, this will be the time it transitioned to `issued`
-    /// (even if it is now in a different state.)
+    /// If the invoice has been issued, this will be the time it transitioned to
+    /// `issued` (even if it is now in a different state.)
     /// </summary>
-    public required System::DateTime? IssuedAt
+    public required System::DateTimeOffset? IssuedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("issued_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "issued_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("issued_at");
         }
-        set { this.Properties["issued_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("issued_at", value); }
     }
 
     /// <summary>
     /// The breakdown of prices in this invoice.
     /// </summary>
-    public required Generic::List<InvoiceProperties::LineItem> LineItems
+    public required IReadOnlyList<InvoiceLineItem> LineItems
     {
         get
         {
-            if (!this.Properties.TryGetValue("line_items", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "line_items",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceProperties::LineItem>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("line_items");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<InvoiceLineItem>>("line_items");
         }
-        set { this.Properties["line_items"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<InvoiceLineItem>>(
+                "line_items",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required Maximum? Maximum
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "maximum",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Maximum?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Maximum>("maximum");
         }
-        set { this.Properties["maximum"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("maximum", value); }
     }
 
     public required string? MaximumAmount
     {
         get
         {
-            if (!this.Properties.TryGetValue("maximum_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "maximum_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("maximum_amount");
         }
-        set { this.Properties["maximum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("maximum_amount", value); }
     }
 
     /// <summary>
@@ -578,12 +458,10 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("memo", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("memo", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
         }
-        set { this.Properties["memo"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("memo", value); }
     }
 
     /// <summary>
@@ -592,208 +470,148 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Generic::Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string>>(element)
-                ?? throw new System::ArgumentNullException("metadata");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     public required Minimum? Minimum
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "minimum",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Minimum?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Minimum>("minimum");
         }
-        set { this.Properties["minimum"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("minimum", value); }
     }
 
     public required string? MinimumAmount
     {
         get
         {
-            if (!this.Properties.TryGetValue("minimum_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "minimum_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount");
         }
-        set { this.Properties["minimum_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("minimum_amount", value); }
     }
 
     /// <summary>
     /// If the invoice has a status of `paid`, this gives a timestamp when the invoice
     /// was paid.
     /// </summary>
-    public required System::DateTime? PaidAt
+    public required System::DateTimeOffset? PaidAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("paid_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "paid_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("paid_at");
         }
-        set { this.Properties["paid_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("paid_at", value); }
     }
 
     /// <summary>
     /// A list of payment attempts associated with the invoice
     /// </summary>
-    public required Generic::List<InvoiceProperties::PaymentAttempt> PaymentAttempts
+    public required IReadOnlyList<InvoicePaymentAttempt> PaymentAttempts
     {
         get
         {
-            if (!this.Properties.TryGetValue("payment_attempts", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "payment_attempts",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<InvoiceProperties::PaymentAttempt>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("payment_attempts");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<InvoicePaymentAttempt>>(
+                "payment_attempts"
+            );
         }
-        set
+        init
         {
-            this.Properties["payment_attempts"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<InvoicePaymentAttempt>>(
+                "payment_attempts",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     /// <summary>
-    /// If payment was attempted on this invoice but failed, this will be the time of
-    /// the most recent attempt.
+    /// If payment was attempted on this invoice but failed, this will be the time
+    /// of the most recent attempt.
     /// </summary>
-    public required System::DateTime? PaymentFailedAt
+    public required System::DateTimeOffset? PaymentFailedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("payment_failed_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "payment_failed_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("payment_failed_at");
         }
-        set
-        {
-            this.Properties["payment_failed_at"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("payment_failed_at", value); }
     }
 
     /// <summary>
-    /// If payment was attempted on this invoice, this will be the start time of the
-    /// most recent attempt. This field is especially useful for delayed-notification
+    /// If payment was attempted on this invoice, this will be the start time of
+    /// the most recent attempt. This field is especially useful for delayed-notification
     /// payment mechanisms (like bank transfers), where payment can take 3 days or more.
     /// </summary>
-    public required System::DateTime? PaymentStartedAt
+    public required System::DateTimeOffset? PaymentStartedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("payment_started_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "payment_started_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("payment_started_at");
         }
-        set
-        {
-            this.Properties["payment_started_at"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("payment_started_at", value); }
     }
 
     /// <summary>
     /// If the invoice is in draft, this timestamp will reflect when the invoice is
     /// scheduled to be issued.
     /// </summary>
-    public required System::DateTime? ScheduledIssueAt
+    public required System::DateTimeOffset? ScheduledIssueAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("scheduled_issue_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "scheduled_issue_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("scheduled_issue_at");
         }
-        set
-        {
-            this.Properties["scheduled_issue_at"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("scheduled_issue_at", value); }
     }
 
     public required Address? ShippingAddress
     {
         get
         {
-            if (!this.Properties.TryGetValue("shipping_address", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "shipping_address",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Address?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Address>("shipping_address");
         }
-        set
-        {
-            this.Properties["shipping_address"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("shipping_address", value); }
     }
 
-    public required InvoiceProperties::Status Status
+    public required ApiEnum<string, InvoiceStatus> Status
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "status",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<InvoiceProperties::Status>(element)
-                ?? throw new System::ArgumentNullException("status");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, InvoiceStatus>>("status");
         }
-        set { this.Properties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("status", value); }
     }
 
     public required SubscriptionMinified? Subscription
     {
         get
         {
-            if (!this.Properties.TryGetValue("subscription", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "subscription",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<SubscriptionMinified?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionMinified>("subscription");
         }
-        set { this.Properties["subscription"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("subscription", value); }
     }
 
     /// <summary>
@@ -803,16 +621,10 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("subtotal", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "subtotal",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("subtotal");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
         }
-        set { this.Properties["subtotal"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("subtotal", value); }
     }
 
     /// <summary>
@@ -820,19 +632,14 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     /// provider sync was attempted. This field will always be `null` for invoices
     /// using Orb Invoicing.
     /// </summary>
-    public required System::DateTime? SyncFailedAt
+    public required System::DateTimeOffset? SyncFailedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("sync_failed_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "sync_failed_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("sync_failed_at");
         }
-        set { this.Properties["sync_failed_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("sync_failed_at", value); }
     }
 
     /// <summary>
@@ -842,32 +649,24 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("total", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("total", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("total");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
         }
-        set { this.Properties["total"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("total", value); }
     }
 
     /// <summary>
     /// If the invoice has a status of `void`, this gives a timestamp when the invoice
     /// was voided.
     /// </summary>
-    public required System::DateTime? VoidedAt
+    public required System::DateTimeOffset? VoidedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("voided_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "voided_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at");
         }
-        set { this.Properties["voided_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("voided_at", value); }
     }
 
     /// <summary>
@@ -878,17 +677,13 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
     {
         get
         {
-            if (!this.Properties.TryGetValue("will_auto_issue", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "will_auto_issue",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("will_auto_issue");
         }
-        set { this.Properties["will_auto_issue"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("will_auto_issue", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -914,7 +709,7 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
         }
         _ = this.DueDate;
         _ = this.EligibleToIssueAt;
-        _ = this.HostedInvoiceURL;
+        _ = this.HostedInvoiceUrl;
         _ = this.InvoiceDate;
         _ = this.InvoiceNumber;
         _ = this.InvoicePdf;
@@ -928,10 +723,7 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
         this.Maximum?.Validate();
         _ = this.MaximumAmount;
         _ = this.Memo;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         this.Minimum?.Validate();
         _ = this.MinimumAmount;
         _ = this.PaidAt;
@@ -952,20 +744,2120 @@ public sealed record class Invoice : Orb::ModelBase, Orb::IFromRaw<Invoice>
         _ = this.WillAutoIssue;
     }
 
+    [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    Invoice(Generic::Dictionary<string, Json::JsonElement> properties)
+    [System::Obsolete("Required properties are deprecated: discount")]
+    public Invoice(Invoice invoice)
+        : base(invoice) { }
+
+    [System::Obsolete("Required properties are deprecated: discount")]
+    public Invoice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete("Required properties are deprecated: discount")]
+    [SetsRequiredMembers]
+    Invoice(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static Invoice FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+    /// <inheritdoc cref="InvoiceFromRaw.FromRawUnchecked"/>
+    public static Invoice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceFromRaw : IFromRawJson<Invoice>
+{
+    /// <inheritdoc/>
+    public Invoice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Invoice.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<InvoiceAutoCollection, InvoiceAutoCollectionFromRaw>))]
+public sealed record class InvoiceAutoCollection : JsonModel
+{
+    /// <summary>
+    /// True only if auto-collection is enabled for this invoice.
+    /// </summary>
+    public required bool? Enabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("enabled");
+        }
+        init { this._rawData.Set("enabled", value); }
+    }
+
+    /// <summary>
+    /// If the invoice is scheduled for auto-collection, this field will reflect when
+    /// the next attempt will occur. If dunning has been exhausted, or auto-collection
+    /// is not enabled for this invoice, this field will be `null`.
+    /// </summary>
+    public required System::DateTimeOffset? NextAttemptAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("next_attempt_at");
+        }
+        init { this._rawData.Set("next_attempt_at", value); }
+    }
+
+    /// <summary>
+    /// Number of auto-collection payment attempts.
+    /// </summary>
+    public required long? NumAttempts
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("num_attempts");
+        }
+        init { this._rawData.Set("num_attempts", value); }
+    }
+
+    /// <summary>
+    /// If Orb has ever attempted payment auto-collection for this invoice, this field
+    /// will reflect when that attempt occurred. In conjunction with `next_attempt_at`,
+    /// this can be used to tell whether the invoice is currently in dunning (that
+    /// is, `previously_attempted_at` is non-null, and `next_attempt_time` is non-null),
+    /// or if dunning has been exhausted (`previously_attempted_at` is non-null, but
+    /// `next_attempt_time` is null).
+    /// </summary>
+    public required System::DateTimeOffset? PreviouslyAttemptedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>(
+                "previously_attempted_at"
+            );
+        }
+        init { this._rawData.Set("previously_attempted_at", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Enabled;
+        _ = this.NextAttemptAt;
+        _ = this.NumAttempts;
+        _ = this.PreviouslyAttemptedAt;
+    }
+
+    public InvoiceAutoCollection() { }
+
+    public InvoiceAutoCollection(InvoiceAutoCollection invoiceAutoCollection)
+        : base(invoiceAutoCollection) { }
+
+    public InvoiceAutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceAutoCollection(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceAutoCollectionFromRaw.FromRawUnchecked"/>
+    public static InvoiceAutoCollection FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceAutoCollectionFromRaw : IFromRawJson<InvoiceAutoCollection>
+{
+    /// <inheritdoc/>
+    public InvoiceAutoCollection FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceAutoCollection.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<InvoiceCreditNote, InvoiceCreditNoteFromRaw>))]
+public sealed record class InvoiceCreditNote : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public required string CreditNoteNumber
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("credit_note_number");
+        }
+        init { this._rawData.Set("credit_note_number", value); }
+    }
+
+    /// <summary>
+    /// An optional memo supplied on the credit note.
+    /// </summary>
+    public required string? Memo
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
+        }
+        init { this._rawData.Set("memo", value); }
+    }
+
+    public required string Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("reason");
+        }
+        init { this._rawData.Set("reason", value); }
+    }
+
+    public required string Total
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("total");
+        }
+        init { this._rawData.Set("total", value); }
+    }
+
+    public required string Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
+    /// <summary>
+    /// If the credit note has a status of `void`, this gives a timestamp when the
+    /// credit note was voided.
+    /// </summary>
+    public required System::DateTimeOffset? VoidedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("voided_at");
+        }
+        init { this._rawData.Set("voided_at", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.CreditNoteNumber;
+        _ = this.Memo;
+        _ = this.Reason;
+        _ = this.Total;
+        _ = this.Type;
+        _ = this.VoidedAt;
+    }
+
+    public InvoiceCreditNote() { }
+
+    public InvoiceCreditNote(InvoiceCreditNote invoiceCreditNote)
+        : base(invoiceCreditNote) { }
+
+    public InvoiceCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceCreditNote(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceCreditNoteFromRaw.FromRawUnchecked"/>
+    public static InvoiceCreditNote FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceCreditNoteFromRaw : IFromRawJson<InvoiceCreditNote>
+{
+    /// <inheritdoc/>
+    public InvoiceCreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceCreditNote.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceCustomerBalanceTransaction,
+        InvoiceCustomerBalanceTransactionFromRaw
+    >)
+)]
+public sealed record class InvoiceCustomerBalanceTransaction : JsonModel
+{
+    /// <summary>
+    /// A unique id for this transaction.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public required ApiEnum<string, InvoiceCustomerBalanceTransactionAction> Action
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, InvoiceCustomerBalanceTransactionAction>
+            >("action");
+        }
+        init { this._rawData.Set("action", value); }
+    }
+
+    /// <summary>
+    /// The value of the amount changed in the transaction.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
+        init { this._rawData.Set("amount", value); }
+    }
+
+    /// <summary>
+    /// The creation time of this transaction.
+    /// </summary>
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    public required CreditNoteTiny? CreditNote
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreditNoteTiny>("credit_note");
+        }
+        init { this._rawData.Set("credit_note", value); }
+    }
+
+    /// <summary>
+    /// An optional description provided for manual customer balance adjustments.
+    /// </summary>
+    public required string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init { this._rawData.Set("description", value); }
+    }
+
+    /// <summary>
+    /// The new value of the customer's balance prior to the transaction, in the customer's currency.
+    /// </summary>
+    public required string EndingBalance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("ending_balance");
+        }
+        init { this._rawData.Set("ending_balance", value); }
+    }
+
+    public required InvoiceTiny? Invoice
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<InvoiceTiny>("invoice");
+        }
+        init { this._rawData.Set("invoice", value); }
+    }
+
+    /// <summary>
+    /// The original value of the customer's balance prior to the transaction, in
+    /// the customer's currency.
+    /// </summary>
+    public required string StartingBalance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("starting_balance");
+        }
+        init { this._rawData.Set("starting_balance", value); }
+    }
+
+    public required ApiEnum<string, InvoiceCustomerBalanceTransactionType> Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, InvoiceCustomerBalanceTransactionType>
+            >("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.Action.Validate();
+        _ = this.Amount;
+        _ = this.CreatedAt;
+        this.CreditNote?.Validate();
+        _ = this.Description;
+        _ = this.EndingBalance;
+        this.Invoice?.Validate();
+        _ = this.StartingBalance;
+        this.Type.Validate();
+    }
+
+    public InvoiceCustomerBalanceTransaction() { }
+
+    public InvoiceCustomerBalanceTransaction(
+        InvoiceCustomerBalanceTransaction invoiceCustomerBalanceTransaction
+    )
+        : base(invoiceCustomerBalanceTransaction) { }
+
+    public InvoiceCustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceCustomerBalanceTransaction(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceCustomerBalanceTransactionFromRaw.FromRawUnchecked"/>
+    public static InvoiceCustomerBalanceTransaction FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceCustomerBalanceTransactionFromRaw : IFromRawJson<InvoiceCustomerBalanceTransaction>
+{
+    /// <inheritdoc/>
+    public InvoiceCustomerBalanceTransaction FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceCustomerBalanceTransaction.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(InvoiceCustomerBalanceTransactionActionConverter))]
+public enum InvoiceCustomerBalanceTransactionAction
+{
+    AppliedToInvoice,
+    ManualAdjustment,
+    ProratedRefund,
+    RevertProratedRefund,
+    ReturnFromVoiding,
+    CreditNoteApplied,
+    CreditNoteVoided,
+    OverpaymentRefund,
+    ExternalPayment,
+    SmallInvoiceCarryover,
+}
+
+sealed class InvoiceCustomerBalanceTransactionActionConverter
+    : JsonConverter<InvoiceCustomerBalanceTransactionAction>
+{
+    public override InvoiceCustomerBalanceTransactionAction Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "applied_to_invoice" => InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
+            "manual_adjustment" => InvoiceCustomerBalanceTransactionAction.ManualAdjustment,
+            "prorated_refund" => InvoiceCustomerBalanceTransactionAction.ProratedRefund,
+            "revert_prorated_refund" =>
+                InvoiceCustomerBalanceTransactionAction.RevertProratedRefund,
+            "return_from_voiding" => InvoiceCustomerBalanceTransactionAction.ReturnFromVoiding,
+            "credit_note_applied" => InvoiceCustomerBalanceTransactionAction.CreditNoteApplied,
+            "credit_note_voided" => InvoiceCustomerBalanceTransactionAction.CreditNoteVoided,
+            "overpayment_refund" => InvoiceCustomerBalanceTransactionAction.OverpaymentRefund,
+            "external_payment" => InvoiceCustomerBalanceTransactionAction.ExternalPayment,
+            "small_invoice_carryover" =>
+                InvoiceCustomerBalanceTransactionAction.SmallInvoiceCarryover,
+            _ => (InvoiceCustomerBalanceTransactionAction)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceCustomerBalanceTransactionAction value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceCustomerBalanceTransactionAction.AppliedToInvoice => "applied_to_invoice",
+                InvoiceCustomerBalanceTransactionAction.ManualAdjustment => "manual_adjustment",
+                InvoiceCustomerBalanceTransactionAction.ProratedRefund => "prorated_refund",
+                InvoiceCustomerBalanceTransactionAction.RevertProratedRefund =>
+                    "revert_prorated_refund",
+                InvoiceCustomerBalanceTransactionAction.ReturnFromVoiding => "return_from_voiding",
+                InvoiceCustomerBalanceTransactionAction.CreditNoteApplied => "credit_note_applied",
+                InvoiceCustomerBalanceTransactionAction.CreditNoteVoided => "credit_note_voided",
+                InvoiceCustomerBalanceTransactionAction.OverpaymentRefund => "overpayment_refund",
+                InvoiceCustomerBalanceTransactionAction.ExternalPayment => "external_payment",
+                InvoiceCustomerBalanceTransactionAction.SmallInvoiceCarryover =>
+                    "small_invoice_carryover",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(InvoiceCustomerBalanceTransactionTypeConverter))]
+public enum InvoiceCustomerBalanceTransactionType
+{
+    Increment,
+    Decrement,
+}
+
+sealed class InvoiceCustomerBalanceTransactionTypeConverter
+    : JsonConverter<InvoiceCustomerBalanceTransactionType>
+{
+    public override InvoiceCustomerBalanceTransactionType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => InvoiceCustomerBalanceTransactionType.Increment,
+            "decrement" => InvoiceCustomerBalanceTransactionType.Decrement,
+            _ => (InvoiceCustomerBalanceTransactionType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceCustomerBalanceTransactionType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceCustomerBalanceTransactionType.Increment => "increment",
+                InvoiceCustomerBalanceTransactionType.Decrement => "decrement",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(InvoiceInvoiceSourceConverter))]
+public enum InvoiceInvoiceSource
+{
+    Subscription,
+    Partial,
+    OneOff,
+}
+
+sealed class InvoiceInvoiceSourceConverter : JsonConverter<InvoiceInvoiceSource>
+{
+    public override InvoiceInvoiceSource Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "subscription" => InvoiceInvoiceSource.Subscription,
+            "partial" => InvoiceInvoiceSource.Partial,
+            "one_off" => InvoiceInvoiceSource.OneOff,
+            _ => (InvoiceInvoiceSource)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceInvoiceSource value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceInvoiceSource.Subscription => "subscription",
+                InvoiceInvoiceSource.Partial => "partial",
+                InvoiceInvoiceSource.OneOff => "one_off",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<InvoiceLineItem, InvoiceLineItemFromRaw>))]
+public sealed record class InvoiceLineItem : JsonModel
+{
+    /// <summary>
+    /// A unique ID for this line item.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The line amount after any adjustments and before overage conversion, credits
+    /// and partial invoicing.
+    /// </summary>
+    public required string AdjustedSubtotal
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("adjusted_subtotal");
+        }
+        init { this._rawData.Set("adjusted_subtotal", value); }
+    }
+
+    /// <summary>
+    /// All adjustments applied to the line item in the order they were applied based
+    /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
+    /// discounts -> minimums -> maximums).
+    /// </summary>
+    public required IReadOnlyList<InvoiceLineItemAdjustment> Adjustments
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<InvoiceLineItemAdjustment>>(
+                "adjustments"
+            );
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<InvoiceLineItemAdjustment>>(
+                "adjustments",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The final amount for a line item after all adjustments and pre paid credits
+    /// have been applied.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
+        init { this._rawData.Set("amount", value); }
+    }
+
+    /// <summary>
+    /// The number of prepaid credits applied.
+    /// </summary>
+    public required string CreditsApplied
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("credits_applied");
+        }
+        init { this._rawData.Set("credits_applied", value); }
+    }
+
+    /// <summary>
+    /// The end date of the range of time applied for this line item's price.
+    /// </summary>
+    public required System::DateTimeOffset EndDate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("end_date");
+        }
+        init { this._rawData.Set("end_date", value); }
+    }
+
+    /// <summary>
+    /// An additional filter that was used to calculate the usage for this line item.
+    /// </summary>
+    public required string? Filter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("filter");
+        }
+        init { this._rawData.Set("filter", value); }
+    }
+
+    /// <summary>
+    /// [DEPRECATED] For configured prices that are split by a grouping key, this
+    /// will be populated with the key and a value. The `amount` and `subtotal` will
+    /// be the values for this particular grouping.
+    /// </summary>
+    public required string? Grouping
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("grouping");
+        }
+        init { this._rawData.Set("grouping", value); }
+    }
+
+    /// <summary>
+    /// The name of the price associated with this line item.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// Any amount applied from a partial invoice
+    /// </summary>
+    public required string PartiallyInvoicedAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("partially_invoiced_amount");
+        }
+        init { this._rawData.Set("partially_invoiced_amount", value); }
+    }
+
+    /// <summary>
+    /// The Price resource represents a price that can be billed on a subscription,
+    /// resulting in a charge on an invoice in the form of an invoice line item.
+    /// Prices take a quantity and determine an amount to bill.
+    ///
+    /// <para>Orb supports a few different pricing models out of the box. Each of
+    /// these models is serialized differently in a given Price object. The model_type
+    /// field determines the key for the configuration object that is present.</para>
+    ///
+    /// <para>For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)</para>
+    /// </summary>
+    public required Price Price
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<Price>("price");
+        }
+        init { this._rawData.Set("price", value); }
+    }
+
+    /// <summary>
+    /// Either the fixed fee quantity or the usage during the service period.
+    /// </summary>
+    public required double Quantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
+        }
+        init { this._rawData.Set("quantity", value); }
+    }
+
+    /// <summary>
+    /// The start date of the range of time applied for this line item's price.
+    /// </summary>
+    public required System::DateTimeOffset StartDate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
+        }
+        init { this._rawData.Set("start_date", value); }
+    }
+
+    /// <summary>
+    /// For complex pricing structures, the line item can be broken down further
+    /// in `sub_line_items`.
+    /// </summary>
+    public required IReadOnlyList<InvoiceLineItemSubLineItem> SubLineItems
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<InvoiceLineItemSubLineItem>>(
+                "sub_line_items"
+            );
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<InvoiceLineItemSubLineItem>>(
+                "sub_line_items",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The line amount before any adjustments.
+    /// </summary>
+    public required string Subtotal
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("subtotal");
+        }
+        init { this._rawData.Set("subtotal", value); }
+    }
+
+    /// <summary>
+    /// An array of tax rates and their incurred tax amounts. Empty if no tax integration
+    /// is configured.
+    /// </summary>
+    public required IReadOnlyList<TaxAmount> TaxAmounts
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<TaxAmount>>("tax_amounts");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<TaxAmount>>(
+                "tax_amounts",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A list of customer ids that were used to calculate the usage for this line item.
+    /// </summary>
+    public required IReadOnlyList<string>? UsageCustomerIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("usage_customer_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "usage_customer_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.AdjustedSubtotal;
+        foreach (var item in this.Adjustments)
+        {
+            item.Validate();
+        }
+        _ = this.Amount;
+        _ = this.CreditsApplied;
+        _ = this.EndDate;
+        _ = this.Filter;
+        _ = this.Grouping;
+        _ = this.Name;
+        _ = this.PartiallyInvoicedAmount;
+        this.Price.Validate();
+        _ = this.Quantity;
+        _ = this.StartDate;
+        foreach (var item in this.SubLineItems)
+        {
+            item.Validate();
+        }
+        _ = this.Subtotal;
+        foreach (var item in this.TaxAmounts)
+        {
+            item.Validate();
+        }
+        _ = this.UsageCustomerIds;
+    }
+
+    public InvoiceLineItem() { }
+
+    public InvoiceLineItem(InvoiceLineItem invoiceLineItem)
+        : base(invoiceLineItem) { }
+
+    public InvoiceLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceLineItem(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemFromRaw : IFromRawJson<InvoiceLineItem>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceLineItem.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(InvoiceLineItemAdjustmentConverter))]
+public record class InvoiceLineItemAdjustment : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string ID
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.ID,
+                monetaryAmountDiscount: (x) => x.ID,
+                monetaryPercentageDiscount: (x) => x.ID,
+                monetaryMinimum: (x) => x.ID,
+                monetaryMaximum: (x) => x.ID
+            );
+        }
+    }
+
+    public string Amount
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.Amount,
+                monetaryAmountDiscount: (x) => x.Amount,
+                monetaryPercentageDiscount: (x) => x.Amount,
+                monetaryMinimum: (x) => x.Amount,
+                monetaryMaximum: (x) => x.Amount
+            );
+        }
+    }
+
+    public bool IsInvoiceLevel
+    {
+        get
+        {
+            return Match(
+                monetaryUsageDiscount: (x) => x.IsInvoiceLevel,
+                monetaryAmountDiscount: (x) => x.IsInvoiceLevel,
+                monetaryPercentageDiscount: (x) => x.IsInvoiceLevel,
+                monetaryMinimum: (x) => x.IsInvoiceLevel,
+                monetaryMaximum: (x) => x.IsInvoiceLevel
+            );
+        }
+    }
+
+    public string? Reason
+    {
+        get
+        {
+            return Match<string?>(
+                monetaryUsageDiscount: (x) => x.Reason,
+                monetaryAmountDiscount: (x) => x.Reason,
+                monetaryPercentageDiscount: (x) => x.Reason,
+                monetaryMinimum: (x) => x.Reason,
+                monetaryMaximum: (x) => x.Reason
+            );
+        }
+    }
+
+    public string? ReplacesAdjustmentID
+    {
+        get
+        {
+            return Match<string?>(
+                monetaryUsageDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryAmountDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryPercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                monetaryMinimum: (x) => x.ReplacesAdjustmentID,
+                monetaryMaximum: (x) => x.ReplacesAdjustmentID
+            );
+        }
+    }
+
+    public InvoiceLineItemAdjustment(
+        MonetaryUsageDiscountAdjustment value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemAdjustment(
+        MonetaryAmountDiscountAdjustment value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemAdjustment(
+        MonetaryPercentageDiscountAdjustment value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemAdjustment(MonetaryMaximumAdjustment value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemAdjustment(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryUsageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryUsageDiscount(out var value)) {
+    ///     // `value` is of type `MonetaryUsageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMonetaryUsageDiscount(
+        [NotNullWhen(true)] out MonetaryUsageDiscountAdjustment? value
+    )
+    {
+        value = this.Value as MonetaryUsageDiscountAdjustment;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryAmountDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryAmountDiscount(out var value)) {
+    ///     // `value` is of type `MonetaryAmountDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMonetaryAmountDiscount(
+        [NotNullWhen(true)] out MonetaryAmountDiscountAdjustment? value
+    )
+    {
+        value = this.Value as MonetaryAmountDiscountAdjustment;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryPercentageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryPercentageDiscount(out var value)) {
+    ///     // `value` is of type `MonetaryPercentageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMonetaryPercentageDiscount(
+        [NotNullWhen(true)] out MonetaryPercentageDiscountAdjustment? value
+    )
+    {
+        value = this.Value as MonetaryPercentageDiscountAdjustment;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryMinimumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryMinimum(out var value)) {
+    ///     // `value` is of type `MonetaryMinimumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMonetaryMinimum([NotNullWhen(true)] out MonetaryMinimumAdjustment? value)
+    {
+        value = this.Value as MonetaryMinimumAdjustment;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryMaximumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryMaximum(out var value)) {
+    ///     // `value` is of type `MonetaryMaximumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMonetaryMaximum([NotNullWhen(true)] out MonetaryMaximumAdjustment? value)
+    {
+        value = this.Value as MonetaryMaximumAdjustment;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (MonetaryUsageDiscountAdjustment value) => {...},
+    ///     (MonetaryAmountDiscountAdjustment value) => {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
+    ///     (MonetaryMinimumAdjustment value) => {...},
+    ///     (MonetaryMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
+        System::Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
+        System::Action<MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
+        System::Action<MonetaryMinimumAdjustment> monetaryMinimum,
+        System::Action<MonetaryMaximumAdjustment> monetaryMaximum
+    )
+    {
+        switch (this.Value)
+        {
+            case MonetaryUsageDiscountAdjustment value:
+                monetaryUsageDiscount(value);
+                break;
+            case MonetaryAmountDiscountAdjustment value:
+                monetaryAmountDiscount(value);
+                break;
+            case MonetaryPercentageDiscountAdjustment value:
+                monetaryPercentageDiscount(value);
+                break;
+            case MonetaryMinimumAdjustment value:
+                monetaryMinimum(value);
+                break;
+            case MonetaryMaximumAdjustment value:
+                monetaryMaximum(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of InvoiceLineItemAdjustment"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (MonetaryUsageDiscountAdjustment value) => {...},
+    ///     (MonetaryAmountDiscountAdjustment value) => {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
+    ///     (MonetaryMinimumAdjustment value) => {...},
+    ///     (MonetaryMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
+        System::Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
+        System::Func<MonetaryPercentageDiscountAdjustment, T> monetaryPercentageDiscount,
+        System::Func<MonetaryMinimumAdjustment, T> monetaryMinimum,
+        System::Func<MonetaryMaximumAdjustment, T> monetaryMaximum
+    )
+    {
+        return this.Value switch
+        {
+            MonetaryUsageDiscountAdjustment value => monetaryUsageDiscount(value),
+            MonetaryAmountDiscountAdjustment value => monetaryAmountDiscount(value),
+            MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
+            MonetaryMinimumAdjustment value => monetaryMinimum(value),
+            MonetaryMaximumAdjustment value => monetaryMaximum(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLineItemAdjustment"
+            ),
+        };
+    }
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        MonetaryUsageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        MonetaryAmountDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        MonetaryPercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value) =>
+        new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(MonetaryMaximumAdjustment value) =>
+        new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLineItemAdjustment"
+            );
+        }
+        this.Switch(
+            (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
+            (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
+            (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (monetaryMinimum) => monetaryMinimum.Validate(),
+            (monetaryMaximum) => monetaryMaximum.Validate()
+        );
+    }
+
+    public virtual bool Equals(InvoiceLineItemAdjustment? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+}
+
+sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemAdjustment>
+{
+    public override InvoiceLineItemAdjustment? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? adjustmentType;
+        try
+        {
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
+        }
+        catch
+        {
+            adjustmentType = null;
+        }
+
+        switch (adjustmentType)
+        {
+            case "usage_discount":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "amount_discount":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustment>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "percentage_discount":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<MonetaryPercentageDiscountAdjustment>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "minimum":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "maximum":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustment>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new InvoiceLineItemAdjustment(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceLineItemAdjustment value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(typeof(InvoiceLineItemSubLineItemConverter))]
+public record class InvoiceLineItemSubLineItem : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public string Amount
+    {
+        get
+        {
+            return Match(matrix: (x) => x.Amount, tier: (x) => x.Amount, other: (x) => x.Amount);
+        }
+    }
+
+    public SubLineItemGrouping? Grouping
+    {
+        get
+        {
+            return Match<SubLineItemGrouping?>(
+                matrix: (x) => x.Grouping,
+                tier: (x) => x.Grouping,
+                other: (x) => x.Grouping
+            );
+        }
+    }
+
+    public string Name
+    {
+        get { return Match(matrix: (x) => x.Name, tier: (x) => x.Name, other: (x) => x.Name); }
+    }
+
+    public double Quantity
+    {
+        get
+        {
+            return Match(
+                matrix: (x) => x.Quantity,
+                tier: (x) => x.Quantity,
+                other: (x) => x.Quantity
+            );
+        }
+    }
+
+    public InvoiceLineItemSubLineItem(MatrixSubLineItem value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemSubLineItem(TierSubLineItem value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemSubLineItem(OtherSubLineItem value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemSubLineItem(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MatrixSubLineItem"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMatrix(out var value)) {
+    ///     // `value` is of type `MatrixSubLineItem`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMatrix([NotNullWhen(true)] out MatrixSubLineItem? value)
+    {
+        value = this.Value as MatrixSubLineItem;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="TierSubLineItem"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTier(out var value)) {
+    ///     // `value` is of type `TierSubLineItem`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTier([NotNullWhen(true)] out TierSubLineItem? value)
+    {
+        value = this.Value as TierSubLineItem;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="OtherSubLineItem"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickOther(out var value)) {
+    ///     // `value` is of type `OtherSubLineItem`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickOther([NotNullWhen(true)] out OtherSubLineItem? value)
+    {
+        value = this.Value as OtherSubLineItem;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (MatrixSubLineItem value) => {...},
+    ///     (TierSubLineItem value) => {...},
+    ///     (OtherSubLineItem value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<MatrixSubLineItem> matrix,
+        System::Action<TierSubLineItem> tier,
+        System::Action<OtherSubLineItem> other
+    )
+    {
+        switch (this.Value)
+        {
+            case MatrixSubLineItem value:
+                matrix(value);
+                break;
+            case TierSubLineItem value:
+                tier(value);
+                break;
+            case OtherSubLineItem value:
+                other(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of InvoiceLineItemSubLineItem"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (MatrixSubLineItem value) => {...},
+    ///     (TierSubLineItem value) => {...},
+    ///     (OtherSubLineItem value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<MatrixSubLineItem, T> matrix,
+        System::Func<TierSubLineItem, T> tier,
+        System::Func<OtherSubLineItem, T> other
+    )
+    {
+        return this.Value switch
+        {
+            MatrixSubLineItem value => matrix(value),
+            TierSubLineItem value => tier(value),
+            OtherSubLineItem value => other(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLineItemSubLineItem"
+            ),
+        };
+    }
+
+    public static implicit operator InvoiceLineItemSubLineItem(MatrixSubLineItem value) =>
+        new(value);
+
+    public static implicit operator InvoiceLineItemSubLineItem(TierSubLineItem value) => new(value);
+
+    public static implicit operator InvoiceLineItemSubLineItem(OtherSubLineItem value) =>
+        new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLineItemSubLineItem"
+            );
+        }
+        this.Switch(
+            (matrix) => matrix.Validate(),
+            (tier) => tier.Validate(),
+            (other) => other.Validate()
+        );
+    }
+
+    public virtual bool Equals(InvoiceLineItemSubLineItem? other)
+    {
+        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+}
+
+sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItemSubLineItem>
+{
+    public override InvoiceLineItemSubLineItem? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? type;
+        try
+        {
+            type = element.GetProperty("type").GetString();
+        }
+        catch
+        {
+            type = null;
+        }
+
+        switch (type)
+        {
+            case "matrix":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tier":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "'null'":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is OrbInvalidDataException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new InvoiceLineItemSubLineItem(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceLineItemSubLineItem value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<InvoicePaymentAttempt, InvoicePaymentAttemptFromRaw>))]
+public sealed record class InvoicePaymentAttempt : JsonModel
+{
+    /// <summary>
+    /// The ID of the payment attempt.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The amount of the payment attempt.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
+        init { this._rawData.Set("amount", value); }
+    }
+
+    /// <summary>
+    /// The time at which the payment attempt was created.
+    /// </summary>
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    /// <summary>
+    /// The payment provider that attempted to collect the payment.
+    /// </summary>
+    public required ApiEnum<string, InvoicePaymentAttemptPaymentProvider>? PaymentProvider
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, InvoicePaymentAttemptPaymentProvider>
+            >("payment_provider");
+        }
+        init { this._rawData.Set("payment_provider", value); }
+    }
+
+    /// <summary>
+    /// The ID of the payment attempt in the payment provider.
+    /// </summary>
+    public required string? PaymentProviderID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("payment_provider_id");
+        }
+        init { this._rawData.Set("payment_provider_id", value); }
+    }
+
+    /// <summary>
+    /// URL to the downloadable PDF version of the receipt. This field will be `null`
+    /// for payment attempts that did not succeed.
+    /// </summary>
+    public required string? ReceiptPdf
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("receipt_pdf");
+        }
+        init { this._rawData.Set("receipt_pdf", value); }
+    }
+
+    /// <summary>
+    /// Whether the payment attempt succeeded.
+    /// </summary>
+    public required bool Succeeded
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("succeeded");
+        }
+        init { this._rawData.Set("succeeded", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.Amount;
+        _ = this.CreatedAt;
+        this.PaymentProvider?.Validate();
+        _ = this.PaymentProviderID;
+        _ = this.ReceiptPdf;
+        _ = this.Succeeded;
+    }
+
+    public InvoicePaymentAttempt() { }
+
+    public InvoicePaymentAttempt(InvoicePaymentAttempt invoicePaymentAttempt)
+        : base(invoicePaymentAttempt) { }
+
+    public InvoicePaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoicePaymentAttempt(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoicePaymentAttemptFromRaw.FromRawUnchecked"/>
+    public static InvoicePaymentAttempt FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoicePaymentAttemptFromRaw : IFromRawJson<InvoicePaymentAttempt>
+{
+    /// <inheritdoc/>
+    public InvoicePaymentAttempt FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoicePaymentAttempt.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The payment provider that attempted to collect the payment.
+/// </summary>
+[JsonConverter(typeof(InvoicePaymentAttemptPaymentProviderConverter))]
+public enum InvoicePaymentAttemptPaymentProvider
+{
+    Stripe,
+}
+
+sealed class InvoicePaymentAttemptPaymentProviderConverter
+    : JsonConverter<InvoicePaymentAttemptPaymentProvider>
+{
+    public override InvoicePaymentAttemptPaymentProvider Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "stripe" => InvoicePaymentAttemptPaymentProvider.Stripe,
+            _ => (InvoicePaymentAttemptPaymentProvider)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoicePaymentAttemptPaymentProvider value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoicePaymentAttemptPaymentProvider.Stripe => "stripe",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(InvoiceStatusConverter))]
+public enum InvoiceStatus
+{
+    Issued,
+    Paid,
+    Synced,
+    Void,
+    Draft,
+}
+
+sealed class InvoiceStatusConverter : JsonConverter<InvoiceStatus>
+{
+    public override InvoiceStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "issued" => InvoiceStatus.Issued,
+            "paid" => InvoiceStatus.Paid,
+            "synced" => InvoiceStatus.Synced,
+            "void" => InvoiceStatus.Void,
+            "draft" => InvoiceStatus.Draft,
+            _ => (InvoiceStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceStatus.Issued => "issued",
+                InvoiceStatus.Paid => "paid",
+                InvoiceStatus.Synced => "synced",
+                InvoiceStatus.Void => "void",
+                InvoiceStatus.Draft => "draft",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

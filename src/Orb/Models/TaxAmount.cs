@@ -1,14 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TaxAmount>))]
-public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
+[JsonConverter(typeof(JsonModelConverter<TaxAmount, TaxAmountFromRaw>))]
+public sealed record class TaxAmount : JsonModel
 {
     /// <summary>
     /// The amount of additional tax incurred by this tax rate.
@@ -17,16 +17,10 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
@@ -36,21 +30,10 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_rate_description", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_rate_description",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("tax_rate_description");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("tax_rate_description");
         }
-        set
-        {
-            this.Properties["tax_rate_description"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("tax_rate_description", value); }
     }
 
     /// <summary>
@@ -60,20 +43,13 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_rate_percentage", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_rate_percentage",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tax_rate_percentage");
         }
-        set
-        {
-            this.Properties["tax_rate_percentage"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("tax_rate_percentage", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -83,18 +59,32 @@ public sealed record class TaxAmount : Orb::ModelBase, Orb::IFromRaw<TaxAmount>
 
     public TaxAmount() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TaxAmount(Generic::Dictionary<string, Json::JsonElement> properties)
+    public TaxAmount(TaxAmount taxAmount)
+        : base(taxAmount) { }
+
+    public TaxAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TaxAmount(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static TaxAmount FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="TaxAmountFromRaw.FromRawUnchecked"/>
+    public static TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TaxAmountFromRaw : IFromRawJson<TaxAmount>
+{
+    /// <inheritdoc/>
+    public TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TaxAmount.FromRawUnchecked(rawData);
 }

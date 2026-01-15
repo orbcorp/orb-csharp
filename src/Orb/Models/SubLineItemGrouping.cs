@@ -1,26 +1,23 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<SubLineItemGrouping>))]
-public sealed record class SubLineItemGrouping : Orb::ModelBase, Orb::IFromRaw<SubLineItemGrouping>
+[JsonConverter(typeof(JsonModelConverter<SubLineItemGrouping, SubLineItemGroupingFromRaw>))]
+public sealed record class SubLineItemGrouping : JsonModel
 {
     public required string Key
     {
         get
         {
-            if (!this.Properties.TryGetValue("key", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("key", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("key");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("key");
         }
-        set { this.Properties["key"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("key", value); }
     }
 
     /// <summary>
@@ -30,14 +27,13 @@ public sealed record class SubLineItemGrouping : Orb::ModelBase, Orb::IFromRaw<S
     {
         get
         {
-            if (!this.Properties.TryGetValue("value", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("value", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("value");
         }
-        set { this.Properties["value"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Key;
@@ -46,18 +42,34 @@ public sealed record class SubLineItemGrouping : Orb::ModelBase, Orb::IFromRaw<S
 
     public SubLineItemGrouping() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    SubLineItemGrouping(Generic::Dictionary<string, Json::JsonElement> properties)
+    public SubLineItemGrouping(SubLineItemGrouping subLineItemGrouping)
+        : base(subLineItemGrouping) { }
+
+    public SubLineItemGrouping(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubLineItemGrouping(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubLineItemGroupingFromRaw.FromRawUnchecked"/>
     public static SubLineItemGrouping FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class SubLineItemGroupingFromRaw : IFromRawJson<SubLineItemGrouping>
+{
+    /// <inheritdoc/>
+    public SubLineItemGrouping FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        SubLineItemGrouping.FromRawUnchecked(rawData);
 }

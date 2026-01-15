@@ -1,32 +1,28 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewReportingConfiguration>))]
-public sealed record class NewReportingConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewReportingConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<NewReportingConfiguration, NewReportingConfigurationFromRaw>)
+)]
+public sealed record class NewReportingConfiguration : JsonModel
 {
     public required bool Exempt
     {
         get
         {
-            if (!this.Properties.TryGetValue("exempt", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "exempt",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("exempt");
         }
-        set { this.Properties["exempt"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("exempt", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Exempt;
@@ -34,18 +30,42 @@ public sealed record class NewReportingConfiguration
 
     public NewReportingConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewReportingConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewReportingConfiguration(NewReportingConfiguration newReportingConfiguration)
+        : base(newReportingConfiguration) { }
+
+    public NewReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewReportingConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewReportingConfigurationFromRaw.FromRawUnchecked"/>
     public static NewReportingConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public NewReportingConfiguration(bool exempt)
+        : this()
+    {
+        this.Exempt = exempt;
+    }
+}
+
+class NewReportingConfigurationFromRaw : IFromRawJson<NewReportingConfiguration>
+{
+    /// <inheritdoc/>
+    public NewReportingConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewReportingConfiguration.FromRawUnchecked(rawData);
 }

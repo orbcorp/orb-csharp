@@ -1,53 +1,104 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TieredConfig>))]
-public sealed record class TieredConfig : Orb::ModelBase, Orb::IFromRaw<TieredConfig>
+/// <summary>
+/// Configuration for tiered pricing
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<TieredConfig, TieredConfigFromRaw>))]
+public sealed record class TieredConfig : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required Generic::List<Tier> Tiers
+    public required IReadOnlyList<SharedTier> Tiers
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Tier>>(element)
-                ?? throw new System::ArgumentNullException("tiers");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<SharedTier>>("tiers");
         }
-        set { this.Properties["tiers"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<SharedTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <summary>
+    /// If true, subtotals from this price are prorated based on the service period
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("prorated", value);
+        }
+    }
+
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
         {
             item.Validate();
         }
+        _ = this.Prorated;
     }
 
     public TieredConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TieredConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public TieredConfig(TieredConfig tieredConfig)
+        : base(tieredConfig) { }
+
+    public TieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static TieredConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="TieredConfigFromRaw.FromRawUnchecked"/>
+    public static TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public TieredConfig(IReadOnlyList<SharedTier> tiers)
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class TieredConfigFromRaw : IFromRawJson<TieredConfig>
+{
+    /// <inheritdoc/>
+    public TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredConfig.FromRawUnchecked(rawData);
 }

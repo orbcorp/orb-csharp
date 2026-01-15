@@ -1,7 +1,11 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using PlanListParamsProperties = Orb.Models.Plans.PlanListParamsProperties;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Plans;
@@ -12,70 +16,46 @@ namespace Orb.Models.Plans;
 /// recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination),
 /// which lets the caller retrieve the next page of results if they exist.
 /// </summary>
-public sealed record class PlanListParams : Orb::ParamsBase
+public sealed record class PlanListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public System::DateTimeOffset? CreatedAtGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gt]");
         }
-        set
-        {
-            this.QueryProperties["created_at[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("created_at[gt]", value); }
     }
 
-    public System::DateTime? CreatedAtGte
+    public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[gte]");
         }
-        set
-        {
-            this.QueryProperties["created_at[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("created_at[gte]", value); }
     }
 
-    public System::DateTime? CreatedAtLt
+    public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lt]");
         }
-        set
-        {
-            this.QueryProperties["created_at[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("created_at[lt]", value); }
     }
 
-    public System::DateTime? CreatedAtLte
+    public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<System::DateTimeOffset>("created_at[lte]");
         }
-        set
-        {
-            this.QueryProperties["created_at[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("created_at[lte]", value); }
     }
 
     /// <summary>
@@ -86,12 +66,10 @@ public sealed record class PlanListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -101,43 +79,145 @@ public sealed record class PlanListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
     /// <summary>
     /// The plan status to filter to ('active', 'archived', or 'draft').
     /// </summary>
-    public PlanListParamsProperties::Status? Status
+    public ApiEnum<string, PlanListParamsStatus>? Status
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("status", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<PlanListParamsProperties::Status?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, PlanListParamsStatus>>(
+                "status"
+            );
         }
-        set { this.QueryProperties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("status", value);
+        }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public PlanListParams() { }
+
+    public PlanListParams(PlanListParams planListParams)
+        : base(planListParams) { }
+
+    public PlanListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/plans")
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PlanListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static PlanListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
+    {
+        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/plans")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// The plan status to filter to ('active', 'archived', or 'draft').
+/// </summary>
+[JsonConverter(typeof(PlanListParamsStatusConverter))]
+public enum PlanListParamsStatus
+{
+    Active,
+    Archived,
+    Draft,
+}
+
+sealed class PlanListParamsStatusConverter : JsonConverter<PlanListParamsStatus>
+{
+    public override PlanListParamsStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "active" => PlanListParamsStatus.Active,
+            "archived" => PlanListParamsStatus.Archived,
+            "draft" => PlanListParamsStatus.Draft,
+            _ => (PlanListParamsStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PlanListParamsStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PlanListParamsStatus.Active => "active",
+                PlanListParamsStatus.Archived => "archived",
+                PlanListParamsStatus.Draft => "draft",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

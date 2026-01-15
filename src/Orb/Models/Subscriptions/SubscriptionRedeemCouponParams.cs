@@ -1,40 +1,39 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using SubscriptionRedeemCouponParamsProperties = Orb.Models.Subscriptions.SubscriptionRedeemCouponParamsProperties;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
 /// <summary>
 /// Redeem a coupon effective at a given time.
 /// </summary>
-public sealed record class SubscriptionRedeemCouponParams : Orb::ParamsBase
+public sealed record class SubscriptionRedeemCouponParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string SubscriptionID;
+    public string? SubscriptionID { get; init; }
 
-    public required SubscriptionRedeemCouponParamsProperties::ChangeOption ChangeOption
+    public required ApiEnum<string, ChangeOption> ChangeOption
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("change_option", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "change_option",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<SubscriptionRedeemCouponParamsProperties::ChangeOption>(
-                    element
-                ) ?? throw new System::ArgumentNullException("change_option");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<ApiEnum<string, ChangeOption>>(
+                "change_option"
+            );
         }
-        set
-        {
-            this.BodyProperties["change_option"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("change_option", value); }
     }
 
     /// <summary>
@@ -46,37 +45,24 @@ public sealed record class SubscriptionRedeemCouponParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "allow_invoice_credit_or_void",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void");
         }
-        set
-        {
-            this.BodyProperties["allow_invoice_credit_or_void"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
-    /// The date that the coupon discount should take effect. This parameter can only
-    /// be passed if the `change_option` is `requested_date`.
+    /// The date that the coupon discount should take effect. This parameter can
+    /// only be passed if the `change_option` is `requested_date`.
     /// </summary>
-    public System::DateTime? ChangeDate
+    public System::DateTimeOffset? ChangeDate
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("change_date", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<System::DateTimeOffset>("change_date");
         }
-        set { this.BodyProperties["change_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("change_date", value); }
     }
 
     /// <summary>
@@ -86,12 +72,10 @@ public sealed record class SubscriptionRedeemCouponParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("coupon_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("coupon_id");
         }
-        set { this.BodyProperties["coupon_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("coupon_id", value); }
     }
 
     /// <summary>
@@ -101,50 +85,136 @@ public sealed record class SubscriptionRedeemCouponParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "coupon_redemption_code",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("coupon_redemption_code");
         }
-        set
-        {
-            this.BodyProperties["coupon_redemption_code"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawBodyData.Set("coupon_redemption_code", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionRedeemCouponParams() { }
+
+    public SubscriptionRedeemCouponParams(
+        SubscriptionRedeemCouponParams subscriptionRedeemCouponParams
+    )
+        : base(subscriptionRedeemCouponParams)
+    {
+        this.SubscriptionID = subscriptionRedeemCouponParams.SubscriptionID;
+
+        this._rawBodyData = new(subscriptionRedeemCouponParams._rawBodyData);
+    }
+
+    public SubscriptionRedeemCouponParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionRedeemCouponParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionRedeemCouponParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/redeem_coupon", this.SubscriptionID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+[JsonConverter(typeof(ChangeOptionConverter))]
+public enum ChangeOption
+{
+    RequestedDate,
+    EndOfSubscriptionTerm,
+    Immediate,
+}
+
+sealed class ChangeOptionConverter : JsonConverter<ChangeOption>
+{
+    public override ChangeOption Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "requested_date" => ChangeOption.RequestedDate,
+            "end_of_subscription_term" => ChangeOption.EndOfSubscriptionTerm,
+            "immediate" => ChangeOption.Immediate,
+            _ => (ChangeOption)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ChangeOption value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ChangeOption.RequestedDate => "requested_date",
+                ChangeOption.EndOfSubscriptionTerm => "end_of_subscription_term",
+                ChangeOption.Immediate => "immediate",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

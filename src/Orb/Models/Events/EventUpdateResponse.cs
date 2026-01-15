@@ -1,14 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Events;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<EventUpdateResponse>))]
-public sealed record class EventUpdateResponse : Orb::ModelBase, Orb::IFromRaw<EventUpdateResponse>
+[JsonConverter(typeof(JsonModelConverter<EventUpdateResponse, EventUpdateResponseFromRaw>))]
+public sealed record class EventUpdateResponse : JsonModel
 {
     /// <summary>
     /// event_id of the amended event, if successfully ingested
@@ -17,18 +17,13 @@ public sealed record class EventUpdateResponse : Orb::ModelBase, Orb::IFromRaw<E
     {
         get
         {
-            if (!this.Properties.TryGetValue("amended", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amended",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amended");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amended");
         }
-        set { this.Properties["amended"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amended", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amended;
@@ -36,18 +31,41 @@ public sealed record class EventUpdateResponse : Orb::ModelBase, Orb::IFromRaw<E
 
     public EventUpdateResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    EventUpdateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public EventUpdateResponse(EventUpdateResponse eventUpdateResponse)
+        : base(eventUpdateResponse) { }
+
+    public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventUpdateResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventUpdateResponseFromRaw.FromRawUnchecked"/>
     public static EventUpdateResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public EventUpdateResponse(string amended)
+        : this()
+    {
+        this.Amended = amended;
+    }
+}
+
+class EventUpdateResponseFromRaw : IFromRawJson<EventUpdateResponse>
+{
+    /// <inheritdoc/>
+    public EventUpdateResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventUpdateResponse.FromRawUnchecked(rawData);
 }

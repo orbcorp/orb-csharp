@@ -1,78 +1,59 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<FixedFeeQuantityScheduleEntry>))]
-public sealed record class FixedFeeQuantityScheduleEntry
-    : Orb::ModelBase,
-        Orb::IFromRaw<FixedFeeQuantityScheduleEntry>
+[JsonConverter(
+    typeof(JsonModelConverter<FixedFeeQuantityScheduleEntry, FixedFeeQuantityScheduleEntryFromRaw>)
+)]
+public sealed record class FixedFeeQuantityScheduleEntry : JsonModel
 {
-    public required System::DateTime? EndDate
+    public required DateTimeOffset? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     public required string PriceID
     {
         get
         {
-            if (!this.Properties.TryGetValue("price_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("price_id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("price_id");
         }
-        set { this.Properties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("price_id", value); }
     }
 
     public required double Quantity
     {
         get
         {
-            if (!this.Properties.TryGetValue("quantity", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("quantity");
         }
-        set { this.Properties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("quantity", value); }
     }
 
-    public required System::DateTime StartDate
+    public required DateTimeOffset StartDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EndDate;
@@ -83,18 +64,37 @@ public sealed record class FixedFeeQuantityScheduleEntry
 
     public FixedFeeQuantityScheduleEntry() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    FixedFeeQuantityScheduleEntry(Generic::Dictionary<string, Json::JsonElement> properties)
+    public FixedFeeQuantityScheduleEntry(
+        FixedFeeQuantityScheduleEntry fixedFeeQuantityScheduleEntry
+    )
+        : base(fixedFeeQuantityScheduleEntry) { }
+
+    public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    FixedFeeQuantityScheduleEntry(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FixedFeeQuantityScheduleEntryFromRaw.FromRawUnchecked"/>
     public static FixedFeeQuantityScheduleEntry FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class FixedFeeQuantityScheduleEntryFromRaw : IFromRawJson<FixedFeeQuantityScheduleEntry>
+{
+    /// <inheritdoc/>
+    public FixedFeeQuantityScheduleEntry FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FixedFeeQuantityScheduleEntry.FromRawUnchecked(rawData);
 }

@@ -1,33 +1,34 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BillingCycleAnchorConfiguration>))]
-public sealed record class BillingCycleAnchorConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<BillingCycleAnchorConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        BillingCycleAnchorConfiguration,
+        BillingCycleAnchorConfigurationFromRaw
+    >)
+)]
+public sealed record class BillingCycleAnchorConfiguration : JsonModel
 {
     /// <summary>
     /// The day of the month on which the billing cycle is anchored. If the maximum
-    /// number of days in a month is greater than this value, the last day of the month
-    /// is the billing cycle day (e.g. billing_cycle_day=31 for April means the billing
-    /// period begins on the 30th.
+    /// number of days in a month is greater than this value, the last day of the
+    /// month is the billing cycle day (e.g. billing_cycle_day=31 for April means
+    /// the billing period begins on the 30th.
     /// </summary>
     public required long Day
     {
         get
         {
-            if (!this.Properties.TryGetValue("day", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("day", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("day");
         }
-        set { this.Properties["day"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("day", value); }
     }
 
     /// <summary>
@@ -38,12 +39,10 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("month", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("month");
         }
-        set { this.Properties["month"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("month", value); }
     }
 
     /// <summary>
@@ -54,14 +53,13 @@ public sealed record class BillingCycleAnchorConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("year", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("year");
         }
-        set { this.Properties["year"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("year", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Day;
@@ -71,18 +69,44 @@ public sealed record class BillingCycleAnchorConfiguration
 
     public BillingCycleAnchorConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BillingCycleAnchorConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public BillingCycleAnchorConfiguration(
+        BillingCycleAnchorConfiguration billingCycleAnchorConfiguration
+    )
+        : base(billingCycleAnchorConfiguration) { }
+
+    public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BillingCycleAnchorConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BillingCycleAnchorConfigurationFromRaw.FromRawUnchecked"/>
     public static BillingCycleAnchorConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public BillingCycleAnchorConfiguration(long day)
+        : this()
+    {
+        this.Day = day;
+    }
+}
+
+class BillingCycleAnchorConfigurationFromRaw : IFromRawJson<BillingCycleAnchorConfiguration>
+{
+    /// <inheritdoc/>
+    public BillingCycleAnchorConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BillingCycleAnchorConfiguration.FromRawUnchecked(rawData);
 }

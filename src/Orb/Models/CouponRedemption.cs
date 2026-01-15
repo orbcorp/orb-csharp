@@ -1,61 +1,47 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<CouponRedemption>))]
-public sealed record class CouponRedemption : Orb::ModelBase, Orb::IFromRaw<CouponRedemption>
+[JsonConverter(typeof(JsonModelConverter<CouponRedemption, CouponRedemptionFromRaw>))]
+public sealed record class CouponRedemption : JsonModel
 {
     public required string CouponID
     {
         get
         {
-            if (!this.Properties.TryGetValue("coupon_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "coupon_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("coupon_id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("coupon_id");
         }
-        set { this.Properties["coupon_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("coupon_id", value); }
     }
 
-    public required System::DateTime? EndDate
+    public required DateTimeOffset? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("end_date", value); }
     }
 
-    public required System::DateTime StartDate
+    public required DateTimeOffset StartDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("start_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "start_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date");
         }
-        set { this.Properties["start_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CouponID;
@@ -65,18 +51,34 @@ public sealed record class CouponRedemption : Orb::ModelBase, Orb::IFromRaw<Coup
 
     public CouponRedemption() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    CouponRedemption(Generic::Dictionary<string, Json::JsonElement> properties)
+    public CouponRedemption(CouponRedemption couponRedemption)
+        : base(couponRedemption) { }
+
+    public CouponRedemption(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CouponRedemption(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CouponRedemptionFromRaw.FromRawUnchecked"/>
     public static CouponRedemption FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CouponRedemptionFromRaw : IFromRawJson<CouponRedemption>
+{
+    /// <inheritdoc/>
+    public CouponRedemption FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CouponRedemption.FromRawUnchecked(rawData);
 }

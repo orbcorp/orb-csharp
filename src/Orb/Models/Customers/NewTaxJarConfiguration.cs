@@ -1,70 +1,134 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using NewTaxJarConfigurationProperties = Orb.Models.Customers.NewTaxJarConfigurationProperties;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewTaxJarConfiguration>))]
-public sealed record class NewTaxJarConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewTaxJarConfiguration>
+[JsonConverter(typeof(JsonModelConverter<NewTaxJarConfiguration, NewTaxJarConfigurationFromRaw>))]
+public sealed record class NewTaxJarConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_exempt", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_exempt",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("tax_exempt");
         }
-        set { this.Properties["tax_exempt"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("tax_exempt", value); }
     }
 
-    public required NewTaxJarConfigurationProperties::TaxProvider TaxProvider
+    public required ApiEnum<string, NewTaxJarConfigurationTaxProvider> TaxProvider
     {
         get
         {
-            if (!this.Properties.TryGetValue("tax_provider", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "tax_provider",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<NewTaxJarConfigurationProperties::TaxProvider>(
-                    element
-                ) ?? throw new System::ArgumentNullException("tax_provider");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, NewTaxJarConfigurationTaxProvider>
+            >("tax_provider");
         }
-        set { this.Properties["tax_provider"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("tax_provider", value); }
     }
 
+    /// <summary>
+    /// Whether to automatically calculate tax for this customer. When null, inherits
+    /// from account-level setting. When true or false, overrides the account setting.
+    /// </summary>
+    public bool? AutomaticTaxEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
+        }
+        init { this._rawData.Set("automatic_tax_enabled", value); }
+    }
+
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
         this.TaxProvider.Validate();
+        _ = this.AutomaticTaxEnabled;
     }
 
     public NewTaxJarConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewTaxJarConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewTaxJarConfiguration(NewTaxJarConfiguration newTaxJarConfiguration)
+        : base(newTaxJarConfiguration) { }
+
+    public NewTaxJarConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewTaxJarConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewTaxJarConfigurationFromRaw.FromRawUnchecked"/>
     public static NewTaxJarConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NewTaxJarConfigurationFromRaw : IFromRawJson<NewTaxJarConfiguration>
+{
+    /// <inheritdoc/>
+    public NewTaxJarConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewTaxJarConfiguration.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(NewTaxJarConfigurationTaxProviderConverter))]
+public enum NewTaxJarConfigurationTaxProvider
+{
+    Taxjar,
+}
+
+sealed class NewTaxJarConfigurationTaxProviderConverter
+    : JsonConverter<NewTaxJarConfigurationTaxProvider>
+{
+    public override NewTaxJarConfigurationTaxProvider Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "taxjar" => NewTaxJarConfigurationTaxProvider.Taxjar,
+            _ => (NewTaxJarConfigurationTaxProvider)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        NewTaxJarConfigurationTaxProvider value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                NewTaxJarConfigurationTaxProvider.Taxjar => "taxjar",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

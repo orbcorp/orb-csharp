@@ -1,0 +1,2111 @@
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
+using Orb.Models.Customers.Credits.Ledger;
+
+namespace Orb.Tests.Models.Customers.Credits.Ledger;
+
+public class LedgerCreateEntryByExternalIDParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new LedgerCreateEntryByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Body = new LedgerCreateEntryByExternalIDParamsBodyIncrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+        };
+
+        string expectedExternalCustomerID = "external_customer_id";
+        LedgerCreateEntryByExternalIDParamsBody expectedBody =
+            new LedgerCreateEntryByExternalIDParamsBodyIncrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            };
+
+        Assert.Equal(expectedExternalCustomerID, parameters.ExternalCustomerID);
+        Assert.Equal(expectedBody, parameters.Body);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        LedgerCreateEntryByExternalIDParams parameters = new()
+        {
+            ExternalCustomerID = "external_customer_id",
+            Body = new LedgerCreateEntryByExternalIDParamsBodyIncrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+        };
+
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/ledger_entry"
+            ),
+            url
+        );
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
+{
+    [Fact]
+    public void IncrementValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyIncrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void DecrementValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyDecrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void ExpirationChangeValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
+            {
+                TargetExpiryDate = "2019-12-27",
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void VoidValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyVoid()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void AmendmentValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyAmendment()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void IncrementSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyIncrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DecrementSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyDecrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void ExpirationChangeSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
+            {
+                TargetExpiryDate = "2019-12-27",
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void VoidSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyVoid()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void AmendmentSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value =
+            new LedgerCreateEntryByExternalIDParamsBodyAmendment()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        double expectedAmount = 0;
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("increment");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings expectedInvoiceSettings =
+            new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            };
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedPerUnitCostBasis = "per_unit_cost_basis";
+
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedEffectiveDate, model.EffectiveDate);
+        Assert.Equal(expectedExpiryDate, model.ExpiryDate);
+        Assert.NotNull(model.Filters);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedInvoiceSettings, model.InvoiceSettings);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedPerUnitCostBasis, model.PerUnitCostBasis);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedAmount = 0;
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("increment");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings expectedInvoiceSettings =
+            new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            };
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedPerUnitCostBasis = "per_unit_cost_basis";
+
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.Equal(expectedEffectiveDate, deserialized.EffectiveDate);
+        Assert.Equal(expectedExpiryDate, deserialized.ExpiryDate);
+        Assert.NotNull(deserialized.Filters);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedInvoiceSettings, deserialized.InvoiceSettings);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedPerUnitCostBasis, deserialized.PerUnitCostBasis);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement { Amount = 0 };
+
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.EffectiveDate);
+        Assert.False(model.RawData.ContainsKey("effective_date"));
+        Assert.Null(model.ExpiryDate);
+        Assert.False(model.RawData.ContainsKey("expiry_date"));
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.InvoiceSettings);
+        Assert.False(model.RawData.ContainsKey("invoice_settings"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.PerUnitCostBasis);
+        Assert.False(model.RawData.ContainsKey("per_unit_cost_basis"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement { Amount = 0 };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+
+            Currency = null,
+            Description = null,
+            EffectiveDate = null,
+            ExpiryDate = null,
+            Filters = null,
+            InvoiceSettings = null,
+            Metadata = null,
+            PerUnitCostBasis = null,
+        };
+
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.True(model.RawData.ContainsKey("description"));
+        Assert.Null(model.EffectiveDate);
+        Assert.True(model.RawData.ContainsKey("effective_date"));
+        Assert.Null(model.ExpiryDate);
+        Assert.True(model.RawData.ContainsKey("expiry_date"));
+        Assert.Null(model.Filters);
+        Assert.True(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.InvoiceSettings);
+        Assert.True(model.RawData.ContainsKey("invoice_settings"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.PerUnitCostBasis);
+        Assert.True(model.RawData.ContainsKey("per_unit_cost_basis"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+
+            Currency = null,
+            Description = null,
+            EffectiveDate = null,
+            ExpiryDate = null,
+            Filters = null,
+            InvoiceSettings = null,
+            Metadata = null,
+            PerUnitCostBasis = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
+        {
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> expectedField =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID;
+        ApiEnum<
+            string,
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator
+        > expectedOperator =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
+        {
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
+        {
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> expectedField =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID;
+        ApiEnum<
+            string,
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator
+        > expectedOperator =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
+        {
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID)]
+    public void Validation_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID)]
+    public void SerializationRoundtrip_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes)]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Excludes)]
+    public void Validation_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes)]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        bool expectedAutoCollection = true;
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
+            "2019-12-27";
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
+            "2019-12-27";
+        string expectedItemID = "item_id";
+        string expectedMemo = "memo";
+        long expectedNetTerms = 0;
+        bool expectedRequireSuccessfulPayment = true;
+
+        Assert.Equal(expectedAutoCollection, model.AutoCollection);
+        Assert.Equal(expectedCustomDueDate, model.CustomDueDate);
+        Assert.Equal(expectedInvoiceDate, model.InvoiceDate);
+        Assert.Equal(expectedItemID, model.ItemID);
+        Assert.Equal(expectedMemo, model.Memo);
+        Assert.Equal(expectedNetTerms, model.NetTerms);
+        Assert.Equal(expectedRequireSuccessfulPayment, model.RequireSuccessfulPayment);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        bool expectedAutoCollection = true;
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
+            "2019-12-27";
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
+            "2019-12-27";
+        string expectedItemID = "item_id";
+        string expectedMemo = "memo";
+        long expectedNetTerms = 0;
+        bool expectedRequireSuccessfulPayment = true;
+
+        Assert.Equal(expectedAutoCollection, deserialized.AutoCollection);
+        Assert.Equal(expectedCustomDueDate, deserialized.CustomDueDate);
+        Assert.Equal(expectedInvoiceDate, deserialized.InvoiceDate);
+        Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedMemo, deserialized.Memo);
+        Assert.Equal(expectedNetTerms, deserialized.NetTerms);
+        Assert.Equal(expectedRequireSuccessfulPayment, deserialized.RequireSuccessfulPayment);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+        };
+
+        Assert.Null(model.RequireSuccessfulPayment);
+        Assert.False(model.RawData.ContainsKey("require_successful_payment"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+
+            // Null should be interpreted as omitted for these properties
+            RequireSuccessfulPayment = null,
+        };
+
+        Assert.Null(model.RequireSuccessfulPayment);
+        Assert.False(model.RawData.ContainsKey("require_successful_payment"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+
+            // Null should be interpreted as omitted for these properties
+            RequireSuccessfulPayment = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            RequireSuccessfulPayment = true,
+        };
+
+        Assert.Null(model.CustomDueDate);
+        Assert.False(model.RawData.ContainsKey("custom_due_date"));
+        Assert.Null(model.InvoiceDate);
+        Assert.False(model.RawData.ContainsKey("invoice_date"));
+        Assert.Null(model.ItemID);
+        Assert.False(model.RawData.ContainsKey("item_id"));
+        Assert.Null(model.Memo);
+        Assert.False(model.RawData.ContainsKey("memo"));
+        Assert.Null(model.NetTerms);
+        Assert.False(model.RawData.ContainsKey("net_terms"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            RequireSuccessfulPayment = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            RequireSuccessfulPayment = true,
+
+            CustomDueDate = null,
+            InvoiceDate = null,
+            ItemID = null,
+            Memo = null,
+            NetTerms = null,
+        };
+
+        Assert.Null(model.CustomDueDate);
+        Assert.True(model.RawData.ContainsKey("custom_due_date"));
+        Assert.Null(model.InvoiceDate);
+        Assert.True(model.RawData.ContainsKey("invoice_date"));
+        Assert.Null(model.ItemID);
+        Assert.True(model.RawData.ContainsKey("item_id"));
+        Assert.Null(model.Memo);
+        Assert.True(model.RawData.ContainsKey("memo"));
+        Assert.Null(model.NetTerms);
+        Assert.True(model.RawData.ContainsKey("net_terms"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            RequireSuccessfulPayment = true,
+
+            CustomDueDate = null,
+            InvoiceDate = null,
+            ItemID = null,
+            Memo = null,
+            NetTerms = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateTest
+    : TestBase
+{
+    [Fact]
+    public void DateValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value =
+            "2019-12-27";
+        value.Validate();
+    }
+
+    [Fact]
+    public void DateTimeValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        value.Validate();
+    }
+
+    [Fact]
+    public void DateSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value =
+            "2019-12-27";
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DateTimeSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateTest
+    : TestBase
+{
+    [Fact]
+    public void DateValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value =
+            "2019-12-27";
+        value.Validate();
+    }
+
+    [Fact]
+    public void DateTimeValidationWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        value.Validate();
+    }
+
+    [Fact]
+    public void DateSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value =
+            "2019-12-27";
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DateTimeSerializationRoundtripWorks()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyDecrementTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        double expectedAmount = 0;
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("decrement");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedAmount = 0;
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("decrement");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement { Amount = 0 };
+
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement { Amount = 0 };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+
+            Currency = null,
+            Description = null,
+            Metadata = null,
+        };
+
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.True(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+
+            Currency = null,
+            Description = null,
+            Metadata = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("expiration_change");
+        string expectedTargetExpiryDate = "2019-12-27";
+        double expectedAmount = 0;
+        string expectedBlockID = "block_id";
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
+        Assert.Equal(expectedTargetExpiryDate, model.TargetExpiryDate);
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedBlockID, model.BlockID);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedExpiryDate, model.ExpiryDate);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("expiration_change");
+        string expectedTargetExpiryDate = "2019-12-27";
+        double expectedAmount = 0;
+        string expectedBlockID = "block_id";
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
+        Assert.Equal(expectedTargetExpiryDate, deserialized.TargetExpiryDate);
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedBlockID, deserialized.BlockID);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.Equal(expectedExpiryDate, deserialized.ExpiryDate);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+        };
+
+        Assert.Null(model.Amount);
+        Assert.False(model.RawData.ContainsKey("amount"));
+        Assert.Null(model.BlockID);
+        Assert.False(model.RawData.ContainsKey("block_id"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.ExpiryDate);
+        Assert.False(model.RawData.ContainsKey("expiry_date"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+
+            Amount = null,
+            BlockID = null,
+            Currency = null,
+            Description = null,
+            ExpiryDate = null,
+            Metadata = null,
+        };
+
+        Assert.Null(model.Amount);
+        Assert.True(model.RawData.ContainsKey("amount"));
+        Assert.Null(model.BlockID);
+        Assert.True(model.RawData.ContainsKey("block_id"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.True(model.RawData.ContainsKey("description"));
+        Assert.Null(model.ExpiryDate);
+        Assert.True(model.RawData.ContainsKey("expiry_date"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+
+            Amount = null,
+            BlockID = null,
+            Currency = null,
+            Description = null,
+            ExpiryDate = null,
+            Metadata = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+        };
+
+        double expectedAmount = 0;
+        string expectedBlockID = "block_id";
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("void");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> expectedVoidReason =
+            LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund;
+
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedBlockID, model.BlockID);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedVoidReason, model.VoidReason);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        double expectedAmount = 0;
+        string expectedBlockID = "block_id";
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("void");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> expectedVoidReason =
+            LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund;
+
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedBlockID, deserialized.BlockID);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedVoidReason, deserialized.VoidReason);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
+
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.VoidReason);
+        Assert.False(model.RawData.ContainsKey("void_reason"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+
+            Currency = null,
+            Description = null,
+            Metadata = null,
+            VoidReason = null,
+        };
+
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.True(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.VoidReason);
+        Assert.True(model.RawData.ContainsKey("void_reason"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+
+            Currency = null,
+            Description = null,
+            Metadata = null,
+            VoidReason = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyVoidVoidReasonTest : TestBase
+{
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund)]
+    public void Validation_Works(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund)]
+    public void SerializationRoundtrip_Works(
+        LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyAmendmentTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        double expectedAmount = 0;
+        string expectedBlockID = "block_id";
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("amendment");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedBlockID, model.BlockID);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedAmount = 0;
+        string expectedBlockID = "block_id";
+        JsonElement expectedEntryType = JsonSerializer.SerializeToElement("amendment");
+        string expectedCurrency = "currency";
+        string expectedDescription = "description";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedBlockID, deserialized.BlockID);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
+
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+
+            Currency = null,
+            Description = null,
+            Metadata = null,
+        };
+
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Description);
+        Assert.True(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+
+            Currency = null,
+            Description = null,
+            Metadata = null,
+        };
+
+        model.Validate();
+    }
+}

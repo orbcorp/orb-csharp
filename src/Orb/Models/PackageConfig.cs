@@ -1,14 +1,17 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PackageConfig>))]
-public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<PackageConfig>
+/// <summary>
+/// Configuration for package pricing
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<PackageConfig, PackageConfigFromRaw>))]
+public sealed record class PackageConfig : JsonModel
 {
     /// <summary>
     /// A currency amount to rate usage by
@@ -17,37 +20,27 @@ public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<Package
     {
         get
         {
-            if (!this.Properties.TryGetValue("package_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "package_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("package_amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("package_amount");
         }
-        set { this.Properties["package_amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("package_amount", value); }
     }
 
     /// <summary>
-    /// An integer amount to represent package size. For example, 1000 here would divide
-    /// usage by 1000 before multiplying by package_amount in rating
+    /// An integer amount to represent package size. For example, 1000 here would
+    /// divide usage by 1000 before multiplying by package_amount in rating
     /// </summary>
     public required long PackageSize
     {
         get
         {
-            if (!this.Properties.TryGetValue("package_size", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "package_size",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("package_size");
         }
-        set { this.Properties["package_size"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("package_size", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PackageAmount;
@@ -56,18 +49,32 @@ public sealed record class PackageConfig : Orb::ModelBase, Orb::IFromRaw<Package
 
     public PackageConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PackageConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public PackageConfig(PackageConfig packageConfig)
+        : base(packageConfig) { }
+
+    public PackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PackageConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static PackageConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="PackageConfigFromRaw.FromRawUnchecked"/>
+    public static PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PackageConfigFromRaw : IFromRawJson<PackageConfig>
+{
+    /// <inheritdoc/>
+    public PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PackageConfig.FromRawUnchecked(rawData);
 }

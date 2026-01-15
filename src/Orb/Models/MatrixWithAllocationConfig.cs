@@ -1,33 +1,32 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<MatrixWithAllocationConfig>))]
-public sealed record class MatrixWithAllocationConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<MatrixWithAllocationConfig>
+/// <summary>
+/// Configuration for matrix pricing with usage allocation
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<MatrixWithAllocationConfig, MatrixWithAllocationConfigFromRaw>)
+)]
+public sealed record class MatrixWithAllocationConfig : JsonModel
 {
     /// <summary>
-    /// Allocation to be used to calculate the price
+    /// Usage allocation
     /// </summary>
-    public required double Allocation
+    public required string Allocation
     {
         get
         {
-            if (!this.Properties.TryGetValue("allocation", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "allocation",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("allocation");
         }
-        set { this.Properties["allocation"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("allocation", value); }
     }
 
     /// <summary>
@@ -37,67 +36,58 @@ public sealed record class MatrixWithAllocationConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("default_unit_amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "default_unit_amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("default_unit_amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
         }
-        set
-        {
-            this.Properties["default_unit_amount"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("default_unit_amount", value); }
     }
 
     /// <summary>
     /// One or two event property values to evaluate matrix groups by
     /// </summary>
-    public required Generic::List<string?> Dimensions
+    public required IReadOnlyList<string?> Dimensions
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimensions", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "dimensions",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string?>>(element)
-                ?? throw new System::ArgumentNullException("dimensions");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
         }
-        set { this.Properties["dimensions"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
-    /// Matrix values for specified matrix grouping keys
+    /// Matrix values configuration
     /// </summary>
-    public required Generic::List<MatrixValue> MatrixValues
+    public required IReadOnlyList<MatrixWithAllocationConfigMatrixValue> MatrixValues
     {
         get
         {
-            if (!this.Properties.TryGetValue("matrix_values", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "matrix_values",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<MatrixValue>>(element)
-                ?? throw new System::ArgumentNullException("matrix_values");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<MatrixWithAllocationConfigMatrixValue>
+            >("matrix_values");
         }
-        set { this.Properties["matrix_values"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MatrixWithAllocationConfigMatrixValue>>(
+                "matrix_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Allocation;
         _ = this.DefaultUnitAmount;
-        foreach (var item in this.Dimensions)
-        {
-            _ = item;
-        }
+        _ = this.Dimensions;
         foreach (var item in this.MatrixValues)
         {
             item.Validate();
@@ -106,18 +96,125 @@ public sealed record class MatrixWithAllocationConfig
 
     public MatrixWithAllocationConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    MatrixWithAllocationConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public MatrixWithAllocationConfig(MatrixWithAllocationConfig matrixWithAllocationConfig)
+        : base(matrixWithAllocationConfig) { }
+
+    public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixWithAllocationConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MatrixWithAllocationConfigFromRaw.FromRawUnchecked"/>
     public static MatrixWithAllocationConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class MatrixWithAllocationConfigFromRaw : IFromRawJson<MatrixWithAllocationConfig>
+{
+    /// <inheritdoc/>
+    public MatrixWithAllocationConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithAllocationConfig.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Configuration for a single matrix value
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MatrixWithAllocationConfigMatrixValue,
+        MatrixWithAllocationConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
+{
+    /// <summary>
+    /// One or two matrix keys to filter usage to this Matrix value by. For example,
+    /// ["region", "tier"] could be used to filter cloud usage by a cloud region
+    /// and an instance tier.
+    /// </summary>
+    public required IReadOnlyList<string?> DimensionValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Unit price for the specified dimension_values
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DimensionValues;
+        _ = this.UnitAmount;
+    }
+
+    public MatrixWithAllocationConfigMatrixValue() { }
+
+    public MatrixWithAllocationConfigMatrixValue(
+        MatrixWithAllocationConfigMatrixValue matrixWithAllocationConfigMatrixValue
+    )
+        : base(matrixWithAllocationConfigMatrixValue) { }
+
+    public MatrixWithAllocationConfigMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixWithAllocationConfigMatrixValue(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MatrixWithAllocationConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static MatrixWithAllocationConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MatrixWithAllocationConfigMatrixValueFromRaw
+    : IFromRawJson<MatrixWithAllocationConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public MatrixWithAllocationConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithAllocationConfigMatrixValue.FromRawUnchecked(rawData);
 }

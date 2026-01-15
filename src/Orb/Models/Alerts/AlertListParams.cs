@@ -1,85 +1,65 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Alerts;
 
 /// <summary>
 /// This endpoint returns a list of alerts within Orb.
 ///
-/// The request must specify one of `customer_id`, `external_customer_id`, or `subscription_id`.
+/// <para>The request must specify one of `customer_id`, `external_customer_id`,
+/// or `subscription_id`.</para>
 ///
-/// If querying by subscripion_id, the endpoint will return the subscription level
-/// alerts as well as the plan level alerts associated with the subscription.
+/// <para>If querying by subscription_id, the endpoint will return the subscription
+/// level alerts as well as the plan level alerts associated with the subscription.</para>
 ///
-/// The list of alerts is ordered starting from the most recently created alert.
-/// This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
+/// <para>The list of alerts is ordered starting from the most recently created alert.
+/// This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).</para>
 /// </summary>
-public sealed record class AlertListParams : Orb::ParamsBase
+public sealed record class AlertListParams : ParamsBase
 {
-    public System::DateTime? CreatedAtGt
+    public DateTimeOffset? CreatedAtGt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gt]");
         }
-        set
-        {
-            this.QueryProperties["created_at[gt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("created_at[gt]", value); }
     }
 
-    public System::DateTime? CreatedAtGte
+    public DateTimeOffset? CreatedAtGte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[gte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gte]");
         }
-        set
-        {
-            this.QueryProperties["created_at[gte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("created_at[gte]", value); }
     }
 
-    public System::DateTime? CreatedAtLt
+    public DateTimeOffset? CreatedAtLt
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lt]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lt]");
         }
-        set
-        {
-            this.QueryProperties["created_at[lt]"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("created_at[lt]", value); }
     }
 
-    public System::DateTime? CreatedAtLte
+    public DateTimeOffset? CreatedAtLte
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("created_at[lte]", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lte]");
         }
-        set
-        {
-            this.QueryProperties["created_at[lte]"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("created_at[lte]", value); }
     }
 
     /// <summary>
@@ -90,12 +70,10 @@ public sealed record class AlertListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -105,15 +83,10 @@ public sealed record class AlertListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("customer_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("customer_id");
         }
-        set
-        {
-            this.QueryProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawQueryData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -123,22 +96,10 @@ public sealed record class AlertListParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("external_customer_id");
         }
-        set
-        {
-            this.QueryProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -148,12 +109,18 @@ public sealed record class AlertListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
     /// <summary>
@@ -163,33 +130,64 @@ public sealed record class AlertListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("subscription_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("subscription_id");
         }
-        set
-        {
-            this.QueryProperties["subscription_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("subscription_id", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public AlertListParams() { }
+
+    public AlertListParams(AlertListParams alertListParams)
+        : base(alertListParams) { }
+
+    public AlertListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/alerts")
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AlertListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static AlertListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/alerts")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

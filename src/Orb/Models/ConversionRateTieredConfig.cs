@@ -1,33 +1,38 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<ConversionRateTieredConfig>))]
-public sealed record class ConversionRateTieredConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<ConversionRateTieredConfig>
+[JsonConverter(
+    typeof(JsonModelConverter<ConversionRateTieredConfig, ConversionRateTieredConfigFromRaw>)
+)]
+public sealed record class ConversionRateTieredConfig : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
-    public required Generic::List<ConversionRateTier> Tiers
+    public required IReadOnlyList<ConversionRateTier> Tiers
     {
         get
         {
-            if (!this.Properties.TryGetValue("tiers", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("tiers", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<ConversionRateTier>>(element)
-                ?? throw new System::ArgumentNullException("tiers");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<ConversionRateTier>>("tiers");
         }
-        set { this.Properties["tiers"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<ConversionRateTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -38,18 +43,42 @@ public sealed record class ConversionRateTieredConfig
 
     public ConversionRateTieredConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    ConversionRateTieredConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public ConversionRateTieredConfig(ConversionRateTieredConfig conversionRateTieredConfig)
+        : base(conversionRateTieredConfig) { }
+
+    public ConversionRateTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ConversionRateTieredConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ConversionRateTieredConfigFromRaw.FromRawUnchecked"/>
     public static ConversionRateTieredConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public ConversionRateTieredConfig(IReadOnlyList<ConversionRateTier> tiers)
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class ConversionRateTieredConfigFromRaw : IFromRawJson<ConversionRateTieredConfig>
+{
+    /// <inheritdoc/>
+    public ConversionRateTieredConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ConversionRateTieredConfig.FromRawUnchecked(rawData);
 }

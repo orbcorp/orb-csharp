@@ -1,33 +1,31 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<DimensionalPriceConfiguration>))]
-public sealed record class DimensionalPriceConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<DimensionalPriceConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<DimensionalPriceConfiguration, DimensionalPriceConfigurationFromRaw>)
+)]
+public sealed record class DimensionalPriceConfiguration : JsonModel
 {
-    public required Generic::List<string> DimensionValues
+    public required IReadOnlyList<string> DimensionValues
     {
         get
         {
-            if (!this.Properties.TryGetValue("dimension_values", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "dimension_values",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>>(element)
-                ?? throw new System::ArgumentNullException("dimension_values");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimension_values");
         }
-        set
+        init
         {
-            this.Properties["dimension_values"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<string>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -35,51 +33,52 @@ public sealed record class DimensionalPriceConfiguration
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "dimensional_price_group_id",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "dimensional_price_group_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("dimensional_price_group_id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("dimensional_price_group_id");
         }
-        set
-        {
-            this.Properties["dimensional_price_group_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("dimensional_price_group_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.DimensionValues)
-        {
-            _ = item;
-        }
+        _ = this.DimensionValues;
         _ = this.DimensionalPriceGroupID;
     }
 
     public DimensionalPriceConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    DimensionalPriceConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public DimensionalPriceConfiguration(
+        DimensionalPriceConfiguration dimensionalPriceConfiguration
+    )
+        : base(dimensionalPriceConfiguration) { }
+
+    public DimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DimensionalPriceConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DimensionalPriceConfigurationFromRaw.FromRawUnchecked"/>
     public static DimensionalPriceConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class DimensionalPriceConfigurationFromRaw : IFromRawJson<DimensionalPriceConfiguration>
+{
+    /// <inheritdoc/>
+    public DimensionalPriceConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DimensionalPriceConfiguration.FromRawUnchecked(rawData);
 }

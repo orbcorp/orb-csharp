@@ -1,0 +1,336 @@
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using Orb.Core;
+using Orb.Exceptions;
+using Orb.Models.CreditNotes;
+
+namespace Orb.Tests.Models.CreditNotes;
+
+public class CreditNoteCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+            EndDate = "2023-09-22",
+            Memo = "An optional memo for my credit note.",
+            StartDate = "2023-09-22",
+        };
+
+        List<LineItem> expectedLineItems =
+        [
+            new()
+            {
+                Amount = "amount",
+                InvoiceLineItemID = "4khy3nwzktxv7",
+                EndDate = "2023-09-22",
+                StartDate = "2023-09-22",
+            },
+        ];
+        ApiEnum<string, Reason> expectedReason = Reason.Duplicate;
+        string expectedEndDate = "2023-09-22";
+        string expectedMemo = "An optional memo for my credit note.";
+        string expectedStartDate = "2023-09-22";
+
+        Assert.Equal(expectedLineItems.Count, parameters.LineItems.Count);
+        for (int i = 0; i < expectedLineItems.Count; i++)
+        {
+            Assert.Equal(expectedLineItems[i], parameters.LineItems[i]);
+        }
+        Assert.Equal(expectedReason, parameters.Reason);
+        Assert.Equal(expectedEndDate, parameters.EndDate);
+        Assert.Equal(expectedMemo, parameters.Memo);
+        Assert.Equal(expectedStartDate, parameters.StartDate);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+        };
+
+        Assert.Null(parameters.EndDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("end_date"));
+        Assert.Null(parameters.Memo);
+        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.Null(parameters.StartDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("start_date"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+
+            EndDate = null,
+            Memo = null,
+            StartDate = null,
+        };
+
+        Assert.Null(parameters.EndDate);
+        Assert.True(parameters.RawBodyData.ContainsKey("end_date"));
+        Assert.Null(parameters.Memo);
+        Assert.True(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.Null(parameters.StartDate);
+        Assert.True(parameters.RawBodyData.ContainsKey("start_date"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CreditNoteCreateParams parameters = new()
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+        };
+
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/credit_notes"), url);
+    }
+}
+
+public class LineItemTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
+        };
+
+        string expectedAmount = "amount";
+        string expectedInvoiceLineItemID = "4khy3nwzktxv7";
+        string expectedEndDate = "2023-09-22";
+        string expectedStartDate = "2023-09-22";
+
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedInvoiceLineItemID, model.InvoiceLineItemID);
+        Assert.Equal(expectedEndDate, model.EndDate);
+        Assert.Equal(expectedStartDate, model.StartDate);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LineItem>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LineItem>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedAmount = "amount";
+        string expectedInvoiceLineItemID = "4khy3nwzktxv7";
+        string expectedEndDate = "2023-09-22";
+        string expectedStartDate = "2023-09-22";
+
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedInvoiceLineItemID, deserialized.InvoiceLineItemID);
+        Assert.Equal(expectedEndDate, deserialized.EndDate);
+        Assert.Equal(expectedStartDate, deserialized.StartDate);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new LineItem { Amount = "amount", InvoiceLineItemID = "4khy3nwzktxv7" };
+
+        Assert.Null(model.EndDate);
+        Assert.False(model.RawData.ContainsKey("end_date"));
+        Assert.Null(model.StartDate);
+        Assert.False(model.RawData.ContainsKey("start_date"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new LineItem { Amount = "amount", InvoiceLineItemID = "4khy3nwzktxv7" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+
+            EndDate = null,
+            StartDate = null,
+        };
+
+        Assert.Null(model.EndDate);
+        Assert.True(model.RawData.ContainsKey("end_date"));
+        Assert.Null(model.StartDate);
+        Assert.True(model.RawData.ContainsKey("start_date"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+
+            EndDate = null,
+            StartDate = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class ReasonTest : TestBase
+{
+    [Theory]
+    [InlineData(Reason.Duplicate)]
+    [InlineData(Reason.Fraudulent)]
+    [InlineData(Reason.OrderChange)]
+    [InlineData(Reason.ProductUnsatisfactory)]
+    public void Validation_Works(Reason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Reason> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Reason.Duplicate)]
+    [InlineData(Reason.Fraudulent)]
+    [InlineData(Reason.OrderChange)]
+    [InlineData(Reason.ProductUnsatisfactory)]
+    public void SerializationRoundtrip_Works(Reason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Reason> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}

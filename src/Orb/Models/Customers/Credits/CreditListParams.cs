@@ -1,22 +1,25 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Customers.Credits;
 
 /// <summary>
 /// Returns a paginated list of unexpired, non-zero credit blocks for a customer.
 ///
-/// If `include_all_blocks` is set to `true`, all credit blocks (including expired
-/// and depleted blocks) will be included in the response.
+/// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
+/// expired and depleted blocks) will be included in the response.</para>
 ///
-/// Note that `currency` defaults to credits if not specified. To use a real world
-/// currency, set `currency` to an ISO 4217 string.
+/// <para>Note that `currency` defaults to credits if not specified. To use a real
+/// world currency, set `currency` to an ISO 4217 string.</para>
 /// </summary>
-public sealed record class CreditListParams : Orb::ParamsBase
+public sealed record class CreditListParams : ParamsBase
 {
-    public required string CustomerID;
+    public string? CustomerID { get; init; }
 
     /// <summary>
     /// The ledger currency or custom pricing unit to use.
@@ -25,12 +28,10 @@ public sealed record class CreditListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("currency", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("currency");
         }
-        set { this.QueryProperties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("currency", value); }
     }
 
     /// <summary>
@@ -41,37 +42,31 @@ public sealed record class CreditListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
-    /// If set to True, all expired and depleted blocks, as well as active block will
-    /// be returned.
+    /// If set to True, all expired and depleted blocks, as well as active block
+    /// will be returned.
     /// </summary>
     public bool? IncludeAllBlocks
     {
         get
         {
-            if (
-                !this.QueryProperties.TryGetValue(
-                    "include_all_blocks",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("include_all_blocks");
         }
-        set
+        init
         {
-            this.QueryProperties["include_all_blocks"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("include_all_blocks", value);
         }
     }
 
@@ -82,31 +77,78 @@ public sealed record class CreditListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public CreditListParams() { }
+
+    public CreditListParams(CreditListParams creditListParams)
+        : base(creditListParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.CustomerID = creditListParams.CustomerID;
+    }
+
+    public CreditListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CreditListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static CreditListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/customers/{0}/credits", this.CustomerID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

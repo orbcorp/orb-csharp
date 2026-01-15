@@ -1,0 +1,121 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Models.Plans;
+using Orb.Models.Plans.ExternalPlanID;
+
+namespace Orb.Services.Plans;
+
+/// <summary>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
+/// </summary>
+public interface IExternalPlanIDService
+{
+    /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IExternalPlanIDServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// This endpoint can be used to update the `external_plan_id`, and `metadata`
+    /// of an existing plan.
+    ///
+    /// <para>Other fields on a plan are currently immutable.</para>
+    /// </summary>
+    Task<Plan> Update(
+        ExternalPlanIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(ExternalPlanIDUpdateParams, CancellationToken)"/>
+    Task<Plan> Update(
+        string otherExternalPlanID,
+        ExternalPlanIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint is used to fetch [plan](/core-concepts##plan-and-price) details
+    /// given an external_plan_id identifier. It returns information about the prices
+    /// included in the plan and their configuration, as well as the product that
+    /// the plan is attached to.
+    ///
+    /// <para>If multiple plans are found to contain the specified external_plan_id,
+    /// the active plans will take priority over archived ones, and among those,
+    /// the endpoint will return the most recently created plan.</para>
+    ///
+    /// <para>## Serialized prices Orb supports a few different pricing models out
+    /// of the box. Each of these models is serialized differently in a given [Price](/core-concepts#plan-and-price)
+    /// object. The `model_type` field determines the key for the configuration object
+    /// that is present. A detailed explanation of price types can be found in the
+    /// [Price schema](/core-concepts#plan-and-price). "</para>
+    /// </summary>
+    Task<Plan> Fetch(
+        ExternalPlanIDFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>
+    Task<Plan> Fetch(
+        string externalPlanID,
+        ExternalPlanIDFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IExternalPlanIDService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IExternalPlanIDServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IExternalPlanIDServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /plans/external_plan_id/{external_plan_id}`, but is otherwise the
+    /// same as <see cref="IExternalPlanIDService.Update(ExternalPlanIDUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Update(
+        ExternalPlanIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(ExternalPlanIDUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> Update(
+        string otherExternalPlanID,
+        ExternalPlanIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans/external_plan_id/{external_plan_id}`, but is otherwise the
+    /// same as <see cref="IExternalPlanIDService.Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Fetch(
+        ExternalPlanIDFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> Fetch(
+        string externalPlanID,
+        ExternalPlanIDFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}

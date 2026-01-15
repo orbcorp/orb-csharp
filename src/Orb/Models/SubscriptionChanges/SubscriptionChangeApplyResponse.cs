@@ -1,140 +1,260 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using SubscriptionChangeApplyResponseProperties = Orb.Models.SubscriptionChanges.SubscriptionChangeApplyResponseProperties;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
 
 /// <summary>
-/// A subscription change represents a desired new subscription / pending change
-/// to an existing subscription. It is a way to first preview the effects on the subscription
+/// A subscription change represents a desired new subscription / pending change to
+/// an existing subscription. It is a way to first preview the effects on the subscription
 /// as well as any changes/creation of invoices (see `subscription.changed_resources`).
 /// </summary>
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<SubscriptionChangeApplyResponse>))]
-public sealed record class SubscriptionChangeApplyResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<SubscriptionChangeApplyResponse>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionChangeApplyResponse,
+        SubscriptionChangeApplyResponseFromRaw
+    >)
+)]
+public sealed record class SubscriptionChangeApplyResponse : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The type of change (e.g., 'schedule_plan_change', 'create_subscription').
+    /// </summary>
+    public required string ChangeType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("change_type");
+        }
+        init { this._rawData.Set("change_type", value); }
     }
 
     /// <summary>
     /// Subscription change will be cancelled at this time and can no longer be applied.
     /// </summary>
-    public required System::DateTime ExpirationTime
+    public required System::DateTimeOffset ExpirationTime
     {
         get
         {
-            if (!this.Properties.TryGetValue("expiration_time", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "expiration_time",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time");
         }
-        set { this.Properties["expiration_time"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("expiration_time", value); }
     }
 
-    public required SubscriptionChangeApplyResponseProperties::Status Status
+    public required ApiEnum<string, SubscriptionChangeApplyResponseStatus> Status
     {
         get
         {
-            if (!this.Properties.TryGetValue("status", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "status",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<SubscriptionChangeApplyResponseProperties::Status>(
-                    element
-                ) ?? throw new System::ArgumentNullException("status");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+            >("status");
         }
-        set { this.Properties["status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("status", value); }
     }
 
     public required MutatedSubscription? Subscription
     {
         get
         {
-            if (!this.Properties.TryGetValue("subscription", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "subscription",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<MutatedSubscription?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MutatedSubscription>("subscription");
         }
-        set { this.Properties["subscription"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("subscription", value); }
     }
 
     /// <summary>
     /// When this change was applied.
     /// </summary>
-    public System::DateTime? AppliedAt
+    public System::DateTimeOffset? AppliedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("applied_at", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at");
         }
-        set { this.Properties["applied_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("applied_at", value); }
+    }
+
+    /// <summary>
+    /// Billing cycle alignment for plan changes.
+    /// </summary>
+    public string? BillingCycleAlignment
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billing_cycle_alignment");
+        }
+        init { this._rawData.Set("billing_cycle_alignment", value); }
     }
 
     /// <summary>
     /// When this change was cancelled.
     /// </summary>
-    public System::DateTime? CancelledAt
+    public System::DateTimeOffset? CancelledAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("cancelled_at", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at");
         }
-        set { this.Properties["cancelled_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("cancelled_at", value); }
     }
 
+    /// <summary>
+    /// How the change is scheduled (e.g., 'immediate', 'end_of_subscription_term', 'requested_date').
+    /// </summary>
+    public string? ChangeOption
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("change_option");
+        }
+        init { this._rawData.Set("change_option", value); }
+    }
+
+    /// <summary>
+    /// When this change will take effect.
+    /// </summary>
+    public System::DateTimeOffset? EffectiveDate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date");
+        }
+        init { this._rawData.Set("effective_date", value); }
+    }
+
+    /// <summary>
+    /// The target plan ID for plan changes.
+    /// </summary>
+    public string? PlanID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("plan_id");
+        }
+        init { this._rawData.Set("plan_id", value); }
+    }
+
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
+        _ = this.ChangeType;
         _ = this.ExpirationTime;
         this.Status.Validate();
         this.Subscription?.Validate();
         _ = this.AppliedAt;
+        _ = this.BillingCycleAlignment;
         _ = this.CancelledAt;
+        _ = this.ChangeOption;
+        _ = this.EffectiveDate;
+        _ = this.PlanID;
     }
 
     public SubscriptionChangeApplyResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    SubscriptionChangeApplyResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public SubscriptionChangeApplyResponse(
+        SubscriptionChangeApplyResponse subscriptionChangeApplyResponse
+    )
+        : base(subscriptionChangeApplyResponse) { }
+
+    public SubscriptionChangeApplyResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionChangeApplyResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionChangeApplyResponseFromRaw.FromRawUnchecked"/>
     public static SubscriptionChangeApplyResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionChangeApplyResponseFromRaw : IFromRawJson<SubscriptionChangeApplyResponse>
+{
+    /// <inheritdoc/>
+    public SubscriptionChangeApplyResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionChangeApplyResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(SubscriptionChangeApplyResponseStatusConverter))]
+public enum SubscriptionChangeApplyResponseStatus
+{
+    Pending,
+    Applied,
+    Cancelled,
+}
+
+sealed class SubscriptionChangeApplyResponseStatusConverter
+    : JsonConverter<SubscriptionChangeApplyResponseStatus>
+{
+    public override SubscriptionChangeApplyResponseStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "pending" => SubscriptionChangeApplyResponseStatus.Pending,
+            "applied" => SubscriptionChangeApplyResponseStatus.Applied,
+            "cancelled" => SubscriptionChangeApplyResponseStatus.Cancelled,
+            _ => (SubscriptionChangeApplyResponseStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionChangeApplyResponseStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionChangeApplyResponseStatus.Pending => "pending",
+                SubscriptionChangeApplyResponseStatus.Applied => "applied",
+                SubscriptionChangeApplyResponseStatus.Cancelled => "cancelled",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

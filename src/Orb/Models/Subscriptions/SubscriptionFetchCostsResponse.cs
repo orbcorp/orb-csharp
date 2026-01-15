@@ -1,31 +1,38 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Subscriptions;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<SubscriptionFetchCostsResponse>))]
-public sealed record class SubscriptionFetchCostsResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<SubscriptionFetchCostsResponse>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionFetchCostsResponse,
+        SubscriptionFetchCostsResponseFromRaw
+    >)
+)]
+public sealed record class SubscriptionFetchCostsResponse : JsonModel
 {
-    public required Generic::List<Models::AggregatedCost> Data
+    public required IReadOnlyList<AggregatedCost> Data
     {
         get
         {
-            if (!this.Properties.TryGetValue("data", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("data", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::AggregatedCost>>(element)
-                ?? throw new System::ArgumentNullException("data");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<AggregatedCost>>("data");
         }
-        set { this.Properties["data"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<AggregatedCost>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -36,18 +43,44 @@ public sealed record class SubscriptionFetchCostsResponse
 
     public SubscriptionFetchCostsResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    SubscriptionFetchCostsResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public SubscriptionFetchCostsResponse(
+        SubscriptionFetchCostsResponse subscriptionFetchCostsResponse
+    )
+        : base(subscriptionFetchCostsResponse) { }
+
+    public SubscriptionFetchCostsResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionFetchCostsResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionFetchCostsResponseFromRaw.FromRawUnchecked"/>
     public static SubscriptionFetchCostsResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public SubscriptionFetchCostsResponse(IReadOnlyList<AggregatedCost> data)
+        : this()
+    {
+        this.Data = data;
+    }
+}
+
+class SubscriptionFetchCostsResponseFromRaw : IFromRawJson<SubscriptionFetchCostsResponse>
+{
+    /// <inheritdoc/>
+    public SubscriptionFetchCostsResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionFetchCostsResponse.FromRawUnchecked(rawData);
 }

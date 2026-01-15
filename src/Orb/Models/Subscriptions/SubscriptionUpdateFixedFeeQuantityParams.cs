@@ -1,32 +1,39 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using SubscriptionUpdateFixedFeeQuantityParamsProperties = Orb.Models.Subscriptions.SubscriptionUpdateFixedFeeQuantityParamsProperties;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
-using Text = System.Text;
 
 namespace Orb.Models.Subscriptions;
 
 /// <summary>
 /// This endpoint can be used to update the quantity for a fixed fee.
 ///
-/// To be eligible, the subscription must currently be active and the price specified
-/// must be a fixed fee (not usage-based). This operation will immediately update
-/// the quantity for the fee, or if a `effective_date` is passed in, will update
-/// the quantity on the requested date at midnight in the customer's timezone.
+/// <para>To be eligible, the subscription must currently be active and the price
+/// specified must be a fixed fee (not usage-based). This operation will immediately
+/// update the quantity for the fee, or if a `effective_date` is passed in, will
+/// update the quantity on the requested date at midnight in the customer's timezone.</para>
 ///
-/// In order to change the fixed fee quantity as of the next draft invoice for this
-/// subscription, pass `change_option=upcoming_invoice` without an `effective_date` specified.
+/// <para>In order to change the fixed fee quantity as of the next draft invoice
+/// for this subscription, pass `change_option=upcoming_invoice` without an `effective_date` specified.</para>
 ///
-/// If the fee is an in-advance fixed fee, it will also issue an immediate invoice
-/// for the difference for the remainder of the billing period.
+/// <para>If the fee is an in-advance fixed fee, it will also issue an immediate
+/// invoice for the difference for the remainder of the billing period.</para>
 /// </summary>
-public sealed record class SubscriptionUpdateFixedFeeQuantityParams : Orb::ParamsBase
+public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string SubscriptionID;
+    public string? SubscriptionID { get; init; }
 
     /// <summary>
     /// Price for which the quantity should be updated. Must be a fixed fee.
@@ -35,31 +42,20 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : Orb::Param
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("price_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "price_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("price_id");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("price_id");
         }
-        set { this.BodyProperties["price_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("price_id", value); }
     }
 
     public required double Quantity
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("quantity", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "quantity",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<double>("quantity");
         }
-        set { this.BodyProperties["quantity"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("quantity", value); }
     }
 
     /// <summary>
@@ -71,42 +67,34 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : Orb::Param
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "allow_invoice_credit_or_void",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void");
         }
-        set
-        {
-            this.BodyProperties["allow_invoice_credit_or_void"] =
-                Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
-    /// Determines when the change takes effect. Note that if `effective_date` is specified,
-    /// this defaults to `effective_date`. Otherwise, this defaults to `immediate`
-    /// unless it's explicitly set to `upcoming_invoice`.
+    /// Determines when the change takes effect. Note that if `effective_date` is
+    /// specified, this defaults to `effective_date`. Otherwise, this defaults to
+    /// `immediate` unless it's explicitly set to `upcoming_invoice`.
     /// </summary>
-    public SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption? ChangeOption
+    public ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>? ChangeOption
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("change_option", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<SubscriptionUpdateFixedFeeQuantityParamsProperties::ChangeOption?>(
-                element
-            );
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<
+                ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
+            >("change_option");
         }
-        set
+        init
         {
-            this.BodyProperties["change_option"] = Json::JsonSerializer.SerializeToElement(value);
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("change_option", value);
         }
     }
 
@@ -115,47 +103,149 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : Orb::Param
     /// timezone. If this parameter is not passed in, the quantity change is effective
     /// according to `change_option`.
     /// </summary>
-    public System::DateOnly? EffectiveDate
+    public string? EffectiveDate
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("effective_date", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateOnly?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("effective_date");
         }
-        set
-        {
-            this.BodyProperties["effective_date"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawBodyData.Set("effective_date", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public SubscriptionUpdateFixedFeeQuantityParams() { }
+
+    public SubscriptionUpdateFixedFeeQuantityParams(
+        SubscriptionUpdateFixedFeeQuantityParams subscriptionUpdateFixedFeeQuantityParams
+    )
+        : base(subscriptionUpdateFixedFeeQuantityParams)
+    {
+        this.SubscriptionID = subscriptionUpdateFixedFeeQuantityParams.SubscriptionID;
+
+        this._rawBodyData = new(subscriptionUpdateFixedFeeQuantityParams._rawBodyData);
+    }
+
+    public SubscriptionUpdateFixedFeeQuantityParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionUpdateFixedFeeQuantityParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static SubscriptionUpdateFixedFeeQuantityParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/subscriptions/{0}/update_fixed_fee_quantity", this.SubscriptionID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+}
+
+/// <summary>
+/// Determines when the change takes effect. Note that if `effective_date` is specified,
+/// this defaults to `effective_date`. Otherwise, this defaults to `immediate` unless
+/// it's explicitly set to `upcoming_invoice`.
+/// </summary>
+[JsonConverter(typeof(SubscriptionUpdateFixedFeeQuantityParamsChangeOptionConverter))]
+public enum SubscriptionUpdateFixedFeeQuantityParamsChangeOption
+{
+    Immediate,
+    UpcomingInvoice,
+    EffectiveDate,
+}
+
+sealed class SubscriptionUpdateFixedFeeQuantityParamsChangeOptionConverter
+    : JsonConverter<SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
+{
+    public override SubscriptionUpdateFixedFeeQuantityParamsChangeOption Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "immediate" => SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+            "upcoming_invoice" =>
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.UpcomingInvoice,
+            "effective_date" => SubscriptionUpdateFixedFeeQuantityParamsChangeOption.EffectiveDate,
+            _ => (SubscriptionUpdateFixedFeeQuantityParamsChangeOption)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionUpdateFixedFeeQuantityParamsChangeOption value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate => "immediate",
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.UpcomingInvoice =>
+                    "upcoming_invoice",
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.EffectiveDate =>
+                    "effective_date",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

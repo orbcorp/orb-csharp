@@ -1,6 +1,10 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Events.Backfills;
 
@@ -10,30 +14,71 @@ namespace Orb.Models.Events.Backfills;
 /// of the backfill are undone. Once all effects are undone, the backfill will transition
 /// to `reverted`.
 ///
-/// If a backfill is reverted before its closed, no usage will be updated as a result
-/// of the backfill and it will immediately transition to `reverted`.
+/// <para>If a backfill is reverted before its closed, no usage will be updated as
+/// a result of the backfill and it will immediately transition to `reverted`.</para>
 /// </summary>
-public sealed record class BackfillRevertParams : Orb::ParamsBase
+public sealed record class BackfillRevertParams : ParamsBase
 {
-    public required string BackfillID;
+    public string? BackfillID { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public BackfillRevertParams() { }
+
+    public BackfillRevertParams(BackfillRevertParams backfillRevertParams)
+        : base(backfillRevertParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.BackfillID = backfillRevertParams.BackfillID;
+    }
+
+    public BackfillRevertParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BackfillRevertParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static BackfillRevertParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/events/backfills/{0}/revert", this.BackfillID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

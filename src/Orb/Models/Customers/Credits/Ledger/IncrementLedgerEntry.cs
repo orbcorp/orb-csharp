@@ -1,197 +1,130 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using IncrementLedgerEntryProperties = Orb.Models.Customers.Credits.Ledger.IncrementLedgerEntryProperties;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<IncrementLedgerEntry>))]
-public sealed record class IncrementLedgerEntry
-    : Orb::ModelBase,
-        Orb::IFromRaw<IncrementLedgerEntry>
+[JsonConverter(typeof(JsonModelConverter<IncrementLedgerEntry, IncrementLedgerEntryFromRaw>))]
+public sealed record class IncrementLedgerEntry : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required double Amount
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amount", value); }
     }
 
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     public required AffectedBlock CreditBlock
     {
         get
         {
-            if (!this.Properties.TryGetValue("credit_block", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "credit_block",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<AffectedBlock>(element)
-                ?? throw new System::ArgumentNullException("credit_block");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<AffectedBlock>("credit_block");
         }
-        set { this.Properties["credit_block"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("credit_block", value); }
     }
 
     public required string Currency
     {
         get
         {
-            if (!this.Properties.TryGetValue("currency", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "currency",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("currency");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
         }
-        set { this.Properties["currency"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("currency", value); }
     }
 
-    public required Models::CustomerMinified Customer
+    public required CustomerMinified Customer
     {
         get
         {
-            if (!this.Properties.TryGetValue("customer", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "customer",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::CustomerMinified>(element)
-                ?? throw new System::ArgumentNullException("customer");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<CustomerMinified>("customer");
         }
-        set { this.Properties["customer"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("customer", value); }
     }
 
     public required string? Description
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "description",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
         }
-        set { this.Properties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("description", value); }
     }
 
     public required double EndingBalance
     {
         get
         {
-            if (!this.Properties.TryGetValue("ending_balance", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "ending_balance",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("ending_balance");
         }
-        set { this.Properties["ending_balance"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("ending_balance", value); }
     }
 
-    public required IncrementLedgerEntryProperties::EntryStatus EntryStatus
+    public required ApiEnum<string, IncrementLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
-            if (!this.Properties.TryGetValue("entry_status", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_status",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<IncrementLedgerEntryProperties::EntryStatus>(
-                    element
-                ) ?? throw new System::ArgumentNullException("entry_status");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, IncrementLedgerEntryEntryStatus>>(
+                "entry_status"
+            );
         }
-        set { this.Properties["entry_status"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("entry_status", value); }
     }
 
-    public required IncrementLedgerEntryProperties::EntryType EntryType
+    public required ApiEnum<string, IncrementLedgerEntryEntryType> EntryType
     {
         get
         {
-            if (!this.Properties.TryGetValue("entry_type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "entry_type",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<IncrementLedgerEntryProperties::EntryType>(
-                    element
-                ) ?? throw new System::ArgumentNullException("entry_type");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, IncrementLedgerEntryEntryType>>(
+                "entry_type"
+            );
         }
-        set { this.Properties["entry_type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("entry_type", value); }
     }
 
     public required long LedgerSequenceNumber
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "ledger_sequence_number",
-                    out Json::JsonElement element
-                )
-            )
-                throw new System::ArgumentOutOfRangeException(
-                    "ledger_sequence_number",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("ledger_sequence_number");
         }
-        set
-        {
-            this.Properties["ledger_sequence_number"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("ledger_sequence_number", value); }
     }
 
     /// <summary>
@@ -200,58 +133,52 @@ public sealed record class IncrementLedgerEntry
     /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
     /// to `null`.
     /// </summary>
-    public required Generic::Dictionary<string, string> Metadata
+    public required IReadOnlyDictionary<string, string> Metadata
     {
         get
         {
-            if (!this.Properties.TryGetValue("metadata", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "metadata",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, string>>(element)
-                ?? throw new System::ArgumentNullException("metadata");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
         }
-        set { this.Properties["metadata"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     public required double StartingBalance
     {
         get
         {
-            if (!this.Properties.TryGetValue("starting_balance", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "starting_balance",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<double>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("starting_balance");
         }
-        set
-        {
-            this.Properties["starting_balance"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("starting_balance", value); }
     }
 
     /// <summary>
     /// If the increment resulted in invoice creation, the list of created invoices
     /// </summary>
-    public Generic::List<Models::Invoice>? CreatedInvoices
+    public IReadOnlyList<Invoice>? CreatedInvoices
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_invoices", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<Models::Invoice>?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Invoice>>("created_invoices");
         }
-        set
+        init
         {
-            this.Properties["created_invoices"] = Json::JsonSerializer.SerializeToElement(value);
+            this._rawData.Set<ImmutableArray<Invoice>?>(
+                "created_invoices",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -265,10 +192,7 @@ public sealed record class IncrementLedgerEntry
         this.EntryStatus.Validate();
         this.EntryType.Validate();
         _ = this.LedgerSequenceNumber;
-        foreach (var item in this.Metadata.Values)
-        {
-            _ = item;
-        }
+        _ = this.Metadata;
         _ = this.StartingBalance;
         foreach (var item in this.CreatedInvoices ?? [])
         {
@@ -278,18 +202,121 @@ public sealed record class IncrementLedgerEntry
 
     public IncrementLedgerEntry() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    IncrementLedgerEntry(Generic::Dictionary<string, Json::JsonElement> properties)
+    public IncrementLedgerEntry(IncrementLedgerEntry incrementLedgerEntry)
+        : base(incrementLedgerEntry) { }
+
+    public IncrementLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    IncrementLedgerEntry(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IncrementLedgerEntryFromRaw.FromRawUnchecked"/>
     public static IncrementLedgerEntry FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class IncrementLedgerEntryFromRaw : IFromRawJson<IncrementLedgerEntry>
+{
+    /// <inheritdoc/>
+    public IncrementLedgerEntry FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => IncrementLedgerEntry.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(IncrementLedgerEntryEntryStatusConverter))]
+public enum IncrementLedgerEntryEntryStatus
+{
+    Committed,
+    Pending,
+}
+
+sealed class IncrementLedgerEntryEntryStatusConverter
+    : JsonConverter<IncrementLedgerEntryEntryStatus>
+{
+    public override IncrementLedgerEntryEntryStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "committed" => IncrementLedgerEntryEntryStatus.Committed,
+            "pending" => IncrementLedgerEntryEntryStatus.Pending,
+            _ => (IncrementLedgerEntryEntryStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        IncrementLedgerEntryEntryStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                IncrementLedgerEntryEntryStatus.Committed => "committed",
+                IncrementLedgerEntryEntryStatus.Pending => "pending",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(IncrementLedgerEntryEntryTypeConverter))]
+public enum IncrementLedgerEntryEntryType
+{
+    Increment,
+}
+
+sealed class IncrementLedgerEntryEntryTypeConverter : JsonConverter<IncrementLedgerEntryEntryType>
+{
+    public override IncrementLedgerEntryEntryType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => IncrementLedgerEntryEntryType.Increment,
+            _ => (IncrementLedgerEntryEntryType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        IncrementLedgerEntryEntryType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                IncrementLedgerEntryEntryType.Increment => "increment",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

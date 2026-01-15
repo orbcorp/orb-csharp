@@ -1,86 +1,76 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<AddressInput>))]
-public sealed record class AddressInput : Orb::ModelBase, Orb::IFromRaw<AddressInput>
+[JsonConverter(typeof(JsonModelConverter<AddressInput, AddressInputFromRaw>))]
+public sealed record class AddressInput : JsonModel
 {
     public string? City
     {
         get
         {
-            if (!this.Properties.TryGetValue("city", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("city");
         }
-        set { this.Properties["city"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("city", value); }
     }
 
     public string? Country
     {
         get
         {
-            if (!this.Properties.TryGetValue("country", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("country");
         }
-        set { this.Properties["country"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("country", value); }
     }
 
     public string? Line1
     {
         get
         {
-            if (!this.Properties.TryGetValue("line1", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("line1");
         }
-        set { this.Properties["line1"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("line1", value); }
     }
 
     public string? Line2
     {
         get
         {
-            if (!this.Properties.TryGetValue("line2", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("line2");
         }
-        set { this.Properties["line2"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("line2", value); }
     }
 
     public string? PostalCode
     {
         get
         {
-            if (!this.Properties.TryGetValue("postal_code", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("postal_code");
         }
-        set { this.Properties["postal_code"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("postal_code", value); }
     }
 
     public string? State
     {
         get
         {
-            if (!this.Properties.TryGetValue("state", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("state");
         }
-        set { this.Properties["state"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("state", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.City;
@@ -93,18 +83,32 @@ public sealed record class AddressInput : Orb::ModelBase, Orb::IFromRaw<AddressI
 
     public AddressInput() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    AddressInput(Generic::Dictionary<string, Json::JsonElement> properties)
+    public AddressInput(AddressInput addressInput)
+        : base(addressInput) { }
+
+    public AddressInput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AddressInput(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    public static AddressInput FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
-    )
+    /// <inheritdoc cref="AddressInputFromRaw.FromRawUnchecked"/>
+    public static AddressInput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class AddressInputFromRaw : IFromRawJson<AddressInput>
+{
+    /// <inheritdoc/>
+    public AddressInput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AddressInput.FromRawUnchecked(rawData);
 }

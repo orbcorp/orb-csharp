@@ -1,32 +1,27 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<SubscriptionTrialInfo>))]
-public sealed record class SubscriptionTrialInfo
-    : Orb::ModelBase,
-        Orb::IFromRaw<SubscriptionTrialInfo>
+[JsonConverter(typeof(JsonModelConverter<SubscriptionTrialInfo, SubscriptionTrialInfoFromRaw>))]
+public sealed record class SubscriptionTrialInfo : JsonModel
 {
-    public required System::DateTime? EndDate
+    public required DateTimeOffset? EndDate
     {
         get
         {
-            if (!this.Properties.TryGetValue("end_date", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "end_date",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("end_date");
         }
-        set { this.Properties["end_date"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("end_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EndDate;
@@ -34,18 +29,42 @@ public sealed record class SubscriptionTrialInfo
 
     public SubscriptionTrialInfo() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    SubscriptionTrialInfo(Generic::Dictionary<string, Json::JsonElement> properties)
+    public SubscriptionTrialInfo(SubscriptionTrialInfo subscriptionTrialInfo)
+        : base(subscriptionTrialInfo) { }
+
+    public SubscriptionTrialInfo(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionTrialInfo(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionTrialInfoFromRaw.FromRawUnchecked"/>
     public static SubscriptionTrialInfo FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public SubscriptionTrialInfo(DateTimeOffset? endDate)
+        : this()
+    {
+        this.EndDate = endDate;
+    }
+}
+
+class SubscriptionTrialInfoFromRaw : IFromRawJson<SubscriptionTrialInfo>
+{
+    /// <inheritdoc/>
+    public SubscriptionTrialInfo FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionTrialInfo.FromRawUnchecked(rawData);
 }

@@ -1,37 +1,41 @@
-using Generic = System.Collections.Generic;
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
-using Text = System.Text;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Events;
 
 /// <summary>
-/// This endpoint is used to amend a single usage event with a given `event_id`. `event_id`
-/// refers to the `idempotency_key` passed in during ingestion. The event will maintain
-/// its existing `event_id` after the amendment.
+/// This endpoint is used to amend a single usage event with a given `event_id`.
+/// `event_id` refers to the `idempotency_key` passed in during ingestion. The event
+/// will maintain its existing `event_id` after the amendment.
 ///
-/// This endpoint will mark the existing event as ignored, and Orb will only use the
-/// new event passed in the body of this request as the source of truth for that
-/// `event_id`. Note that a single event can be amended any number of times, so the
-/// same event can be overwritten in subsequent calls to this endpoint. Only a single
-/// event with a given `event_id` will be considered the source of truth at any given time.
+/// <para>This endpoint will mark the existing event as ignored, and Orb will only
+/// use the new event passed in the body of this request as the source of truth for
+/// that `event_id`. Note that a single event can be amended any number of times,
+/// so the same event can be overwritten in subsequent calls to this endpoint. Only
+/// a single event with a given `event_id` will be considered the source of truth
+/// at any given time.</para>
 ///
-/// This is a powerful and audit-safe mechanism to retroactively update a single event
-/// in cases where you need to: * update an event with new metadata as you iterate
-/// on your pricing model * update an event based on the result of an external API
-/// call (e.g. call to a payment gateway succeeded or failed)
+/// <para>This is a powerful and audit-safe mechanism to retroactively update a single
+/// event in cases where you need to: * update an event with new metadata as you
+/// iterate on your pricing model * update an event based on the result of an external
+/// API call (e.g. call to a payment gateway succeeded or failed)</para>
 ///
-/// This amendment API is always audit-safe. The process will still retain the original
-/// event, though it will be ignored for billing calculations. For auditing and data
-/// fidelity purposes, Orb never overwrites or permanently deletes ingested usage data.
+/// <para>This amendment API is always audit-safe. The process will still retain the
+/// original event, though it will be ignored for billing calculations. For auditing
+/// and data fidelity purposes, Orb never overwrites or permanently deletes ingested
+/// usage data.</para>
 ///
-/// ## Request validation * The `timestamp` of the new event must match the `timestamp`
-/// of the existing event already ingested. As with   ingestion, all timestamps must
-/// be sent in ISO8601 format with UTC timezone offset. * The `customer_id` or `external_customer_id`
-/// of the new event must match the `customer_id` or   `external_customer_id` of
-/// the existing event already ingested. Exactly one of `customer_id` and   `external_customer_id`
+/// <para>## Request validation * The `timestamp` of the new event must match the
+/// `timestamp` of the existing event already ingested. As with   ingestion, all
+/// timestamps must be sent in ISO8601 format with UTC timezone offset. * The `customer_id`
+/// or `external_customer_id` of the new event must match the `customer_id` or   `external_customer_id`
+/// of the existing event already ingested. Exactly one of `customer_id` and   `external_customer_id`
 /// should be specified, and similar to ingestion, the ID must identify a Customer
 /// resource   within Orb. Unlike ingestion, for event amendment, we strictly enforce
 /// that the Customer must be in the Orb   system, even during the initial integration
@@ -43,13 +47,17 @@ namespace Orb.Models.Events;
 /// billing period, or within the   grace period of the customer's current subscription's
 /// previous billing period. * By default, no more than 100 events can be amended
 /// for a single customer in a 100 day period. For higher volume   updates, consider
-/// using the [event backfill](create-backfill) endpoint.
+/// using the [event backfill](create-backfill) endpoint.</para>
 /// </summary>
-public sealed record class EventUpdateParams : Orb::ParamsBase
+public sealed record class EventUpdateParams : ParamsBase
 {
-    public Generic::Dictionary<string, Json::JsonElement> BodyProperties { get; set; } = [];
+    readonly JsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    {
+        get { return this._rawBodyData.Freeze(); }
+    }
 
-    public required string EventID;
+    public string? EventID { get; init; }
 
     /// <summary>
     /// A name to meaningfully identify the action or event type.
@@ -58,37 +66,32 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("event_name", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "event_name",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("event_name");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("event_name");
         }
-        set { this.BodyProperties["event_name"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("event_name", value); }
     }
 
     /// <summary>
     /// A dictionary of custom properties. Values in this dictionary must be numeric,
     /// boolean, or strings. Nested dictionaries are disallowed.
     /// </summary>
-    public required Generic::Dictionary<string, Json::JsonElement> Properties
+    public required IReadOnlyDictionary<string, JsonElement> Properties
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("properties", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "properties",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Generic::Dictionary<string, Json::JsonElement>>(
-                    element
-                ) ?? throw new System::ArgumentNullException("properties");
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
+                "properties"
+            );
         }
-        set { this.BodyProperties["properties"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, JsonElement>>(
+                "properties",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -96,19 +99,14 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     /// the time that usage was recorded, and is particularly important to attribute
     /// usage to a given billing period.
     /// </summary>
-    public required System::DateTime Timestamp
+    public required DateTimeOffset Timestamp
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("timestamp", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timestamp",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timestamp");
         }
-        set { this.BodyProperties["timestamp"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("timestamp", value); }
     }
 
     /// <summary>
@@ -118,12 +116,10 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.BodyProperties.TryGetValue("customer_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("customer_id");
         }
-        set { this.BodyProperties["customer_id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawBodyData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -133,49 +129,86 @@ public sealed record class EventUpdateParams : Orb::ParamsBase
     {
         get
         {
-            if (
-                !this.BodyProperties.TryGetValue(
-                    "external_customer_id",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("external_customer_id");
         }
-        set
-        {
-            this.BodyProperties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public EventUpdateParams() { }
+
+    public EventUpdateParams(EventUpdateParams eventUpdateParams)
+        : base(eventUpdateParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/') + string.Format("/events/{0}", this.EventID)
+        this.EventID = eventUpdateParams.EventID;
+
+        this._rawBodyData = new(eventUpdateParams._rawBodyData);
+    }
+
+    public EventUpdateParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventUpdateParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        FrozenDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static EventUpdateParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        IReadOnlyDictionary<string, JsonElement> rawBodyData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/events/{0}", this.EventID)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public Http::StringContent BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new Http::StringContent(
-            Json::JsonSerializer.Serialize(this.BodyProperties),
-            Text::Encoding.UTF8,
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
+            Encoding.UTF8,
             "application/json"
         );
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

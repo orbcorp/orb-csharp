@@ -1,18 +1,21 @@
-using BalanceTransactionCreateResponseProperties = Orb.Models.Customers.BalanceTransactions.BalanceTransactionCreateResponseProperties;
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Models = Orb.Models;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
+using Orb.Exceptions;
 using System = System;
 
 namespace Orb.Models.Customers.BalanceTransactions;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<BalanceTransactionCreateResponse>))]
-public sealed record class BalanceTransactionCreateResponse
-    : Orb::ModelBase,
-        Orb::IFromRaw<BalanceTransactionCreateResponse>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        BalanceTransactionCreateResponse,
+        BalanceTransactionCreateResponseFromRaw
+    >)
+)]
+public sealed record class BalanceTransactionCreateResponse : JsonModel
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -21,30 +24,22 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
-    public required BalanceTransactionCreateResponseProperties::Action Action
+    public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action> Action
     {
         get
         {
-            if (!this.Properties.TryGetValue("action", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "action",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<BalanceTransactionCreateResponseProperties::Action>(
-                    element
-                ) ?? throw new System::ArgumentNullException("action");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action>
+            >("action");
         }
-        set { this.Properties["action"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("action", value); }
     }
 
     /// <summary>
@@ -54,49 +49,33 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("amount", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "amount",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("amount");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
         }
-        set { this.Properties["amount"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
     /// The creation time of this transaction.
     /// </summary>
-    public required System::DateTime CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            if (!this.Properties.TryGetValue("created_at", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "created_at",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
         }
-        set { this.Properties["created_at"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("created_at", value); }
     }
 
-    public required Models::CreditNoteTiny? CreditNote
+    public required CreditNoteTiny? CreditNote
     {
         get
         {
-            if (!this.Properties.TryGetValue("credit_note", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "credit_note",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::CreditNoteTiny?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreditNoteTiny>("credit_note");
         }
-        set { this.Properties["credit_note"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("credit_note", value); }
     }
 
     /// <summary>
@@ -106,15 +85,10 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("description", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "description",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
         }
-        set { this.Properties["description"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("description", value); }
     }
 
     /// <summary>
@@ -124,70 +98,49 @@ public sealed record class BalanceTransactionCreateResponse
     {
         get
         {
-            if (!this.Properties.TryGetValue("ending_balance", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "ending_balance",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("ending_balance");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("ending_balance");
         }
-        set { this.Properties["ending_balance"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("ending_balance", value); }
     }
 
-    public required Models::InvoiceTiny? Invoice
+    public required InvoiceTiny? Invoice
     {
         get
         {
-            if (!this.Properties.TryGetValue("invoice", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "invoice",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<Models::InvoiceTiny?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<InvoiceTiny>("invoice");
         }
-        set { this.Properties["invoice"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("invoice", value); }
     }
 
     /// <summary>
-    /// The original value of the customer's balance prior to the transaction, in the
-    /// customer's currency.
+    /// The original value of the customer's balance prior to the transaction, in
+    /// the customer's currency.
     /// </summary>
     public required string StartingBalance
     {
         get
         {
-            if (!this.Properties.TryGetValue("starting_balance", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "starting_balance",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("starting_balance");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("starting_balance");
         }
-        set
-        {
-            this.Properties["starting_balance"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("starting_balance", value); }
     }
 
-    public required BalanceTransactionCreateResponseProperties::Type Type
+    public required ApiEnum<string, BalanceTransactionCreateResponseType> Type
     {
         get
         {
-            if (!this.Properties.TryGetValue("type", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("type", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<BalanceTransactionCreateResponseProperties::Type>(
-                    element
-                ) ?? throw new System::ArgumentNullException("type");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, BalanceTransactionCreateResponseType>
+            >("type");
         }
-        set { this.Properties["type"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -204,18 +157,211 @@ public sealed record class BalanceTransactionCreateResponse
 
     public BalanceTransactionCreateResponse() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    BalanceTransactionCreateResponse(Generic::Dictionary<string, Json::JsonElement> properties)
+    public BalanceTransactionCreateResponse(
+        BalanceTransactionCreateResponse balanceTransactionCreateResponse
+    )
+        : base(balanceTransactionCreateResponse) { }
+
+    public BalanceTransactionCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BalanceTransactionCreateResponse(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BalanceTransactionCreateResponseFromRaw.FromRawUnchecked"/>
     public static BalanceTransactionCreateResponse FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class BalanceTransactionCreateResponseFromRaw : IFromRawJson<BalanceTransactionCreateResponse>
+{
+    /// <inheritdoc/>
+    public BalanceTransactionCreateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BalanceTransactionCreateResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.ActionConverter))]
+public enum Action
+{
+    AppliedToInvoice,
+    ManualAdjustment,
+    ProratedRefund,
+    RevertProratedRefund,
+    ReturnFromVoiding,
+    CreditNoteApplied,
+    CreditNoteVoided,
+    OverpaymentRefund,
+    ExternalPayment,
+    SmallInvoiceCarryover,
+}
+
+sealed class ActionConverter
+    : JsonConverter<global::Orb.Models.Customers.BalanceTransactions.Action>
+{
+    public override global::Orb.Models.Customers.BalanceTransactions.Action Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "applied_to_invoice" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .AppliedToInvoice,
+            "manual_adjustment" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .ManualAdjustment,
+            "prorated_refund" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .ProratedRefund,
+            "revert_prorated_refund" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .RevertProratedRefund,
+            "return_from_voiding" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .ReturnFromVoiding,
+            "credit_note_applied" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .CreditNoteApplied,
+            "credit_note_voided" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .CreditNoteVoided,
+            "overpayment_refund" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .OverpaymentRefund,
+            "external_payment" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .ExternalPayment,
+            "small_invoice_carryover" => global::Orb
+                .Models
+                .Customers
+                .BalanceTransactions
+                .Action
+                .SmallInvoiceCarryover,
+            _ => (global::Orb.Models.Customers.BalanceTransactions.Action)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.Customers.BalanceTransactions.Action value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.Customers.BalanceTransactions.Action.AppliedToInvoice =>
+                    "applied_to_invoice",
+                global::Orb.Models.Customers.BalanceTransactions.Action.ManualAdjustment =>
+                    "manual_adjustment",
+                global::Orb.Models.Customers.BalanceTransactions.Action.ProratedRefund =>
+                    "prorated_refund",
+                global::Orb.Models.Customers.BalanceTransactions.Action.RevertProratedRefund =>
+                    "revert_prorated_refund",
+                global::Orb.Models.Customers.BalanceTransactions.Action.ReturnFromVoiding =>
+                    "return_from_voiding",
+                global::Orb.Models.Customers.BalanceTransactions.Action.CreditNoteApplied =>
+                    "credit_note_applied",
+                global::Orb.Models.Customers.BalanceTransactions.Action.CreditNoteVoided =>
+                    "credit_note_voided",
+                global::Orb.Models.Customers.BalanceTransactions.Action.OverpaymentRefund =>
+                    "overpayment_refund",
+                global::Orb.Models.Customers.BalanceTransactions.Action.ExternalPayment =>
+                    "external_payment",
+                global::Orb.Models.Customers.BalanceTransactions.Action.SmallInvoiceCarryover =>
+                    "small_invoice_carryover",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(BalanceTransactionCreateResponseTypeConverter))]
+public enum BalanceTransactionCreateResponseType
+{
+    Increment,
+    Decrement,
+}
+
+sealed class BalanceTransactionCreateResponseTypeConverter
+    : JsonConverter<BalanceTransactionCreateResponseType>
+{
+    public override BalanceTransactionCreateResponseType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "increment" => BalanceTransactionCreateResponseType.Increment,
+            "decrement" => BalanceTransactionCreateResponseType.Decrement,
+            _ => (BalanceTransactionCreateResponseType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        BalanceTransactionCreateResponseType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                BalanceTransactionCreateResponseType.Increment => "increment",
+                BalanceTransactionCreateResponseType.Decrement => "decrement",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

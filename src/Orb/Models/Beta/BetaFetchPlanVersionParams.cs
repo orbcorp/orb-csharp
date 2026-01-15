@@ -1,39 +1,82 @@
-using Http = System.Net.Http;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Beta;
 
 /// <summary>
-/// This API endpoint is in beta and its interface may change. It is recommended for
-/// use only in test mode.
-///
 /// This endpoint is used to fetch a plan version. It returns the phases, prices,
 /// and adjustments present on this version of the plan.
 /// </summary>
-public sealed record class BetaFetchPlanVersionParams : Orb::ParamsBase
+public sealed record class BetaFetchPlanVersionParams : ParamsBase
 {
-    public required string PlanID;
+    public required string PlanID { get; init; }
 
-    public required string Version;
+    public string? Version { get; init; }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public BetaFetchPlanVersionParams() { }
+
+    public BetaFetchPlanVersionParams(BetaFetchPlanVersionParams betaFetchPlanVersionParams)
+        : base(betaFetchPlanVersionParams)
     {
-        return new System::UriBuilder(
-            client.BaseUrl.ToString().TrimEnd('/')
+        this.PlanID = betaFetchPlanVersionParams.PlanID;
+        this.Version = betaFetchPlanVersionParams.Version;
+    }
+
+    public BetaFetchPlanVersionParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BetaFetchPlanVersionParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static BetaFetchPlanVersionParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/plans/{0}/versions/{1}", this.PlanID, this.Version)
         )
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

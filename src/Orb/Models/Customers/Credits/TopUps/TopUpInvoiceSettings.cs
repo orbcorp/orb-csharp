@@ -1,16 +1,14 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<TopUpInvoiceSettings>))]
-public sealed record class TopUpInvoiceSettings
-    : Orb::ModelBase,
-        Orb::IFromRaw<TopUpInvoiceSettings>
+[JsonConverter(typeof(JsonModelConverter<TopUpInvoiceSettings, TopUpInvoiceSettingsFromRaw>))]
+public sealed record class TopUpInvoiceSettings : JsonModel
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -20,35 +18,25 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (!this.Properties.TryGetValue("auto_collection", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "auto_collection",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("auto_collection");
         }
-        set { this.Properties["auto_collection"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("auto_collection", value); }
     }
 
     /// <summary>
-    /// The net terms determines the difference between the invoice date and the issue
-    /// date for the invoice. If you intend the invoice to be due on issue, set this
-    /// to 0.
+    /// The net terms determines the difference between the invoice date and the
+    /// issue date for the invoice. If you intend the invoice to be due on issue,
+    /// set this to 0.
     /// </summary>
     public required long NetTerms
     {
         get
         {
-            if (!this.Properties.TryGetValue("net_terms", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "net_terms",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<long>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("net_terms");
         }
-        set { this.Properties["net_terms"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("net_terms", value); }
     }
 
     /// <summary>
@@ -58,12 +46,10 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (!this.Properties.TryGetValue("memo", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("memo");
         }
-        set { this.Properties["memo"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("memo", value); }
     }
 
     /// <summary>
@@ -76,24 +62,21 @@ public sealed record class TopUpInvoiceSettings
     {
         get
         {
-            if (
-                !this.Properties.TryGetValue(
-                    "require_successful_payment",
-                    out Json::JsonElement element
-                )
-            )
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("require_successful_payment");
         }
-        set
+        init
         {
-            this.Properties["require_successful_payment"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("require_successful_payment", value);
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AutoCollection;
@@ -104,18 +87,35 @@ public sealed record class TopUpInvoiceSettings
 
     public TopUpInvoiceSettings() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    TopUpInvoiceSettings(Generic::Dictionary<string, Json::JsonElement> properties)
+    public TopUpInvoiceSettings(TopUpInvoiceSettings topUpInvoiceSettings)
+        : base(topUpInvoiceSettings) { }
+
+    public TopUpInvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TopUpInvoiceSettings(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpInvoiceSettingsFromRaw.FromRawUnchecked"/>
     public static TopUpInvoiceSettings FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class TopUpInvoiceSettingsFromRaw : IFromRawJson<TopUpInvoiceSettings>
+{
+    /// <inheritdoc/>
+    public TopUpInvoiceSettings FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TopUpInvoiceSettings.FromRawUnchecked(rawData);
 }

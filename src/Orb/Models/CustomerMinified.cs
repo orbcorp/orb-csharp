@@ -1,48 +1,36 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<CustomerMinified>))]
-public sealed record class CustomerMinified : Orb::ModelBase, Orb::IFromRaw<CustomerMinified>
+[JsonConverter(typeof(JsonModelConverter<CustomerMinified, CustomerMinifiedFromRaw>))]
+public sealed record class CustomerMinified : JsonModel
 {
     public required string ID
     {
         get
         {
-            if (!this.Properties.TryGetValue("id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return Json::JsonSerializer.Deserialize<string>(element)
-                ?? throw new System::ArgumentNullException("id");
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        set { this.Properties["id"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required string? ExternalCustomerID
     {
         get
         {
-            if (!this.Properties.TryGetValue("external_customer_id", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "external_customer_id",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_customer_id");
         }
-        set
-        {
-            this.Properties["external_customer_id"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawData.Set("external_customer_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -51,18 +39,34 @@ public sealed record class CustomerMinified : Orb::ModelBase, Orb::IFromRaw<Cust
 
     public CustomerMinified() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    CustomerMinified(Generic::Dictionary<string, Json::JsonElement> properties)
+    public CustomerMinified(CustomerMinified customerMinified)
+        : base(customerMinified) { }
+
+    public CustomerMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CustomerMinified(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerMinifiedFromRaw.FromRawUnchecked"/>
     public static CustomerMinified FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomerMinifiedFromRaw : IFromRawJson<CustomerMinified>
+{
+    /// <inheritdoc/>
+    public CustomerMinified FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CustomerMinified.FromRawUnchecked(rawData);
 }

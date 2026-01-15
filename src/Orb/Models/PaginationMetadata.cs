@@ -1,45 +1,36 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
-using System = System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<PaginationMetadata>))]
-public sealed record class PaginationMetadata : Orb::ModelBase, Orb::IFromRaw<PaginationMetadata>
+[JsonConverter(typeof(JsonModelConverter<PaginationMetadata, PaginationMetadataFromRaw>))]
+public sealed record class PaginationMetadata : JsonModel
 {
     public required bool HasMore
     {
         get
         {
-            if (!this.Properties.TryGetValue("has_more", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "has_more",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<bool>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("has_more");
         }
-        set { this.Properties["has_more"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("has_more", value); }
     }
 
     public required string? NextCursor
     {
         get
         {
-            if (!this.Properties.TryGetValue("next_cursor", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "next_cursor",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("next_cursor");
         }
-        set { this.Properties["next_cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("next_cursor", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.HasMore;
@@ -48,18 +39,34 @@ public sealed record class PaginationMetadata : Orb::ModelBase, Orb::IFromRaw<Pa
 
     public PaginationMetadata() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    PaginationMetadata(Generic::Dictionary<string, Json::JsonElement> properties)
+    public PaginationMetadata(PaginationMetadata paginationMetadata)
+        : base(paginationMetadata) { }
+
+    public PaginationMetadata(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaginationMetadata(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PaginationMetadataFromRaw.FromRawUnchecked"/>
     public static PaginationMetadata FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class PaginationMetadataFromRaw : IFromRawJson<PaginationMetadata>
+{
+    /// <inheritdoc/>
+    public PaginationMetadata FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaginationMetadata.FromRawUnchecked(rawData);
 }

@@ -1,48 +1,41 @@
-using Http = System.Net.Http;
-using Json = System.Text.Json;
-using Orb = Orb;
-using System = System;
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Orb.Core;
 
 namespace Orb.Models.Events.Volume;
 
 /// <summary>
 /// This endpoint returns the event volume for an account in a [paginated list format](/api-reference/pagination).
 ///
-/// The event volume is aggregated by the hour and the [timestamp](/api-reference/event/ingest-events)
+/// <para>The event volume is aggregated by the hour and the [timestamp](/api-reference/event/ingest-events)
 /// field is used to determine which hour an event is associated with. Note, this
 /// means that late-arriving events increment the volume count for the hour window
-/// the timestamp is in, not the latest hour window.
+/// the timestamp is in, not the latest hour window.</para>
 ///
-/// Each item in the response contains the count of events aggregated by the hour
-/// where the start and end time are hour-aligned and in UTC. When a specific timestamp
-/// is passed in for either start or end time, the response includes the hours the
-/// timestamp falls in.
+/// <para>Each item in the response contains the count of events aggregated by the
+/// hour where the start and end time are hour-aligned and in UTC. When a specific
+/// timestamp is passed in for either start or end time, the response includes the
+/// hours the timestamp falls in.</para>
 /// </summary>
-public sealed record class VolumeListParams : Orb::ParamsBase
+public sealed record class VolumeListParams : ParamsBase
 {
     /// <summary>
     /// The start of the timeframe, inclusive, in which to return event volume. All
     /// datetime values are converted to UTC time. If the specified time isn't hour-aligned,
     /// the response includes the event volume count for the hour the time falls in.
     /// </summary>
-    public required System::DateTime TimeframeStart
+    public required DateTimeOffset TimeframeStart
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_start", out Json::JsonElement element))
-                throw new System::ArgumentOutOfRangeException(
-                    "timeframe_start",
-                    "Missing required argument"
-                );
-
-            return Json::JsonSerializer.Deserialize<System::DateTime>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNotNullStruct<DateTimeOffset>("timeframe_start");
         }
-        set
-        {
-            this.QueryProperties["timeframe_start"] = Json::JsonSerializer.SerializeToElement(
-                value
-            );
-        }
+        init { this._rawQueryData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -53,12 +46,10 @@ public sealed record class VolumeListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("cursor", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
-        set { this.QueryProperties["cursor"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -68,49 +59,96 @@ public sealed record class VolumeListParams : Orb::ParamsBase
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("limit", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<long?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
         }
-        set { this.QueryProperties["limit"] = Json::JsonSerializer.SerializeToElement(value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
     }
 
     /// <summary>
     /// The end of the timeframe, exclusive, in which to return event volume. If not
-    /// specified, the current time is used. All datetime values are converted to UTC
-    /// time.If the specified time isn't hour-aligned, the response includes the event
-    /// volumecount for the hour the time falls in.
+    /// specified, the current time is used. All datetime values are converted to
+    /// UTC time.If the specified time isn't hour-aligned, the response includes
+    /// the event volumecount for the hour the time falls in.
     /// </summary>
-    public System::DateTime? TimeframeEnd
+    public DateTimeOffset? TimeframeEnd
     {
         get
         {
-            if (!this.QueryProperties.TryGetValue("timeframe_end", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<System::DateTime?>(element);
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("timeframe_end");
         }
-        set
+        init
         {
-            this.QueryProperties["timeframe_end"] = Json::JsonSerializer.SerializeToElement(value);
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("timeframe_end", value);
         }
     }
 
-    public override System::Uri Url(Orb::IOrbClient client)
+    public VolumeListParams() { }
+
+    public VolumeListParams(VolumeListParams volumeListParams)
+        : base(volumeListParams) { }
+
+    public VolumeListParams(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
     {
-        return new System::UriBuilder(client.BaseUrl.ToString().TrimEnd('/') + "/events/volume")
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    VolumeListParams(
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    public static VolumeListParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+        );
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/events/volume")
         {
-            Query = this.QueryString(client),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
-    public void AddHeadersToRequest(Http::HttpRequestMessage request, Orb::IOrbClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        Orb::ParamsBase.AddDefaultHeaders(request, client);
-        foreach (var item in this.HeaderProperties)
+        ParamsBase.AddDefaultHeaders(request, options);
+        foreach (var item in this.RawHeaderData)
         {
-            Orb::ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
 }

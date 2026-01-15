@@ -1,32 +1,38 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<CustomerHierarchyConfig>))]
-public sealed record class CustomerHierarchyConfig
-    : Orb::ModelBase,
-        Orb::IFromRaw<CustomerHierarchyConfig>
+[JsonConverter(typeof(JsonModelConverter<CustomerHierarchyConfig, CustomerHierarchyConfigFromRaw>))]
+public sealed record class CustomerHierarchyConfig : JsonModel
 {
     /// <summary>
     /// A list of child customer IDs to add to the hierarchy. The desired child customers
     /// must not already be part of another hierarchy.
     /// </summary>
-    public Generic::List<string>? ChildCustomerIDs
+    public IReadOnlyList<string>? ChildCustomerIds
     {
         get
         {
-            if (!this.Properties.TryGetValue("child_customer_ids", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<string>?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("child_customer_ids");
         }
-        set
+        init
         {
-            this.Properties["child_customer_ids"] = Json::JsonSerializer.SerializeToElement(value);
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "child_customer_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -38,40 +44,50 @@ public sealed record class CustomerHierarchyConfig
     {
         get
         {
-            if (!this.Properties.TryGetValue("parent_customer_id", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<string?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("parent_customer_id");
         }
-        set
-        {
-            this.Properties["parent_customer_id"] = Json::JsonSerializer.SerializeToElement(value);
-        }
+        init { this._rawData.Set("parent_customer_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.ChildCustomerIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.ChildCustomerIds;
         _ = this.ParentCustomerID;
     }
 
     public CustomerHierarchyConfig() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    CustomerHierarchyConfig(Generic::Dictionary<string, Json::JsonElement> properties)
+    public CustomerHierarchyConfig(CustomerHierarchyConfig customerHierarchyConfig)
+        : base(customerHierarchyConfig) { }
+
+    public CustomerHierarchyConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CustomerHierarchyConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerHierarchyConfigFromRaw.FromRawUnchecked"/>
     public static CustomerHierarchyConfig FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class CustomerHierarchyConfigFromRaw : IFromRawJson<CustomerHierarchyConfig>
+{
+    /// <inheritdoc/>
+    public CustomerHierarchyConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CustomerHierarchyConfig.FromRawUnchecked(rawData);
 }

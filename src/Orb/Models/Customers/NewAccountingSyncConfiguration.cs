@@ -1,31 +1,35 @@
-using CodeAnalysis = System.Diagnostics.CodeAnalysis;
-using Generic = System.Collections.Generic;
-using Json = System.Text.Json;
-using Orb = Orb;
-using Serialization = System.Text.Json.Serialization;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[Serialization::JsonConverter(typeof(Orb::ModelConverter<NewAccountingSyncConfiguration>))]
-public sealed record class NewAccountingSyncConfiguration
-    : Orb::ModelBase,
-        Orb::IFromRaw<NewAccountingSyncConfiguration>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        NewAccountingSyncConfiguration,
+        NewAccountingSyncConfigurationFromRaw
+    >)
+)]
+public sealed record class NewAccountingSyncConfiguration : JsonModel
 {
-    public Generic::List<AccountingProviderConfig>? AccountingProviders
+    public IReadOnlyList<AccountingProviderConfig>? AccountingProviders
     {
         get
         {
-            if (!this.Properties.TryGetValue("accounting_providers", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<Generic::List<AccountingProviderConfig>?>(
-                element
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<AccountingProviderConfig>>(
+                "accounting_providers"
             );
         }
-        set
+        init
         {
-            this.Properties["accounting_providers"] = Json::JsonSerializer.SerializeToElement(
-                value
+            this._rawData.Set<ImmutableArray<AccountingProviderConfig>?>(
+                "accounting_providers",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -34,14 +38,13 @@ public sealed record class NewAccountingSyncConfiguration
     {
         get
         {
-            if (!this.Properties.TryGetValue("excluded", out Json::JsonElement element))
-                return null;
-
-            return Json::JsonSerializer.Deserialize<bool?>(element);
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("excluded");
         }
-        set { this.Properties["excluded"] = Json::JsonSerializer.SerializeToElement(value); }
+        init { this._rawData.Set("excluded", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.AccountingProviders ?? [])
@@ -53,18 +56,37 @@ public sealed record class NewAccountingSyncConfiguration
 
     public NewAccountingSyncConfiguration() { }
 
-#pragma warning disable CS8618
-    [CodeAnalysis::SetsRequiredMembers]
-    NewAccountingSyncConfiguration(Generic::Dictionary<string, Json::JsonElement> properties)
+    public NewAccountingSyncConfiguration(
+        NewAccountingSyncConfiguration newAccountingSyncConfiguration
+    )
+        : base(newAccountingSyncConfiguration) { }
+
+    public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        Properties = properties;
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NewAccountingSyncConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewAccountingSyncConfigurationFromRaw.FromRawUnchecked"/>
     public static NewAccountingSyncConfiguration FromRawUnchecked(
-        Generic::Dictionary<string, Json::JsonElement> properties
+        IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
-        return new(properties);
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
+
+class NewAccountingSyncConfigurationFromRaw : IFromRawJson<NewAccountingSyncConfiguration>
+{
+    /// <inheritdoc/>
+    public NewAccountingSyncConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewAccountingSyncConfiguration.FromRawUnchecked(rawData);
 }
