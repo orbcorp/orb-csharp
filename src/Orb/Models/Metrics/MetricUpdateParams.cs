@@ -12,8 +12,12 @@ namespace Orb.Models.Metrics;
 /// <summary>
 /// This endpoint allows you to update the `metadata` property on a metric. If you
 /// pass `null` for the metadata value, it will clear any existing metadata for that invoice.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class MetricUpdateParams : ParamsBase
+public record class MetricUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -48,6 +52,8 @@ public sealed record class MetricUpdateParams : ParamsBase
 
     public MetricUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricUpdateParams(MetricUpdateParams metricUpdateParams)
         : base(metricUpdateParams)
     {
@@ -55,6 +61,7 @@ public sealed record class MetricUpdateParams : ParamsBase
 
         this._rawBodyData = new(metricUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public MetricUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -95,6 +102,30 @@ public sealed record class MetricUpdateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["MetricID"] = this.MetricID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(MetricUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.MetricID?.Equals(other.MetricID) ?? other.MetricID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -121,5 +152,10 @@ public sealed record class MetricUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

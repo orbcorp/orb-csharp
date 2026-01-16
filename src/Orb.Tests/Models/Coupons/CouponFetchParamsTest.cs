@@ -24,4 +24,14 @@ public class CouponFetchParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/coupons/coupon_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CouponFetchParams { CouponID = "coupon_id" };
+
+        CouponFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

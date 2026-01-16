@@ -73,4 +73,14 @@ public class ItemListParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/items?cursor=cursor&limit=1"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ItemListParams { Cursor = "cursor", Limit = 1 };
+
+        ItemListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

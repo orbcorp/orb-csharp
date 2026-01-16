@@ -62,4 +62,18 @@ public class AlertEnableParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AlertEnableParams
+        {
+            AlertConfigurationID = "alert_configuration_id",
+            SubscriptionID = "subscription_id",
+        };
+
+        AlertEnableParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

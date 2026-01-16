@@ -38,8 +38,12 @@ namespace Orb.Models.CreditNotes;
 /// <para>Note: Both start_date and end_date are inclusive - the service period will
 /// cover both the start date and end date completely (from start of start_date to
 /// end of end_date).</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CreditNoteCreateParams : ParamsBase
+public record class CreditNoteCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -125,11 +129,14 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 
     public CreditNoteCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNoteCreateParams(CreditNoteCreateParams creditNoteCreateParams)
         : base(creditNoteCreateParams)
     {
         this._rawBodyData = new(creditNoteCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CreditNoteCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -170,6 +177,28 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CreditNoteCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/credit_notes")
@@ -194,6 +223,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

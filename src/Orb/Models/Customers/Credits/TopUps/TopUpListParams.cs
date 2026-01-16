@@ -10,8 +10,12 @@ namespace Orb.Models.Customers.Credits.TopUps;
 
 /// <summary>
 /// List top-ups
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class TopUpListParams : ParamsBase
+public record class TopUpListParams : ParamsBase
 {
     public string? CustomerID { get; init; }
 
@@ -52,11 +56,14 @@ public sealed record class TopUpListParams : ParamsBase
 
     public TopUpListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpListParams(TopUpListParams topUpListParams)
         : base(topUpListParams)
     {
         this.CustomerID = topUpListParams.CustomerID;
     }
+#pragma warning restore CS8618
 
     public TopUpListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -91,6 +98,28 @@ public sealed record class TopUpListParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["CustomerID"] = this.CustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(TopUpListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -109,5 +138,10 @@ public sealed record class TopUpListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

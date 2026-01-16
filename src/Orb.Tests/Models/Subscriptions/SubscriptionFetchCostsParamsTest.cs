@@ -92,6 +92,23 @@ public class SubscriptionFetchCostsParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionFetchCostsParams
+        {
+            SubscriptionID = "subscription_id",
+            Currency = "currency",
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            ViewMode = ViewMode.Periodic,
+        };
+
+        SubscriptionFetchCostsParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ViewModeTest : TestBase

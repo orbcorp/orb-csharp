@@ -106,8 +106,12 @@ namespace Orb.Models.Customers.Costs;
 /// costs grouped by those matrix dimensions. Orb will return `price_groups` with
 /// the `grouping_key` and `secondary_grouping_key` based on the matrix price definition,
 /// for each `grouping_value` and `secondary_grouping_value` available.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CostListByExternalIDParams : ParamsBase
+public record class CostListByExternalIDParams : ParamsBase
 {
     public string? ExternalCustomerID { get; init; }
 
@@ -169,11 +173,14 @@ public sealed record class CostListByExternalIDParams : ParamsBase
 
     public CostListByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CostListByExternalIDParams(CostListByExternalIDParams costListByExternalIDParams)
         : base(costListByExternalIDParams)
     {
         this.ExternalCustomerID = costListByExternalIDParams.ExternalCustomerID;
     }
+#pragma warning restore CS8618
 
     public CostListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -208,6 +215,31 @@ public sealed record class CostListByExternalIDParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["ExternalCustomerID"] = this.ExternalCustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CostListByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -229,6 +261,11 @@ public sealed record class CostListByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

@@ -11,18 +11,25 @@ namespace Orb.Models.Subscriptions;
 /// <summary>
 /// This endpoint is used to fetch a [Subscription](/core-concepts##subscription)
 /// given an identifier.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionFetchParams : ParamsBase
+public record class SubscriptionFetchParams : ParamsBase
 {
     public string? SubscriptionID { get; init; }
 
     public SubscriptionFetchParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionFetchParams(SubscriptionFetchParams subscriptionFetchParams)
         : base(subscriptionFetchParams)
     {
         this.SubscriptionID = subscriptionFetchParams.SubscriptionID;
     }
+#pragma warning restore CS8618
 
     public SubscriptionFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -57,6 +64,28 @@ public sealed record class SubscriptionFetchParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionFetchParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -75,5 +104,10 @@ public sealed record class SubscriptionFetchParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

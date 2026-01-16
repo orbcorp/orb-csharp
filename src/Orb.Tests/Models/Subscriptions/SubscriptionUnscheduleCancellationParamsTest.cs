@@ -35,4 +35,17 @@ public class SubscriptionUnscheduleCancellationParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUnscheduleCancellationParams
+        {
+            SubscriptionID = "subscription_id",
+        };
+
+        SubscriptionUnscheduleCancellationParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

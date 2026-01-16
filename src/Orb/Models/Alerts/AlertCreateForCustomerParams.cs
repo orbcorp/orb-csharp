@@ -19,8 +19,12 @@ namespace Orb.Models.Alerts;
 /// maximum  of one of each type of alert per [credit balance currency](/product-catalog/prepurchase).
 /// `credit_balance_dropped` alerts require a list of thresholds to be provided while
 /// `credit_balance_depleted`  and `credit_balance_recovered` alerts do not require thresholds.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class AlertCreateForCustomerParams : ParamsBase
+public record class AlertCreateForCustomerParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -79,6 +83,8 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
 
     public AlertCreateForCustomerParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AlertCreateForCustomerParams(AlertCreateForCustomerParams alertCreateForCustomerParams)
         : base(alertCreateForCustomerParams)
     {
@@ -86,6 +92,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
 
         this._rawBodyData = new(alertCreateForCustomerParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public AlertCreateForCustomerParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -126,6 +133,30 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["CustomerID"] = this.CustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(AlertCreateForCustomerParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -153,6 +184,11 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

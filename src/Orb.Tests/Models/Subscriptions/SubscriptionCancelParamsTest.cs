@@ -79,6 +79,22 @@ public class SubscriptionCancelParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionCancelParams
+        {
+            SubscriptionID = "subscription_id",
+            CancelOption = CancelOption.EndOfSubscriptionTerm,
+            AllowInvoiceCreditOrVoid = true,
+            CancellationDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        SubscriptionCancelParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class CancelOptionTest : TestBase

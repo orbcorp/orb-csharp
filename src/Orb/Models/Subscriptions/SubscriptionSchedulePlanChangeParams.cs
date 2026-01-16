@@ -169,8 +169,12 @@ namespace Orb.Models.Subscriptions;
 /// <para>## Prorations for in-advance fees By default, Orb calculates the prorated
 /// difference in any fixed fees when making a plan change, adjusting the customer
 /// balance as needed. For details on this behavior, see [Modifying subscriptions](/product-catalog/modifying-subscriptions#prorations-for-in-advance-fees).</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
+public record class SubscriptionSchedulePlanChangeParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -613,6 +617,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
 
     public SubscriptionSchedulePlanChangeParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParams(
         SubscriptionSchedulePlanChangeParams subscriptionSchedulePlanChangeParams
     )
@@ -622,6 +628,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
 
         this._rawBodyData = new(subscriptionSchedulePlanChangeParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -662,6 +669,30 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionSchedulePlanChangeParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -689,6 +720,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

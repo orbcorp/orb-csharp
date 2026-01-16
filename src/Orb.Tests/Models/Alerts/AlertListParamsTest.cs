@@ -166,4 +166,25 @@ public class AlertListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AlertListParams
+        {
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+            Limit = 1,
+            SubscriptionID = "subscription_id",
+        };
+
+        AlertListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

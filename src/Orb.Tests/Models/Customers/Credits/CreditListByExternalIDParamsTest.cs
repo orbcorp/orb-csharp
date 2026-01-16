@@ -122,4 +122,21 @@ public class CreditListByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CreditListByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Currency = "currency",
+            Cursor = "cursor",
+            IncludeAllBlocks = true,
+            Limit = 1,
+        };
+
+        CreditListByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

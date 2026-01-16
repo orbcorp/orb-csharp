@@ -128,6 +128,24 @@ public class SubscriptionUpdateFixedFeeQuantityParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            AllowInvoiceCreditOrVoid = true,
+            ChangeOption = SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+            EffectiveDate = "2022-12-21",
+        };
+
+        SubscriptionUpdateFixedFeeQuantityParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class SubscriptionUpdateFixedFeeQuantityParamsChangeOptionTest : TestBase

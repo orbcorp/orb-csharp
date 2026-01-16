@@ -138,4 +138,23 @@ public class PriceEvaluateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/prices/price_id/evaluate"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceEvaluateParams
+        {
+            PriceID = "price_id",
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+            Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+        };
+
+        PriceEvaluateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

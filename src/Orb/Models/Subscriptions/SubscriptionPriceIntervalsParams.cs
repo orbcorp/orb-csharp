@@ -80,8 +80,12 @@ namespace Orb.Models.Subscriptions;
 /// list of transitions must be specified to add additional transitions. The existing
 /// list of transitions can be retrieved using the `fixed_fee_quantity_transitions`
 /// property on a subscription’s serialized price intervals.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
+public record class SubscriptionPriceIntervalsParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -222,6 +226,8 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
 
     public SubscriptionPriceIntervalsParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionPriceIntervalsParams(
         SubscriptionPriceIntervalsParams subscriptionPriceIntervalsParams
     )
@@ -231,6 +237,7 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
 
         this._rawBodyData = new(subscriptionPriceIntervalsParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionPriceIntervalsParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -271,6 +278,30 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionPriceIntervalsParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -298,6 +329,11 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

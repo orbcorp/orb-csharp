@@ -16,8 +16,12 @@ namespace Orb.Models.Customers;
 /// This endpoint is used to update customer details given an `external_customer_id`
 /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that the
 /// resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
+public record class CustomerUpdateByExternalIDParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -403,6 +407,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
     public CustomerUpdateByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParams(
         CustomerUpdateByExternalIDParams customerUpdateByExternalIDParams
     )
@@ -412,6 +418,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
         this._rawBodyData = new(customerUpdateByExternalIDParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -452,6 +459,30 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["ID"] = this.ID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CustomerUpdateByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.ID?.Equals(other.ID) ?? other.ID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -479,6 +510,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

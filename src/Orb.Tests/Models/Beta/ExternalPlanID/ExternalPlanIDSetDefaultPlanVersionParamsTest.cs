@@ -39,4 +39,18 @@ public class ExternalPlanIDSetDefaultPlanVersionParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalPlanIDSetDefaultPlanVersionParams
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = 0,
+        };
+
+        ExternalPlanIDSetDefaultPlanVersionParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
