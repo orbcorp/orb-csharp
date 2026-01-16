@@ -111,4 +111,20 @@ public class CouponListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CouponListParams
+        {
+            Cursor = "cursor",
+            Limit = 1,
+            RedemptionCode = "redemption_code",
+            ShowArchived = true,
+        };
+
+        CouponListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

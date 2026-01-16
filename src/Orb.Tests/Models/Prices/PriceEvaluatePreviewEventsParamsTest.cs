@@ -375,6 +375,84 @@ public class PriceEvaluatePreviewEventsParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/prices/evaluate_preview_events"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceEvaluatePreviewEventsParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            ExternalCustomerID = "external_customer_id",
+            PriceEvaluations =
+            [
+                new()
+                {
+                    ExternalPriceID = "external_price_id",
+                    Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+                    GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    Price = new NewFloatingUnitPrice()
+                    {
+                        Cadence = NewFloatingUnitPriceCadence.Annual,
+                        Currency = "currency",
+                        ItemID = "item_id",
+                        ModelType = NewFloatingUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    },
+                    PriceID = "price_id",
+                },
+            ],
+        };
+
+        PriceEvaluatePreviewEventsParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class EventTest : TestBase

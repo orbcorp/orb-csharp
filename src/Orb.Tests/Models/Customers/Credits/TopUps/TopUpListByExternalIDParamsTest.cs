@@ -100,4 +100,19 @@ public class TopUpListByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpListByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        TopUpListByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

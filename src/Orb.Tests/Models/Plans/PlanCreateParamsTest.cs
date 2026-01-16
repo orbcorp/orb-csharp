@@ -804,6 +804,132 @@ public class PlanCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PlanCreateParams
+        {
+            Currency = "currency",
+            Name = "name",
+            Prices =
+            [
+                new()
+                {
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Models::Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewAllocationPriceFilterField.ItemID,
+                                Operator = Models::NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    PlanPhaseOrder = 0,
+                    PriceValue = new Models::NewPlanUnitPrice()
+                    {
+                        Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                },
+            ],
+            Adjustments =
+            [
+                new()
+                {
+                    AdjustmentValue = new Models::NewPercentageDiscount()
+                    {
+                        AdjustmentType =
+                            Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewPercentageDiscountFilterField.PriceID,
+                                Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                    },
+                    PlanPhaseOrder = 0,
+                },
+            ],
+            DefaultInvoiceMemo = "default_invoice_memo",
+            ExternalPlanID = "external_plan_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+            PlanPhases =
+            [
+                new()
+                {
+                    Order = 0,
+                    AlignBillingWithPhaseStartDate = true,
+                    Duration = 1,
+                    DurationUnit = DurationUnit.Daily,
+                },
+            ],
+            Status = Status.Active,
+        };
+
+        PlanCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class PriceTest : TestBase

@@ -14,8 +14,12 @@ namespace Orb.Models.Beta;
 
 /// <summary>
 /// This endpoint allows the creation of a new plan version for an existing plan.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class BetaCreatePlanVersionParams : ParamsBase
+public record class BetaCreatePlanVersionParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -177,6 +181,8 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
 
     public BetaCreatePlanVersionParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BetaCreatePlanVersionParams(BetaCreatePlanVersionParams betaCreatePlanVersionParams)
         : base(betaCreatePlanVersionParams)
     {
@@ -184,6 +190,7 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
 
         this._rawBodyData = new(betaCreatePlanVersionParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public BetaCreatePlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -224,6 +231,30 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["PlanID"] = this.PlanID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(BetaCreatePlanVersionParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.PlanID?.Equals(other.PlanID) ?? other.PlanID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -251,6 +282,11 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

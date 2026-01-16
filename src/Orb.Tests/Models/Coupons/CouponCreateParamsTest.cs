@@ -75,6 +75,22 @@ public class CouponCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/coupons"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CouponCreateParams
+        {
+            Discount = new Percentage(0),
+            RedemptionCode = "HALFOFF",
+            DurationInMonths = 12,
+            MaxRedemptions = 1,
+        };
+
+        CouponCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class DiscountTest : TestBase

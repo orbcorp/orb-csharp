@@ -147,6 +147,29 @@ public class SubscriptionFetchUsageParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionFetchUsageParams
+        {
+            SubscriptionID = "subscription_id",
+            BillableMetricID = "billable_metric_id",
+            FirstDimensionKey = "first_dimension_key",
+            FirstDimensionValue = "first_dimension_value",
+            Granularity = Granularity.Day,
+            GroupBy = "group_by",
+            SecondDimensionKey = "second_dimension_key",
+            SecondDimensionValue = "second_dimension_value",
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            ViewMode = SubscriptionFetchUsageParamsViewMode.Periodic,
+        };
+
+        SubscriptionFetchUsageParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class GranularityTest : TestBase

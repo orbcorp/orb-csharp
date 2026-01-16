@@ -24,8 +24,12 @@ namespace Orb.Models.Invoices;
 /// <para>When fetching any `draft` invoices, this returns the last-computed invoice
 /// values for each draft invoice, which may not always be up-to-date since Orb regularly
 /// refreshes invoices asynchronously.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceListParams : ParamsBase
+public record class InvoiceListParams : ParamsBase
 {
     public string? Amount
     {
@@ -252,8 +256,11 @@ public sealed record class InvoiceListParams : ParamsBase
 
     public InvoiceListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListParams(InvoiceListParams invoiceListParams)
         : base(invoiceListParams) { }
+#pragma warning restore CS8618
 
     public InvoiceListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -288,6 +295,26 @@ public sealed record class InvoiceListParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/invoices")
@@ -303,6 +330,11 @@ public sealed record class InvoiceListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

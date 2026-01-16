@@ -35,4 +35,17 @@ public class CustomerFetchByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerFetchByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        CustomerFetchByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

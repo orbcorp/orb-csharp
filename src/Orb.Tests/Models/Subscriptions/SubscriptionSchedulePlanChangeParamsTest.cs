@@ -783,6 +783,275 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Subscriptions::SubscriptionSchedulePlanChangeParams
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption =
+                Subscriptions::SubscriptionSchedulePlanChangeParamsChangeOption.RequestedDate,
+            AddAdjustments =
+            [
+                new()
+                {
+                    Adjustment = new NewPercentageDiscount()
+                    {
+                        AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewPercentageDiscountFilterField.PriceID,
+                                Operator = NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = NewPercentageDiscountPriceType.Usage,
+                    },
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PlanPhaseOrder = 0,
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            AddPrices =
+            [
+                new()
+                {
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewAllocationPriceFilterField.ItemID,
+                                Operator = NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    Discounts =
+                    [
+                        new()
+                        {
+                            DiscountType = Subscriptions::DiscountType.Percentage,
+                            AmountDiscount = "amount_discount",
+                            PercentageDiscount = 0.15,
+                            UsageDiscount = 0,
+                        },
+                    ],
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExternalPriceID = "external_price_id",
+                    MaximumAmount = "1.23",
+                    MinimumAmount = "1.23",
+                    PlanPhaseOrder = 0,
+                    Price = new Subscriptions::NewSubscriptionUnitPrice()
+                    {
+                        Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                    PriceID = "h74gfhdjvn7ujokd",
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            AlignBillingWithPlanChangeDate = true,
+            AutoCollection = true,
+            BillingCycleAlignment = Subscriptions::BillingCycleAlignment.Unchanged,
+            BillingCycleAnchorConfiguration = new()
+            {
+                Day = 1,
+                Month = 1,
+                Year = 0,
+            },
+            ChangeDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+            CouponRedemptionCode = "coupon_redemption_code",
+            CreditsOverageRate = 0,
+            DefaultInvoiceMemo = "default_invoice_memo",
+            ExternalPlanID = "ZMwNQefe7J3ecf7W",
+            Filter = "my_property > 100 AND my_other_property = 'bar'",
+            InitialPhaseOrder = 2,
+            InvoicingThreshold = "10.00",
+            NetTerms = 0,
+            PerCreditOverageAmount = 0,
+            PlanID = "ZMwNQefe7J3ecf7W",
+            PlanVersionNumber = 0,
+            PriceOverrides = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            RemoveAdjustments = [new("h74gfhdjvn7ujokd")],
+            RemovePrices =
+            [
+                new() { ExternalPriceID = "external_price_id", PriceID = "h74gfhdjvn7ujokd" },
+            ],
+            ReplaceAdjustments =
+            [
+                new()
+                {
+                    Adjustment = new NewPercentageDiscount()
+                    {
+                        AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewPercentageDiscountFilterField.PriceID,
+                                Operator = NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = NewPercentageDiscountPriceType.Usage,
+                    },
+                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                },
+            ],
+            ReplacePrices =
+            [
+                new()
+                {
+                    ReplacesPriceID = "replaces_price_id",
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewAllocationPriceFilterField.ItemID,
+                                Operator = NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    Discounts =
+                    [
+                        new()
+                        {
+                            DiscountType = Subscriptions::DiscountType.Percentage,
+                            AmountDiscount = "amount_discount",
+                            PercentageDiscount = 0.15,
+                            UsageDiscount = 0,
+                        },
+                    ],
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 2,
+                    MaximumAmount = "1.23",
+                    MinimumAmount = "1.23",
+                    Price = new Subscriptions::NewSubscriptionUnitPrice()
+                    {
+                        Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                    PriceID = "h74gfhdjvn7ujokd",
+                },
+            ],
+            TrialDurationDays = 0,
+            UsageCustomerIds = ["string"],
+        };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class SubscriptionSchedulePlanChangeParamsChangeOptionTest : TestBase

@@ -21,8 +21,12 @@ namespace Orb.Models.InvoiceLineItems;
 /// for the line item. - If both `item_id` and `name` are provided: The item is looked
 /// up by ID for association,   but the provided `name` is used for the line item
 /// (not the item's name).</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceLineItemCreateParams : ParamsBase
+public record class InvoiceLineItemCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -131,11 +135,14 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 
     public InvoiceLineItemCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceLineItemCreateParams(InvoiceLineItemCreateParams invoiceLineItemCreateParams)
         : base(invoiceLineItemCreateParams)
     {
         this._rawBodyData = new(invoiceLineItemCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public InvoiceLineItemCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -176,6 +183,28 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceLineItemCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/invoice_line_items")
@@ -200,5 +229,10 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

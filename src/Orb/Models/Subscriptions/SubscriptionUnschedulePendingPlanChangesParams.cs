@@ -11,13 +11,19 @@ namespace Orb.Models.Subscriptions;
 /// <summary>
 /// This endpoint can be used to unschedule any pending plan changes on an existing
 /// subscription. When called, all upcoming plan changes will be unscheduled.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionUnschedulePendingPlanChangesParams : ParamsBase
+public record class SubscriptionUnschedulePendingPlanChangesParams : ParamsBase
 {
     public string? SubscriptionID { get; init; }
 
     public SubscriptionUnschedulePendingPlanChangesParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionUnschedulePendingPlanChangesParams(
         SubscriptionUnschedulePendingPlanChangesParams subscriptionUnschedulePendingPlanChangesParams
     )
@@ -25,6 +31,7 @@ public sealed record class SubscriptionUnschedulePendingPlanChangesParams : Para
     {
         this.SubscriptionID = subscriptionUnschedulePendingPlanChangesParams.SubscriptionID;
     }
+#pragma warning restore CS8618
 
     public SubscriptionUnschedulePendingPlanChangesParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -59,6 +66,28 @@ public sealed record class SubscriptionUnschedulePendingPlanChangesParams : Para
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionUnschedulePendingPlanChangesParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -80,5 +109,10 @@ public sealed record class SubscriptionUnschedulePendingPlanChangesParams : Para
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

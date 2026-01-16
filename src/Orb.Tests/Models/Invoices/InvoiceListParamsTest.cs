@@ -285,6 +285,37 @@ public class InvoiceListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceListParams
+        {
+            Amount = "amount",
+            AmountGt = "amount[gt]",
+            AmountLt = "amount[lt]",
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            DateType = DateType.DueDate,
+            DueDate = "2019-12-27",
+            DueDateWindow = "due_date_window",
+            DueDateGt = "2019-12-27",
+            DueDateLt = "2019-12-27",
+            ExternalCustomerID = "external_customer_id",
+            InvoiceDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            IsRecurring = true,
+            Limit = 1,
+            Status = [Status.Draft],
+            SubscriptionID = "subscription_id",
+        };
+
+        InvoiceListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class DateTypeTest : TestBase

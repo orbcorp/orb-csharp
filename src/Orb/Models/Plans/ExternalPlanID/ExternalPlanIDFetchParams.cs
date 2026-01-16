@@ -23,18 +23,25 @@ namespace Orb.Models.Plans.ExternalPlanID;
 /// object. The `model_type` field determines the key for the configuration object
 /// that is present. A detailed explanation of price types can be found in the [Price
 /// schema](/core-concepts#plan-and-price). "</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ExternalPlanIDFetchParams : ParamsBase
+public record class ExternalPlanIDFetchParams : ParamsBase
 {
     public string? ExternalPlanID { get; init; }
 
     public ExternalPlanIDFetchParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExternalPlanIDFetchParams(ExternalPlanIDFetchParams externalPlanIDFetchParams)
         : base(externalPlanIDFetchParams)
     {
         this.ExternalPlanID = externalPlanIDFetchParams.ExternalPlanID;
     }
+#pragma warning restore CS8618
 
     public ExternalPlanIDFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -69,6 +76,28 @@ public sealed record class ExternalPlanIDFetchParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["ExternalPlanID"] = this.ExternalPlanID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ExternalPlanIDFetchParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.ExternalPlanID?.Equals(other.ExternalPlanID) ?? other.ExternalPlanID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -87,5 +116,10 @@ public sealed record class ExternalPlanIDFetchParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

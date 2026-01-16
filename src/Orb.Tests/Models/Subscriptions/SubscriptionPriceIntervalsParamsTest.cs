@@ -720,6 +720,165 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Subscriptions::SubscriptionPriceIntervalsParams
+        {
+            SubscriptionID = "subscription_id",
+            Add =
+            [
+                new()
+                {
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewAllocationPriceFilterField.ItemID,
+                                Operator = NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    CanDeferBilling = true,
+                    Discounts = [new Subscriptions::Amount(0)],
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExternalPriceID = "external_price_id",
+                    Filter = "my_property > 100 AND my_other_property = 'bar'",
+                    FixedFeeQuantityTransitions =
+                    [
+                        new()
+                        {
+                            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Quantity = 5,
+                        },
+                    ],
+                    MaximumAmount = 0,
+                    MinimumAmount = 0,
+                    Price = new NewFloatingUnitPrice()
+                    {
+                        Cadence = NewFloatingUnitPriceCadence.Annual,
+                        Currency = "currency",
+                        ItemID = "item_id",
+                        ModelType = NewFloatingUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    },
+                    PriceID = "h74gfhdjvn7ujokd",
+                    UsageCustomerIds = ["string"],
+                },
+            ],
+            AddAdjustments =
+            [
+                new()
+                {
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Adjustment = new NewPercentageDiscount()
+                    {
+                        AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewPercentageDiscountFilterField.PriceID,
+                                Operator = NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = NewPercentageDiscountPriceType.Usage,
+                    },
+                    AdjustmentID = "h74gfhdjvn7ujokd",
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            AllowInvoiceCreditOrVoid = true,
+            CanDeferBilling = true,
+            Edit =
+            [
+                new()
+                {
+                    PriceIntervalID = "sdfs6wdjvn7ujokd",
+                    BillingCycleDay = 0,
+                    CanDeferBilling = true,
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Filter = "my_property > 100 AND my_other_property = 'bar'",
+                    FixedFeeQuantityTransitions =
+                    [
+                        new()
+                        {
+                            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Quantity = 5,
+                        },
+                    ],
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    UsageCustomerIds = ["string"],
+                },
+            ],
+            EditAdjustments =
+            [
+                new()
+                {
+                    AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+        };
+
+        Subscriptions::SubscriptionPriceIntervalsParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class AddTest : TestBase

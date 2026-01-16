@@ -37,4 +37,18 @@ public class MigrationRetrieveParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new MigrationRetrieveParams
+        {
+            PlanID = "plan_id",
+            MigrationID = "migration_id",
+        };
+
+        MigrationRetrieveParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

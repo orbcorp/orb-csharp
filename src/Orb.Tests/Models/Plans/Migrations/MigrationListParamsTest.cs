@@ -90,4 +90,19 @@ public class MigrationListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new MigrationListParams
+        {
+            PlanID = "plan_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        MigrationListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

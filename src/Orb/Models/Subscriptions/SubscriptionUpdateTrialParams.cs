@@ -30,8 +30,12 @@ namespace Orb.Models.Subscriptions;
 /// trial end date shift (so, e.g., if a plan change is scheduled or an add-on price
 /// was added, that change will be pushed back by the same amount of time the trial
 /// is extended).</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionUpdateTrialParams : ParamsBase
+public record class SubscriptionUpdateTrialParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -79,6 +83,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 
     public SubscriptionUpdateTrialParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionUpdateTrialParams(
         SubscriptionUpdateTrialParams subscriptionUpdateTrialParams
     )
@@ -88,6 +94,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 
         this._rawBodyData = new(subscriptionUpdateTrialParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionUpdateTrialParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -128,6 +135,30 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionUpdateTrialParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -155,6 +186,11 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
