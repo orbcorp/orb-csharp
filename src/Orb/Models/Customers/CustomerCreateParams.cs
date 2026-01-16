@@ -499,14 +499,14 @@ public sealed record class PaymentConfiguration : JsonModel
     /// <summary>
     /// Provider-specific payment configuration.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Customers.PaymentProvider>? PaymentProviders
+    public IReadOnlyList<PaymentProvider>? PaymentProviders
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Customers.PaymentProvider>
-            >("payment_providers");
+            return this._rawData.GetNullableStruct<ImmutableArray<PaymentProvider>>(
+                "payment_providers"
+            );
         }
         init
         {
@@ -515,7 +515,7 @@ public sealed record class PaymentConfiguration : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Customers.PaymentProvider>?>(
+            this._rawData.Set<ImmutableArray<PaymentProvider>?>(
                 "payment_providers",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -566,9 +566,7 @@ class PaymentConfigurationFromRaw : IFromRawJson<PaymentConfiguration>
     ) => PaymentConfiguration.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<global::Orb.Models.Customers.PaymentProvider, PaymentProviderFromRaw>)
-)]
+[JsonConverter(typeof(JsonModelConverter<PaymentProvider, PaymentProviderFromRaw>))]
 public sealed record class PaymentProvider : JsonModel
 {
     /// <summary>
@@ -623,7 +621,7 @@ public sealed record class PaymentProvider : JsonModel
 
     public PaymentProvider() { }
 
-    public PaymentProvider(global::Orb.Models.Customers.PaymentProvider paymentProvider)
+    public PaymentProvider(PaymentProvider paymentProvider)
         : base(paymentProvider) { }
 
     public PaymentProvider(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -640,9 +638,7 @@ public sealed record class PaymentProvider : JsonModel
 #pragma warning restore CS8618
 
     /// <inheritdoc cref="PaymentProviderFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public static PaymentProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
@@ -655,12 +651,11 @@ public sealed record class PaymentProvider : JsonModel
     }
 }
 
-class PaymentProviderFromRaw : IFromRawJson<global::Orb.Models.Customers.PaymentProvider>
+class PaymentProviderFromRaw : IFromRawJson<PaymentProvider>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.PaymentProvider.FromRawUnchecked(rawData);
+    public PaymentProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaymentProvider.FromRawUnchecked(rawData);
 }
 
 /// <summary>

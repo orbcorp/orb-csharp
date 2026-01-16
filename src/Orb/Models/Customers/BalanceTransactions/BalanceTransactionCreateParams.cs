@@ -141,7 +141,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.TypeConverter))]
+[JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
     Increment,

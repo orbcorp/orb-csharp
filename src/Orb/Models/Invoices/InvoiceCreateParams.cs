@@ -51,18 +51,16 @@ public sealed record class InvoiceCreateParams : ParamsBase
         init { this._rawBodyData.Set("invoice_date", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Invoices.LineItem> LineItems
+    public required IReadOnlyList<LineItem> LineItems
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.LineItem>
-            >("line_items");
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<LineItem>>("line_items");
         }
         init
         {
-            this._rawBodyData.Set<ImmutableArray<global::Orb.Models.Invoices.LineItem>>(
+            this._rawBodyData.Set<ImmutableArray<LineItem>>(
                 "line_items",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -276,12 +274,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.LineItem,
-        global::Orb.Models.Invoices.LineItemFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<LineItem, LineItemFromRaw>))]
 public sealed record class LineItem : JsonModel
 {
     /// <summary>
@@ -307,14 +300,12 @@ public sealed record class LineItem : JsonModel
         init { this._rawData.Set("item_id", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Invoices.ModelType> ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Invoices.ModelType>
-            >("model_type");
+            return this._rawData.GetNotNullClass<ApiEnum<string, ModelType>>("model_type");
         }
         init { this._rawData.Set("model_type", value); }
     }
@@ -385,7 +376,7 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
-    public LineItem(global::Orb.Models.Invoices.LineItem lineItem)
+    public LineItem(LineItem lineItem)
         : base(lineItem) { }
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -401,32 +392,29 @@ public sealed record class LineItem : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.LineItemFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="LineItemFromRaw.FromRawUnchecked"/>
+    public static LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LineItemFromRaw : IFromRawJson<global::Orb.Models.Invoices.LineItem>
+class LineItemFromRaw : IFromRawJson<LineItem>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.LineItem.FromRawUnchecked(rawData);
+    public LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.ModelTypeConverter))]
+[JsonConverter(typeof(ModelTypeConverter))]
 public enum ModelType
 {
     Unit,
 }
 
-sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.ModelType>
+sealed class ModelTypeConverter : JsonConverter<ModelType>
 {
-    public override global::Orb.Models.Invoices.ModelType Read(
+    public override ModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -434,14 +422,14 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "unit" => global::Orb.Models.Invoices.ModelType.Unit,
-            _ => (global::Orb.Models.Invoices.ModelType)(-1),
+            "unit" => ModelType.Unit,
+            _ => (ModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.ModelType value,
+        ModelType value,
         JsonSerializerOptions options
     )
     {
@@ -449,7 +437,7 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.ModelType.Unit => "unit",
+                ModelType.Unit => "unit",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

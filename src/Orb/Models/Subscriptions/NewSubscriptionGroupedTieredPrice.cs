@@ -36,14 +36,12 @@ public sealed record class NewSubscriptionGroupedTieredPrice : JsonModel
     /// <summary>
     /// Configuration for grouped_tiered pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.GroupedTieredConfig GroupedTieredConfig
+    public required GroupedTieredConfig GroupedTieredConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.GroupedTieredConfig>(
-                "grouped_tiered_config"
-            );
+            return this._rawData.GetNotNullClass<GroupedTieredConfig>("grouped_tiered_config");
         }
         init { this._rawData.Set("grouped_tiered_config", value); }
     }
@@ -402,12 +400,7 @@ sealed class NewSubscriptionGroupedTieredPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_tiered pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedTieredConfig,
-        global::Orb.Models.Subscriptions.GroupedTieredConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<GroupedTieredConfig, GroupedTieredConfigFromRaw>))]
 public sealed record class GroupedTieredConfig : JsonModel
 {
     /// <summary>
@@ -426,20 +419,19 @@ public sealed record class GroupedTieredConfig : JsonModel
     /// <summary>
     /// Apply tiered pricing to each segment generated after grouping with the provided key
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.GroupedTieredConfigTier> Tiers
+    public required IReadOnlyList<GroupedTieredConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.GroupedTieredConfigTier>
-            >("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<GroupedTieredConfigTier>>("tiers");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.GroupedTieredConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<GroupedTieredConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -455,9 +447,7 @@ public sealed record class GroupedTieredConfig : JsonModel
 
     public GroupedTieredConfig() { }
 
-    public GroupedTieredConfig(
-        global::Orb.Models.Subscriptions.GroupedTieredConfig groupedTieredConfig
-    )
+    public GroupedTieredConfig(GroupedTieredConfig groupedTieredConfig)
         : base(groupedTieredConfig) { }
 
     public GroupedTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -473,8 +463,8 @@ public sealed record class GroupedTieredConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedTieredConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedTieredConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedTieredConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedTieredConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -482,24 +472,17 @@ public sealed record class GroupedTieredConfig : JsonModel
     }
 }
 
-class GroupedTieredConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedTieredConfig>
+class GroupedTieredConfigFromRaw : IFromRawJson<GroupedTieredConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedTieredConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.GroupedTieredConfig.FromRawUnchecked(rawData);
+    public GroupedTieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        GroupedTieredConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedTieredConfigTier,
-        global::Orb.Models.Subscriptions.GroupedTieredConfigTierFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<GroupedTieredConfigTier, GroupedTieredConfigTierFromRaw>))]
 public sealed record class GroupedTieredConfigTier : JsonModel
 {
     public required string TierLowerBound
@@ -534,9 +517,7 @@ public sealed record class GroupedTieredConfigTier : JsonModel
 
     public GroupedTieredConfigTier() { }
 
-    public GroupedTieredConfigTier(
-        global::Orb.Models.Subscriptions.GroupedTieredConfigTier groupedTieredConfigTier
-    )
+    public GroupedTieredConfigTier(GroupedTieredConfigTier groupedTieredConfigTier)
         : base(groupedTieredConfigTier) { }
 
     public GroupedTieredConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -552,8 +533,8 @@ public sealed record class GroupedTieredConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedTieredConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedTieredConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="GroupedTieredConfigTierFromRaw.FromRawUnchecked"/>
+    public static GroupedTieredConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -561,13 +542,12 @@ public sealed record class GroupedTieredConfigTier : JsonModel
     }
 }
 
-class GroupedTieredConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedTieredConfigTier>
+class GroupedTieredConfigTierFromRaw : IFromRawJson<GroupedTieredConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedTieredConfigTier FromRawUnchecked(
+    public GroupedTieredConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.GroupedTieredConfigTier.FromRawUnchecked(rawData);
+    ) => GroupedTieredConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

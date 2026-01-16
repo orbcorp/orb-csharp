@@ -12,21 +12,16 @@ namespace Orb.Models.Events.Volume;
 [JsonConverter(typeof(JsonModelConverter<EventVolumes, EventVolumesFromRaw>))]
 public sealed record class EventVolumes : JsonModel
 {
-    public required IReadOnlyList<global::Orb.Models.Events.Volume.Data> Data
+    public required IReadOnlyList<Data> Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Events.Volume.Data>
-            >("data");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Events.Volume.Data>>(
-                "data",
-                ImmutableArray.ToImmutableArray(value)
-            );
+            this._rawData.Set<ImmutableArray<Data>>("data", ImmutableArray.ToImmutableArray(value));
         }
     }
 
@@ -64,7 +59,7 @@ public sealed record class EventVolumes : JsonModel
     }
 
     [SetsRequiredMembers]
-    public EventVolumes(IReadOnlyList<global::Orb.Models.Events.Volume.Data> data)
+    public EventVolumes(IReadOnlyList<Data> data)
         : this()
     {
         this.Data = data;
@@ -82,12 +77,7 @@ class EventVolumesFromRaw : IFromRawJson<EventVolumes>
 /// An EventVolume contains the event volume ingested in an hourly window. The timestamp
 /// used for the aggregation is the `timestamp` datetime field on events.
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Events.Volume.Data,
-        global::Orb.Models.Events.Volume.DataFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
 public sealed record class Data : JsonModel
 {
     /// <summary>
@@ -133,7 +123,7 @@ public sealed record class Data : JsonModel
 
     public Data() { }
 
-    public Data(global::Orb.Models.Events.Volume.Data data)
+    public Data(Data data)
         : base(data) { }
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -149,19 +139,16 @@ public sealed record class Data : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Events.Volume.DataFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Events.Volume.Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DataFromRaw : IFromRawJson<global::Orb.Models.Events.Volume.Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Events.Volume.Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Events.Volume.Data.FromRawUnchecked(rawData);
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
 }

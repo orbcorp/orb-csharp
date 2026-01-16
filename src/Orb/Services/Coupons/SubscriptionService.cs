@@ -10,12 +10,12 @@ using Subscriptions = Orb.Models.Subscriptions;
 namespace Orb.Services.Coupons;
 
 /// <inheritdoc/>
-public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscriptionService
+public sealed class SubscriptionService : ISubscriptionService
 {
-    readonly Lazy<global::Orb.Services.Coupons.ISubscriptionServiceWithRawResponse> _withRawResponse;
+    readonly Lazy<ISubscriptionServiceWithRawResponse> _withRawResponse;
 
     /// <inheritdoc/>
-    public global::Orb.Services.Coupons.ISubscriptionServiceWithRawResponse WithRawResponse
+    public ISubscriptionServiceWithRawResponse WithRawResponse
     {
         get { return _withRawResponse.Value; }
     }
@@ -23,13 +23,9 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
     readonly IOrbClient _client;
 
     /// <inheritdoc/>
-    public global::Orb.Services.Coupons.ISubscriptionService WithOptions(
-        Func<ClientOptions, ClientOptions> modifier
-    )
+    public ISubscriptionService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
-        return new global::Orb.Services.Coupons.SubscriptionService(
-            this._client.WithOptions(modifier)
-        );
+        return new SubscriptionService(this._client.WithOptions(modifier));
     }
 
     public SubscriptionService(IOrbClient client)
@@ -37,9 +33,7 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
         _client = client;
 
         _withRawResponse = new(() =>
-            new global::Orb.Services.Coupons.SubscriptionServiceWithRawResponse(
-                client.WithRawResponse
-            )
+            new SubscriptionServiceWithRawResponse(client.WithRawResponse)
         );
     }
 
@@ -69,19 +63,16 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
 }
 
 /// <inheritdoc/>
-public sealed class SubscriptionServiceWithRawResponse
-    : global::Orb.Services.Coupons.ISubscriptionServiceWithRawResponse
+public sealed class SubscriptionServiceWithRawResponse : ISubscriptionServiceWithRawResponse
 {
     readonly IOrbClientWithRawResponse _client;
 
     /// <inheritdoc/>
-    public global::Orb.Services.Coupons.ISubscriptionServiceWithRawResponse WithOptions(
+    public ISubscriptionServiceWithRawResponse WithOptions(
         Func<ClientOptions, ClientOptions> modifier
     )
     {
-        return new global::Orb.Services.Coupons.SubscriptionServiceWithRawResponse(
-            this._client.WithOptions(modifier)
-        );
+        return new SubscriptionServiceWithRawResponse(this._client.WithOptions(modifier));
     }
 
     public SubscriptionServiceWithRawResponse(IOrbClientWithRawResponse client)

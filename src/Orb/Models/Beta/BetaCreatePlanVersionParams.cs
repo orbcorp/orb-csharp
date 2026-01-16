@@ -260,12 +260,12 @@ public sealed record class AddAdjustment : JsonModel
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
     /// </summary>
-    public required global::Orb.Models.Beta.Adjustment Adjustment
+    public required Adjustment Adjustment
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.Adjustment>("adjustment");
+            return this._rawData.GetNotNullClass<Adjustment>("adjustment");
         }
         init { this._rawData.Set("adjustment", value); }
     }
@@ -315,7 +315,7 @@ public sealed record class AddAdjustment : JsonModel
     }
 
     [SetsRequiredMembers]
-    public AddAdjustment(global::Orb.Models.Beta.Adjustment adjustment)
+    public AddAdjustment(Adjustment adjustment)
         : this()
     {
         this.Adjustment = adjustment;
@@ -332,7 +332,7 @@ class AddAdjustmentFromRaw : IFromRawJson<AddAdjustment>
 /// <summary>
 /// The definition of a new adjustment to create and add to the plan.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.AdjustmentConverter))]
+[JsonConverter(typeof(AdjustmentConverter))]
 public record class Adjustment : ModelBase
 {
     public object? Value { get; } = null;
@@ -614,21 +614,15 @@ public record class Adjustment : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(
-        NewPercentageDiscount value
-    ) => new(value);
+    public static implicit operator Adjustment(NewPercentageDiscount value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(NewUsageDiscount value) =>
-        new(value);
+    public static implicit operator Adjustment(NewUsageDiscount value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(NewAmountDiscount value) =>
-        new(value);
+    public static implicit operator Adjustment(NewAmountDiscount value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(NewMinimum value) =>
-        new(value);
+    public static implicit operator Adjustment(NewMinimum value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(NewMaximum value) =>
-        new(value);
+    public static implicit operator Adjustment(NewMaximum value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -655,7 +649,7 @@ public record class Adjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Beta.Adjustment? other)
+    public virtual bool Equals(Adjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -669,9 +663,9 @@ public record class Adjustment : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustment>
+sealed class AdjustmentConverter : JsonConverter<Adjustment>
 {
-    public override global::Orb.Models.Beta.Adjustment? Read(
+    public override Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -796,14 +790,14 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
             }
             default:
             {
-                return new global::Orb.Models.Beta.Adjustment(element);
+                return new Adjustment(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.Adjustment value,
+        Adjustment value,
         JsonSerializerOptions options
     )
     {
@@ -843,12 +837,12 @@ public sealed record class AddPrice : JsonModel
     /// <summary>
     /// New plan price request body params.
     /// </summary>
-    public global::Orb.Models.Beta.Price? Price
+    public Price? Price
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.Price>("price");
+            return this._rawData.GetNullableClass<Price>("price");
         }
         init { this._rawData.Set("price", value); }
     }
@@ -896,7 +890,7 @@ class AddPriceFromRaw : IFromRawJson<AddPrice>
 /// <summary>
 /// New plan price request body params.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.PriceConverter))]
+[JsonConverter(typeof(PriceConverter))]
 public record class Price : ModelBase
 {
     public object? Value { get; } = null;
@@ -1465,7 +1459,7 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Beta.BulkWithFilters value, JsonElement? element = null)
+    public Price(BulkWithFilters value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1531,7 +1525,7 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Beta.TieredWithProration value, JsonElement? element = null)
+    public Price(TieredWithProration value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1567,10 +1561,7 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholds value,
-        JsonElement? element = null
-    )
+    public Price(GroupedWithMinMaxThresholds value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1612,16 +1603,13 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(
-        global::Orb.Models.Beta.CumulativeGroupedAllocation value,
-        JsonElement? element = null
-    )
+    public Price(CumulativeGroupedAllocation value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Beta.Minimum value, JsonElement? element = null)
+    public Price(Minimum value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1633,13 +1621,13 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Beta.Percent value, JsonElement? element = null)
+    public Price(Percent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Beta.EventOutput value, JsonElement? element = null)
+    public Price(EventOutput value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1715,24 +1703,22 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.BulkWithFilters"/>.
+    /// type <see cref="BulkWithFilters"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickBulkWithFilters(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.BulkWithFilters`
+    ///     // `value` is of type `BulkWithFilters`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickBulkWithFilters(
-        [NotNullWhen(true)] out global::Orb.Models.Beta.BulkWithFilters? value
-    )
+    public bool TryPickBulkWithFilters([NotNullWhen(true)] out BulkWithFilters? value)
     {
-        value = this.Value as global::Orb.Models.Beta.BulkWithFilters;
+        value = this.Value as BulkWithFilters;
         return value != null;
     }
 
@@ -1964,24 +1950,22 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.TieredWithProration"/>.
+    /// type <see cref="TieredWithProration"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickTieredWithProration(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.TieredWithProration`
+    ///     // `value` is of type `TieredWithProration`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTieredWithProration(
-        [NotNullWhen(true)] out global::Orb.Models.Beta.TieredWithProration? value
-    )
+    public bool TryPickTieredWithProration([NotNullWhen(true)] out TieredWithProration? value)
     {
-        value = this.Value as global::Orb.Models.Beta.TieredWithProration;
+        value = this.Value as TieredWithProration;
         return value != null;
     }
 
@@ -2102,24 +2086,24 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.GroupedWithMinMaxThresholds"/>.
+    /// type <see cref="GroupedWithMinMaxThresholds"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickGroupedWithMinMaxThresholds(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.GroupedWithMinMaxThresholds`
+    ///     // `value` is of type `GroupedWithMinMaxThresholds`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out global::Orb.Models.Beta.GroupedWithMinMaxThresholds? value
+        [NotNullWhen(true)] out GroupedWithMinMaxThresholds? value
     )
     {
-        value = this.Value as global::Orb.Models.Beta.GroupedWithMinMaxThresholds;
+        value = this.Value as GroupedWithMinMaxThresholds;
         return value != null;
     }
 
@@ -2263,45 +2247,45 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.CumulativeGroupedAllocation"/>.
+    /// type <see cref="CumulativeGroupedAllocation"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickCumulativeGroupedAllocation(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.CumulativeGroupedAllocation`
+    ///     // `value` is of type `CumulativeGroupedAllocation`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickCumulativeGroupedAllocation(
-        [NotNullWhen(true)] out global::Orb.Models.Beta.CumulativeGroupedAllocation? value
+        [NotNullWhen(true)] out CumulativeGroupedAllocation? value
     )
     {
-        value = this.Value as global::Orb.Models.Beta.CumulativeGroupedAllocation;
+        value = this.Value as CumulativeGroupedAllocation;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.Minimum"/>.
+    /// type <see cref="Minimum"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMinimum(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.Minimum`
+    ///     // `value` is of type `Minimum`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMinimum([NotNullWhen(true)] out global::Orb.Models.Beta.Minimum? value)
+    public bool TryPickMinimum([NotNullWhen(true)] out Minimum? value)
     {
-        value = this.Value as global::Orb.Models.Beta.Minimum;
+        value = this.Value as Minimum;
         return value != null;
     }
 
@@ -2330,45 +2314,43 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.Percent"/>.
+    /// type <see cref="Percent"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickPercent(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.Percent`
+    ///     // `value` is of type `Percent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickPercent([NotNullWhen(true)] out global::Orb.Models.Beta.Percent? value)
+    public bool TryPickPercent([NotNullWhen(true)] out Percent? value)
     {
-        value = this.Value as global::Orb.Models.Beta.Percent;
+        value = this.Value as Percent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Beta.EventOutput"/>.
+    /// type <see cref="EventOutput"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickEventOutput(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Beta.EventOutput`
+    ///     // `value` is of type `EventOutput`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickEventOutput(
-        [NotNullWhen(true)] out global::Orb.Models.Beta.EventOutput? value
-    )
+    public bool TryPickEventOutput([NotNullWhen(true)] out EventOutput? value)
     {
-        value = this.Value as global::Orb.Models.Beta.EventOutput;
+        value = this.Value as EventOutput;
         return value != null;
     }
 
@@ -2389,7 +2371,7 @@ public record class Price : ModelBase
     ///     (NewPlanUnitPrice value) => {...},
     ///     (NewPlanTieredPrice value) => {...},
     ///     (NewPlanBulkPrice value) => {...},
-    ///     (global::Orb.Models.Beta.BulkWithFilters value) => {...},
+    ///     (BulkWithFilters value) => {...},
     ///     (NewPlanPackagePrice value) => {...},
     ///     (NewPlanMatrixPrice value) => {...},
     ///     (NewPlanThresholdTotalAmountPrice value) => {...},
@@ -2400,24 +2382,24 @@ public record class Price : ModelBase
     ///     (NewPlanPackageWithAllocationPrice value) => {...},
     ///     (NewPlanUnitWithPercentPrice value) => {...},
     ///     (NewPlanMatrixWithAllocationPrice value) => {...},
-    ///     (global::Orb.Models.Beta.TieredWithProration value) => {...},
+    ///     (TieredWithProration value) => {...},
     ///     (NewPlanUnitWithProrationPrice value) => {...},
     ///     (NewPlanGroupedAllocationPrice value) => {...},
     ///     (NewPlanBulkWithProrationPrice value) => {...},
     ///     (NewPlanGroupedWithProratedMinimumPrice value) => {...},
     ///     (NewPlanGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (global::Orb.Models.Beta.GroupedWithMinMaxThresholds value) => {...},
+    ///     (GroupedWithMinMaxThresholds value) => {...},
     ///     (NewPlanMatrixWithDisplayNamePrice value) => {...},
     ///     (NewPlanGroupedTieredPackagePrice value) => {...},
     ///     (NewPlanMaxGroupTieredPackagePrice value) => {...},
     ///     (NewPlanScalableMatrixWithUnitPricingPrice value) => {...},
     ///     (NewPlanScalableMatrixWithTieredPricingPrice value) => {...},
     ///     (NewPlanCumulativeGroupedBulkPrice value) => {...},
-    ///     (global::Orb.Models.Beta.CumulativeGroupedAllocation value) => {...},
-    ///     (global::Orb.Models.Beta.Minimum value) => {...},
+    ///     (CumulativeGroupedAllocation value) => {...},
+    ///     (Minimum value) => {...},
     ///     (NewPlanMinimumCompositePrice value) => {...},
-    ///     (global::Orb.Models.Beta.Percent value) => {...},
-    ///     (global::Orb.Models.Beta.EventOutput value) => {...}
+    ///     (Percent value) => {...},
+    ///     (EventOutput value) => {...}
     /// );
     /// </code>
     /// </example>
@@ -2426,7 +2408,7 @@ public record class Price : ModelBase
         System::Action<NewPlanUnitPrice> newPlanUnit,
         System::Action<NewPlanTieredPrice> newPlanTiered,
         System::Action<NewPlanBulkPrice> newPlanBulk,
-        System::Action<global::Orb.Models.Beta.BulkWithFilters> bulkWithFilters,
+        System::Action<BulkWithFilters> bulkWithFilters,
         System::Action<NewPlanPackagePrice> newPlanPackage,
         System::Action<NewPlanMatrixPrice> newPlanMatrix,
         System::Action<NewPlanThresholdTotalAmountPrice> newPlanThresholdTotalAmount,
@@ -2437,24 +2419,24 @@ public record class Price : ModelBase
         System::Action<NewPlanPackageWithAllocationPrice> newPlanPackageWithAllocation,
         System::Action<NewPlanUnitWithPercentPrice> newPlanUnitWithPercent,
         System::Action<NewPlanMatrixWithAllocationPrice> newPlanMatrixWithAllocation,
-        System::Action<global::Orb.Models.Beta.TieredWithProration> tieredWithProration,
+        System::Action<TieredWithProration> tieredWithProration,
         System::Action<NewPlanUnitWithProrationPrice> newPlanUnitWithProration,
         System::Action<NewPlanGroupedAllocationPrice> newPlanGroupedAllocation,
         System::Action<NewPlanBulkWithProrationPrice> newPlanBulkWithProration,
         System::Action<NewPlanGroupedWithProratedMinimumPrice> newPlanGroupedWithProratedMinimum,
         System::Action<NewPlanGroupedWithMeteredMinimumPrice> newPlanGroupedWithMeteredMinimum,
-        System::Action<global::Orb.Models.Beta.GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        System::Action<GroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         System::Action<NewPlanMatrixWithDisplayNamePrice> newPlanMatrixWithDisplayName,
         System::Action<NewPlanGroupedTieredPackagePrice> newPlanGroupedTieredPackage,
         System::Action<NewPlanMaxGroupTieredPackagePrice> newPlanMaxGroupTieredPackage,
         System::Action<NewPlanScalableMatrixWithUnitPricingPrice> newPlanScalableMatrixWithUnitPricing,
         System::Action<NewPlanScalableMatrixWithTieredPricingPrice> newPlanScalableMatrixWithTieredPricing,
         System::Action<NewPlanCumulativeGroupedBulkPrice> newPlanCumulativeGroupedBulk,
-        System::Action<global::Orb.Models.Beta.CumulativeGroupedAllocation> cumulativeGroupedAllocation,
-        System::Action<global::Orb.Models.Beta.Minimum> minimum,
+        System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
+        System::Action<Minimum> minimum,
         System::Action<NewPlanMinimumCompositePrice> newPlanMinimumComposite,
-        System::Action<global::Orb.Models.Beta.Percent> percent,
-        System::Action<global::Orb.Models.Beta.EventOutput> eventOutput
+        System::Action<Percent> percent,
+        System::Action<EventOutput> eventOutput
     )
     {
         switch (this.Value)
@@ -2468,7 +2450,7 @@ public record class Price : ModelBase
             case NewPlanBulkPrice value:
                 newPlanBulk(value);
                 break;
-            case global::Orb.Models.Beta.BulkWithFilters value:
+            case BulkWithFilters value:
                 bulkWithFilters(value);
                 break;
             case NewPlanPackagePrice value:
@@ -2501,7 +2483,7 @@ public record class Price : ModelBase
             case NewPlanMatrixWithAllocationPrice value:
                 newPlanMatrixWithAllocation(value);
                 break;
-            case global::Orb.Models.Beta.TieredWithProration value:
+            case TieredWithProration value:
                 tieredWithProration(value);
                 break;
             case NewPlanUnitWithProrationPrice value:
@@ -2519,7 +2501,7 @@ public record class Price : ModelBase
             case NewPlanGroupedWithMeteredMinimumPrice value:
                 newPlanGroupedWithMeteredMinimum(value);
                 break;
-            case global::Orb.Models.Beta.GroupedWithMinMaxThresholds value:
+            case GroupedWithMinMaxThresholds value:
                 groupedWithMinMaxThresholds(value);
                 break;
             case NewPlanMatrixWithDisplayNamePrice value:
@@ -2540,19 +2522,19 @@ public record class Price : ModelBase
             case NewPlanCumulativeGroupedBulkPrice value:
                 newPlanCumulativeGroupedBulk(value);
                 break;
-            case global::Orb.Models.Beta.CumulativeGroupedAllocation value:
+            case CumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
-            case global::Orb.Models.Beta.Minimum value:
+            case Minimum value:
                 minimum(value);
                 break;
             case NewPlanMinimumCompositePrice value:
                 newPlanMinimumComposite(value);
                 break;
-            case global::Orb.Models.Beta.Percent value:
+            case Percent value:
                 percent(value);
                 break;
-            case global::Orb.Models.Beta.EventOutput value:
+            case EventOutput value:
                 eventOutput(value);
                 break;
             default:
@@ -2578,7 +2560,7 @@ public record class Price : ModelBase
     ///     (NewPlanUnitPrice value) => {...},
     ///     (NewPlanTieredPrice value) => {...},
     ///     (NewPlanBulkPrice value) => {...},
-    ///     (global::Orb.Models.Beta.BulkWithFilters value) => {...},
+    ///     (BulkWithFilters value) => {...},
     ///     (NewPlanPackagePrice value) => {...},
     ///     (NewPlanMatrixPrice value) => {...},
     ///     (NewPlanThresholdTotalAmountPrice value) => {...},
@@ -2589,24 +2571,24 @@ public record class Price : ModelBase
     ///     (NewPlanPackageWithAllocationPrice value) => {...},
     ///     (NewPlanUnitWithPercentPrice value) => {...},
     ///     (NewPlanMatrixWithAllocationPrice value) => {...},
-    ///     (global::Orb.Models.Beta.TieredWithProration value) => {...},
+    ///     (TieredWithProration value) => {...},
     ///     (NewPlanUnitWithProrationPrice value) => {...},
     ///     (NewPlanGroupedAllocationPrice value) => {...},
     ///     (NewPlanBulkWithProrationPrice value) => {...},
     ///     (NewPlanGroupedWithProratedMinimumPrice value) => {...},
     ///     (NewPlanGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (global::Orb.Models.Beta.GroupedWithMinMaxThresholds value) => {...},
+    ///     (GroupedWithMinMaxThresholds value) => {...},
     ///     (NewPlanMatrixWithDisplayNamePrice value) => {...},
     ///     (NewPlanGroupedTieredPackagePrice value) => {...},
     ///     (NewPlanMaxGroupTieredPackagePrice value) => {...},
     ///     (NewPlanScalableMatrixWithUnitPricingPrice value) => {...},
     ///     (NewPlanScalableMatrixWithTieredPricingPrice value) => {...},
     ///     (NewPlanCumulativeGroupedBulkPrice value) => {...},
-    ///     (global::Orb.Models.Beta.CumulativeGroupedAllocation value) => {...},
-    ///     (global::Orb.Models.Beta.Minimum value) => {...},
+    ///     (CumulativeGroupedAllocation value) => {...},
+    ///     (Minimum value) => {...},
     ///     (NewPlanMinimumCompositePrice value) => {...},
-    ///     (global::Orb.Models.Beta.Percent value) => {...},
-    ///     (global::Orb.Models.Beta.EventOutput value) => {...}
+    ///     (Percent value) => {...},
+    ///     (EventOutput value) => {...}
     /// );
     /// </code>
     /// </example>
@@ -2615,7 +2597,7 @@ public record class Price : ModelBase
         System::Func<NewPlanUnitPrice, T> newPlanUnit,
         System::Func<NewPlanTieredPrice, T> newPlanTiered,
         System::Func<NewPlanBulkPrice, T> newPlanBulk,
-        System::Func<global::Orb.Models.Beta.BulkWithFilters, T> bulkWithFilters,
+        System::Func<BulkWithFilters, T> bulkWithFilters,
         System::Func<NewPlanPackagePrice, T> newPlanPackage,
         System::Func<NewPlanMatrixPrice, T> newPlanMatrix,
         System::Func<NewPlanThresholdTotalAmountPrice, T> newPlanThresholdTotalAmount,
@@ -2626,16 +2608,13 @@ public record class Price : ModelBase
         System::Func<NewPlanPackageWithAllocationPrice, T> newPlanPackageWithAllocation,
         System::Func<NewPlanUnitWithPercentPrice, T> newPlanUnitWithPercent,
         System::Func<NewPlanMatrixWithAllocationPrice, T> newPlanMatrixWithAllocation,
-        System::Func<global::Orb.Models.Beta.TieredWithProration, T> tieredWithProration,
+        System::Func<TieredWithProration, T> tieredWithProration,
         System::Func<NewPlanUnitWithProrationPrice, T> newPlanUnitWithProration,
         System::Func<NewPlanGroupedAllocationPrice, T> newPlanGroupedAllocation,
         System::Func<NewPlanBulkWithProrationPrice, T> newPlanBulkWithProration,
         System::Func<NewPlanGroupedWithProratedMinimumPrice, T> newPlanGroupedWithProratedMinimum,
         System::Func<NewPlanGroupedWithMeteredMinimumPrice, T> newPlanGroupedWithMeteredMinimum,
-        System::Func<
-            global::Orb.Models.Beta.GroupedWithMinMaxThresholds,
-            T
-        > groupedWithMinMaxThresholds,
+        System::Func<GroupedWithMinMaxThresholds, T> groupedWithMinMaxThresholds,
         System::Func<NewPlanMatrixWithDisplayNamePrice, T> newPlanMatrixWithDisplayName,
         System::Func<NewPlanGroupedTieredPackagePrice, T> newPlanGroupedTieredPackage,
         System::Func<NewPlanMaxGroupTieredPackagePrice, T> newPlanMaxGroupTieredPackage,
@@ -2648,14 +2627,11 @@ public record class Price : ModelBase
             T
         > newPlanScalableMatrixWithTieredPricing,
         System::Func<NewPlanCumulativeGroupedBulkPrice, T> newPlanCumulativeGroupedBulk,
-        System::Func<
-            global::Orb.Models.Beta.CumulativeGroupedAllocation,
-            T
-        > cumulativeGroupedAllocation,
-        System::Func<global::Orb.Models.Beta.Minimum, T> minimum,
+        System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
+        System::Func<Minimum, T> minimum,
         System::Func<NewPlanMinimumCompositePrice, T> newPlanMinimumComposite,
-        System::Func<global::Orb.Models.Beta.Percent, T> percent,
-        System::Func<global::Orb.Models.Beta.EventOutput, T> eventOutput
+        System::Func<Percent, T> percent,
+        System::Func<EventOutput, T> eventOutput
     )
     {
         return this.Value switch
@@ -2663,7 +2639,7 @@ public record class Price : ModelBase
             NewPlanUnitPrice value => newPlanUnit(value),
             NewPlanTieredPrice value => newPlanTiered(value),
             NewPlanBulkPrice value => newPlanBulk(value),
-            global::Orb.Models.Beta.BulkWithFilters value => bulkWithFilters(value),
+            BulkWithFilters value => bulkWithFilters(value),
             NewPlanPackagePrice value => newPlanPackage(value),
             NewPlanMatrixPrice value => newPlanMatrix(value),
             NewPlanThresholdTotalAmountPrice value => newPlanThresholdTotalAmount(value),
@@ -2674,7 +2650,7 @@ public record class Price : ModelBase
             NewPlanPackageWithAllocationPrice value => newPlanPackageWithAllocation(value),
             NewPlanUnitWithPercentPrice value => newPlanUnitWithPercent(value),
             NewPlanMatrixWithAllocationPrice value => newPlanMatrixWithAllocation(value),
-            global::Orb.Models.Beta.TieredWithProration value => tieredWithProration(value),
+            TieredWithProration value => tieredWithProration(value),
             NewPlanUnitWithProrationPrice value => newPlanUnitWithProration(value),
             NewPlanGroupedAllocationPrice value => newPlanGroupedAllocation(value),
             NewPlanBulkWithProrationPrice value => newPlanBulkWithProration(value),
@@ -2682,8 +2658,7 @@ public record class Price : ModelBase
                 value
             ),
             NewPlanGroupedWithMeteredMinimumPrice value => newPlanGroupedWithMeteredMinimum(value),
-            global::Orb.Models.Beta.GroupedWithMinMaxThresholds value =>
-                groupedWithMinMaxThresholds(value),
+            GroupedWithMinMaxThresholds value => groupedWithMinMaxThresholds(value),
             NewPlanMatrixWithDisplayNamePrice value => newPlanMatrixWithDisplayName(value),
             NewPlanGroupedTieredPackagePrice value => newPlanGroupedTieredPackage(value),
             NewPlanMaxGroupTieredPackagePrice value => newPlanMaxGroupTieredPackage(value),
@@ -2693,138 +2668,82 @@ public record class Price : ModelBase
             NewPlanScalableMatrixWithTieredPricingPrice value =>
                 newPlanScalableMatrixWithTieredPricing(value),
             NewPlanCumulativeGroupedBulkPrice value => newPlanCumulativeGroupedBulk(value),
-            global::Orb.Models.Beta.CumulativeGroupedAllocation value =>
-                cumulativeGroupedAllocation(value),
-            global::Orb.Models.Beta.Minimum value => minimum(value),
+            CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
+            Minimum value => minimum(value),
             NewPlanMinimumCompositePrice value => newPlanMinimumComposite(value),
-            global::Orb.Models.Beta.Percent value => percent(value),
-            global::Orb.Models.Beta.EventOutput value => eventOutput(value),
+            Percent value => percent(value),
+            EventOutput value => eventOutput(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Price"),
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.Price(NewPlanUnitPrice value) =>
+    public static implicit operator Price(NewPlanUnitPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanTieredPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanBulkPrice value) => new(value);
+
+    public static implicit operator Price(BulkWithFilters value) => new(value);
+
+    public static implicit operator Price(NewPlanPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewPlanMatrixPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanThresholdTotalAmountPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewPlanTieredWithMinimumPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanTieredPackageWithMinimumPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanPackageWithAllocationPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanMatrixWithAllocationPrice value) => new(value);
+
+    public static implicit operator Price(TieredWithProration value) => new(value);
+
+    public static implicit operator Price(NewPlanUnitWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanGroupedAllocationPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanBulkWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewPlanGroupedWithProratedMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(NewPlanTieredPrice value) =>
+    public static implicit operator Price(NewPlanGroupedWithMeteredMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(NewPlanBulkPrice value) =>
+    public static implicit operator Price(GroupedWithMinMaxThresholds value) => new(value);
+
+    public static implicit operator Price(NewPlanMatrixWithDisplayNamePrice value) => new(value);
+
+    public static implicit operator Price(NewPlanGroupedTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewPlanMaxGroupTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewPlanScalableMatrixWithUnitPricingPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.BulkWithFilters value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(NewPlanPackagePrice value) =>
+    public static implicit operator Price(NewPlanScalableMatrixWithTieredPricingPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(NewPlanMatrixPrice value) =>
-        new(value);
+    public static implicit operator Price(NewPlanCumulativeGroupedBulkPrice value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanThresholdTotalAmountPrice value
-    ) => new(value);
+    public static implicit operator Price(CumulativeGroupedAllocation value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanTieredPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(Minimum value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanTieredWithMinimumPrice value
-    ) => new(value);
+    public static implicit operator Price(NewPlanMinimumCompositePrice value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanGroupedTieredPrice value
-    ) => new(value);
+    public static implicit operator Price(Percent value) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanTieredPackageWithMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanPackageWithAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanUnitWithPercentPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanMatrixWithAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.TieredWithProration value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanUnitWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanGroupedAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanBulkWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanGroupedWithProratedMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanGroupedWithMeteredMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholds value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanMatrixWithDisplayNamePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanGroupedTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanMaxGroupTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanScalableMatrixWithUnitPricingPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanScalableMatrixWithTieredPricingPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanCumulativeGroupedBulkPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.CumulativeGroupedAllocation value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.Minimum value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        NewPlanMinimumCompositePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.Percent value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Beta.Price(
-        global::Orb.Models.Beta.EventOutput value
-    ) => new(value);
+    public static implicit operator Price(EventOutput value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2880,7 +2799,7 @@ public record class Price : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Beta.Price? other)
+    public virtual bool Equals(Price? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -2894,9 +2813,9 @@ public record class Price : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
+sealed class PriceConverter : JsonConverter<Price?>
 {
-    public override global::Orb.Models.Beta.Price? Read(
+    public override Price? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2985,11 +2904,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Beta.BulkWithFilters>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3230,11 +3148,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Beta.TieredWithProration>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<TieredWithProration>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3365,11 +3282,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Beta.GroupedWithMinMaxThresholds>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3525,11 +3441,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Beta.CumulativeGroupedAllocation>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3548,10 +3463,7 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<global::Orb.Models.Beta.Minimum>(
-                        element,
-                        options
-                    );
+                    var deserialized = JsonSerializer.Deserialize<Minimum>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3592,10 +3504,7 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<global::Orb.Models.Beta.Percent>(
-                        element,
-                        options
-                    );
+                    var deserialized = JsonSerializer.Deserialize<Percent>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3614,11 +3523,7 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Beta.EventOutput>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<EventOutput>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3635,40 +3540,29 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.Price?>
             }
             default:
             {
-                return new global::Orb.Models.Beta.Price(element);
+                return new Price(element);
             }
         }
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Beta.Price? value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Price? value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value?.Json, options);
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.BulkWithFilters,
-        global::Orb.Models.Beta.BulkWithFiltersFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<BulkWithFilters, BulkWithFiltersFromRaw>))]
 public sealed record class BulkWithFilters : JsonModel
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
     /// </summary>
-    public required global::Orb.Models.Beta.BulkWithFiltersConfig BulkWithFiltersConfig
+    public required BulkWithFiltersConfig BulkWithFiltersConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.BulkWithFiltersConfig>(
-                "bulk_with_filters_config"
-            );
+            return this._rawData.GetNotNullClass<BulkWithFiltersConfig>("bulk_with_filters_config");
         }
         init { this._rawData.Set("bulk_with_filters_config", value); }
     }
@@ -3676,14 +3570,12 @@ public sealed record class BulkWithFilters : JsonModel
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Beta.Cadence> Cadence
+    public required ApiEnum<string, Cadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, global::Orb.Models.Beta.Cadence>>(
-                "cadence"
-            );
+            return this._rawData.GetNotNullClass<ApiEnum<string, Cadence>>("cadence");
         }
         init { this._rawData.Set("cadence", value); }
     }
@@ -3786,14 +3678,12 @@ public sealed record class BulkWithFilters : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Beta.ConversionRateConfig? ConversionRateConfig
+    public ConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.ConversionRateConfig>(
-                "conversion_rate_config"
-            );
+            return this._rawData.GetNullableClass<ConversionRateConfig>("conversion_rate_config");
         }
         init { this._rawData.Set("conversion_rate_config", value); }
     }
@@ -3953,7 +3843,7 @@ public sealed record class BulkWithFilters : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
-    public BulkWithFilters(global::Orb.Models.Beta.BulkWithFilters bulkWithFilters)
+    public BulkWithFilters(BulkWithFilters bulkWithFilters)
         : base(bulkWithFilters) { }
 
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -3971,49 +3861,39 @@ public sealed record class BulkWithFilters : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.BulkWithFiltersFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.BulkWithFilters FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="BulkWithFiltersFromRaw.FromRawUnchecked"/>
+    public static BulkWithFilters FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class BulkWithFiltersFromRaw : IFromRawJson<global::Orb.Models.Beta.BulkWithFilters>
+class BulkWithFiltersFromRaw : IFromRawJson<BulkWithFilters>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.BulkWithFilters FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.BulkWithFilters.FromRawUnchecked(rawData);
+    public BulkWithFilters FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkWithFilters.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for bulk_with_filters pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.BulkWithFiltersConfig,
-        global::Orb.Models.Beta.BulkWithFiltersConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<BulkWithFiltersConfig, BulkWithFiltersConfigFromRaw>))]
 public sealed record class BulkWithFiltersConfig : JsonModel
 {
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.Filter> Filters
+    public required IReadOnlyList<Filter> Filters
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<global::Orb.Models.Beta.Filter>>(
-                "filters"
-            );
+            return this._rawData.GetNotNullStruct<ImmutableArray<Filter>>("filters");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Beta.Filter>>(
+            this._rawData.Set<ImmutableArray<Filter>>(
                 "filters",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -4023,18 +3903,16 @@ public sealed record class BulkWithFiltersConfig : JsonModel
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.Tier> Tiers
+    public required IReadOnlyList<Tier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<global::Orb.Models.Beta.Tier>>(
-                "tiers"
-            );
+            return this._rawData.GetNotNullStruct<ImmutableArray<Tier>>("tiers");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Beta.Tier>>(
+            this._rawData.Set<ImmutableArray<Tier>>(
                 "tiers",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -4056,9 +3934,7 @@ public sealed record class BulkWithFiltersConfig : JsonModel
 
     public BulkWithFiltersConfig() { }
 
-    public BulkWithFiltersConfig(
-        global::Orb.Models.Beta.BulkWithFiltersConfig bulkWithFiltersConfig
-    )
+    public BulkWithFiltersConfig(BulkWithFiltersConfig bulkWithFiltersConfig)
         : base(bulkWithFiltersConfig) { }
 
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -4074,8 +3950,8 @@ public sealed record class BulkWithFiltersConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.BulkWithFiltersConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.BulkWithFiltersConfig FromRawUnchecked(
+    /// <inheritdoc cref="BulkWithFiltersConfigFromRaw.FromRawUnchecked"/>
+    public static BulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4083,23 +3959,18 @@ public sealed record class BulkWithFiltersConfig : JsonModel
     }
 }
 
-class BulkWithFiltersConfigFromRaw : IFromRawJson<global::Orb.Models.Beta.BulkWithFiltersConfig>
+class BulkWithFiltersConfigFromRaw : IFromRawJson<BulkWithFiltersConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.BulkWithFiltersConfig FromRawUnchecked(
+    public BulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.BulkWithFiltersConfig.FromRawUnchecked(rawData);
+    ) => BulkWithFiltersConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.Filter,
-        global::Orb.Models.Beta.FilterFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
 public sealed record class Filter : JsonModel
 {
     /// <summary>
@@ -4137,7 +4008,7 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
-    public Filter(global::Orb.Models.Beta.Filter filter)
+    public Filter(Filter filter)
         : base(filter) { }
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -4153,29 +4024,24 @@ public sealed record class Filter : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.FilterFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
+    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FilterFromRaw : IFromRawJson<global::Orb.Models.Beta.Filter>
+class FilterFromRaw : IFromRawJson<Filter>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.Filter.FromRawUnchecked(rawData);
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<global::Orb.Models.Beta.Tier, global::Orb.Models.Beta.TierFromRaw>)
-)]
+[JsonConverter(typeof(JsonModelConverter<Tier, TierFromRaw>))]
 public sealed record class Tier : JsonModel
 {
     /// <summary>
@@ -4213,7 +4079,7 @@ public sealed record class Tier : JsonModel
 
     public Tier() { }
 
-    public Tier(global::Orb.Models.Beta.Tier tier)
+    public Tier(Tier tier)
         : base(tier) { }
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -4229,10 +4095,8 @@ public sealed record class Tier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.TierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.Tier FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="TierFromRaw.FromRawUnchecked"/>
+    public static Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
@@ -4245,18 +4109,17 @@ public sealed record class Tier : JsonModel
     }
 }
 
-class TierFromRaw : IFromRawJson<global::Orb.Models.Beta.Tier>
+class TierFromRaw : IFromRawJson<Tier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.Tier FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.Tier.FromRawUnchecked(rawData);
+    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.CadenceConverter))]
+[JsonConverter(typeof(CadenceConverter))]
 public enum Cadence
 {
     Annual,
@@ -4267,9 +4130,9 @@ public enum Cadence
     Custom,
 }
 
-sealed class CadenceConverter : JsonConverter<global::Orb.Models.Beta.Cadence>
+sealed class CadenceConverter : JsonConverter<Cadence>
 {
-    public override global::Orb.Models.Beta.Cadence Read(
+    public override Cadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4277,32 +4140,28 @@ sealed class CadenceConverter : JsonConverter<global::Orb.Models.Beta.Cadence>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Beta.Cadence.Annual,
-            "semi_annual" => global::Orb.Models.Beta.Cadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Beta.Cadence.Monthly,
-            "quarterly" => global::Orb.Models.Beta.Cadence.Quarterly,
-            "one_time" => global::Orb.Models.Beta.Cadence.OneTime,
-            "custom" => global::Orb.Models.Beta.Cadence.Custom,
-            _ => (global::Orb.Models.Beta.Cadence)(-1),
+            "annual" => Cadence.Annual,
+            "semi_annual" => Cadence.SemiAnnual,
+            "monthly" => Cadence.Monthly,
+            "quarterly" => Cadence.Quarterly,
+            "one_time" => Cadence.OneTime,
+            "custom" => Cadence.Custom,
+            _ => (Cadence)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Beta.Cadence value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Cadence value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Beta.Cadence.Annual => "annual",
-                global::Orb.Models.Beta.Cadence.SemiAnnual => "semi_annual",
-                global::Orb.Models.Beta.Cadence.Monthly => "monthly",
-                global::Orb.Models.Beta.Cadence.Quarterly => "quarterly",
-                global::Orb.Models.Beta.Cadence.OneTime => "one_time",
-                global::Orb.Models.Beta.Cadence.Custom => "custom",
+                Cadence.Annual => "annual",
+                Cadence.SemiAnnual => "semi_annual",
+                Cadence.Monthly => "monthly",
+                Cadence.Quarterly => "quarterly",
+                Cadence.OneTime => "one_time",
+                Cadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4312,7 +4171,7 @@ sealed class CadenceConverter : JsonConverter<global::Orb.Models.Beta.Cadence>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.ConversionRateConfigConverter))]
+[JsonConverter(typeof(ConversionRateConfigConverter))]
 public record class ConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -4465,13 +4324,11 @@ public record class ConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.ConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    ) => new(value);
+    public static implicit operator ConversionRateConfig(SharedUnitConversionRateConfig value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.Beta.ConversionRateConfig(
-        SharedTieredConversionRateConfig value
-    ) => new(value);
+    public static implicit operator ConversionRateConfig(SharedTieredConversionRateConfig value) =>
+        new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -4494,7 +4351,7 @@ public record class ConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Beta.ConversionRateConfig? other)
+    public virtual bool Equals(ConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -4508,10 +4365,9 @@ public record class ConversionRateConfig : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class ConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Beta.ConversionRateConfig>
+sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
 {
-    public override global::Orb.Models.Beta.ConversionRateConfig? Read(
+    public override ConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4576,14 +4432,14 @@ sealed class ConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Beta.ConversionRateConfig(element);
+                return new ConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.ConversionRateConfig value,
+        ConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -4591,25 +4447,20 @@ sealed class ConversionRateConfigConverter
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.TieredWithProration,
-        global::Orb.Models.Beta.TieredWithProrationFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<TieredWithProration, TieredWithProrationFromRaw>))]
 public sealed record class TieredWithProration : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Beta.TieredWithProrationCadence> Cadence
+    public required ApiEnum<string, TieredWithProrationCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Beta.TieredWithProrationCadence>
-            >("cadence");
+            return this._rawData.GetNotNullClass<ApiEnum<string, TieredWithProrationCadence>>(
+                "cadence"
+            );
         }
         init { this._rawData.Set("cadence", value); }
     }
@@ -4656,12 +4507,12 @@ public sealed record class TieredWithProration : JsonModel
     /// <summary>
     /// Configuration for tiered_with_proration pricing
     /// </summary>
-    public required global::Orb.Models.Beta.TieredWithProrationConfig TieredWithProrationConfig
+    public required TieredWithProrationConfig TieredWithProrationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.TieredWithProrationConfig>(
+            return this._rawData.GetNotNullClass<TieredWithProrationConfig>(
                 "tiered_with_proration_config"
             );
         }
@@ -4727,12 +4578,12 @@ public sealed record class TieredWithProration : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Beta.TieredWithProrationConversionRateConfig? ConversionRateConfig
+    public TieredWithProrationConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.TieredWithProrationConversionRateConfig>(
+            return this._rawData.GetNullableClass<TieredWithProrationConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -4894,7 +4745,7 @@ public sealed record class TieredWithProration : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
-    public TieredWithProration(global::Orb.Models.Beta.TieredWithProration tieredWithProration)
+    public TieredWithProration(TieredWithProration tieredWithProration)
         : base(tieredWithProration) { }
 
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -4912,8 +4763,8 @@ public sealed record class TieredWithProration : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.TieredWithProrationFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.TieredWithProration FromRawUnchecked(
+    /// <inheritdoc cref="TieredWithProrationFromRaw.FromRawUnchecked"/>
+    public static TieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4921,18 +4772,17 @@ public sealed record class TieredWithProration : JsonModel
     }
 }
 
-class TieredWithProrationFromRaw : IFromRawJson<global::Orb.Models.Beta.TieredWithProration>
+class TieredWithProrationFromRaw : IFromRawJson<TieredWithProration>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.TieredWithProration FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.TieredWithProration.FromRawUnchecked(rawData);
+    public TieredWithProration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredWithProration.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.TieredWithProrationCadenceConverter))]
+[JsonConverter(typeof(TieredWithProrationCadenceConverter))]
 public enum TieredWithProrationCadence
 {
     Annual,
@@ -4943,10 +4793,9 @@ public enum TieredWithProrationCadence
     Custom,
 }
 
-sealed class TieredWithProrationCadenceConverter
-    : JsonConverter<global::Orb.Models.Beta.TieredWithProrationCadence>
+sealed class TieredWithProrationCadenceConverter : JsonConverter<TieredWithProrationCadence>
 {
-    public override global::Orb.Models.Beta.TieredWithProrationCadence Read(
+    public override TieredWithProrationCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4954,19 +4803,19 @@ sealed class TieredWithProrationCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Beta.TieredWithProrationCadence.Annual,
-            "semi_annual" => global::Orb.Models.Beta.TieredWithProrationCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Beta.TieredWithProrationCadence.Monthly,
-            "quarterly" => global::Orb.Models.Beta.TieredWithProrationCadence.Quarterly,
-            "one_time" => global::Orb.Models.Beta.TieredWithProrationCadence.OneTime,
-            "custom" => global::Orb.Models.Beta.TieredWithProrationCadence.Custom,
-            _ => (global::Orb.Models.Beta.TieredWithProrationCadence)(-1),
+            "annual" => TieredWithProrationCadence.Annual,
+            "semi_annual" => TieredWithProrationCadence.SemiAnnual,
+            "monthly" => TieredWithProrationCadence.Monthly,
+            "quarterly" => TieredWithProrationCadence.Quarterly,
+            "one_time" => TieredWithProrationCadence.OneTime,
+            "custom" => TieredWithProrationCadence.Custom,
+            _ => (TieredWithProrationCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.TieredWithProrationCadence value,
+        TieredWithProrationCadence value,
         JsonSerializerOptions options
     )
     {
@@ -4974,12 +4823,12 @@ sealed class TieredWithProrationCadenceConverter
             writer,
             value switch
             {
-                global::Orb.Models.Beta.TieredWithProrationCadence.Annual => "annual",
-                global::Orb.Models.Beta.TieredWithProrationCadence.SemiAnnual => "semi_annual",
-                global::Orb.Models.Beta.TieredWithProrationCadence.Monthly => "monthly",
-                global::Orb.Models.Beta.TieredWithProrationCadence.Quarterly => "quarterly",
-                global::Orb.Models.Beta.TieredWithProrationCadence.OneTime => "one_time",
-                global::Orb.Models.Beta.TieredWithProrationCadence.Custom => "custom",
+                TieredWithProrationCadence.Annual => "annual",
+                TieredWithProrationCadence.SemiAnnual => "semi_annual",
+                TieredWithProrationCadence.Monthly => "monthly",
+                TieredWithProrationCadence.Quarterly => "quarterly",
+                TieredWithProrationCadence.OneTime => "one_time",
+                TieredWithProrationCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4993,10 +4842,7 @@ sealed class TieredWithProrationCadenceConverter
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.TieredWithProrationConfig,
-        global::Orb.Models.Beta.TieredWithProrationConfigFromRaw
-    >)
+    typeof(JsonModelConverter<TieredWithProrationConfig, TieredWithProrationConfigFromRaw>)
 )]
 public sealed record class TieredWithProrationConfig : JsonModel
 {
@@ -5004,20 +4850,21 @@ public sealed record class TieredWithProrationConfig : JsonModel
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.TieredWithProrationConfigTier> Tiers
+    public required IReadOnlyList<TieredWithProrationConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Beta.TieredWithProrationConfigTier>
-            >("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<TieredWithProrationConfigTier>>(
+                "tiers"
+            );
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Beta.TieredWithProrationConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<TieredWithProrationConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -5032,9 +4879,7 @@ public sealed record class TieredWithProrationConfig : JsonModel
 
     public TieredWithProrationConfig() { }
 
-    public TieredWithProrationConfig(
-        global::Orb.Models.Beta.TieredWithProrationConfig tieredWithProrationConfig
-    )
+    public TieredWithProrationConfig(TieredWithProrationConfig tieredWithProrationConfig)
         : base(tieredWithProrationConfig) { }
 
     public TieredWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -5050,8 +4895,8 @@ public sealed record class TieredWithProrationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.TieredWithProrationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.TieredWithProrationConfig FromRawUnchecked(
+    /// <inheritdoc cref="TieredWithProrationConfigFromRaw.FromRawUnchecked"/>
+    public static TieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5059,32 +4904,26 @@ public sealed record class TieredWithProrationConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationConfig(
-        IReadOnlyList<global::Orb.Models.Beta.TieredWithProrationConfigTier> tiers
-    )
+    public TieredWithProrationConfig(IReadOnlyList<TieredWithProrationConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;
     }
 }
 
-class TieredWithProrationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Beta.TieredWithProrationConfig>
+class TieredWithProrationConfigFromRaw : IFromRawJson<TieredWithProrationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.TieredWithProrationConfig FromRawUnchecked(
+    public TieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.TieredWithProrationConfig.FromRawUnchecked(rawData);
+    ) => TieredWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.TieredWithProrationConfigTier,
-        global::Orb.Models.Beta.TieredWithProrationConfigTierFromRaw
-    >)
+    typeof(JsonModelConverter<TieredWithProrationConfigTier, TieredWithProrationConfigTierFromRaw>)
 )]
 public sealed record class TieredWithProrationConfigTier : JsonModel
 {
@@ -5124,7 +4963,7 @@ public sealed record class TieredWithProrationConfigTier : JsonModel
     public TieredWithProrationConfigTier() { }
 
     public TieredWithProrationConfigTier(
-        global::Orb.Models.Beta.TieredWithProrationConfigTier tieredWithProrationConfigTier
+        TieredWithProrationConfigTier tieredWithProrationConfigTier
     )
         : base(tieredWithProrationConfigTier) { }
 
@@ -5141,8 +4980,8 @@ public sealed record class TieredWithProrationConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.TieredWithProrationConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.TieredWithProrationConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="TieredWithProrationConfigTierFromRaw.FromRawUnchecked"/>
+    public static TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5150,16 +4989,15 @@ public sealed record class TieredWithProrationConfigTier : JsonModel
     }
 }
 
-class TieredWithProrationConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Beta.TieredWithProrationConfigTier>
+class TieredWithProrationConfigTierFromRaw : IFromRawJson<TieredWithProrationConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.TieredWithProrationConfigTier FromRawUnchecked(
+    public TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.TieredWithProrationConfigTier.FromRawUnchecked(rawData);
+    ) => TieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.TieredWithProrationConversionRateConfigConverter))]
+[JsonConverter(typeof(TieredWithProrationConversionRateConfigConverter))]
 public record class TieredWithProrationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -5318,11 +5156,11 @@ public record class TieredWithProrationConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.TieredWithProrationConversionRateConfig(
+    public static implicit operator TieredWithProrationConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.TieredWithProrationConversionRateConfig(
+    public static implicit operator TieredWithProrationConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -5347,9 +5185,7 @@ public record class TieredWithProrationConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(
-        global::Orb.Models.Beta.TieredWithProrationConversionRateConfig? other
-    )
+    public virtual bool Equals(TieredWithProrationConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -5364,9 +5200,9 @@ public record class TieredWithProrationConversionRateConfig : ModelBase
 }
 
 sealed class TieredWithProrationConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Beta.TieredWithProrationConversionRateConfig>
+    : JsonConverter<TieredWithProrationConversionRateConfig>
 {
-    public override global::Orb.Models.Beta.TieredWithProrationConversionRateConfig? Read(
+    public override TieredWithProrationConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5431,14 +5267,14 @@ sealed class TieredWithProrationConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Beta.TieredWithProrationConversionRateConfig(element);
+                return new TieredWithProrationConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.TieredWithProrationConversionRateConfig value,
+        TieredWithProrationConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -5447,26 +5283,20 @@ sealed class TieredWithProrationConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholds,
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsFromRaw
-    >)
+    typeof(JsonModelConverter<GroupedWithMinMaxThresholds, GroupedWithMinMaxThresholdsFromRaw>)
 )]
 public sealed record class GroupedWithMinMaxThresholds : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<
-        string,
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence
-    > Cadence
+    public required ApiEnum<string, GroupedWithMinMaxThresholdsCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence>
+                ApiEnum<string, GroupedWithMinMaxThresholdsCadence>
             >("cadence");
         }
         init { this._rawData.Set("cadence", value); }
@@ -5475,12 +5305,12 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     /// <summary>
     /// Configuration for grouped_with_min_max_thresholds pricing
     /// </summary>
-    public required global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig GroupedWithMinMaxThresholdsConfig
+    public required GroupedWithMinMaxThresholdsConfig GroupedWithMinMaxThresholdsConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig>(
+            return this._rawData.GetNotNullClass<GroupedWithMinMaxThresholdsConfig>(
                 "grouped_with_min_max_thresholds_config"
             );
         }
@@ -5585,12 +5415,12 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig? ConversionRateConfig
+    public GroupedWithMinMaxThresholdsConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig>(
+            return this._rawData.GetNullableClass<GroupedWithMinMaxThresholdsConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -5752,9 +5582,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
-    public GroupedWithMinMaxThresholds(
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholds groupedWithMinMaxThresholds
-    )
+    public GroupedWithMinMaxThresholds(GroupedWithMinMaxThresholds groupedWithMinMaxThresholds)
         : base(groupedWithMinMaxThresholds) { }
 
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -5772,8 +5600,8 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.GroupedWithMinMaxThresholdsFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.GroupedWithMinMaxThresholds FromRawUnchecked(
+    /// <inheritdoc cref="GroupedWithMinMaxThresholdsFromRaw.FromRawUnchecked"/>
+    public static GroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5781,19 +5609,18 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     }
 }
 
-class GroupedWithMinMaxThresholdsFromRaw
-    : IFromRawJson<global::Orb.Models.Beta.GroupedWithMinMaxThresholds>
+class GroupedWithMinMaxThresholdsFromRaw : IFromRawJson<GroupedWithMinMaxThresholds>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.GroupedWithMinMaxThresholds FromRawUnchecked(
+    public GroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.GroupedWithMinMaxThresholds.FromRawUnchecked(rawData);
+    ) => GroupedWithMinMaxThresholds.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadenceConverter))]
+[JsonConverter(typeof(GroupedWithMinMaxThresholdsCadenceConverter))]
 public enum GroupedWithMinMaxThresholdsCadence
 {
     Annual,
@@ -5805,9 +5632,9 @@ public enum GroupedWithMinMaxThresholdsCadence
 }
 
 sealed class GroupedWithMinMaxThresholdsCadenceConverter
-    : JsonConverter<global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence>
+    : JsonConverter<GroupedWithMinMaxThresholdsCadence>
 {
-    public override global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence Read(
+    public override GroupedWithMinMaxThresholdsCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5815,19 +5642,19 @@ sealed class GroupedWithMinMaxThresholdsCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Annual,
-            "semi_annual" => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Monthly,
-            "quarterly" => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Quarterly,
-            "one_time" => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.OneTime,
-            "custom" => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Custom,
-            _ => (global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence)(-1),
+            "annual" => GroupedWithMinMaxThresholdsCadence.Annual,
+            "semi_annual" => GroupedWithMinMaxThresholdsCadence.SemiAnnual,
+            "monthly" => GroupedWithMinMaxThresholdsCadence.Monthly,
+            "quarterly" => GroupedWithMinMaxThresholdsCadence.Quarterly,
+            "one_time" => GroupedWithMinMaxThresholdsCadence.OneTime,
+            "custom" => GroupedWithMinMaxThresholdsCadence.Custom,
+            _ => (GroupedWithMinMaxThresholdsCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence value,
+        GroupedWithMinMaxThresholdsCadence value,
         JsonSerializerOptions options
     )
     {
@@ -5835,13 +5662,12 @@ sealed class GroupedWithMinMaxThresholdsCadenceConverter
             writer,
             value switch
             {
-                global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Annual => "annual",
-                global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.SemiAnnual =>
-                    "semi_annual",
-                global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Monthly => "monthly",
-                global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Quarterly => "quarterly",
-                global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.OneTime => "one_time",
-                global::Orb.Models.Beta.GroupedWithMinMaxThresholdsCadence.Custom => "custom",
+                GroupedWithMinMaxThresholdsCadence.Annual => "annual",
+                GroupedWithMinMaxThresholdsCadence.SemiAnnual => "semi_annual",
+                GroupedWithMinMaxThresholdsCadence.Monthly => "monthly",
+                GroupedWithMinMaxThresholdsCadence.Quarterly => "quarterly",
+                GroupedWithMinMaxThresholdsCadence.OneTime => "one_time",
+                GroupedWithMinMaxThresholdsCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -5856,8 +5682,8 @@ sealed class GroupedWithMinMaxThresholdsCadenceConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig,
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfigFromRaw
+        GroupedWithMinMaxThresholdsConfig,
+        GroupedWithMinMaxThresholdsConfigFromRaw
     >)
 )]
 public sealed record class GroupedWithMinMaxThresholdsConfig : JsonModel
@@ -5926,7 +5752,7 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : JsonModel
     public GroupedWithMinMaxThresholdsConfig() { }
 
     public GroupedWithMinMaxThresholdsConfig(
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
+        GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
     )
         : base(groupedWithMinMaxThresholdsConfig) { }
 
@@ -5943,8 +5769,8 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedWithMinMaxThresholdsConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5952,18 +5778,15 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : JsonModel
     }
 }
 
-class GroupedWithMinMaxThresholdsConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig>
+class GroupedWithMinMaxThresholdsConfigFromRaw : IFromRawJson<GroupedWithMinMaxThresholdsConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+    public GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig.FromRawUnchecked(rawData);
+    ) => GroupedWithMinMaxThresholdsConfig.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfigConverter)
-)]
+[JsonConverter(typeof(GroupedWithMinMaxThresholdsConversionRateConfigConverter))]
 public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -6122,11 +5945,11 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig(
+    public static implicit operator GroupedWithMinMaxThresholdsConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig(
+    public static implicit operator GroupedWithMinMaxThresholdsConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -6151,9 +5974,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig? other
-    )
+    public virtual bool Equals(GroupedWithMinMaxThresholdsConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -6168,9 +5989,9 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 }
 
 sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig>
+    : JsonConverter<GroupedWithMinMaxThresholdsConversionRateConfig>
 {
-    public override global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig? Read(
+    public override GroupedWithMinMaxThresholdsConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6235,16 +6056,14 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig(
-                    element
-                );
+                return new GroupedWithMinMaxThresholdsConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConversionRateConfig value,
+        GroupedWithMinMaxThresholdsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -6253,26 +6072,20 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.CumulativeGroupedAllocation,
-        global::Orb.Models.Beta.CumulativeGroupedAllocationFromRaw
-    >)
+    typeof(JsonModelConverter<CumulativeGroupedAllocation, CumulativeGroupedAllocationFromRaw>)
 )]
 public sealed record class CumulativeGroupedAllocation : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<
-        string,
-        global::Orb.Models.Beta.CumulativeGroupedAllocationCadence
-    > Cadence
+    public required ApiEnum<string, CumulativeGroupedAllocationCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Beta.CumulativeGroupedAllocationCadence>
+                ApiEnum<string, CumulativeGroupedAllocationCadence>
             >("cadence");
         }
         init { this._rawData.Set("cadence", value); }
@@ -6281,12 +6094,12 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     /// <summary>
     /// Configuration for cumulative_grouped_allocation pricing
     /// </summary>
-    public required global::Orb.Models.Beta.CumulativeGroupedAllocationConfig CumulativeGroupedAllocationConfig
+    public required CumulativeGroupedAllocationConfig CumulativeGroupedAllocationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.CumulativeGroupedAllocationConfig>(
+            return this._rawData.GetNotNullClass<CumulativeGroupedAllocationConfig>(
                 "cumulative_grouped_allocation_config"
             );
         }
@@ -6391,12 +6204,12 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig? ConversionRateConfig
+    public CumulativeGroupedAllocationConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig>(
+            return this._rawData.GetNullableClass<CumulativeGroupedAllocationConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -6558,9 +6371,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
-    public CumulativeGroupedAllocation(
-        global::Orb.Models.Beta.CumulativeGroupedAllocation cumulativeGroupedAllocation
-    )
+    public CumulativeGroupedAllocation(CumulativeGroupedAllocation cumulativeGroupedAllocation)
         : base(cumulativeGroupedAllocation) { }
 
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -6578,8 +6389,8 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.CumulativeGroupedAllocationFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.CumulativeGroupedAllocation FromRawUnchecked(
+    /// <inheritdoc cref="CumulativeGroupedAllocationFromRaw.FromRawUnchecked"/>
+    public static CumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -6587,19 +6398,18 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     }
 }
 
-class CumulativeGroupedAllocationFromRaw
-    : IFromRawJson<global::Orb.Models.Beta.CumulativeGroupedAllocation>
+class CumulativeGroupedAllocationFromRaw : IFromRawJson<CumulativeGroupedAllocation>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.CumulativeGroupedAllocation FromRawUnchecked(
+    public CumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.CumulativeGroupedAllocation.FromRawUnchecked(rawData);
+    ) => CumulativeGroupedAllocation.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.CumulativeGroupedAllocationCadenceConverter))]
+[JsonConverter(typeof(CumulativeGroupedAllocationCadenceConverter))]
 public enum CumulativeGroupedAllocationCadence
 {
     Annual,
@@ -6611,9 +6421,9 @@ public enum CumulativeGroupedAllocationCadence
 }
 
 sealed class CumulativeGroupedAllocationCadenceConverter
-    : JsonConverter<global::Orb.Models.Beta.CumulativeGroupedAllocationCadence>
+    : JsonConverter<CumulativeGroupedAllocationCadence>
 {
-    public override global::Orb.Models.Beta.CumulativeGroupedAllocationCadence Read(
+    public override CumulativeGroupedAllocationCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6621,19 +6431,19 @@ sealed class CumulativeGroupedAllocationCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Annual,
-            "semi_annual" => global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Monthly,
-            "quarterly" => global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Quarterly,
-            "one_time" => global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.OneTime,
-            "custom" => global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Custom,
-            _ => (global::Orb.Models.Beta.CumulativeGroupedAllocationCadence)(-1),
+            "annual" => CumulativeGroupedAllocationCadence.Annual,
+            "semi_annual" => CumulativeGroupedAllocationCadence.SemiAnnual,
+            "monthly" => CumulativeGroupedAllocationCadence.Monthly,
+            "quarterly" => CumulativeGroupedAllocationCadence.Quarterly,
+            "one_time" => CumulativeGroupedAllocationCadence.OneTime,
+            "custom" => CumulativeGroupedAllocationCadence.Custom,
+            _ => (CumulativeGroupedAllocationCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.CumulativeGroupedAllocationCadence value,
+        CumulativeGroupedAllocationCadence value,
         JsonSerializerOptions options
     )
     {
@@ -6641,13 +6451,12 @@ sealed class CumulativeGroupedAllocationCadenceConverter
             writer,
             value switch
             {
-                global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Annual => "annual",
-                global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.SemiAnnual =>
-                    "semi_annual",
-                global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Monthly => "monthly",
-                global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Quarterly => "quarterly",
-                global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.OneTime => "one_time",
-                global::Orb.Models.Beta.CumulativeGroupedAllocationCadence.Custom => "custom",
+                CumulativeGroupedAllocationCadence.Annual => "annual",
+                CumulativeGroupedAllocationCadence.SemiAnnual => "semi_annual",
+                CumulativeGroupedAllocationCadence.Monthly => "monthly",
+                CumulativeGroupedAllocationCadence.Quarterly => "quarterly",
+                CumulativeGroupedAllocationCadence.OneTime => "one_time",
+                CumulativeGroupedAllocationCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -6662,8 +6471,8 @@ sealed class CumulativeGroupedAllocationCadenceConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Beta.CumulativeGroupedAllocationConfig,
-        global::Orb.Models.Beta.CumulativeGroupedAllocationConfigFromRaw
+        CumulativeGroupedAllocationConfig,
+        CumulativeGroupedAllocationConfigFromRaw
     >)
 )]
 public sealed record class CumulativeGroupedAllocationConfig : JsonModel
@@ -6732,7 +6541,7 @@ public sealed record class CumulativeGroupedAllocationConfig : JsonModel
     public CumulativeGroupedAllocationConfig() { }
 
     public CumulativeGroupedAllocationConfig(
-        global::Orb.Models.Beta.CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
+        CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
     )
         : base(cumulativeGroupedAllocationConfig) { }
 
@@ -6749,8 +6558,8 @@ public sealed record class CumulativeGroupedAllocationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.CumulativeGroupedAllocationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.CumulativeGroupedAllocationConfig FromRawUnchecked(
+    /// <inheritdoc cref="CumulativeGroupedAllocationConfigFromRaw.FromRawUnchecked"/>
+    public static CumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -6758,18 +6567,15 @@ public sealed record class CumulativeGroupedAllocationConfig : JsonModel
     }
 }
 
-class CumulativeGroupedAllocationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Beta.CumulativeGroupedAllocationConfig>
+class CumulativeGroupedAllocationConfigFromRaw : IFromRawJson<CumulativeGroupedAllocationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.CumulativeGroupedAllocationConfig FromRawUnchecked(
+    public CumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.CumulativeGroupedAllocationConfig.FromRawUnchecked(rawData);
+    ) => CumulativeGroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfigConverter)
-)]
+[JsonConverter(typeof(CumulativeGroupedAllocationConversionRateConfigConverter))]
 public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -6928,11 +6734,11 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig(
+    public static implicit operator CumulativeGroupedAllocationConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig(
+    public static implicit operator CumulativeGroupedAllocationConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -6957,9 +6763,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(
-        global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig? other
-    )
+    public virtual bool Equals(CumulativeGroupedAllocationConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -6974,9 +6778,9 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
 }
 
 sealed class CumulativeGroupedAllocationConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig>
+    : JsonConverter<CumulativeGroupedAllocationConversionRateConfig>
 {
-    public override global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig? Read(
+    public override CumulativeGroupedAllocationConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -7041,16 +6845,14 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig(
-                    element
-                );
+                return new CumulativeGroupedAllocationConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.CumulativeGroupedAllocationConversionRateConfig value,
+        CumulativeGroupedAllocationConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -7058,12 +6860,7 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.Minimum,
-        global::Orb.Models.Beta.MinimumFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Minimum, MinimumFromRaw>))]
 public sealed record class Minimum : JsonModel
 {
     /// <summary>
@@ -7095,14 +6892,12 @@ public sealed record class Minimum : JsonModel
     /// <summary>
     /// Configuration for minimum pricing
     /// </summary>
-    public required global::Orb.Models.Beta.MinimumConfig MinimumConfig
+    public required MinimumConfig MinimumConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.MinimumConfig>(
-                "minimum_config"
-            );
+            return this._rawData.GetNotNullClass<MinimumConfig>("minimum_config");
         }
         init { this._rawData.Set("minimum_config", value); }
     }
@@ -7354,7 +7149,7 @@ public sealed record class Minimum : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("minimum");
     }
 
-    public Minimum(global::Orb.Models.Beta.Minimum minimum)
+    public Minimum(Minimum minimum)
         : base(minimum) { }
 
     public Minimum(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -7372,21 +7167,18 @@ public sealed record class Minimum : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.MinimumFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.Minimum FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="MinimumFromRaw.FromRawUnchecked"/>
+    public static Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class MinimumFromRaw : IFromRawJson<global::Orb.Models.Beta.Minimum>
+class MinimumFromRaw : IFromRawJson<Minimum>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.Minimum FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.Minimum.FromRawUnchecked(rawData);
+    public Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Minimum.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -7451,12 +7243,7 @@ sealed class MinimumCadenceConverter : JsonConverter<MinimumCadence>
 /// <summary>
 /// Configuration for minimum pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.MinimumConfig,
-        global::Orb.Models.Beta.MinimumConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<MinimumConfig, MinimumConfigFromRaw>))]
 public sealed record class MinimumConfig : JsonModel
 {
     /// <summary>
@@ -7502,7 +7289,7 @@ public sealed record class MinimumConfig : JsonModel
 
     public MinimumConfig() { }
 
-    public MinimumConfig(global::Orb.Models.Beta.MinimumConfig minimumConfig)
+    public MinimumConfig(MinimumConfig minimumConfig)
         : base(minimumConfig) { }
 
     public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -7518,10 +7305,8 @@ public sealed record class MinimumConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.MinimumConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.MinimumConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="MinimumConfigFromRaw.FromRawUnchecked"/>
+    public static MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
@@ -7534,12 +7319,11 @@ public sealed record class MinimumConfig : JsonModel
     }
 }
 
-class MinimumConfigFromRaw : IFromRawJson<global::Orb.Models.Beta.MinimumConfig>
+class MinimumConfigFromRaw : IFromRawJson<MinimumConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.MinimumConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.MinimumConfig.FromRawUnchecked(rawData);
+    public MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MinimumConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(MinimumConversionRateConfigConverter))]
@@ -7826,25 +7610,18 @@ sealed class MinimumConversionRateConfigConverter : JsonConverter<MinimumConvers
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.Percent,
-        global::Orb.Models.Beta.PercentFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Percent, PercentFromRaw>))]
 public sealed record class Percent : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Beta.PercentCadence> Cadence
+    public required ApiEnum<string, PercentCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Beta.PercentCadence>
-            >("cadence");
+            return this._rawData.GetNotNullClass<ApiEnum<string, PercentCadence>>("cadence");
         }
         init { this._rawData.Set("cadence", value); }
     }
@@ -7891,14 +7668,12 @@ public sealed record class Percent : JsonModel
     /// <summary>
     /// Configuration for percent pricing
     /// </summary>
-    public required global::Orb.Models.Beta.PercentConfig PercentConfig
+    public required PercentConfig PercentConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.PercentConfig>(
-                "percent_config"
-            );
+            return this._rawData.GetNotNullClass<PercentConfig>("percent_config");
         }
         init { this._rawData.Set("percent_config", value); }
     }
@@ -7962,12 +7737,12 @@ public sealed record class Percent : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Beta.PercentConversionRateConfig? ConversionRateConfig
+    public PercentConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.PercentConversionRateConfig>(
+            return this._rawData.GetNullableClass<PercentConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -8124,7 +7899,7 @@ public sealed record class Percent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
-    public Percent(global::Orb.Models.Beta.Percent percent)
+    public Percent(Percent percent)
         : base(percent) { }
 
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -8142,27 +7917,24 @@ public sealed record class Percent : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.PercentFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.Percent FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="PercentFromRaw.FromRawUnchecked"/>
+    public static Percent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class PercentFromRaw : IFromRawJson<global::Orb.Models.Beta.Percent>
+class PercentFromRaw : IFromRawJson<Percent>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.Percent FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.Percent.FromRawUnchecked(rawData);
+    public Percent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Percent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.PercentCadenceConverter))]
+[JsonConverter(typeof(PercentCadenceConverter))]
 public enum PercentCadence
 {
     Annual,
@@ -8173,9 +7945,9 @@ public enum PercentCadence
     Custom,
 }
 
-sealed class PercentCadenceConverter : JsonConverter<global::Orb.Models.Beta.PercentCadence>
+sealed class PercentCadenceConverter : JsonConverter<PercentCadence>
 {
-    public override global::Orb.Models.Beta.PercentCadence Read(
+    public override PercentCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -8183,19 +7955,19 @@ sealed class PercentCadenceConverter : JsonConverter<global::Orb.Models.Beta.Per
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Beta.PercentCadence.Annual,
-            "semi_annual" => global::Orb.Models.Beta.PercentCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Beta.PercentCadence.Monthly,
-            "quarterly" => global::Orb.Models.Beta.PercentCadence.Quarterly,
-            "one_time" => global::Orb.Models.Beta.PercentCadence.OneTime,
-            "custom" => global::Orb.Models.Beta.PercentCadence.Custom,
-            _ => (global::Orb.Models.Beta.PercentCadence)(-1),
+            "annual" => PercentCadence.Annual,
+            "semi_annual" => PercentCadence.SemiAnnual,
+            "monthly" => PercentCadence.Monthly,
+            "quarterly" => PercentCadence.Quarterly,
+            "one_time" => PercentCadence.OneTime,
+            "custom" => PercentCadence.Custom,
+            _ => (PercentCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.PercentCadence value,
+        PercentCadence value,
         JsonSerializerOptions options
     )
     {
@@ -8203,12 +7975,12 @@ sealed class PercentCadenceConverter : JsonConverter<global::Orb.Models.Beta.Per
             writer,
             value switch
             {
-                global::Orb.Models.Beta.PercentCadence.Annual => "annual",
-                global::Orb.Models.Beta.PercentCadence.SemiAnnual => "semi_annual",
-                global::Orb.Models.Beta.PercentCadence.Monthly => "monthly",
-                global::Orb.Models.Beta.PercentCadence.Quarterly => "quarterly",
-                global::Orb.Models.Beta.PercentCadence.OneTime => "one_time",
-                global::Orb.Models.Beta.PercentCadence.Custom => "custom",
+                PercentCadence.Annual => "annual",
+                PercentCadence.SemiAnnual => "semi_annual",
+                PercentCadence.Monthly => "monthly",
+                PercentCadence.Quarterly => "quarterly",
+                PercentCadence.OneTime => "one_time",
+                PercentCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -8221,12 +7993,7 @@ sealed class PercentCadenceConverter : JsonConverter<global::Orb.Models.Beta.Per
 /// <summary>
 /// Configuration for percent pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.PercentConfig,
-        global::Orb.Models.Beta.PercentConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<PercentConfig, PercentConfigFromRaw>))]
 public sealed record class PercentConfig : JsonModel
 {
     /// <summary>
@@ -8250,7 +8017,7 @@ public sealed record class PercentConfig : JsonModel
 
     public PercentConfig() { }
 
-    public PercentConfig(global::Orb.Models.Beta.PercentConfig percentConfig)
+    public PercentConfig(PercentConfig percentConfig)
         : base(percentConfig) { }
 
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -8266,10 +8033,8 @@ public sealed record class PercentConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.PercentConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.PercentConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="PercentConfigFromRaw.FromRawUnchecked"/>
+    public static PercentConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
@@ -8282,15 +8047,14 @@ public sealed record class PercentConfig : JsonModel
     }
 }
 
-class PercentConfigFromRaw : IFromRawJson<global::Orb.Models.Beta.PercentConfig>
+class PercentConfigFromRaw : IFromRawJson<PercentConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.PercentConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.PercentConfig.FromRawUnchecked(rawData);
+    public PercentConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PercentConfig.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.PercentConversionRateConfigConverter))]
+[JsonConverter(typeof(PercentConversionRateConfigConverter))]
 public record class PercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -8449,11 +8213,11 @@ public record class PercentConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.PercentConversionRateConfig(
+    public static implicit operator PercentConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.PercentConversionRateConfig(
+    public static implicit operator PercentConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -8478,7 +8242,7 @@ public record class PercentConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Beta.PercentConversionRateConfig? other)
+    public virtual bool Equals(PercentConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -8492,10 +8256,9 @@ public record class PercentConversionRateConfig : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class PercentConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Beta.PercentConversionRateConfig>
+sealed class PercentConversionRateConfigConverter : JsonConverter<PercentConversionRateConfig>
 {
-    public override global::Orb.Models.Beta.PercentConversionRateConfig? Read(
+    public override PercentConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -8560,14 +8323,14 @@ sealed class PercentConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Beta.PercentConversionRateConfig(element);
+                return new PercentConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.PercentConversionRateConfig value,
+        PercentConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -8575,25 +8338,18 @@ sealed class PercentConversionRateConfigConverter
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.EventOutput,
-        global::Orb.Models.Beta.EventOutputFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<EventOutput, EventOutputFromRaw>))]
 public sealed record class EventOutput : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Beta.EventOutputCadence> Cadence
+    public required ApiEnum<string, EventOutputCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Beta.EventOutputCadence>
-            >("cadence");
+            return this._rawData.GetNotNullClass<ApiEnum<string, EventOutputCadence>>("cadence");
         }
         init { this._rawData.Set("cadence", value); }
     }
@@ -8601,14 +8357,12 @@ public sealed record class EventOutput : JsonModel
     /// <summary>
     /// Configuration for event_output pricing
     /// </summary>
-    public required global::Orb.Models.Beta.EventOutputConfig EventOutputConfig
+    public required EventOutputConfig EventOutputConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Beta.EventOutputConfig>(
-                "event_output_config"
-            );
+            return this._rawData.GetNotNullClass<EventOutputConfig>("event_output_config");
         }
         init { this._rawData.Set("event_output_config", value); }
     }
@@ -8711,12 +8465,12 @@ public sealed record class EventOutput : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Beta.EventOutputConversionRateConfig? ConversionRateConfig
+    public EventOutputConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Beta.EventOutputConversionRateConfig>(
+            return this._rawData.GetNullableClass<EventOutputConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -8878,7 +8632,7 @@ public sealed record class EventOutput : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
-    public EventOutput(global::Orb.Models.Beta.EventOutput eventOutput)
+    public EventOutput(EventOutput eventOutput)
         : base(eventOutput) { }
 
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -8896,27 +8650,24 @@ public sealed record class EventOutput : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.EventOutputFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.EventOutput FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="EventOutputFromRaw.FromRawUnchecked"/>
+    public static EventOutput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class EventOutputFromRaw : IFromRawJson<global::Orb.Models.Beta.EventOutput>
+class EventOutputFromRaw : IFromRawJson<EventOutput>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.EventOutput FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.EventOutput.FromRawUnchecked(rawData);
+    public EventOutput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventOutput.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Beta.EventOutputCadenceConverter))]
+[JsonConverter(typeof(EventOutputCadenceConverter))]
 public enum EventOutputCadence
 {
     Annual,
@@ -8927,9 +8678,9 @@ public enum EventOutputCadence
     Custom,
 }
 
-sealed class EventOutputCadenceConverter : JsonConverter<global::Orb.Models.Beta.EventOutputCadence>
+sealed class EventOutputCadenceConverter : JsonConverter<EventOutputCadence>
 {
-    public override global::Orb.Models.Beta.EventOutputCadence Read(
+    public override EventOutputCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -8937,19 +8688,19 @@ sealed class EventOutputCadenceConverter : JsonConverter<global::Orb.Models.Beta
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Beta.EventOutputCadence.Annual,
-            "semi_annual" => global::Orb.Models.Beta.EventOutputCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Beta.EventOutputCadence.Monthly,
-            "quarterly" => global::Orb.Models.Beta.EventOutputCadence.Quarterly,
-            "one_time" => global::Orb.Models.Beta.EventOutputCadence.OneTime,
-            "custom" => global::Orb.Models.Beta.EventOutputCadence.Custom,
-            _ => (global::Orb.Models.Beta.EventOutputCadence)(-1),
+            "annual" => EventOutputCadence.Annual,
+            "semi_annual" => EventOutputCadence.SemiAnnual,
+            "monthly" => EventOutputCadence.Monthly,
+            "quarterly" => EventOutputCadence.Quarterly,
+            "one_time" => EventOutputCadence.OneTime,
+            "custom" => EventOutputCadence.Custom,
+            _ => (EventOutputCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.EventOutputCadence value,
+        EventOutputCadence value,
         JsonSerializerOptions options
     )
     {
@@ -8957,12 +8708,12 @@ sealed class EventOutputCadenceConverter : JsonConverter<global::Orb.Models.Beta
             writer,
             value switch
             {
-                global::Orb.Models.Beta.EventOutputCadence.Annual => "annual",
-                global::Orb.Models.Beta.EventOutputCadence.SemiAnnual => "semi_annual",
-                global::Orb.Models.Beta.EventOutputCadence.Monthly => "monthly",
-                global::Orb.Models.Beta.EventOutputCadence.Quarterly => "quarterly",
-                global::Orb.Models.Beta.EventOutputCadence.OneTime => "one_time",
-                global::Orb.Models.Beta.EventOutputCadence.Custom => "custom",
+                EventOutputCadence.Annual => "annual",
+                EventOutputCadence.SemiAnnual => "semi_annual",
+                EventOutputCadence.Monthly => "monthly",
+                EventOutputCadence.Quarterly => "quarterly",
+                EventOutputCadence.OneTime => "one_time",
+                EventOutputCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -8975,12 +8726,7 @@ sealed class EventOutputCadenceConverter : JsonConverter<global::Orb.Models.Beta
 /// <summary>
 /// Configuration for event_output pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Beta.EventOutputConfig,
-        global::Orb.Models.Beta.EventOutputConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<EventOutputConfig, EventOutputConfigFromRaw>))]
 public sealed record class EventOutputConfig : JsonModel
 {
     /// <summary>
@@ -9035,7 +8781,7 @@ public sealed record class EventOutputConfig : JsonModel
 
     public EventOutputConfig() { }
 
-    public EventOutputConfig(global::Orb.Models.Beta.EventOutputConfig eventOutputConfig)
+    public EventOutputConfig(EventOutputConfig eventOutputConfig)
         : base(eventOutputConfig) { }
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -9051,8 +8797,8 @@ public sealed record class EventOutputConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Beta.EventOutputConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Beta.EventOutputConfig FromRawUnchecked(
+    /// <inheritdoc cref="EventOutputConfigFromRaw.FromRawUnchecked"/>
+    public static EventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9067,15 +8813,14 @@ public sealed record class EventOutputConfig : JsonModel
     }
 }
 
-class EventOutputConfigFromRaw : IFromRawJson<global::Orb.Models.Beta.EventOutputConfig>
+class EventOutputConfigFromRaw : IFromRawJson<EventOutputConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Beta.EventOutputConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.EventOutputConfig.FromRawUnchecked(rawData);
+    public EventOutputConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        EventOutputConfig.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.EventOutputConversionRateConfigConverter))]
+[JsonConverter(typeof(EventOutputConversionRateConfigConverter))]
 public record class EventOutputConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -9234,11 +8979,11 @@ public record class EventOutputConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.EventOutputConversionRateConfig(
+    public static implicit operator EventOutputConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.EventOutputConversionRateConfig(
+    public static implicit operator EventOutputConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -9263,7 +9008,7 @@ public record class EventOutputConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Beta.EventOutputConversionRateConfig? other)
+    public virtual bool Equals(EventOutputConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -9278,9 +9023,9 @@ public record class EventOutputConversionRateConfig : ModelBase
 }
 
 sealed class EventOutputConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Beta.EventOutputConversionRateConfig>
+    : JsonConverter<EventOutputConversionRateConfig>
 {
-    public override global::Orb.Models.Beta.EventOutputConversionRateConfig? Read(
+    public override EventOutputConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -9345,14 +9090,14 @@ sealed class EventOutputConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Beta.EventOutputConversionRateConfig(element);
+                return new EventOutputConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.EventOutputConversionRateConfig value,
+        EventOutputConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

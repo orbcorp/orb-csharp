@@ -159,7 +159,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Alerts.TypeConverter))]
+[JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
     CreditBalanceDepleted,

@@ -222,20 +222,21 @@ public sealed record class InvoiceListParams : ParamsBase
         }
     }
 
-    public IReadOnlyList<ApiEnum<string, global::Orb.Models.Invoices.Status>>? Status
+    public IReadOnlyList<ApiEnum<string, Status>>? Status
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<
-                ImmutableArray<ApiEnum<string, global::Orb.Models.Invoices.Status>>
-            >("status");
+            return this._rawQueryData.GetNullableStruct<ImmutableArray<ApiEnum<string, Status>>>(
+                "status"
+            );
         }
         init
         {
-            this._rawQueryData.Set<ImmutableArray<
-                ApiEnum<string, global::Orb.Models.Invoices.Status>
-            >?>("status", value == null ? null : ImmutableArray.ToImmutableArray(value));
+            this._rawQueryData.Set<ImmutableArray<ApiEnum<string, Status>>?>(
+                "status",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -345,7 +346,7 @@ sealed class DateTypeConverter : JsonConverter<DateType>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Draft,
@@ -355,9 +356,9 @@ public enum Status
     Void,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.Invoices.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.Invoices.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -365,30 +366,26 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.Invoices.Status>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "draft" => global::Orb.Models.Invoices.Status.Draft,
-            "issued" => global::Orb.Models.Invoices.Status.Issued,
-            "paid" => global::Orb.Models.Invoices.Status.Paid,
-            "synced" => global::Orb.Models.Invoices.Status.Synced,
-            "void" => global::Orb.Models.Invoices.Status.Void,
-            _ => (global::Orb.Models.Invoices.Status)(-1),
+            "draft" => Status.Draft,
+            "issued" => Status.Issued,
+            "paid" => Status.Paid,
+            "synced" => Status.Synced,
+            "void" => Status.Void,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.Status.Draft => "draft",
-                global::Orb.Models.Invoices.Status.Issued => "issued",
-                global::Orb.Models.Invoices.Status.Paid => "paid",
-                global::Orb.Models.Invoices.Status.Synced => "synced",
-                global::Orb.Models.Invoices.Status.Void => "void",
+                Status.Draft => "draft",
+                Status.Issued => "issued",
+                Status.Paid => "paid",
+                Status.Synced => "synced",
+                Status.Void => "void",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

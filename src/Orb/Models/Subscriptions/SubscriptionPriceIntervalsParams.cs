@@ -349,18 +349,16 @@ public sealed record class Add : JsonModel
     /// <summary>
     /// A list of discounts to initialize on the price interval.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Subscriptions.Discount>? Discounts
+    public IReadOnlyList<Discount>? Discounts
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.Discount>
-            >("discounts");
+            return this._rawData.GetNullableStruct<ImmutableArray<Discount>>("discounts");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.Discount>?>(
+            this._rawData.Set<ImmutableArray<Discount>?>(
                 "discounts",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -412,18 +410,18 @@ public sealed record class Add : JsonModel
     /// <summary>
     /// A list of fixed fee quantity transitions to initialize on the price interval.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Subscriptions.FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
+    public IReadOnlyList<FixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.FixedFeeQuantityTransition>
-            >("fixed_fee_quantity_transitions");
+            return this._rawData.GetNullableStruct<ImmutableArray<FixedFeeQuantityTransition>>(
+                "fixed_fee_quantity_transitions"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.FixedFeeQuantityTransition>?>(
+            this._rawData.Set<ImmutableArray<FixedFeeQuantityTransition>?>(
                 "fixed_fee_quantity_transitions",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -1009,14 +1007,11 @@ public record class Discount : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Subscriptions.Discount(Amount value) =>
-        new(value);
+    public static implicit operator Discount(Amount value) => new(value);
 
-    public static implicit operator global::Orb.Models.Subscriptions.Discount(Percentage value) =>
-        new(value);
+    public static implicit operator Discount(Percentage value) => new(value);
 
-    public static implicit operator global::Orb.Models.Subscriptions.Discount(Usage value) =>
-        new(value);
+    public static implicit operator Discount(Usage value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1041,7 +1036,7 @@ public record class Discount : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Subscriptions.Discount? other)
+    public virtual bool Equals(Discount? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1055,9 +1050,9 @@ public record class Discount : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class DiscountConverter : JsonConverter<global::Orb.Models.Subscriptions.Discount>
+sealed class DiscountConverter : JsonConverter<Discount>
 {
-    public override global::Orb.Models.Subscriptions.Discount? Read(
+    public override Discount? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1135,16 +1130,12 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Subscriptions.
             }
             default:
             {
-                return new global::Orb.Models.Subscriptions.Discount(element);
+                return new Discount(element);
             }
         }
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.Discount value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Discount value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
@@ -1636,10 +1627,7 @@ sealed class EndDateConverter : JsonConverter<EndDate?>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.FixedFeeQuantityTransition,
-        global::Orb.Models.Subscriptions.FixedFeeQuantityTransitionFromRaw
-    >)
+    typeof(JsonModelConverter<FixedFeeQuantityTransition, FixedFeeQuantityTransitionFromRaw>)
 )]
 public sealed record class FixedFeeQuantityTransition : JsonModel
 {
@@ -1678,9 +1666,7 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
 
     public FixedFeeQuantityTransition() { }
 
-    public FixedFeeQuantityTransition(
-        global::Orb.Models.Subscriptions.FixedFeeQuantityTransition fixedFeeQuantityTransition
-    )
+    public FixedFeeQuantityTransition(FixedFeeQuantityTransition fixedFeeQuantityTransition)
         : base(fixedFeeQuantityTransition) { }
 
     public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -1696,8 +1682,8 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.FixedFeeQuantityTransitionFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.FixedFeeQuantityTransition FromRawUnchecked(
+    /// <inheritdoc cref="FixedFeeQuantityTransitionFromRaw.FromRawUnchecked"/>
+    public static FixedFeeQuantityTransition FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1705,13 +1691,12 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
     }
 }
 
-class FixedFeeQuantityTransitionFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.FixedFeeQuantityTransition>
+class FixedFeeQuantityTransitionFromRaw : IFromRawJson<FixedFeeQuantityTransition>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.FixedFeeQuantityTransition FromRawUnchecked(
+    public FixedFeeQuantityTransition FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.FixedFeeQuantityTransition.FromRawUnchecked(rawData);
+    ) => FixedFeeQuantityTransition.FromRawUnchecked(rawData);
 }
 
 /// <summary>
