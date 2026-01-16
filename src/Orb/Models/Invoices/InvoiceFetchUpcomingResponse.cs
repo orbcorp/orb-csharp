@@ -39,14 +39,12 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
         init { this._rawData.Set("amount_due", value); }
     }
 
-    public required global::Orb.Models.Invoices.AutoCollection AutoCollection
+    public required AutoCollection AutoCollection
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Invoices.AutoCollection>(
-                "auto_collection"
-            );
+            return this._rawData.GetNotNullClass<AutoCollection>("auto_collection");
         }
         init { this._rawData.Set("auto_collection", value); }
     }
@@ -77,18 +75,16 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
     /// <summary>
     /// A list of credit notes associated with the invoice
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Invoices.CreditNote> CreditNotes
+    public required IReadOnlyList<CreditNote> CreditNotes
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.CreditNote>
-            >("credit_notes");
+            return this._rawData.GetNotNullStruct<ImmutableArray<CreditNote>>("credit_notes");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Invoices.CreditNote>>(
+            this._rawData.Set<ImmutableArray<CreditNote>>(
                 "credit_notes",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -118,20 +114,21 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
         init { this._rawData.Set("customer", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Invoices.CustomerBalanceTransaction> CustomerBalanceTransactions
+    public required IReadOnlyList<CustomerBalanceTransaction> CustomerBalanceTransactions
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.CustomerBalanceTransaction>
-            >("customer_balance_transactions");
+            return this._rawData.GetNotNullStruct<ImmutableArray<CustomerBalanceTransaction>>(
+                "customer_balance_transactions"
+            );
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Invoices.CustomerBalanceTransaction>
-            >("customer_balance_transactions", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<CustomerBalanceTransaction>>(
+                "customer_balance_transactions",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -355,14 +352,12 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
         init { this._rawData.Set("invoice_pdf", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Invoices.InvoiceSource> InvoiceSource
+    public required ApiEnum<string, InvoiceSource> InvoiceSource
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Invoices.InvoiceSource>
-            >("invoice_source");
+            return this._rawData.GetNotNullClass<ApiEnum<string, InvoiceSource>>("invoice_source");
         }
         init { this._rawData.Set("invoice_source", value); }
     }
@@ -508,18 +503,18 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
     /// <summary>
     /// A list of payment attempts associated with the invoice
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Invoices.PaymentAttempt> PaymentAttempts
+    public required IReadOnlyList<PaymentAttempt> PaymentAttempts
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.PaymentAttempt>
-            >("payment_attempts");
+            return this._rawData.GetNotNullStruct<ImmutableArray<PaymentAttempt>>(
+                "payment_attempts"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Invoices.PaymentAttempt>>(
+            this._rawData.Set<ImmutableArray<PaymentAttempt>>(
                 "payment_attempts",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -783,12 +778,7 @@ class InvoiceFetchUpcomingResponseFromRaw : IFromRawJson<InvoiceFetchUpcomingRes
     ) => InvoiceFetchUpcomingResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.AutoCollection,
-        global::Orb.Models.Invoices.AutoCollectionFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<AutoCollection, AutoCollectionFromRaw>))]
 public sealed record class AutoCollection : JsonModel
 {
     /// <summary>
@@ -863,7 +853,7 @@ public sealed record class AutoCollection : JsonModel
 
     public AutoCollection() { }
 
-    public AutoCollection(global::Orb.Models.Invoices.AutoCollection autoCollection)
+    public AutoCollection(AutoCollection autoCollection)
         : base(autoCollection) { }
 
     public AutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -879,29 +869,21 @@ public sealed record class AutoCollection : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.AutoCollectionFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.AutoCollection FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="AutoCollectionFromRaw.FromRawUnchecked"/>
+    public static AutoCollection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class AutoCollectionFromRaw : IFromRawJson<global::Orb.Models.Invoices.AutoCollection>
+class AutoCollectionFromRaw : IFromRawJson<AutoCollection>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.AutoCollection FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.AutoCollection.FromRawUnchecked(rawData);
+    public AutoCollection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AutoCollection.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.CreditNote,
-        global::Orb.Models.Invoices.CreditNoteFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<CreditNote, CreditNoteFromRaw>))]
 public sealed record class CreditNote : JsonModel
 {
     public required string ID
@@ -995,7 +977,7 @@ public sealed record class CreditNote : JsonModel
 
     public CreditNote() { }
 
-    public CreditNote(global::Orb.Models.Invoices.CreditNote creditNote)
+    public CreditNote(CreditNote creditNote)
         : base(creditNote) { }
 
     public CreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -1011,28 +993,22 @@ public sealed record class CreditNote : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.CreditNoteFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.CreditNote FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="CreditNoteFromRaw.FromRawUnchecked"/>
+    public static CreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class CreditNoteFromRaw : IFromRawJson<global::Orb.Models.Invoices.CreditNote>
+class CreditNoteFromRaw : IFromRawJson<CreditNote>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.CreditNote FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.CreditNote.FromRawUnchecked(rawData);
+    public CreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CreditNote.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.CustomerBalanceTransaction,
-        global::Orb.Models.Invoices.CustomerBalanceTransactionFromRaw
-    >)
+    typeof(JsonModelConverter<CustomerBalanceTransaction, CustomerBalanceTransactionFromRaw>)
 )]
 public sealed record class CustomerBalanceTransaction : JsonModel
 {
@@ -1049,14 +1025,12 @@ public sealed record class CustomerBalanceTransaction : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Invoices.Action> Action
+    public required ApiEnum<string, Action> Action
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Invoices.Action>
-            >("action");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Action>>("action");
         }
         init { this._rawData.Set("action", value); }
     }
@@ -1176,9 +1150,7 @@ public sealed record class CustomerBalanceTransaction : JsonModel
 
     public CustomerBalanceTransaction() { }
 
-    public CustomerBalanceTransaction(
-        global::Orb.Models.Invoices.CustomerBalanceTransaction customerBalanceTransaction
-    )
+    public CustomerBalanceTransaction(CustomerBalanceTransaction customerBalanceTransaction)
         : base(customerBalanceTransaction) { }
 
     public CustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -1194,8 +1166,8 @@ public sealed record class CustomerBalanceTransaction : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.CustomerBalanceTransactionFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.CustomerBalanceTransaction FromRawUnchecked(
+    /// <inheritdoc cref="CustomerBalanceTransactionFromRaw.FromRawUnchecked"/>
+    public static CustomerBalanceTransaction FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1203,16 +1175,15 @@ public sealed record class CustomerBalanceTransaction : JsonModel
     }
 }
 
-class CustomerBalanceTransactionFromRaw
-    : IFromRawJson<global::Orb.Models.Invoices.CustomerBalanceTransaction>
+class CustomerBalanceTransactionFromRaw : IFromRawJson<CustomerBalanceTransaction>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.CustomerBalanceTransaction FromRawUnchecked(
+    public CustomerBalanceTransaction FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.CustomerBalanceTransaction.FromRawUnchecked(rawData);
+    ) => CustomerBalanceTransaction.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.ActionConverter))]
+[JsonConverter(typeof(ActionConverter))]
 public enum Action
 {
     AppliedToInvoice,
@@ -1227,9 +1198,9 @@ public enum Action
     SmallInvoiceCarryover,
 }
 
-sealed class ActionConverter : JsonConverter<global::Orb.Models.Invoices.Action>
+sealed class ActionConverter : JsonConverter<Action>
 {
-    public override global::Orb.Models.Invoices.Action Read(
+    public override Action Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1237,41 +1208,36 @@ sealed class ActionConverter : JsonConverter<global::Orb.Models.Invoices.Action>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "applied_to_invoice" => global::Orb.Models.Invoices.Action.AppliedToInvoice,
-            "manual_adjustment" => global::Orb.Models.Invoices.Action.ManualAdjustment,
-            "prorated_refund" => global::Orb.Models.Invoices.Action.ProratedRefund,
-            "revert_prorated_refund" => global::Orb.Models.Invoices.Action.RevertProratedRefund,
-            "return_from_voiding" => global::Orb.Models.Invoices.Action.ReturnFromVoiding,
-            "credit_note_applied" => global::Orb.Models.Invoices.Action.CreditNoteApplied,
-            "credit_note_voided" => global::Orb.Models.Invoices.Action.CreditNoteVoided,
-            "overpayment_refund" => global::Orb.Models.Invoices.Action.OverpaymentRefund,
-            "external_payment" => global::Orb.Models.Invoices.Action.ExternalPayment,
-            "small_invoice_carryover" => global::Orb.Models.Invoices.Action.SmallInvoiceCarryover,
-            _ => (global::Orb.Models.Invoices.Action)(-1),
+            "applied_to_invoice" => Action.AppliedToInvoice,
+            "manual_adjustment" => Action.ManualAdjustment,
+            "prorated_refund" => Action.ProratedRefund,
+            "revert_prorated_refund" => Action.RevertProratedRefund,
+            "return_from_voiding" => Action.ReturnFromVoiding,
+            "credit_note_applied" => Action.CreditNoteApplied,
+            "credit_note_voided" => Action.CreditNoteVoided,
+            "overpayment_refund" => Action.OverpaymentRefund,
+            "external_payment" => Action.ExternalPayment,
+            "small_invoice_carryover" => Action.SmallInvoiceCarryover,
+            _ => (Action)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.Action value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Action value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.Action.AppliedToInvoice => "applied_to_invoice",
-                global::Orb.Models.Invoices.Action.ManualAdjustment => "manual_adjustment",
-                global::Orb.Models.Invoices.Action.ProratedRefund => "prorated_refund",
-                global::Orb.Models.Invoices.Action.RevertProratedRefund => "revert_prorated_refund",
-                global::Orb.Models.Invoices.Action.ReturnFromVoiding => "return_from_voiding",
-                global::Orb.Models.Invoices.Action.CreditNoteApplied => "credit_note_applied",
-                global::Orb.Models.Invoices.Action.CreditNoteVoided => "credit_note_voided",
-                global::Orb.Models.Invoices.Action.OverpaymentRefund => "overpayment_refund",
-                global::Orb.Models.Invoices.Action.ExternalPayment => "external_payment",
-                global::Orb.Models.Invoices.Action.SmallInvoiceCarryover =>
-                    "small_invoice_carryover",
+                Action.AppliedToInvoice => "applied_to_invoice",
+                Action.ManualAdjustment => "manual_adjustment",
+                Action.ProratedRefund => "prorated_refund",
+                Action.RevertProratedRefund => "revert_prorated_refund",
+                Action.ReturnFromVoiding => "return_from_voiding",
+                Action.CreditNoteApplied => "credit_note_applied",
+                Action.CreditNoteVoided => "credit_note_voided",
+                Action.OverpaymentRefund => "overpayment_refund",
+                Action.ExternalPayment => "external_payment",
+                Action.SmallInvoiceCarryover => "small_invoice_carryover",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1281,7 +1247,7 @@ sealed class ActionConverter : JsonConverter<global::Orb.Models.Invoices.Action>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.TypeConverter))]
+[JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
     Increment,
@@ -1325,7 +1291,7 @@ sealed class TypeConverter : JsonConverter<global::Orb.Models.Invoices.Type>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.InvoiceSourceConverter))]
+[JsonConverter(typeof(InvoiceSourceConverter))]
 public enum InvoiceSource
 {
     Subscription,
@@ -1333,9 +1299,9 @@ public enum InvoiceSource
     OneOff,
 }
 
-sealed class InvoiceSourceConverter : JsonConverter<global::Orb.Models.Invoices.InvoiceSource>
+sealed class InvoiceSourceConverter : JsonConverter<InvoiceSource>
 {
-    public override global::Orb.Models.Invoices.InvoiceSource Read(
+    public override InvoiceSource Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1343,16 +1309,16 @@ sealed class InvoiceSourceConverter : JsonConverter<global::Orb.Models.Invoices.
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "subscription" => global::Orb.Models.Invoices.InvoiceSource.Subscription,
-            "partial" => global::Orb.Models.Invoices.InvoiceSource.Partial,
-            "one_off" => global::Orb.Models.Invoices.InvoiceSource.OneOff,
-            _ => (global::Orb.Models.Invoices.InvoiceSource)(-1),
+            "subscription" => InvoiceSource.Subscription,
+            "partial" => InvoiceSource.Partial,
+            "one_off" => InvoiceSource.OneOff,
+            _ => (InvoiceSource)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.InvoiceSource value,
+        InvoiceSource value,
         JsonSerializerOptions options
     )
     {
@@ -1360,9 +1326,9 @@ sealed class InvoiceSourceConverter : JsonConverter<global::Orb.Models.Invoices.
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.InvoiceSource.Subscription => "subscription",
-                global::Orb.Models.Invoices.InvoiceSource.Partial => "partial",
-                global::Orb.Models.Invoices.InvoiceSource.OneOff => "one_off",
+                InvoiceSource.Subscription => "subscription",
+                InvoiceSource.Partial => "partial",
+                InvoiceSource.OneOff => "one_off",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1412,18 +1378,16 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : JsonModel
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Invoices.Adjustment> Adjustments
+    public required IReadOnlyList<Adjustment> Adjustments
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.Adjustment>
-            >("adjustments");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Adjustment>>("adjustments");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Invoices.Adjustment>>(
+            this._rawData.Set<ImmutableArray<Adjustment>>(
                 "adjustments",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -1575,18 +1539,16 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : JsonModel
     /// For complex pricing structures, the line item can be broken down further
     /// in `sub_line_items`.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Invoices.SubLineItem> SubLineItems
+    public required IReadOnlyList<SubLineItem> SubLineItems
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.SubLineItem>
-            >("sub_line_items");
+            return this._rawData.GetNotNullStruct<ImmutableArray<SubLineItem>>("sub_line_items");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Invoices.SubLineItem>>(
+            this._rawData.Set<ImmutableArray<SubLineItem>>(
                 "sub_line_items",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -1714,7 +1676,7 @@ class InvoiceFetchUpcomingResponseLineItemFromRaw
     ) => InvoiceFetchUpcomingResponseLineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.AdjustmentConverter))]
+[JsonConverter(typeof(AdjustmentConverter))]
 public record class Adjustment : ModelBase
 {
     public object? Value { get; } = null;
@@ -2044,25 +2006,17 @@ public record class Adjustment : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Invoices.Adjustment(
-        MonetaryUsageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryUsageDiscountAdjustment value) => new(value);
 
-    public static implicit operator global::Orb.Models.Invoices.Adjustment(
-        MonetaryAmountDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryAmountDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.Invoices.Adjustment(
-        MonetaryPercentageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.Invoices.Adjustment(
-        MonetaryMinimumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryMinimumAdjustment value) => new(value);
 
-    public static implicit operator global::Orb.Models.Invoices.Adjustment(
-        MonetaryMaximumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryMaximumAdjustment value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2089,7 +2043,7 @@ public record class Adjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Invoices.Adjustment? other)
+    public virtual bool Equals(Adjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -2103,9 +2057,9 @@ public record class Adjustment : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Invoices.Adjustment>
+sealed class AdjustmentConverter : JsonConverter<Adjustment>
 {
-    public override global::Orb.Models.Invoices.Adjustment? Read(
+    public override Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2237,14 +2191,14 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Invoices.Adj
             }
             default:
             {
-                return new global::Orb.Models.Invoices.Adjustment(element);
+                return new Adjustment(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.Adjustment value,
+        Adjustment value,
         JsonSerializerOptions options
     )
     {
@@ -2252,7 +2206,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Invoices.Adj
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.SubLineItemConverter))]
+[JsonConverter(typeof(SubLineItemConverter))]
 public record class SubLineItem : ModelBase
 {
     public object? Value { get; } = null;
@@ -2473,17 +2427,11 @@ public record class SubLineItem : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Invoices.SubLineItem(
-        MatrixSubLineItem value
-    ) => new(value);
+    public static implicit operator SubLineItem(MatrixSubLineItem value) => new(value);
 
-    public static implicit operator global::Orb.Models.Invoices.SubLineItem(
-        TierSubLineItem value
-    ) => new(value);
+    public static implicit operator SubLineItem(TierSubLineItem value) => new(value);
 
-    public static implicit operator global::Orb.Models.Invoices.SubLineItem(
-        OtherSubLineItem value
-    ) => new(value);
+    public static implicit operator SubLineItem(OtherSubLineItem value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2508,7 +2456,7 @@ public record class SubLineItem : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Invoices.SubLineItem? other)
+    public virtual bool Equals(SubLineItem? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -2522,9 +2470,9 @@ public record class SubLineItem : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.Invoices.SubLineItem>
+sealed class SubLineItemConverter : JsonConverter<SubLineItem>
 {
-    public override global::Orb.Models.Invoices.SubLineItem? Read(
+    public override SubLineItem? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2611,14 +2559,14 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.Invoices.Su
             }
             default:
             {
-                return new global::Orb.Models.Invoices.SubLineItem(element);
+                return new SubLineItem(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.SubLineItem value,
+        SubLineItem value,
         JsonSerializerOptions options
     )
     {
@@ -2626,12 +2574,7 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.Invoices.Su
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.PaymentAttempt,
-        global::Orb.Models.Invoices.PaymentAttemptFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<PaymentAttempt, PaymentAttemptFromRaw>))]
 public sealed record class PaymentAttempt : JsonModel
 {
     /// <summary>
@@ -2676,14 +2619,14 @@ public sealed record class PaymentAttempt : JsonModel
     /// <summary>
     /// The payment provider that attempted to collect the payment.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Invoices.PaymentProvider>? PaymentProvider
+    public required ApiEnum<string, PaymentProvider>? PaymentProvider
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, global::Orb.Models.Invoices.PaymentProvider>
-            >("payment_provider");
+            return this._rawData.GetNullableClass<ApiEnum<string, PaymentProvider>>(
+                "payment_provider"
+            );
         }
         init { this._rawData.Set("payment_provider", value); }
     }
@@ -2742,7 +2685,7 @@ public sealed record class PaymentAttempt : JsonModel
 
     public PaymentAttempt() { }
 
-    public PaymentAttempt(global::Orb.Models.Invoices.PaymentAttempt paymentAttempt)
+    public PaymentAttempt(PaymentAttempt paymentAttempt)
         : base(paymentAttempt) { }
 
     public PaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -2758,35 +2701,32 @@ public sealed record class PaymentAttempt : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.PaymentAttemptFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.PaymentAttempt FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="PaymentAttemptFromRaw.FromRawUnchecked"/>
+    public static PaymentAttempt FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class PaymentAttemptFromRaw : IFromRawJson<global::Orb.Models.Invoices.PaymentAttempt>
+class PaymentAttemptFromRaw : IFromRawJson<PaymentAttempt>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.PaymentAttempt FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.PaymentAttempt.FromRawUnchecked(rawData);
+    public PaymentAttempt FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaymentAttempt.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The payment provider that attempted to collect the payment.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Invoices.PaymentProviderConverter))]
+[JsonConverter(typeof(PaymentProviderConverter))]
 public enum PaymentProvider
 {
     Stripe,
 }
 
-sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Invoices.PaymentProvider>
+sealed class PaymentProviderConverter : JsonConverter<PaymentProvider>
 {
-    public override global::Orb.Models.Invoices.PaymentProvider Read(
+    public override PaymentProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2794,14 +2734,14 @@ sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Invoice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => global::Orb.Models.Invoices.PaymentProvider.Stripe,
-            _ => (global::Orb.Models.Invoices.PaymentProvider)(-1),
+            "stripe" => PaymentProvider.Stripe,
+            _ => (PaymentProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.PaymentProvider value,
+        PaymentProvider value,
         JsonSerializerOptions options
     )
     {
@@ -2809,7 +2749,7 @@ sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Invoice
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.PaymentProvider.Stripe => "stripe",
+                PaymentProvider.Stripe => "stripe",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

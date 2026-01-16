@@ -72,14 +72,12 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
         }
     }
 
-    public ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>? Status
+    public ApiEnum<string, Status>? Status
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<
-                ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
-            >("status");
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawQueryData.Set("status", value); }
     }
@@ -142,7 +140,7 @@ public sealed record class SubscriptionChangeListParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.SubscriptionChanges.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Pending,
@@ -150,9 +148,9 @@ public enum Status
     Cancelled,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.SubscriptionChanges.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.SubscriptionChanges.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -160,26 +158,22 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.SubscriptionChan
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "pending" => global::Orb.Models.SubscriptionChanges.Status.Pending,
-            "applied" => global::Orb.Models.SubscriptionChanges.Status.Applied,
-            "cancelled" => global::Orb.Models.SubscriptionChanges.Status.Cancelled,
-            _ => (global::Orb.Models.SubscriptionChanges.Status)(-1),
+            "pending" => Status.Pending,
+            "applied" => Status.Applied,
+            "cancelled" => Status.Cancelled,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.SubscriptionChanges.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.SubscriptionChanges.Status.Pending => "pending",
-                global::Orb.Models.SubscriptionChanges.Status.Applied => "applied",
-                global::Orb.Models.SubscriptionChanges.Status.Cancelled => "cancelled",
+                Status.Pending => "pending",
+                Status.Applied => "applied",
+                Status.Cancelled => "cancelled",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

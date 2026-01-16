@@ -23,14 +23,12 @@ public sealed record class CouponCreateParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public required global::Orb.Models.Coupons.Discount Discount
+    public required Discount Discount
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
-                "discount"
-            );
+            return this._rawBodyData.GetNotNullClass<Discount>("discount");
         }
         init { this._rawBodyData.Set("discount", value); }
     }
@@ -298,10 +296,9 @@ public record class Discount : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Coupons.Discount(Percentage value) =>
-        new(value);
+    public static implicit operator Discount(Percentage value) => new(value);
 
-    public static implicit operator global::Orb.Models.Coupons.Discount(Amount value) => new(value);
+    public static implicit operator Discount(Amount value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -322,7 +319,7 @@ public record class Discount : ModelBase
         this.Switch((percentage) => percentage.Validate(), (amount) => amount.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Coupons.Discount? other)
+    public virtual bool Equals(Discount? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -336,9 +333,9 @@ public record class Discount : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discount>
+sealed class DiscountConverter : JsonConverter<Discount>
 {
-    public override global::Orb.Models.Coupons.Discount? Read(
+    public override Discount? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -397,16 +394,12 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
             }
             default:
             {
-                return new global::Orb.Models.Coupons.Discount(element);
+                return new Discount(element);
             }
         }
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Coupons.Discount value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Discount value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }

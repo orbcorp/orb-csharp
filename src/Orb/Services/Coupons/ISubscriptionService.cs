@@ -17,16 +17,14 @@ public interface ISubscriptionService
     /// Returns a view of this service that provides access to raw HTTP responses
     /// for each method.
     /// </summary>
-    global::Orb.Services.Coupons.ISubscriptionServiceWithRawResponse WithRawResponse { get; }
+    ISubscriptionServiceWithRawResponse WithRawResponse { get; }
 
     /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
     /// </summary>
-    global::Orb.Services.Coupons.ISubscriptionService WithOptions(
-        Func<ClientOptions, ClientOptions> modifier
-    );
+    ISubscriptionService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
     /// This endpoint returns a list of all subscriptions that have redeemed a given
@@ -48,7 +46,7 @@ public interface ISubscriptionService
 }
 
 /// <summary>
-/// A view of <see cref="global::Orb.Services.Coupons.ISubscriptionService"/> that provides access to raw
+/// A view of <see cref="ISubscriptionService"/> that provides access to raw
 /// HTTP responses for each method.
 /// </summary>
 public interface ISubscriptionServiceWithRawResponse
@@ -58,13 +56,11 @@ public interface ISubscriptionServiceWithRawResponse
     ///
     /// <para>The original service is not modified.</para>
     /// </summary>
-    global::Orb.Services.Coupons.ISubscriptionServiceWithRawResponse WithOptions(
-        Func<ClientOptions, ClientOptions> modifier
-    );
+    ISubscriptionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
     /// Returns a raw HTTP response for `get /coupons/{coupon_id}/subscriptions`, but is otherwise the
-    /// same as <see cref="global::Orb.Services.Coupons.ISubscriptionService.List(SubscriptionListParams, CancellationToken)"/>.
+    /// same as <see cref="ISubscriptionService.List(SubscriptionListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SubscriptionListPage>> List(
         SubscriptionListParams parameters,

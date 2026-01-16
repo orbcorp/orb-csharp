@@ -58,14 +58,12 @@ public sealed record class NewSubscriptionBulkPrice : JsonModel
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.ModelType> ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Subscriptions.ModelType>
-            >("model_type");
+            return this._rawData.GetNotNullClass<ApiEnum<string, ModelType>>("model_type");
         }
         init { this._rawData.Set("model_type", value); }
     }
@@ -394,15 +392,15 @@ sealed class NewSubscriptionBulkPriceCadenceConverter
 /// <summary>
 /// The pricing model type
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.ModelTypeConverter))]
+[JsonConverter(typeof(ModelTypeConverter))]
 public enum ModelType
 {
     Bulk,
 }
 
-sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Subscriptions.ModelType>
+sealed class ModelTypeConverter : JsonConverter<ModelType>
 {
-    public override global::Orb.Models.Subscriptions.ModelType Read(
+    public override ModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -410,14 +408,14 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Subscriptions
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "bulk" => global::Orb.Models.Subscriptions.ModelType.Bulk,
-            _ => (global::Orb.Models.Subscriptions.ModelType)(-1),
+            "bulk" => ModelType.Bulk,
+            _ => (ModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.ModelType value,
+        ModelType value,
         JsonSerializerOptions options
     )
     {
@@ -425,7 +423,7 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Subscriptions
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.ModelType.Bulk => "bulk",
+                ModelType.Bulk => "bulk",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -258,12 +258,12 @@ public sealed record class PriceEvaluation : JsonModel
     /// <summary>
     /// New floating price request body params.
     /// </summary>
-    public global::Orb.Models.Prices.Price? Price
+    public Price? Price
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Prices.Price>("price");
+            return this._rawData.GetNullableClass<Price>("price");
         }
         init { this._rawData.Set("price", value); }
     }
@@ -326,7 +326,7 @@ class PriceEvaluationFromRaw : IFromRawJson<PriceEvaluation>
 /// <summary>
 /// New floating price request body params.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.PriceConverter))]
+[JsonConverter(typeof(PriceConverter))]
 public record class Price : ModelBase
 {
     public object? Value { get; } = null;
@@ -1004,7 +1004,7 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Prices.PriceMinimum value, JsonElement? element = null)
+    public Price(PriceMinimum value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1667,24 +1667,22 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Prices.PriceMinimum"/>.
+    /// type <see cref="PriceMinimum"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMinimum(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Prices.PriceMinimum`
+    ///     // `value` is of type `PriceMinimum`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMinimum(
-        [NotNullWhen(true)] out global::Orb.Models.Prices.PriceMinimum? value
-    )
+    public bool TryPickMinimum([NotNullWhen(true)] out PriceMinimum? value)
     {
-        value = this.Value as global::Orb.Models.Prices.PriceMinimum;
+        value = this.Value as PriceMinimum;
         return value != null;
     }
 
@@ -1795,7 +1793,7 @@ public record class Price : ModelBase
     ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
     ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
     ///     (PriceCumulativeGroupedAllocation value) => {...},
-    ///     (global::Orb.Models.Prices.PriceMinimum value) => {...},
+    ///     (PriceMinimum value) => {...},
     ///     (NewFloatingMinimumCompositePrice value) => {...},
     ///     (PricePercent value) => {...},
     ///     (PriceEventOutput value) => {...}
@@ -1832,7 +1830,7 @@ public record class Price : ModelBase
         System::Action<NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         System::Action<NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
         System::Action<PriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
-        System::Action<global::Orb.Models.Prices.PriceMinimum> minimum,
+        System::Action<PriceMinimum> minimum,
         System::Action<NewFloatingMinimumCompositePrice> newFloatingMinimumComposite,
         System::Action<PricePercent> percent,
         System::Action<PriceEventOutput> eventOutput
@@ -1924,7 +1922,7 @@ public record class Price : ModelBase
             case PriceCumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
-            case global::Orb.Models.Prices.PriceMinimum value:
+            case PriceMinimum value:
                 minimum(value);
                 break;
             case NewFloatingMinimumCompositePrice value:
@@ -1984,7 +1982,7 @@ public record class Price : ModelBase
     ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
     ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
     ///     (PriceCumulativeGroupedAllocation value) => {...},
-    ///     (global::Orb.Models.Prices.PriceMinimum value) => {...},
+    ///     (PriceMinimum value) => {...},
     ///     (NewFloatingMinimumCompositePrice value) => {...},
     ///     (PricePercent value) => {...},
     ///     (PriceEventOutput value) => {...}
@@ -2036,7 +2034,7 @@ public record class Price : ModelBase
         > newFloatingScalableMatrixWithTieredPricing,
         System::Func<NewFloatingCumulativeGroupedBulkPrice, T> newFloatingCumulativeGroupedBulk,
         System::Func<PriceCumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
-        System::Func<global::Orb.Models.Prices.PriceMinimum, T> minimum,
+        System::Func<PriceMinimum, T> minimum,
         System::Func<NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite,
         System::Func<PricePercent, T> percent,
         System::Func<PriceEventOutput, T> eventOutput
@@ -2079,7 +2077,7 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing(value),
             NewFloatingCumulativeGroupedBulkPrice value => newFloatingCumulativeGroupedBulk(value),
             PriceCumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
-            global::Orb.Models.Prices.PriceMinimum value => minimum(value),
+            PriceMinimum value => minimum(value),
             NewFloatingMinimumCompositePrice value => newFloatingMinimumComposite(value),
             PricePercent value => percent(value),
             PriceEventOutput value => eventOutput(value),
@@ -2087,126 +2085,78 @@ public record class Price : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingUnitPrice value) =>
+    public static implicit operator Price(NewFloatingUnitPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingBulkPrice value) => new(value);
+
+    public static implicit operator Price(PriceBulkWithFilters value) => new(value);
+
+    public static implicit operator Price(NewFloatingPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingMatrixPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingThresholdTotalAmountPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredWithMinimumPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredPackageWithMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingTieredPrice value) =>
+    public static implicit operator Price(NewFloatingPackageWithAllocationPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingBulkPrice value) =>
+    public static implicit operator Price(NewFloatingUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingMatrixWithAllocationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingUnitWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingGroupedAllocationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingBulkWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingGroupedWithProratedMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(PriceBulkWithFilters value) =>
+    public static implicit operator Price(NewFloatingGroupedWithMeteredMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(PriceGroupedWithMinMaxThresholds value) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingMatrixPrice value) =>
+    public static implicit operator Price(NewFloatingMatrixWithDisplayNamePrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingThresholdTotalAmountPrice value
-    ) => new(value);
+    public static implicit operator Price(NewFloatingGroupedTieredPackagePrice value) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredWithMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedTieredPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredPackageWithMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingPackageWithAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingUnitWithPercentPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMatrixWithAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingUnitWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingBulkWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedWithProratedMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedWithMeteredMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        PriceGroupedWithMinMaxThresholds value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMatrixWithDisplayNamePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMaxGroupTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingScalableMatrixWithUnitPricingPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingScalableMatrixWithTieredPricingPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingCumulativeGroupedBulkPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        PriceCumulativeGroupedAllocation value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        global::Orb.Models.Prices.PriceMinimum value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMinimumCompositePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(PricePercent value) =>
+    public static implicit operator Price(NewFloatingMaxGroupTieredPackagePrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(PriceEventOutput value) =>
+    public static implicit operator Price(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
         new(value);
+
+    public static implicit operator Price(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
+        new(value);
+
+    public static implicit operator Price(NewFloatingCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator Price(PriceCumulativeGroupedAllocation value) => new(value);
+
+    public static implicit operator Price(PriceMinimum value) => new(value);
+
+    public static implicit operator Price(NewFloatingMinimumCompositePrice value) => new(value);
+
+    public static implicit operator Price(PricePercent value) => new(value);
+
+    public static implicit operator Price(PriceEventOutput value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2264,7 +2214,7 @@ public record class Price : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Prices.Price? other)
+    public virtual bool Equals(Price? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -2278,9 +2228,9 @@ public record class Price : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
+sealed class PriceConverter : JsonConverter<Price?>
 {
-    public override global::Orb.Models.Prices.Price? Read(
+    public override Price? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2936,11 +2886,7 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Prices.PriceMinimum>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<PriceMinimum>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -3020,16 +2966,12 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
             }
             default:
             {
-                return new global::Orb.Models.Prices.Price(element);
+                return new Price(element);
             }
         }
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Prices.Price? value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Price? value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value?.Json, options);
     }
@@ -5547,25 +5489,18 @@ sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Prices.PriceMinimum,
-        global::Orb.Models.Prices.PriceMinimumFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<PriceMinimum, PriceMinimumFromRaw>))]
 public sealed record class PriceMinimum : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Prices.PriceMinimumCadence> Cadence
+    public required ApiEnum<string, PriceMinimumCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Prices.PriceMinimumCadence>
-            >("cadence");
+            return this._rawData.GetNotNullClass<ApiEnum<string, PriceMinimumCadence>>("cadence");
         }
         init { this._rawData.Set("cadence", value); }
     }
@@ -5694,12 +5629,12 @@ public sealed record class PriceMinimum : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Prices.PriceMinimumConversionRateConfig? ConversionRateConfig
+    public PriceMinimumConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Prices.PriceMinimumConversionRateConfig>(
+            return this._rawData.GetNullableClass<PriceMinimumConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -5827,7 +5762,7 @@ public sealed record class PriceMinimum : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("minimum");
     }
 
-    public PriceMinimum(global::Orb.Models.Prices.PriceMinimum priceMinimum)
+    public PriceMinimum(PriceMinimum priceMinimum)
         : base(priceMinimum) { }
 
     public PriceMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -5845,27 +5780,24 @@ public sealed record class PriceMinimum : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Prices.PriceMinimumFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Prices.PriceMinimum FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="PriceMinimumFromRaw.FromRawUnchecked"/>
+    public static PriceMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class PriceMinimumFromRaw : IFromRawJson<global::Orb.Models.Prices.PriceMinimum>
+class PriceMinimumFromRaw : IFromRawJson<PriceMinimum>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Prices.PriceMinimum FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Prices.PriceMinimum.FromRawUnchecked(rawData);
+    public PriceMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PriceMinimum.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.PriceMinimumCadenceConverter))]
+[JsonConverter(typeof(PriceMinimumCadenceConverter))]
 public enum PriceMinimumCadence
 {
     Annual,
@@ -5876,10 +5808,9 @@ public enum PriceMinimumCadence
     Custom,
 }
 
-sealed class PriceMinimumCadenceConverter
-    : JsonConverter<global::Orb.Models.Prices.PriceMinimumCadence>
+sealed class PriceMinimumCadenceConverter : JsonConverter<PriceMinimumCadence>
 {
-    public override global::Orb.Models.Prices.PriceMinimumCadence Read(
+    public override PriceMinimumCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5887,19 +5818,19 @@ sealed class PriceMinimumCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Prices.PriceMinimumCadence.Annual,
-            "semi_annual" => global::Orb.Models.Prices.PriceMinimumCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Prices.PriceMinimumCadence.Monthly,
-            "quarterly" => global::Orb.Models.Prices.PriceMinimumCadence.Quarterly,
-            "one_time" => global::Orb.Models.Prices.PriceMinimumCadence.OneTime,
-            "custom" => global::Orb.Models.Prices.PriceMinimumCadence.Custom,
-            _ => (global::Orb.Models.Prices.PriceMinimumCadence)(-1),
+            "annual" => PriceMinimumCadence.Annual,
+            "semi_annual" => PriceMinimumCadence.SemiAnnual,
+            "monthly" => PriceMinimumCadence.Monthly,
+            "quarterly" => PriceMinimumCadence.Quarterly,
+            "one_time" => PriceMinimumCadence.OneTime,
+            "custom" => PriceMinimumCadence.Custom,
+            _ => (PriceMinimumCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.PriceMinimumCadence value,
+        PriceMinimumCadence value,
         JsonSerializerOptions options
     )
     {
@@ -5907,12 +5838,12 @@ sealed class PriceMinimumCadenceConverter
             writer,
             value switch
             {
-                global::Orb.Models.Prices.PriceMinimumCadence.Annual => "annual",
-                global::Orb.Models.Prices.PriceMinimumCadence.SemiAnnual => "semi_annual",
-                global::Orb.Models.Prices.PriceMinimumCadence.Monthly => "monthly",
-                global::Orb.Models.Prices.PriceMinimumCadence.Quarterly => "quarterly",
-                global::Orb.Models.Prices.PriceMinimumCadence.OneTime => "one_time",
-                global::Orb.Models.Prices.PriceMinimumCadence.Custom => "custom",
+                PriceMinimumCadence.Annual => "annual",
+                PriceMinimumCadence.SemiAnnual => "semi_annual",
+                PriceMinimumCadence.Monthly => "monthly",
+                PriceMinimumCadence.Quarterly => "quarterly",
+                PriceMinimumCadence.OneTime => "one_time",
+                PriceMinimumCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -6013,7 +5944,7 @@ class PriceMinimumMinimumConfigFromRaw : IFromRawJson<PriceMinimumMinimumConfig>
     ) => PriceMinimumMinimumConfig.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Prices.PriceMinimumConversionRateConfigConverter))]
+[JsonConverter(typeof(PriceMinimumConversionRateConfigConverter))]
 public record class PriceMinimumConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
@@ -6172,11 +6103,11 @@ public record class PriceMinimumConversionRateConfig : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.PriceMinimumConversionRateConfig(
+    public static implicit operator PriceMinimumConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.PriceMinimumConversionRateConfig(
+    public static implicit operator PriceMinimumConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -6201,7 +6132,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Prices.PriceMinimumConversionRateConfig? other)
+    public virtual bool Equals(PriceMinimumConversionRateConfig? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -6216,9 +6147,9 @@ public record class PriceMinimumConversionRateConfig : ModelBase
 }
 
 sealed class PriceMinimumConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Prices.PriceMinimumConversionRateConfig>
+    : JsonConverter<PriceMinimumConversionRateConfig>
 {
-    public override global::Orb.Models.Prices.PriceMinimumConversionRateConfig? Read(
+    public override PriceMinimumConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6283,14 +6214,14 @@ sealed class PriceMinimumConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Prices.PriceMinimumConversionRateConfig(element);
+                return new PriceMinimumConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.PriceMinimumConversionRateConfig value,
+        PriceMinimumConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

@@ -47,18 +47,16 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.CreditNotes.LineItem> LineItems
+    public required IReadOnlyList<LineItem> LineItems
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.CreditNotes.LineItem>
-            >("line_items");
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<LineItem>>("line_items");
         }
         init
         {
-            this._rawBodyData.Set<ImmutableArray<global::Orb.Models.CreditNotes.LineItem>>(
+            this._rawBodyData.Set<ImmutableArray<LineItem>>(
                 "line_items",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -68,14 +66,12 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// <summary>
     /// An optional reason for the credit note.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.CreditNotes.Reason> Reason
+    public required ApiEnum<string, Reason> Reason
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.CreditNotes.Reason>
-            >("reason");
+            return this._rawBodyData.GetNotNullClass<ApiEnum<string, Reason>>("reason");
         }
         init { this._rawBodyData.Set("reason", value); }
     }
@@ -201,12 +197,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.CreditNotes.LineItem,
-        global::Orb.Models.CreditNotes.LineItemFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<LineItem, LineItemFromRaw>))]
 public sealed record class LineItem : JsonModel
 {
     /// <summary>
@@ -279,7 +270,7 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
-    public LineItem(global::Orb.Models.CreditNotes.LineItem lineItem)
+    public LineItem(LineItem lineItem)
         : base(lineItem) { }
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -295,27 +286,24 @@ public sealed record class LineItem : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.CreditNotes.LineItemFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="LineItemFromRaw.FromRawUnchecked"/>
+    public static LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LineItemFromRaw : IFromRawJson<global::Orb.Models.CreditNotes.LineItem>
+class LineItemFromRaw : IFromRawJson<LineItem>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.CreditNotes.LineItem.FromRawUnchecked(rawData);
+    public LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LineItem.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// An optional reason for the credit note.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.CreditNotes.ReasonConverter))]
+[JsonConverter(typeof(ReasonConverter))]
 public enum Reason
 {
     Duplicate,
@@ -324,9 +312,9 @@ public enum Reason
     ProductUnsatisfactory,
 }
 
-sealed class ReasonConverter : JsonConverter<global::Orb.Models.CreditNotes.Reason>
+sealed class ReasonConverter : JsonConverter<Reason>
 {
-    public override global::Orb.Models.CreditNotes.Reason Read(
+    public override Reason Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -334,29 +322,24 @@ sealed class ReasonConverter : JsonConverter<global::Orb.Models.CreditNotes.Reas
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "duplicate" => global::Orb.Models.CreditNotes.Reason.Duplicate,
-            "fraudulent" => global::Orb.Models.CreditNotes.Reason.Fraudulent,
-            "order_change" => global::Orb.Models.CreditNotes.Reason.OrderChange,
-            "product_unsatisfactory" => global::Orb.Models.CreditNotes.Reason.ProductUnsatisfactory,
-            _ => (global::Orb.Models.CreditNotes.Reason)(-1),
+            "duplicate" => Reason.Duplicate,
+            "fraudulent" => Reason.Fraudulent,
+            "order_change" => Reason.OrderChange,
+            "product_unsatisfactory" => Reason.ProductUnsatisfactory,
+            _ => (Reason)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.CreditNotes.Reason value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Reason value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.CreditNotes.Reason.Duplicate => "duplicate",
-                global::Orb.Models.CreditNotes.Reason.Fraudulent => "fraudulent",
-                global::Orb.Models.CreditNotes.Reason.OrderChange => "order_change",
-                global::Orb.Models.CreditNotes.Reason.ProductUnsatisfactory =>
-                    "product_unsatisfactory",
+                Reason.Duplicate => "duplicate",
+                Reason.Fraudulent => "fraudulent",
+                Reason.OrderChange => "order_change",
+                Reason.ProductUnsatisfactory => "product_unsatisfactory",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
