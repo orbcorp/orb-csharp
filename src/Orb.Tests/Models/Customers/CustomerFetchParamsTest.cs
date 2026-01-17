@@ -24,4 +24,14 @@ public class CustomerFetchParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/customers/customer_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerFetchParams { CustomerID = "customer_id" };
+
+        CustomerFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

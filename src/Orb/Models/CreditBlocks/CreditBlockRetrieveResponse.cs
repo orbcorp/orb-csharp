@@ -58,18 +58,16 @@ public sealed record class CreditBlockRetrieveResponse : JsonModel
         init { this._rawData.Set("expiry_date", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.CreditBlocks.Filter> Filters
+    public required IReadOnlyList<Filter> Filters
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.CreditBlocks.Filter>
-            >("filters");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Filter>>("filters");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.CreditBlocks.Filter>>(
+            this._rawData.Set<ImmutableArray<Filter>>(
                 "filters",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -96,14 +94,12 @@ public sealed record class CreditBlockRetrieveResponse : JsonModel
         init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.CreditBlocks.Status> Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.CreditBlocks.Status>
-            >("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawData.Set("status", value); }
     }
@@ -159,25 +155,18 @@ class CreditBlockRetrieveResponseFromRaw : IFromRawJson<CreditBlockRetrieveRespo
     ) => CreditBlockRetrieveResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.CreditBlocks.Filter,
-        global::Orb.Models.CreditBlocks.FilterFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
 public sealed record class Filter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.CreditBlocks.Field> Field
+    public required ApiEnum<string, Field> Field
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.CreditBlocks.Field>
-            >("field");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
         }
         init { this._rawData.Set("field", value); }
     }
@@ -185,14 +174,12 @@ public sealed record class Filter : JsonModel
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.CreditBlocks.Operator> Operator
+    public required ApiEnum<string, Operator> Operator
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.CreditBlocks.Operator>
-            >("operator");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
         }
         init { this._rawData.Set("operator", value); }
     }
@@ -226,7 +213,7 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
-    public Filter(global::Orb.Models.CreditBlocks.Filter filter)
+    public Filter(Filter filter)
         : base(filter) { }
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -242,27 +229,24 @@ public sealed record class Filter : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.CreditBlocks.FilterFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.CreditBlocks.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
+    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FilterFromRaw : IFromRawJson<global::Orb.Models.CreditBlocks.Filter>
+class FilterFromRaw : IFromRawJson<Filter>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.CreditBlocks.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.CreditBlocks.Filter.FromRawUnchecked(rawData);
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.CreditBlocks.FieldConverter))]
+[JsonConverter(typeof(FieldConverter))]
 public enum Field
 {
     PriceID,
@@ -272,9 +256,9 @@ public enum Field
     PricingUnitID,
 }
 
-sealed class FieldConverter : JsonConverter<global::Orb.Models.CreditBlocks.Field>
+sealed class FieldConverter : JsonConverter<Field>
 {
-    public override global::Orb.Models.CreditBlocks.Field Read(
+    public override Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -282,30 +266,26 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.CreditBlocks.Fiel
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => global::Orb.Models.CreditBlocks.Field.PriceID,
-            "item_id" => global::Orb.Models.CreditBlocks.Field.ItemID,
-            "price_type" => global::Orb.Models.CreditBlocks.Field.PriceType,
-            "currency" => global::Orb.Models.CreditBlocks.Field.Currency,
-            "pricing_unit_id" => global::Orb.Models.CreditBlocks.Field.PricingUnitID,
-            _ => (global::Orb.Models.CreditBlocks.Field)(-1),
+            "price_id" => Field.PriceID,
+            "item_id" => Field.ItemID,
+            "price_type" => Field.PriceType,
+            "currency" => Field.Currency,
+            "pricing_unit_id" => Field.PricingUnitID,
+            _ => (Field)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.CreditBlocks.Field value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.CreditBlocks.Field.PriceID => "price_id",
-                global::Orb.Models.CreditBlocks.Field.ItemID => "item_id",
-                global::Orb.Models.CreditBlocks.Field.PriceType => "price_type",
-                global::Orb.Models.CreditBlocks.Field.Currency => "currency",
-                global::Orb.Models.CreditBlocks.Field.PricingUnitID => "pricing_unit_id",
+                Field.PriceID => "price_id",
+                Field.ItemID => "item_id",
+                Field.PriceType => "price_type",
+                Field.Currency => "currency",
+                Field.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -318,16 +298,16 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.CreditBlocks.Fiel
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.CreditBlocks.OperatorConverter))]
+[JsonConverter(typeof(OperatorConverter))]
 public enum Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorConverter : JsonConverter<global::Orb.Models.CreditBlocks.Operator>
+sealed class OperatorConverter : JsonConverter<Operator>
 {
-    public override global::Orb.Models.CreditBlocks.Operator Read(
+    public override Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -335,24 +315,20 @@ sealed class OperatorConverter : JsonConverter<global::Orb.Models.CreditBlocks.O
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.CreditBlocks.Operator.Includes,
-            "excludes" => global::Orb.Models.CreditBlocks.Operator.Excludes,
-            _ => (global::Orb.Models.CreditBlocks.Operator)(-1),
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.CreditBlocks.Operator value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.CreditBlocks.Operator.Includes => "includes",
-                global::Orb.Models.CreditBlocks.Operator.Excludes => "excludes",
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -362,16 +338,16 @@ sealed class OperatorConverter : JsonConverter<global::Orb.Models.CreditBlocks.O
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.CreditBlocks.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Active,
     PendingPayment,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.CreditBlocks.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.CreditBlocks.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -379,24 +355,20 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.CreditBlocks.Sta
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::Orb.Models.CreditBlocks.Status.Active,
-            "pending_payment" => global::Orb.Models.CreditBlocks.Status.PendingPayment,
-            _ => (global::Orb.Models.CreditBlocks.Status)(-1),
+            "active" => Status.Active,
+            "pending_payment" => Status.PendingPayment,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.CreditBlocks.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.CreditBlocks.Status.Active => "active",
-                global::Orb.Models.CreditBlocks.Status.PendingPayment => "pending_payment",
+                Status.Active => "active",
+                Status.PendingPayment => "pending_payment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

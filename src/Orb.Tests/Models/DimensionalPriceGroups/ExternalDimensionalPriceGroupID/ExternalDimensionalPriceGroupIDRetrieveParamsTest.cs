@@ -38,4 +38,17 @@ public class ExternalDimensionalPriceGroupIDRetrieveParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalDimensionalPriceGroupIDRetrieveParams
+        {
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+
+        ExternalDimensionalPriceGroupIDRetrieveParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

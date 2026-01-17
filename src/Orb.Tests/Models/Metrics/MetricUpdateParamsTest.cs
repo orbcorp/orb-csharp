@@ -61,4 +61,18 @@ public class MetricUpdateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/metrics/metric_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new MetricUpdateParams
+        {
+            MetricID = "metric_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        MetricUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

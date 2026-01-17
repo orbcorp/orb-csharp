@@ -77,12 +77,12 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPrice : JsonMo
     /// <summary>
     /// Configuration for tiered_package_with_minimum pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig TieredPackageWithMinimumConfig
+    public required TieredPackageWithMinimumConfig TieredPackageWithMinimumConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>(
+            return this._rawData.GetNotNullClass<TieredPackageWithMinimumConfig>(
                 "tiered_package_with_minimum_config"
             );
         }
@@ -454,8 +454,8 @@ sealed class NewSubscriptionTieredPackageWithMinimumPriceModelTypeConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig,
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigFromRaw
+        TieredPackageWithMinimumConfig,
+        TieredPackageWithMinimumConfigFromRaw
     >)
 )]
 public sealed record class TieredPackageWithMinimumConfig : JsonModel
@@ -474,20 +474,21 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier> Tiers
+    public required IReadOnlyList<TieredPackageWithMinimumConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier>
+                ImmutableArray<TieredPackageWithMinimumConfigTier>
             >("tiers");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<TieredPackageWithMinimumConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -504,7 +505,7 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     public TieredPackageWithMinimumConfig() { }
 
     public TieredPackageWithMinimumConfig(
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig tieredPackageWithMinimumConfig
+        TieredPackageWithMinimumConfig tieredPackageWithMinimumConfig
     )
         : base(tieredPackageWithMinimumConfig) { }
 
@@ -521,8 +522,8 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="TieredPackageWithMinimumConfigFromRaw.FromRawUnchecked"/>
+    public static TieredPackageWithMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -530,13 +531,12 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     }
 }
 
-class TieredPackageWithMinimumConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>
+class TieredPackageWithMinimumConfigFromRaw : IFromRawJson<TieredPackageWithMinimumConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig FromRawUnchecked(
+    public TieredPackageWithMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig.FromRawUnchecked(rawData);
+    ) => TieredPackageWithMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -544,8 +544,8 @@ class TieredPackageWithMinimumConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier,
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTierFromRaw
+        TieredPackageWithMinimumConfigTier,
+        TieredPackageWithMinimumConfigTierFromRaw
     >)
 )]
 public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
@@ -591,7 +591,7 @@ public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
     public TieredPackageWithMinimumConfigTier() { }
 
     public TieredPackageWithMinimumConfigTier(
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier tieredPackageWithMinimumConfigTier
+        TieredPackageWithMinimumConfigTier tieredPackageWithMinimumConfigTier
     )
         : base(tieredPackageWithMinimumConfigTier) { }
 
@@ -608,8 +608,8 @@ public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="TieredPackageWithMinimumConfigTierFromRaw.FromRawUnchecked"/>
+    public static TieredPackageWithMinimumConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -617,16 +617,12 @@ public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
     }
 }
 
-class TieredPackageWithMinimumConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier>
+class TieredPackageWithMinimumConfigTierFromRaw : IFromRawJson<TieredPackageWithMinimumConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier FromRawUnchecked(
+    public TieredPackageWithMinimumConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier.FromRawUnchecked(
-            rawData
-        );
+    ) => TieredPackageWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigConverter))]

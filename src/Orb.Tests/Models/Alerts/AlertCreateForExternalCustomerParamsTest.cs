@@ -84,6 +84,22 @@ public class AlertCreateForExternalCustomerParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AlertCreateForExternalCustomerParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Currency = "currency",
+            Type = AlertCreateForExternalCustomerParamsType.CreditBalanceDepleted,
+            Thresholds = [new(0)],
+        };
+
+        AlertCreateForExternalCustomerParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class AlertCreateForExternalCustomerParamsTypeTest : TestBase

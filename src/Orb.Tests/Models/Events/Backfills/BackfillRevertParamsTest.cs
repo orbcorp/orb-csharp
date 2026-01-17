@@ -27,4 +27,14 @@ public class BackfillRevertParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BackfillRevertParams { BackfillID = "backfill_id" };
+
+        BackfillRevertParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -76,4 +76,14 @@ public class DimensionalPriceGroupListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new DimensionalPriceGroupListParams { Cursor = "cursor", Limit = 1 };
+
+        DimensionalPriceGroupListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

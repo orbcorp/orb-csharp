@@ -92,4 +92,19 @@ public class TopUpListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpListParams
+        {
+            CustomerID = "customer_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        TopUpListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

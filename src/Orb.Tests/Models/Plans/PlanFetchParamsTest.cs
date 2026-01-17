@@ -24,4 +24,14 @@ public class PlanFetchParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PlanFetchParams { PlanID = "plan_id" };
+
+        PlanFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

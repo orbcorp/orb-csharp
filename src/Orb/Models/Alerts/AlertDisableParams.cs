@@ -12,8 +12,12 @@ namespace Orb.Models.Alerts;
 /// This endpoint allows you to disable an alert. To disable a plan-level alert for
 /// a specific subscription, you must include the `subscription_id`. The `subscription_id`
 /// is not required for customer or subscription level alerts.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class AlertDisableParams : ParamsBase
+public record class AlertDisableParams : ParamsBase
 {
     public string? AlertConfigurationID { get; init; }
 
@@ -32,11 +36,14 @@ public sealed record class AlertDisableParams : ParamsBase
 
     public AlertDisableParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AlertDisableParams(AlertDisableParams alertDisableParams)
         : base(alertDisableParams)
     {
         this.AlertConfigurationID = alertDisableParams.AlertConfigurationID;
     }
+#pragma warning restore CS8618
 
     public AlertDisableParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -71,6 +78,31 @@ public sealed record class AlertDisableParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["AlertConfigurationID"] = this.AlertConfigurationID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(AlertDisableParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.AlertConfigurationID?.Equals(other.AlertConfigurationID)
+                ?? other.AlertConfigurationID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -89,5 +121,10 @@ public sealed record class AlertDisableParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

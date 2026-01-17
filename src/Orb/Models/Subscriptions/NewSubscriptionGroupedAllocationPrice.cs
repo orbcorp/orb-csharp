@@ -35,12 +35,12 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
     /// <summary>
     /// Configuration for grouped_allocation pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.GroupedAllocationConfig GroupedAllocationConfig
+    public required GroupedAllocationConfig GroupedAllocationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.GroupedAllocationConfig>(
+            return this._rawData.GetNotNullClass<GroupedAllocationConfig>(
                 "grouped_allocation_config"
             );
         }
@@ -402,12 +402,7 @@ sealed class NewSubscriptionGroupedAllocationPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedAllocationConfig,
-        global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<GroupedAllocationConfig, GroupedAllocationConfigFromRaw>))]
 public sealed record class GroupedAllocationConfig : JsonModel
 {
     /// <summary>
@@ -459,9 +454,7 @@ public sealed record class GroupedAllocationConfig : JsonModel
 
     public GroupedAllocationConfig() { }
 
-    public GroupedAllocationConfig(
-        global::Orb.Models.Subscriptions.GroupedAllocationConfig groupedAllocationConfig
-    )
+    public GroupedAllocationConfig(GroupedAllocationConfig groupedAllocationConfig)
         : base(groupedAllocationConfig) { }
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -477,8 +470,8 @@ public sealed record class GroupedAllocationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedAllocationConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -486,13 +479,12 @@ public sealed record class GroupedAllocationConfig : JsonModel
     }
 }
 
-class GroupedAllocationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedAllocationConfig>
+class GroupedAllocationConfigFromRaw : IFromRawJson<GroupedAllocationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+    public GroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.GroupedAllocationConfig.FromRawUnchecked(rawData);
+    ) => GroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

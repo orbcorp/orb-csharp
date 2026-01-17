@@ -87,6 +87,23 @@ public class InvoiceUpdateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceUpdateParams
+        {
+            InvoiceID = "invoice_id",
+            DueDate = "2023-09-22",
+            InvoiceDate = "2023-09-22",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+        };
+
+        InvoiceUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class InvoiceUpdateParamsDueDateTest : TestBase

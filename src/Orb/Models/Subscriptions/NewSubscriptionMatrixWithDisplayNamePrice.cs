@@ -49,12 +49,12 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : JsonModel
     /// <summary>
     /// Configuration for matrix_with_display_name pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
+    public required MatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>(
+            return this._rawData.GetNotNullClass<MatrixWithDisplayNameConfig>(
                 "matrix_with_display_name_config"
             );
         }
@@ -406,10 +406,7 @@ sealed class NewSubscriptionMatrixWithDisplayNamePriceCadenceConverter
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig,
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigFromRaw
-    >)
+    typeof(JsonModelConverter<MatrixWithDisplayNameConfig, MatrixWithDisplayNameConfigFromRaw>)
 )]
 public sealed record class MatrixWithDisplayNameConfig : JsonModel
 {
@@ -429,20 +426,21 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount> UnitAmounts
+    public required IReadOnlyList<MatrixWithDisplayNameConfigUnitAmount> UnitAmounts
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
+                ImmutableArray<MatrixWithDisplayNameConfigUnitAmount>
             >("unit_amounts");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
-            >("unit_amounts", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<MatrixWithDisplayNameConfigUnitAmount>>(
+                "unit_amounts",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -458,9 +456,7 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
 
     public MatrixWithDisplayNameConfig() { }
 
-    public MatrixWithDisplayNameConfig(
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig matrixWithDisplayNameConfig
-    )
+    public MatrixWithDisplayNameConfig(MatrixWithDisplayNameConfig matrixWithDisplayNameConfig)
         : base(matrixWithDisplayNameConfig) { }
 
     public MatrixWithDisplayNameConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -476,8 +472,8 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig FromRawUnchecked(
+    /// <inheritdoc cref="MatrixWithDisplayNameConfigFromRaw.FromRawUnchecked"/>
+    public static MatrixWithDisplayNameConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -485,13 +481,12 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     }
 }
 
-class MatrixWithDisplayNameConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>
+class MatrixWithDisplayNameConfigFromRaw : IFromRawJson<MatrixWithDisplayNameConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig FromRawUnchecked(
+    public MatrixWithDisplayNameConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
+    ) => MatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -499,8 +494,8 @@ class MatrixWithDisplayNameConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount,
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmountFromRaw
+        MatrixWithDisplayNameConfigUnitAmount,
+        MatrixWithDisplayNameConfigUnitAmountFromRaw
     >)
 )]
 public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
@@ -555,7 +550,7 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
     public MatrixWithDisplayNameConfigUnitAmount() { }
 
     public MatrixWithDisplayNameConfigUnitAmount(
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
+        MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
     )
         : base(matrixWithDisplayNameConfigUnitAmount) { }
 
@@ -572,8 +567,8 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmountFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+    /// <inheritdoc cref="MatrixWithDisplayNameConfigUnitAmountFromRaw.FromRawUnchecked"/>
+    public static MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -582,15 +577,12 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
 }
 
 class MatrixWithDisplayNameConfigUnitAmountFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
+    : IFromRawJson<MatrixWithDisplayNameConfigUnitAmount>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+    public MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(
-            rawData
-        );
+    ) => MatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(rawData);
 }
 
 /// <summary>

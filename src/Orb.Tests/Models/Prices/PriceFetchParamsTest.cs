@@ -24,4 +24,14 @@ public class PriceFetchParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/prices/price_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceFetchParams { PriceID = "price_id" };
+
+        PriceFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

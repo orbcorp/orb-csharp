@@ -83,12 +83,12 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice :
     /// <summary>
     /// Configuration for scalable_matrix_with_tiered_pricing pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig ScalableMatrixWithTieredPricingConfig
+    public required ScalableMatrixWithTieredPricingConfig ScalableMatrixWithTieredPricingConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig>(
+            return this._rawData.GetNotNullClass<ScalableMatrixWithTieredPricingConfig>(
                 "scalable_matrix_with_tiered_pricing_config"
             );
         }
@@ -463,8 +463,8 @@ sealed class NewSubscriptionScalableMatrixWithTieredPricingPriceModelTypeConvert
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig,
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigFromRaw
+        ScalableMatrixWithTieredPricingConfig,
+        ScalableMatrixWithTieredPricingConfigFromRaw
     >)
 )]
 public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
@@ -485,38 +485,39 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.MatrixScalingFactor> MatrixScalingFactors
+    public required IReadOnlyList<MatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.MatrixScalingFactor>
-            >("matrix_scaling_factors");
+            return this._rawData.GetNotNullStruct<ImmutableArray<MatrixScalingFactor>>(
+                "matrix_scaling_factors"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.MatrixScalingFactor>>(
+            this._rawData.Set<ImmutableArray<MatrixScalingFactor>>(
                 "matrix_scaling_factors",
                 ImmutableArray.ToImmutableArray(value)
             );
         }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier> Tiers
+    public required IReadOnlyList<ScalableMatrixWithTieredPricingConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier>
+                ImmutableArray<ScalableMatrixWithTieredPricingConfigTier>
             >("tiers");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<ScalableMatrixWithTieredPricingConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -551,7 +552,7 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
     public ScalableMatrixWithTieredPricingConfig() { }
 
     public ScalableMatrixWithTieredPricingConfig(
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
+        ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
     )
         : base(scalableMatrixWithTieredPricingConfig) { }
 
@@ -568,8 +569,8 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
+    /// <inheritdoc cref="ScalableMatrixWithTieredPricingConfigFromRaw.FromRawUnchecked"/>
+    public static ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -578,26 +579,18 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
 }
 
 class ScalableMatrixWithTieredPricingConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig>
+    : IFromRawJson<ScalableMatrixWithTieredPricingConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
+    public ScalableMatrixWithTieredPricingConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig.FromRawUnchecked(
-            rawData
-        );
+    ) => ScalableMatrixWithTieredPricingConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MatrixScalingFactor,
-        global::Orb.Models.Subscriptions.MatrixScalingFactorFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<MatrixScalingFactor, MatrixScalingFactorFromRaw>))]
 public sealed record class MatrixScalingFactor : JsonModel
 {
     public required string FirstDimensionValue
@@ -640,9 +633,7 @@ public sealed record class MatrixScalingFactor : JsonModel
 
     public MatrixScalingFactor() { }
 
-    public MatrixScalingFactor(
-        global::Orb.Models.Subscriptions.MatrixScalingFactor matrixScalingFactor
-    )
+    public MatrixScalingFactor(MatrixScalingFactor matrixScalingFactor)
         : base(matrixScalingFactor) { }
 
     public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -658,8 +649,8 @@ public sealed record class MatrixScalingFactor : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MatrixScalingFactorFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MatrixScalingFactor FromRawUnchecked(
+    /// <inheritdoc cref="MatrixScalingFactorFromRaw.FromRawUnchecked"/>
+    public static MatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -667,13 +658,11 @@ public sealed record class MatrixScalingFactor : JsonModel
     }
 }
 
-class MatrixScalingFactorFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MatrixScalingFactor>
+class MatrixScalingFactorFromRaw : IFromRawJson<MatrixScalingFactor>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MatrixScalingFactor FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MatrixScalingFactor.FromRawUnchecked(rawData);
+    public MatrixScalingFactor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixScalingFactor.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -681,8 +670,8 @@ class MatrixScalingFactorFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier,
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTierFromRaw
+        ScalableMatrixWithTieredPricingConfigTier,
+        ScalableMatrixWithTieredPricingConfigTierFromRaw
     >)
 )]
 public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
@@ -717,7 +706,7 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
     public ScalableMatrixWithTieredPricingConfigTier() { }
 
     public ScalableMatrixWithTieredPricingConfigTier(
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
+        ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
     )
         : base(scalableMatrixWithTieredPricingConfigTier) { }
 
@@ -736,8 +725,8 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="ScalableMatrixWithTieredPricingConfigTierFromRaw.FromRawUnchecked"/>
+    public static ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -746,15 +735,12 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
 }
 
 class ScalableMatrixWithTieredPricingConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier>
+    : IFromRawJson<ScalableMatrixWithTieredPricingConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+    public ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier.FromRawUnchecked(
-            rawData
-        );
+    ) => ScalableMatrixWithTieredPricingConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(

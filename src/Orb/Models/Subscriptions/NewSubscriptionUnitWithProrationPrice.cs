@@ -76,12 +76,12 @@ public sealed record class NewSubscriptionUnitWithProrationPrice : JsonModel
     /// <summary>
     /// Configuration for unit_with_proration pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.UnitWithProrationConfig UnitWithProrationConfig
+    public required UnitWithProrationConfig UnitWithProrationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.UnitWithProrationConfig>(
+            return this._rawData.GetNotNullClass<UnitWithProrationConfig>(
                 "unit_with_proration_config"
             );
         }
@@ -449,12 +449,7 @@ sealed class NewSubscriptionUnitWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_proration pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.UnitWithProrationConfig,
-        global::Orb.Models.Subscriptions.UnitWithProrationConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<UnitWithProrationConfig, UnitWithProrationConfigFromRaw>))]
 public sealed record class UnitWithProrationConfig : JsonModel
 {
     /// <summary>
@@ -478,9 +473,7 @@ public sealed record class UnitWithProrationConfig : JsonModel
 
     public UnitWithProrationConfig() { }
 
-    public UnitWithProrationConfig(
-        global::Orb.Models.Subscriptions.UnitWithProrationConfig unitWithProrationConfig
-    )
+    public UnitWithProrationConfig(UnitWithProrationConfig unitWithProrationConfig)
         : base(unitWithProrationConfig) { }
 
     public UnitWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -496,8 +489,8 @@ public sealed record class UnitWithProrationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.UnitWithProrationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.UnitWithProrationConfig FromRawUnchecked(
+    /// <inheritdoc cref="UnitWithProrationConfigFromRaw.FromRawUnchecked"/>
+    public static UnitWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -512,13 +505,12 @@ public sealed record class UnitWithProrationConfig : JsonModel
     }
 }
 
-class UnitWithProrationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.UnitWithProrationConfig>
+class UnitWithProrationConfigFromRaw : IFromRawJson<UnitWithProrationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.UnitWithProrationConfig FromRawUnchecked(
+    public UnitWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.UnitWithProrationConfig.FromRawUnchecked(rawData);
+    ) => UnitWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionUnitWithProrationPriceConversionRateConfigConverter))]

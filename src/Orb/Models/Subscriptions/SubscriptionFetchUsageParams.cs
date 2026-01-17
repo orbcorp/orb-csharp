@@ -137,8 +137,12 @@ namespace Orb.Models.Subscriptions;
 ///
 /// <para>- `first_dimension_key`: `region` - `first_dimension_value`: `us-east-1`
 /// - `second_dimension_key`: `provider` - `second_dimension_value`: `aws`</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionFetchUsageParams : ParamsBase
+public record class SubscriptionFetchUsageParams : ParamsBase
 {
     public string? SubscriptionID { get; init; }
 
@@ -268,11 +272,14 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
 
     public SubscriptionFetchUsageParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionFetchUsageParams(SubscriptionFetchUsageParams subscriptionFetchUsageParams)
         : base(subscriptionFetchUsageParams)
     {
         this.SubscriptionID = subscriptionFetchUsageParams.SubscriptionID;
     }
+#pragma warning restore CS8618
 
     public SubscriptionFetchUsageParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -307,6 +314,28 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionFetchUsageParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -325,6 +354,11 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

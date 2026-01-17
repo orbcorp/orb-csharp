@@ -64,4 +64,19 @@ public class SubscriptionTriggerPhaseParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionTriggerPhaseParams
+        {
+            SubscriptionID = "subscription_id",
+            AllowInvoiceCreditOrVoid = true,
+            EffectiveDate = "2019-12-27",
+        };
+
+        SubscriptionTriggerPhaseParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

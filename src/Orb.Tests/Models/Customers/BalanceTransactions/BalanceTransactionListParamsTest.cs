@@ -140,4 +140,23 @@ public class BalanceTransactionListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BalanceTransactionListParams
+        {
+            CustomerID = "customer_id",
+            Cursor = "cursor",
+            Limit = 1,
+            OperationTimeGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            OperationTimeGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            OperationTimeLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            OperationTimeLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        BalanceTransactionListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

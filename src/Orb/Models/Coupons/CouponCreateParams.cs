@@ -14,8 +14,12 @@ namespace Orb.Models.Coupons;
 /// <summary>
 /// This endpoint allows the creation of coupons, which can then be redeemed at subscription
 /// creation or plan change.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CouponCreateParams : ParamsBase
+public record class CouponCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -23,14 +27,12 @@ public sealed record class CouponCreateParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public required global::Orb.Models.Coupons.Discount Discount
+    public required Discount Discount
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
-                "discount"
-            );
+            return this._rawBodyData.GetNotNullClass<Discount>("discount");
         }
         init { this._rawBodyData.Set("discount", value); }
     }
@@ -78,11 +80,14 @@ public sealed record class CouponCreateParams : ParamsBase
 
     public CouponCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CouponCreateParams(CouponCreateParams couponCreateParams)
         : base(couponCreateParams)
     {
         this._rawBodyData = new(couponCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CouponCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -123,6 +128,28 @@ public sealed record class CouponCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CouponCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/coupons")
@@ -147,6 +174,11 @@ public sealed record class CouponCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -298,10 +330,9 @@ public record class Discount : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Coupons.Discount(Percentage value) =>
-        new(value);
+    public static implicit operator Discount(Percentage value) => new(value);
 
-    public static implicit operator global::Orb.Models.Coupons.Discount(Amount value) => new(value);
+    public static implicit operator Discount(Amount value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -322,7 +353,7 @@ public record class Discount : ModelBase
         this.Switch((percentage) => percentage.Validate(), (amount) => amount.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Coupons.Discount? other)
+    public virtual bool Equals(Discount? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -336,9 +367,9 @@ public record class Discount : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discount>
+sealed class DiscountConverter : JsonConverter<Discount>
 {
-    public override global::Orb.Models.Coupons.Discount? Read(
+    public override Discount? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -397,16 +428,12 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
             }
             default:
             {
-                return new global::Orb.Models.Coupons.Discount(element);
+                return new Discount(element);
             }
         }
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Coupons.Discount value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Discount value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }

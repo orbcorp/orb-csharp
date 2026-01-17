@@ -27,4 +27,14 @@ public class ExternalPriceIDFetchParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalPriceIDFetchParams { ExternalPriceID = "external_price_id" };
+
+        ExternalPriceIDFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

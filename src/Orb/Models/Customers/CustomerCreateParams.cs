@@ -22,8 +22,12 @@ namespace Orb.Models.Customers;
 /// to automatically   issue invoices * [Customer ID Aliases](/events-and-metrics/customer-aliases)
 /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
 /// can be configured on a per-customer basis by   setting the `timezone` parameter</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CustomerCreateParams : ParamsBase
+public record class CustomerCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -417,11 +421,14 @@ public sealed record class CustomerCreateParams : ParamsBase
 
     public CustomerCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerCreateParams(CustomerCreateParams customerCreateParams)
         : base(customerCreateParams)
     {
         this._rawBodyData = new(customerCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CustomerCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -462,6 +469,28 @@ public sealed record class CustomerCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CustomerCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/customers")
@@ -487,6 +516,11 @@ public sealed record class CustomerCreateParams : ParamsBase
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 /// <summary>
@@ -499,14 +533,14 @@ public sealed record class PaymentConfiguration : JsonModel
     /// <summary>
     /// Provider-specific payment configuration.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Customers.PaymentProvider>? PaymentProviders
+    public IReadOnlyList<PaymentProvider>? PaymentProviders
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Customers.PaymentProvider>
-            >("payment_providers");
+            return this._rawData.GetNullableStruct<ImmutableArray<PaymentProvider>>(
+                "payment_providers"
+            );
         }
         init
         {
@@ -515,7 +549,7 @@ public sealed record class PaymentConfiguration : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Customers.PaymentProvider>?>(
+            this._rawData.Set<ImmutableArray<PaymentProvider>?>(
                 "payment_providers",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -566,9 +600,7 @@ class PaymentConfigurationFromRaw : IFromRawJson<PaymentConfiguration>
     ) => PaymentConfiguration.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<global::Orb.Models.Customers.PaymentProvider, PaymentProviderFromRaw>)
-)]
+[JsonConverter(typeof(JsonModelConverter<PaymentProvider, PaymentProviderFromRaw>))]
 public sealed record class PaymentProvider : JsonModel
 {
     /// <summary>
@@ -623,7 +655,7 @@ public sealed record class PaymentProvider : JsonModel
 
     public PaymentProvider() { }
 
-    public PaymentProvider(global::Orb.Models.Customers.PaymentProvider paymentProvider)
+    public PaymentProvider(PaymentProvider paymentProvider)
         : base(paymentProvider) { }
 
     public PaymentProvider(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -640,9 +672,7 @@ public sealed record class PaymentProvider : JsonModel
 #pragma warning restore CS8618
 
     /// <inheritdoc cref="PaymentProviderFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public static PaymentProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
@@ -655,12 +685,11 @@ public sealed record class PaymentProvider : JsonModel
     }
 }
 
-class PaymentProviderFromRaw : IFromRawJson<global::Orb.Models.Customers.PaymentProvider>
+class PaymentProviderFromRaw : IFromRawJson<PaymentProvider>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.PaymentProvider.FromRawUnchecked(rawData);
+    public PaymentProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaymentProvider.FromRawUnchecked(rawData);
 }
 
 /// <summary>

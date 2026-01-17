@@ -64,4 +64,18 @@ public class ExternalPriceIDUpdateParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalPriceIDUpdateParams
+        {
+            ExternalPriceID = "external_price_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        ExternalPriceIDUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

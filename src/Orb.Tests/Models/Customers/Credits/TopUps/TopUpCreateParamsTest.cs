@@ -141,6 +141,33 @@ public class TopUpCreateParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpCreateParams
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Currency = "currency",
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                NetTerms = 0,
+                Memo = "memo",
+                RequireSuccessfulPayment = true,
+            },
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Threshold = "threshold",
+            ActiveFrom = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiresAfter = 0,
+            ExpiresAfterUnit = ExpiresAfterUnit.Day,
+        };
+
+        TopUpCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class InvoiceSettingsTest : TestBase

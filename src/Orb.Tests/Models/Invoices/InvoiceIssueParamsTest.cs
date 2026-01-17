@@ -50,4 +50,14 @@ public class InvoiceIssueParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/issue"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceIssueParams { InvoiceID = "invoice_id", Synchronous = true };
+
+        InvoiceIssueParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

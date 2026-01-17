@@ -91,4 +91,23 @@ public class InvoiceLineItemCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoice_line_items"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceLineItemCreateParams
+        {
+            Amount = "12.00",
+            EndDate = "2023-09-22",
+            InvoiceID = "4khy3nwzktxv7",
+            Quantity = 1,
+            StartDate = "2023-09-22",
+            ItemID = "4khy3nwzktxv7",
+            Name = "Item Name",
+        };
+
+        InvoiceLineItemCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

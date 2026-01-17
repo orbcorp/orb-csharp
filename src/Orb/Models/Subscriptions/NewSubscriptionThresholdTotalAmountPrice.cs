@@ -77,12 +77,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : JsonModel
     /// <summary>
     /// Configuration for threshold_total_amount pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig ThresholdTotalAmountConfig
+    public required ThresholdTotalAmountConfig ThresholdTotalAmountConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>(
+            return this._rawData.GetNotNullClass<ThresholdTotalAmountConfig>(
                 "threshold_total_amount_config"
             );
         }
@@ -453,10 +453,7 @@ sealed class NewSubscriptionThresholdTotalAmountPriceModelTypeConverter
 /// Configuration for threshold_total_amount pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig,
-        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfigFromRaw
-    >)
+    typeof(JsonModelConverter<ThresholdTotalAmountConfig, ThresholdTotalAmountConfigFromRaw>)
 )]
 public sealed record class ThresholdTotalAmountConfig : JsonModel
 {
@@ -464,18 +461,18 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     /// When the quantity consumed passes a provided threshold, the configured total
     /// will be charged
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.ConsumptionTable> ConsumptionTable
+    public required IReadOnlyList<ConsumptionTable> ConsumptionTable
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.ConsumptionTable>
-            >("consumption_table");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ConsumptionTable>>(
+                "consumption_table"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.ConsumptionTable>>(
+            this._rawData.Set<ImmutableArray<ConsumptionTable>>(
                 "consumption_table",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -507,9 +504,7 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
 
     public ThresholdTotalAmountConfig() { }
 
-    public ThresholdTotalAmountConfig(
-        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig thresholdTotalAmountConfig
-    )
+    public ThresholdTotalAmountConfig(ThresholdTotalAmountConfig thresholdTotalAmountConfig)
         : base(thresholdTotalAmountConfig) { }
 
     public ThresholdTotalAmountConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -525,8 +520,8 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ThresholdTotalAmountConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
+    /// <inheritdoc cref="ThresholdTotalAmountConfigFromRaw.FromRawUnchecked"/>
+    public static ThresholdTotalAmountConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -534,33 +529,25 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public ThresholdTotalAmountConfig(
-        IReadOnlyList<global::Orb.Models.Subscriptions.ConsumptionTable> consumptionTable
-    )
+    public ThresholdTotalAmountConfig(IReadOnlyList<ConsumptionTable> consumptionTable)
         : this()
     {
         this.ConsumptionTable = consumptionTable;
     }
 }
 
-class ThresholdTotalAmountConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>
+class ThresholdTotalAmountConfigFromRaw : IFromRawJson<ThresholdTotalAmountConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
+    public ThresholdTotalAmountConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig.FromRawUnchecked(rawData);
+    ) => ThresholdTotalAmountConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ConsumptionTable,
-        global::Orb.Models.Subscriptions.ConsumptionTableFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<ConsumptionTable, ConsumptionTableFromRaw>))]
 public sealed record class ConsumptionTable : JsonModel
 {
     public required string Threshold
@@ -595,7 +582,7 @@ public sealed record class ConsumptionTable : JsonModel
 
     public ConsumptionTable() { }
 
-    public ConsumptionTable(global::Orb.Models.Subscriptions.ConsumptionTable consumptionTable)
+    public ConsumptionTable(ConsumptionTable consumptionTable)
         : base(consumptionTable) { }
 
     public ConsumptionTable(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -611,8 +598,8 @@ public sealed record class ConsumptionTable : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ConsumptionTableFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
+    /// <inheritdoc cref="ConsumptionTableFromRaw.FromRawUnchecked"/>
+    public static ConsumptionTable FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -620,12 +607,11 @@ public sealed record class ConsumptionTable : JsonModel
     }
 }
 
-class ConsumptionTableFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.ConsumptionTable>
+class ConsumptionTableFromRaw : IFromRawJson<ConsumptionTable>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.ConsumptionTable.FromRawUnchecked(rawData);
+    public ConsumptionTable FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConsumptionTable.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConverter))]

@@ -24,4 +24,14 @@ public class EventDeprecateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/events/event_id/deprecate"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new EventDeprecateParams { EventID = "event_id" };
+
+        EventDeprecateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

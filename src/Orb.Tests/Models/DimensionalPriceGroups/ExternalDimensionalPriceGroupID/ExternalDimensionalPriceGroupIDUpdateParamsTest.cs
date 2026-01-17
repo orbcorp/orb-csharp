@@ -86,4 +86,19 @@ public class ExternalDimensionalPriceGroupIDUpdateParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalDimensionalPriceGroupIDUpdateParams
+        {
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            ExternalDimensionalPriceGroupIDValue = "external_dimensional_price_group_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        ExternalDimensionalPriceGroupIDUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

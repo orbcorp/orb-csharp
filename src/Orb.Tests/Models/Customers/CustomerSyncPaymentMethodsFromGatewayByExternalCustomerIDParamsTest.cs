@@ -35,4 +35,17 @@ public class CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParamsTest
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

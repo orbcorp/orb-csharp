@@ -14,8 +14,12 @@ namespace Orb.Models.Customers.BalanceTransactions;
 /// <summary>
 /// Creates an immutable balance transaction that updates the customer's balance
 /// and returns back the newly created transaction.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class BalanceTransactionCreateParams : ParamsBase
+public record class BalanceTransactionCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -62,6 +66,8 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
 
     public BalanceTransactionCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BalanceTransactionCreateParams(
         BalanceTransactionCreateParams balanceTransactionCreateParams
     )
@@ -71,6 +77,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
 
         this._rawBodyData = new(balanceTransactionCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public BalanceTransactionCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -111,6 +118,30 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["CustomerID"] = this.CustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(BalanceTransactionCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -139,9 +170,14 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Customers.BalanceTransactions.TypeConverter))]
+[JsonConverter(typeof(TypeConverter))]
 public enum Type
 {
     Increment,

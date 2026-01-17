@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0 (2026-01-17)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/orbcorp/orb-csharp/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([3bd6cd6](https://github.com/orbcorp/orb-csharp/commit/3bd6cd6413b421ff644eee7f195e6fe0af47c56c))
+* **client:** add `ToString` to `ApiEnum` ([551d3d9](https://github.com/orbcorp/orb-csharp/commit/551d3d983edbc2dd99c0143b2779146fa00ae80f))
+* **client:** add Equals and ToString to params ([8a87021](https://github.com/orbcorp/orb-csharp/commit/8a870218bc1eebf9e4430ed69fedc206e7b9f25c))
+
+
+### Chores
+
+* **internal:** simplify imports ([79d3471](https://github.com/orbcorp/orb-csharp/commit/79d34710f779ca309e84faddc3e28bfa5b9c73bc))
+* **internal:** update `actions/checkout` version ([5849a89](https://github.com/orbcorp/orb-csharp/commit/5849a89be72919068177e2830142c600a0bb7aeb))
+
 ## 0.1.0 (2026-01-14)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/orbcorp/orb-csharp/compare/v0.0.1...v0.1.0)

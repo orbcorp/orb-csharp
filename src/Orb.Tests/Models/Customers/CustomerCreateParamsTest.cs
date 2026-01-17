@@ -315,6 +315,90 @@ public class CustomerCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/customers"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerCreateParams
+        {
+            Email = "dev@stainless.com",
+            Name = "x",
+            AccountingSyncConfiguration = new()
+            {
+                AccountingProviders =
+                [
+                    new()
+                    {
+                        ExternalProviderID = "external_provider_id",
+                        ProviderType = "provider_type",
+                    },
+                ],
+                Excluded = true,
+            },
+            AdditionalEmails = ["dev@stainless.com"],
+            AutoCollection = true,
+            AutoIssuance = true,
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            Currency = "currency",
+            EmailDelivery = true,
+            ExternalCustomerID = "external_customer_id",
+            Hierarchy = new()
+            {
+                ChildCustomerIds = ["string"],
+                ParentCustomerID = "parent_customer_id",
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
+            PaymentProvider = CustomerCreateParamsPaymentProvider.Quickbooks,
+            PaymentProviderID = "payment_provider_id",
+            ReportingConfiguration = new(true),
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            TaxConfiguration = new NewAvalaraTaxConfiguration()
+            {
+                TaxExempt = true,
+                TaxProvider = TaxProvider.Avalara,
+                AutomaticTaxEnabled = true,
+                TaxExemptionCode = "tax_exemption_code",
+            },
+            TaxID = new()
+            {
+                Country = Models::Country.Ad,
+                Type = Models::CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+            Timezone = "timezone",
+        };
+
+        CustomerCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class PaymentConfigurationTest : TestBase

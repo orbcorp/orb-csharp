@@ -49,12 +49,12 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : JsonModel
     /// <summary>
     /// Configuration for max_group_tiered_package pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig MaxGroupTieredPackageConfig
+    public required MaxGroupTieredPackageConfig MaxGroupTieredPackageConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>(
+            return this._rawData.GetNotNullClass<MaxGroupTieredPackageConfig>(
                 "max_group_tiered_package_config"
             );
         }
@@ -406,10 +406,7 @@ sealed class NewSubscriptionMaxGroupTieredPackagePriceCadenceConverter
 /// Configuration for max_group_tiered_package pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig,
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigFromRaw
-    >)
+    typeof(JsonModelConverter<MaxGroupTieredPackageConfig, MaxGroupTieredPackageConfigFromRaw>)
 )]
 public sealed record class MaxGroupTieredPackageConfig : JsonModel
 {
@@ -439,20 +436,21 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier> Tiers
+    public required IReadOnlyList<MaxGroupTieredPackageConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
-            >("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<MaxGroupTieredPackageConfigTier>>(
+                "tiers"
+            );
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<MaxGroupTieredPackageConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -469,9 +467,7 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
 
     public MaxGroupTieredPackageConfig() { }
 
-    public MaxGroupTieredPackageConfig(
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig maxGroupTieredPackageConfig
-    )
+    public MaxGroupTieredPackageConfig(MaxGroupTieredPackageConfig maxGroupTieredPackageConfig)
         : base(maxGroupTieredPackageConfig) { }
 
     public MaxGroupTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -487,8 +483,8 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig FromRawUnchecked(
+    /// <inheritdoc cref="MaxGroupTieredPackageConfigFromRaw.FromRawUnchecked"/>
+    public static MaxGroupTieredPackageConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -496,13 +492,12 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
     }
 }
 
-class MaxGroupTieredPackageConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>
+class MaxGroupTieredPackageConfigFromRaw : IFromRawJson<MaxGroupTieredPackageConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig FromRawUnchecked(
+    public MaxGroupTieredPackageConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
+    ) => MaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -510,8 +505,8 @@ class MaxGroupTieredPackageConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier,
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTierFromRaw
+        MaxGroupTieredPackageConfigTier,
+        MaxGroupTieredPackageConfigTierFromRaw
     >)
 )]
 public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
@@ -549,7 +544,7 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
     public MaxGroupTieredPackageConfigTier() { }
 
     public MaxGroupTieredPackageConfigTier(
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
+        MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
     )
         : base(maxGroupTieredPackageConfigTier) { }
 
@@ -566,8 +561,8 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="MaxGroupTieredPackageConfigTierFromRaw.FromRawUnchecked"/>
+    public static MaxGroupTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -575,13 +570,12 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
     }
 }
 
-class MaxGroupTieredPackageConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
+class MaxGroupTieredPackageConfigTierFromRaw : IFromRawJson<MaxGroupTieredPackageConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier FromRawUnchecked(
+    public MaxGroupTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
+    ) => MaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

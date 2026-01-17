@@ -47,18 +47,16 @@ public sealed record class InvoiceLineItemCreateResponse : JsonModel
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.InvoiceLineItems.Adjustment> Adjustments
+    public required IReadOnlyList<Adjustment> Adjustments
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.InvoiceLineItems.Adjustment>
-            >("adjustments");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Adjustment>>("adjustments");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.InvoiceLineItems.Adjustment>>(
+            this._rawData.Set<ImmutableArray<Adjustment>>(
                 "adjustments",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -210,18 +208,16 @@ public sealed record class InvoiceLineItemCreateResponse : JsonModel
     /// For complex pricing structures, the line item can be broken down further
     /// in `sub_line_items`.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.InvoiceLineItems.SubLineItem> SubLineItems
+    public required IReadOnlyList<SubLineItem> SubLineItems
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.InvoiceLineItems.SubLineItem>
-            >("sub_line_items");
+            return this._rawData.GetNotNullStruct<ImmutableArray<SubLineItem>>("sub_line_items");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.InvoiceLineItems.SubLineItem>>(
+            this._rawData.Set<ImmutableArray<SubLineItem>>(
                 "sub_line_items",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -348,7 +344,7 @@ class InvoiceLineItemCreateResponseFromRaw : IFromRawJson<InvoiceLineItemCreateR
     ) => InvoiceLineItemCreateResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.AdjustmentConverter))]
+[JsonConverter(typeof(AdjustmentConverter))]
 public record class Adjustment : ModelBase
 {
     public object? Value { get; } = null;
@@ -678,25 +674,17 @@ public record class Adjustment : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
-        MonetaryUsageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryUsageDiscountAdjustment value) => new(value);
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
-        MonetaryAmountDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryAmountDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
-        MonetaryPercentageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
-        MonetaryMinimumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryMinimumAdjustment value) => new(value);
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.Adjustment(
-        MonetaryMaximumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(MonetaryMaximumAdjustment value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -723,7 +711,7 @@ public record class Adjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.InvoiceLineItems.Adjustment? other)
+    public virtual bool Equals(Adjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -737,9 +725,9 @@ public record class Adjustment : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineItems.Adjustment>
+sealed class AdjustmentConverter : JsonConverter<Adjustment>
 {
-    public override global::Orb.Models.InvoiceLineItems.Adjustment? Read(
+    public override Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -871,14 +859,14 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
             }
             default:
             {
-                return new global::Orb.Models.InvoiceLineItems.Adjustment(element);
+                return new Adjustment(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.InvoiceLineItems.Adjustment value,
+        Adjustment value,
         JsonSerializerOptions options
     )
     {
@@ -886,7 +874,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.SubLineItemConverter))]
+[JsonConverter(typeof(SubLineItemConverter))]
 public record class SubLineItem : ModelBase
 {
     public object? Value { get; } = null;
@@ -1107,17 +1095,11 @@ public record class SubLineItem : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.SubLineItem(
-        MatrixSubLineItem value
-    ) => new(value);
+    public static implicit operator SubLineItem(MatrixSubLineItem value) => new(value);
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.SubLineItem(
-        TierSubLineItem value
-    ) => new(value);
+    public static implicit operator SubLineItem(TierSubLineItem value) => new(value);
 
-    public static implicit operator global::Orb.Models.InvoiceLineItems.SubLineItem(
-        OtherSubLineItem value
-    ) => new(value);
+    public static implicit operator SubLineItem(OtherSubLineItem value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1142,7 +1124,7 @@ public record class SubLineItem : ModelBase
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.InvoiceLineItems.SubLineItem? other)
+    public virtual bool Equals(SubLineItem? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1156,9 +1138,9 @@ public record class SubLineItem : ModelBase
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
-sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLineItems.SubLineItem>
+sealed class SubLineItemConverter : JsonConverter<SubLineItem>
 {
-    public override global::Orb.Models.InvoiceLineItems.SubLineItem? Read(
+    public override SubLineItem? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1245,14 +1227,14 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLine
             }
             default:
             {
-                return new global::Orb.Models.InvoiceLineItems.SubLineItem(element);
+                return new SubLineItem(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.InvoiceLineItems.SubLineItem value,
+        SubLineItem value,
         JsonSerializerOptions options
     )
     {

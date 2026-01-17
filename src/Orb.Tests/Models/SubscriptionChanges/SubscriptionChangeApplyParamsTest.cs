@@ -102,4 +102,23 @@ public class SubscriptionChangeApplyParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionChangeApplyParams
+        {
+            SubscriptionChangeID = "subscription_change_id",
+            Description = "description",
+            MarkAsPaid = true,
+            PaymentExternalID = "payment_external_id",
+            PaymentNotes = "payment_notes",
+            PaymentReceivedDate = "2019-12-27",
+            PreviouslyCollectedAmount = "previously_collected_amount",
+        };
+
+        SubscriptionChangeApplyParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

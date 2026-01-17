@@ -86,4 +86,21 @@ public class MetricCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/metrics"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new MetricCreateParams
+        {
+            Description = "Sum of bytes downloaded in fast mode",
+            ItemID = "item_id",
+            Name = "Bytes downloaded",
+            Sql = "SELECT sum(bytes_downloaded) FROM events WHERE download_speed = 'fast'",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        MetricCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -78,6 +78,22 @@ public class BalanceTransactionCreateParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BalanceTransactions::BalanceTransactionCreateParams
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Type = BalanceTransactions::Type.Increment,
+            Description = "description",
+        };
+
+        BalanceTransactions::BalanceTransactionCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class TypeTest : TestBase

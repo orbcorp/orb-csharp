@@ -35,4 +35,17 @@ public class CustomerSyncPaymentMethodsFromGatewayParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerSyncPaymentMethodsFromGatewayParams
+        {
+            CustomerID = "customer_id",
+        };
+
+        CustomerSyncPaymentMethodsFromGatewayParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

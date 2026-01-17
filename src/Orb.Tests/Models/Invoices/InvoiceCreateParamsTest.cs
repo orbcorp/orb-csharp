@@ -329,6 +329,56 @@ public class InvoiceCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Invoices::InvoiceCreateParams
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = Invoices::ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+            CustomerID = "4khy3nwzktxv7",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            DueDate = "2023-09-22",
+            ExternalCustomerID = "external-customer-id",
+            Memo = "An optional memo for my invoice.",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+            WillAutoIssue = false,
+        };
+
+        Invoices::InvoiceCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class LineItemTest : TestBase

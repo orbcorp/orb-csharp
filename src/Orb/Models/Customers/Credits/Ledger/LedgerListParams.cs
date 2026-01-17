@@ -77,8 +77,12 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// <para>## Amendment When credits are added to a customer's balance as a result
 /// of a correction, this entry will be added to the ledger to indicate the adjustment
 /// of credits.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class LedgerListParams : ParamsBase
+public record class LedgerListParams : ParamsBase
 {
     public string? CustomerID { get; init; }
 
@@ -204,11 +208,14 @@ public sealed record class LedgerListParams : ParamsBase
 
     public LedgerListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerListParams(LedgerListParams ledgerListParams)
         : base(ledgerListParams)
     {
         this.CustomerID = ledgerListParams.CustomerID;
     }
+#pragma warning restore CS8618
 
     public LedgerListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -243,6 +250,28 @@ public sealed record class LedgerListParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["CustomerID"] = this.CustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(LedgerListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -261,6 +290,11 @@ public sealed record class LedgerListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

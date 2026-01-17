@@ -99,6 +99,29 @@ public class ItemUpdateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/items/item_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ItemUpdateParams
+        {
+            ItemID = "item_id",
+            ExternalConnections =
+            [
+                new()
+                {
+                    ExternalConnectionName = ExternalConnectionName.Stripe,
+                    ExternalEntityID = "external_entity_id",
+                },
+            ],
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            Name = "name",
+        };
+
+        ItemUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ExternalConnectionTest : TestBase

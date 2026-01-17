@@ -35,4 +35,17 @@ public class SubscriptionChangeCancelParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionChangeCancelParams
+        {
+            SubscriptionChangeID = "subscription_change_id",
+        };
+
+        SubscriptionChangeCancelParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

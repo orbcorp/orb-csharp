@@ -125,6 +125,48 @@ public class LedgerCreateEntryParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Ledger::LedgerCreateEntryParams
+        {
+            CustomerID = "customer_id",
+            Body = new Ledger::Increment()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Ledger::Field.ItemID,
+                        Operator = Ledger::Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+        };
+
+        Ledger::LedgerCreateEntryParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class BodyTest : TestBase

@@ -92,6 +92,23 @@ public class CostListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CostListParams
+        {
+            CustomerID = "customer_id",
+            Currency = "currency",
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            ViewMode = ViewMode.Periodic,
+        };
+
+        CostListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ViewModeTest : TestBase

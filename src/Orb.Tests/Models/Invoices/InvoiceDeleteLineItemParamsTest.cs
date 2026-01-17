@@ -39,4 +39,18 @@ public class InvoiceDeleteLineItemParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceDeleteLineItemParams
+        {
+            InvoiceID = "invoice_id",
+            LineItemID = "line_item_id",
+        };
+
+        InvoiceDeleteLineItemParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

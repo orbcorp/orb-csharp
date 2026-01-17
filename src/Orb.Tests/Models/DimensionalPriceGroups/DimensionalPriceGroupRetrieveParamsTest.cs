@@ -35,4 +35,17 @@ public class DimensionalPriceGroupRetrieveParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new DimensionalPriceGroupRetrieveParams
+        {
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+
+        DimensionalPriceGroupRetrieveParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
