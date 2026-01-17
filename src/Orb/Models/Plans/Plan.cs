@@ -212,12 +212,12 @@ public sealed record class Plan : JsonModel
     }
 
     [System::Obsolete("deprecated")]
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Models::Minimum>("minimum");
+            return this._rawData.GetNullableClass<Minimum>("minimum");
         }
         init { this._rawData.Set("minimum", value); }
     }
@@ -1139,12 +1139,12 @@ public sealed record class PlanPlanPhase : JsonModel
         init { this._rawData.Set("maximum_amount", value); }
     }
 
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Models::Minimum>("minimum");
+            return this._rawData.GetNullableClass<Minimum>("minimum");
         }
         init { this._rawData.Set("minimum", value); }
     }
