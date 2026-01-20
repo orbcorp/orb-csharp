@@ -231,33 +231,20 @@ public record class InvoiceListSummaryParams : ParamsBase
         }
     }
 
-    public ApiEnum<string, InvoiceListSummaryParamsStatus>? Status
-    {
-        get
-        {
-            this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<
-                ApiEnum<string, InvoiceListSummaryParamsStatus>
-            >("status");
-        }
-        init { this._rawQueryData.Set("status", value); }
-    }
-
-    public IReadOnlyList<ApiEnum<string, StatusModel>>? StatusValue
+    public IReadOnlyList<ApiEnum<string, InvoiceListSummaryParamsStatus>>? Status
     {
         get
         {
             this._rawQueryData.Freeze();
             return this._rawQueryData.GetNullableStruct<
-                ImmutableArray<ApiEnum<string, StatusModel>>
+                ImmutableArray<ApiEnum<string, InvoiceListSummaryParamsStatus>>
             >("status");
         }
         init
         {
-            this._rawQueryData.Set<ImmutableArray<ApiEnum<string, StatusModel>>?>(
-                "status",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
+            this._rawQueryData.Set<ImmutableArray<
+                ApiEnum<string, InvoiceListSummaryParamsStatus>
+            >?>("status", value == null ? null : ImmutableArray.ToImmutableArray(value));
         }
     }
 
@@ -444,59 +431,6 @@ sealed class InvoiceListSummaryParamsStatusConverter : JsonConverter<InvoiceList
                 InvoiceListSummaryParamsStatus.Paid => "paid",
                 InvoiceListSummaryParamsStatus.Synced => "synced",
                 InvoiceListSummaryParamsStatus.Void => "void",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(StatusModelConverter))]
-public enum StatusModel
-{
-    Draft,
-    Issued,
-    Paid,
-    Synced,
-    Void,
-}
-
-sealed class StatusModelConverter : JsonConverter<StatusModel>
-{
-    public override StatusModel Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "draft" => StatusModel.Draft,
-            "issued" => StatusModel.Issued,
-            "paid" => StatusModel.Paid,
-            "synced" => StatusModel.Synced,
-            "void" => StatusModel.Void,
-            _ => (StatusModel)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        StatusModel value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                StatusModel.Draft => "draft",
-                StatusModel.Issued => "issued",
-                StatusModel.Paid => "paid",
-                StatusModel.Synced => "synced",
-                StatusModel.Void => "void",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
