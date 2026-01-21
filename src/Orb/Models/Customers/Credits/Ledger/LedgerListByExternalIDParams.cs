@@ -31,11 +31,8 @@ namespace Orb.Models.Customers.Credits.Ledger;
 ///
 /// <para>As usage for a customer is reported into Orb, credits may be deducted according
 /// to the customer's plan configuration. An automated deduction of this type will
-/// result in a ledger entry, also with a starting and ending balance. In order to
-/// provide better tracing capabilities for automatic deductions, Orb always associates
-/// each automatic deduction with the `event_id` at the time of ingestion, used to
-/// pinpoint _why_ credit deduction took place and to ensure that credits are never
-/// deducted without an associated usage event.</para>
+/// result in a ledger entry, also with a starting and ending balance. Each day's
+/// usage for a particular price, invoice, and block will be grouped into a single entry.</para>
 ///
 /// <para>By default, Orb uses an algorithm that automatically deducts from the *soonest
 /// expiring credit block* first in order to ensure that all credits are utilized
