@@ -91,6 +91,21 @@ public class EvaluatePriceGroupTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EvaluatePriceGroup
+        {
+            Amount = "amount",
+            GroupingValues = ["string"],
+            Quantity = 0,
+        };
+
+        EvaluatePriceGroup copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupingValueTest : TestBase

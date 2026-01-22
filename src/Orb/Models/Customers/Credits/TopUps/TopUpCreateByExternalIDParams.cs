@@ -352,10 +352,13 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : JsonMo
 
     public TopUpCreateByExternalIDParamsInvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpCreateByExternalIDParamsInvoiceSettings(
         TopUpCreateByExternalIDParamsInvoiceSettings topUpCreateByExternalIDParamsInvoiceSettings
     )
         : base(topUpCreateByExternalIDParamsInvoiceSettings) { }
+#pragma warning restore CS8618
 
     public TopUpCreateByExternalIDParamsInvoiceSettings(
         IReadOnlyDictionary<string, JsonElement> rawData

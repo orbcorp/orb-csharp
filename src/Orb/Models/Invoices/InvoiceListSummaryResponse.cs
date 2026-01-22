@@ -628,8 +628,11 @@ public sealed record class InvoiceListSummaryResponse : JsonModel
 
     public InvoiceListSummaryResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryResponse(InvoiceListSummaryResponse invoiceListSummaryResponse)
         : base(invoiceListSummaryResponse) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -741,10 +744,13 @@ public sealed record class InvoiceListSummaryResponseAutoCollection : JsonModel
 
     public InvoiceListSummaryResponseAutoCollection() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryResponseAutoCollection(
         InvoiceListSummaryResponseAutoCollection invoiceListSummaryResponseAutoCollection
     )
         : base(invoiceListSummaryResponseAutoCollection) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryResponseAutoCollection(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -878,10 +884,13 @@ public sealed record class InvoiceListSummaryResponseCreditNote : JsonModel
 
     public InvoiceListSummaryResponseCreditNote() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryResponseCreditNote(
         InvoiceListSummaryResponseCreditNote invoiceListSummaryResponseCreditNote
     )
         : base(invoiceListSummaryResponseCreditNote) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryResponseCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1065,10 +1074,13 @@ public sealed record class InvoiceListSummaryResponseCustomerBalanceTransaction 
 
     public InvoiceListSummaryResponseCustomerBalanceTransaction() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryResponseCustomerBalanceTransaction(
         InvoiceListSummaryResponseCustomerBalanceTransaction invoiceListSummaryResponseCustomerBalanceTransaction
     )
         : base(invoiceListSummaryResponseCustomerBalanceTransaction) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryResponseCustomerBalanceTransaction(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1406,10 +1418,13 @@ public sealed record class InvoiceListSummaryResponsePaymentAttempt : JsonModel
 
     public InvoiceListSummaryResponsePaymentAttempt() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryResponsePaymentAttempt(
         InvoiceListSummaryResponsePaymentAttempt invoiceListSummaryResponsePaymentAttempt
     )
         : base(invoiceListSummaryResponsePaymentAttempt) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryResponsePaymentAttempt(
         IReadOnlyDictionary<string, JsonElement> rawData

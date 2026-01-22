@@ -985,6 +985,60 @@ public class PriceEvaluationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEvaluation
+        {
+            ExternalPriceID = "external_price_id",
+            Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            Price = new Models::NewFloatingUnitPrice()
+            {
+                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Currency = "currency",
+                ItemID = "item_id",
+                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            },
+            PriceID = "price_id",
+        };
+
+        PriceEvaluation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceTest : TestBase
@@ -4712,6 +4766,59 @@ public class PriceBulkWithFiltersTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceBulkWithFilters
+        {
+            BulkWithFiltersConfig = new()
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            Cadence = PriceBulkWithFiltersCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PriceBulkWithFilters copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
@@ -4830,6 +4937,24 @@ public class PriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfig
+        {
+            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        PriceBulkWithFiltersBulkWithFiltersConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
@@ -4903,6 +5028,20 @@ public class PriceBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
+
+        PriceBulkWithFiltersBulkWithFiltersConfigFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -5027,6 +5166,20 @@ public class PriceBulkWithFiltersBulkWithFiltersConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        PriceBulkWithFiltersBulkWithFiltersConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -5684,6 +5837,57 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceGroupedWithMinMaxThresholds
+        {
+            Cadence = PriceGroupedWithMinMaxThresholdsCadence.Annual,
+            Currency = "currency",
+            GroupedWithMinMaxThresholdsConfig = new()
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PriceGroupedWithMinMaxThresholds copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceGroupedWithMinMaxThresholdsCadenceTest : TestBase
@@ -5835,6 +6039,22 @@ public class PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigTe
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+        {
+            GroupingKey = "x",
+            MaximumCharge = "maximum_charge",
+            MinimumCharge = "minimum_charge",
+            PerUnitRate = "per_unit_rate",
+        };
+
+        PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -6428,6 +6648,57 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceCumulativeGroupedAllocation
+        {
+            Cadence = PriceCumulativeGroupedAllocationCadence.Annual,
+            CumulativeGroupedAllocationConfig = new()
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            },
+            Currency = "currency",
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PriceCumulativeGroupedAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceCumulativeGroupedAllocationCadenceTest : TestBase
@@ -6579,6 +6850,22 @@ public class PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigTe
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+        {
+            CumulativeAllocation = "cumulative_allocation",
+            GroupAllocation = "group_allocation",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -7098,6 +7385,51 @@ public class PricePercentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PricePercent
+        {
+            Cadence = PricePercentCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PricePercent copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PricePercentCadenceTest : TestBase
@@ -7215,6 +7547,16 @@ public class PricePercentPercentConfigTest : TestBase
         var model = new PricePercentPercentConfig { Percent = 0 };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PricePercentPercentConfig { Percent = 0 };
+
+        PricePercentPercentConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -7778,6 +8120,56 @@ public class PriceEventOutputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEventOutput
+        {
+            Cadence = PriceEventOutputCadence.Annual,
+            Currency = "currency",
+            EventOutputConfig = new()
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PriceEventOutput copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceEventOutputCadenceTest : TestBase
@@ -7973,6 +8365,21 @@ public class PriceEventOutputEventOutputConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEventOutputEventOutputConfig
+        {
+            UnitRatingKey = "x",
+            DefaultUnitRate = "default_unit_rate",
+            GroupingKey = "grouping_key",
+        };
+
+        PriceEventOutputEventOutputConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

@@ -304,10 +304,13 @@ public sealed record class NewPlanThresholdTotalAmountPrice : JsonModel
 
     public NewPlanThresholdTotalAmountPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPrice(
         NewPlanThresholdTotalAmountPrice newPlanThresholdTotalAmountPrice
     )
         : base(newPlanThresholdTotalAmountPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanThresholdTotalAmountPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -503,10 +506,13 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
         NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig newPlanThresholdTotalAmountPriceThresholdTotalAmountConfig
     )
         : base(newPlanThresholdTotalAmountPriceThresholdTotalAmountConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -596,10 +602,13 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
         NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable newPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
     )
         : base(newPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable) { }
+#pragma warning restore CS8618
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
         IReadOnlyDictionary<string, JsonElement> rawData

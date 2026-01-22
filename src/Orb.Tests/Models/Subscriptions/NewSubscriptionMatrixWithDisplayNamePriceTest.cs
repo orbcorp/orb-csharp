@@ -608,6 +608,66 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
+        {
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            ItemID = "item_id",
+            MatrixWithDisplayNameConfig = new()
+            {
+                Dimension = "dimension",
+                UnitAmounts =
+                [
+                    new()
+                    {
+                        DimensionValue = "dimension_value",
+                        DisplayName = "display_name",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+            },
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewSubscriptionMatrixWithDisplayNamePriceCadenceTest : TestBase
@@ -804,6 +864,28 @@ public class MatrixWithDisplayNameConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::MatrixWithDisplayNameConfig
+        {
+            Dimension = "dimension",
+            UnitAmounts =
+            [
+                new()
+                {
+                    DimensionValue = "dimension_value",
+                    DisplayName = "display_name",
+                    UnitAmount = "unit_amount",
+                },
+            ],
+        };
+
+        Subscriptions::MatrixWithDisplayNameConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixWithDisplayNameConfigUnitAmountTest : TestBase
@@ -885,6 +967,21 @@ public class MatrixWithDisplayNameConfigUnitAmountTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::MatrixWithDisplayNameConfigUnitAmount
+        {
+            DimensionValue = "dimension_value",
+            DisplayName = "display_name",
+            UnitAmount = "unit_amount",
+        };
+
+        Subscriptions::MatrixWithDisplayNameConfigUnitAmount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

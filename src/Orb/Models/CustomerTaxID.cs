@@ -152,8 +152,11 @@ public sealed record class CustomerTaxID : JsonModel
 
     public CustomerTaxID() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerTaxID(CustomerTaxID customerTaxID)
         : base(customerTaxID) { }
+#pragma warning restore CS8618
 
     public CustomerTaxID(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -113,6 +113,22 @@ public class MatrixWithAllocationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithAllocationConfig
+        {
+            Allocation = "allocation",
+            DefaultUnitAmount = "default_unit_amount",
+            Dimensions = ["string"],
+            MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+        };
+
+        MatrixWithAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixWithAllocationConfigMatrixValueTest : TestBase
@@ -192,5 +208,19 @@ public class MatrixWithAllocationConfigMatrixValueTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithAllocationConfigMatrixValue
+        {
+            DimensionValues = ["string"],
+            UnitAmount = "unit_amount",
+        };
+
+        MatrixWithAllocationConfigMatrixValue copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

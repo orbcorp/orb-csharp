@@ -51,10 +51,13 @@ public sealed record class SharedUnitConversionRateConfig : JsonModel
 
     public SharedUnitConversionRateConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedUnitConversionRateConfig(
         SharedUnitConversionRateConfig sharedUnitConversionRateConfig
     )
         : base(sharedUnitConversionRateConfig) { }
+#pragma warning restore CS8618
 
     public SharedUnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

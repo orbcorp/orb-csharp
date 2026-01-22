@@ -130,8 +130,11 @@ public sealed record class Item : JsonModel
 
     public Item() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Item(Item item)
         : base(item) { }
+#pragma warning restore CS8618
 
     public Item(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -207,8 +210,11 @@ public sealed record class ItemExternalConnection : JsonModel
 
     public ItemExternalConnection() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ItemExternalConnection(ItemExternalConnection itemExternalConnection)
         : base(itemExternalConnection) { }
+#pragma warning restore CS8618
 
     public ItemExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -103,4 +103,22 @@ public class AddressTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Address
+        {
+            City = "city",
+            Country = "country",
+            Line1 = "line1",
+            Line2 = "line2",
+            PostalCode = "postal_code",
+            State = "state",
+        };
+
+        Address copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

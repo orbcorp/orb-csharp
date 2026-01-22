@@ -377,6 +377,22 @@ public class TopUpCreateByExternalIDParamsInvoiceSettingsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
+        {
+            AutoCollection = true,
+            NetTerms = 0,
+            Memo = "memo",
+            RequireSuccessfulPayment = true,
+        };
+
+        TopUpCreateByExternalIDParamsInvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TopUpCreateByExternalIDParamsExpiresAfterUnitTest : TestBase

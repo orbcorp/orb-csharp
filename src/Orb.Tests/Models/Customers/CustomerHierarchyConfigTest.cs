@@ -175,4 +175,18 @@ public class CustomerHierarchyConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerHierarchyConfig
+        {
+            ChildCustomerIds = ["string"],
+            ParentCustomerID = "parent_customer_id",
+        };
+
+        CustomerHierarchyConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

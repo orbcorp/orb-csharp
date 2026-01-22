@@ -53,8 +53,11 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
 
     public FixedFeeQuantityTransition() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public FixedFeeQuantityTransition(FixedFeeQuantityTransition fixedFeeQuantityTransition)
         : base(fixedFeeQuantityTransition) { }
+#pragma warning restore CS8618
 
     public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {

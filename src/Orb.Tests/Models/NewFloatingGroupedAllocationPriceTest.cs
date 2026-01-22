@@ -501,6 +501,57 @@ public class NewFloatingGroupedAllocationPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingGroupedAllocationPrice
+        {
+            Cadence = NewFloatingGroupedAllocationPriceCadence.Annual,
+            Currency = "currency",
+            GroupedAllocationConfig = new()
+            {
+                Allocation = "allocation",
+                GroupingKey = "x",
+                OverageUnitRate = "overage_unit_rate",
+            },
+            ItemID = "item_id",
+            ModelType = NewFloatingGroupedAllocationPriceModelType.GroupedAllocation,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingGroupedAllocationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewFloatingGroupedAllocationPriceCadenceTest : TestBase
@@ -642,6 +693,21 @@ public class GroupedAllocationConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedAllocationConfig
+        {
+            Allocation = "allocation",
+            GroupingKey = "x",
+            OverageUnitRate = "overage_unit_rate",
+        };
+
+        GroupedAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

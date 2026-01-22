@@ -379,11 +379,14 @@ public sealed record class Plan : JsonModel
     )]
     public Plan() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Plan(Plan plan)
         : base(plan) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -1030,8 +1033,11 @@ public sealed record class BasePlan : JsonModel
 
     public BasePlan() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BasePlan(BasePlan basePlan)
         : base(basePlan) { }
+#pragma warning restore CS8618
 
     public BasePlan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1200,8 +1206,11 @@ public sealed record class PlanPlanPhase : JsonModel
 
     public PlanPlanPhase() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanPlanPhase(PlanPlanPhase planPlanPhase)
         : base(planPlanPhase) { }
+#pragma warning restore CS8618
 
     public PlanPlanPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1326,8 +1335,11 @@ public sealed record class Product : JsonModel
 
     public Product() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Product(Product product)
         : base(product) { }
+#pragma warning restore CS8618
 
     public Product(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1437,8 +1449,11 @@ public sealed record class TrialConfig : JsonModel
 
     public TrialConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TrialConfig(TrialConfig trialConfig)
         : base(trialConfig) { }
+#pragma warning restore CS8618
 
     public TrialConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

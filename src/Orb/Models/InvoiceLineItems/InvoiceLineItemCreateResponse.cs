@@ -309,10 +309,13 @@ public sealed record class InvoiceLineItemCreateResponse : JsonModel
 
     public InvoiceLineItemCreateResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceLineItemCreateResponse(
         InvoiceLineItemCreateResponse invoiceLineItemCreateResponse
     )
         : base(invoiceLineItemCreateResponse) { }
+#pragma warning restore CS8618
 
     public InvoiceLineItemCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

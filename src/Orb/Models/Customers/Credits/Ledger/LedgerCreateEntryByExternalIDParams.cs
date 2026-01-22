@@ -1012,10 +1012,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
         this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyIncrement(
         LedgerCreateEntryByExternalIDParamsBodyIncrement ledgerCreateEntryByExternalIDParamsBodyIncrement
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyIncrement) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrement(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1135,10 +1138,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
         LedgerCreateEntryByExternalIDParamsBodyIncrementFilter ledgerCreateEntryByExternalIDParamsBodyIncrementFilter
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyIncrementFilter) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1412,10 +1418,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings ledgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2074,10 +2083,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
         this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyDecrement(
         LedgerCreateEntryByExternalIDParamsBodyDecrement ledgerCreateEntryByExternalIDParamsBodyDecrement
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyDecrement) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyDecrement(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2271,10 +2283,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
         this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
         LedgerCreateEntryByExternalIDParamsBodyExpirationChange ledgerCreateEntryByExternalIDParamsBodyExpirationChange
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyExpirationChange) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2450,10 +2465,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
         this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyVoid(
         LedgerCreateEntryByExternalIDParamsBodyVoid ledgerCreateEntryByExternalIDParamsBodyVoid
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyVoid) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyVoid(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2649,10 +2667,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
         this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyAmendment(
         LedgerCreateEntryByExternalIDParamsBodyAmendment ledgerCreateEntryByExternalIDParamsBodyAmendment
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyAmendment) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyAmendment(
         IReadOnlyDictionary<string, JsonElement> rawData

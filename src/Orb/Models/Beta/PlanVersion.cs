@@ -117,8 +117,11 @@ public sealed record class PlanVersion : JsonModel
 
     public PlanVersion() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanVersion(PlanVersion planVersion)
         : base(planVersion) { }
+#pragma warning restore CS8618
 
     public PlanVersion(IReadOnlyDictionary<string, JsonElement> rawData)
     {

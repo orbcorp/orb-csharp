@@ -64,10 +64,13 @@ public sealed record class FixedFeeQuantityScheduleEntry : JsonModel
 
     public FixedFeeQuantityScheduleEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public FixedFeeQuantityScheduleEntry(
         FixedFeeQuantityScheduleEntry fixedFeeQuantityScheduleEntry
     )
         : base(fixedFeeQuantityScheduleEntry) { }
+#pragma warning restore CS8618
 
     public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -120,8 +120,11 @@ public sealed record class ChangedSubscriptionResources : JsonModel
 
     public ChangedSubscriptionResources() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ChangedSubscriptionResources(ChangedSubscriptionResources changedSubscriptionResources)
         : base(changedSubscriptionResources) { }
+#pragma warning restore CS8618
 
     public ChangedSubscriptionResources(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -893,9 +896,12 @@ public sealed record class CreatedInvoice : JsonModel
     [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice(CreatedInvoice createdInvoice)
         : base(createdInvoice) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -1001,8 +1007,11 @@ public sealed record class AutoCollection : JsonModel
 
     public AutoCollection() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AutoCollection(AutoCollection autoCollection)
         : base(autoCollection) { }
+#pragma warning restore CS8618
 
     public AutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1125,8 +1134,11 @@ public sealed record class CreditNote : JsonModel
 
     public CreditNote() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNote(CreditNote creditNote)
         : base(creditNote) { }
+#pragma warning restore CS8618
 
     public CreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1296,8 +1308,11 @@ public sealed record class CustomerBalanceTransaction : JsonModel
 
     public CustomerBalanceTransaction() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerBalanceTransaction(CustomerBalanceTransaction customerBalanceTransaction)
         : base(customerBalanceTransaction) { }
+#pragma warning restore CS8618
 
     public CustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1783,8 +1798,11 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LineItem(LineItem lineItem)
         : base(lineItem) { }
+#pragma warning restore CS8618
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2835,8 +2853,11 @@ public sealed record class PaymentAttempt : JsonModel
 
     public PaymentAttempt() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PaymentAttempt(PaymentAttempt paymentAttempt)
         : base(paymentAttempt) { }
+#pragma warning restore CS8618
 
     public PaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {

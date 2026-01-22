@@ -304,10 +304,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice : JsonModel
 
     public NewPlanCumulativeGroupedBulkPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanCumulativeGroupedBulkPrice(
         NewPlanCumulativeGroupedBulkPrice newPlanCumulativeGroupedBulkPrice
     )
         : base(newPlanCumulativeGroupedBulkPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -452,10 +455,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
         NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig
     )
         : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -553,10 +559,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
         NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
     )
         : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue) { }
+#pragma warning restore CS8618
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
         IReadOnlyDictionary<string, JsonElement> rawData

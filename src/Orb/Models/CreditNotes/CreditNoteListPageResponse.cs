@@ -51,8 +51,11 @@ public sealed record class CreditNoteListPageResponse : JsonModel
 
     public CreditNoteListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNoteListPageResponse(CreditNoteListPageResponse creditNoteListPageResponse)
         : base(creditNoteListPageResponse) { }
+#pragma warning restore CS8618
 
     public CreditNoteListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

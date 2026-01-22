@@ -198,6 +198,35 @@ public class PlanPhaseAmountDiscountAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanPhaseAmountDiscountAdjustment
+        {
+            ID = "id",
+            AdjustmentType = PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        PlanPhaseAmountDiscountAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PlanPhaseAmountDiscountAdjustmentAdjustmentTypeTest : TestBase
@@ -343,6 +372,21 @@ public class PlanPhaseAmountDiscountAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanPhaseAmountDiscountAdjustmentFilter
+        {
+            Field = PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PlanPhaseAmountDiscountAdjustmentFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

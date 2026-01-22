@@ -302,10 +302,13 @@ public sealed record class NewSubscriptionTieredPackagePrice : JsonModel
 
     public NewSubscriptionTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionTieredPackagePrice(
         NewSubscriptionTieredPackagePrice newSubscriptionTieredPackagePrice
     )
         : base(newSubscriptionTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -492,8 +495,11 @@ public sealed record class TieredPackageConfig : JsonModel
 
     public TieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageConfig(TieredPackageConfig tieredPackageConfig)
         : base(tieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public TieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -562,8 +568,11 @@ public sealed record class TieredPackageConfigTier : JsonModel
 
     public TieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageConfigTier(TieredPackageConfigTier tieredPackageConfigTier)
         : base(tieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

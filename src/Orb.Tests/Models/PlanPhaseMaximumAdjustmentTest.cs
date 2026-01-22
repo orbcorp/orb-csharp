@@ -198,6 +198,35 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanPhaseMaximumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            MaximumAmount = "maximum_amount",
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        PlanPhaseMaximumAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PlanPhaseMaximumAdjustmentAdjustmentTypeTest : TestBase
@@ -341,6 +370,21 @@ public class PlanPhaseMaximumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanPhaseMaximumAdjustmentFilter
+        {
+            Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PlanPhaseMaximumAdjustmentFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

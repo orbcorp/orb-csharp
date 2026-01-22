@@ -196,6 +196,20 @@ public class ExternalConnectionTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ExternalConnection
+        {
+            ExternalConnectionName = ExternalConnectionName.Stripe,
+            ExternalEntityID = "external_entity_id",
+        };
+
+        ExternalConnection copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ExternalConnectionNameTest : TestBase

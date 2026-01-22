@@ -49,8 +49,11 @@ public sealed record class LedgerListPageResponse : JsonModel
 
     public LedgerListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerListPageResponse(LedgerListPageResponse ledgerListPageResponse)
         : base(ledgerListPageResponse) { }
+#pragma warning restore CS8618
 
     public LedgerListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

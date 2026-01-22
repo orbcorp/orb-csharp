@@ -108,8 +108,11 @@ public sealed record class MinimumInterval : JsonModel
 
     public MinimumInterval() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumInterval(MinimumInterval minimumInterval)
         : base(minimumInterval) { }
+#pragma warning restore CS8618
 
     public MinimumInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -200,8 +203,11 @@ public sealed record class MinimumIntervalFilter : JsonModel
 
     public MinimumIntervalFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumIntervalFilter(MinimumIntervalFilter minimumIntervalFilter)
         : base(minimumIntervalFilter) { }
+#pragma warning restore CS8618
 
     public MinimumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

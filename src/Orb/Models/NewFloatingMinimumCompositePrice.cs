@@ -287,10 +287,13 @@ public sealed record class NewFloatingMinimumCompositePrice : JsonModel
 
     public NewFloatingMinimumCompositePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingMinimumCompositePrice(
         NewFloatingMinimumCompositePrice newFloatingMinimumCompositePrice
     )
         : base(newFloatingMinimumCompositePrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -431,8 +434,11 @@ public sealed record class MinimumCompositeConfig : JsonModel
 
     public MinimumCompositeConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumCompositeConfig(MinimumCompositeConfig minimumCompositeConfig)
         : base(minimumCompositeConfig) { }
+#pragma warning restore CS8618
 
     public MinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

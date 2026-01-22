@@ -180,8 +180,11 @@ public sealed record class CreditBlockExpiryLedgerEntry : JsonModel
 
     public CreditBlockExpiryLedgerEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditBlockExpiryLedgerEntry(CreditBlockExpiryLedgerEntry creditBlockExpiryLedgerEntry)
         : base(creditBlockExpiryLedgerEntry) { }
+#pragma warning restore CS8618
 
     public CreditBlockExpiryLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -133,4 +133,22 @@ public class DimensionalPriceGroupTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new DimensionalPriceGroup
+        {
+            ID = "id",
+            BillableMetricID = "billable_metric_id",
+            Dimensions = ["region", "instance_type"],
+            ExternalDimensionalPriceGroupID = "my_dimensional_price_group_id",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+        };
+
+        DimensionalPriceGroup copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

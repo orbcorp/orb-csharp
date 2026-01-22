@@ -190,6 +190,16 @@ public class PercentageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Percentage { PercentageDiscount = 0 };
+
+        Percentage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AmountTest : TestBase
@@ -239,5 +249,15 @@ public class AmountTest : TestBase
         var model = new Amount { AmountDiscount = "amount_discount" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Amount { AmountDiscount = "amount_discount" };
+
+        Amount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

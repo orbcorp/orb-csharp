@@ -566,10 +566,13 @@ public sealed record class CustomerUpdateParamsPaymentConfiguration : JsonModel
 
     public CustomerUpdateParamsPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsPaymentConfiguration(
         CustomerUpdateParamsPaymentConfiguration customerUpdateParamsPaymentConfiguration
     )
         : base(customerUpdateParamsPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsPaymentConfiguration(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -669,10 +672,13 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
 
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
         CustomerUpdateParamsPaymentConfigurationPaymentProvider customerUpdateParamsPaymentConfigurationPaymentProvider
     )
         : base(customerUpdateParamsPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1475,10 +1481,13 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : JsonMod
         this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsTaxConfigurationNumeral(
         CustomerUpdateParamsTaxConfigurationNumeral customerUpdateParamsTaxConfigurationNumeral
     )
         : base(customerUpdateParamsTaxConfigurationNumeral) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsTaxConfigurationNumeral(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1580,10 +1589,13 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsTaxConfigurationAnrok(
         CustomerUpdateParamsTaxConfigurationAnrok customerUpdateParamsTaxConfigurationAnrok
     )
         : base(customerUpdateParamsTaxConfigurationAnrok) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsTaxConfigurationAnrok(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1685,10 +1697,13 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : JsonMode
         this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsTaxConfigurationStripe(
         CustomerUpdateParamsTaxConfigurationStripe customerUpdateParamsTaxConfigurationStripe
     )
         : base(customerUpdateParamsTaxConfigurationStripe) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsTaxConfigurationStripe(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -304,10 +304,13 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice : JsonModel
 
     public NewPlanGroupedWithMeteredMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithMeteredMinimumPrice(
         NewPlanGroupedWithMeteredMinimumPrice newPlanGroupedWithMeteredMinimumPrice
     )
         : base(newPlanGroupedWithMeteredMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithMeteredMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -525,10 +528,13 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig(
         NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig
     )
         : base(newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -609,11 +615,14 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor(
         NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
     )
         : base(newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor)
     { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -697,10 +706,13 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount(
         NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
     )
         : base(newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData

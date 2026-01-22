@@ -342,8 +342,11 @@ public sealed record class Event : JsonModel
 
     public Event() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Event(Event event_)
         : base(event_) { }
+#pragma warning restore CS8618
 
     public Event(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -472,10 +475,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Jso
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluation() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluation(
         PriceEvaluatePreviewEventsParamsPriceEvaluation priceEvaluatePreviewEventsParamsPriceEvaluation
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluation) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluation(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3582,10 +3588,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3695,12 +3704,15 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
     )
         : base(
             priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
         ) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3788,12 +3800,15 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
     )
         : base(
             priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
         ) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3881,12 +3896,15 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
     )
         : base(
             priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
         ) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4597,10 +4615,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4795,12 +4816,15 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     )
         : base(
             priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
         ) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5428,10 +5452,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5626,12 +5653,15 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     )
         : base(
             priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
         ) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6250,10 +6280,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent priceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPricePercent) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6394,10 +6427,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig priceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -7032,10 +7068,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -7212,10 +7251,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
     )
         : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

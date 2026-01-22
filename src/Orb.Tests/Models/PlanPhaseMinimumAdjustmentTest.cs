@@ -206,6 +206,36 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanPhaseMinimumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        PlanPhaseMinimumAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PlanPhaseMinimumAdjustmentAdjustmentTypeTest : TestBase
@@ -349,6 +379,21 @@ public class PlanPhaseMinimumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanPhaseMinimumAdjustmentFilter
+        {
+            Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PlanPhaseMinimumAdjustmentFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

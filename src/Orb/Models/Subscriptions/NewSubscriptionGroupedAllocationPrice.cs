@@ -303,10 +303,13 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
 
     public NewSubscriptionGroupedAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionGroupedAllocationPrice(
         NewSubscriptionGroupedAllocationPrice newSubscriptionGroupedAllocationPrice
     )
         : base(newSubscriptionGroupedAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionGroupedAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -454,8 +457,11 @@ public sealed record class GroupedAllocationConfig : JsonModel
 
     public GroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedAllocationConfig(GroupedAllocationConfig groupedAllocationConfig)
         : base(groupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

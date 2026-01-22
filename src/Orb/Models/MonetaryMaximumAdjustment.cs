@@ -166,9 +166,12 @@ public sealed record class MonetaryMaximumAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMaximumAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMaximumAdjustment(MonetaryMaximumAdjustment monetaryMaximumAdjustment)
         : base(monetaryMaximumAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMaximumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -311,10 +314,13 @@ public sealed record class MonetaryMaximumAdjustmentFilter : JsonModel
 
     public MonetaryMaximumAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MonetaryMaximumAdjustmentFilter(
         MonetaryMaximumAdjustmentFilter monetaryMaximumAdjustmentFilter
     )
         : base(monetaryMaximumAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public MonetaryMaximumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

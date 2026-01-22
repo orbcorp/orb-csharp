@@ -663,6 +663,72 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanScalableMatrixWithTieredPricingPrice
+        {
+            Cadence = NewPlanScalableMatrixWithTieredPricingPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                NewPlanScalableMatrixWithTieredPricingPriceModelType.ScalableMatrixWithTieredPricing,
+            Name = "Annual fee",
+            ScalableMatrixWithTieredPricingConfig = new()
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+                SecondDimension = "second_dimension",
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        NewPlanScalableMatrixWithTieredPricingPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanScalableMatrixWithTieredPricingPriceCadenceTest : TestBase
@@ -1078,6 +1144,36 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+                SecondDimension = "second_dimension",
+            };
+
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactorTest
@@ -1223,6 +1319,23 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
+
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTierTest
@@ -1301,6 +1414,22 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
             };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier
+            {
+                TierLowerBound = "tier_lower_bound",
+                UnitAmount = "unit_amount",
+            };
+
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier copied =
+            new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

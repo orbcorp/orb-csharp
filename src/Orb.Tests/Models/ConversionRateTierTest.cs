@@ -128,4 +128,19 @@ public class ConversionRateTierTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ConversionRateTier
+        {
+            FirstUnit = 0,
+            UnitAmount = "unit_amount",
+            LastUnit = 0,
+        };
+
+        ConversionRateTier copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

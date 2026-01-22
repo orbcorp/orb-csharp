@@ -288,10 +288,13 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice : JsonModel
 
     public NewFloatingCumulativeGroupedBulkPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingCumulativeGroupedBulkPrice(
         NewFloatingCumulativeGroupedBulkPrice newFloatingCumulativeGroupedBulkPrice
     )
         : base(newFloatingCumulativeGroupedBulkPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -435,8 +438,11 @@ public sealed record class CumulativeGroupedBulkConfig : JsonModel
 
     public CumulativeGroupedBulkConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedBulkConfig(CumulativeGroupedBulkConfig cumulativeGroupedBulkConfig)
         : base(cumulativeGroupedBulkConfig) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedBulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -523,8 +529,11 @@ public sealed record class DimensionValue : JsonModel
 
     public DimensionValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionValue(DimensionValue dimensionValue)
         : base(dimensionValue) { }
+#pragma warning restore CS8618
 
     public DimensionValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {

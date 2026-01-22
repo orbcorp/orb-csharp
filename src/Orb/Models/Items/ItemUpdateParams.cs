@@ -234,8 +234,11 @@ public sealed record class ExternalConnection : JsonModel
 
     public ExternalConnection() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExternalConnection(ExternalConnection externalConnection)
         : base(externalConnection) { }
+#pragma warning restore CS8618
 
     public ExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -487,8 +487,11 @@ public sealed record class Customer : JsonModel
 
     public Customer() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Customer(Customer customer)
         : base(customer) { }
+#pragma warning restore CS8618
 
     public Customer(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -561,8 +564,11 @@ public sealed record class Hierarchy : JsonModel
 
     public Hierarchy() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Hierarchy(Hierarchy hierarchy)
         : base(hierarchy) { }
+#pragma warning restore CS8618
 
     public Hierarchy(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -693,8 +699,11 @@ public sealed record class AccountingSyncConfiguration : JsonModel
 
     public AccountingSyncConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingSyncConfiguration(AccountingSyncConfiguration accountingSyncConfiguration)
         : base(accountingSyncConfiguration) { }
+#pragma warning restore CS8618
 
     public AccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -760,8 +769,11 @@ public sealed record class AccountingProvider : JsonModel
 
     public AccountingProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingProvider(AccountingProvider accountingProvider)
         : base(accountingProvider) { }
+#pragma warning restore CS8618
 
     public AccountingProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -882,8 +894,11 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
 
     public CustomerPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerPaymentConfiguration(CustomerPaymentConfiguration customerPaymentConfiguration)
         : base(customerPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerPaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -980,10 +995,13 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
 
     public CustomerPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerPaymentConfigurationPaymentProvider(
         CustomerPaymentConfigurationPaymentProvider customerPaymentConfigurationPaymentProvider
     )
         : base(customerPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1093,8 +1111,11 @@ public sealed record class ReportingConfiguration : JsonModel
 
     public ReportingConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReportingConfiguration(ReportingConfiguration reportingConfiguration)
         : base(reportingConfiguration) { }
+#pragma warning restore CS8618
 
     public ReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
