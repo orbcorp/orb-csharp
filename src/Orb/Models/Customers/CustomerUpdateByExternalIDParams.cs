@@ -567,10 +567,13 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
 
     public CustomerUpdateByExternalIDParamsPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsPaymentConfiguration(
         CustomerUpdateByExternalIDParamsPaymentConfiguration customerUpdateByExternalIDParamsPaymentConfiguration
     )
         : base(customerUpdateByExternalIDParamsPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsPaymentConfiguration(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -676,10 +679,13 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
 
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider(
         CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider customerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
     )
         : base(customerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1488,10 +1494,13 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
         this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral(
         CustomerUpdateByExternalIDParamsTaxConfigurationNumeral customerUpdateByExternalIDParamsTaxConfigurationNumeral
     )
         : base(customerUpdateByExternalIDParamsTaxConfigurationNumeral) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1595,10 +1604,13 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
         this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok(
         CustomerUpdateByExternalIDParamsTaxConfigurationAnrok customerUpdateByExternalIDParamsTaxConfigurationAnrok
     )
         : base(customerUpdateByExternalIDParamsTaxConfigurationAnrok) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1702,10 +1714,13 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
         this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsTaxConfigurationStripe(
         CustomerUpdateByExternalIDParamsTaxConfigurationStripe customerUpdateByExternalIDParamsTaxConfigurationStripe
     )
         : base(customerUpdateByExternalIDParamsTaxConfigurationStripe) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationStripe(
         IReadOnlyDictionary<string, JsonElement> rawData

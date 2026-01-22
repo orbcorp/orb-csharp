@@ -121,8 +121,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
 
     public DimensionalPriceGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceGroup(DimensionalPriceGroup dimensionalPriceGroup)
         : base(dimensionalPriceGroup) { }
+#pragma warning restore CS8618
 
     public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {

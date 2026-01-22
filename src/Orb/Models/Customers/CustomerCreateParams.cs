@@ -567,8 +567,11 @@ public sealed record class PaymentConfiguration : JsonModel
 
     public PaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PaymentConfiguration(PaymentConfiguration paymentConfiguration)
         : base(paymentConfiguration) { }
+#pragma warning restore CS8618
 
     public PaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -655,8 +658,11 @@ public sealed record class PaymentProvider : JsonModel
 
     public PaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PaymentProvider(PaymentProvider paymentProvider)
         : base(paymentProvider) { }
+#pragma warning restore CS8618
 
     public PaymentProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1384,8 +1390,11 @@ public sealed record class Numeral : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Numeral(Numeral numeral)
         : base(numeral) { }
+#pragma warning restore CS8618
 
     public Numeral(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1476,8 +1485,11 @@ public sealed record class Anrok : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Anrok(Anrok anrok)
         : base(anrok) { }
+#pragma warning restore CS8618
 
     public Anrok(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1568,8 +1580,11 @@ public sealed record class Stripe : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Stripe(Stripe stripe)
         : base(stripe) { }
+#pragma warning restore CS8618
 
     public Stripe(IReadOnlyDictionary<string, JsonElement> rawData)
     {

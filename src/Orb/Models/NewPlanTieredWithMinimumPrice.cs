@@ -301,10 +301,13 @@ public sealed record class NewPlanTieredWithMinimumPrice : JsonModel
 
     public NewPlanTieredWithMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPrice(
         NewPlanTieredWithMinimumPrice newPlanTieredWithMinimumPrice
     )
         : base(newPlanTieredWithMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -528,10 +531,13 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig 
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
         NewPlanTieredWithMinimumPriceTieredWithMinimumConfig newPlanTieredWithMinimumPriceTieredWithMinimumConfig
     )
         : base(newPlanTieredWithMinimumPriceTieredWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -631,10 +637,13 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigT
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
         NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier newPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
     )
         : base(newPlanTieredWithMinimumPriceTieredWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

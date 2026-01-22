@@ -304,10 +304,13 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPrice : JsonModel
 
     public NewPlanScalableMatrixWithUnitPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithUnitPricingPrice(
         NewPlanScalableMatrixWithUnitPricingPrice newPlanScalableMatrixWithUnitPricingPrice
     )
         : base(newPlanScalableMatrixWithUnitPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -548,10 +551,13 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig(
         NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig
     )
         : base(newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -644,12 +650,15 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
     )
         : base(
             newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         ) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData

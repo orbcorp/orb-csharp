@@ -121,6 +121,27 @@ public class SubscriptionFetchScheduleResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubscriptionFetchScheduleResponse
+        {
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+            },
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        SubscriptionFetchScheduleResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PlanTest : TestBase
@@ -194,5 +215,20 @@ public class PlanTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Plan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+        };
+
+        Plan copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

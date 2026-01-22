@@ -538,6 +538,59 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
+        {
+            BulkWithProrationConfig = new(
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ]
+            ),
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionBulkWithProrationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithProrationConfigTest : TestBase
@@ -633,6 +686,23 @@ public class BulkWithProrationConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::BulkWithProrationConfig
+        {
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        Subscriptions::BulkWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -749,6 +819,20 @@ public class BulkWithProrationConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        Subscriptions::BulkWithProrationConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

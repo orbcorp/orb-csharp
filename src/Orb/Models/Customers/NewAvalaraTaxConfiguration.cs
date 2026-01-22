@@ -69,8 +69,11 @@ public sealed record class NewAvalaraTaxConfiguration : JsonModel
 
     public NewAvalaraTaxConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewAvalaraTaxConfiguration(NewAvalaraTaxConfiguration newAvalaraTaxConfiguration)
         : base(newAvalaraTaxConfiguration) { }
+#pragma warning restore CS8618
 
     public NewAvalaraTaxConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

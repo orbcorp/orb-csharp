@@ -206,4 +206,37 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TopUpListByExternalIDPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    Amount = "amount",
+                    Currency = "currency",
+                    InvoiceSettings = new()
+                    {
+                        AutoCollection = true,
+                        NetTerms = 0,
+                        Memo = "memo",
+                        RequireSuccessfulPayment = true,
+                    },
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                    Threshold = "threshold",
+                    ExpiresAfter = 0,
+                    ExpiresAfterUnit = TopUpListByExternalIDResponseExpiresAfterUnit.Day,
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        TopUpListByExternalIDPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

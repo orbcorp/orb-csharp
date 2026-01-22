@@ -531,6 +531,60 @@ public class NewFloatingGroupedTieredPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingGroupedTieredPrice
+        {
+            Cadence = NewFloatingGroupedTieredPriceCadence.Annual,
+            Currency = "currency",
+            GroupedTieredConfig = new()
+            {
+                GroupingKey = "x",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType = NewFloatingGroupedTieredPriceModelType.GroupedTiered,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingGroupedTieredPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewFloatingGroupedTieredPriceCadenceTest : TestBase
@@ -697,6 +751,24 @@ public class GroupedTieredConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredConfig
+        {
+            GroupingKey = "x",
+            Tiers =
+            [
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+            ],
+        };
+
+        GroupedTieredConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedTieredConfigTierTest : TestBase
@@ -768,6 +840,20 @@ public class GroupedTieredConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        GroupedTieredConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

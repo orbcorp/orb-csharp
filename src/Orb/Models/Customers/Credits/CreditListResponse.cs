@@ -117,8 +117,11 @@ public sealed record class CreditListResponse : JsonModel
 
     public CreditListResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditListResponse(CreditListResponse creditListResponse)
         : base(creditListResponse) { }
+#pragma warning restore CS8618
 
     public CreditListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -210,8 +213,11 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Filter(Filter filter)
         : base(filter) { }
+#pragma warning restore CS8618
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

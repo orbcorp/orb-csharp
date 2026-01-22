@@ -54,4 +54,14 @@ public class InvoiceTinyTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new InvoiceTiny { ID = "gXcsPTVyC4YZa3Sc" };
+
+        InvoiceTiny copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

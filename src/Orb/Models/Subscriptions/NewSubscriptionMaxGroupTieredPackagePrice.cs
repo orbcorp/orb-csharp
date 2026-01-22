@@ -304,10 +304,13 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : JsonModel
 
     public NewSubscriptionMaxGroupTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionMaxGroupTieredPackagePrice(
         NewSubscriptionMaxGroupTieredPackagePrice newSubscriptionMaxGroupTieredPackagePrice
     )
         : base(newSubscriptionMaxGroupTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionMaxGroupTieredPackagePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -467,8 +470,11 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
 
     public MaxGroupTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageConfig(MaxGroupTieredPackageConfig maxGroupTieredPackageConfig)
         : base(maxGroupTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -543,10 +549,13 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
 
     public MaxGroupTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageConfigTier(
         MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
     )
         : base(maxGroupTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

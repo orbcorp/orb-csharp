@@ -496,6 +496,25 @@ public class LineItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LineItem
+        {
+            EndDate = "2023-09-22",
+            ItemID = "4khy3nwzktxv7",
+            ModelType = ModelType.Unit,
+            Name = "Line Item Name",
+            Quantity = 1,
+            StartDate = "2023-09-22",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+        };
+
+        LineItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ModelTypeTest : TestBase

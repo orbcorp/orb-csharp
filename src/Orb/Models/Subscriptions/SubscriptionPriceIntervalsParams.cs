@@ -568,8 +568,11 @@ public sealed record class Add : JsonModel
 
     public Add() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Add(Add add)
         : base(add) { }
+#pragma warning restore CS8618
 
     public Add(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1218,8 +1221,11 @@ public sealed record class Amount : JsonModel
         this.DiscountType = JsonSerializer.SerializeToElement("amount");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Amount(Amount amount)
         : base(amount) { }
+#pragma warning restore CS8618
 
     public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1304,8 +1310,11 @@ public sealed record class Percentage : JsonModel
         this.DiscountType = JsonSerializer.SerializeToElement("percentage");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Percentage(Percentage percentage)
         : base(percentage) { }
+#pragma warning restore CS8618
 
     public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1385,8 +1394,11 @@ public sealed record class Usage : JsonModel
         this.DiscountType = JsonSerializer.SerializeToElement("usage");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Usage(Usage usage)
         : base(usage) { }
+#pragma warning restore CS8618
 
     public Usage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1702,8 +1714,11 @@ public sealed record class FixedFeeQuantityTransition : JsonModel
 
     public FixedFeeQuantityTransition() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public FixedFeeQuantityTransition(FixedFeeQuantityTransition fixedFeeQuantityTransition)
         : base(fixedFeeQuantityTransition) { }
+#pragma warning restore CS8618
 
     public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4632,8 +4647,11 @@ public sealed record class PriceModelBulkWithFilters : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelBulkWithFilters(PriceModelBulkWithFilters priceModelBulkWithFilters)
         : base(priceModelBulkWithFilters) { }
+#pragma warning restore CS8618
 
     public PriceModelBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4735,10 +4753,13 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfig : Json
 
     public PriceModelBulkWithFiltersBulkWithFiltersConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelBulkWithFiltersBulkWithFiltersConfig(
         PriceModelBulkWithFiltersBulkWithFiltersConfig priceModelBulkWithFiltersBulkWithFiltersConfig
     )
         : base(priceModelBulkWithFiltersBulkWithFiltersConfig) { }
+#pragma warning restore CS8618
 
     public PriceModelBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4819,10 +4840,13 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfigFilter 
 
     public PriceModelBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelBulkWithFiltersBulkWithFiltersConfigFilter(
         PriceModelBulkWithFiltersBulkWithFiltersConfigFilter priceModelBulkWithFiltersBulkWithFiltersConfigFilter
     )
         : base(priceModelBulkWithFiltersBulkWithFiltersConfigFilter) { }
+#pragma warning restore CS8618
 
     public PriceModelBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4905,10 +4929,13 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfigTier : 
 
     public PriceModelBulkWithFiltersBulkWithFiltersConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelBulkWithFiltersBulkWithFiltersConfigTier(
         PriceModelBulkWithFiltersBulkWithFiltersConfigTier priceModelBulkWithFiltersBulkWithFiltersConfigTier
     )
         : base(priceModelBulkWithFiltersBulkWithFiltersConfigTier) { }
+#pragma warning restore CS8618
 
     public PriceModelBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5584,10 +5611,13 @@ public sealed record class PriceModelGroupedWithMinMaxThresholds : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelGroupedWithMinMaxThresholds(
         PriceModelGroupedWithMinMaxThresholds priceModelGroupedWithMinMaxThresholds
     )
         : base(priceModelGroupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public PriceModelGroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5757,10 +5787,13 @@ public sealed record class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMa
 
     public PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig priceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     )
         : base(priceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig) { }
+#pragma warning restore CS8618
 
     public PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6372,10 +6405,13 @@ public sealed record class PriceModelCumulativeGroupedAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelCumulativeGroupedAllocation(
         PriceModelCumulativeGroupedAllocation priceModelCumulativeGroupedAllocation
     )
         : base(priceModelCumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public PriceModelCumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6545,10 +6581,13 @@ public sealed record class PriceModelCumulativeGroupedAllocationCumulativeGroupe
 
     public PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig priceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     )
         : base(priceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -7148,8 +7187,11 @@ public sealed record class PriceModelPercent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelPercent(PriceModelPercent priceModelPercent)
         : base(priceModelPercent) { }
+#pragma warning restore CS8618
 
     public PriceModelPercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7273,10 +7315,13 @@ public sealed record class PriceModelPercentPercentConfig : JsonModel
 
     public PriceModelPercentPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelPercentPercentConfig(
         PriceModelPercentPercentConfig priceModelPercentPercentConfig
     )
         : base(priceModelPercentPercentConfig) { }
+#pragma warning restore CS8618
 
     public PriceModelPercentPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7882,8 +7927,11 @@ public sealed record class PriceModelEventOutput : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelEventOutput(PriceModelEventOutput priceModelEventOutput)
         : base(priceModelEventOutput) { }
+#pragma warning restore CS8618
 
     public PriceModelEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8039,10 +8087,13 @@ public sealed record class PriceModelEventOutputEventOutputConfig : JsonModel
 
     public PriceModelEventOutputEventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceModelEventOutputEventOutputConfig(
         PriceModelEventOutputEventOutputConfig priceModelEventOutputEventOutputConfig
     )
         : base(priceModelEventOutputEventOutputConfig) { }
+#pragma warning restore CS8618
 
     public PriceModelEventOutputEventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8452,10 +8503,13 @@ public sealed record class SubscriptionPriceIntervalsParamsAddAdjustment : JsonM
 
     public SubscriptionPriceIntervalsParamsAddAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionPriceIntervalsParamsAddAdjustment(
         SubscriptionPriceIntervalsParamsAddAdjustment subscriptionPriceIntervalsParamsAddAdjustment
     )
         : base(subscriptionPriceIntervalsParamsAddAdjustment) { }
+#pragma warning restore CS8618
 
     public SubscriptionPriceIntervalsParamsAddAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9693,8 +9747,11 @@ public sealed record class Edit : JsonModel
 
     public Edit() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Edit(Edit edit)
         : base(edit) { }
+#pragma warning restore CS8618
 
     public Edit(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -10015,10 +10072,13 @@ public sealed record class EditFixedFeeQuantityTransition : JsonModel
 
     public EditFixedFeeQuantityTransition() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EditFixedFeeQuantityTransition(
         EditFixedFeeQuantityTransition editFixedFeeQuantityTransition
     )
         : base(editFixedFeeQuantityTransition) { }
+#pragma warning restore CS8618
 
     public EditFixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -10362,8 +10422,11 @@ public sealed record class EditAdjustment : JsonModel
 
     public EditAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EditAdjustment(EditAdjustment editAdjustment)
         : base(editAdjustment) { }
+#pragma warning restore CS8618
 
     public EditAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {

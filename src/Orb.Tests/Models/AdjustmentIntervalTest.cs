@@ -231,6 +231,42 @@ public class AdjustmentIntervalTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AdjustmentInterval
+        {
+            ID = "id",
+            Adjustment = new PlanPhaseUsageDiscountAdjustment()
+            {
+                ID = "id",
+                AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PlanPhaseOrder = 0,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+                UsageDiscount = 0,
+            },
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        AdjustmentInterval copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AdjustmentTest : TestBase

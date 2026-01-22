@@ -92,6 +92,22 @@ public class MigrationRetrieveResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MigrationRetrieveResponse
+        {
+            ID = "id",
+            EffectiveTime = "2019-12-27",
+            PlanID = "plan_id",
+            Status = Status.NotStarted,
+        };
+
+        MigrationRetrieveResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class EffectiveTimeTest : TestBase

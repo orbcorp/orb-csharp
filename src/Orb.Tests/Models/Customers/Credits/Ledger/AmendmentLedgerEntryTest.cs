@@ -274,6 +274,45 @@ public class AmendmentLedgerEntryTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AmendmentLedgerEntry
+        {
+            ID = "id",
+            Amount = 0,
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditBlock = new()
+            {
+                ID = "id",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = AffectedBlockFilterField.PriceID,
+                        Operator = AffectedBlockFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Description = "description",
+            EndingBalance = 0,
+            EntryStatus = AmendmentLedgerEntryEntryStatus.Committed,
+            EntryType = AmendmentLedgerEntryEntryType.Amendment,
+            LedgerSequenceNumber = 0,
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            StartingBalance = 0,
+        };
+
+        AmendmentLedgerEntry copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AmendmentLedgerEntryEntryStatusTest : TestBase

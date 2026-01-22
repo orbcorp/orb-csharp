@@ -304,8 +304,11 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LineItem(LineItem lineItem)
         : base(lineItem) { }
+#pragma warning restore CS8618
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {

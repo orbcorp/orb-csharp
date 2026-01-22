@@ -149,6 +149,30 @@ public class AffectedBlockTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AffectedBlock
+        {
+            ID = "id",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        AffectedBlock copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AffectedBlockFilterTest : TestBase
@@ -238,6 +262,21 @@ public class AffectedBlockFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AffectedBlockFilter
+        {
+            Field = AffectedBlockFilterField.PriceID,
+            Operator = AffectedBlockFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        AffectedBlockFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

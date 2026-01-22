@@ -928,8 +928,11 @@ public sealed record class Increment : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Increment(Increment increment)
         : base(increment) { }
+#pragma warning restore CS8618
 
     public Increment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1028,8 +1031,11 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Filter(Filter filter)
         : base(filter) { }
+#pragma warning restore CS8618
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1273,8 +1279,11 @@ public sealed record class InvoiceSettings : JsonModel
 
     public InvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceSettings(InvoiceSettings invoiceSettings)
         : base(invoiceSettings) { }
+#pragma warning restore CS8618
 
     public InvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1876,8 +1885,11 @@ public sealed record class Decrement : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Decrement(Decrement decrement)
         : base(decrement) { }
+#pragma warning restore CS8618
 
     public Decrement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2060,8 +2072,11 @@ public sealed record class ExpirationChange : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExpirationChange(ExpirationChange expirationChange)
         : base(expirationChange) { }
+#pragma warning restore CS8618
 
     public ExpirationChange(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2224,8 +2239,11 @@ public sealed record class Void : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Void(Void void_)
         : base(void_) { }
+#pragma warning restore CS8618
 
     public Void(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2409,8 +2427,11 @@ public sealed record class Amendment : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Amendment(Amendment amendment)
         : base(amendment) { }
+#pragma warning restore CS8618
 
     public Amendment(IReadOnlyDictionary<string, JsonElement> rawData)
     {

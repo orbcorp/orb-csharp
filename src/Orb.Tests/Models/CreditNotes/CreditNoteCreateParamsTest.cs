@@ -297,6 +297,22 @@ public class LineItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
+        };
+
+        LineItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReasonTest : TestBase

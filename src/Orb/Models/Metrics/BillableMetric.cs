@@ -108,8 +108,11 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillableMetric(BillableMetric billableMetric)
         : base(billableMetric) { }
+#pragma warning restore CS8618
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {

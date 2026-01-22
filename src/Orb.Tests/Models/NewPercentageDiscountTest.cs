@@ -416,6 +416,35 @@ public class NewPercentageDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPercentageDiscount
+        {
+            AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+            PercentageDiscount = 0,
+            AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewPercentageDiscountFilterField.PriceID,
+                    Operator = NewPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewPercentageDiscountPriceType.Usage,
+        };
+
+        NewPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPercentageDiscountAdjustmentTypeTest : TestBase
@@ -613,6 +642,21 @@ public class NewPercentageDiscountFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPercentageDiscountFilter
+        {
+            Field = NewPercentageDiscountFilterField.PriceID,
+            Operator = NewPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        NewPercentageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

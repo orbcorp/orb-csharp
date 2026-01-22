@@ -63,8 +63,11 @@ public sealed record class SharedTier : JsonModel
 
     public SharedTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedTier(SharedTier sharedTier)
         : base(sharedTier) { }
+#pragma warning restore CS8618
 
     public SharedTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

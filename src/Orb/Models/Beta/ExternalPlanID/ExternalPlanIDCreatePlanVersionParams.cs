@@ -330,8 +330,11 @@ public sealed record class AddAdjustment : JsonModel
 
     public AddAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AddAdjustment(AddAdjustment addAdjustment)
         : base(addAdjustment) { }
+#pragma warning restore CS8618
 
     public AddAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -895,8 +898,11 @@ public sealed record class AddPrice : JsonModel
 
     public AddPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AddPrice(AddPrice addPrice)
         : base(addPrice) { }
+#pragma warning restore CS8618
 
     public AddPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3811,8 +3817,11 @@ public sealed record class BulkWithFilters : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithFilters(BulkWithFilters bulkWithFilters)
         : base(bulkWithFilters) { }
+#pragma warning restore CS8618
 
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3902,8 +3911,11 @@ public sealed record class BulkWithFiltersConfig : JsonModel
 
     public BulkWithFiltersConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithFiltersConfig(BulkWithFiltersConfig bulkWithFiltersConfig)
         : base(bulkWithFiltersConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3976,8 +3988,11 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Filter(Filter filter)
         : base(filter) { }
+#pragma warning restore CS8618
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4047,8 +4062,11 @@ public sealed record class Tier : JsonModel
 
     public Tier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Tier(Tier tier)
         : base(tier) { }
+#pragma warning restore CS8618
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4713,8 +4731,11 @@ public sealed record class TieredWithProration : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProration(TieredWithProration tieredWithProration)
         : base(tieredWithProration) { }
+#pragma warning restore CS8618
 
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4847,8 +4868,11 @@ public sealed record class TieredWithProrationConfig : JsonModel
 
     public TieredWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationConfig(TieredWithProrationConfig tieredWithProrationConfig)
         : base(tieredWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4930,10 +4954,13 @@ public sealed record class TieredWithProrationConfigTier : JsonModel
 
     public TieredWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationConfigTier(
         TieredWithProrationConfigTier tieredWithProrationConfigTier
     )
         : base(tieredWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5550,8 +5577,11 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMinMaxThresholds(GroupedWithMinMaxThresholds groupedWithMinMaxThresholds)
         : base(groupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5719,10 +5749,13 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : JsonModel
 
     public GroupedWithMinMaxThresholdsConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMinMaxThresholdsConfig(
         GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
     )
         : base(groupedWithMinMaxThresholdsConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithMinMaxThresholdsConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6339,8 +6372,11 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedAllocation(CumulativeGroupedAllocation cumulativeGroupedAllocation)
         : base(cumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6508,10 +6544,13 @@ public sealed record class CumulativeGroupedAllocationConfig : JsonModel
 
     public CumulativeGroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedAllocationConfig(
         CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
     )
         : base(cumulativeGroupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7117,8 +7156,11 @@ public sealed record class Percent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Percent(Percent percent)
         : base(percent) { }
+#pragma warning restore CS8618
 
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7235,8 +7277,11 @@ public sealed record class PercentConfig : JsonModel
 
     public PercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PercentConfig(PercentConfig percentConfig)
         : base(percentConfig) { }
+#pragma warning restore CS8618
 
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7850,8 +7895,11 @@ public sealed record class EventOutput : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventOutput(EventOutput eventOutput)
         : base(eventOutput) { }
+#pragma warning restore CS8618
 
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7999,8 +8047,11 @@ public sealed record class EventOutputConfig : JsonModel
 
     public EventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventOutputConfig(EventOutputConfig eventOutputConfig)
         : base(eventOutputConfig) { }
+#pragma warning restore CS8618
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8361,8 +8412,11 @@ public sealed record class RemoveAdjustment : JsonModel
 
     public RemoveAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public RemoveAdjustment(RemoveAdjustment removeAdjustment)
         : base(removeAdjustment) { }
+#pragma warning restore CS8618
 
     public RemoveAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8438,8 +8492,11 @@ public sealed record class RemovePrice : JsonModel
 
     public RemovePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public RemovePrice(RemovePrice removePrice)
         : base(removePrice) { }
+#pragma warning restore CS8618
 
     public RemovePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8527,8 +8584,11 @@ public sealed record class ReplaceAdjustment : JsonModel
 
     public ReplaceAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplaceAdjustment(ReplaceAdjustment replaceAdjustment)
         : base(replaceAdjustment) { }
+#pragma warning restore CS8618
 
     public ReplaceAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -9110,8 +9170,11 @@ public sealed record class ReplacePrice : JsonModel
 
     public ReplacePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePrice(ReplacePrice replacePrice)
         : base(replacePrice) { }
+#pragma warning restore CS8618
 
     public ReplacePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -12122,10 +12185,13 @@ public sealed record class ReplacePricePriceBulkWithFilters : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceBulkWithFilters(
         ReplacePricePriceBulkWithFilters replacePricePriceBulkWithFilters
     )
         : base(replacePricePriceBulkWithFilters) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -12225,10 +12291,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
         ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig replacePricePriceBulkWithFiltersBulkWithFiltersConfig
     )
         : base(replacePricePriceBulkWithFiltersBulkWithFiltersConfig) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -12311,10 +12380,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter replacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
     )
         : base(replacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -12397,10 +12469,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier replacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
     )
         : base(replacePricePriceBulkWithFiltersBulkWithFiltersConfigTier) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13092,10 +13167,13 @@ public sealed record class ReplacePricePriceTieredWithProration : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceTieredWithProration(
         ReplacePricePriceTieredWithProration replacePricePriceTieredWithProration
     )
         : base(replacePricePriceTieredWithProration) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceTieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -13233,10 +13311,13 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
         ReplacePricePriceTieredWithProrationTieredWithProrationConfig replacePricePriceTieredWithProrationTieredWithProrationConfig
     )
         : base(replacePricePriceTieredWithProrationTieredWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13329,10 +13410,13 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
         ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier replacePricePriceTieredWithProrationTieredWithProrationConfigTier
     )
         : base(replacePricePriceTieredWithProrationTieredWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13958,10 +14042,13 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : JsonMo
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceGroupedWithMinMaxThresholds(
         ReplacePricePriceGroupedWithMinMaxThresholds replacePricePriceGroupedWithMinMaxThresholds
     )
         : base(replacePricePriceGroupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14133,10 +14220,13 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWi
 
     public ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig replacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     )
         : base(replacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14768,10 +14858,13 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : JsonMo
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceCumulativeGroupedAllocation(
         ReplacePricePriceCumulativeGroupedAllocation replacePricePriceCumulativeGroupedAllocation
     )
         : base(replacePricePriceCumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14943,10 +15036,13 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativ
 
     public ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig replacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     )
         : base(replacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15570,8 +15666,11 @@ public sealed record class ReplacePricePricePercent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePricePercent(ReplacePricePricePercent replacePricePricePercent)
         : base(replacePricePricePercent) { }
+#pragma warning restore CS8618
 
     public ReplacePricePricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -15697,10 +15796,13 @@ public sealed record class ReplacePricePricePercentPercentConfig : JsonModel
 
     public ReplacePricePricePercentPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePricePercentPercentConfig(
         ReplacePricePricePercentPercentConfig replacePricePricePercentPercentConfig
     )
         : base(replacePricePricePercentPercentConfig) { }
+#pragma warning restore CS8618
 
     public ReplacePricePricePercentPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -16325,8 +16427,11 @@ public sealed record class ReplacePricePriceEventOutput : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceEventOutput(ReplacePricePriceEventOutput replacePricePriceEventOutput)
         : base(replacePricePriceEventOutput) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -16483,10 +16588,13 @@ public sealed record class ReplacePricePriceEventOutputEventOutputConfig : JsonM
 
     public ReplacePricePriceEventOutputEventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReplacePricePriceEventOutputEventOutputConfig(
         ReplacePricePriceEventOutputEventOutputConfig replacePricePriceEventOutputEventOutputConfig
     )
         : base(replacePricePriceEventOutputEventOutputConfig) { }
+#pragma warning restore CS8618
 
     public ReplacePricePriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

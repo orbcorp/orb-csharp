@@ -236,6 +236,31 @@ public class UsageDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UsageDiscount
+        {
+            DiscountType = UsageDiscountDiscountType.Usage,
+            UsageDiscountValue = 0,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = UsageDiscountFilterField.PriceID,
+                    Operator = UsageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+
+        UsageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UsageDiscountDiscountTypeTest : TestBase
@@ -381,6 +406,21 @@ public class UsageDiscountFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UsageDiscountFilter
+        {
+            Field = UsageDiscountFilterField.PriceID,
+            Operator = UsageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        UsageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

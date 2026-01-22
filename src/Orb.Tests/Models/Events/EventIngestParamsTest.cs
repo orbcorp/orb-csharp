@@ -440,4 +440,25 @@ public class EventTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Event
+        {
+            EventName = "event_name",
+            IdempotencyKey = "idempotency_key",
+            Properties = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        Event copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

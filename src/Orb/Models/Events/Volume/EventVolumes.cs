@@ -36,8 +36,11 @@ public sealed record class EventVolumes : JsonModel
 
     public EventVolumes() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventVolumes(EventVolumes eventVolumes)
         : base(eventVolumes) { }
+#pragma warning restore CS8618
 
     public EventVolumes(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -123,8 +126,11 @@ public sealed record class Data : JsonModel
 
     public Data() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Data(Data data)
         : base(data) { }
+#pragma warning restore CS8618
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -59,6 +59,16 @@ public class BillingCycleConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BillingCycleConfiguration { Duration = 0, DurationUnit = DurationUnit.Day };
+
+        BillingCycleConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DurationUnitTest : TestBase

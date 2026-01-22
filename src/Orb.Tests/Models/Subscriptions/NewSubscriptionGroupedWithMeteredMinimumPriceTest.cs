@@ -638,6 +638,68 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            GroupedWithMeteredMinimumConfig = new()
+            {
+                GroupingKey = "x",
+                MinimumUnitAmount = "minimum_unit_amount",
+                PricingKey = "pricing_key",
+                ScalingFactors =
+                [
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
+                ],
+                ScalingKey = "scaling_key",
+                UnitAmounts =
+                [
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewSubscriptionGroupedWithMeteredMinimumPriceCadenceTest : TestBase
@@ -864,6 +926,30 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::GroupedWithMeteredMinimumConfig
+        {
+            GroupingKey = "x",
+            MinimumUnitAmount = "minimum_unit_amount",
+            PricingKey = "pricing_key",
+            ScalingFactors =
+            [
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
+            ],
+            ScalingKey = "scaling_key",
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
+        };
+
+        Subscriptions::GroupedWithMeteredMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalingFactorTest : TestBase
@@ -936,6 +1022,20 @@ public class ScalingFactorTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ScalingFactor
+        {
+            ScalingFactorValue = "scaling_factor",
+            ScalingValue = "scaling_value",
+        };
+
+        Subscriptions::ScalingFactor copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UnitAmountTest : TestBase
@@ -1007,6 +1107,20 @@ public class UnitAmountTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
+
+        Subscriptions::UnitAmount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

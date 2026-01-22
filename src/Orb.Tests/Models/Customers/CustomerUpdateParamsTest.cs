@@ -571,6 +571,27 @@ public class CustomerUpdateParamsPaymentConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateParamsPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType =
+                        CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        CustomerUpdateParamsPaymentConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerUpdateParamsPaymentConfigurationPaymentProviderTest : TestBase
@@ -734,6 +755,21 @@ public class CustomerUpdateParamsPaymentConfigurationPaymentProviderTest : TestB
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateParamsPaymentConfigurationPaymentProvider
+        {
+            ProviderType =
+                CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        CustomerUpdateParamsPaymentConfigurationPaymentProvider copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1156,6 +1192,20 @@ public class CustomerUpdateParamsTaxConfigurationNumeralTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
+
+        CustomerUpdateParamsTaxConfigurationNumeral copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerUpdateParamsTaxConfigurationAnrokTest : TestBase
@@ -1276,6 +1326,20 @@ public class CustomerUpdateParamsTaxConfigurationAnrokTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateParamsTaxConfigurationAnrok
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
+
+        CustomerUpdateParamsTaxConfigurationAnrok copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerUpdateParamsTaxConfigurationStripeTest : TestBase
@@ -1395,5 +1459,19 @@ public class CustomerUpdateParamsTaxConfigurationStripeTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateParamsTaxConfigurationStripe
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
+
+        CustomerUpdateParamsTaxConfigurationStripe copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

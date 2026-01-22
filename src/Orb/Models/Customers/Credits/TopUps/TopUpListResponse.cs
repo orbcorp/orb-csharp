@@ -133,8 +133,11 @@ public sealed record class TopUpListResponse : JsonModel
 
     public TopUpListResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpListResponse(TopUpListResponse topUpListResponse)
         : base(topUpListResponse) { }
+#pragma warning restore CS8618
 
     public TopUpListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

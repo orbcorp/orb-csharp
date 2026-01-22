@@ -482,8 +482,11 @@ public sealed record class Percentage : JsonModel
         this.DiscountType = JsonSerializer.SerializeToElement("percentage");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Percentage(Percentage percentage)
         : base(percentage) { }
+#pragma warning restore CS8618
 
     public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -559,8 +562,11 @@ public sealed record class Amount : JsonModel
         this.DiscountType = JsonSerializer.SerializeToElement("amount");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Amount(Amount amount)
         : base(amount) { }
+#pragma warning restore CS8618
 
     public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -176,10 +176,13 @@ public sealed record class SubscriptionChangeCancelResponse : JsonModel
 
     public SubscriptionChangeCancelResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionChangeCancelResponse(
         SubscriptionChangeCancelResponse subscriptionChangeCancelResponse
     )
         : base(subscriptionChangeCancelResponse) { }
+#pragma warning restore CS8618
 
     public SubscriptionChangeCancelResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

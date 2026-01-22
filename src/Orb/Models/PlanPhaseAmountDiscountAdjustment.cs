@@ -169,11 +169,14 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseAmountDiscountAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseAmountDiscountAdjustment(
         PlanPhaseAmountDiscountAdjustment planPhaseAmountDiscountAdjustment
     )
         : base(planPhaseAmountDiscountAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseAmountDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -316,10 +319,13 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : JsonModel
 
     public PlanPhaseAmountDiscountAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanPhaseAmountDiscountAdjustmentFilter(
         PlanPhaseAmountDiscountAdjustmentFilter planPhaseAmountDiscountAdjustmentFilter
     )
         : base(planPhaseAmountDiscountAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public PlanPhaseAmountDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

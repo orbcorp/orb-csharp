@@ -374,6 +374,22 @@ public class InvoiceSettingsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new InvoiceSettings
+        {
+            AutoCollection = true,
+            NetTerms = 0,
+            Memo = "memo",
+            RequireSuccessfulPayment = true,
+        };
+
+        InvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ExpiresAfterUnitTest : TestBase

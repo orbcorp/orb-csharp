@@ -337,8 +337,11 @@ public sealed record class InvoiceSettings : JsonModel
 
     public InvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceSettings(InvoiceSettings invoiceSettings)
         : base(invoiceSettings) { }
+#pragma warning restore CS8618
 
     public InvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {

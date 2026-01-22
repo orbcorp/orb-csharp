@@ -291,10 +291,13 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice : Jso
 
     public NewFloatingScalableMatrixWithTieredPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingScalableMatrixWithTieredPricingPrice(
         NewFloatingScalableMatrixWithTieredPricingPrice newFloatingScalableMatrixWithTieredPricingPrice
     )
         : base(newFloatingScalableMatrixWithTieredPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -529,10 +532,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
 
     public ScalableMatrixWithTieredPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingConfig(
         ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
     )
         : base(scalableMatrixWithTieredPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -611,8 +617,11 @@ public sealed record class MatrixScalingFactor : JsonModel
 
     public MatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixScalingFactor(MatrixScalingFactor matrixScalingFactor)
         : base(matrixScalingFactor) { }
+#pragma warning restore CS8618
 
     public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -683,10 +692,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
 
     public ScalableMatrixWithTieredPricingConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingConfigTier(
         ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
     )
         : base(scalableMatrixWithTieredPricingConfigTier) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

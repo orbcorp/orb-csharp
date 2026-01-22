@@ -74,8 +74,11 @@ public sealed record class DiscountOverride : JsonModel
 
     public DiscountOverride() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DiscountOverride(DiscountOverride discountOverride)
         : base(discountOverride) { }
+#pragma warning restore CS8618
 
     public DiscountOverride(IReadOnlyDictionary<string, JsonElement> rawData)
     {

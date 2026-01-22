@@ -67,8 +67,11 @@ public sealed record class MigrationCancelResponse : JsonModel
 
     public MigrationCancelResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationCancelResponse(MigrationCancelResponse migrationCancelResponse)
         : base(migrationCancelResponse) { }
+#pragma warning restore CS8618
 
     public MigrationCancelResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

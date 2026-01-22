@@ -304,10 +304,13 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice : JsonModel
 
     public NewSubscriptionTieredWithMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionTieredWithMinimumPrice(
         NewSubscriptionTieredWithMinimumPrice newSubscriptionTieredWithMinimumPrice
     )
         : base(newSubscriptionTieredWithMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -530,8 +533,11 @@ public sealed record class TieredWithMinimumConfig : JsonModel
 
     public TieredWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumConfig(TieredWithMinimumConfig tieredWithMinimumConfig)
         : base(tieredWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -621,8 +627,11 @@ public sealed record class TieredWithMinimumConfigTier : JsonModel
 
     public TieredWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumConfigTier(TieredWithMinimumConfigTier tieredWithMinimumConfigTier)
         : base(tieredWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -304,10 +304,13 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : JsonModel
 
     public NewSubscriptionMatrixWithDisplayNamePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionMatrixWithDisplayNamePrice(
         NewSubscriptionMatrixWithDisplayNamePrice newSubscriptionMatrixWithDisplayNamePrice
     )
         : base(newSubscriptionMatrixWithDisplayNamePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionMatrixWithDisplayNamePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -456,8 +459,11 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
 
     public MatrixWithDisplayNameConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameConfig(MatrixWithDisplayNameConfig matrixWithDisplayNameConfig)
         : base(matrixWithDisplayNameConfig) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -549,10 +555,13 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
 
     public MatrixWithDisplayNameConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameConfigUnitAmount(
         MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
     )
         : base(matrixWithDisplayNameConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

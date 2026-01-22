@@ -102,8 +102,11 @@ public sealed record class MatrixSubLineItem : JsonModel
 
     public MatrixSubLineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixSubLineItem(MatrixSubLineItem matrixSubLineItem)
         : base(matrixSubLineItem) { }
+#pragma warning restore CS8618
 
     public MatrixSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {

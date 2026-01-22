@@ -304,10 +304,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice : JsonModel
 
     public NewPlanMatrixWithDisplayNamePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithDisplayNamePrice(
         NewPlanMatrixWithDisplayNamePrice newPlanMatrixWithDisplayNamePrice
     )
         : base(newPlanMatrixWithDisplayNamePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithDisplayNamePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -455,10 +458,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
         NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig
     )
         : base(newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -556,10 +562,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
         NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount
     )
         : base(newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData

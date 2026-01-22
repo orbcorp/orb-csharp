@@ -94,6 +94,22 @@ public class MigrationListResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MigrationListResponse
+        {
+            ID = "id",
+            EffectiveTime = "2019-12-27",
+            PlanID = "plan_id",
+            Status = MigrationListResponseStatus.NotStarted,
+        };
+
+        MigrationListResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MigrationListResponseEffectiveTimeTest : TestBase

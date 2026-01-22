@@ -288,10 +288,13 @@ public sealed record class NewFloatingTieredWithProrationPrice : JsonModel
 
     public NewFloatingTieredWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingTieredWithProrationPrice(
         NewFloatingTieredWithProrationPrice newFloatingTieredWithProrationPrice
     )
         : base(newFloatingTieredWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingTieredWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -471,8 +474,11 @@ public sealed record class TieredWithProrationConfig : JsonModel
 
     public TieredWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationConfig(TieredWithProrationConfig tieredWithProrationConfig)
         : base(tieredWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -554,10 +560,13 @@ public sealed record class TieredWithProrationConfigTier : JsonModel
 
     public TieredWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationConfigTier(
         TieredWithProrationConfigTier tieredWithProrationConfigTier
     )
         : base(tieredWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

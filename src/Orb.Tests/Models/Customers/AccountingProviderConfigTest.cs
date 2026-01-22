@@ -74,4 +74,18 @@ public class AccountingProviderConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AccountingProviderConfig
+        {
+            ExternalProviderID = "external_provider_id",
+            ProviderType = "provider_type",
+        };
+
+        AccountingProviderConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

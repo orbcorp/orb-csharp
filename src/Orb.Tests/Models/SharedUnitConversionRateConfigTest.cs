@@ -81,6 +81,20 @@ public class SharedUnitConversionRateConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedUnitConversionRateConfig
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
+
+        SharedUnitConversionRateConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class SharedUnitConversionRateConfigConversionRateTypeTest : TestBase

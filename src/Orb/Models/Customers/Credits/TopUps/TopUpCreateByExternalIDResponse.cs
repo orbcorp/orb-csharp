@@ -138,10 +138,13 @@ public sealed record class TopUpCreateByExternalIDResponse : JsonModel
 
     public TopUpCreateByExternalIDResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpCreateByExternalIDResponse(
         TopUpCreateByExternalIDResponse topUpCreateByExternalIDResponse
     )
         : base(topUpCreateByExternalIDResponse) { }
+#pragma warning restore CS8618
 
     public TopUpCreateByExternalIDResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

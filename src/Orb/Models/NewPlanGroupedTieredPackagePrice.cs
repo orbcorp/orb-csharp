@@ -304,10 +304,13 @@ public sealed record class NewPlanGroupedTieredPackagePrice : JsonModel
 
     public NewPlanGroupedTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedTieredPackagePrice(
         NewPlanGroupedTieredPackagePrice newPlanGroupedTieredPackagePrice
     )
         : base(newPlanGroupedTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -467,10 +470,13 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
 
     public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig(
         NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig newPlanGroupedTieredPackagePriceGroupedTieredPackageConfig
     )
         : base(newPlanGroupedTieredPackagePriceGroupedTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -551,10 +557,13 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
 
     public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier(
         NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier newPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier
     )
         : base(newPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

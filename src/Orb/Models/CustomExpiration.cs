@@ -43,8 +43,11 @@ public sealed record class CustomExpiration : JsonModel
 
     public CustomExpiration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomExpiration(CustomExpiration customExpiration)
         : base(customExpiration) { }
+#pragma warning restore CS8618
 
     public CustomExpiration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

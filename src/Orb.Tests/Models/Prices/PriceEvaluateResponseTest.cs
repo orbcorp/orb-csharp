@@ -123,4 +123,25 @@ public class PriceEvaluateResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEvaluateResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    GroupingValues = ["string"],
+                    Quantity = 0,
+                },
+            ],
+        };
+
+        PriceEvaluateResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

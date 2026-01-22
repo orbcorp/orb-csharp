@@ -69,10 +69,13 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
 
     public BillingCycleAnchorConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillingCycleAnchorConfiguration(
         BillingCycleAnchorConfiguration billingCycleAnchorConfiguration
     )
         : base(billingCycleAnchorConfiguration) { }
+#pragma warning restore CS8618
 
     public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

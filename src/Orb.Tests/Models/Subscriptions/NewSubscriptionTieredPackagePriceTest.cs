@@ -556,6 +556,61 @@ public class NewSubscriptionTieredPackagePriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionTieredPackagePrice
+        {
+            Cadence = Subscriptions::NewSubscriptionTieredPackagePriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = Subscriptions::NewSubscriptionTieredPackagePriceModelType.TieredPackage,
+            Name = "Annual fee",
+            TieredPackageConfig = new()
+            {
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionTieredPackagePrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewSubscriptionTieredPackagePriceCadenceTest : TestBase
@@ -778,6 +833,24 @@ public class TieredPackageConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredPackageConfig
+        {
+            PackageSize = "package_size",
+            Tiers =
+            [
+                new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        Subscriptions::TieredPackageConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredPackageConfigTierTest : TestBase
@@ -849,6 +922,20 @@ public class TieredPackageConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        Subscriptions::TieredPackageConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

@@ -288,10 +288,13 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice : JsonModel
 
     public NewFloatingGroupedWithMeteredMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingGroupedWithMeteredMinimumPrice(
         NewFloatingGroupedWithMeteredMinimumPrice newFloatingGroupedWithMeteredMinimumPrice
     )
         : base(newFloatingGroupedWithMeteredMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingGroupedWithMeteredMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -508,10 +511,13 @@ public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
 
     public GroupedWithMeteredMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMeteredMinimumConfig(
         GroupedWithMeteredMinimumConfig groupedWithMeteredMinimumConfig
     )
         : base(groupedWithMeteredMinimumConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithMeteredMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -578,8 +584,11 @@ public sealed record class ScalingFactor : JsonModel
 
     public ScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalingFactor(ScalingFactor scalingFactor)
         : base(scalingFactor) { }
+#pragma warning restore CS8618
 
     public ScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -646,8 +655,11 @@ public sealed record class UnitAmount : JsonModel
 
     public UnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitAmount(UnitAmount unitAmount)
         : base(unitAmount) { }
+#pragma warning restore CS8618
 
     public UnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

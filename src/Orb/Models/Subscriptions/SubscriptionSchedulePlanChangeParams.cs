@@ -854,10 +854,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : J
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddAdjustment(
         SubscriptionSchedulePlanChangeParamsAddAdjustment subscriptionSchedulePlanChangeParamsAddAdjustment
     )
         : base(subscriptionSchedulePlanChangeParamsAddAdjustment) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1584,10 +1587,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : JsonMo
 
     public SubscriptionSchedulePlanChangeParamsAddPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPrice(
         SubscriptionSchedulePlanChangeParamsAddPrice subscriptionSchedulePlanChangeParamsAddPrice
     )
         : base(subscriptionSchedulePlanChangeParamsAddPrice) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4805,10 +4811,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters(
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4915,12 +4924,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig(
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5008,12 +5020,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5101,12 +5116,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5833,10 +5851,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration(
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5997,12 +6018,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig(
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6099,12 +6123,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier(
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6748,10 +6775,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds(
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6946,12 +6976,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -7595,10 +7628,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation(
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -7793,12 +7829,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -8433,10 +8472,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent(
         SubscriptionSchedulePlanChangeParamsAddPricePricePercent subscriptionSchedulePlanChangeParamsAddPricePricePercent
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePricePercent) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -8574,10 +8616,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig(
         SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig subscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9224,10 +9269,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput(
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput subscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePriceEventOutput) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9402,10 +9450,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig(
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig subscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig
     )
         : base(subscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9829,10 +9880,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment 
 
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment(
         SubscriptionSchedulePlanChangeParamsRemoveAdjustment subscriptionSchedulePlanChangeParamsRemoveAdjustment
     )
         : base(subscriptionSchedulePlanChangeParamsRemoveAdjustment) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9919,10 +9973,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Jso
 
     public SubscriptionSchedulePlanChangeParamsRemovePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsRemovePrice(
         SubscriptionSchedulePlanChangeParamsRemovePrice subscriptionSchedulePlanChangeParamsRemovePrice
     )
         : base(subscriptionSchedulePlanChangeParamsRemovePrice) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsRemovePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -10002,10 +10059,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment(
         SubscriptionSchedulePlanChangeParamsReplaceAdjustment subscriptionSchedulePlanChangeParamsReplaceAdjustment
     )
         : base(subscriptionSchedulePlanChangeParamsReplaceAdjustment) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -10710,10 +10770,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Js
 
     public SubscriptionSchedulePlanChangeParamsReplacePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePrice(
         SubscriptionSchedulePlanChangeParamsReplacePrice subscriptionSchedulePlanChangeParamsReplacePrice
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePrice) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13943,10 +14006,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14056,12 +14122,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14149,12 +14218,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14242,12 +14314,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14974,10 +15049,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15140,12 +15218,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15242,12 +15323,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15891,10 +15975,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16089,12 +16176,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16738,10 +16828,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16936,12 +17029,15 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     )
         : base(
             subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
         ) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -17576,10 +17672,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent(
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercent subscriptionSchedulePlanChangeParamsReplacePricePricePercent
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePricePercent) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -17723,10 +17822,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig(
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig subscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -18377,10 +18479,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput) { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -18557,11 +18662,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig
     )
         : base(subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig)
     { }
+#pragma warning restore CS8618
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -71,8 +71,11 @@ public sealed record class EvaluatePriceGroup : JsonModel
 
     public EvaluatePriceGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EvaluatePriceGroup(EvaluatePriceGroup evaluatePriceGroup)
         : base(evaluatePriceGroup) { }
+#pragma warning restore CS8618
 
     public EvaluatePriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {

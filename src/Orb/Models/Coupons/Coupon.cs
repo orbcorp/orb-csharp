@@ -123,8 +123,11 @@ public sealed record class Coupon : JsonModel
 
     public Coupon() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Coupon(Coupon coupon)
         : base(coupon) { }
+#pragma warning restore CS8618
 
     public Coupon(IReadOnlyDictionary<string, JsonElement> rawData)
     {
