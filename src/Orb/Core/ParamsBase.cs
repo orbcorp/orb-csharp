@@ -151,7 +151,7 @@ public abstract record class ParamsBase
         }
     }
 
-    protected string QueryString(ClientOptions options)
+    internal string QueryString(ClientOptions options)
     {
         NameValueCollection collection = [];
         foreach (var item in this.RawQueryData)
@@ -184,7 +184,7 @@ public abstract record class ParamsBase
         return null;
     }
 
-    protected static void AddDefaultHeaders(HttpRequestMessage request, ClientOptions options)
+    internal static void AddDefaultHeaders(HttpRequestMessage request, ClientOptions options)
     {
         foreach (var header in defaultHeaders)
         {
