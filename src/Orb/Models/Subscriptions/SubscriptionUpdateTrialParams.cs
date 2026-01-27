@@ -416,7 +416,10 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

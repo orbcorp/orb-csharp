@@ -1536,7 +1536,10 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1770,7 +1773,10 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

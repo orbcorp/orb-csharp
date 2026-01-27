@@ -356,7 +356,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<double>(element, options));
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -365,7 +365,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<bool>(element, options));
+            return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
