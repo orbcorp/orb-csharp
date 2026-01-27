@@ -54,4 +54,14 @@ public class ConversionRateUnitConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ConversionRateUnitConfig { UnitAmount = "unit_amount" };
+
+        ConversionRateUnitConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

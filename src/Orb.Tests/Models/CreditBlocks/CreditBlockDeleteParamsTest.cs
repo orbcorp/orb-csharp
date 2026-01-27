@@ -24,4 +24,14 @@ public class CreditBlockDeleteParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/credit_blocks/block_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CreditBlockDeleteParams { BlockID = "block_id" };
+
+        CreditBlockDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -172,11 +172,14 @@ public sealed record class MonetaryPercentageDiscountAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryPercentageDiscountAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryPercentageDiscountAdjustment(
         MonetaryPercentageDiscountAdjustment monetaryPercentageDiscountAdjustment
     )
         : base(monetaryPercentageDiscountAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryPercentageDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -322,10 +325,13 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : JsonMode
 
     public MonetaryPercentageDiscountAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MonetaryPercentageDiscountAdjustmentFilter(
         MonetaryPercentageDiscountAdjustmentFilter monetaryPercentageDiscountAdjustmentFilter
     )
         : base(monetaryPercentageDiscountAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public MonetaryPercentageDiscountAdjustmentFilter(
         IReadOnlyDictionary<string, JsonElement> rawData

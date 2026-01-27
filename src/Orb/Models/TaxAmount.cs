@@ -59,8 +59,11 @@ public sealed record class TaxAmount : JsonModel
 
     public TaxAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TaxAmount(TaxAmount taxAmount)
         : base(taxAmount) { }
+#pragma warning restore CS8618
 
     public TaxAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

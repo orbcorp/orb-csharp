@@ -75,4 +75,17 @@ public class BulkConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkConfig
+        {
+            Tiers = [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }],
+        };
+
+        BulkConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

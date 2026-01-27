@@ -55,8 +55,11 @@ public sealed record class MatrixValue : JsonModel
 
     public MatrixValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixValue(MatrixValue matrixValue)
         : base(matrixValue) { }
+#pragma warning restore CS8618
 
     public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {

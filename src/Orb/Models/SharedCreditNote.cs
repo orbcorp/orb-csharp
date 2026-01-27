@@ -268,8 +268,11 @@ public sealed record class SharedCreditNote : JsonModel
 
     public SharedCreditNote() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedCreditNote(SharedCreditNote sharedCreditNote)
         : base(sharedCreditNote) { }
+#pragma warning restore CS8618
 
     public SharedCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -475,8 +478,11 @@ public sealed record class SharedCreditNoteLineItem : JsonModel
 
     public SharedCreditNoteLineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedCreditNoteLineItem(SharedCreditNoteLineItem sharedCreditNoteLineItem)
         : base(sharedCreditNoteLineItem) { }
+#pragma warning restore CS8618
 
     public SharedCreditNoteLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -603,8 +609,11 @@ public sealed record class Discount : JsonModel
 
     public Discount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Discount(Discount discount)
         : base(discount) { }
+#pragma warning restore CS8618
 
     public Discount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -758,8 +767,11 @@ public sealed record class MaximumAmountAdjustment : JsonModel
 
     public MaximumAmountAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaximumAmountAdjustment(MaximumAmountAdjustment maximumAmountAdjustment)
         : base(maximumAmountAdjustment) { }
+#pragma warning restore CS8618
 
     public MaximumAmountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -865,8 +877,11 @@ public sealed record class AppliesToPrice : JsonModel
 
     public AppliesToPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AppliesToPrice(AppliesToPrice appliesToPrice)
         : base(appliesToPrice) { }
+#pragma warning restore CS8618
 
     public AppliesToPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1065,8 +1080,11 @@ public sealed record class SharedCreditNoteDiscount : JsonModel
 
     public SharedCreditNoteDiscount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedCreditNoteDiscount(SharedCreditNoteDiscount sharedCreditNoteDiscount)
         : base(sharedCreditNoteDiscount) { }
+#pragma warning restore CS8618
 
     public SharedCreditNoteDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1177,10 +1195,13 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : JsonModel
 
     public SharedCreditNoteDiscountAppliesToPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedCreditNoteDiscountAppliesToPrice(
         SharedCreditNoteDiscountAppliesToPrice sharedCreditNoteDiscountAppliesToPrice
     )
         : base(sharedCreditNoteDiscountAppliesToPrice) { }
+#pragma warning restore CS8618
 
     public SharedCreditNoteDiscountAppliesToPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {

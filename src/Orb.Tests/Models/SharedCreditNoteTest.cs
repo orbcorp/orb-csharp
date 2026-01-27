@@ -803,6 +803,86 @@ public class SharedCreditNoteTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedCreditNote
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditNoteNumber = "credit_note_number",
+            CreditNotePdf = "credit_note_pdf",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            InvoiceID = "invoice_id",
+            LineItems =
+            [
+                new()
+                {
+                    ID = "id",
+                    Amount = "amount",
+                    ItemID = "item_id",
+                    Name = "name",
+                    Quantity = 0,
+                    Subtotal = "subtotal",
+                    TaxAmounts =
+                    [
+                        new()
+                        {
+                            Amount = "amount",
+                            TaxRateDescription = "tax_rate_description",
+                            TaxRatePercentage = "tax_rate_percentage",
+                        },
+                    ],
+                    Discounts =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            AmountApplied = "amount_applied",
+                            AppliesToPriceIds = ["string"],
+                            DiscountType = DiscountDiscountType.Percentage,
+                            PercentageDiscount = 0,
+                            AmountDiscount = "amount_discount",
+                            Reason = "reason",
+                        },
+                    ],
+                    EndTimeExclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartTimeInclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            MaximumAmountAdjustment = new()
+            {
+                AmountApplied = "amount_applied",
+                DiscountType = MaximumAmountAdjustmentDiscountType.Percentage,
+                PercentageDiscount = 0,
+                AppliesToPrices = [new() { ID = "id", Name = "name" }],
+                Reason = "reason",
+            },
+            Memo = "memo",
+            MinimumAmountRefunded = "minimum_amount_refunded",
+            Reason = Reason.Duplicate,
+            Subtotal = "subtotal",
+            Total = "total",
+            Type = SharedCreditNoteType.Refund,
+            VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Discounts =
+            [
+                new()
+                {
+                    AmountApplied = "amount_applied",
+                    DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
+                    PercentageDiscount = 0,
+                    AppliesToPrices = [new() { ID = "id", Name = "name" }],
+                    Reason = "reason",
+                },
+            ],
+        };
+
+        SharedCreditNote copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class SharedCreditNoteLineItemTest : TestBase
@@ -1361,6 +1441,48 @@ public class SharedCreditNoteLineItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedCreditNoteLineItem
+        {
+            ID = "id",
+            Amount = "amount",
+            ItemID = "item_id",
+            Name = "name",
+            Quantity = 0,
+            Subtotal = "subtotal",
+            TaxAmounts =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    TaxRateDescription = "tax_rate_description",
+                    TaxRatePercentage = "tax_rate_percentage",
+                },
+            ],
+            Discounts =
+            [
+                new()
+                {
+                    ID = "id",
+                    AmountApplied = "amount_applied",
+                    AppliesToPriceIds = ["string"],
+                    DiscountType = DiscountDiscountType.Percentage,
+                    PercentageDiscount = 0,
+                    AmountDiscount = "amount_discount",
+                    Reason = "reason",
+                },
+            ],
+            EndTimeExclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartTimeInclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        SharedCreditNoteLineItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DiscountTest : TestBase
@@ -1551,6 +1673,25 @@ public class DiscountTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Discount
+        {
+            ID = "id",
+            AmountApplied = "amount_applied",
+            AppliesToPriceIds = ["string"],
+            DiscountType = DiscountDiscountType.Percentage,
+            PercentageDiscount = 0,
+            AmountDiscount = "amount_discount",
+            Reason = "reason",
+        };
+
+        Discount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1782,6 +1923,23 @@ public class MaximumAmountAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaximumAmountAdjustment
+        {
+            AmountApplied = "amount_applied",
+            DiscountType = MaximumAmountAdjustmentDiscountType.Percentage,
+            PercentageDiscount = 0,
+            AppliesToPrices = [new() { ID = "id", Name = "name" }],
+            Reason = "reason",
+        };
+
+        MaximumAmountAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MaximumAmountAdjustmentDiscountTypeTest : TestBase
@@ -1889,6 +2047,16 @@ public class AppliesToPriceTest : TestBase
         var model = new AppliesToPrice { ID = "id", Name = "name" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AppliesToPrice { ID = "id", Name = "name" };
+
+        AppliesToPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2188,6 +2356,23 @@ public class SharedCreditNoteDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedCreditNoteDiscount
+        {
+            AmountApplied = "amount_applied",
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
+            PercentageDiscount = 0,
+            AppliesToPrices = [new() { ID = "id", Name = "name" }],
+            Reason = "reason",
+        };
+
+        SharedCreditNoteDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class SharedCreditNoteDiscountDiscountTypeTest : TestBase
@@ -2295,5 +2480,15 @@ public class SharedCreditNoteDiscountAppliesToPriceTest : TestBase
         var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
+
+        SharedCreditNoteDiscountAppliesToPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

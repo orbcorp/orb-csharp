@@ -99,4 +99,14 @@ public class BulkTierTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkTier { UnitAmount = "unit_amount", MaximumUnits = 0 };
+
+        BulkTier copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

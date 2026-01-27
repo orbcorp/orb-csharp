@@ -59,8 +59,11 @@ public sealed record class EventIngestResponse : JsonModel
 
     public EventIngestResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventIngestResponse(EventIngestResponse eventIngestResponse)
         : base(eventIngestResponse) { }
+#pragma warning restore CS8618
 
     public EventIngestResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -142,8 +145,11 @@ public sealed record class ValidationFailed : JsonModel
 
     public ValidationFailed() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ValidationFailed(ValidationFailed validationFailed)
         : base(validationFailed) { }
+#pragma warning restore CS8618
 
     public ValidationFailed(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -222,8 +228,11 @@ public sealed record class Debug : JsonModel
 
     public Debug() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Debug(Debug debug)
         : base(debug) { }
+#pragma warning restore CS8618
 
     public Debug(IReadOnlyDictionary<string, JsonElement> rawData)
     {

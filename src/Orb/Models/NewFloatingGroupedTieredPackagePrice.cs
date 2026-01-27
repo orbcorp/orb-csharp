@@ -288,10 +288,13 @@ public sealed record class NewFloatingGroupedTieredPackagePrice : JsonModel
 
     public NewFloatingGroupedTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingGroupedTieredPackagePrice(
         NewFloatingGroupedTieredPackagePrice newFloatingGroupedTieredPackagePrice
     )
         : base(newFloatingGroupedTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingGroupedTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -450,8 +453,11 @@ public sealed record class GroupedTieredPackageConfig : JsonModel
 
     public GroupedTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredPackageConfig(GroupedTieredPackageConfig groupedTieredPackageConfig)
         : base(groupedTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public GroupedTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -526,10 +532,13 @@ public sealed record class GroupedTieredPackageConfigTier : JsonModel
 
     public GroupedTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredPackageConfigTier(
         GroupedTieredPackageConfigTier groupedTieredPackageConfigTier
     )
         : base(groupedTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public GroupedTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

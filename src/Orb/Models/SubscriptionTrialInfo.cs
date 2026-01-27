@@ -29,8 +29,11 @@ public sealed record class SubscriptionTrialInfo : JsonModel
 
     public SubscriptionTrialInfo() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionTrialInfo(SubscriptionTrialInfo subscriptionTrialInfo)
         : base(subscriptionTrialInfo) { }
+#pragma warning restore CS8618
 
     public SubscriptionTrialInfo(IReadOnlyDictionary<string, JsonElement> rawData)
     {

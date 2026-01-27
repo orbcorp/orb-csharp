@@ -67,8 +67,11 @@ public sealed record class MigrationListResponse : JsonModel
 
     public MigrationListResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationListResponse(MigrationListResponse migrationListResponse)
         : base(migrationListResponse) { }
+#pragma warning restore CS8618
 
     public MigrationListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -398,7 +401,10 @@ sealed class MigrationListResponseEffectiveTimeConverter
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

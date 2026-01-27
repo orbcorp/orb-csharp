@@ -176,8 +176,11 @@ public sealed record class NewMaximum : JsonModel
 
     public NewMaximum() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewMaximum(NewMaximum newMaximum)
         : base(newMaximum) { }
+#pragma warning restore CS8618
 
     public NewMaximum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -351,8 +354,11 @@ public sealed record class NewMaximumFilter : JsonModel
 
     public NewMaximumFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewMaximumFilter(NewMaximumFilter newMaximumFilter)
         : base(newMaximumFilter) { }
+#pragma warning restore CS8618
 
     public NewMaximumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

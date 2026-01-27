@@ -191,8 +191,11 @@ public sealed record class ExpirationChangeLedgerEntry : JsonModel
 
     public ExpirationChangeLedgerEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExpirationChangeLedgerEntry(ExpirationChangeLedgerEntry expirationChangeLedgerEntry)
         : base(expirationChangeLedgerEntry) { }
+#pragma warning restore CS8618
 
     public ExpirationChangeLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

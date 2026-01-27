@@ -39,4 +39,18 @@ public class TopUpDeleteByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpDeleteByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            TopUpID = "top_up_id",
+        };
+
+        TopUpDeleteByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

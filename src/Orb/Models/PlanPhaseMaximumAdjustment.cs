@@ -166,9 +166,12 @@ public sealed record class PlanPhaseMaximumAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMaximumAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMaximumAdjustment(PlanPhaseMaximumAdjustment planPhaseMaximumAdjustment)
         : base(planPhaseMaximumAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMaximumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -311,10 +314,13 @@ public sealed record class PlanPhaseMaximumAdjustmentFilter : JsonModel
 
     public PlanPhaseMaximumAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanPhaseMaximumAdjustmentFilter(
         PlanPhaseMaximumAdjustmentFilter planPhaseMaximumAdjustmentFilter
     )
         : base(planPhaseMaximumAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public PlanPhaseMaximumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

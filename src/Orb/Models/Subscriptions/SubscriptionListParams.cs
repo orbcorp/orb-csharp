@@ -19,8 +19,12 @@ namespace Orb.Models.Subscriptions;
 /// <para>Subscriptions can be filtered for a specific customer by using either the
 /// customer_id or external_customer_id query parameters. To filter subscriptions
 /// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionListParams : ParamsBase
+public record class SubscriptionListParams : ParamsBase
 {
     public System::DateTimeOffset? CreatedAtGt
     {
@@ -151,22 +155,23 @@ public sealed record class SubscriptionListParams : ParamsBase
         init { this._rawQueryData.Set("plan_id", value); }
     }
 
-    public ApiEnum<string, global::Orb.Models.Subscriptions.Status>? Status
+    public ApiEnum<string, Status>? Status
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<
-                ApiEnum<string, global::Orb.Models.Subscriptions.Status>
-            >("status");
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawQueryData.Set("status", value); }
     }
 
     public SubscriptionListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionListParams(SubscriptionListParams subscriptionListParams)
         : base(subscriptionListParams) { }
+#pragma warning restore CS8618
 
     public SubscriptionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -201,6 +206,26 @@ public sealed record class SubscriptionListParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/subscriptions")
@@ -217,9 +242,14 @@ public sealed record class SubscriptionListParams : ParamsBase
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Active,
@@ -227,9 +257,9 @@ public enum Status
     Upcoming,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.Subscriptions.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.Subscriptions.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -237,26 +267,22 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.Subscriptions.St
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::Orb.Models.Subscriptions.Status.Active,
-            "ended" => global::Orb.Models.Subscriptions.Status.Ended,
-            "upcoming" => global::Orb.Models.Subscriptions.Status.Upcoming,
-            _ => (global::Orb.Models.Subscriptions.Status)(-1),
+            "active" => Status.Active,
+            "ended" => Status.Ended,
+            "upcoming" => Status.Upcoming,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.Status.Active => "active",
-                global::Orb.Models.Subscriptions.Status.Ended => "ended",
-                global::Orb.Models.Subscriptions.Status.Upcoming => "upcoming",
+                Status.Active => "active",
+                Status.Ended => "ended",
+                Status.Upcoming => "upcoming",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

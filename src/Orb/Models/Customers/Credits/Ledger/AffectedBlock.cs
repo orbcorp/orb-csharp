@@ -73,8 +73,11 @@ public sealed record class AffectedBlock : JsonModel
 
     public AffectedBlock() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AffectedBlock(AffectedBlock affectedBlock)
         : base(affectedBlock) { }
+#pragma warning restore CS8618
 
     public AffectedBlock(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -165,8 +168,11 @@ public sealed record class AffectedBlockFilter : JsonModel
 
     public AffectedBlockFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AffectedBlockFilter(AffectedBlockFilter affectedBlockFilter)
         : base(affectedBlockFilter) { }
+#pragma warning restore CS8618
 
     public AffectedBlockFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

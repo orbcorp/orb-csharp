@@ -184,6 +184,32 @@ public class PercentageDiscountIntervalTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentageDiscountInterval
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PercentageDiscount = 0.15,
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        PercentageDiscountInterval copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PercentageDiscountIntervalDiscountTypeTest : TestBase
@@ -327,6 +353,21 @@ public class PercentageDiscountIntervalFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentageDiscountIntervalFilter
+        {
+            Field = PercentageDiscountIntervalFilterField.PriceID,
+            Operator = PercentageDiscountIntervalFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PercentageDiscountIntervalFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

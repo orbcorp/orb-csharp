@@ -296,8 +296,11 @@ public sealed record class NewPlanMatrixPrice : JsonModel
 
     public NewPlanMatrixPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixPrice(NewPlanMatrixPrice newPlanMatrixPrice)
         : base(newPlanMatrixPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {

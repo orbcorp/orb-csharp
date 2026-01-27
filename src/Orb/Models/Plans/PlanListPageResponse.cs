@@ -46,8 +46,11 @@ public sealed record class PlanListPageResponse : JsonModel
 
     public PlanListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanListPageResponse(PlanListPageResponse planListPageResponse)
         : base(planListPageResponse) { }
+#pragma warning restore CS8618
 
     public PlanListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

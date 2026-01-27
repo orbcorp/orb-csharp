@@ -198,6 +198,35 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MonetaryPercentageDiscountAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PercentageDiscount = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        MonetaryPercentageDiscountAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MonetaryPercentageDiscountAdjustmentAdjustmentTypeTest : TestBase
@@ -343,6 +372,21 @@ public class MonetaryPercentageDiscountAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MonetaryPercentageDiscountAdjustmentFilter
+        {
+            Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MonetaryPercentageDiscountAdjustmentFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

@@ -104,4 +104,14 @@ public class UnitConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitConfig { UnitAmount = "unit_amount", Prorated = true };
+
+        UnitConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

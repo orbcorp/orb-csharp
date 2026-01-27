@@ -128,4 +128,19 @@ public class SharedTierTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedTier
+        {
+            FirstUnit = 0,
+            UnitAmount = "unit_amount",
+            LastUnit = 0,
+        };
+
+        SharedTier copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

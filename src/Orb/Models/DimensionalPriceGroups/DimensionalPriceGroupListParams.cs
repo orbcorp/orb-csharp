@@ -10,8 +10,12 @@ namespace Orb.Models.DimensionalPriceGroups;
 
 /// <summary>
 /// List dimensional price groups
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class DimensionalPriceGroupListParams : ParamsBase
+public record class DimensionalPriceGroupListParams : ParamsBase
 {
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -50,10 +54,13 @@ public sealed record class DimensionalPriceGroupListParams : ParamsBase
 
     public DimensionalPriceGroupListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceGroupListParams(
         DimensionalPriceGroupListParams dimensionalPriceGroupListParams
     )
         : base(dimensionalPriceGroupListParams) { }
+#pragma warning restore CS8618
 
     public DimensionalPriceGroupListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -88,6 +95,26 @@ public sealed record class DimensionalPriceGroupListParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(DimensionalPriceGroupListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/dimensional_price_groups")
@@ -103,5 +130,10 @@ public sealed record class DimensionalPriceGroupListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

@@ -41,8 +41,11 @@ public sealed record class AccountingProviderConfig : JsonModel
 
     public AccountingProviderConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingProviderConfig(AccountingProviderConfig accountingProviderConfig)
         : base(accountingProviderConfig) { }
+#pragma warning restore CS8618
 
     public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

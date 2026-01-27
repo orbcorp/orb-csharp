@@ -76,14 +76,12 @@ public sealed record class NewSubscriptionUnitWithPercentPrice : JsonModel
     /// <summary>
     /// Configuration for unit_with_percent pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.UnitWithPercentConfig UnitWithPercentConfig
+    public required UnitWithPercentConfig UnitWithPercentConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.UnitWithPercentConfig>(
-                "unit_with_percent_config"
-            );
+            return this._rawData.GetNotNullClass<UnitWithPercentConfig>("unit_with_percent_config");
         }
         init { this._rawData.Set("unit_with_percent_config", value); }
     }
@@ -303,10 +301,13 @@ public sealed record class NewSubscriptionUnitWithPercentPrice : JsonModel
 
     public NewSubscriptionUnitWithPercentPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionUnitWithPercentPrice(
         NewSubscriptionUnitWithPercentPrice newSubscriptionUnitWithPercentPrice
     )
         : base(newSubscriptionUnitWithPercentPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -446,12 +447,7 @@ sealed class NewSubscriptionUnitWithPercentPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_percent pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.UnitWithPercentConfig,
-        global::Orb.Models.Subscriptions.UnitWithPercentConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<UnitWithPercentConfig, UnitWithPercentConfigFromRaw>))]
 public sealed record class UnitWithPercentConfig : JsonModel
 {
     /// <summary>
@@ -489,10 +485,11 @@ public sealed record class UnitWithPercentConfig : JsonModel
 
     public UnitWithPercentConfig() { }
 
-    public UnitWithPercentConfig(
-        global::Orb.Models.Subscriptions.UnitWithPercentConfig unitWithPercentConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public UnitWithPercentConfig(UnitWithPercentConfig unitWithPercentConfig)
         : base(unitWithPercentConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -507,8 +504,8 @@ public sealed record class UnitWithPercentConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.UnitWithPercentConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.UnitWithPercentConfig FromRawUnchecked(
+    /// <inheritdoc cref="UnitWithPercentConfigFromRaw.FromRawUnchecked"/>
+    public static UnitWithPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -516,13 +513,12 @@ public sealed record class UnitWithPercentConfig : JsonModel
     }
 }
 
-class UnitWithPercentConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.UnitWithPercentConfig>
+class UnitWithPercentConfigFromRaw : IFromRawJson<UnitWithPercentConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.UnitWithPercentConfig FromRawUnchecked(
+    public UnitWithPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.UnitWithPercentConfig.FromRawUnchecked(rawData);
+    ) => UnitWithPercentConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionUnitWithPercentPriceConversionRateConfigConverter))]

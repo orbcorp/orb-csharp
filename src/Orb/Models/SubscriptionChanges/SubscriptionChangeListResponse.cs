@@ -101,10 +101,13 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
 
     public SubscriptionChangeListResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionChangeListResponse(
         SubscriptionChangeListResponse subscriptionChangeListResponse
     )
         : base(subscriptionChangeListResponse) { }
+#pragma warning restore CS8618
 
     public SubscriptionChangeListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

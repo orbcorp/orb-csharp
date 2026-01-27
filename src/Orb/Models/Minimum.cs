@@ -80,9 +80,12 @@ public sealed record class Minimum : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum(Minimum minimum)
         : base(minimum) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -173,8 +176,11 @@ public sealed record class MinimumFilter : JsonModel
 
     public MinimumFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumFilter(MinimumFilter minimumFilter)
         : base(minimumFilter) { }
+#pragma warning restore CS8618
 
     public MinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -516,11 +516,14 @@ public sealed record class MutatedSubscription : JsonModel
     )]
     public MutatedSubscription() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
     )]
     public MutatedSubscription(MutatedSubscription mutatedSubscription)
         : base(mutatedSubscription) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"

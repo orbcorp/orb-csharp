@@ -24,4 +24,14 @@ public class AlertRetrieveParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/alerts/alert_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AlertRetrieveParams { AlertID = "alert_id" };
+
+        AlertRetrieveParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

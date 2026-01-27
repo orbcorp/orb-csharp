@@ -129,6 +129,29 @@ public class SharedTieredConversionRateConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SharedTieredConversionRateConfig
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
+
+        SharedTieredConversionRateConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ConversionRateTypeTest : TestBase

@@ -571,6 +571,64 @@ public class NewFloatingCumulativeGroupedBulkPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingCumulativeGroupedBulkPrice
+        {
+            Cadence = NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
+            CumulativeGroupedBulkConfig = new()
+            {
+                DimensionValues =
+                [
+                    new()
+                    {
+                        GroupingKey = "x",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                Group = "group",
+            },
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingCumulativeGroupedBulkPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewFloatingCumulativeGroupedBulkPriceCadenceTest : TestBase
@@ -761,6 +819,28 @@ public class CumulativeGroupedBulkConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedBulkConfig
+        {
+            DimensionValues =
+            [
+                new()
+                {
+                    GroupingKey = "x",
+                    TierLowerBound = "tier_lower_bound",
+                    UnitAmount = "unit_amount",
+                },
+            ],
+            Group = "group",
+        };
+
+        CumulativeGroupedBulkConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DimensionValueTest : TestBase
@@ -840,6 +920,21 @@ public class DimensionValueTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new DimensionValue
+        {
+            GroupingKey = "x",
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        DimensionValue copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

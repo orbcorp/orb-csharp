@@ -589,6 +589,65 @@ public class NewPlanCumulativeGroupedBulkPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanCumulativeGroupedBulkPrice
+        {
+            Cadence = NewPlanCumulativeGroupedBulkPriceCadence.Annual,
+            CumulativeGroupedBulkConfig = new()
+            {
+                DimensionValues =
+                [
+                    new()
+                    {
+                        GroupingKey = "x",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                Group = "group",
+            },
+            ItemID = "item_id",
+            ModelType = NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        NewPlanCumulativeGroupedBulkPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanCumulativeGroupedBulkPriceCadenceTest : TestBase
@@ -781,6 +840,28 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigTest : 
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig
+        {
+            DimensionValues =
+            [
+                new()
+                {
+                    GroupingKey = "x",
+                    TierLowerBound = "tier_lower_bound",
+                    UnitAmount = "unit_amount",
+                },
+            ],
+            Group = "group",
+        };
+
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueTest
@@ -863,6 +944,23 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensi
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
+        {
+            GroupingKey = "x",
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue copied = new(
+            model
+        );
+
+        Assert.Equal(model, copied);
     }
 }
 

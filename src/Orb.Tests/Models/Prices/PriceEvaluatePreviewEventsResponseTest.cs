@@ -183,6 +183,37 @@ public class PriceEvaluatePreviewEventsResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    Currency = "currency",
+                    PriceGroups =
+                    [
+                        new()
+                        {
+                            Amount = "amount",
+                            GroupingValues = ["string"],
+                            Quantity = 0,
+                        },
+                    ],
+                    ExternalPriceID = "external_price_id",
+                    InlinePriceIndex = 0,
+                    PriceID = "price_id",
+                },
+            ],
+        };
+
+        PriceEvaluatePreviewEventsResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PriceEvaluatePreviewEventsResponseDataTest : TestBase
@@ -432,5 +463,30 @@ public class PriceEvaluatePreviewEventsResponseDataTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsResponseData
+        {
+            Currency = "currency",
+            PriceGroups =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    GroupingValues = ["string"],
+                    Quantity = 0,
+                },
+            ],
+            ExternalPriceID = "external_price_id",
+            InlinePriceIndex = 0,
+            PriceID = "price_id",
+        };
+
+        PriceEvaluatePreviewEventsResponseData copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

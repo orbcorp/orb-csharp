@@ -36,8 +36,11 @@ public sealed record class Threshold : JsonModel
 
     public Threshold() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Threshold(Threshold threshold)
         : base(threshold) { }
+#pragma warning restore CS8618
 
     public Threshold(IReadOnlyDictionary<string, JsonElement> rawData)
     {

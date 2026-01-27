@@ -303,10 +303,13 @@ public sealed record class NewPlanMatrixWithAllocationPrice : JsonModel
 
     public NewPlanMatrixWithAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithAllocationPrice(
         NewPlanMatrixWithAllocationPrice newPlanMatrixWithAllocationPrice
     )
         : base(newPlanMatrixWithAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {

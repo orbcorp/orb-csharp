@@ -198,6 +198,35 @@ public class MonetaryMaximumAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MonetaryMaximumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            MaximumAmount = "maximum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        MonetaryMaximumAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MonetaryMaximumAdjustmentAdjustmentTypeTest : TestBase
@@ -341,6 +370,21 @@ public class MonetaryMaximumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MonetaryMaximumAdjustmentFilter
+        {
+            Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MonetaryMaximumAdjustmentFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

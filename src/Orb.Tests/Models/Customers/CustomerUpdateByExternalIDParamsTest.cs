@@ -327,6 +327,91 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerUpdateByExternalIDParams
+        {
+            ID = "external_customer_id",
+            AccountingSyncConfiguration = new()
+            {
+                AccountingProviders =
+                [
+                    new()
+                    {
+                        ExternalProviderID = "external_provider_id",
+                        ProviderType = "provider_type",
+                    },
+                ],
+                Excluded = true,
+            },
+            AdditionalEmails = ["string"],
+            AutoCollection = true,
+            AutoIssuance = true,
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            Currency = "currency",
+            Email = "dev@stainless.com",
+            EmailDelivery = true,
+            ExternalCustomerID = "external_customer_id",
+            Hierarchy = new()
+            {
+                ChildCustomerIds = ["string"],
+                ParentCustomerID = "parent_customer_id",
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            Name = "name",
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType =
+                            CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
+            PaymentProvider = CustomerUpdateByExternalIDParamsPaymentProvider.Quickbooks,
+            PaymentProviderID = "payment_provider_id",
+            ReportingConfiguration = new(true),
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            TaxConfiguration = new NewAvalaraTaxConfiguration()
+            {
+                TaxExempt = true,
+                TaxProvider = TaxProvider.Avalara,
+                AutomaticTaxEnabled = true,
+                TaxExemptionCode = "tax_exemption_code",
+            },
+            TaxID = new()
+            {
+                Country = Country.Ad,
+                Type = CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+        };
+
+        CustomerUpdateByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class CustomerUpdateByExternalIDParamsPaymentConfigurationTest : TestBase
@@ -493,6 +578,27 @@ public class CustomerUpdateByExternalIDParamsPaymentConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType =
+                        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        CustomerUpdateByExternalIDParamsPaymentConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderTest : TestBase
@@ -656,6 +762,21 @@ public class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
+        {
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1117,6 +1238,20 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralTest : TestB
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
+
+        CustomerUpdateByExternalIDParamsTaxConfigurationNumeral copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokTest : TestBase
@@ -1239,6 +1374,20 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokTest : TestBas
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
+
+        CustomerUpdateByExternalIDParamsTaxConfigurationAnrok copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerUpdateByExternalIDParamsTaxConfigurationStripeTest : TestBase
@@ -1360,5 +1509,19 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationStripeTest : TestBa
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
+
+        CustomerUpdateByExternalIDParamsTaxConfigurationStripe copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

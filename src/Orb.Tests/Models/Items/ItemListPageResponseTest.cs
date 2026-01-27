@@ -207,4 +207,37 @@ public class ItemListPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ItemListPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExternalConnections =
+                    [
+                        new()
+                        {
+                            ExternalConnectionName =
+                                ItemExternalConnectionExternalConnectionName.Stripe,
+                            ExternalEntityID = "external_entity_id",
+                        },
+                    ],
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    Name = "name",
+                    ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        ItemListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

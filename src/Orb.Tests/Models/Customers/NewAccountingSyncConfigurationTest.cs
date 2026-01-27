@@ -165,4 +165,25 @@ public class NewAccountingSyncConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewAccountingSyncConfiguration
+        {
+            AccountingProviders =
+            [
+                new()
+                {
+                    ExternalProviderID = "external_provider_id",
+                    ProviderType = "provider_type",
+                },
+            ],
+            Excluded = true,
+        };
+
+        NewAccountingSyncConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

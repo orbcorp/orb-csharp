@@ -54,4 +54,14 @@ public class EventUpdateResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventUpdateResponse { Amended = "amended" };
+
+        EventUpdateResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

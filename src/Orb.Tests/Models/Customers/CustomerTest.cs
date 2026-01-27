@@ -809,6 +809,90 @@ public class CustomerTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Customer
+        {
+            ID = "id",
+            AdditionalEmails = ["string"],
+            AutoCollection = true,
+            AutoIssuance = true,
+            Balance = "balance",
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Email = "email",
+            EmailDelivery = true,
+            ExemptFromAutomatedTax = true,
+            ExternalCustomerID = "external_customer_id",
+            Hierarchy = new()
+            {
+                Children = [new() { ID = "id", ExternalCustomerID = "external_customer_id" }],
+                Parent = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            },
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            PaymentProvider = CustomerPaymentProvider.Quickbooks,
+            PaymentProviderID = "payment_provider_id",
+            PortalUrl = "portal_url",
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            TaxID = new()
+            {
+                Country = Country.Ad,
+                Type = CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+            Timezone = "timezone",
+            AccountingSyncConfiguration = new()
+            {
+                AccountingProviders =
+                [
+                    new()
+                    {
+                        ExternalProviderID = "external_provider_id",
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
+                    },
+                ],
+                Excluded = true,
+            },
+            AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType =
+                            CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
+            ReportingConfiguration = new(true),
+        };
+
+        Customer copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class HierarchyTest : TestBase
@@ -899,6 +983,20 @@ public class HierarchyTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Hierarchy
+        {
+            Children = [new() { ID = "id", ExternalCustomerID = "external_customer_id" }],
+            Parent = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+        };
+
+        Hierarchy copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1086,6 +1184,27 @@ public class AccountingSyncConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AccountingSyncConfiguration
+        {
+            AccountingProviders =
+            [
+                new()
+                {
+                    ExternalProviderID = "external_provider_id",
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
+                },
+            ],
+            Excluded = true,
+        };
+
+        AccountingSyncConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AccountingProviderTest : TestBase
@@ -1159,6 +1278,20 @@ public class AccountingProviderTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AccountingProvider
+        {
+            ExternalProviderID = "external_provider_id",
+            ProviderType = AccountingProviderProviderType.Quickbooks,
+        };
+
+        AccountingProvider copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1374,6 +1507,26 @@ public class CustomerPaymentConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        CustomerPaymentConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
@@ -1526,6 +1679,20 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        CustomerPaymentConfigurationPaymentProvider copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerPaymentConfigurationPaymentProviderProviderTypeTest : TestBase
@@ -1631,5 +1798,15 @@ public class ReportingConfigurationTest : TestBase
         var model = new ReportingConfiguration { Exempt = true };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ReportingConfiguration { Exempt = true };
+
+        ReportingConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

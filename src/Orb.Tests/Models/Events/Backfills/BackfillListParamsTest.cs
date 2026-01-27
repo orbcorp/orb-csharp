@@ -76,4 +76,14 @@ public class BackfillListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BackfillListParams { Cursor = "cursor", Limit = 1 };
+
+        BackfillListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

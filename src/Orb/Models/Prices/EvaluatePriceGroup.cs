@@ -71,8 +71,11 @@ public sealed record class EvaluatePriceGroup : JsonModel
 
     public EvaluatePriceGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EvaluatePriceGroup(EvaluatePriceGroup evaluatePriceGroup)
         : base(evaluatePriceGroup) { }
+#pragma warning restore CS8618
 
     public EvaluatePriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -353,7 +356,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<double>(element, options));
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -362,7 +365,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<bool>(element, options));
+            return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

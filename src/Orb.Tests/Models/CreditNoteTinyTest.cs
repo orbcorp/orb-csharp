@@ -54,4 +54,14 @@ public class CreditNoteTinyTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreditNoteTiny { ID = "id" };
+
+        CreditNoteTiny copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

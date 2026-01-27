@@ -144,4 +144,23 @@ public class SubscriptionFetchScheduleParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionFetchScheduleParams
+        {
+            SubscriptionID = "subscription_id",
+            Cursor = "cursor",
+            Limit = 1,
+            StartDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        SubscriptionFetchScheduleParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

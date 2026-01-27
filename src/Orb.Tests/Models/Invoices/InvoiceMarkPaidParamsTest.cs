@@ -73,4 +73,20 @@ public class InvoiceMarkPaidParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/mark_paid"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceMarkPaidParams
+        {
+            InvoiceID = "invoice_id",
+            PaymentReceivedDate = "2023-09-22",
+            ExternalID = "external_payment_id_123",
+            Notes = "notes",
+        };
+
+        InvoiceMarkPaidParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

@@ -166,6 +166,34 @@ public class EventSearchResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventSearchResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    CustomerID = "customer_id",
+                    Deprecated = true,
+                    EventName = "event_name",
+                    ExternalCustomerID = "external_customer_id",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                },
+            ],
+        };
+
+        EventSearchResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DataTest : TestBase
@@ -301,5 +329,27 @@ public class DataTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Data
+        {
+            ID = "id",
+            CustomerID = "customer_id",
+            Deprecated = true,
+            EventName = "event_name",
+            ExternalCustomerID = "external_customer_id",
+            Properties = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+        };
+
+        Data copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

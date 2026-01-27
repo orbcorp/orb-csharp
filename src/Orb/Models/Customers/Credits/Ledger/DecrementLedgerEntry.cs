@@ -211,8 +211,11 @@ public sealed record class DecrementLedgerEntry : JsonModel
 
     public DecrementLedgerEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DecrementLedgerEntry(DecrementLedgerEntry decrementLedgerEntry)
         : base(decrementLedgerEntry) { }
+#pragma warning restore CS8618
 
     public DecrementLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -111,4 +111,20 @@ public class VolumeListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new VolumeListParams
+        {
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Cursor = "cursor",
+            Limit = 1,
+            TimeframeEnd = DateTimeOffset.Parse("2024-10-11T06:00:00Z"),
+        };
+
+        VolumeListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

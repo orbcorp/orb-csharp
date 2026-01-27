@@ -56,10 +56,13 @@ public sealed record class SubscriptionChangeListPageResponse : JsonModel
 
     public SubscriptionChangeListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionChangeListPageResponse(
         SubscriptionChangeListPageResponse subscriptionChangeListPageResponse
     )
         : base(subscriptionChangeListPageResponse) { }
+#pragma warning restore CS8618
 
     public SubscriptionChangeListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

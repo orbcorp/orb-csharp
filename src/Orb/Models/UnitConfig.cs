@@ -56,8 +56,11 @@ public sealed record class UnitConfig : JsonModel
 
     public UnitConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitConfig(UnitConfig unitConfig)
         : base(unitConfig) { }
+#pragma warning restore CS8618
 
     public UnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -50,8 +50,11 @@ public sealed record class PriceListPageResponse : JsonModel
 
     public PriceListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceListPageResponse(PriceListPageResponse priceListPageResponse)
         : base(priceListPageResponse) { }
+#pragma warning restore CS8618
 
     public PriceListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -58,8 +58,11 @@ public sealed record class NewTaxJarConfiguration : JsonModel
 
     public NewTaxJarConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewTaxJarConfiguration(NewTaxJarConfiguration newTaxJarConfiguration)
         : base(newTaxJarConfiguration) { }
+#pragma warning restore CS8618
 
     public NewTaxJarConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

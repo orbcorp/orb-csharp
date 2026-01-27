@@ -56,10 +56,13 @@ public sealed record class SubscriptionFetchSchedulePageResponse : JsonModel
 
     public SubscriptionFetchSchedulePageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionFetchSchedulePageResponse(
         SubscriptionFetchSchedulePageResponse subscriptionFetchSchedulePageResponse
     )
         : base(subscriptionFetchSchedulePageResponse) { }
+#pragma warning restore CS8618
 
     public SubscriptionFetchSchedulePageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

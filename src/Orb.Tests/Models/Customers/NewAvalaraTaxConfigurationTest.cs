@@ -151,6 +151,22 @@ public class NewAvalaraTaxConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewAvalaraTaxConfiguration
+        {
+            TaxExempt = true,
+            TaxProvider = TaxProvider.Avalara,
+            AutomaticTaxEnabled = true,
+            TaxExemptionCode = "tax_exemption_code",
+        };
+
+        NewAvalaraTaxConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TaxProviderTest : TestBase

@@ -16,18 +16,25 @@ namespace Orb.Models.Events.Backfills;
 ///
 /// <para>If a backfill is reverted before its closed, no usage will be updated as
 /// a result of the backfill and it will immediately transition to `reverted`.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class BackfillRevertParams : ParamsBase
+public record class BackfillRevertParams : ParamsBase
 {
     public string? BackfillID { get; init; }
 
     public BackfillRevertParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillRevertParams(BackfillRevertParams backfillRevertParams)
         : base(backfillRevertParams)
     {
         this.BackfillID = backfillRevertParams.BackfillID;
     }
+#pragma warning restore CS8618
 
     public BackfillRevertParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -62,6 +69,28 @@ public sealed record class BackfillRevertParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["BackfillID"] = this.BackfillID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(BackfillRevertParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.BackfillID?.Equals(other.BackfillID) ?? other.BackfillID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -80,5 +109,10 @@ public sealed record class BackfillRevertParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

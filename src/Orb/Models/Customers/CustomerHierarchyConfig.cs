@@ -59,8 +59,11 @@ public sealed record class CustomerHierarchyConfig : JsonModel
 
     public CustomerHierarchyConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerHierarchyConfig(CustomerHierarchyConfig customerHierarchyConfig)
         : base(customerHierarchyConfig) { }
+#pragma warning restore CS8618
 
     public CustomerHierarchyConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

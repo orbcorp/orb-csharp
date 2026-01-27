@@ -185,6 +185,25 @@ public class MatrixSubLineItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixSubLineItem
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            MatrixConfig = new(["string"]),
+            Name = "Tier One",
+            Quantity = 5,
+            Type = MatrixSubLineItemType.Matrix,
+            ScaledQuantity = 0,
+        };
+
+        MatrixSubLineItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixSubLineItemTypeTest : TestBase

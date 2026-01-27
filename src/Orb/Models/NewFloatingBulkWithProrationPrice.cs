@@ -288,10 +288,13 @@ public sealed record class NewFloatingBulkWithProrationPrice : JsonModel
 
     public NewFloatingBulkWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingBulkWithProrationPrice(
         NewFloatingBulkWithProrationPrice newFloatingBulkWithProrationPrice
     )
         : base(newFloatingBulkWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -359,8 +362,11 @@ public sealed record class BulkWithProrationConfig : JsonModel
 
     public BulkWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationConfig(BulkWithProrationConfig bulkWithProrationConfig)
         : base(bulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -440,8 +446,11 @@ public sealed record class Tier : JsonModel
 
     public Tier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Tier(Tier tier)
         : base(tier) { }
+#pragma warning restore CS8618
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

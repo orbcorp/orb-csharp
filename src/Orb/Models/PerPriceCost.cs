@@ -87,8 +87,11 @@ public sealed record class PerPriceCost : JsonModel
 
     public PerPriceCost() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PerPriceCost(PerPriceCost perPriceCost)
         : base(perPriceCost) { }
+#pragma warning restore CS8618
 
     public PerPriceCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {

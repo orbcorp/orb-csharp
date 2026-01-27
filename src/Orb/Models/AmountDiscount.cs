@@ -100,8 +100,11 @@ public sealed record class AmountDiscount : JsonModel
 
     public AmountDiscount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AmountDiscount(AmountDiscount amountDiscount)
         : base(amountDiscount) { }
+#pragma warning restore CS8618
 
     public AmountDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -233,8 +236,11 @@ public sealed record class AmountDiscountFilter : JsonModel
 
     public AmountDiscountFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AmountDiscountFilter(AmountDiscountFilter amountDiscountFilter)
         : base(amountDiscountFilter) { }
+#pragma warning restore CS8618
 
     public AmountDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

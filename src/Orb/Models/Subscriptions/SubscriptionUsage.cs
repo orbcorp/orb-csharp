@@ -288,8 +288,11 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
 
     public UngroupedSubscriptionUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UngroupedSubscriptionUsage(UngroupedSubscriptionUsage ungroupedSubscriptionUsage)
         : base(ungroupedSubscriptionUsage) { }
+#pragma warning restore CS8618
 
     public UngroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -380,8 +383,11 @@ public sealed record class Data : JsonModel
 
     public Data() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Data(Data data)
         : base(data) { }
+#pragma warning restore CS8618
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -442,8 +448,11 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillableMetric(BillableMetric billableMetric)
         : base(billableMetric) { }
+#pragma warning restore CS8618
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -515,8 +524,11 @@ public sealed record class DataUsage : JsonModel
 
     public DataUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DataUsage(DataUsage dataUsage)
         : base(dataUsage) { }
+#pragma warning restore CS8618
 
     public DataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -634,8 +646,11 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
 
     public GroupedSubscriptionUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsage(GroupedSubscriptionUsage groupedSubscriptionUsage)
         : base(groupedSubscriptionUsage) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -745,8 +760,11 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
 
     public GroupedSubscriptionUsageData() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageData(GroupedSubscriptionUsageData groupedSubscriptionUsageData)
         : base(groupedSubscriptionUsageData) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -815,10 +833,13 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonMode
 
     public GroupedSubscriptionUsageDataBillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageDataBillableMetric(
         GroupedSubscriptionUsageDataBillableMetric groupedSubscriptionUsageDataBillableMetric
     )
         : base(groupedSubscriptionUsageDataBillableMetric) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageDataBillableMetric(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -885,8 +906,11 @@ public sealed record class MetricGroup : JsonModel
 
     public MetricGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricGroup(MetricGroup metricGroup)
         : base(metricGroup) { }
+#pragma warning restore CS8618
 
     public MetricGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -963,10 +987,13 @@ public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 
     public GroupedSubscriptionUsageDataUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageDataUsage(
         GroupedSubscriptionUsageDataUsage groupedSubscriptionUsageDataUsage
     )
         : base(groupedSubscriptionUsageDataUsage) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageDataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {

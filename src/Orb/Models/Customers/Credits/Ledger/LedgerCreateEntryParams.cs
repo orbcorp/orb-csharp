@@ -94,8 +94,12 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// of type `amendment`. For this entry, `block_id` is required to identify the block
 /// that was originally decremented from, and `amount` indicates how many credits
 /// to return to the customer, up to the block's initial balance.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class LedgerCreateEntryParams : ParamsBase
+public record class LedgerCreateEntryParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -117,6 +121,8 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
 
     public LedgerCreateEntryParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryParams(LedgerCreateEntryParams ledgerCreateEntryParams)
         : base(ledgerCreateEntryParams)
     {
@@ -124,6 +130,7 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
 
         this._rawBodyData = new(ledgerCreateEntryParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -164,6 +171,30 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["CustomerID"] = this.CustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(LedgerCreateEntryParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -191,6 +222,11 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -800,18 +836,16 @@ public sealed record class Increment : JsonModel
     /// Optional filter to specify which items this credit block applies to. If not
     /// specified, the block will apply to all items for the pricing unit.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.Filter>? Filters
+    public IReadOnlyList<Filter>? Filters
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Customers.Credits.Ledger.Filter>
-            >("filters");
+            return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Customers.Credits.Ledger.Filter>?>(
+            this._rawData.Set<ImmutableArray<Filter>?>(
                 "filters",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -894,8 +928,11 @@ public sealed record class Increment : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Increment(Increment increment)
         : base(increment) { }
+#pragma warning restore CS8618
 
     public Increment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -936,25 +973,18 @@ class IncrementFromRaw : IFromRawJson<Increment>
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Customers.Credits.Ledger.Filter,
-        global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
 public sealed record class Filter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field> Field
+    public required ApiEnum<string, Field> Field
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field>
-            >("field");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
         }
         init { this._rawData.Set("field", value); }
     }
@@ -962,14 +992,12 @@ public sealed record class Filter : JsonModel
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator> Operator
+    public required ApiEnum<string, Operator> Operator
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator>
-            >("operator");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
         }
         init { this._rawData.Set("operator", value); }
     }
@@ -1003,8 +1031,11 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
-    public Filter(global::Orb.Models.Customers.Credits.Ledger.Filter filter)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Filter(Filter filter)
         : base(filter) { }
+#pragma warning restore CS8618
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1019,35 +1050,32 @@ public sealed record class Filter : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
+    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FilterFromRaw : IFromRawJson<global::Orb.Models.Customers.Credits.Ledger.Filter>
+class FilterFromRaw : IFromRawJson<Filter>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.Credits.Ledger.Filter.FromRawUnchecked(rawData);
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FieldConverter))]
+[JsonConverter(typeof(FieldConverter))]
 public enum Field
 {
     ItemID,
 }
 
-sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Field>
+sealed class FieldConverter : JsonConverter<Field>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Field Read(
+    public override Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1055,22 +1083,18 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => global::Orb.Models.Customers.Credits.Ledger.Field.ItemID,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Field)(-1),
+            "item_id" => Field.ItemID,
+            _ => (Field)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Field value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Field.ItemID => "item_id",
+                Field.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1083,16 +1107,16 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.OperatorConverter))]
+[JsonConverter(typeof(OperatorConverter))]
 public enum Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Operator>
+sealed class OperatorConverter : JsonConverter<Operator>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Operator Read(
+    public override Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1100,24 +1124,20 @@ sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Cred
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.Ledger.Operator.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.Ledger.Operator.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Operator)(-1),
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Operator value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Operator.Includes => "includes",
-                global::Orb.Models.Customers.Credits.Ledger.Operator.Excludes => "excludes",
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1259,8 +1279,11 @@ public sealed record class InvoiceSettings : JsonModel
 
     public InvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceSettings(InvoiceSettings invoiceSettings)
         : base(invoiceSettings) { }
+#pragma warning restore CS8618
 
     public InvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1513,7 +1536,10 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1747,7 +1773,10 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1862,8 +1891,11 @@ public sealed record class Decrement : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Decrement(Decrement decrement)
         : base(decrement) { }
+#pragma warning restore CS8618
 
     public Decrement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2046,8 +2078,11 @@ public sealed record class ExpirationChange : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExpirationChange(ExpirationChange expirationChange)
         : base(expirationChange) { }
+#pragma warning restore CS8618
 
     public ExpirationChange(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2210,8 +2245,11 @@ public sealed record class Void : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Void(Void void_)
         : base(void_) { }
+#pragma warning restore CS8618
 
     public Void(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2395,8 +2433,11 @@ public sealed record class Amendment : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Amendment(Amendment amendment)
         : base(amendment) { }
+#pragma warning restore CS8618
 
     public Amendment(IReadOnlyDictionary<string, JsonElement> rawData)
     {

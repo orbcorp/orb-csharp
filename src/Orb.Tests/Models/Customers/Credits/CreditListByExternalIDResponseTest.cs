@@ -183,6 +183,34 @@ public class CreditListByExternalIDResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreditListByExternalIDResponse
+        {
+            ID = "id",
+            Balance = 0,
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = CreditListByExternalIDResponseFilterField.ItemID,
+                    Operator = CreditListByExternalIDResponseFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumInitialBalance = 0,
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Status = CreditListByExternalIDResponseStatus.Active,
+        };
+
+        CreditListByExternalIDResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CreditListByExternalIDResponseFilterTest : TestBase
@@ -274,6 +302,21 @@ public class CreditListByExternalIDResponseFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreditListByExternalIDResponseFilter
+        {
+            Field = CreditListByExternalIDResponseFilterField.ItemID,
+            Operator = CreditListByExternalIDResponseFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        CreditListByExternalIDResponseFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

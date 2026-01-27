@@ -181,6 +181,34 @@ public class CreditListResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreditListResponse
+        {
+            ID = "id",
+            Balance = 0,
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.ItemID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumInitialBalance = 0,
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Status = Status.Active,
+        };
+
+        CreditListResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class FilterTest : TestBase
@@ -262,6 +290,21 @@ public class FilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.ItemID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        Filter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

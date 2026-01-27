@@ -285,10 +285,13 @@ public sealed record class NewFloatingUnitWithPercentPrice : JsonModel
 
     public NewFloatingUnitWithPercentPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingUnitWithPercentPrice(
         NewFloatingUnitWithPercentPrice newFloatingUnitWithPercentPrice
     )
         : base(newFloatingUnitWithPercentPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -466,8 +469,11 @@ public sealed record class UnitWithPercentConfig : JsonModel
 
     public UnitWithPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithPercentConfig(UnitWithPercentConfig unitWithPercentConfig)
         : base(unitWithPercentConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

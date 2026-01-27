@@ -77,6 +77,20 @@ public class CustomExpirationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomExpiration
+        {
+            Duration = 0,
+            DurationUnit = CustomExpirationDurationUnit.Day,
+        };
+
+        CustomExpiration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomExpirationDurationUnitTest : TestBase

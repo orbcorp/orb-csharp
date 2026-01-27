@@ -58,4 +58,14 @@ public class SubLineItemGroupingTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubLineItemGrouping { Key = "region", Value = "west" };
+
+        SubLineItemGrouping copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

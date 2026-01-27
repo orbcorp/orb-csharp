@@ -48,10 +48,13 @@ public sealed record class DimensionalPriceConfiguration : JsonModel
 
     public DimensionalPriceConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceConfiguration(
         DimensionalPriceConfiguration dimensionalPriceConfiguration
     )
         : base(dimensionalPriceConfiguration) { }
+#pragma warning restore CS8618
 
     public DimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

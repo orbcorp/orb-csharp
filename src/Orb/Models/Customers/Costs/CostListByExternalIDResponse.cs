@@ -40,8 +40,11 @@ public sealed record class CostListByExternalIDResponse : JsonModel
 
     public CostListByExternalIDResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CostListByExternalIDResponse(CostListByExternalIDResponse costListByExternalIDResponse)
         : base(costListByExternalIDResponse) { }
+#pragma warning restore CS8618
 
     public CostListByExternalIDResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

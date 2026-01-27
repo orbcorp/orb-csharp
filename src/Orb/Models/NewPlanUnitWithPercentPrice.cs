@@ -300,8 +300,11 @@ public sealed record class NewPlanUnitWithPercentPrice : JsonModel
 
     public NewPlanUnitWithPercentPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanUnitWithPercentPrice(NewPlanUnitWithPercentPrice newPlanUnitWithPercentPrice)
         : base(newPlanUnitWithPercentPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -484,10 +487,13 @@ public sealed record class NewPlanUnitWithPercentPriceUnitWithPercentConfig : Js
 
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig(
         NewPlanUnitWithPercentPriceUnitWithPercentConfig newPlanUnitWithPercentPriceUnitWithPercentConfig
     )
         : base(newPlanUnitWithPercentPriceUnitWithPercentConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

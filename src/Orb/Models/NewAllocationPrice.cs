@@ -157,8 +157,11 @@ public sealed record class NewAllocationPrice : JsonModel
 
     public NewAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewAllocationPrice(NewAllocationPrice newAllocationPrice)
         : base(newAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -308,8 +311,11 @@ public sealed record class NewAllocationPriceFilter : JsonModel
 
     public NewAllocationPriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewAllocationPriceFilter(NewAllocationPriceFilter newAllocationPriceFilter)
         : base(newAllocationPriceFilter) { }
+#pragma warning restore CS8618
 
     public NewAllocationPriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -213,8 +213,11 @@ public sealed record class PriceInterval : JsonModel
 
     public PriceInterval() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceInterval(PriceInterval priceInterval)
         : base(priceInterval) { }
+#pragma warning restore CS8618
 
     public PriceInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -208,4 +208,20 @@ public class TopUpInvoiceSettingsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TopUpInvoiceSettings
+        {
+            AutoCollection = true,
+            NetTerms = 0,
+            Memo = "memo",
+            RequireSuccessfulPayment = true,
+        };
+
+        TopUpInvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

@@ -67,4 +67,17 @@ public class SubscriptionTrialInfoTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubscriptionTrialInfo
+        {
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        SubscriptionTrialInfo copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

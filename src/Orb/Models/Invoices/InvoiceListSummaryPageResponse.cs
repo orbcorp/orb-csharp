@@ -56,10 +56,13 @@ public sealed record class InvoiceListSummaryPageResponse : JsonModel
 
     public InvoiceListSummaryPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryPageResponse(
         InvoiceListSummaryPageResponse invoiceListSummaryPageResponse
     )
         : base(invoiceListSummaryPageResponse) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

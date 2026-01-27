@@ -58,8 +58,11 @@ public sealed record class NewSphereConfiguration : JsonModel
 
     public NewSphereConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSphereConfiguration(NewSphereConfiguration newSphereConfiguration)
         : base(newSphereConfiguration) { }
+#pragma warning restore CS8618
 
     public NewSphereConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

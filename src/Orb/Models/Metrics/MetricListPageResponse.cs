@@ -49,8 +49,11 @@ public sealed record class MetricListPageResponse : JsonModel
 
     public MetricListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricListPageResponse(MetricListPageResponse metricListPageResponse)
         : base(metricListPageResponse) { }
+#pragma warning restore CS8618
 
     public MetricListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

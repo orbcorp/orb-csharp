@@ -72,7 +72,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ID,
                 cumulativeGroupedBulk: (x) => x.ID,
                 cumulativeGroupedAllocation: (x) => x.ID,
-                minimum: (x) => x.ID,
                 minimumComposite: (x) => x.ID,
                 percent: (x) => x.ID,
                 eventOutput: (x) => x.ID
@@ -113,7 +112,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.BillableMetric,
                 cumulativeGroupedBulk: (x) => x.BillableMetric,
                 cumulativeGroupedAllocation: (x) => x.BillableMetric,
-                minimum: (x) => x.BillableMetric,
                 minimumComposite: (x) => x.BillableMetric,
                 percent: (x) => x.BillableMetric,
                 eventOutput: (x) => x.BillableMetric
@@ -154,7 +152,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
-                minimum: (x) => x.BillingCycleConfiguration,
                 minimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -195,7 +192,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ConversionRate,
                 cumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
-                minimum: (x) => x.ConversionRate,
                 minimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -236,7 +232,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.CreatedAt,
                 cumulativeGroupedBulk: (x) => x.CreatedAt,
                 cumulativeGroupedAllocation: (x) => x.CreatedAt,
-                minimum: (x) => x.CreatedAt,
                 minimumComposite: (x) => x.CreatedAt,
                 percent: (x) => x.CreatedAt,
                 eventOutput: (x) => x.CreatedAt
@@ -277,7 +272,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.CreditAllocation,
                 cumulativeGroupedBulk: (x) => x.CreditAllocation,
                 cumulativeGroupedAllocation: (x) => x.CreditAllocation,
-                minimum: (x) => x.CreditAllocation,
                 minimumComposite: (x) => x.CreditAllocation,
                 percent: (x) => x.CreditAllocation,
                 eventOutput: (x) => x.CreditAllocation
@@ -318,7 +312,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Currency,
                 cumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
-                minimum: (x) => x.Currency,
                 minimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -359,7 +352,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Discount,
                 cumulativeGroupedBulk: (x) => x.Discount,
                 cumulativeGroupedAllocation: (x) => x.Discount,
-                minimum: (x) => x.Discount,
                 minimumComposite: (x) => x.Discount,
                 percent: (x) => x.Discount,
                 eventOutput: (x) => x.Discount
@@ -400,7 +392,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
                 cumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
-                minimum: (x) => x.ExternalPriceID,
                 minimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -441,7 +432,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
-                minimum: (x) => x.FixedPriceQuantity,
                 minimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -482,7 +472,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
-                minimum: (x) => x.InvoicingCycleConfiguration,
                 minimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -523,7 +512,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Item,
                 cumulativeGroupedBulk: (x) => x.Item,
                 cumulativeGroupedAllocation: (x) => x.Item,
-                minimum: (x) => x.Item,
                 minimumComposite: (x) => x.Item,
                 percent: (x) => x.Item,
                 eventOutput: (x) => x.Item
@@ -564,7 +552,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Maximum,
                 cumulativeGroupedBulk: (x) => x.Maximum,
                 cumulativeGroupedAllocation: (x) => x.Maximum,
-                minimum: (x) => x.Maximum,
                 minimumComposite: (x) => x.Maximum,
                 percent: (x) => x.Maximum,
                 eventOutput: (x) => x.Maximum
@@ -605,7 +592,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.MaximumAmount,
                 cumulativeGroupedBulk: (x) => x.MaximumAmount,
                 cumulativeGroupedAllocation: (x) => x.MaximumAmount,
-                minimum: (x) => x.MaximumAmount,
                 minimumComposite: (x) => x.MaximumAmount,
                 percent: (x) => x.MaximumAmount,
                 eventOutput: (x) => x.MaximumAmount
@@ -646,7 +632,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Minimum,
                 cumulativeGroupedBulk: (x) => x.Minimum,
                 cumulativeGroupedAllocation: (x) => x.Minimum,
-                minimum: (x) => x.Minimum,
                 minimumComposite: (x) => x.Minimum,
                 percent: (x) => x.Minimum,
                 eventOutput: (x) => x.Minimum
@@ -687,7 +672,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.MinimumAmount,
                 cumulativeGroupedBulk: (x) => x.MinimumAmount,
                 cumulativeGroupedAllocation: (x) => x.MinimumAmount,
-                minimum: (x) => x.MinimumAmount,
                 minimumComposite: (x) => x.MinimumAmount,
                 percent: (x) => x.MinimumAmount,
                 eventOutput: (x) => x.MinimumAmount
@@ -728,7 +712,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ModelType,
                 cumulativeGroupedBulk: (x) => x.ModelType,
                 cumulativeGroupedAllocation: (x) => x.ModelType,
-                minimum: (x) => x.ModelType,
                 minimumComposite: (x) => x.ModelType,
                 percent: (x) => x.ModelType,
                 eventOutput: (x) => x.ModelType
@@ -769,7 +752,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Name,
                 cumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
-                minimum: (x) => x.Name,
                 minimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -810,7 +792,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedBulk: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedAllocation: (x) => x.PlanPhaseOrder,
-                minimum: (x) => x.PlanPhaseOrder,
                 minimumComposite: (x) => x.PlanPhaseOrder,
                 percent: (x) => x.PlanPhaseOrder,
                 eventOutput: (x) => x.PlanPhaseOrder
@@ -851,7 +832,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ReplacesPriceID,
                 cumulativeGroupedBulk: (x) => x.ReplacesPriceID,
                 cumulativeGroupedAllocation: (x) => x.ReplacesPriceID,
-                minimum: (x) => x.ReplacesPriceID,
                 minimumComposite: (x) => x.ReplacesPriceID,
                 percent: (x) => x.ReplacesPriceID,
                 eventOutput: (x) => x.ReplacesPriceID
@@ -892,7 +872,6 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
-                minimum: (x) => x.DimensionalPriceConfiguration,
                 minimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -1063,12 +1042,6 @@ public record class Price : ModelBase
     }
 
     public Price(CumulativeGroupedAllocation value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public Price(PriceMinimum value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1701,27 +1674,6 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="PriceMinimum"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickMinimum(out var value)) {
-    ///     // `value` is of type `PriceMinimum`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickMinimum([NotNullWhen(true)] out PriceMinimum? value)
-    {
-        value = this.Value as PriceMinimum;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MinimumComposite"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
@@ -1825,7 +1777,6 @@ public record class Price : ModelBase
     ///     (ScalableMatrixWithTieredPricing value) => {...},
     ///     (CumulativeGroupedBulk value) => {...},
     ///     (CumulativeGroupedAllocation value) => {...},
-    ///     (PriceMinimum value) => {...},
     ///     (MinimumComposite value) => {...},
     ///     (Percent value) => {...},
     ///     (EventOutput value) => {...}
@@ -1862,7 +1813,6 @@ public record class Price : ModelBase
         System::Action<ScalableMatrixWithTieredPricing> scalableMatrixWithTieredPricing,
         System::Action<CumulativeGroupedBulk> cumulativeGroupedBulk,
         System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
-        System::Action<PriceMinimum> minimum,
         System::Action<MinimumComposite> minimumComposite,
         System::Action<Percent> percent,
         System::Action<EventOutput> eventOutput
@@ -1954,9 +1904,6 @@ public record class Price : ModelBase
             case CumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
-            case PriceMinimum value:
-                minimum(value);
-                break;
             case MinimumComposite value:
                 minimumComposite(value);
                 break;
@@ -2014,7 +1961,6 @@ public record class Price : ModelBase
     ///     (ScalableMatrixWithTieredPricing value) => {...},
     ///     (CumulativeGroupedBulk value) => {...},
     ///     (CumulativeGroupedAllocation value) => {...},
-    ///     (PriceMinimum value) => {...},
     ///     (MinimumComposite value) => {...},
     ///     (Percent value) => {...},
     ///     (EventOutput value) => {...}
@@ -2051,7 +1997,6 @@ public record class Price : ModelBase
         System::Func<ScalableMatrixWithTieredPricing, T> scalableMatrixWithTieredPricing,
         System::Func<CumulativeGroupedBulk, T> cumulativeGroupedBulk,
         System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
-        System::Func<PriceMinimum, T> minimum,
         System::Func<MinimumComposite, T> minimumComposite,
         System::Func<Percent, T> percent,
         System::Func<EventOutput, T> eventOutput
@@ -2087,7 +2032,6 @@ public record class Price : ModelBase
             ScalableMatrixWithTieredPricing value => scalableMatrixWithTieredPricing(value),
             CumulativeGroupedBulk value => cumulativeGroupedBulk(value),
             CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
-            PriceMinimum value => minimum(value),
             MinimumComposite value => minimumComposite(value),
             Percent value => percent(value),
             EventOutput value => eventOutput(value),
@@ -2151,8 +2095,6 @@ public record class Price : ModelBase
 
     public static implicit operator Price(CumulativeGroupedAllocation value) => new(value);
 
-    public static implicit operator Price(PriceMinimum value) => new(value);
-
     public static implicit operator Price(MinimumComposite value) => new(value);
 
     public static implicit operator Price(Percent value) => new(value);
@@ -2204,7 +2146,6 @@ public record class Price : ModelBase
             (scalableMatrixWithTieredPricing) => scalableMatrixWithTieredPricing.Validate(),
             (cumulativeGroupedBulk) => cumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
-            (minimum) => minimum.Validate(),
             (minimumComposite) => minimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -2841,25 +2782,6 @@ sealed class PriceConverter : JsonConverter<Price>
 
                 return new(element);
             }
-            case "minimum":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<PriceMinimum>(element, options);
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
             case "minimum_composite":
             {
                 try
@@ -3309,11 +3231,14 @@ public sealed record class Unit : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("unit");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Unit(Unit unit)
         : base(unit) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -3512,8 +3437,11 @@ public sealed record class CompositePriceFilter : JsonModel
 
     public CompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CompositePriceFilter(CompositePriceFilter compositePriceFilter)
         : base(compositePriceFilter) { }
+#pragma warning restore CS8618
 
     public CompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4357,11 +4285,14 @@ public sealed record class Tiered : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Tiered(Tiered tiered)
         : base(tiered) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -4562,8 +4493,11 @@ public sealed record class TieredCompositePriceFilter : JsonModel
 
     public TieredCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredCompositePriceFilter(TieredCompositePriceFilter tieredCompositePriceFilter)
         : base(tieredCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public TieredCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5407,11 +5341,14 @@ public sealed record class Bulk : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Bulk(Bulk bulk)
         : base(bulk) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -5612,8 +5549,11 @@ public sealed record class BulkCompositePriceFilter : JsonModel
 
     public BulkCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkCompositePriceFilter(BulkCompositePriceFilter bulkCompositePriceFilter)
         : base(bulkCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public BulkCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6467,11 +6407,14 @@ public sealed record class BulkWithFilters : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public BulkWithFilters(BulkWithFilters bulkWithFilters)
         : base(bulkWithFilters) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -6615,8 +6558,11 @@ public sealed record class BulkWithFiltersConfig : JsonModel
 
     public BulkWithFiltersConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithFiltersConfig(BulkWithFiltersConfig bulkWithFiltersConfig)
         : base(bulkWithFiltersConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6691,8 +6637,11 @@ public sealed record class BulkWithFiltersConfigFilter : JsonModel
 
     public BulkWithFiltersConfigFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithFiltersConfigFilter(BulkWithFiltersConfigFilter bulkWithFiltersConfigFilter)
         : base(bulkWithFiltersConfigFilter) { }
+#pragma warning restore CS8618
 
     public BulkWithFiltersConfigFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6767,8 +6716,11 @@ public sealed record class BulkWithFiltersConfigTier : JsonModel
 
     public BulkWithFiltersConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithFiltersConfigTier(BulkWithFiltersConfigTier bulkWithFiltersConfigTier)
         : base(bulkWithFiltersConfigTier) { }
+#pragma warning restore CS8618
 
     public BulkWithFiltersConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6930,10 +6882,13 @@ public sealed record class BulkWithFiltersCompositePriceFilter : JsonModel
 
     public BulkWithFiltersCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithFiltersCompositePriceFilter(
         BulkWithFiltersCompositePriceFilter bulkWithFiltersCompositePriceFilter
     )
         : base(bulkWithFiltersCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public BulkWithFiltersCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7780,11 +7735,14 @@ public sealed record class Package : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("package");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Package(Package package)
         : base(package) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -7985,8 +7943,11 @@ public sealed record class PackageCompositePriceFilter : JsonModel
 
     public PackageCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PackageCompositePriceFilter(PackageCompositePriceFilter packageCompositePriceFilter)
         : base(packageCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public PackageCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8832,11 +8793,14 @@ public sealed record class Matrix : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("matrix");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Matrix(Matrix matrix)
         : base(matrix) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -9037,8 +9001,11 @@ public sealed record class MatrixCompositePriceFilter : JsonModel
 
     public MatrixCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixCompositePriceFilter(MatrixCompositePriceFilter matrixCompositePriceFilter)
         : base(matrixCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public MatrixCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -9895,11 +9862,14 @@ public sealed record class ThresholdTotalAmount : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("threshold_total_amount");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public ThresholdTotalAmount(ThresholdTotalAmount thresholdTotalAmount)
         : base(thresholdTotalAmount) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -10107,10 +10077,13 @@ public sealed record class ThresholdTotalAmountCompositePriceFilter : JsonModel
 
     public ThresholdTotalAmountCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ThresholdTotalAmountCompositePriceFilter(
         ThresholdTotalAmountCompositePriceFilter thresholdTotalAmountCompositePriceFilter
     )
         : base(thresholdTotalAmountCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public ThresholdTotalAmountCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -10639,10 +10612,13 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : Json
 
     public ThresholdTotalAmountThresholdTotalAmountConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ThresholdTotalAmountThresholdTotalAmountConfig(
         ThresholdTotalAmountThresholdTotalAmountConfig thresholdTotalAmountThresholdTotalAmountConfig
     )
         : base(thresholdTotalAmountThresholdTotalAmountConfig) { }
+#pragma warning restore CS8618
 
     public ThresholdTotalAmountThresholdTotalAmountConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -10730,10 +10706,13 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfigConsump
 
     public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable(
         ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable thresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
     )
         : base(thresholdTotalAmountThresholdTotalAmountConfigConsumptionTable) { }
+#pragma warning restore CS8618
 
     public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -11157,11 +11136,14 @@ public sealed record class TieredPackage : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_package");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public TieredPackage(TieredPackage tieredPackage)
         : base(tieredPackage) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -11365,10 +11347,13 @@ public sealed record class TieredPackageCompositePriceFilter : JsonModel
 
     public TieredPackageCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageCompositePriceFilter(
         TieredPackageCompositePriceFilter tieredPackageCompositePriceFilter
     )
         : base(tieredPackageCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public TieredPackageCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -11894,10 +11879,13 @@ public sealed record class TieredPackageTieredPackageConfig : JsonModel
 
     public TieredPackageTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageTieredPackageConfig(
         TieredPackageTieredPackageConfig tieredPackageTieredPackageConfig
     )
         : base(tieredPackageTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public TieredPackageTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -11972,10 +11960,13 @@ public sealed record class TieredPackageTieredPackageConfigTier : JsonModel
 
     public TieredPackageTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageTieredPackageConfigTier(
         TieredPackageTieredPackageConfigTier tieredPackageTieredPackageConfigTier
     )
         : base(tieredPackageTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredPackageTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -12397,11 +12388,14 @@ public sealed record class TieredWithMinimum : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_minimum");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public TieredWithMinimum(TieredWithMinimum tieredWithMinimum)
         : base(tieredWithMinimum) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -12607,10 +12601,13 @@ public sealed record class TieredWithMinimumCompositePriceFilter : JsonModel
 
     public TieredWithMinimumCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumCompositePriceFilter(
         TieredWithMinimumCompositePriceFilter tieredWithMinimumCompositePriceFilter
     )
         : base(tieredWithMinimumCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -13168,10 +13165,13 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig : JsonModel
 
     public TieredWithMinimumTieredWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumTieredWithMinimumConfig(
         TieredWithMinimumTieredWithMinimumConfig tieredWithMinimumTieredWithMinimumConfig
     )
         : base(tieredWithMinimumTieredWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumTieredWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13269,10 +13269,13 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfigTier : JsonMo
 
     public TieredWithMinimumTieredWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumTieredWithMinimumConfigTier(
         TieredWithMinimumTieredWithMinimumConfigTier tieredWithMinimumTieredWithMinimumConfigTier
     )
         : base(tieredWithMinimumTieredWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumTieredWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13694,11 +13697,14 @@ public sealed record class GroupedTiered : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_tiered");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public GroupedTiered(GroupedTiered groupedTiered)
         : base(groupedTiered) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -13902,10 +13908,13 @@ public sealed record class GroupedTieredCompositePriceFilter : JsonModel
 
     public GroupedTieredCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredCompositePriceFilter(
         GroupedTieredCompositePriceFilter groupedTieredCompositePriceFilter
     )
         : base(groupedTieredCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public GroupedTieredCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -14384,10 +14393,13 @@ public sealed record class GroupedTieredGroupedTieredConfig : JsonModel
 
     public GroupedTieredGroupedTieredConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredGroupedTieredConfig(
         GroupedTieredGroupedTieredConfig groupedTieredGroupedTieredConfig
     )
         : base(groupedTieredGroupedTieredConfig) { }
+#pragma warning restore CS8618
 
     public GroupedTieredGroupedTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -14462,10 +14474,13 @@ public sealed record class GroupedTieredGroupedTieredConfigTier : JsonModel
 
     public GroupedTieredGroupedTieredConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredGroupedTieredConfigTier(
         GroupedTieredGroupedTieredConfigTier groupedTieredGroupedTieredConfigTier
     )
         : base(groupedTieredGroupedTieredConfigTier) { }
+#pragma warning restore CS8618
 
     public GroupedTieredGroupedTieredConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -14936,11 +14951,14 @@ public sealed record class TieredPackageWithMinimum : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_package_with_minimum");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public TieredPackageWithMinimum(TieredPackageWithMinimum tieredPackageWithMinimum)
         : base(tieredPackageWithMinimum) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -15149,10 +15167,13 @@ public sealed record class TieredPackageWithMinimumCompositePriceFilter : JsonMo
 
     public TieredPackageWithMinimumCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageWithMinimumCompositePriceFilter(
         TieredPackageWithMinimumCompositePriceFilter tieredPackageWithMinimumCompositePriceFilter
     )
         : base(tieredPackageWithMinimumCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public TieredPackageWithMinimumCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15680,10 +15701,13 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageWithMinimumTieredPackageWithMinimumConfig(
         TieredPackageWithMinimumTieredPackageWithMinimumConfig tieredPackageWithMinimumTieredPackageWithMinimumConfig
     )
         : base(tieredPackageWithMinimumTieredPackageWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15771,10 +15795,13 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier(
         TieredPackageWithMinimumTieredPackageWithMinimumConfigTier tieredPackageWithMinimumTieredPackageWithMinimumConfigTier
     )
         : base(tieredPackageWithMinimumTieredPackageWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16200,11 +16227,14 @@ public sealed record class PackageWithAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("package_with_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public PackageWithAllocation(PackageWithAllocation packageWithAllocation)
         : base(packageWithAllocation) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -16412,10 +16442,13 @@ public sealed record class PackageWithAllocationCompositePriceFilter : JsonModel
 
     public PackageWithAllocationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PackageWithAllocationCompositePriceFilter(
         PackageWithAllocationCompositePriceFilter packageWithAllocationCompositePriceFilter
     )
         : base(packageWithAllocationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public PackageWithAllocationCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16891,10 +16924,13 @@ public sealed record class PackageWithAllocationPackageWithAllocationConfig : Js
 
     public PackageWithAllocationPackageWithAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PackageWithAllocationPackageWithAllocationConfig(
         PackageWithAllocationPackageWithAllocationConfig packageWithAllocationPackageWithAllocationConfig
     )
         : base(packageWithAllocationPackageWithAllocationConfig) { }
+#pragma warning restore CS8618
 
     public PackageWithAllocationPackageWithAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -17365,11 +17401,14 @@ public sealed record class UnitWithPercent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("unit_with_percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public UnitWithPercent(UnitWithPercent unitWithPercent)
         : base(unitWithPercent) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -17573,10 +17612,13 @@ public sealed record class UnitWithPercentCompositePriceFilter : JsonModel
 
     public UnitWithPercentCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithPercentCompositePriceFilter(
         UnitWithPercentCompositePriceFilter unitWithPercentCompositePriceFilter
     )
         : base(unitWithPercentCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public UnitWithPercentCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -18091,10 +18133,13 @@ public sealed record class UnitWithPercentUnitWithPercentConfig : JsonModel
 
     public UnitWithPercentUnitWithPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithPercentUnitWithPercentConfig(
         UnitWithPercentUnitWithPercentConfig unitWithPercentUnitWithPercentConfig
     )
         : base(unitWithPercentUnitWithPercentConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithPercentUnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -18516,11 +18561,14 @@ public sealed record class MatrixWithAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("matrix_with_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public MatrixWithAllocation(MatrixWithAllocation matrixWithAllocation)
         : base(matrixWithAllocation) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -18728,10 +18776,13 @@ public sealed record class MatrixWithAllocationCompositePriceFilter : JsonModel
 
     public MatrixWithAllocationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithAllocationCompositePriceFilter(
         MatrixWithAllocationCompositePriceFilter matrixWithAllocationCompositePriceFilter
     )
         : base(matrixWithAllocationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public MatrixWithAllocationCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -19592,11 +19643,14 @@ public sealed record class TieredWithProration : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("tiered_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public TieredWithProration(TieredWithProration tieredWithProration)
         : base(tieredWithProration) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -19802,10 +19856,13 @@ public sealed record class TieredWithProrationCompositePriceFilter : JsonModel
 
     public TieredWithProrationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationCompositePriceFilter(
         TieredWithProrationCompositePriceFilter tieredWithProrationCompositePriceFilter
     )
         : base(tieredWithProrationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -20319,10 +20376,13 @@ public sealed record class TieredWithProrationTieredWithProrationConfig : JsonMo
 
     public TieredWithProrationTieredWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationTieredWithProrationConfig(
         TieredWithProrationTieredWithProrationConfig tieredWithProrationTieredWithProrationConfig
     )
         : base(tieredWithProrationTieredWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -20412,10 +20472,13 @@ public sealed record class TieredWithProrationTieredWithProrationConfigTier : Js
 
     public TieredWithProrationTieredWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithProrationTieredWithProrationConfigTier(
         TieredWithProrationTieredWithProrationConfigTier tieredWithProrationTieredWithProrationConfigTier
     )
         : base(tieredWithProrationTieredWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -20839,11 +20902,14 @@ public sealed record class UnitWithProration : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("unit_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public UnitWithProration(UnitWithProration unitWithProration)
         : base(unitWithProration) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -21049,10 +21115,13 @@ public sealed record class UnitWithProrationCompositePriceFilter : JsonModel
 
     public UnitWithProrationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithProrationCompositePriceFilter(
         UnitWithProrationCompositePriceFilter unitWithProrationCompositePriceFilter
     )
         : base(unitWithProrationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public UnitWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -21554,10 +21623,13 @@ public sealed record class UnitWithProrationUnitWithProrationConfig : JsonModel
 
     public UnitWithProrationUnitWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithProrationUnitWithProrationConfig(
         UnitWithProrationUnitWithProrationConfig unitWithProrationUnitWithProrationConfig
     )
         : base(unitWithProrationUnitWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithProrationUnitWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -21988,11 +22060,14 @@ public sealed record class GroupedAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public GroupedAllocation(GroupedAllocation groupedAllocation)
         : base(groupedAllocation) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -22198,10 +22273,13 @@ public sealed record class GroupedAllocationCompositePriceFilter : JsonModel
 
     public GroupedAllocationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedAllocationCompositePriceFilter(
         GroupedAllocationCompositePriceFilter groupedAllocationCompositePriceFilter
     )
         : base(groupedAllocationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public GroupedAllocationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -22684,10 +22762,13 @@ public sealed record class GroupedAllocationGroupedAllocationConfig : JsonModel
 
     public GroupedAllocationGroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedAllocationGroupedAllocationConfig(
         GroupedAllocationGroupedAllocationConfig groupedAllocationGroupedAllocationConfig
     )
         : base(groupedAllocationGroupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public GroupedAllocationGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -23158,11 +23239,14 @@ public sealed record class BulkWithProration : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_proration");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public BulkWithProration(BulkWithProration bulkWithProration)
         : base(bulkWithProration) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -23288,10 +23372,13 @@ public sealed record class BulkWithProrationBulkWithProrationConfig : JsonModel
 
     public BulkWithProrationBulkWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationBulkWithProrationConfig(
         BulkWithProrationBulkWithProrationConfig bulkWithProrationBulkWithProrationConfig
     )
         : base(bulkWithProrationBulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationBulkWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -23381,10 +23468,13 @@ public sealed record class BulkWithProrationBulkWithProrationConfigTier : JsonMo
 
     public BulkWithProrationBulkWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationBulkWithProrationConfigTier(
         BulkWithProrationBulkWithProrationConfigTier bulkWithProrationBulkWithProrationConfigTier
     )
         : base(bulkWithProrationBulkWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationBulkWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -23549,10 +23639,13 @@ public sealed record class BulkWithProrationCompositePriceFilter : JsonModel
 
     public BulkWithProrationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationCompositePriceFilter(
         BulkWithProrationCompositePriceFilter bulkWithProrationCompositePriceFilter
     )
         : base(bulkWithProrationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -24413,11 +24506,14 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_prorated_minimum");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public GroupedWithProratedMinimum(GroupedWithProratedMinimum groupedWithProratedMinimum)
         : base(groupedWithProratedMinimum) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -24626,10 +24722,13 @@ public sealed record class GroupedWithProratedMinimumCompositePriceFilter : Json
 
     public GroupedWithProratedMinimumCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithProratedMinimumCompositePriceFilter(
         GroupedWithProratedMinimumCompositePriceFilter groupedWithProratedMinimumCompositePriceFilter
     )
         : base(groupedWithProratedMinimumCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public GroupedWithProratedMinimumCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -25115,10 +25214,13 @@ public sealed record class GroupedWithProratedMinimumGroupedWithProratedMinimumC
 
     public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig(
         GroupedWithProratedMinimumGroupedWithProratedMinimumConfig groupedWithProratedMinimumGroupedWithProratedMinimumConfig
     )
         : base(groupedWithProratedMinimumGroupedWithProratedMinimumConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -25594,11 +25696,14 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_metered_minimum");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public GroupedWithMeteredMinimum(GroupedWithMeteredMinimum groupedWithMeteredMinimum)
         : base(groupedWithMeteredMinimum) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -25807,10 +25912,13 @@ public sealed record class GroupedWithMeteredMinimumCompositePriceFilter : JsonM
 
     public GroupedWithMeteredMinimumCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMeteredMinimumCompositePriceFilter(
         GroupedWithMeteredMinimumCompositePriceFilter groupedWithMeteredMinimumCompositePriceFilter
     )
         : base(groupedWithMeteredMinimumCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public GroupedWithMeteredMinimumCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -26360,10 +26468,13 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig(
         GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig groupedWithMeteredMinimumGroupedWithMeteredMinimumConfig
     )
         : base(groupedWithMeteredMinimumGroupedWithMeteredMinimumConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -26441,10 +26552,13 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor(
         GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
     )
         : base(groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor) { }
+#pragma warning restore CS8618
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -26528,10 +26642,13 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount(
         GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
     )
         : base(groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -27010,11 +27127,14 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public GroupedWithMinMaxThresholds(GroupedWithMinMaxThresholds groupedWithMinMaxThresholds)
         : base(groupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -27226,10 +27346,13 @@ public sealed record class GroupedWithMinMaxThresholdsCompositePriceFilter : Jso
 
     public GroupedWithMinMaxThresholdsCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMinMaxThresholdsCompositePriceFilter(
         GroupedWithMinMaxThresholdsCompositePriceFilter groupedWithMinMaxThresholdsCompositePriceFilter
     )
         : base(groupedWithMinMaxThresholdsCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public GroupedWithMinMaxThresholdsCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -27729,10 +27852,13 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : JsonModel
 
     public GroupedWithMinMaxThresholdsConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMinMaxThresholdsConfig(
         GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
     )
         : base(groupedWithMinMaxThresholdsConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithMinMaxThresholdsConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -28201,11 +28327,14 @@ public sealed record class MatrixWithDisplayName : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("matrix_with_display_name");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public MatrixWithDisplayName(MatrixWithDisplayName matrixWithDisplayName)
         : base(matrixWithDisplayName) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -28413,10 +28542,13 @@ public sealed record class MatrixWithDisplayNameCompositePriceFilter : JsonModel
 
     public MatrixWithDisplayNameCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameCompositePriceFilter(
         MatrixWithDisplayNameCompositePriceFilter matrixWithDisplayNameCompositePriceFilter
     )
         : base(matrixWithDisplayNameCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -28897,10 +29029,13 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig : Js
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameMatrixWithDisplayNameConfig(
         MatrixWithDisplayNameMatrixWithDisplayNameConfig matrixWithDisplayNameMatrixWithDisplayNameConfig
     )
         : base(matrixWithDisplayNameMatrixWithDisplayNameConfig) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -28995,10 +29130,13 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitA
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount(
         MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
     )
         : base(matrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -29471,11 +29609,14 @@ public sealed record class GroupedTieredPackage : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_tiered_package");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public GroupedTieredPackage(GroupedTieredPackage groupedTieredPackage)
         : base(groupedTieredPackage) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -29683,10 +29824,13 @@ public sealed record class GroupedTieredPackageCompositePriceFilter : JsonModel
 
     public GroupedTieredPackageCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredPackageCompositePriceFilter(
         GroupedTieredPackageCompositePriceFilter groupedTieredPackageCompositePriceFilter
     )
         : base(groupedTieredPackageCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public GroupedTieredPackageCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -30180,10 +30324,13 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfig : Json
 
     public GroupedTieredPackageGroupedTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredPackageGroupedTieredPackageConfig(
         GroupedTieredPackageGroupedTieredPackageConfig groupedTieredPackageGroupedTieredPackageConfig
     )
         : base(groupedTieredPackageGroupedTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public GroupedTieredPackageGroupedTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -30261,10 +30408,13 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfigTier : 
 
     public GroupedTieredPackageGroupedTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedTieredPackageGroupedTieredPackageConfigTier(
         GroupedTieredPackageGroupedTieredPackageConfigTier groupedTieredPackageGroupedTieredPackageConfigTier
     )
         : base(groupedTieredPackageGroupedTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public GroupedTieredPackageGroupedTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -30737,11 +30887,14 @@ public sealed record class MaxGroupTieredPackage : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("max_group_tiered_package");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public MaxGroupTieredPackage(MaxGroupTieredPackage maxGroupTieredPackage)
         : base(maxGroupTieredPackage) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -30949,10 +31102,13 @@ public sealed record class MaxGroupTieredPackageCompositePriceFilter : JsonModel
 
     public MaxGroupTieredPackageCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageCompositePriceFilter(
         MaxGroupTieredPackageCompositePriceFilter maxGroupTieredPackageCompositePriceFilter
     )
         : base(maxGroupTieredPackageCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -31445,10 +31601,13 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig : Js
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageMaxGroupTieredPackageConfig(
         MaxGroupTieredPackageMaxGroupTieredPackageConfig maxGroupTieredPackageMaxGroupTieredPackageConfig
     )
         : base(maxGroupTieredPackageMaxGroupTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -31526,10 +31685,13 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfigTier 
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier(
         MaxGroupTieredPackageMaxGroupTieredPackageConfigTier maxGroupTieredPackageMaxGroupTieredPackageConfigTier
     )
         : base(maxGroupTieredPackageMaxGroupTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -32004,6 +32166,8 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("scalable_matrix_with_unit_pricing");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
@@ -32011,6 +32175,7 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         ScalableMatrixWithUnitPricing scalableMatrixWithUnitPricing
     )
         : base(scalableMatrixWithUnitPricing) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -32222,10 +32387,13 @@ public sealed record class ScalableMatrixWithUnitPricingCompositePriceFilter : J
 
     public ScalableMatrixWithUnitPricingCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingCompositePriceFilter(
         ScalableMatrixWithUnitPricingCompositePriceFilter scalableMatrixWithUnitPricingCompositePriceFilter
     )
         : base(scalableMatrixWithUnitPricingCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -32799,10 +32967,13 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig(
         ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig
     )
         : base(scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -32891,11 +33062,14 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
     )
         : base(scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor)
     { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -33329,6 +33503,8 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("scalable_matrix_with_tiered_pricing");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
@@ -33336,6 +33512,7 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         ScalableMatrixWithTieredPricing scalableMatrixWithTieredPricing
     )
         : base(scalableMatrixWithTieredPricing) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -33547,10 +33724,13 @@ public sealed record class ScalableMatrixWithTieredPricingCompositePriceFilter :
 
     public ScalableMatrixWithTieredPricingCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingCompositePriceFilter(
         ScalableMatrixWithTieredPricingCompositePriceFilter scalableMatrixWithTieredPricingCompositePriceFilter
     )
         : base(scalableMatrixWithTieredPricingCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -34119,10 +34299,13 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig(
         ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig
     )
         : base(scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -34215,12 +34398,15 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
         ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
     )
         : base(
             scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
         ) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -34301,10 +34487,13 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier(
         ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
     )
         : base(scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -34733,11 +34922,14 @@ public sealed record class CumulativeGroupedBulk : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_bulk");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public CumulativeGroupedBulk(CumulativeGroupedBulk cumulativeGroupedBulk)
         : base(cumulativeGroupedBulk) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -34945,10 +35137,13 @@ public sealed record class CumulativeGroupedBulkCompositePriceFilter : JsonModel
 
     public CumulativeGroupedBulkCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedBulkCompositePriceFilter(
         CumulativeGroupedBulkCompositePriceFilter cumulativeGroupedBulkCompositePriceFilter
     )
         : base(cumulativeGroupedBulkCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedBulkCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -35426,10 +35621,13 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig : Js
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedBulkCumulativeGroupedBulkConfig(
         CumulativeGroupedBulkCumulativeGroupedBulkConfig cumulativeGroupedBulkCumulativeGroupedBulkConfig
     )
         : base(cumulativeGroupedBulkCumulativeGroupedBulkConfig) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -35525,10 +35723,13 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimen
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue(
         CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue cumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
     )
         : base(cumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -36003,11 +36204,14 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public CumulativeGroupedAllocation(CumulativeGroupedAllocation cumulativeGroupedAllocation)
         : base(cumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -36219,10 +36423,13 @@ public sealed record class CumulativeGroupedAllocationCompositePriceFilter : Jso
 
     public CumulativeGroupedAllocationCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedAllocationCompositePriceFilter(
         CumulativeGroupedAllocationCompositePriceFilter cumulativeGroupedAllocationCompositePriceFilter
     )
         : base(cumulativeGroupedAllocationCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedAllocationCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -36722,10 +36929,13 @@ public sealed record class CumulativeGroupedAllocationConfig : JsonModel
 
     public CumulativeGroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedAllocationConfig(
         CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
     )
         : base(cumulativeGroupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -36796,1152 +37006,6 @@ sealed class CumulativeGroupedAllocationPriceTypeConverter
                 CumulativeGroupedAllocationPriceType.UsagePrice => "usage_price",
                 CumulativeGroupedAllocationPriceType.FixedPrice => "fixed_price",
                 CumulativeGroupedAllocationPriceType.CompositePrice => "composite_price",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(JsonModelConverter<PriceMinimum, PriceMinimumFromRaw>))]
-public sealed record class PriceMinimum : JsonModel
-{
-    public required string ID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("id");
-        }
-        init { this._rawData.Set("id", value); }
-    }
-
-    public required BillableMetricTiny? BillableMetric
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<BillableMetricTiny>("billable_metric");
-        }
-        init { this._rawData.Set("billable_metric", value); }
-    }
-
-    public required BillingCycleConfiguration BillingCycleConfiguration
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<BillingCycleConfiguration>(
-                "billing_cycle_configuration"
-            );
-        }
-        init { this._rawData.Set("billing_cycle_configuration", value); }
-    }
-
-    public required ApiEnum<string, PriceMinimumBillingMode> BillingMode
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, PriceMinimumBillingMode>>(
-                "billing_mode"
-            );
-        }
-        init { this._rawData.Set("billing_mode", value); }
-    }
-
-    public required ApiEnum<string, PriceMinimumCadence> Cadence
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, PriceMinimumCadence>>("cadence");
-        }
-        init { this._rawData.Set("cadence", value); }
-    }
-
-    public required IReadOnlyList<PriceMinimumCompositePriceFilter>? CompositePriceFilters
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<PriceMinimumCompositePriceFilter>
-            >("composite_price_filters");
-        }
-        init
-        {
-            this._rawData.Set<ImmutableArray<PriceMinimumCompositePriceFilter>?>(
-                "composite_price_filters",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
-        }
-    }
-
-    public required double? ConversionRate
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<double>("conversion_rate");
-        }
-        init { this._rawData.Set("conversion_rate", value); }
-    }
-
-    public required PriceMinimumConversionRateConfig? ConversionRateConfig
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<PriceMinimumConversionRateConfig>(
-                "conversion_rate_config"
-            );
-        }
-        init { this._rawData.Set("conversion_rate_config", value); }
-    }
-
-    public required System::DateTimeOffset CreatedAt
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
-        }
-        init { this._rawData.Set("created_at", value); }
-    }
-
-    public required Allocation? CreditAllocation
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Allocation>("credit_allocation");
-        }
-        init { this._rawData.Set("credit_allocation", value); }
-    }
-
-    public required string Currency
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("currency");
-        }
-        init { this._rawData.Set("currency", value); }
-    }
-
-    [System::Obsolete("deprecated")]
-    public required SharedDiscount? Discount
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<SharedDiscount>("discount");
-        }
-        init { this._rawData.Set("discount", value); }
-    }
-
-    public required string? ExternalPriceID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("external_price_id");
-        }
-        init { this._rawData.Set("external_price_id", value); }
-    }
-
-    public required double? FixedPriceQuantity
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
-        }
-        init { this._rawData.Set("fixed_price_quantity", value); }
-    }
-
-    public required BillingCycleConfiguration? InvoicingCycleConfiguration
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<BillingCycleConfiguration>(
-                "invoicing_cycle_configuration"
-            );
-        }
-        init { this._rawData.Set("invoicing_cycle_configuration", value); }
-    }
-
-    /// <summary>
-    /// A minimal representation of an Item containing only the essential identifying information.
-    /// </summary>
-    public required ItemSlim Item
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ItemSlim>("item");
-        }
-        init { this._rawData.Set("item", value); }
-    }
-
-    [System::Obsolete("deprecated")]
-    public required Maximum? Maximum
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Maximum>("maximum");
-        }
-        init { this._rawData.Set("maximum", value); }
-    }
-
-    [System::Obsolete("deprecated")]
-    public required string? MaximumAmount
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("maximum_amount");
-        }
-        init { this._rawData.Set("maximum_amount", value); }
-    }
-
-    /// <summary>
-    /// User specified key-value pairs for the resource. If not present, this defaults
-    /// to an empty dictionary. Individual keys can be removed by setting the value
-    /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
-    /// to `null`.
-    /// </summary>
-    public required IReadOnlyDictionary<string, string> Metadata
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
-        }
-        init
-        {
-            this._rawData.Set<FrozenDictionary<string, string>>(
-                "metadata",
-                FrozenDictionary.ToFrozenDictionary(value)
-            );
-        }
-    }
-
-    [System::Obsolete("deprecated")]
-    public required Minimum? Minimum
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Minimum>("minimum");
-        }
-        init { this._rawData.Set("minimum", value); }
-    }
-
-    [System::Obsolete("deprecated")]
-    public required string? MinimumAmount
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("minimum_amount");
-        }
-        init { this._rawData.Set("minimum_amount", value); }
-    }
-
-    /// <summary>
-    /// Configuration for minimum pricing
-    /// </summary>
-    public required MinimumConfig MinimumConfig
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<MinimumConfig>("minimum_config");
-        }
-        init { this._rawData.Set("minimum_config", value); }
-    }
-
-    /// <summary>
-    /// The pricing model type
-    /// </summary>
-    public JsonElement ModelType
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
-        }
-        init { this._rawData.Set("model_type", value); }
-    }
-
-    public required string Name
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("name");
-        }
-        init { this._rawData.Set("name", value); }
-    }
-
-    public required long? PlanPhaseOrder
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("plan_phase_order");
-        }
-        init { this._rawData.Set("plan_phase_order", value); }
-    }
-
-    public required ApiEnum<string, PriceMinimumPriceType> PriceType
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, PriceMinimumPriceType>>(
-                "price_type"
-            );
-        }
-        init { this._rawData.Set("price_type", value); }
-    }
-
-    /// <summary>
-    /// The price id this price replaces. This price will take the place of the replaced
-    /// price in plan version migrations.
-    /// </summary>
-    public required string? ReplacesPriceID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("replaces_price_id");
-        }
-        init { this._rawData.Set("replaces_price_id", value); }
-    }
-
-    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<DimensionalPriceConfiguration>(
-                "dimensional_price_configuration"
-            );
-        }
-        init { this._rawData.Set("dimensional_price_configuration", value); }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.ID;
-        this.BillableMetric?.Validate();
-        this.BillingCycleConfiguration.Validate();
-        this.BillingMode.Validate();
-        this.Cadence.Validate();
-        foreach (var item in this.CompositePriceFilters ?? [])
-        {
-            item.Validate();
-        }
-        _ = this.ConversionRate;
-        this.ConversionRateConfig?.Validate();
-        _ = this.CreatedAt;
-        this.CreditAllocation?.Validate();
-        _ = this.Currency;
-        this.Discount?.Validate();
-        _ = this.ExternalPriceID;
-        _ = this.FixedPriceQuantity;
-        this.InvoicingCycleConfiguration?.Validate();
-        this.Item.Validate();
-        this.Maximum?.Validate();
-        _ = this.MaximumAmount;
-        _ = this.Metadata;
-        this.Minimum?.Validate();
-        _ = this.MinimumAmount;
-        this.MinimumConfig.Validate();
-        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("minimum")))
-        {
-            throw new OrbInvalidDataException("Invalid value given for constant");
-        }
-        _ = this.Name;
-        _ = this.PlanPhaseOrder;
-        this.PriceType.Validate();
-        _ = this.ReplacesPriceID;
-        this.DimensionalPriceConfiguration?.Validate();
-    }
-
-    [System::Obsolete(
-        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
-    )]
-    public PriceMinimum()
-    {
-        this.ModelType = JsonSerializer.SerializeToElement("minimum");
-    }
-
-    [System::Obsolete(
-        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
-    )]
-    public PriceMinimum(PriceMinimum priceMinimum)
-        : base(priceMinimum) { }
-
-    [System::Obsolete(
-        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
-    )]
-    public PriceMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-
-        this.ModelType = JsonSerializer.SerializeToElement("minimum");
-    }
-
-#pragma warning disable CS8618
-    [System::Obsolete(
-        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
-    )]
-    [SetsRequiredMembers]
-    PriceMinimum(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="PriceMinimumFromRaw.FromRawUnchecked"/>
-    public static PriceMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class PriceMinimumFromRaw : IFromRawJson<PriceMinimum>
-{
-    /// <inheritdoc/>
-    public PriceMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        PriceMinimum.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(PriceMinimumBillingModeConverter))]
-public enum PriceMinimumBillingMode
-{
-    InAdvance,
-    InArrear,
-}
-
-sealed class PriceMinimumBillingModeConverter : JsonConverter<PriceMinimumBillingMode>
-{
-    public override PriceMinimumBillingMode Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "in_advance" => PriceMinimumBillingMode.InAdvance,
-            "in_arrear" => PriceMinimumBillingMode.InArrear,
-            _ => (PriceMinimumBillingMode)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        PriceMinimumBillingMode value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                PriceMinimumBillingMode.InAdvance => "in_advance",
-                PriceMinimumBillingMode.InArrear => "in_arrear",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(PriceMinimumCadenceConverter))]
-public enum PriceMinimumCadence
-{
-    OneTime,
-    Monthly,
-    Quarterly,
-    SemiAnnual,
-    Annual,
-    Custom,
-}
-
-sealed class PriceMinimumCadenceConverter : JsonConverter<PriceMinimumCadence>
-{
-    public override PriceMinimumCadence Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "one_time" => PriceMinimumCadence.OneTime,
-            "monthly" => PriceMinimumCadence.Monthly,
-            "quarterly" => PriceMinimumCadence.Quarterly,
-            "semi_annual" => PriceMinimumCadence.SemiAnnual,
-            "annual" => PriceMinimumCadence.Annual,
-            "custom" => PriceMinimumCadence.Custom,
-            _ => (PriceMinimumCadence)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        PriceMinimumCadence value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                PriceMinimumCadence.OneTime => "one_time",
-                PriceMinimumCadence.Monthly => "monthly",
-                PriceMinimumCadence.Quarterly => "quarterly",
-                PriceMinimumCadence.SemiAnnual => "semi_annual",
-                PriceMinimumCadence.Annual => "annual",
-                PriceMinimumCadence.Custom => "custom",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(
-    typeof(JsonModelConverter<
-        PriceMinimumCompositePriceFilter,
-        PriceMinimumCompositePriceFilterFromRaw
-    >)
-)]
-public sealed record class PriceMinimumCompositePriceFilter : JsonModel
-{
-    /// <summary>
-    /// The property of the price to filter on.
-    /// </summary>
-    public required ApiEnum<string, PriceMinimumCompositePriceFilterField> Field
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, PriceMinimumCompositePriceFilterField>
-            >("field");
-        }
-        init { this._rawData.Set("field", value); }
-    }
-
-    /// <summary>
-    /// Should prices that match the filter be included or excluded.
-    /// </summary>
-    public required ApiEnum<string, PriceMinimumCompositePriceFilterOperator> Operator
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-            >("operator");
-        }
-        init { this._rawData.Set("operator", value); }
-    }
-
-    /// <summary>
-    /// The IDs or values that match this filter.
-    /// </summary>
-    public required IReadOnlyList<string> Values
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
-        }
-        init
-        {
-            this._rawData.Set<ImmutableArray<string>>(
-                "values",
-                ImmutableArray.ToImmutableArray(value)
-            );
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        this.Field.Validate();
-        this.Operator.Validate();
-        _ = this.Values;
-    }
-
-    public PriceMinimumCompositePriceFilter() { }
-
-    public PriceMinimumCompositePriceFilter(
-        PriceMinimumCompositePriceFilter priceMinimumCompositePriceFilter
-    )
-        : base(priceMinimumCompositePriceFilter) { }
-
-    public PriceMinimumCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    PriceMinimumCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="PriceMinimumCompositePriceFilterFromRaw.FromRawUnchecked"/>
-    public static PriceMinimumCompositePriceFilter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class PriceMinimumCompositePriceFilterFromRaw : IFromRawJson<PriceMinimumCompositePriceFilter>
-{
-    /// <inheritdoc/>
-    public PriceMinimumCompositePriceFilter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceMinimumCompositePriceFilter.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// The property of the price to filter on.
-/// </summary>
-[JsonConverter(typeof(PriceMinimumCompositePriceFilterFieldConverter))]
-public enum PriceMinimumCompositePriceFilterField
-{
-    PriceID,
-    ItemID,
-    PriceType,
-    Currency,
-    PricingUnitID,
-}
-
-sealed class PriceMinimumCompositePriceFilterFieldConverter
-    : JsonConverter<PriceMinimumCompositePriceFilterField>
-{
-    public override PriceMinimumCompositePriceFilterField Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "price_id" => PriceMinimumCompositePriceFilterField.PriceID,
-            "item_id" => PriceMinimumCompositePriceFilterField.ItemID,
-            "price_type" => PriceMinimumCompositePriceFilterField.PriceType,
-            "currency" => PriceMinimumCompositePriceFilterField.Currency,
-            "pricing_unit_id" => PriceMinimumCompositePriceFilterField.PricingUnitID,
-            _ => (PriceMinimumCompositePriceFilterField)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        PriceMinimumCompositePriceFilterField value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                PriceMinimumCompositePriceFilterField.PriceID => "price_id",
-                PriceMinimumCompositePriceFilterField.ItemID => "item_id",
-                PriceMinimumCompositePriceFilterField.PriceType => "price_type",
-                PriceMinimumCompositePriceFilterField.Currency => "currency",
-                PriceMinimumCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-/// <summary>
-/// Should prices that match the filter be included or excluded.
-/// </summary>
-[JsonConverter(typeof(PriceMinimumCompositePriceFilterOperatorConverter))]
-public enum PriceMinimumCompositePriceFilterOperator
-{
-    Includes,
-    Excludes,
-}
-
-sealed class PriceMinimumCompositePriceFilterOperatorConverter
-    : JsonConverter<PriceMinimumCompositePriceFilterOperator>
-{
-    public override PriceMinimumCompositePriceFilterOperator Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "includes" => PriceMinimumCompositePriceFilterOperator.Includes,
-            "excludes" => PriceMinimumCompositePriceFilterOperator.Excludes,
-            _ => (PriceMinimumCompositePriceFilterOperator)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        PriceMinimumCompositePriceFilterOperator value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                PriceMinimumCompositePriceFilterOperator.Includes => "includes",
-                PriceMinimumCompositePriceFilterOperator.Excludes => "excludes",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(PriceMinimumConversionRateConfigConverter))]
-public record class PriceMinimumConversionRateConfig : ModelBase
-{
-    public object? Value { get; } = null;
-
-    JsonElement? _element = null;
-
-    public JsonElement Json
-    {
-        get
-        {
-            return this._element ??= JsonSerializer.SerializeToElement(
-                this.Value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    public PriceMinimumConversionRateConfig(
-        SharedUnitConversionRateConfig value,
-        JsonElement? element = null
-    )
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public PriceMinimumConversionRateConfig(
-        SharedTieredConversionRateConfig value,
-        JsonElement? element = null
-    )
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public PriceMinimumConversionRateConfig(JsonElement element)
-    {
-        this._element = element;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="SharedUnitConversionRateConfig"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickUnit(out var value)) {
-    ///     // `value` is of type `SharedUnitConversionRateConfig`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
-    {
-        value = this.Value as SharedUnitConversionRateConfig;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="SharedTieredConversionRateConfig"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickTiered(out var value)) {
-    ///     // `value` is of type `SharedTieredConversionRateConfig`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
-    {
-        value = this.Value as SharedTieredConversionRateConfig;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
-    /// if you need your function parameters to return something.</para>
-    ///
-    /// <exception cref="OrbInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public void Switch(
-        System::Action<SharedUnitConversionRateConfig> unit,
-        System::Action<SharedTieredConversionRateConfig> tiered
-    )
-    {
-        switch (this.Value)
-        {
-            case SharedUnitConversionRateConfig value:
-                unit(value);
-                break;
-            case SharedTieredConversionRateConfig value:
-                tiered(value);
-                break;
-            default:
-                throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceMinimumConversionRateConfig"
-                );
-        }
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with and
-    /// returns its result.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
-    /// if you don't need your function parameters to return a value.</para>
-    ///
-    /// <exception cref="OrbInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public T Match<T>(
-        System::Func<SharedUnitConversionRateConfig, T> unit,
-        System::Func<SharedTieredConversionRateConfig, T> tiered
-    )
-    {
-        return this.Value switch
-        {
-            SharedUnitConversionRateConfig value => unit(value),
-            SharedTieredConversionRateConfig value => tiered(value),
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceMinimumConversionRateConfig"
-            ),
-        };
-    }
-
-    public static implicit operator PriceMinimumConversionRateConfig(
-        SharedUnitConversionRateConfig value
-    ) => new(value);
-
-    public static implicit operator PriceMinimumConversionRateConfig(
-        SharedTieredConversionRateConfig value
-    ) => new(value);
-
-    /// <summary>
-    /// Validates that the instance was constructed with a known variant and that this variant is valid
-    /// (based on its own <c>Validate</c> method).
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="OrbInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public override void Validate()
-    {
-        if (this.Value == null)
-        {
-            throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceMinimumConversionRateConfig"
-            );
-        }
-        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
-    }
-
-    public virtual bool Equals(PriceMinimumConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
-}
-
-sealed class PriceMinimumConversionRateConfigConverter
-    : JsonConverter<PriceMinimumConversionRateConfig>
-{
-    public override PriceMinimumConversionRateConfig? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
-        string? conversionRateType;
-        try
-        {
-            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
-        }
-        catch
-        {
-            conversionRateType = null;
-        }
-
-        switch (conversionRateType)
-        {
-            case "unit":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "tiered":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            default:
-            {
-                return new PriceMinimumConversionRateConfig(element);
-            }
-        }
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        PriceMinimumConversionRateConfig value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(writer, value.Json, options);
-    }
-}
-
-/// <summary>
-/// Configuration for minimum pricing
-/// </summary>
-[JsonConverter(typeof(JsonModelConverter<MinimumConfig, MinimumConfigFromRaw>))]
-public sealed record class MinimumConfig : JsonModel
-{
-    /// <summary>
-    /// The minimum amount to apply
-    /// </summary>
-    public required string MinimumAmount
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("minimum_amount");
-        }
-        init { this._rawData.Set("minimum_amount", value); }
-    }
-
-    /// <summary>
-    /// If true, subtotals from this price are prorated based on the service period
-    /// </summary>
-    public bool? Prorated
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("prorated");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("prorated", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.MinimumAmount;
-        _ = this.Prorated;
-    }
-
-    public MinimumConfig() { }
-
-    public MinimumConfig(MinimumConfig minimumConfig)
-        : base(minimumConfig) { }
-
-    public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    MinimumConfig(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="MinimumConfigFromRaw.FromRawUnchecked"/>
-    public static MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-
-    [SetsRequiredMembers]
-    public MinimumConfig(string minimumAmount)
-        : this()
-    {
-        this.MinimumAmount = minimumAmount;
-    }
-}
-
-class MinimumConfigFromRaw : IFromRawJson<MinimumConfig>
-{
-    /// <inheritdoc/>
-    public MinimumConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        MinimumConfig.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(PriceMinimumPriceTypeConverter))]
-public enum PriceMinimumPriceType
-{
-    UsagePrice,
-    FixedPrice,
-    CompositePrice,
-}
-
-sealed class PriceMinimumPriceTypeConverter : JsonConverter<PriceMinimumPriceType>
-{
-    public override PriceMinimumPriceType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "usage_price" => PriceMinimumPriceType.UsagePrice,
-            "fixed_price" => PriceMinimumPriceType.FixedPrice,
-            "composite_price" => PriceMinimumPriceType.CompositePrice,
-            _ => (PriceMinimumPriceType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        PriceMinimumPriceType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                PriceMinimumPriceType.UsagePrice => "usage_price",
-                PriceMinimumPriceType.FixedPrice => "fixed_price",
-                PriceMinimumPriceType.CompositePrice => "composite_price",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -38340,11 +37404,14 @@ public sealed record class MinimumComposite : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("minimum_composite");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public MinimumComposite(MinimumComposite minimumComposite)
         : base(minimumComposite) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -38550,10 +37617,13 @@ public sealed record class MinimumCompositeCompositePriceFilter : JsonModel
 
     public MinimumCompositeCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumCompositeCompositePriceFilter(
         MinimumCompositeCompositePriceFilter minimumCompositeCompositePriceFilter
     )
         : base(minimumCompositeCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public MinimumCompositeCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -39030,10 +38100,13 @@ public sealed record class MinimumCompositeMinimumCompositeConfig : JsonModel
 
     public MinimumCompositeMinimumCompositeConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumCompositeMinimumCompositeConfig(
         MinimumCompositeMinimumCompositeConfig minimumCompositeMinimumCompositeConfig
     )
         : base(minimumCompositeMinimumCompositeConfig) { }
+#pragma warning restore CS8618
 
     public MinimumCompositeMinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -39498,11 +38571,14 @@ public sealed record class Percent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Percent(Percent percent)
         : base(percent) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -39703,8 +38779,11 @@ public sealed record class PercentCompositePriceFilter : JsonModel
 
     public PercentCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PercentCompositePriceFilter(PercentCompositePriceFilter percentCompositePriceFilter)
         : base(percentCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public PercentCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -40152,8 +39231,11 @@ public sealed record class PercentConfig : JsonModel
 
     public PercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PercentConfig(PercentConfig percentConfig)
         : base(percentConfig) { }
+#pragma warning restore CS8618
 
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -40621,11 +39703,14 @@ public sealed record class EventOutput : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public EventOutput(EventOutput eventOutput)
         : base(eventOutput) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -40829,10 +39914,13 @@ public sealed record class EventOutputCompositePriceFilter : JsonModel
 
     public EventOutputCompositePriceFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventOutputCompositePriceFilter(
         EventOutputCompositePriceFilter eventOutputCompositePriceFilter
     )
         : base(eventOutputCompositePriceFilter) { }
+#pragma warning restore CS8618
 
     public EventOutputCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -41312,8 +40400,11 @@ public sealed record class EventOutputConfig : JsonModel
 
     public EventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventOutputConfig(EventOutputConfig eventOutputConfig)
         : base(eventOutputConfig) { }
+#pragma warning restore CS8618
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

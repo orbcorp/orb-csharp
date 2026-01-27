@@ -169,11 +169,14 @@ public sealed record class MonetaryUsageDiscountAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryUsageDiscountAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryUsageDiscountAdjustment(
         MonetaryUsageDiscountAdjustment monetaryUsageDiscountAdjustment
     )
         : base(monetaryUsageDiscountAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryUsageDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -316,10 +319,13 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : JsonModel
 
     public MonetaryUsageDiscountAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MonetaryUsageDiscountAdjustmentFilter(
         MonetaryUsageDiscountAdjustmentFilter monetaryUsageDiscountAdjustmentFilter
     )
         : base(monetaryUsageDiscountAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public MonetaryUsageDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

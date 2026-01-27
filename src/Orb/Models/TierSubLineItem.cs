@@ -88,8 +88,11 @@ public sealed record class TierSubLineItem : JsonModel
 
     public TierSubLineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TierSubLineItem(TierSubLineItem tierSubLineItem)
         : base(tierSubLineItem) { }
+#pragma warning restore CS8618
 
     public TierSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -161,8 +164,11 @@ public sealed record class TierConfig : JsonModel
 
     public TierConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TierConfig(TierConfig tierConfig)
         : base(tierConfig) { }
+#pragma warning restore CS8618
 
     public TierConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

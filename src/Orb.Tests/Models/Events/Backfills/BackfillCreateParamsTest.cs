@@ -132,4 +132,23 @@ public class BackfillCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/events/backfills"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BackfillCreateParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CloseTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            DeprecationFilter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            ExternalCustomerID = "external_customer_id",
+            ReplaceExistingEvents = true,
+        };
+
+        BackfillCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

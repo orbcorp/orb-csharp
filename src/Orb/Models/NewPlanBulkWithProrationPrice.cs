@@ -301,10 +301,13 @@ public sealed record class NewPlanBulkWithProrationPrice : JsonModel
 
     public NewPlanBulkWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanBulkWithProrationPrice(
         NewPlanBulkWithProrationPrice newPlanBulkWithProrationPrice
     )
         : base(newPlanBulkWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -378,10 +381,13 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig 
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig(
         NewPlanBulkWithProrationPriceBulkWithProrationConfig newPlanBulkWithProrationPriceBulkWithProrationConfig
     )
         : base(newPlanBulkWithProrationPriceBulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -473,10 +479,13 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfigT
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(
         NewPlanBulkWithProrationPriceBulkWithProrationConfigTier newPlanBulkWithProrationPriceBulkWithProrationConfigTier
     )
         : base(newPlanBulkWithProrationPriceBulkWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

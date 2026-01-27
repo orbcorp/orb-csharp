@@ -139,6 +139,21 @@ public class NewTaxJarConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewTaxJarConfiguration
+        {
+            TaxExempt = true,
+            TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+            AutomaticTaxEnabled = true,
+        };
+
+        NewTaxJarConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewTaxJarConfigurationTaxProviderTest : TestBase

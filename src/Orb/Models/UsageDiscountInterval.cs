@@ -123,8 +123,11 @@ public sealed record class UsageDiscountInterval : JsonModel
 
     public UsageDiscountInterval() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UsageDiscountInterval(UsageDiscountInterval usageDiscountInterval)
         : base(usageDiscountInterval) { }
+#pragma warning restore CS8618
 
     public UsageDiscountInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -262,8 +265,11 @@ public sealed record class UsageDiscountIntervalFilter : JsonModel
 
     public UsageDiscountIntervalFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UsageDiscountIntervalFilter(UsageDiscountIntervalFilter usageDiscountIntervalFilter)
         : base(usageDiscountIntervalFilter) { }
+#pragma warning restore CS8618
 
     public UsageDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -24,4 +24,14 @@ public class InvoicePayParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/pay"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoicePayParams { InvoiceID = "invoice_id" };
+
+        InvoicePayParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

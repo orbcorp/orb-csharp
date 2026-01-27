@@ -634,6 +634,70 @@ public class NewFloatingTieredPackageWithMinimumPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingTieredPackageWithMinimumPrice
+        {
+            Cadence = NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum,
+            Name = "Annual fee",
+            TieredPackageWithMinimumConfig = new()
+            {
+                PackageSize = 0,
+                Tiers =
+                [
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        PerUnit = "per_unit",
+                        TierLowerBound = "tier_lower_bound",
+                    },
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        PerUnit = "per_unit",
+                        TierLowerBound = "tier_lower_bound",
+                    },
+                ],
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingTieredPackageWithMinimumPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewFloatingTieredPackageWithMinimumPriceCadenceTest : TestBase
@@ -916,6 +980,34 @@ public class TieredPackageWithMinimumConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimumConfig
+        {
+            PackageSize = 0,
+            Tiers =
+            [
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    PerUnit = "per_unit",
+                    TierLowerBound = "tier_lower_bound",
+                },
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    PerUnit = "per_unit",
+                    TierLowerBound = "tier_lower_bound",
+                },
+            ],
+        };
+
+        TieredPackageWithMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredPackageWithMinimumConfigTierTest : TestBase
@@ -995,6 +1087,21 @@ public class TieredPackageWithMinimumConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimumConfigTier
+        {
+            MinimumAmount = "minimum_amount",
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        TieredPackageWithMinimumConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

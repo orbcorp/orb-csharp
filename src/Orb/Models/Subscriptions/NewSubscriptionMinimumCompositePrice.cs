@@ -48,12 +48,12 @@ public sealed record class NewSubscriptionMinimumCompositePrice : JsonModel
     /// <summary>
     /// Configuration for minimum_composite pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.MinimumCompositeConfig MinimumCompositeConfig
+    public required MinimumCompositeConfig MinimumCompositeConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MinimumCompositeConfig>(
+            return this._rawData.GetNotNullClass<MinimumCompositeConfig>(
                 "minimum_composite_config"
             );
         }
@@ -303,10 +303,13 @@ public sealed record class NewSubscriptionMinimumCompositePrice : JsonModel
 
     public NewSubscriptionMinimumCompositePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionMinimumCompositePrice(
         NewSubscriptionMinimumCompositePrice newSubscriptionMinimumCompositePrice
     )
         : base(newSubscriptionMinimumCompositePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -402,12 +405,7 @@ sealed class NewSubscriptionMinimumCompositePriceCadenceConverter
 /// <summary>
 /// Configuration for minimum_composite pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MinimumCompositeConfig,
-        global::Orb.Models.Subscriptions.MinimumCompositeConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<MinimumCompositeConfig, MinimumCompositeConfigFromRaw>))]
 public sealed record class MinimumCompositeConfig : JsonModel
 {
     /// <summary>
@@ -453,10 +451,11 @@ public sealed record class MinimumCompositeConfig : JsonModel
 
     public MinimumCompositeConfig() { }
 
-    public MinimumCompositeConfig(
-        global::Orb.Models.Subscriptions.MinimumCompositeConfig minimumCompositeConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MinimumCompositeConfig(MinimumCompositeConfig minimumCompositeConfig)
         : base(minimumCompositeConfig) { }
+#pragma warning restore CS8618
 
     public MinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -471,8 +470,8 @@ public sealed record class MinimumCompositeConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MinimumCompositeConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MinimumCompositeConfig FromRawUnchecked(
+    /// <inheritdoc cref="MinimumCompositeConfigFromRaw.FromRawUnchecked"/>
+    public static MinimumCompositeConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -487,13 +486,12 @@ public sealed record class MinimumCompositeConfig : JsonModel
     }
 }
 
-class MinimumCompositeConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MinimumCompositeConfig>
+class MinimumCompositeConfigFromRaw : IFromRawJson<MinimumCompositeConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MinimumCompositeConfig FromRawUnchecked(
+    public MinimumCompositeConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MinimumCompositeConfig.FromRawUnchecked(rawData);
+    ) => MinimumCompositeConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

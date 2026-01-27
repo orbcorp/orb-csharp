@@ -51,8 +51,11 @@ public sealed record class CouponRedemption : JsonModel
 
     public CouponRedemption() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CouponRedemption(CouponRedemption couponRedemption)
         : base(couponRedemption) { }
+#pragma warning restore CS8618
 
     public CouponRedemption(IReadOnlyDictionary<string, JsonElement> rawData)
     {

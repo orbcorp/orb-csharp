@@ -33,8 +33,11 @@ public sealed record class ConversionRateUnitConfig : JsonModel
 
     public ConversionRateUnitConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ConversionRateUnitConfig(ConversionRateUnitConfig conversionRateUnitConfig)
         : base(conversionRateUnitConfig) { }
+#pragma warning restore CS8618
 
     public ConversionRateUnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -14,8 +14,12 @@ namespace Orb.Models.Subscriptions;
 ///
 /// <para>If there are no updates scheduled, a request validation error will be returned
 /// with a 400 status code.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams : ParamsBase
+public record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -40,6 +44,8 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
         SubscriptionUnscheduleFixedFeeQuantityUpdatesParams subscriptionUnscheduleFixedFeeQuantityUpdatesParams
     )
@@ -49,6 +55,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
 
         this._rawBodyData = new(subscriptionUnscheduleFixedFeeQuantityUpdatesParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -89,6 +96,30 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionUnscheduleFixedFeeQuantityUpdatesParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -119,5 +150,10 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

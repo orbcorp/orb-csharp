@@ -35,4 +35,17 @@ public class SubscriptionUnschedulePendingPlanChangesParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUnschedulePendingPlanChangesParams
+        {
+            SubscriptionID = "subscription_id",
+        };
+
+        SubscriptionUnschedulePendingPlanChangesParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

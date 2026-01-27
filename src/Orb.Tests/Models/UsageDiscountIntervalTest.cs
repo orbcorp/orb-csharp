@@ -184,6 +184,32 @@ public class UsageDiscountIntervalTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UsageDiscountInterval
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = UsageDiscountIntervalDiscountType.Usage,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            UsageDiscount = 0,
+        };
+
+        UsageDiscountInterval copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UsageDiscountIntervalDiscountTypeTest : TestBase
@@ -329,6 +355,21 @@ public class UsageDiscountIntervalFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UsageDiscountIntervalFilter
+        {
+            Field = UsageDiscountIntervalFilterField.PriceID,
+            Operator = UsageDiscountIntervalFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        UsageDiscountIntervalFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

@@ -51,4 +51,14 @@ public class ThresholdTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Threshold { Value = 0 };
+
+        Threshold copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

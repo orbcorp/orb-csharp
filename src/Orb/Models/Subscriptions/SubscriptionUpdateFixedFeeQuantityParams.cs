@@ -24,8 +24,12 @@ namespace Orb.Models.Subscriptions;
 ///
 /// <para>If the fee is an in-advance fixed fee, it will also issue an immediate
 /// invoice for the difference for the remainder of the billing period.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
+public record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -115,6 +119,8 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 
     public SubscriptionUpdateFixedFeeQuantityParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionUpdateFixedFeeQuantityParams(
         SubscriptionUpdateFixedFeeQuantityParams subscriptionUpdateFixedFeeQuantityParams
     )
@@ -124,6 +130,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 
         this._rawBodyData = new(subscriptionUpdateFixedFeeQuantityParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionUpdateFixedFeeQuantityParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -164,6 +171,30 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionUpdateFixedFeeQuantityParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -191,6 +222,11 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

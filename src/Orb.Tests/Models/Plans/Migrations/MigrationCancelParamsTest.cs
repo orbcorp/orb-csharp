@@ -37,4 +37,18 @@ public class MigrationCancelParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new MigrationCancelParams
+        {
+            PlanID = "plan_id",
+            MigrationID = "migration_id",
+        };
+
+        MigrationCancelParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

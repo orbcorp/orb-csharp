@@ -206,6 +206,36 @@ public class MonetaryMinimumAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MonetaryMinimumAdjustment
+        {
+            ID = "id",
+            AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        MonetaryMinimumAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MonetaryMinimumAdjustmentAdjustmentTypeTest : TestBase
@@ -349,6 +379,21 @@ public class MonetaryMinimumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MonetaryMinimumAdjustmentFilter
+        {
+            Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MonetaryMinimumAdjustmentFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

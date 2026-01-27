@@ -300,8 +300,11 @@ public sealed record class NewPlanMinimumCompositePrice : JsonModel
 
     public NewPlanMinimumCompositePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMinimumCompositePrice(NewPlanMinimumCompositePrice newPlanMinimumCompositePrice)
         : base(newPlanMinimumCompositePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -447,10 +450,13 @@ public sealed record class NewPlanMinimumCompositePriceMinimumCompositeConfig : 
 
     public NewPlanMinimumCompositePriceMinimumCompositeConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMinimumCompositePriceMinimumCompositeConfig(
         NewPlanMinimumCompositePriceMinimumCompositeConfig newPlanMinimumCompositePriceMinimumCompositeConfig
     )
         : base(newPlanMinimumCompositePriceMinimumCompositeConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanMinimumCompositePriceMinimumCompositeConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

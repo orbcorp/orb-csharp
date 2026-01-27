@@ -301,6 +301,35 @@ public class UngroupedSubscriptionUsageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UngroupedSubscriptionUsage
+        {
+            Data =
+            [
+                new()
+                {
+                    BillableMetric = new() { ID = "id", Name = "name" },
+                    Usage =
+                    [
+                        new()
+                        {
+                            Quantity = 0,
+                            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    ViewMode = DataViewMode.Periodic,
+                },
+            ],
+        };
+
+        UngroupedSubscriptionUsage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DataTest : TestBase
@@ -431,6 +460,29 @@ public class DataTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Data
+        {
+            BillableMetric = new() { ID = "id", Name = "name" },
+            Usage =
+            [
+                new()
+                {
+                    Quantity = 0,
+                    TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            ViewMode = DataViewMode.Periodic,
+        };
+
+        Data copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BillableMetricTest : TestBase
@@ -486,6 +538,16 @@ public class BillableMetricTest : TestBase
         var model = new BillableMetric { ID = "id", Name = "name" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BillableMetric { ID = "id", Name = "name" };
+
+        BillableMetric copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -563,6 +625,21 @@ public class DataUsageTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new DataUsage
+        {
+            Quantity = 0,
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        DataUsage copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -970,6 +1047,41 @@ public class GroupedSubscriptionUsageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedSubscriptionUsage
+        {
+            Data =
+            [
+                new()
+                {
+                    BillableMetric = new() { ID = "id", Name = "name" },
+                    MetricGroup = new()
+                    {
+                        PropertyKey = "property_key",
+                        PropertyValue = "property_value",
+                    },
+                    Usage =
+                    [
+                        new()
+                        {
+                            Quantity = 0,
+                            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        GroupedSubscriptionUsage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedSubscriptionUsageDataTest : TestBase
@@ -1132,6 +1244,30 @@ public class GroupedSubscriptionUsageDataTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedSubscriptionUsageData
+        {
+            BillableMetric = new() { ID = "id", Name = "name" },
+            MetricGroup = new() { PropertyKey = "property_key", PropertyValue = "property_value" },
+            Usage =
+            [
+                new()
+                {
+                    Quantity = 0,
+                    TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+        };
+
+        GroupedSubscriptionUsageData copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedSubscriptionUsageDataBillableMetricTest : TestBase
@@ -1187,6 +1323,16 @@ public class GroupedSubscriptionUsageDataBillableMetricTest : TestBase
         var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
+
+        GroupedSubscriptionUsageDataBillableMetric copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1259,6 +1405,20 @@ public class MetricGroupTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MetricGroup
+        {
+            PropertyKey = "property_key",
+            PropertyValue = "property_value",
+        };
+
+        MetricGroup copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1339,6 +1499,21 @@ public class GroupedSubscriptionUsageDataUsageTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedSubscriptionUsageDataUsage
+        {
+            Quantity = 0,
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        GroupedSubscriptionUsageDataUsage copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

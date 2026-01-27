@@ -287,10 +287,13 @@ public sealed record class NewFloatingPackageWithAllocationPrice : JsonModel
 
     public NewFloatingPackageWithAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingPackageWithAllocationPrice(
         NewFloatingPackageWithAllocationPrice newFloatingPackageWithAllocationPrice
     )
         : base(newFloatingPackageWithAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingPackageWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -478,8 +481,11 @@ public sealed record class PackageWithAllocationConfig : JsonModel
 
     public PackageWithAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PackageWithAllocationConfig(PackageWithAllocationConfig packageWithAllocationConfig)
         : base(packageWithAllocationConfig) { }
+#pragma warning restore CS8618
 
     public PackageWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

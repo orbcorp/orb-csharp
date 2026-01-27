@@ -48,10 +48,13 @@ public sealed record class SharedTieredConversionRateConfig : JsonModel
 
     public SharedTieredConversionRateConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SharedTieredConversionRateConfig(
         SharedTieredConversionRateConfig sharedTieredConversionRateConfig
     )
         : base(sharedTieredConversionRateConfig) { }
+#pragma warning restore CS8618
 
     public SharedTieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

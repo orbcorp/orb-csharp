@@ -92,8 +92,11 @@ public sealed record class AdjustmentInterval : JsonModel
 
     public AdjustmentInterval() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AdjustmentInterval(AdjustmentInterval adjustmentInterval)
         : base(adjustmentInterval) { }
+#pragma warning restore CS8618
 
     public AdjustmentInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {

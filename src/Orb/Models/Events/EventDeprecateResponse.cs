@@ -31,8 +31,11 @@ public sealed record class EventDeprecateResponse : JsonModel
 
     public EventDeprecateResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventDeprecateResponse(EventDeprecateResponse eventDeprecateResponse)
         : base(eventDeprecateResponse) { }
+#pragma warning restore CS8618
 
     public EventDeprecateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

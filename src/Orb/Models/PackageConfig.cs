@@ -49,8 +49,11 @@ public sealed record class PackageConfig : JsonModel
 
     public PackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PackageConfig(PackageConfig packageConfig)
         : base(packageConfig) { }
+#pragma warning restore CS8618
 
     public PackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -219,4 +219,39 @@ public class CreditListByExternalIDPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreditListByExternalIDPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    Balance = 0,
+                    EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = CreditListByExternalIDResponseFilterField.ItemID,
+                            Operator = CreditListByExternalIDResponseFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MaximumInitialBalance = 0,
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                    Status = CreditListByExternalIDResponseStatus.Active,
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        CreditListByExternalIDPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

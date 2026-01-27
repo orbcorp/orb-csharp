@@ -234,6 +234,31 @@ public class AmountDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AmountDiscount
+        {
+            AmountDiscountValue = "amount_discount",
+            DiscountType = DiscountType.Amount,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = AmountDiscountFilterField.PriceID,
+                    Operator = AmountDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+
+        AmountDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DiscountTypeTest : TestBase
@@ -381,6 +406,21 @@ public class AmountDiscountFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AmountDiscountFilter
+        {
+            Field = AmountDiscountFilterField.PriceID,
+            Operator = AmountDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        AmountDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

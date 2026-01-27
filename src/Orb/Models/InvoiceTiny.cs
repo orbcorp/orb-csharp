@@ -31,8 +31,11 @@ public sealed record class InvoiceTiny : JsonModel
 
     public InvoiceTiny() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceTiny(InvoiceTiny invoiceTiny)
         : base(invoiceTiny) { }
+#pragma warning restore CS8618
 
     public InvoiceTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {

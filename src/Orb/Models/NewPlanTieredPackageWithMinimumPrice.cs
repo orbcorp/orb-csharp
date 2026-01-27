@@ -304,10 +304,13 @@ public sealed record class NewPlanTieredPackageWithMinimumPrice : JsonModel
 
     public NewPlanTieredPackageWithMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredPackageWithMinimumPrice(
         NewPlanTieredPackageWithMinimumPrice newPlanTieredPackageWithMinimumPrice
     )
         : base(newPlanTieredPackageWithMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredPackageWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -502,10 +505,13 @@ public sealed record class NewPlanTieredPackageWithMinimumPriceTieredPackageWith
 
     public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig(
         NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig newPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig
     )
         : base(newPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -597,10 +603,13 @@ public sealed record class NewPlanTieredPackageWithMinimumPriceTieredPackageWith
 
     public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier(
         NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier newPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier
     )
         : base(newPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

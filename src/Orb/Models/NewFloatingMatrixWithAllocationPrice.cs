@@ -287,10 +287,13 @@ public sealed record class NewFloatingMatrixWithAllocationPrice : JsonModel
 
     public NewFloatingMatrixWithAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingMatrixWithAllocationPrice(
         NewFloatingMatrixWithAllocationPrice newFloatingMatrixWithAllocationPrice
     )
         : base(newFloatingMatrixWithAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingMatrixWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {

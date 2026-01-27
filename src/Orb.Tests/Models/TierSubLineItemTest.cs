@@ -137,6 +137,29 @@ public class TierSubLineItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TierSubLineItem
+        {
+            Amount = "9.00",
+            Grouping = new() { Key = "region", Value = "west" },
+            Name = "Tier One",
+            Quantity = 5,
+            TierConfig = new()
+            {
+                FirstUnit = 1,
+                LastUnit = 1000,
+                UnitAmount = "3.00",
+            },
+            Type = TierSubLineItemType.Tier,
+        };
+
+        TierSubLineItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TierConfigTest : TestBase
@@ -216,6 +239,21 @@ public class TierConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TierConfig
+        {
+            FirstUnit = 1,
+            LastUnit = 1000,
+            UnitAmount = "3.00",
+        };
+
+        TierConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

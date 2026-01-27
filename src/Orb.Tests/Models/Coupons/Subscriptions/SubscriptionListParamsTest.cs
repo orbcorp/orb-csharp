@@ -92,4 +92,19 @@ public class SubscriptionListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionListParams
+        {
+            CouponID = "coupon_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        SubscriptionListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

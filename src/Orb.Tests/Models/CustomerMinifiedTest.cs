@@ -58,4 +58,14 @@ public class CustomerMinifiedTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerMinified { ID = "id", ExternalCustomerID = "external_customer_id" };
+
+        CustomerMinified copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

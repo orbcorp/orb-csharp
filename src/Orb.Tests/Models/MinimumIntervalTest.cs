@@ -174,6 +174,31 @@ public class MinimumIntervalTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumInterval
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumIntervalFilterField.PriceID,
+                    Operator = MinimumIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        MinimumInterval copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MinimumIntervalFilterTest : TestBase
@@ -265,6 +290,21 @@ public class MinimumIntervalFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumIntervalFilter
+        {
+            Field = MinimumIntervalFilterField.PriceID,
+            Operator = MinimumIntervalFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MinimumIntervalFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

@@ -236,6 +236,31 @@ public class PercentageDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentageDiscount
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+
+        PercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PercentageDiscountDiscountTypeTest : TestBase
@@ -381,6 +406,21 @@ public class PercentageDiscountFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentageDiscountFilter
+        {
+            Field = PercentageDiscountFilterField.PriceID,
+            Operator = PercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PercentageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

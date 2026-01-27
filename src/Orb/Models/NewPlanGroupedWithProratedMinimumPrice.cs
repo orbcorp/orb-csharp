@@ -303,10 +303,13 @@ public sealed record class NewPlanGroupedWithProratedMinimumPrice : JsonModel
 
     public NewPlanGroupedWithProratedMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithProratedMinimumPrice(
         NewPlanGroupedWithProratedMinimumPrice newPlanGroupedWithProratedMinimumPrice
     )
         : base(newPlanGroupedWithProratedMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithProratedMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -460,10 +463,13 @@ public sealed record class NewPlanGroupedWithProratedMinimumPriceGroupedWithPror
 
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig(
         NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig newPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig
     )
         : base(newPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -54,4 +54,14 @@ public class EventDeprecateResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventDeprecateResponse { Deprecated = "deprecated" };
+
+        EventDeprecateResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

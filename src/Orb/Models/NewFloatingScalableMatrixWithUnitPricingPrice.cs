@@ -291,10 +291,13 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : JsonM
 
     public NewFloatingScalableMatrixWithUnitPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingScalableMatrixWithUnitPricingPrice(
         NewFloatingScalableMatrixWithUnitPricingPrice newFloatingScalableMatrixWithUnitPricingPrice
     )
         : base(newFloatingScalableMatrixWithUnitPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -534,10 +537,13 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
 
     public ScalableMatrixWithUnitPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingConfig(
         ScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingConfig
     )
         : base(scalableMatrixWithUnitPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -620,10 +626,13 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         ScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingConfigMatrixScalingFactor
     )
         : base(scalableMatrixWithUnitPricingConfigMatrixScalingFactor) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData

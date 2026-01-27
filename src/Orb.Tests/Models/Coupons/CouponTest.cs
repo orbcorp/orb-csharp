@@ -200,6 +200,40 @@ public class CouponTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Coupon
+        {
+            ID = "7iz2yanVjQoBZhyH",
+            ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            DurationInMonths = 12,
+            MaxRedemptions = 0,
+            RedemptionCode = "HALFOFF",
+            TimesRedeemed = 0,
+        };
+
+        Coupon copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CouponDiscountTest : TestBase

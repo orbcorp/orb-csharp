@@ -200,8 +200,11 @@ public sealed record class Alert : JsonModel
 
     public Alert() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Alert(Alert alert)
         : base(alert) { }
+#pragma warning restore CS8618
 
     public Alert(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -254,8 +257,11 @@ public sealed record class Metric : JsonModel
 
     public Metric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Metric(Metric metric)
         : base(metric) { }
+#pragma warning restore CS8618
 
     public Metric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -353,8 +359,11 @@ public sealed record class Plan : JsonModel
 
     public Plan() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Plan(Plan plan)
         : base(plan) { }
+#pragma warning restore CS8618
 
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -480,8 +489,11 @@ public sealed record class BalanceAlertStatus : JsonModel
 
     public BalanceAlertStatus() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BalanceAlertStatus(BalanceAlertStatus balanceAlertStatus)
         : base(balanceAlertStatus) { }
+#pragma warning restore CS8618
 
     public BalanceAlertStatus(IReadOnlyDictionary<string, JsonElement> rawData)
     {

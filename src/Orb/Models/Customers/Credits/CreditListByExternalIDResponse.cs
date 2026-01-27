@@ -126,10 +126,13 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
 
     public CreditListByExternalIDResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditListByExternalIDResponse(
         CreditListByExternalIDResponse creditListByExternalIDResponse
     )
         : base(creditListByExternalIDResponse) { }
+#pragma warning restore CS8618
 
     public CreditListByExternalIDResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -231,10 +234,13 @@ public sealed record class CreditListByExternalIDResponseFilter : JsonModel
 
     public CreditListByExternalIDResponseFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditListByExternalIDResponseFilter(
         CreditListByExternalIDResponseFilter creditListByExternalIDResponseFilter
     )
         : base(creditListByExternalIDResponseFilter) { }
+#pragma warning restore CS8618
 
     public CreditListByExternalIDResponseFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

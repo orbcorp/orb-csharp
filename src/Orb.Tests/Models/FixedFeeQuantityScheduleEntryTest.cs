@@ -91,4 +91,20 @@ public class FixedFeeQuantityScheduleEntryTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new FixedFeeQuantityScheduleEntry
+        {
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PriceID = "price_id",
+            Quantity = 0,
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        FixedFeeQuantityScheduleEntry copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

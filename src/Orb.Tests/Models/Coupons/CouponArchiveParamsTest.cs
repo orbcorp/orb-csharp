@@ -24,4 +24,14 @@ public class CouponArchiveParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/coupons/coupon_id/archive"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CouponArchiveParams { CouponID = "coupon_id" };
+
+        CouponArchiveParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

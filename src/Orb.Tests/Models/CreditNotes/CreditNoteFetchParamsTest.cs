@@ -24,4 +24,14 @@ public class CreditNoteFetchParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/credit_notes/credit_note_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CreditNoteFetchParams { CreditNoteID = "credit_note_id" };
+
+        CreditNoteFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

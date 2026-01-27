@@ -12,8 +12,12 @@ namespace Orb.Models.Subscriptions;
 /// This endpoint returns a [paginated](/api-reference/pagination) list of all plans
 /// associated with a subscription along with their start and end dates. This list
 /// contains the subscription's initial plan along with past and future plan changes.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionFetchScheduleParams : ParamsBase
+public record class SubscriptionFetchScheduleParams : ParamsBase
 {
     public string? SubscriptionID { get; init; }
 
@@ -94,6 +98,8 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
 
     public SubscriptionFetchScheduleParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionFetchScheduleParams(
         SubscriptionFetchScheduleParams subscriptionFetchScheduleParams
     )
@@ -101,6 +107,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     {
         this.SubscriptionID = subscriptionFetchScheduleParams.SubscriptionID;
     }
+#pragma warning restore CS8618
 
     public SubscriptionFetchScheduleParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -135,6 +142,28 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["SubscriptionID"] = this.SubscriptionID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionFetchScheduleParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -153,5 +182,10 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

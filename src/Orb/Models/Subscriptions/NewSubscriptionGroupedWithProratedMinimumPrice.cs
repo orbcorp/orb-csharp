@@ -35,12 +35,12 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice : Json
     /// <summary>
     /// Configuration for grouped_with_prorated_minimum pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig GroupedWithProratedMinimumConfig
+    public required GroupedWithProratedMinimumConfig GroupedWithProratedMinimumConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig>(
+            return this._rawData.GetNotNullClass<GroupedWithProratedMinimumConfig>(
                 "grouped_with_prorated_minimum_config"
             );
         }
@@ -306,10 +306,13 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice : Json
 
     public NewSubscriptionGroupedWithProratedMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionGroupedWithProratedMinimumPrice(
         NewSubscriptionGroupedWithProratedMinimumPrice newSubscriptionGroupedWithProratedMinimumPrice
     )
         : base(newSubscriptionGroupedWithProratedMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionGroupedWithProratedMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -409,8 +412,8 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceCadenceConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig,
-        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfigFromRaw
+        GroupedWithProratedMinimumConfig,
+        GroupedWithProratedMinimumConfigFromRaw
     >)
 )]
 public sealed record class GroupedWithProratedMinimumConfig : JsonModel
@@ -464,10 +467,13 @@ public sealed record class GroupedWithProratedMinimumConfig : JsonModel
 
     public GroupedWithProratedMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithProratedMinimumConfig(
-        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig groupedWithProratedMinimumConfig
+        GroupedWithProratedMinimumConfig groupedWithProratedMinimumConfig
     )
         : base(groupedWithProratedMinimumConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithProratedMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -482,8 +488,8 @@ public sealed record class GroupedWithProratedMinimumConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedWithProratedMinimumConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedWithProratedMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -491,14 +497,12 @@ public sealed record class GroupedWithProratedMinimumConfig : JsonModel
     }
 }
 
-class GroupedWithProratedMinimumConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig>
+class GroupedWithProratedMinimumConfigFromRaw : IFromRawJson<GroupedWithProratedMinimumConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig FromRawUnchecked(
+    public GroupedWithProratedMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig.FromRawUnchecked(rawData);
+    ) => GroupedWithProratedMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>

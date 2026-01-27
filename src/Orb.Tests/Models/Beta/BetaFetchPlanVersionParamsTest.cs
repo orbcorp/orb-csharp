@@ -26,4 +26,14 @@ public class BetaFetchPlanVersionParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id/versions/version"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BetaFetchPlanVersionParams { PlanID = "plan_id", Version = "version" };
+
+        BetaFetchPlanVersionParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

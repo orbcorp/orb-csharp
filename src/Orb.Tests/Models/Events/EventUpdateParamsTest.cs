@@ -108,4 +108,25 @@ public class EventUpdateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/events/event_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new EventUpdateParams
+        {
+            EventID = "event_id",
+            EventName = "event_name",
+            Properties = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        EventUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

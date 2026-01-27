@@ -134,6 +134,32 @@ public class CreditNoteCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/credit_notes"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+            EndDate = "2023-09-22",
+            Memo = "An optional memo for my credit note.",
+            StartDate = "2023-09-22",
+        };
+
+        CreditNoteCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class LineItemTest : TestBase
@@ -270,6 +296,22 @@ public class LineItemTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LineItem
+        {
+            Amount = "amount",
+            InvoiceLineItemID = "4khy3nwzktxv7",
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
+        };
+
+        LineItem copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

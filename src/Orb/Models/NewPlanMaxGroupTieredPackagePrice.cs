@@ -304,10 +304,13 @@ public sealed record class NewPlanMaxGroupTieredPackagePrice : JsonModel
 
     public NewPlanMaxGroupTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMaxGroupTieredPackagePrice(
         NewPlanMaxGroupTieredPackagePrice newPlanMaxGroupTieredPackagePrice
     )
         : base(newPlanMaxGroupTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMaxGroupTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -466,10 +469,13 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig(
         NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig
     )
         : base(newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -550,10 +556,13 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
         NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
     )
         : base(newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -183,6 +183,37 @@ public class PriceEvaluateMultipleResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PriceEvaluateMultipleResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    Currency = "currency",
+                    PriceGroups =
+                    [
+                        new()
+                        {
+                            Amount = "amount",
+                            GroupingValues = ["string"],
+                            Quantity = 0,
+                        },
+                    ],
+                    ExternalPriceID = "external_price_id",
+                    InlinePriceIndex = 0,
+                    PriceID = "price_id",
+                },
+            ],
+        };
+
+        PriceEvaluateMultipleResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DataTest : TestBase
@@ -426,5 +457,30 @@ public class DataTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Data
+        {
+            Currency = "currency",
+            PriceGroups =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    GroupingValues = ["string"],
+                    Quantity = 0,
+                },
+            ],
+            ExternalPriceID = "external_price_id",
+            InlinePriceIndex = 0,
+            PriceID = "price_id",
+        };
+
+        Data copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

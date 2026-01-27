@@ -287,10 +287,13 @@ public sealed record class NewFloatingUnitWithProrationPrice : JsonModel
 
     public NewFloatingUnitWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingUnitWithProrationPrice(
         NewFloatingUnitWithProrationPrice newFloatingUnitWithProrationPrice
     )
         : base(newFloatingUnitWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingUnitWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -455,8 +458,11 @@ public sealed record class UnitWithProrationConfig : JsonModel
 
     public UnitWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithProrationConfig(UnitWithProrationConfig unitWithProrationConfig)
         : base(unitWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
