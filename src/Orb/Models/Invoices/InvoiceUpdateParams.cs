@@ -394,10 +394,10 @@ public record class InvoiceUpdateParamsDueDate : ModelBase
         }
     }
 
-    public virtual bool Equals(InvoiceUpdateParamsDueDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(InvoiceUpdateParamsDueDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -406,6 +406,16 @@ public record class InvoiceUpdateParamsDueDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdateParamsDueDate?>
@@ -629,10 +639,10 @@ public record class InvoiceDate : ModelBase
         }
     }
 
-    public virtual bool Equals(InvoiceDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(InvoiceDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -641,6 +651,16 @@ public record class InvoiceDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>

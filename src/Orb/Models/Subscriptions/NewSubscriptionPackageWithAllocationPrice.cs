@@ -723,10 +723,12 @@ public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfi
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionPackageWithAllocationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewSubscriptionPackageWithAllocationPriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -735,6 +737,16 @@ public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfi
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionPackageWithAllocationPriceConversionRateConfigConverter

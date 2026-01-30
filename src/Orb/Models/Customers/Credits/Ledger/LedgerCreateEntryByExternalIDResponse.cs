@@ -627,10 +627,10 @@ public record class LedgerCreateEntryByExternalIDResponse : ModelBase
         );
     }
 
-    public virtual bool Equals(LedgerCreateEntryByExternalIDResponse? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LedgerCreateEntryByExternalIDResponse? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -639,6 +639,21 @@ public record class LedgerCreateEntryByExternalIDResponse : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            IncrementLedgerEntry _ => 0,
+            DecrementLedgerEntry _ => 1,
+            ExpirationChangeLedgerEntry _ => 2,
+            CreditBlockExpiryLedgerEntry _ => 3,
+            VoidLedgerEntry _ => 4,
+            VoidInitiatedLedgerEntry _ => 5,
+            AmendmentLedgerEntry _ => 6,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDResponseConverter

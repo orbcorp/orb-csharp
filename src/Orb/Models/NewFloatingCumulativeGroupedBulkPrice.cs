@@ -797,10 +797,10 @@ public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingCumulativeGroupedBulkPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingCumulativeGroupedBulkPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -809,6 +809,16 @@ public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigConverter

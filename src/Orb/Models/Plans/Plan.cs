@@ -813,10 +813,10 @@ public record class PlanAdjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(PlanAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PlanAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -825,6 +825,19 @@ public record class PlanAdjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            Models::PlanPhaseUsageDiscountAdjustment _ => 0,
+            Models::PlanPhaseAmountDiscountAdjustment _ => 1,
+            Models::PlanPhasePercentageDiscountAdjustment _ => 2,
+            Models::PlanPhaseMinimumAdjustment _ => 3,
+            Models::PlanPhaseMaximumAdjustment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>

@@ -690,10 +690,10 @@ public record class Adjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(Adjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Adjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -702,6 +702,19 @@ public record class Adjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPercentageDiscount _ => 0,
+            NewUsageDiscount _ => 1,
+            NewAmountDiscount _ => 2,
+            NewMinimum _ => 3,
+            NewMaximum _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>
@@ -2792,10 +2805,10 @@ public record class Price : ModelBase
         );
     }
 
-    public virtual bool Equals(Price? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Price? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2804,6 +2817,45 @@ public record class Price : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPlanUnitPrice _ => 0,
+            NewPlanTieredPrice _ => 1,
+            NewPlanBulkPrice _ => 2,
+            BulkWithFilters _ => 3,
+            NewPlanPackagePrice _ => 4,
+            NewPlanMatrixPrice _ => 5,
+            NewPlanThresholdTotalAmountPrice _ => 6,
+            NewPlanTieredPackagePrice _ => 7,
+            NewPlanTieredWithMinimumPrice _ => 8,
+            NewPlanGroupedTieredPrice _ => 9,
+            NewPlanTieredPackageWithMinimumPrice _ => 10,
+            NewPlanPackageWithAllocationPrice _ => 11,
+            NewPlanUnitWithPercentPrice _ => 12,
+            NewPlanMatrixWithAllocationPrice _ => 13,
+            TieredWithProration _ => 14,
+            NewPlanUnitWithProrationPrice _ => 15,
+            NewPlanGroupedAllocationPrice _ => 16,
+            NewPlanBulkWithProrationPrice _ => 17,
+            NewPlanGroupedWithProratedMinimumPrice _ => 18,
+            NewPlanGroupedWithMeteredMinimumPrice _ => 19,
+            GroupedWithMinMaxThresholds _ => 20,
+            NewPlanMatrixWithDisplayNamePrice _ => 21,
+            NewPlanGroupedTieredPackagePrice _ => 22,
+            NewPlanMaxGroupTieredPackagePrice _ => 23,
+            NewPlanScalableMatrixWithUnitPricingPrice _ => 24,
+            NewPlanScalableMatrixWithTieredPricingPrice _ => 25,
+            NewPlanCumulativeGroupedBulkPrice _ => 26,
+            CumulativeGroupedAllocation _ => 27,
+            NewPlanMinimumCompositePrice _ => 28,
+            Percent _ => 29,
+            EventOutput _ => 30,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceConverter : JsonConverter<Price?>
@@ -4337,10 +4389,10 @@ public record class ConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(ConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -4349,6 +4401,16 @@ public record class ConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
@@ -5180,10 +5242,10 @@ public record class TieredWithProrationConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(TieredWithProrationConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(TieredWithProrationConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5192,6 +5254,16 @@ public record class TieredWithProrationConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class TieredWithProrationConversionRateConfigConverter
@@ -5975,10 +6047,10 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(GroupedWithMinMaxThresholdsConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(GroupedWithMinMaxThresholdsConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5987,6 +6059,16 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -6770,10 +6852,10 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(CumulativeGroupedAllocationConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CumulativeGroupedAllocationConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6782,6 +6864,16 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CumulativeGroupedAllocationConversionRateConfigConverter
@@ -7505,10 +7597,10 @@ public record class PercentConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PercentConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PercentConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -7517,6 +7609,16 @@ public record class PercentConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PercentConversionRateConfigConverter : JsonConverter<PercentConversionRateConfig>
@@ -8277,10 +8379,10 @@ public record class EventOutputConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(EventOutputConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EventOutputConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -8289,6 +8391,16 @@ public record class EventOutputConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EventOutputConversionRateConfigConverter
@@ -8948,10 +9060,10 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(ReplaceAdjustmentAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ReplaceAdjustmentAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -8960,6 +9072,19 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPercentageDiscount _ => 0,
+            NewUsageDiscount _ => 1,
+            NewAmountDiscount _ => 2,
+            NewMinimum _ => 3,
+            NewMaximum _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplaceAdjustmentAdjustmentConverter : JsonConverter<ReplaceAdjustmentAdjustment>
@@ -11136,10 +11261,10 @@ public record class ReplacePricePrice : ModelBase
         );
     }
 
-    public virtual bool Equals(ReplacePricePrice? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ReplacePricePrice? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -11148,6 +11273,45 @@ public record class ReplacePricePrice : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPlanUnitPrice _ => 0,
+            NewPlanTieredPrice _ => 1,
+            NewPlanBulkPrice _ => 2,
+            ReplacePricePriceBulkWithFilters _ => 3,
+            NewPlanPackagePrice _ => 4,
+            NewPlanMatrixPrice _ => 5,
+            NewPlanThresholdTotalAmountPrice _ => 6,
+            NewPlanTieredPackagePrice _ => 7,
+            NewPlanTieredWithMinimumPrice _ => 8,
+            NewPlanGroupedTieredPrice _ => 9,
+            NewPlanTieredPackageWithMinimumPrice _ => 10,
+            NewPlanPackageWithAllocationPrice _ => 11,
+            NewPlanUnitWithPercentPrice _ => 12,
+            NewPlanMatrixWithAllocationPrice _ => 13,
+            ReplacePricePriceTieredWithProration _ => 14,
+            NewPlanUnitWithProrationPrice _ => 15,
+            NewPlanGroupedAllocationPrice _ => 16,
+            NewPlanBulkWithProrationPrice _ => 17,
+            NewPlanGroupedWithProratedMinimumPrice _ => 18,
+            NewPlanGroupedWithMeteredMinimumPrice _ => 19,
+            ReplacePricePriceGroupedWithMinMaxThresholds _ => 20,
+            NewPlanMatrixWithDisplayNamePrice _ => 21,
+            NewPlanGroupedTieredPackagePrice _ => 22,
+            NewPlanMaxGroupTieredPackagePrice _ => 23,
+            NewPlanScalableMatrixWithUnitPricingPrice _ => 24,
+            NewPlanScalableMatrixWithTieredPricingPrice _ => 25,
+            NewPlanCumulativeGroupedBulkPrice _ => 26,
+            ReplacePricePriceCumulativeGroupedAllocation _ => 27,
+            NewPlanMinimumCompositePrice _ => 28,
+            ReplacePricePricePercent _ => 29,
+            ReplacePricePriceEventOutput _ => 30,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePriceConverter : JsonConverter<ReplacePricePrice?>
@@ -12767,10 +12931,10 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(ReplacePricePriceBulkWithFiltersConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ReplacePricePriceBulkWithFiltersConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -12779,6 +12943,16 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig : Model
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
@@ -13642,10 +13816,10 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig : M
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(ReplacePricePriceTieredWithProrationConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ReplacePricePriceTieredWithProrationConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -13654,6 +13828,16 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig : M
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
@@ -14456,10 +14640,10 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
 
     public virtual bool Equals(
         ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -14468,6 +14652,16 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -15272,10 +15466,10 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
 
     public virtual bool Equals(
         ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -15284,6 +15478,16 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -16030,10 +16234,10 @@ public record class ReplacePricePricePercentConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(ReplacePricePricePercentConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ReplacePricePricePercentConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -16042,6 +16246,16 @@ public record class ReplacePricePricePercentConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePricePercentConversionRateConfigConverter
@@ -16824,10 +17038,10 @@ public record class ReplacePricePriceEventOutputConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(ReplacePricePriceEventOutputConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(ReplacePricePriceEventOutputConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -16836,6 +17050,16 @@ public record class ReplacePricePriceEventOutputConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class ReplacePricePriceEventOutputConversionRateConfigConverter

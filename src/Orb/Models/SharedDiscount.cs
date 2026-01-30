@@ -275,10 +275,10 @@ public record class SharedDiscount : ModelBase
         );
     }
 
-    public virtual bool Equals(SharedDiscount? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SharedDiscount? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -287,6 +287,18 @@ public record class SharedDiscount : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            PercentageDiscount _ => 0,
+            TrialDiscount _ => 1,
+            UsageDiscount _ => 2,
+            AmountDiscount _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>

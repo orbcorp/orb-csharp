@@ -318,10 +318,10 @@ public record class GroupingValue : ModelBase
         }
     }
 
-    public virtual bool Equals(GroupingValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(GroupingValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -330,6 +330,17 @@ public record class GroupingValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class GroupingValueConverter : JsonConverter<GroupingValue>
