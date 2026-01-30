@@ -789,10 +789,10 @@ public record class StartDate : ModelBase
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(StartDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(StartDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -801,6 +801,16 @@ public record class StartDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class StartDateConverter : JsonConverter<StartDate>
@@ -1078,10 +1088,10 @@ public record class Discount : ModelBase
         );
     }
 
-    public virtual bool Equals(Discount? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Discount? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1090,6 +1100,17 @@ public record class Discount : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            Amount _ => 0,
+            Percentage _ => 1,
+            Usage _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class DiscountConverter : JsonConverter<Discount>
@@ -1620,10 +1641,10 @@ public record class EndDate : ModelBase
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(EndDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EndDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1632,6 +1653,16 @@ public record class EndDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EndDateConverter : JsonConverter<EndDate?>
@@ -3616,10 +3647,10 @@ public record class PriceModel : ModelBase
         );
     }
 
-    public virtual bool Equals(PriceModel? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceModel? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -3628,6 +3659,45 @@ public record class PriceModel : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewFloatingUnitPrice _ => 0,
+            NewFloatingTieredPrice _ => 1,
+            NewFloatingBulkPrice _ => 2,
+            PriceModelBulkWithFilters _ => 3,
+            NewFloatingPackagePrice _ => 4,
+            NewFloatingMatrixPrice _ => 5,
+            NewFloatingThresholdTotalAmountPrice _ => 6,
+            NewFloatingTieredPackagePrice _ => 7,
+            NewFloatingTieredWithMinimumPrice _ => 8,
+            NewFloatingGroupedTieredPrice _ => 9,
+            NewFloatingTieredPackageWithMinimumPrice _ => 10,
+            NewFloatingPackageWithAllocationPrice _ => 11,
+            NewFloatingUnitWithPercentPrice _ => 12,
+            NewFloatingMatrixWithAllocationPrice _ => 13,
+            NewFloatingTieredWithProrationPrice _ => 14,
+            NewFloatingUnitWithProrationPrice _ => 15,
+            NewFloatingGroupedAllocationPrice _ => 16,
+            NewFloatingBulkWithProrationPrice _ => 17,
+            NewFloatingGroupedWithProratedMinimumPrice _ => 18,
+            NewFloatingGroupedWithMeteredMinimumPrice _ => 19,
+            PriceModelGroupedWithMinMaxThresholds _ => 20,
+            NewFloatingMatrixWithDisplayNamePrice _ => 21,
+            NewFloatingGroupedTieredPackagePrice _ => 22,
+            NewFloatingMaxGroupTieredPackagePrice _ => 23,
+            NewFloatingScalableMatrixWithUnitPricingPrice _ => 24,
+            NewFloatingScalableMatrixWithTieredPricingPrice _ => 25,
+            NewFloatingCumulativeGroupedBulkPrice _ => 26,
+            PriceModelCumulativeGroupedAllocation _ => 27,
+            NewFloatingMinimumCompositePrice _ => 28,
+            PriceModelPercent _ => 29,
+            PriceModelEventOutput _ => 30,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceModelConverter : JsonConverter<PriceModel?>
@@ -5233,10 +5303,10 @@ public record class PriceModelBulkWithFiltersConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceModelBulkWithFiltersConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceModelBulkWithFiltersConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5245,6 +5315,16 @@ public record class PriceModelBulkWithFiltersConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceModelBulkWithFiltersConversionRateConfigConverter
@@ -6027,10 +6107,10 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceModelGroupedWithMinMaxThresholdsConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceModelGroupedWithMinMaxThresholdsConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6039,6 +6119,16 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -6821,10 +6911,10 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceModelCumulativeGroupedAllocationConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceModelCumulativeGroupedAllocationConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6833,6 +6923,16 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceModelCumulativeGroupedAllocationConversionRateConfigConverter
@@ -7554,10 +7654,10 @@ public record class PriceModelPercentConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceModelPercentConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceModelPercentConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -7566,6 +7666,16 @@ public record class PriceModelPercentConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceModelPercentConversionRateConfigConverter
@@ -8327,10 +8437,10 @@ public record class PriceModelEventOutputConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceModelEventOutputConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceModelEventOutputConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -8339,6 +8449,16 @@ public record class PriceModelEventOutputConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceModelEventOutputConversionRateConfigConverter
@@ -8759,10 +8879,10 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate : Mod
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentStartDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentStartDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -8771,6 +8891,16 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate : Mod
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateConverter
@@ -9175,10 +9305,10 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment : Mo
         );
     }
 
-    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -9187,6 +9317,19 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment : Mo
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPercentageDiscount _ => 0,
+            NewUsageDiscount _ => 1,
+            NewAmountDiscount _ => 2,
+            NewMinimum _ => 3,
+            NewMaximum _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentConverter
@@ -9532,10 +9675,10 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate : Model
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -9544,6 +9687,16 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate : Model
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateConverter
@@ -9980,10 +10133,10 @@ public record class EditEndDate : ModelBase
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(EditEndDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EditEndDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -9992,6 +10145,16 @@ public record class EditEndDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EditEndDateConverter : JsonConverter<EditEndDate?>
@@ -10314,10 +10477,10 @@ public record class EditStartDate : ModelBase
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(EditStartDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EditStartDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -10326,6 +10489,16 @@ public record class EditStartDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EditStartDateConverter : JsonConverter<EditStartDate>
@@ -10673,10 +10846,10 @@ public record class EditAdjustmentEndDate : ModelBase
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(EditAdjustmentEndDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EditAdjustmentEndDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -10685,6 +10858,16 @@ public record class EditAdjustmentEndDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EditAdjustmentEndDateConverter : JsonConverter<EditAdjustmentEndDate?>
@@ -10930,10 +11113,10 @@ public record class EditAdjustmentStartDate : ModelBase
         this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
-    public virtual bool Equals(EditAdjustmentStartDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EditAdjustmentStartDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -10942,6 +11125,16 @@ public record class EditAdjustmentStartDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, BillingCycleRelativeDate> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EditAdjustmentStartDateConverter : JsonConverter<EditAdjustmentStartDate>

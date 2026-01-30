@@ -970,10 +970,10 @@ public record class NewPlanScalableMatrixWithTieredPricingPriceConversionRateCon
 
     public virtual bool Equals(
         NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -982,6 +982,16 @@ public record class NewPlanScalableMatrixWithTieredPricingPriceConversionRateCon
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConverter

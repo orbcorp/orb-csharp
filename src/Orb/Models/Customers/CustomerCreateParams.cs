@@ -1163,10 +1163,10 @@ public record class TaxConfiguration : ModelBase
         );
     }
 
-    public virtual bool Equals(TaxConfiguration? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(TaxConfiguration? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1175,6 +1175,20 @@ public record class TaxConfiguration : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewAvalaraTaxConfiguration _ => 0,
+            NewTaxJarConfiguration _ => 1,
+            NewSphereConfiguration _ => 2,
+            Numeral _ => 3,
+            Anrok _ => 4,
+            Stripe _ => 5,
+            _ => -1,
+        };
+    }
 }
 
 sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>

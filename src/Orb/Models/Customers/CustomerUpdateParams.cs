@@ -1236,10 +1236,10 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
         );
     }
 
-    public virtual bool Equals(CustomerUpdateParamsTaxConfiguration? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomerUpdateParamsTaxConfiguration? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1248,6 +1248,20 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewAvalaraTaxConfiguration _ => 0,
+            NewTaxJarConfiguration _ => 1,
+            NewSphereConfiguration _ => 2,
+            CustomerUpdateParamsTaxConfigurationNumeral _ => 3,
+            CustomerUpdateParamsTaxConfigurationAnrok _ => 4,
+            CustomerUpdateParamsTaxConfigurationStripe _ => 5,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomerUpdateParamsTaxConfigurationConverter

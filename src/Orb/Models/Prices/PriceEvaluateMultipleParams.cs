@@ -2201,10 +2201,10 @@ public record class Price : ModelBase
         );
     }
 
-    public virtual bool Equals(Price? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Price? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2213,6 +2213,45 @@ public record class Price : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewFloatingUnitPrice _ => 0,
+            NewFloatingTieredPrice _ => 1,
+            NewFloatingBulkPrice _ => 2,
+            PriceBulkWithFilters _ => 3,
+            NewFloatingPackagePrice _ => 4,
+            NewFloatingMatrixPrice _ => 5,
+            NewFloatingThresholdTotalAmountPrice _ => 6,
+            NewFloatingTieredPackagePrice _ => 7,
+            NewFloatingTieredWithMinimumPrice _ => 8,
+            NewFloatingGroupedTieredPrice _ => 9,
+            NewFloatingTieredPackageWithMinimumPrice _ => 10,
+            NewFloatingPackageWithAllocationPrice _ => 11,
+            NewFloatingUnitWithPercentPrice _ => 12,
+            NewFloatingMatrixWithAllocationPrice _ => 13,
+            NewFloatingTieredWithProrationPrice _ => 14,
+            NewFloatingUnitWithProrationPrice _ => 15,
+            NewFloatingGroupedAllocationPrice _ => 16,
+            NewFloatingBulkWithProrationPrice _ => 17,
+            NewFloatingGroupedWithProratedMinimumPrice _ => 18,
+            NewFloatingGroupedWithMeteredMinimumPrice _ => 19,
+            PriceGroupedWithMinMaxThresholds _ => 20,
+            NewFloatingMatrixWithDisplayNamePrice _ => 21,
+            NewFloatingGroupedTieredPackagePrice _ => 22,
+            NewFloatingMaxGroupTieredPackagePrice _ => 23,
+            NewFloatingScalableMatrixWithUnitPricingPrice _ => 24,
+            NewFloatingScalableMatrixWithTieredPricingPrice _ => 25,
+            NewFloatingCumulativeGroupedBulkPrice _ => 26,
+            PriceCumulativeGroupedAllocation _ => 27,
+            NewFloatingMinimumCompositePrice _ => 28,
+            PricePercent _ => 29,
+            PriceEventOutput _ => 30,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceConverter : JsonConverter<Price?>
@@ -3802,10 +3841,10 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceBulkWithFiltersConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceBulkWithFiltersConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -3814,6 +3853,16 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceBulkWithFiltersConversionRateConfigConverter
@@ -4593,10 +4642,10 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceGroupedWithMinMaxThresholdsConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceGroupedWithMinMaxThresholdsConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -4605,6 +4654,16 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -5384,10 +5443,10 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceCumulativeGroupedAllocationConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceCumulativeGroupedAllocationConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5396,6 +5455,16 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -6108,10 +6177,10 @@ public record class PricePercentConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PricePercentConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PricePercentConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6120,6 +6189,16 @@ public record class PricePercentConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PricePercentConversionRateConfigConverter
@@ -6879,10 +6958,10 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceEventOutputConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceEventOutputConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6891,6 +6970,16 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceEventOutputConversionRateConfigConverter

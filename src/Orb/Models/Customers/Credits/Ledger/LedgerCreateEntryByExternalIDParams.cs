@@ -656,10 +656,10 @@ public record class LedgerCreateEntryByExternalIDParamsBody : ModelBase
         );
     }
 
-    public virtual bool Equals(LedgerCreateEntryByExternalIDParamsBody? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LedgerCreateEntryByExternalIDParamsBody? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -668,6 +668,19 @@ public record class LedgerCreateEntryByExternalIDParamsBody : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            LedgerCreateEntryByExternalIDParamsBodyIncrement _ => 0,
+            LedgerCreateEntryByExternalIDParamsBodyDecrement _ => 1,
+            LedgerCreateEntryByExternalIDParamsBodyExpirationChange _ => 2,
+            LedgerCreateEntryByExternalIDParamsBodyVoid _ => 3,
+            LedgerCreateEntryByExternalIDParamsBodyAmendment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
@@ -1666,10 +1679,10 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public virtual bool Equals(
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1678,6 +1691,16 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateConverter
@@ -1927,10 +1950,10 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public virtual bool Equals(
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1939,6 +1962,16 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateConverter

@@ -317,10 +317,10 @@ public record class EffectiveTime : ModelBase
         this.Switch((_) => { }, (_) => { }, (unionMember2) => unionMember2.Validate());
     }
 
-    public virtual bool Equals(EffectiveTime? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EffectiveTime? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -329,6 +329,17 @@ public record class EffectiveTime : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            ApiEnum<string, UnionMember2> _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EffectiveTimeConverter : JsonConverter<EffectiveTime?>

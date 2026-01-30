@@ -1255,10 +1255,12 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
         );
     }
 
-    public virtual bool Equals(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1267,6 +1269,19 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPercentageDiscount _ => 0,
+            NewUsageDiscount _ => 1,
+            NewAmountDiscount _ => 2,
+            NewMinimum _ => 3,
+            NewMaximum _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverter
@@ -3740,10 +3755,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
         );
     }
 
-    public virtual bool Equals(SubscriptionSchedulePlanChangeParamsAddPricePrice? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionSchedulePlanChangeParamsAddPricePrice? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -3752,6 +3767,45 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewSubscriptionUnitPrice _ => 0,
+            NewSubscriptionTieredPrice _ => 1,
+            NewSubscriptionBulkPrice _ => 2,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters _ => 3,
+            NewSubscriptionPackagePrice _ => 4,
+            NewSubscriptionMatrixPrice _ => 5,
+            NewSubscriptionThresholdTotalAmountPrice _ => 6,
+            NewSubscriptionTieredPackagePrice _ => 7,
+            NewSubscriptionTieredWithMinimumPrice _ => 8,
+            NewSubscriptionGroupedTieredPrice _ => 9,
+            NewSubscriptionTieredPackageWithMinimumPrice _ => 10,
+            NewSubscriptionPackageWithAllocationPrice _ => 11,
+            NewSubscriptionUnitWithPercentPrice _ => 12,
+            NewSubscriptionMatrixWithAllocationPrice _ => 13,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration _ => 14,
+            NewSubscriptionUnitWithProrationPrice _ => 15,
+            NewSubscriptionGroupedAllocationPrice _ => 16,
+            NewSubscriptionBulkWithProrationPrice _ => 17,
+            NewSubscriptionGroupedWithProratedMinimumPrice _ => 18,
+            NewSubscriptionGroupedWithMeteredMinimumPrice _ => 19,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds _ => 20,
+            NewSubscriptionMatrixWithDisplayNamePrice _ => 21,
+            NewSubscriptionGroupedTieredPackagePrice _ => 22,
+            NewSubscriptionMaxGroupTieredPackagePrice _ => 23,
+            NewSubscriptionScalableMatrixWithUnitPricingPrice _ => 24,
+            NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 25,
+            NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation _ => 27,
+            NewSubscriptionMinimumCompositePrice _ => 28,
+            SubscriptionSchedulePlanChangeParamsAddPricePricePercent _ => 29,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput _ => 30,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
@@ -5442,10 +5496,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5454,6 +5508,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfigConverter
@@ -6366,10 +6430,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6378,6 +6442,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfigConverter
@@ -7219,10 +7293,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -7231,6 +7305,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -8072,10 +8156,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -8084,6 +8168,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -8864,10 +8958,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -8876,6 +8970,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfigConverter
@@ -9700,10 +9804,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -9712,6 +9816,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfigConverter
@@ -10455,10 +10569,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -10467,6 +10581,19 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewPercentageDiscount _ => 0,
+            NewUsageDiscount _ => 1,
+            NewAmountDiscount _ => 2,
+            NewMinimum _ => 3,
+            NewMaximum _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConverter
@@ -12935,10 +13062,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
         );
     }
 
-    public virtual bool Equals(SubscriptionSchedulePlanChangeParamsReplacePricePrice? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionSchedulePlanChangeParamsReplacePricePrice? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -12947,6 +13074,47 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewSubscriptionUnitPrice _ => 0,
+            NewSubscriptionTieredPrice _ => 1,
+            NewSubscriptionBulkPrice _ => 2,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters _ => 3,
+            NewSubscriptionPackagePrice _ => 4,
+            NewSubscriptionMatrixPrice _ => 5,
+            NewSubscriptionThresholdTotalAmountPrice _ => 6,
+            NewSubscriptionTieredPackagePrice _ => 7,
+            NewSubscriptionTieredWithMinimumPrice _ => 8,
+            NewSubscriptionGroupedTieredPrice _ => 9,
+            NewSubscriptionTieredPackageWithMinimumPrice _ => 10,
+            NewSubscriptionPackageWithAllocationPrice _ => 11,
+            NewSubscriptionUnitWithPercentPrice _ => 12,
+            NewSubscriptionMatrixWithAllocationPrice _ => 13,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration _ => 14,
+            NewSubscriptionUnitWithProrationPrice _ => 15,
+            NewSubscriptionGroupedAllocationPrice _ => 16,
+            NewSubscriptionBulkWithProrationPrice _ => 17,
+            NewSubscriptionGroupedWithProratedMinimumPrice _ => 18,
+            NewSubscriptionGroupedWithMeteredMinimumPrice _ => 19,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds _ =>
+                20,
+            NewSubscriptionMatrixWithDisplayNamePrice _ => 21,
+            NewSubscriptionGroupedTieredPackagePrice _ => 22,
+            NewSubscriptionMaxGroupTieredPackagePrice _ => 23,
+            NewSubscriptionScalableMatrixWithUnitPricingPrice _ => 24,
+            NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 25,
+            NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation _ =>
+                27,
+            NewSubscriptionMinimumCompositePrice _ => 28,
+            SubscriptionSchedulePlanChangeParamsReplacePricePricePercent _ => 29,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput _ => 30,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
@@ -14640,10 +14808,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -14652,6 +14820,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfigConverter
@@ -15566,10 +15744,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -15578,6 +15756,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfigConverter
@@ -16419,10 +16607,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -16431,6 +16619,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -17272,10 +17470,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -17284,6 +17482,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -18070,10 +18278,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -18082,6 +18290,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfigConverter
@@ -18913,10 +19131,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
 
     public virtual bool Equals(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -18925,6 +19143,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfigConverter

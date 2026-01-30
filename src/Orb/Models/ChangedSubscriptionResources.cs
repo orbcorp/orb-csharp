@@ -2212,10 +2212,10 @@ public record class LineItemAdjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(LineItemAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LineItemAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2224,6 +2224,19 @@ public record class LineItemAdjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            MonetaryUsageDiscountAdjustment _ => 0,
+            MonetaryAmountDiscountAdjustment _ => 1,
+            MonetaryPercentageDiscountAdjustment _ => 2,
+            MonetaryMinimumAdjustment _ => 3,
+            MonetaryMaximumAdjustment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LineItemAdjustmentConverter : JsonConverter<LineItemAdjustment>
@@ -2625,10 +2638,10 @@ public record class SubLineItem : ModelBase
         );
     }
 
-    public virtual bool Equals(SubLineItem? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubLineItem? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2637,6 +2650,17 @@ public record class SubLineItem : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            MatrixSubLineItem _ => 0,
+            TierSubLineItem _ => 1,
+            OtherSubLineItem _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubLineItemConverter : JsonConverter<SubLineItem>
