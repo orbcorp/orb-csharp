@@ -288,10 +288,13 @@ public sealed record class NewFloatingMaxGroupTieredPackagePrice : JsonModel
 
     public NewFloatingMaxGroupTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingMaxGroupTieredPackagePrice(
         NewFloatingMaxGroupTieredPackagePrice newFloatingMaxGroupTieredPackagePrice
     )
         : base(newFloatingMaxGroupTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingMaxGroupTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -449,8 +452,11 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
 
     public MaxGroupTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageConfig(MaxGroupTieredPackageConfig maxGroupTieredPackageConfig)
         : base(maxGroupTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -525,10 +531,13 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
 
     public MaxGroupTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageConfigTier(
         MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
     )
         : base(maxGroupTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -795,10 +804,10 @@ public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingMaxGroupTieredPackagePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingMaxGroupTieredPackagePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -807,6 +816,16 @@ public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingMaxGroupTieredPackagePriceConversionRateConfigConverter

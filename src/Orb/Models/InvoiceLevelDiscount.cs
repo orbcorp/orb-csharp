@@ -238,10 +238,10 @@ public record class InvoiceLevelDiscount : ModelBase
         );
     }
 
-    public virtual bool Equals(InvoiceLevelDiscount? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(InvoiceLevelDiscount? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -250,6 +250,17 @@ public record class InvoiceLevelDiscount : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            PercentageDiscount _ => 0,
+            AmountDiscount _ => 1,
+            TrialDiscount _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>

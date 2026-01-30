@@ -291,10 +291,13 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice : Jso
 
     public NewFloatingScalableMatrixWithTieredPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingScalableMatrixWithTieredPricingPrice(
         NewFloatingScalableMatrixWithTieredPricingPrice newFloatingScalableMatrixWithTieredPricingPrice
     )
         : base(newFloatingScalableMatrixWithTieredPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -529,10 +532,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
 
     public ScalableMatrixWithTieredPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingConfig(
         ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
     )
         : base(scalableMatrixWithTieredPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -611,8 +617,11 @@ public sealed record class MatrixScalingFactor : JsonModel
 
     public MatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixScalingFactor(MatrixScalingFactor matrixScalingFactor)
         : base(matrixScalingFactor) { }
+#pragma warning restore CS8618
 
     public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -683,10 +692,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
 
     public ScalableMatrixWithTieredPricingConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingConfigTier(
         ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
     )
         : base(scalableMatrixWithTieredPricingConfigTier) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -913,10 +925,10 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
 
     public virtual bool Equals(
         NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -925,6 +937,16 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfigConverter

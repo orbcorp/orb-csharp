@@ -24,4 +24,14 @@ public class BackfillCloseParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/events/backfills/backfill_id/close"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BackfillCloseParams { BackfillID = "backfill_id" };
+
+        BackfillCloseParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

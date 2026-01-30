@@ -49,12 +49,12 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : JsonModel
     /// <summary>
     /// Configuration for matrix_with_display_name pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
+    public required MatrixWithDisplayNameConfig MatrixWithDisplayNameConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>(
+            return this._rawData.GetNotNullClass<MatrixWithDisplayNameConfig>(
                 "matrix_with_display_name_config"
             );
         }
@@ -304,10 +304,13 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : JsonModel
 
     public NewSubscriptionMatrixWithDisplayNamePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionMatrixWithDisplayNamePrice(
         NewSubscriptionMatrixWithDisplayNamePrice newSubscriptionMatrixWithDisplayNamePrice
     )
         : base(newSubscriptionMatrixWithDisplayNamePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionMatrixWithDisplayNamePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -406,10 +409,7 @@ sealed class NewSubscriptionMatrixWithDisplayNamePriceCadenceConverter
 /// Configuration for matrix_with_display_name pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig,
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigFromRaw
-    >)
+    typeof(JsonModelConverter<MatrixWithDisplayNameConfig, MatrixWithDisplayNameConfigFromRaw>)
 )]
 public sealed record class MatrixWithDisplayNameConfig : JsonModel
 {
@@ -429,20 +429,21 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount> UnitAmounts
+    public required IReadOnlyList<MatrixWithDisplayNameConfigUnitAmount> UnitAmounts
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
+                ImmutableArray<MatrixWithDisplayNameConfigUnitAmount>
             >("unit_amounts");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
-            >("unit_amounts", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<MatrixWithDisplayNameConfigUnitAmount>>(
+                "unit_amounts",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -458,10 +459,11 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
 
     public MatrixWithDisplayNameConfig() { }
 
-    public MatrixWithDisplayNameConfig(
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig matrixWithDisplayNameConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MatrixWithDisplayNameConfig(MatrixWithDisplayNameConfig matrixWithDisplayNameConfig)
         : base(matrixWithDisplayNameConfig) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -476,8 +478,8 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig FromRawUnchecked(
+    /// <inheritdoc cref="MatrixWithDisplayNameConfigFromRaw.FromRawUnchecked"/>
+    public static MatrixWithDisplayNameConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -485,13 +487,12 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
     }
 }
 
-class MatrixWithDisplayNameConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig>
+class MatrixWithDisplayNameConfigFromRaw : IFromRawJson<MatrixWithDisplayNameConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig FromRawUnchecked(
+    public MatrixWithDisplayNameConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
+    ) => MatrixWithDisplayNameConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -499,8 +500,8 @@ class MatrixWithDisplayNameConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount,
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmountFromRaw
+        MatrixWithDisplayNameConfigUnitAmount,
+        MatrixWithDisplayNameConfigUnitAmountFromRaw
     >)
 )]
 public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
@@ -554,10 +555,13 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
 
     public MatrixWithDisplayNameConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameConfigUnitAmount(
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
+        MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
     )
         : base(matrixWithDisplayNameConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -572,8 +576,8 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmountFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+    /// <inheritdoc cref="MatrixWithDisplayNameConfigUnitAmountFromRaw.FromRawUnchecked"/>
+    public static MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -582,15 +586,12 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
 }
 
 class MatrixWithDisplayNameConfigUnitAmountFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
+    : IFromRawJson<MatrixWithDisplayNameConfigUnitAmount>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+    public MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(
-            rawData
-        );
+    ) => MatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -828,10 +829,12 @@ public record class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfi
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -840,6 +843,16 @@ public record class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfi
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigConverter

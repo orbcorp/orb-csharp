@@ -94,8 +94,12 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// of type `amendment`. For this entry, `block_id` is required to identify the block
 /// that was originally decremented from, and `amount` indicates how many credits
 /// to return to the customer, up to the block's initial balance.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
+public record class LedgerCreateEntryByExternalIDParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -119,6 +123,8 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
 
     public LedgerCreateEntryByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParams(
         LedgerCreateEntryByExternalIDParams ledgerCreateEntryByExternalIDParams
     )
@@ -128,6 +134,7 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
 
         this._rawBodyData = new(ledgerCreateEntryByExternalIDParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -168,6 +175,33 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["ExternalCustomerID"] = this.ExternalCustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(LedgerCreateEntryByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -198,6 +232,11 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -617,10 +656,10 @@ public record class LedgerCreateEntryByExternalIDParamsBody : ModelBase
         );
     }
 
-    public virtual bool Equals(LedgerCreateEntryByExternalIDParamsBody? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LedgerCreateEntryByExternalIDParamsBody? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -629,6 +668,19 @@ public record class LedgerCreateEntryByExternalIDParamsBody : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            LedgerCreateEntryByExternalIDParamsBodyIncrement _ => 0,
+            LedgerCreateEntryByExternalIDParamsBodyDecrement _ => 1,
+            LedgerCreateEntryByExternalIDParamsBodyExpirationChange _ => 2,
+            LedgerCreateEntryByExternalIDParamsBodyVoid _ => 3,
+            LedgerCreateEntryByExternalIDParamsBodyAmendment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
@@ -973,10 +1025,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Js
         this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyIncrement(
         LedgerCreateEntryByExternalIDParamsBodyIncrement ledgerCreateEntryByExternalIDParamsBodyIncrement
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyIncrement) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrement(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1096,10 +1151,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
         LedgerCreateEntryByExternalIDParamsBodyIncrementFilter ledgerCreateEntryByExternalIDParamsBodyIncrementFilter
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyIncrementFilter) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1373,10 +1431,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings ledgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1618,10 +1679,10 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public virtual bool Equals(
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1630,6 +1691,16 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateConverter
@@ -1657,7 +1728,10 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1876,10 +1950,10 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public virtual bool Equals(
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1888,6 +1962,16 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateConverter
@@ -1915,7 +1999,10 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -2035,10 +2122,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Js
         this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyDecrement(
         LedgerCreateEntryByExternalIDParamsBodyDecrement ledgerCreateEntryByExternalIDParamsBodyDecrement
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyDecrement) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyDecrement(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2232,10 +2322,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
         this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
         LedgerCreateEntryByExternalIDParamsBodyExpirationChange ledgerCreateEntryByExternalIDParamsBodyExpirationChange
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyExpirationChange) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2411,10 +2504,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonMod
         this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyVoid(
         LedgerCreateEntryByExternalIDParamsBodyVoid ledgerCreateEntryByExternalIDParamsBodyVoid
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyVoid) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyVoid(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2610,10 +2706,13 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Js
         this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryByExternalIDParamsBodyAmendment(
         LedgerCreateEntryByExternalIDParamsBodyAmendment ledgerCreateEntryByExternalIDParamsBodyAmendment
     )
         : base(ledgerCreateEntryByExternalIDParamsBodyAmendment) { }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParamsBodyAmendment(
         IReadOnlyDictionary<string, JsonElement> rawData

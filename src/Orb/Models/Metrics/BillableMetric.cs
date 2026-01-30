@@ -85,14 +85,12 @@ public sealed record class BillableMetric : JsonModel
         init { this._rawData.Set("name", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Metrics.Status> Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Metrics.Status>
-            >("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawData.Set("status", value); }
     }
@@ -110,8 +108,11 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillableMetric(BillableMetric billableMetric)
         : base(billableMetric) { }
+#pragma warning restore CS8618
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -140,7 +141,7 @@ class BillableMetricFromRaw : IFromRawJson<BillableMetric>
         BillableMetric.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Metrics.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Active,
@@ -148,9 +149,9 @@ public enum Status
     Archived,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.Metrics.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.Metrics.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -158,26 +159,22 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.Metrics.Status>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => global::Orb.Models.Metrics.Status.Active,
-            "draft" => global::Orb.Models.Metrics.Status.Draft,
-            "archived" => global::Orb.Models.Metrics.Status.Archived,
-            _ => (global::Orb.Models.Metrics.Status)(-1),
+            "active" => Status.Active,
+            "draft" => Status.Draft,
+            "archived" => Status.Archived,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Metrics.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Metrics.Status.Active => "active",
-                global::Orb.Models.Metrics.Status.Draft => "draft",
-                global::Orb.Models.Metrics.Status.Archived => "archived",
+                Status.Active => "active",
+                Status.Draft => "draft",
+                Status.Archived => "archived",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

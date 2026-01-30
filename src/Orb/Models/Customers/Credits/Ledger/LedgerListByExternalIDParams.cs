@@ -31,11 +31,8 @@ namespace Orb.Models.Customers.Credits.Ledger;
 ///
 /// <para>As usage for a customer is reported into Orb, credits may be deducted according
 /// to the customer's plan configuration. An automated deduction of this type will
-/// result in a ledger entry, also with a starting and ending balance. In order to
-/// provide better tracing capabilities for automatic deductions, Orb always associates
-/// each automatic deduction with the `event_id` at the time of ingestion, used to
-/// pinpoint _why_ credit deduction took place and to ensure that credits are never
-/// deducted without an associated usage event.</para>
+/// result in a ledger entry, also with a starting and ending balance. Each day's
+/// usage for a particular price, invoice, and block will be grouped into a single entry.</para>
 ///
 /// <para>By default, Orb uses an algorithm that automatically deducts from the *soonest
 /// expiring credit block* first in order to ensure that all credits are utilized
@@ -77,8 +74,12 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// <para>## Amendment When credits are added to a customer's balance as a result
 /// of a correction, this entry will be added to the ledger to indicate the adjustment
 /// of credits.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class LedgerListByExternalIDParams : ParamsBase
+public record class LedgerListByExternalIDParams : ParamsBase
 {
     public string? ExternalCustomerID { get; init; }
 
@@ -206,11 +207,14 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
 
     public LedgerListByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerListByExternalIDParams(LedgerListByExternalIDParams ledgerListByExternalIDParams)
         : base(ledgerListByExternalIDParams)
     {
         this.ExternalCustomerID = ledgerListByExternalIDParams.ExternalCustomerID;
     }
+#pragma warning restore CS8618
 
     public LedgerListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -245,6 +249,31 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["ExternalCustomerID"] = this.ExternalCustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(LedgerListByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -266,6 +295,11 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

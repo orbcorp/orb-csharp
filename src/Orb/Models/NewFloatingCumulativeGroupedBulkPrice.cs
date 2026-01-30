@@ -288,10 +288,13 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice : JsonModel
 
     public NewFloatingCumulativeGroupedBulkPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingCumulativeGroupedBulkPrice(
         NewFloatingCumulativeGroupedBulkPrice newFloatingCumulativeGroupedBulkPrice
     )
         : base(newFloatingCumulativeGroupedBulkPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -435,8 +438,11 @@ public sealed record class CumulativeGroupedBulkConfig : JsonModel
 
     public CumulativeGroupedBulkConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CumulativeGroupedBulkConfig(CumulativeGroupedBulkConfig cumulativeGroupedBulkConfig)
         : base(cumulativeGroupedBulkConfig) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedBulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -523,8 +529,11 @@ public sealed record class DimensionValue : JsonModel
 
     public DimensionValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionValue(DimensionValue dimensionValue)
         : base(dimensionValue) { }
+#pragma warning restore CS8618
 
     public DimensionValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -788,10 +797,10 @@ public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingCumulativeGroupedBulkPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingCumulativeGroupedBulkPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -800,6 +809,16 @@ public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigConverter

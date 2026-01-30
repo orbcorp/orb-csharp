@@ -531,6 +531,60 @@ public class NewFloatingThresholdTotalAmountPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingThresholdTotalAmountPrice
+        {
+            Cadence = NewFloatingThresholdTotalAmountPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            Name = "Annual fee",
+            ThresholdTotalAmountConfig = new()
+            {
+                ConsumptionTable =
+                [
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                ],
+                Prorate = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingThresholdTotalAmountPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewFloatingThresholdTotalAmountPriceCadenceTest : TestBase
@@ -815,6 +869,24 @@ public class ThresholdTotalAmountConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdTotalAmountConfig
+        {
+            ConsumptionTable =
+            [
+                new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                new() { Threshold = "threshold", TotalAmount = "total_amount" },
+            ],
+            Prorate = true,
+        };
+
+        ThresholdTotalAmountConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ConsumptionTableTest : TestBase
@@ -870,6 +942,16 @@ public class ConsumptionTableTest : TestBase
         var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
+
+        ConsumptionTable copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

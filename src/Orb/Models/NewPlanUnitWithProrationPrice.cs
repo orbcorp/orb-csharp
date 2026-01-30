@@ -300,10 +300,13 @@ public sealed record class NewPlanUnitWithProrationPrice : JsonModel
 
     public NewPlanUnitWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanUnitWithProrationPrice(
         NewPlanUnitWithProrationPrice newPlanUnitWithProrationPrice
     )
         : base(newPlanUnitWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanUnitWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -472,10 +475,13 @@ public sealed record class NewPlanUnitWithProrationPriceUnitWithProrationConfig 
 
     public NewPlanUnitWithProrationPriceUnitWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanUnitWithProrationPriceUnitWithProrationConfig(
         NewPlanUnitWithProrationPriceUnitWithProrationConfig newPlanUnitWithProrationPriceUnitWithProrationConfig
     )
         : base(newPlanUnitWithProrationPriceUnitWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanUnitWithProrationPriceUnitWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -707,10 +713,10 @@ public record class NewPlanUnitWithProrationPriceConversionRateConfig : ModelBas
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanUnitWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanUnitWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -719,6 +725,16 @@ public record class NewPlanUnitWithProrationPriceConversionRateConfig : ModelBas
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanUnitWithProrationPriceConversionRateConfigConverter

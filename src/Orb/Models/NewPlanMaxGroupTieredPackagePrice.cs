@@ -304,10 +304,13 @@ public sealed record class NewPlanMaxGroupTieredPackagePrice : JsonModel
 
     public NewPlanMaxGroupTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMaxGroupTieredPackagePrice(
         NewPlanMaxGroupTieredPackagePrice newPlanMaxGroupTieredPackagePrice
     )
         : base(newPlanMaxGroupTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMaxGroupTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -466,10 +469,13 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig(
         NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig
     )
         : base(newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -550,10 +556,13 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
         NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
     )
         : base(newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -825,10 +834,10 @@ public record class NewPlanMaxGroupTieredPackagePriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanMaxGroupTieredPackagePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanMaxGroupTieredPackagePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -837,6 +846,16 @@ public record class NewPlanMaxGroupTieredPackagePriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanMaxGroupTieredPackagePriceConversionRateConfigConverter

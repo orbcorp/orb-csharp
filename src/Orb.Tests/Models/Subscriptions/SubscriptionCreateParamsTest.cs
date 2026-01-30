@@ -1375,6 +1375,280 @@ public class SubscriptionCreateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/subscriptions"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Subscriptions::SubscriptionCreateParams
+        {
+            AddAdjustments =
+            [
+                new()
+                {
+                    Adjustment = new NewPercentageDiscount()
+                    {
+                        AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewPercentageDiscountFilterField.PriceID,
+                                Operator = NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = NewPercentageDiscountPriceType.Usage,
+                    },
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PlanPhaseOrder = 0,
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            AddPrices =
+            [
+                new()
+                {
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewAllocationPriceFilterField.ItemID,
+                                Operator = NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    Discounts =
+                    [
+                        new()
+                        {
+                            DiscountType = Subscriptions::DiscountType.Percentage,
+                            AmountDiscount = "amount_discount",
+                            PercentageDiscount = 0.15,
+                            UsageDiscount = 0,
+                        },
+                    ],
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExternalPriceID = "external_price_id",
+                    MaximumAmount = "1.23",
+                    MinimumAmount = "1.23",
+                    PlanPhaseOrder = 0,
+                    Price = new Subscriptions::NewSubscriptionUnitPrice()
+                    {
+                        Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                    PriceID = "h74gfhdjvn7ujokd",
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            AlignBillingWithSubscriptionStartDate = true,
+            AutoCollection = true,
+            AwsRegion = "aws_region",
+            BillingCycleAnchorConfiguration = new()
+            {
+                Day = 1,
+                Month = 1,
+                Year = 0,
+            },
+            CouponRedemptionCode = "coupon_redemption_code",
+            CreditsOverageRate = 0,
+            Currency = "currency",
+            CustomerID = "customer_id",
+            DefaultInvoiceMemo = "default_invoice_memo",
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExternalCustomerID = "external_customer_id",
+            ExternalMarketplace = Subscriptions::ExternalMarketplace.Google,
+            ExternalMarketplaceReportingID = "external_marketplace_reporting_id",
+            ExternalPlanID = "ZMwNQefe7J3ecf7W",
+            Filter = "my_property > 100 AND my_other_property = 'bar'",
+            InitialPhaseOrder = 2,
+            InvoicingThreshold = "10.00",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            Name = "name",
+            NetTerms = 0,
+            PerCreditOverageAmount = 0,
+            PlanID = "ZMwNQefe7J3ecf7W",
+            PlanVersionNumber = 0,
+            PriceOverrides = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            RemoveAdjustments = [new("h74gfhdjvn7ujokd")],
+            RemovePrices =
+            [
+                new() { ExternalPriceID = "external_price_id", PriceID = "h74gfhdjvn7ujokd" },
+            ],
+            ReplaceAdjustments =
+            [
+                new()
+                {
+                    Adjustment = new NewPercentageDiscount()
+                    {
+                        AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewPercentageDiscountFilterField.PriceID,
+                                Operator = NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = NewPercentageDiscountPriceType.Usage,
+                    },
+                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                },
+            ],
+            ReplacePrices =
+            [
+                new()
+                {
+                    ReplacesPriceID = "replaces_price_id",
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = NewAllocationPriceFilterField.ItemID,
+                                Operator = NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    Discounts =
+                    [
+                        new()
+                        {
+                            DiscountType = Subscriptions::DiscountType.Percentage,
+                            AmountDiscount = "amount_discount",
+                            PercentageDiscount = 0.15,
+                            UsageDiscount = 0,
+                        },
+                    ],
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 2,
+                    MaximumAmount = "1.23",
+                    MinimumAmount = "1.23",
+                    Price = new Subscriptions::NewSubscriptionUnitPrice()
+                    {
+                        Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                    PriceID = "h74gfhdjvn7ujokd",
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TrialDurationDays = 0,
+            UsageCustomerIds = ["string"],
+        };
+
+        Subscriptions::SubscriptionCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class AddAdjustmentTest : TestBase
@@ -1714,6 +1988,41 @@ public class AddAdjustmentTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::AddAdjustment
+        {
+            Adjustment = new NewPercentageDiscount()
+            {
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                PercentageDiscount = 0,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = NewPercentageDiscountPriceType.Usage,
+            },
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PlanPhaseOrder = 0,
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        Subscriptions::AddAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2657,6 +2966,96 @@ public class AddPriceTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::AddPrice
+        {
+            AllocationPrice = new()
+            {
+                Amount = "10.00",
+                Cadence = Cadence.Monthly,
+                Currency = "USD",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                ExpiresAtEndOfCadence = true,
+                Filters =
+                [
+                    new()
+                    {
+                        Field = NewAllocationPriceFilterField.ItemID,
+                        Operator = NewAllocationPriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ItemID = "item_id",
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+            Discounts =
+            [
+                new()
+                {
+                    DiscountType = Subscriptions::DiscountType.Percentage,
+                    AmountDiscount = "amount_discount",
+                    PercentageDiscount = 0.15,
+                    UsageDiscount = 0,
+                },
+            ],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExternalPriceID = "external_price_id",
+            MaximumAmount = "1.23",
+            MinimumAmount = "1.23",
+            PlanPhaseOrder = 0,
+            Price = new Subscriptions::NewSubscriptionUnitPrice()
+            {
+                Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            },
+            PriceID = "h74gfhdjvn7ujokd",
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        Subscriptions::AddPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -4099,49 +4498,6 @@ public class PriceTest : TestBase
                 UnitAmount = "unit_amount",
             },
             ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-        value.Validate();
-    }
-
-    [Fact]
-    public void MinimumValidationWorks()
-    {
-        Subscriptions::Price value = new Subscriptions::Minimum()
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -5954,55 +6310,6 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void MinimumSerializationRoundtripWorks()
-    {
-        Subscriptions::Price value = new Subscriptions::Minimum()
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
     public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
         Subscriptions::Price value = new Subscriptions::NewSubscriptionMinimumCompositePrice()
@@ -6686,6 +6993,60 @@ public class BulkWithFiltersTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::BulkWithFilters
+        {
+            BulkWithFiltersConfig = new()
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            Cadence = Subscriptions::Cadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::BulkWithFilters copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithFiltersConfigTest : TestBase
@@ -6804,6 +7165,24 @@ public class BulkWithFiltersConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::BulkWithFiltersConfig
+        {
+            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        Subscriptions::BulkWithFiltersConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class FilterTest : TestBase
@@ -6859,6 +7238,16 @@ public class FilterTest : TestBase
         var model = new Subscriptions::Filter { PropertyKey = "x", PropertyValue = "x" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::Filter { PropertyKey = "x", PropertyValue = "x" };
+
+        Subscriptions::Filter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -6975,6 +7364,20 @@ public class TierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::Tier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        Subscriptions::Tier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -7592,6 +7995,54 @@ public class TieredWithProrationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredWithProration
+        {
+            Cadence = Subscriptions::TieredWithProrationCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            TieredWithProrationConfig = new(
+                [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+            ),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::TieredWithProration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredWithProrationCadenceTest : TestBase
@@ -7732,6 +8183,19 @@ public class TieredWithProrationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredWithProrationConfig
+        {
+            Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
+        };
+
+        Subscriptions::TieredWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredWithProrationConfigTierTest : TestBase
@@ -7803,6 +8267,20 @@ public class TieredWithProrationConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        Subscriptions::TieredWithProrationConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -8412,6 +8890,58 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::GroupedWithMinMaxThresholds
+        {
+            Cadence = Subscriptions::GroupedWithMinMaxThresholdsCadence.Annual,
+            GroupedWithMinMaxThresholdsConfig = new()
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::GroupedWithMinMaxThresholds copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedWithMinMaxThresholdsCadenceTest : TestBase
@@ -8565,6 +9095,22 @@ public class GroupedWithMinMaxThresholdsConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::GroupedWithMinMaxThresholdsConfig
+        {
+            GroupingKey = "x",
+            MaximumCharge = "maximum_charge",
+            MinimumCharge = "minimum_charge",
+            PerUnitRate = "per_unit_rate",
+        };
+
+        Subscriptions::GroupedWithMinMaxThresholdsConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -9174,6 +9720,58 @@ public class CumulativeGroupedAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::CumulativeGroupedAllocation
+        {
+            Cadence = Subscriptions::CumulativeGroupedAllocationCadence.Annual,
+            CumulativeGroupedAllocationConfig = new()
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::CumulativeGroupedAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CumulativeGroupedAllocationCadenceTest : TestBase
@@ -9328,6 +9926,22 @@ public class CumulativeGroupedAllocationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::CumulativeGroupedAllocationConfig
+        {
+            CumulativeAllocation = "cumulative_allocation",
+            GroupAllocation = "group_allocation",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        Subscriptions::CumulativeGroupedAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
@@ -9408,726 +10022,6 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                 element,
                 ModelBase.SerializerOptions
             );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MinimumTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        ApiEnum<string, Subscriptions::MinimumCadence> expectedCadence =
-            Subscriptions::MinimumCadence.Annual;
-        string expectedItemID = "item_id";
-        Subscriptions::MinimumConfig expectedMinimumConfig = new()
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
-        string expectedName = "Annual fee";
-        string expectedBillableMetricID = "billable_metric_id";
-        bool expectedBilledInAdvance = true;
-        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        double expectedConversionRate = 0;
-        Subscriptions::MinimumConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        string expectedCurrency = "currency";
-        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
-        {
-            DimensionValues = ["string"],
-            DimensionalPriceGroupID = "dimensional_price_group_id",
-            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-        };
-        string expectedExternalPriceID = "external_price_id";
-        double expectedFixedPriceQuantity = 0;
-        string expectedInvoiceGroupingKey = "x";
-        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
-        string expectedReferenceID = "reference_id";
-
-        Assert.Equal(expectedCadence, model.Cadence);
-        Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
-        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
-        Assert.Equal(expectedName, model.Name);
-        Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
-        Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
-        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
-        Assert.Equal(expectedConversionRate, model.ConversionRate);
-        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
-        Assert.Equal(expectedCurrency, model.Currency);
-        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
-        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
-        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
-        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
-        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
-        Assert.NotNull(model.Metadata);
-        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, model.Metadata[item.Key]);
-        }
-        Assert.Equal(expectedReferenceID, model.ReferenceID);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Minimum>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::Minimum>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        ApiEnum<string, Subscriptions::MinimumCadence> expectedCadence =
-            Subscriptions::MinimumCadence.Annual;
-        string expectedItemID = "item_id";
-        Subscriptions::MinimumConfig expectedMinimumConfig = new()
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
-        string expectedName = "Annual fee";
-        string expectedBillableMetricID = "billable_metric_id";
-        bool expectedBilledInAdvance = true;
-        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        double expectedConversionRate = 0;
-        Subscriptions::MinimumConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        string expectedCurrency = "currency";
-        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
-        {
-            DimensionValues = ["string"],
-            DimensionalPriceGroupID = "dimensional_price_group_id",
-            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-        };
-        string expectedExternalPriceID = "external_price_id";
-        double expectedFixedPriceQuantity = 0;
-        string expectedInvoiceGroupingKey = "x";
-        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
-        string expectedReferenceID = "reference_id";
-
-        Assert.Equal(expectedCadence, deserialized.Cadence);
-        Assert.Equal(expectedItemID, deserialized.ItemID);
-        Assert.Equal(expectedMinimumConfig, deserialized.MinimumConfig);
-        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
-        Assert.Equal(expectedName, deserialized.Name);
-        Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
-        Assert.Equal(expectedBilledInAdvance, deserialized.BilledInAdvance);
-        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
-        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
-        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
-        Assert.Equal(expectedCurrency, deserialized.Currency);
-        Assert.Equal(
-            expectedDimensionalPriceConfiguration,
-            deserialized.DimensionalPriceConfiguration
-        );
-        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
-        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
-        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
-        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
-        Assert.NotNull(deserialized.Metadata);
-        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, deserialized.Metadata[item.Key]);
-        }
-        Assert.Equal(expectedReferenceID, deserialized.ReferenceID);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-        };
-
-        Assert.Null(model.BillableMetricID);
-        Assert.False(model.RawData.ContainsKey("billable_metric_id"));
-        Assert.Null(model.BilledInAdvance);
-        Assert.False(model.RawData.ContainsKey("billed_in_advance"));
-        Assert.Null(model.BillingCycleConfiguration);
-        Assert.False(model.RawData.ContainsKey("billing_cycle_configuration"));
-        Assert.Null(model.ConversionRate);
-        Assert.False(model.RawData.ContainsKey("conversion_rate"));
-        Assert.Null(model.ConversionRateConfig);
-        Assert.False(model.RawData.ContainsKey("conversion_rate_config"));
-        Assert.Null(model.Currency);
-        Assert.False(model.RawData.ContainsKey("currency"));
-        Assert.Null(model.DimensionalPriceConfiguration);
-        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
-        Assert.Null(model.ExternalPriceID);
-        Assert.False(model.RawData.ContainsKey("external_price_id"));
-        Assert.Null(model.FixedPriceQuantity);
-        Assert.False(model.RawData.ContainsKey("fixed_price_quantity"));
-        Assert.Null(model.InvoiceGroupingKey);
-        Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
-        Assert.Null(model.InvoicingCycleConfiguration);
-        Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
-        Assert.Null(model.Metadata);
-        Assert.False(model.RawData.ContainsKey("metadata"));
-        Assert.Null(model.ReferenceID);
-        Assert.False(model.RawData.ContainsKey("reference_id"));
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            Currency = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-            ReferenceID = null,
-        };
-
-        Assert.Null(model.BillableMetricID);
-        Assert.True(model.RawData.ContainsKey("billable_metric_id"));
-        Assert.Null(model.BilledInAdvance);
-        Assert.True(model.RawData.ContainsKey("billed_in_advance"));
-        Assert.Null(model.BillingCycleConfiguration);
-        Assert.True(model.RawData.ContainsKey("billing_cycle_configuration"));
-        Assert.Null(model.ConversionRate);
-        Assert.True(model.RawData.ContainsKey("conversion_rate"));
-        Assert.Null(model.ConversionRateConfig);
-        Assert.True(model.RawData.ContainsKey("conversion_rate_config"));
-        Assert.Null(model.Currency);
-        Assert.True(model.RawData.ContainsKey("currency"));
-        Assert.Null(model.DimensionalPriceConfiguration);
-        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
-        Assert.Null(model.ExternalPriceID);
-        Assert.True(model.RawData.ContainsKey("external_price_id"));
-        Assert.Null(model.FixedPriceQuantity);
-        Assert.True(model.RawData.ContainsKey("fixed_price_quantity"));
-        Assert.Null(model.InvoiceGroupingKey);
-        Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
-        Assert.Null(model.InvoicingCycleConfiguration);
-        Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
-        Assert.Null(model.Metadata);
-        Assert.True(model.RawData.ContainsKey("metadata"));
-        Assert.Null(model.ReferenceID);
-        Assert.True(model.RawData.ContainsKey("reference_id"));
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Subscriptions::Minimum
-        {
-            Cadence = Subscriptions::MinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            Currency = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-            ReferenceID = null,
-        };
-
-        model.Validate();
-    }
-}
-
-public class MinimumCadenceTest : TestBase
-{
-    [Theory]
-    [InlineData(Subscriptions::MinimumCadence.Annual)]
-    [InlineData(Subscriptions::MinimumCadence.SemiAnnual)]
-    [InlineData(Subscriptions::MinimumCadence.Monthly)]
-    [InlineData(Subscriptions::MinimumCadence.Quarterly)]
-    [InlineData(Subscriptions::MinimumCadence.OneTime)]
-    [InlineData(Subscriptions::MinimumCadence.Custom)]
-    public void Validation_Works(Subscriptions::MinimumCadence rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Subscriptions::MinimumCadence> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Subscriptions::MinimumCadence>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(Subscriptions::MinimumCadence.Annual)]
-    [InlineData(Subscriptions::MinimumCadence.SemiAnnual)]
-    [InlineData(Subscriptions::MinimumCadence.Monthly)]
-    [InlineData(Subscriptions::MinimumCadence.Quarterly)]
-    [InlineData(Subscriptions::MinimumCadence.OneTime)]
-    [InlineData(Subscriptions::MinimumCadence.Custom)]
-    public void SerializationRoundtrip_Works(Subscriptions::MinimumCadence rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Subscriptions::MinimumCadence> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, Subscriptions::MinimumCadence>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Subscriptions::MinimumCadence>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, Subscriptions::MinimumCadence>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MinimumConfigTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Subscriptions::MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        string expectedMinimumAmount = "minimum_amount";
-        bool expectedProrated = true;
-
-        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedProrated, model.Prorated);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Subscriptions::MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConfig>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Subscriptions::MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedMinimumAmount = "minimum_amount";
-        bool expectedProrated = true;
-
-        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
-        Assert.Equal(expectedProrated, deserialized.Prorated);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Subscriptions::MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Subscriptions::MinimumConfig { MinimumAmount = "minimum_amount" };
-
-        Assert.Null(model.Prorated);
-        Assert.False(model.RawData.ContainsKey("prorated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Subscriptions::MinimumConfig { MinimumAmount = "minimum_amount" };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Subscriptions::MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-
-            // Null should be interpreted as omitted for these properties
-            Prorated = null,
-        };
-
-        Assert.Null(model.Prorated);
-        Assert.False(model.RawData.ContainsKey("prorated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Subscriptions::MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-
-            // Null should be interpreted as omitted for these properties
-            Prorated = null,
-        };
-
-        model.Validate();
-    }
-}
-
-public class MinimumConversionRateConfigTest : TestBase
-{
-    [Fact]
-    public void UnitValidationWorks()
-    {
-        Subscriptions::MinimumConversionRateConfig value = new SharedUnitConversionRateConfig()
-        {
-            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-            UnitConfig = new("unit_amount"),
-        };
-        value.Validate();
-    }
-
-    [Fact]
-    public void TieredValidationWorks()
-    {
-        Subscriptions::MinimumConversionRateConfig value = new SharedTieredConversionRateConfig()
-        {
-            ConversionRateType = ConversionRateType.Tiered,
-            TieredConfig = new(
-                [
-                    new()
-                    {
-                        FirstUnit = 0,
-                        UnitAmount = "unit_amount",
-                        LastUnit = 0,
-                    },
-                ]
-            ),
-        };
-        value.Validate();
-    }
-
-    [Fact]
-    public void UnitSerializationRoundtripWorks()
-    {
-        Subscriptions::MinimumConversionRateConfig value = new SharedUnitConversionRateConfig()
-        {
-            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-            UnitConfig = new("unit_amount"),
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConversionRateConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void TieredSerializationRoundtripWorks()
-    {
-        Subscriptions::MinimumConversionRateConfig value = new SharedTieredConversionRateConfig()
-        {
-            ConversionRateType = ConversionRateType.Tiered,
-            TieredConfig = new(
-                [
-                    new()
-                    {
-                        FirstUnit = 0,
-                        UnitAmount = "unit_amount",
-                        LastUnit = 0,
-                    },
-                ]
-            ),
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConversionRateConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
 
         Assert.Equal(value, deserialized);
     }
@@ -10584,6 +10478,52 @@ public class PercentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::Percent
+        {
+            Cadence = Subscriptions::PercentCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::Percent copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PercentCadenceTest : TestBase
@@ -10699,6 +10639,16 @@ public class PercentConfigTest : TestBase
         var model = new Subscriptions::PercentConfig { Percent = 0 };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::PercentConfig { Percent = 0 };
+
+        Subscriptions::PercentConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -11280,6 +11230,57 @@ public class EventOutputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::EventOutput
+        {
+            Cadence = Subscriptions::EventOutputCadence.Annual,
+            EventOutputConfig = new()
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::EventOutput copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class EventOutputCadenceTest : TestBase
@@ -11474,6 +11475,21 @@ public class EventOutputConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::EventOutputConfig
+        {
+            UnitRatingKey = "x",
+            DefaultUnitRate = "default_unit_rate",
+            GroupingKey = "grouping_key",
+        };
+
+        Subscriptions::EventOutputConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class EventOutputConversionRateConfigTest : TestBase
@@ -11665,6 +11681,16 @@ public class RemoveAdjustmentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::RemoveAdjustment { AdjustmentID = "h74gfhdjvn7ujokd" };
+
+        Subscriptions::RemoveAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class RemovePriceTest : TestBase
@@ -11774,6 +11800,20 @@ public class RemovePriceTest : TestBase
         var model = new Subscriptions::RemovePrice { ExternalPriceID = null, PriceID = null };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::RemovePrice
+        {
+            ExternalPriceID = "external_price_id",
+            PriceID = "h74gfhdjvn7ujokd",
+        };
+
+        Subscriptions::RemovePrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -11960,6 +12000,39 @@ public class ReplaceAdjustmentTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplaceAdjustment
+        {
+            Adjustment = new NewPercentageDiscount()
+            {
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                PercentageDiscount = 0,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = NewPercentageDiscountPriceType.Usage,
+            },
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+
+        Subscriptions::ReplaceAdjustment copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -12889,6 +12962,95 @@ public class ReplacePriceTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePrice
+        {
+            ReplacesPriceID = "replaces_price_id",
+            AllocationPrice = new()
+            {
+                Amount = "10.00",
+                Cadence = Cadence.Monthly,
+                Currency = "USD",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                ExpiresAtEndOfCadence = true,
+                Filters =
+                [
+                    new()
+                    {
+                        Field = NewAllocationPriceFilterField.ItemID,
+                        Operator = NewAllocationPriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ItemID = "item_id",
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+            Discounts =
+            [
+                new()
+                {
+                    DiscountType = Subscriptions::DiscountType.Percentage,
+                    AmountDiscount = "amount_discount",
+                    PercentageDiscount = 0.15,
+                    UsageDiscount = 0,
+                },
+            ],
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 2,
+            MaximumAmount = "1.23",
+            MinimumAmount = "1.23",
+            Price = new Subscriptions::NewSubscriptionUnitPrice()
+            {
+                Cadence = Subscriptions::NewSubscriptionUnitPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Subscriptions::NewSubscriptionUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            },
+            PriceID = "h74gfhdjvn7ujokd",
+        };
+
+        Subscriptions::ReplacePrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -14389,49 +14551,6 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void MinimumValidationWorks()
-    {
-        Subscriptions::ReplacePricePrice value = new Subscriptions::ReplacePricePriceMinimum()
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-        value.Validate();
-    }
-
-    [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
         Subscriptions::ReplacePricePrice value =
@@ -16235,55 +16354,6 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void MinimumSerializationRoundtripWorks()
-    {
-        Subscriptions::ReplacePricePrice value = new Subscriptions::ReplacePricePriceMinimum()
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
     public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
         Subscriptions::ReplacePricePrice value =
@@ -16978,6 +17048,60 @@ public class ReplacePricePriceBulkWithFiltersTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceBulkWithFilters
+        {
+            BulkWithFiltersConfig = new()
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            Cadence = Subscriptions::ReplacePricePriceBulkWithFiltersCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePriceBulkWithFilters copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
@@ -17098,6 +17222,24 @@ public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTest : TestBas
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
+        {
+            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        Subscriptions::ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
@@ -17171,6 +17313,22 @@ public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterTest : T
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
+
+        Subscriptions::ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter copied = new(
+            model
+        );
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -17295,6 +17453,22 @@ public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierTest : Tes
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        Subscriptions::ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier copied = new(
+            model
+        );
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -17920,6 +18094,54 @@ public class ReplacePricePriceTieredWithProrationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceTieredWithProration
+        {
+            Cadence = Subscriptions::ReplacePricePriceTieredWithProrationCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            TieredWithProrationConfig = new(
+                [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+            ),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePriceTieredWithProration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceTieredWithProrationCadenceTest : TestBase
@@ -18068,6 +18290,21 @@ public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTest :
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceTieredWithProrationTieredWithProrationConfig
+        {
+            Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
+        };
+
+        Subscriptions::ReplacePricePriceTieredWithProrationTieredWithProrationConfig copied = new(
+            model
+        );
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierTest : TestBase
@@ -18145,6 +18382,22 @@ public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierTe
             };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+            {
+                TierLowerBound = "tier_lower_bound",
+                UnitAmount = "unit_amount",
+            };
+
+        Subscriptions::ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier copied =
+            new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -18762,6 +19015,58 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholds
+        {
+            Cadence = Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsCadence.Annual,
+            GroupedWithMinMaxThresholdsConfig = new()
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholds copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceGroupedWithMinMaxThresholdsCadenceTest : TestBase
@@ -18924,6 +19229,24 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresh
             };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            };
+
+        Subscriptions::ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig copied =
+            new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -19541,6 +19864,58 @@ public class ReplacePricePriceCumulativeGroupedAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceCumulativeGroupedAllocation
+        {
+            Cadence = Subscriptions::ReplacePricePriceCumulativeGroupedAllocationCadence.Annual,
+            CumulativeGroupedAllocationConfig = new()
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePriceCumulativeGroupedAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceCumulativeGroupedAllocationCadenceTest : TestBase
@@ -19704,6 +20079,24 @@ public class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAlloca
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            };
+
+        Subscriptions::ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTest : TestBase
@@ -19781,740 +20174,6 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class ReplacePricePriceMinimumTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence> expectedCadence =
-            Subscriptions::ReplacePricePriceMinimumCadence.Annual;
-        string expectedItemID = "item_id";
-        Subscriptions::ReplacePricePriceMinimumMinimumConfig expectedMinimumConfig = new()
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
-        string expectedName = "Annual fee";
-        string expectedBillableMetricID = "billable_metric_id";
-        bool expectedBilledInAdvance = true;
-        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        double expectedConversionRate = 0;
-        Subscriptions::ReplacePricePriceMinimumConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        string expectedCurrency = "currency";
-        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
-        {
-            DimensionValues = ["string"],
-            DimensionalPriceGroupID = "dimensional_price_group_id",
-            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-        };
-        string expectedExternalPriceID = "external_price_id";
-        double expectedFixedPriceQuantity = 0;
-        string expectedInvoiceGroupingKey = "x";
-        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
-        string expectedReferenceID = "reference_id";
-
-        Assert.Equal(expectedCadence, model.Cadence);
-        Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
-        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
-        Assert.Equal(expectedName, model.Name);
-        Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
-        Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
-        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
-        Assert.Equal(expectedConversionRate, model.ConversionRate);
-        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
-        Assert.Equal(expectedCurrency, model.Currency);
-        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
-        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
-        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
-        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
-        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
-        Assert.NotNull(model.Metadata);
-        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, model.Metadata[item.Key]);
-        }
-        Assert.Equal(expectedReferenceID, model.ReferenceID);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMinimum>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMinimum>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence> expectedCadence =
-            Subscriptions::ReplacePricePriceMinimumCadence.Annual;
-        string expectedItemID = "item_id";
-        Subscriptions::ReplacePricePriceMinimumMinimumConfig expectedMinimumConfig = new()
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
-        string expectedName = "Annual fee";
-        string expectedBillableMetricID = "billable_metric_id";
-        bool expectedBilledInAdvance = true;
-        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        double expectedConversionRate = 0;
-        Subscriptions::ReplacePricePriceMinimumConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        string expectedCurrency = "currency";
-        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
-        {
-            DimensionValues = ["string"],
-            DimensionalPriceGroupID = "dimensional_price_group_id",
-            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-        };
-        string expectedExternalPriceID = "external_price_id";
-        double expectedFixedPriceQuantity = 0;
-        string expectedInvoiceGroupingKey = "x";
-        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-        };
-        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
-        string expectedReferenceID = "reference_id";
-
-        Assert.Equal(expectedCadence, deserialized.Cadence);
-        Assert.Equal(expectedItemID, deserialized.ItemID);
-        Assert.Equal(expectedMinimumConfig, deserialized.MinimumConfig);
-        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
-        Assert.Equal(expectedName, deserialized.Name);
-        Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
-        Assert.Equal(expectedBilledInAdvance, deserialized.BilledInAdvance);
-        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
-        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
-        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
-        Assert.Equal(expectedCurrency, deserialized.Currency);
-        Assert.Equal(
-            expectedDimensionalPriceConfiguration,
-            deserialized.DimensionalPriceConfiguration
-        );
-        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
-        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
-        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
-        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
-        Assert.NotNull(deserialized.Metadata);
-        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, deserialized.Metadata[item.Key]);
-        }
-        Assert.Equal(expectedReferenceID, deserialized.ReferenceID);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            Currency = "currency",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            ReferenceID = "reference_id",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-        };
-
-        Assert.Null(model.BillableMetricID);
-        Assert.False(model.RawData.ContainsKey("billable_metric_id"));
-        Assert.Null(model.BilledInAdvance);
-        Assert.False(model.RawData.ContainsKey("billed_in_advance"));
-        Assert.Null(model.BillingCycleConfiguration);
-        Assert.False(model.RawData.ContainsKey("billing_cycle_configuration"));
-        Assert.Null(model.ConversionRate);
-        Assert.False(model.RawData.ContainsKey("conversion_rate"));
-        Assert.Null(model.ConversionRateConfig);
-        Assert.False(model.RawData.ContainsKey("conversion_rate_config"));
-        Assert.Null(model.Currency);
-        Assert.False(model.RawData.ContainsKey("currency"));
-        Assert.Null(model.DimensionalPriceConfiguration);
-        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
-        Assert.Null(model.ExternalPriceID);
-        Assert.False(model.RawData.ContainsKey("external_price_id"));
-        Assert.Null(model.FixedPriceQuantity);
-        Assert.False(model.RawData.ContainsKey("fixed_price_quantity"));
-        Assert.Null(model.InvoiceGroupingKey);
-        Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
-        Assert.Null(model.InvoicingCycleConfiguration);
-        Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
-        Assert.Null(model.Metadata);
-        Assert.False(model.RawData.ContainsKey("metadata"));
-        Assert.Null(model.ReferenceID);
-        Assert.False(model.RawData.ContainsKey("reference_id"));
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            Currency = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-            ReferenceID = null,
-        };
-
-        Assert.Null(model.BillableMetricID);
-        Assert.True(model.RawData.ContainsKey("billable_metric_id"));
-        Assert.Null(model.BilledInAdvance);
-        Assert.True(model.RawData.ContainsKey("billed_in_advance"));
-        Assert.Null(model.BillingCycleConfiguration);
-        Assert.True(model.RawData.ContainsKey("billing_cycle_configuration"));
-        Assert.Null(model.ConversionRate);
-        Assert.True(model.RawData.ContainsKey("conversion_rate"));
-        Assert.Null(model.ConversionRateConfig);
-        Assert.True(model.RawData.ContainsKey("conversion_rate_config"));
-        Assert.Null(model.Currency);
-        Assert.True(model.RawData.ContainsKey("currency"));
-        Assert.Null(model.DimensionalPriceConfiguration);
-        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
-        Assert.Null(model.ExternalPriceID);
-        Assert.True(model.RawData.ContainsKey("external_price_id"));
-        Assert.Null(model.FixedPriceQuantity);
-        Assert.True(model.RawData.ContainsKey("fixed_price_quantity"));
-        Assert.Null(model.InvoiceGroupingKey);
-        Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
-        Assert.Null(model.InvoicingCycleConfiguration);
-        Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
-        Assert.Null(model.Metadata);
-        Assert.True(model.RawData.ContainsKey("metadata"));
-        Assert.Null(model.ReferenceID);
-        Assert.True(model.RawData.ContainsKey("reference_id"));
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimum
-        {
-            Cadence = Subscriptions::ReplacePricePriceMinimumCadence.Annual,
-            ItemID = "item_id",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "Annual fee",
-
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            Currency = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-            ReferenceID = null,
-        };
-
-        model.Validate();
-    }
-}
-
-public class ReplacePricePriceMinimumCadenceTest : TestBase
-{
-    [Theory]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Annual)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.SemiAnnual)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Monthly)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Quarterly)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.OneTime)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Custom)]
-    public void Validation_Works(Subscriptions::ReplacePricePriceMinimumCadence rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Annual)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.SemiAnnual)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Monthly)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Quarterly)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.OneTime)]
-    [InlineData(Subscriptions::ReplacePricePriceMinimumCadence.Custom)]
-    public void SerializationRoundtrip_Works(
-        Subscriptions::ReplacePricePriceMinimumCadence rawValue
-    )
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, Subscriptions::ReplacePricePriceMinimumCadence>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class ReplacePricePriceMinimumMinimumConfigTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        string expectedMinimumAmount = "minimum_amount";
-        bool expectedProrated = true;
-
-        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedProrated, model.Prorated);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMinimumMinimumConfig>(
-                json,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMinimumMinimumConfig>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        Assert.NotNull(deserialized);
-
-        string expectedMinimumAmount = "minimum_amount";
-        bool expectedProrated = true;
-
-        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
-        Assert.Equal(expectedProrated, deserialized.Prorated);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-        };
-
-        Assert.Null(model.Prorated);
-        Assert.False(model.RawData.ContainsKey("prorated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-
-            // Null should be interpreted as omitted for these properties
-            Prorated = null,
-        };
-
-        Assert.Null(model.Prorated);
-        Assert.False(model.RawData.ContainsKey("prorated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Subscriptions::ReplacePricePriceMinimumMinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-
-            // Null should be interpreted as omitted for these properties
-            Prorated = null,
-        };
-
-        model.Validate();
-    }
-}
-
-public class ReplacePricePriceMinimumConversionRateConfigTest : TestBase
-{
-    [Fact]
-    public void UnitValidationWorks()
-    {
-        Subscriptions::ReplacePricePriceMinimumConversionRateConfig value =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        value.Validate();
-    }
-
-    [Fact]
-    public void TieredValidationWorks()
-    {
-        Subscriptions::ReplacePricePriceMinimumConversionRateConfig value =
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            };
-        value.Validate();
-    }
-
-    [Fact]
-    public void UnitSerializationRoundtripWorks()
-    {
-        Subscriptions::ReplacePricePriceMinimumConversionRateConfig value =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMinimumConversionRateConfig>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void TieredSerializationRoundtripWorks()
-    {
-        Subscriptions::ReplacePricePriceMinimumConversionRateConfig value =
-            new SharedTieredConversionRateConfig()
-            {
-                ConversionRateType = ConversionRateType.Tiered,
-                TieredConfig = new(
-                    [
-                        new()
-                        {
-                            FirstUnit = 0,
-                            UnitAmount = "unit_amount",
-                            LastUnit = 0,
-                        },
-                    ]
-                ),
-            };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMinimumConversionRateConfig>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -20974,6 +20633,52 @@ public class ReplacePricePricePercentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePricePercent
+        {
+            Cadence = Subscriptions::ReplacePricePricePercentCadence.Annual,
+            ItemID = "item_id",
+            Name = "Annual fee",
+            PercentConfig = new(0),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePricePercent copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePricePercentCadenceTest : TestBase
@@ -21091,6 +20796,16 @@ public class ReplacePricePricePercentPercentConfigTest : TestBase
         var model = new Subscriptions::ReplacePricePricePercentPercentConfig { Percent = 0 };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePricePercentPercentConfig { Percent = 0 };
+
+        Subscriptions::ReplacePricePricePercentPercentConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -21680,6 +21395,57 @@ public class ReplacePricePriceEventOutputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceEventOutput
+        {
+            Cadence = Subscriptions::ReplacePricePriceEventOutputCadence.Annual,
+            EventOutputConfig = new()
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePriceEventOutput copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ReplacePricePriceEventOutputCadenceTest : TestBase
@@ -21881,6 +21647,21 @@ public class ReplacePricePriceEventOutputEventOutputConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceEventOutputEventOutputConfig
+        {
+            UnitRatingKey = "x",
+            DefaultUnitRate = "default_unit_rate",
+            GroupingKey = "grouping_key",
+        };
+
+        Subscriptions::ReplacePricePriceEventOutputEventOutputConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

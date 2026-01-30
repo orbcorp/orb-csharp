@@ -78,8 +78,11 @@ public sealed record class Allocation : JsonModel
 
     public Allocation() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Allocation(Allocation allocation)
         : base(allocation) { }
+#pragma warning restore CS8618
 
     public Allocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -166,8 +169,11 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Filter(Filter filter)
         : base(filter) { }
+#pragma warning restore CS8618
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

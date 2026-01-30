@@ -285,10 +285,13 @@ public sealed record class NewFloatingUnitWithPercentPrice : JsonModel
 
     public NewFloatingUnitWithPercentPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingUnitWithPercentPrice(
         NewFloatingUnitWithPercentPrice newFloatingUnitWithPercentPrice
     )
         : base(newFloatingUnitWithPercentPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -466,8 +469,11 @@ public sealed record class UnitWithPercentConfig : JsonModel
 
     public UnitWithPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithPercentConfig(UnitWithPercentConfig unitWithPercentConfig)
         : base(unitWithPercentConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -687,10 +693,10 @@ public record class NewFloatingUnitWithPercentPriceConversionRateConfig : ModelB
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingUnitWithPercentPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingUnitWithPercentPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -699,6 +705,16 @@ public record class NewFloatingUnitWithPercentPriceConversionRateConfig : ModelB
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingUnitWithPercentPriceConversionRateConfigConverter

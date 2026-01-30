@@ -39,4 +39,18 @@ public class SubscriptionUnscheduleFixedFeeQuantityUpdatesParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUnscheduleFixedFeeQuantityUpdatesParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+        };
+
+        SubscriptionUnscheduleFixedFeeQuantityUpdatesParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

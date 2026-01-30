@@ -304,10 +304,13 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPrice : JsonModel
 
     public NewPlanScalableMatrixWithUnitPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithUnitPricingPrice(
         NewPlanScalableMatrixWithUnitPricingPrice newPlanScalableMatrixWithUnitPricingPrice
     )
         : base(newPlanScalableMatrixWithUnitPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -548,10 +551,13 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig(
         NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig
     )
         : base(newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -644,12 +650,15 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
     )
         : base(
             newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         ) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -877,10 +886,12 @@ public record class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfi
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -889,6 +900,16 @@ public record class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfi
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigConverter

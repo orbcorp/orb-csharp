@@ -190,8 +190,11 @@ public sealed record class NewMinimum : JsonModel
 
     public NewMinimum() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewMinimum(NewMinimum newMinimum)
         : base(newMinimum) { }
+#pragma warning restore CS8618
 
     public NewMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -365,8 +368,11 @@ public sealed record class NewMinimumFilter : JsonModel
 
     public NewMinimumFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewMinimumFilter(NewMinimumFilter newMinimumFilter)
         : base(newMinimumFilter) { }
+#pragma warning restore CS8618
 
     public NewMinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

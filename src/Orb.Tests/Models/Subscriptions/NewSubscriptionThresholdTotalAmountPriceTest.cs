@@ -568,6 +568,62 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
+        {
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            Name = "Annual fee",
+            ThresholdTotalAmountConfig = new()
+            {
+                ConsumptionTable =
+                [
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                ],
+                Prorate = true,
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionThresholdTotalAmountPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewSubscriptionThresholdTotalAmountPriceCadenceTest : TestBase
@@ -868,6 +924,24 @@ public class ThresholdTotalAmountConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ThresholdTotalAmountConfig
+        {
+            ConsumptionTable =
+            [
+                new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                new() { Threshold = "threshold", TotalAmount = "total_amount" },
+            ],
+            Prorate = true,
+        };
+
+        Subscriptions::ThresholdTotalAmountConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ConsumptionTableTest : TestBase
@@ -939,6 +1013,20 @@ public class ConsumptionTableTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
+
+        Subscriptions::ConsumptionTable copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

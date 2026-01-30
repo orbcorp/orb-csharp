@@ -83,6 +83,22 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AlertCreateForSubscriptionParams
+        {
+            SubscriptionID = "subscription_id",
+            Thresholds = [new(0)],
+            Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            MetricID = "metric_id",
+        };
+
+        AlertCreateForSubscriptionParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class AlertCreateForSubscriptionParamsTypeTest : TestBase

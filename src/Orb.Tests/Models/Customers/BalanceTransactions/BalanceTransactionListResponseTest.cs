@@ -145,6 +145,28 @@ public class BalanceTransactionListResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BalanceTransactionListResponse
+        {
+            ID = "cgZa3SXcsPTVyC4Y",
+            Action = BalanceTransactionListResponseAction.AppliedToInvoice,
+            Amount = "11.00",
+            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+            CreditNote = new("id"),
+            Description = "An optional description",
+            EndingBalance = "22.00",
+            Invoice = new("gXcsPTVyC4YZa3Sc"),
+            StartingBalance = "33.00",
+            Type = BalanceTransactionListResponseType.Increment,
+        };
+
+        BalanceTransactionListResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BalanceTransactionListResponseActionTest : TestBase

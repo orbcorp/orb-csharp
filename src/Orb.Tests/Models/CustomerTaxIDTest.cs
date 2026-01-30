@@ -83,6 +83,21 @@ public class CustomerTaxIDTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerTaxID
+        {
+            Country = Country.Ad,
+            Type = CustomerTaxIDType.AdNrt,
+            Value = "value",
+        };
+
+        CustomerTaxID copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CountryTest : TestBase
@@ -449,6 +464,7 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.OmVat)]
     [InlineData(CustomerTaxIDType.PeRuc)]
     [InlineData(CustomerTaxIDType.PhTin)]
+    [InlineData(CustomerTaxIDType.PlNip)]
     [InlineData(CustomerTaxIDType.RoTin)]
     [InlineData(CustomerTaxIDType.RsPib)]
     [InlineData(CustomerTaxIDType.RuInn)]
@@ -579,6 +595,7 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.OmVat)]
     [InlineData(CustomerTaxIDType.PeRuc)]
     [InlineData(CustomerTaxIDType.PhTin)]
+    [InlineData(CustomerTaxIDType.PlNip)]
     [InlineData(CustomerTaxIDType.RoTin)]
     [InlineData(CustomerTaxIDType.RsPib)]
     [InlineData(CustomerTaxIDType.RuInn)]

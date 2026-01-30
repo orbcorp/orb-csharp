@@ -125,6 +125,48 @@ public class LedgerCreateEntryParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Ledger::LedgerCreateEntryParams
+        {
+            CustomerID = "customer_id",
+            Body = new Ledger::Increment()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Ledger::Field.ItemID,
+                        Operator = Ledger::Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+        };
+
+        Ledger::LedgerCreateEntryParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class BodyTest : TestBase
@@ -688,6 +730,44 @@ public class IncrementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Increment
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Ledger::Field.ItemID,
+                    Operator = Ledger::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        Ledger::Increment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class FilterTest : TestBase
@@ -775,6 +855,21 @@ public class FilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Filter
+        {
+            Field = Ledger::Field.ItemID,
+            Operator = Ledger::Operator.Includes,
+            Values = ["string"],
+        };
+
+        Ledger::Filter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1152,6 +1247,25 @@ public class InvoiceSettingsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::InvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        Ledger::InvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomDueDateTest : TestBase
@@ -1400,6 +1514,22 @@ public class DecrementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Decrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        Ledger::Decrement copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ExpirationChangeTest : TestBase
@@ -1604,6 +1734,25 @@ public class ExpirationChangeTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::ExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        Ledger::ExpirationChange copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class VoidTest : TestBase
@@ -1789,6 +1938,24 @@ public class VoidTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Void
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = Ledger::VoidReason.Refund,
+        };
+
+        Ledger::Void copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2017,5 +2184,22 @@ public class AmendmentTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Amendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        Ledger::Amendment copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

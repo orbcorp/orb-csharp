@@ -28,8 +28,11 @@ public sealed record class BillableMetricTiny : JsonModel
 
     public BillableMetricTiny() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillableMetricTiny(BillableMetricTiny billableMetricTiny)
         : base(billableMetricTiny) { }
+#pragma warning restore CS8618
 
     public BillableMetricTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {

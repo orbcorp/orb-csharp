@@ -95,6 +95,24 @@ public class SubscriptionRedeemCouponParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionRedeemCouponParams
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption = ChangeOption.RequestedDate,
+            AllowInvoiceCreditOrVoid = true,
+            ChangeDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+            CouponID = "coupon_id",
+            CouponRedemptionCode = "coupon_redemption_code",
+        };
+
+        SubscriptionRedeemCouponParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class ChangeOptionTest : TestBase

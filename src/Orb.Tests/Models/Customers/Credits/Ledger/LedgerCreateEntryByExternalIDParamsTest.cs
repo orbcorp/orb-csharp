@@ -131,6 +131,49 @@ public class LedgerCreateEntryByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new LedgerCreateEntryByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Body = new LedgerCreateEntryByExternalIDParamsBodyIncrement()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+        };
+
+        LedgerCreateEntryByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
@@ -714,6 +757,45 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyIncrement copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterTest : TestBase
@@ -813,6 +895,21 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterTest : TestBa
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
+        {
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1200,6 +1297,25 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateTest
@@ -1464,6 +1580,22 @@ public class LedgerCreateEntryByExternalIDParamsBodyDecrementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyDecrement copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestBase
@@ -1676,6 +1808,25 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyExpirationChange copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
@@ -1871,6 +2022,24 @@ public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyVoid copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2107,5 +2276,22 @@ public class LedgerCreateEntryByExternalIDParamsBodyAmendmentTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        LedgerCreateEntryByExternalIDParamsBodyAmendment copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

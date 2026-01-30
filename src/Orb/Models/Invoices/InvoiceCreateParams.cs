@@ -14,8 +14,12 @@ namespace Orb.Models.Invoices;
 
 /// <summary>
 /// This endpoint is used to create a one-off invoice for a customer.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceCreateParams : ParamsBase
+public record class InvoiceCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -51,18 +55,16 @@ public sealed record class InvoiceCreateParams : ParamsBase
         init { this._rawBodyData.Set("invoice_date", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Invoices.LineItem> LineItems
+    public required IReadOnlyList<LineItem> LineItems
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.LineItem>
-            >("line_items");
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<LineItem>>("line_items");
         }
         init
         {
-            this._rawBodyData.Set<ImmutableArray<global::Orb.Models.Invoices.LineItem>>(
+            this._rawBodyData.Set<ImmutableArray<LineItem>>(
                 "line_items",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -204,11 +206,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
     public InvoiceCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceCreateParams(InvoiceCreateParams invoiceCreateParams)
         : base(invoiceCreateParams)
     {
         this._rawBodyData = new(invoiceCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public InvoiceCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -249,6 +254,28 @@ public sealed record class InvoiceCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/invoices")
@@ -274,14 +301,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.LineItem,
-        global::Orb.Models.Invoices.LineItemFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<LineItem, LineItemFromRaw>))]
 public sealed record class LineItem : JsonModel
 {
     /// <summary>
@@ -307,14 +334,12 @@ public sealed record class LineItem : JsonModel
         init { this._rawData.Set("item_id", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Invoices.ModelType> ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Invoices.ModelType>
-            >("model_type");
+            return this._rawData.GetNotNullClass<ApiEnum<string, ModelType>>("model_type");
         }
         init { this._rawData.Set("model_type", value); }
     }
@@ -385,8 +410,11 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
-    public LineItem(global::Orb.Models.Invoices.LineItem lineItem)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public LineItem(LineItem lineItem)
         : base(lineItem) { }
+#pragma warning restore CS8618
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -401,32 +429,29 @@ public sealed record class LineItem : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.LineItemFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="LineItemFromRaw.FromRawUnchecked"/>
+    public static LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LineItemFromRaw : IFromRawJson<global::Orb.Models.Invoices.LineItem>
+class LineItemFromRaw : IFromRawJson<LineItem>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.LineItem.FromRawUnchecked(rawData);
+    public LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.ModelTypeConverter))]
+[JsonConverter(typeof(ModelTypeConverter))]
 public enum ModelType
 {
     Unit,
 }
 
-sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.ModelType>
+sealed class ModelTypeConverter : JsonConverter<ModelType>
 {
-    public override global::Orb.Models.Invoices.ModelType Read(
+    public override ModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -434,14 +459,14 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "unit" => global::Orb.Models.Invoices.ModelType.Unit,
-            _ => (global::Orb.Models.Invoices.ModelType)(-1),
+            "unit" => ModelType.Unit,
+            _ => (ModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.ModelType value,
+        ModelType value,
         JsonSerializerOptions options
     )
     {
@@ -449,7 +474,7 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.ModelType.Unit => "unit",
+                ModelType.Unit => "unit",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -634,10 +659,10 @@ public record class DueDate : ModelBase
         }
     }
 
-    public virtual bool Equals(DueDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(DueDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -646,6 +671,16 @@ public record class DueDate : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class DueDateConverter : JsonConverter<DueDate?>
@@ -672,7 +707,10 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

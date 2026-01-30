@@ -2202,6 +2202,349 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::InvoiceFetchUpcomingResponse
+        {
+            ID = "id",
+            AmountDue = "8.00",
+            AutoCollection = new()
+            {
+                Enabled = true,
+                NextAttemptAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                NumAttempts = 0,
+                PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+            CreditNotes =
+            [
+                new()
+                {
+                    ID = "id",
+                    CreditNoteNumber = "credit_note_number",
+                    Memo = "memo",
+                    Reason = "reason",
+                    Total = "total",
+                    Type = "type",
+                    VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                },
+            ],
+            Currency = "USD",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            CustomerBalanceTransactions =
+            [
+                new()
+                {
+                    ID = "cgZa3SXcsPTVyC4Y",
+                    Action = Invoices::Action.AppliedToInvoice,
+                    Amount = "11.00",
+                    CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                    CreditNote = new("id"),
+                    Description = "An optional description",
+                    EndingBalance = "22.00",
+                    Invoice = new("gXcsPTVyC4YZa3Sc"),
+                    StartingBalance = "33.00",
+                    Type = Invoices::Type.Increment,
+                },
+            ],
+            CustomerTaxID = new()
+            {
+                Country = Country.Ad,
+                Type = CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+            Discount = JsonSerializer.Deserialize<JsonElement>("{}"),
+            Discounts =
+            [
+                new PercentageDiscount()
+                {
+                    DiscountType = PercentageDiscountDiscountType.Percentage,
+                    PercentageDiscountValue = 0.15,
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
+            ],
+            DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
+            EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            HostedInvoiceUrl = "hosted_invoice_url",
+            InvoiceNumber = "JYEFHK-00001",
+            InvoicePdf = "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+            InvoiceSource = Invoices::InvoiceSource.Subscription,
+            IssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            IssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    ID = "id",
+                    AdjustedSubtotal = "5.00",
+                    Adjustments =
+                    [
+                        new MonetaryUsageDiscountAdjustment()
+                        {
+                            ID = "id",
+                            AdjustmentType =
+                                MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                            Amount = "amount",
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            IsInvoiceLevel = true,
+                            Reason = "reason",
+                            ReplacesAdjustmentID = "replaces_adjustment_id",
+                            UsageDiscount = 0,
+                        },
+                    ],
+                    Amount = "7.00",
+                    CreditsApplied = "6.00",
+                    EndDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                    Filter = "filter",
+                    Grouping = "grouping",
+                    Name = "Fixed Fee",
+                    PartiallyInvoicedAmount = "4.00",
+                    Price = new Unit()
+                    {
+                        ID = "id",
+                        BillableMetric = new("id"),
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = DurationUnit.Day,
+                        },
+                        BillingMode = BillingMode.InAdvance,
+                        Cadence = UnitCadence.OneTime,
+                        CompositePriceFilters =
+                        [
+                            new()
+                            {
+                                Field = CompositePriceFilterField.PriceID,
+                                Operator = CompositePriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CreditAllocation = new()
+                        {
+                            AllowsRollover = true,
+                            Currency = "currency",
+                            CustomExpiration = new()
+                            {
+                                Duration = 0,
+                                DurationUnit = CustomExpirationDurationUnit.Day,
+                            },
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Field.PriceID,
+                                    Operator = Operator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                        },
+                        Currency = "currency",
+                        Discount = new PercentageDiscount()
+                        {
+                            DiscountType = PercentageDiscountDiscountType.Percentage,
+                            PercentageDiscountValue = 0.15,
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            Reason = "reason",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = DurationUnit.Day,
+                        },
+                        Item = new() { ID = "id", Name = "name" },
+                        Maximum = new()
+                        {
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MaximumAmount = "maximum_amount",
+                        },
+                        MaximumAmount = "maximum_amount",
+                        Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                        Minimum = new()
+                        {
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MinimumAmount = "minimum_amount",
+                        },
+                        MinimumAmount = "minimum_amount",
+                        Name = "name",
+                        PlanPhaseOrder = 0,
+                        PriceType = UnitPriceType.UsagePrice,
+                        ReplacesPriceID = "replaces_price_id",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                    },
+                    Quantity = 1,
+                    StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                    SubLineItems =
+                    [
+                        new MatrixSubLineItem()
+                        {
+                            Amount = "9.00",
+                            Grouping = new() { Key = "region", Value = "west" },
+                            MatrixConfig = new(["string"]),
+                            Name = "Tier One",
+                            Quantity = 5,
+                            Type = MatrixSubLineItemType.Matrix,
+                            ScaledQuantity = 0,
+                        },
+                    ],
+                    Subtotal = "9.00",
+                    TaxAmounts =
+                    [
+                        new()
+                        {
+                            Amount = "amount",
+                            TaxRateDescription = "tax_rate_description",
+                            TaxRatePercentage = "tax_rate_percentage",
+                        },
+                    ],
+                    UsageCustomerIds = ["string"],
+                },
+            ],
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Memo = "memo",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            PaidAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PaymentAttempts =
+            [
+                new()
+                {
+                    ID = "id",
+                    Amount = "amount",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PaymentProvider = Invoices::PaymentProvider.Stripe,
+                    PaymentProviderID = "payment_provider_id",
+                    ReceiptPdf =
+                        "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+                    Succeeded = true,
+                },
+            ],
+            PaymentFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PaymentStartedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ScheduledIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            Status = Invoices::InvoiceFetchUpcomingResponseStatus.Issued,
+            Subscription = new("VDGsT23osdLb84KD"),
+            Subtotal = "8.00",
+            SyncFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TargetDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
+            Total = "8.00",
+            VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            WillAutoIssue = true,
+        };
+
+        Invoices::InvoiceFetchUpcomingResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AutoCollectionTest : TestBase
@@ -2293,6 +2636,22 @@ public class AutoCollectionTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::AutoCollection
+        {
+            Enabled = true,
+            NextAttemptAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            NumAttempts = 0,
+            PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        Invoices::AutoCollection copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2405,6 +2764,25 @@ public class CreditNoteTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::CreditNote
+        {
+            ID = "id",
+            CreditNoteNumber = "credit_note_number",
+            Memo = "memo",
+            Reason = "reason",
+            Total = "total",
+            Type = "type",
+            VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+        };
+
+        Invoices::CreditNote copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2541,6 +2919,28 @@ public class CustomerBalanceTransactionTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::CustomerBalanceTransaction
+        {
+            ID = "cgZa3SXcsPTVyC4Y",
+            Action = Invoices::Action.AppliedToInvoice,
+            Amount = "11.00",
+            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+            CreditNote = new("id"),
+            Description = "An optional description",
+            EndingBalance = "22.00",
+            Invoice = new("gXcsPTVyC4YZa3Sc"),
+            StartingBalance = "33.00",
+            Type = Invoices::Type.Increment,
+        };
+
+        Invoices::CustomerBalanceTransaction copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -3854,6 +4254,185 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::InvoiceFetchUpcomingResponseLineItem
+        {
+            ID = "id",
+            AdjustedSubtotal = "5.00",
+            Adjustments =
+            [
+                new MonetaryUsageDiscountAdjustment()
+                {
+                    ID = "id",
+                    AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                    Amount = "amount",
+                    AppliesToPriceIds = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    IsInvoiceLevel = true,
+                    Reason = "reason",
+                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                    UsageDiscount = 0,
+                },
+            ],
+            Amount = "7.00",
+            CreditsApplied = "6.00",
+            EndDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+            Filter = "filter",
+            Grouping = "grouping",
+            Name = "Fixed Fee",
+            PartiallyInvoicedAmount = "4.00",
+            Price = new Unit()
+            {
+                ID = "id",
+                BillableMetric = new("id"),
+                BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+                BillingMode = BillingMode.InAdvance,
+                Cadence = UnitCadence.OneTime,
+                CompositePriceFilters =
+                [
+                    new()
+                    {
+                        Field = CompositePriceFilterField.PriceID,
+                        Operator = CompositePriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreditAllocation = new()
+                {
+                    AllowsRollover = true,
+                    Currency = "currency",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = CustomExpirationDurationUnit.Day,
+                    },
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Field.PriceID,
+                            Operator = Operator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                },
+                Currency = "currency",
+                Discount = new PercentageDiscount()
+                {
+                    DiscountType = PercentageDiscountDiscountType.Percentage,
+                    PercentageDiscountValue = 0.15,
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = DurationUnit.Day,
+                },
+                Item = new() { ID = "id", Name = "name" },
+                Maximum = new()
+                {
+                    AppliesToPriceIds = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MaximumAmount = "maximum_amount",
+                },
+                MaximumAmount = "maximum_amount",
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Minimum = new()
+                {
+                    AppliesToPriceIds = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MinimumAmount = "minimum_amount",
+                },
+                MinimumAmount = "minimum_amount",
+                Name = "name",
+                PlanPhaseOrder = 0,
+                PriceType = UnitPriceType.UsagePrice,
+                ReplacesPriceID = "replaces_price_id",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+            },
+            Quantity = 1,
+            StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+            SubLineItems =
+            [
+                new MatrixSubLineItem()
+                {
+                    Amount = "9.00",
+                    Grouping = new() { Key = "region", Value = "west" },
+                    MatrixConfig = new(["string"]),
+                    Name = "Tier One",
+                    Quantity = 5,
+                    Type = MatrixSubLineItemType.Matrix,
+                    ScaledQuantity = 0,
+                },
+            ],
+            Subtotal = "9.00",
+            TaxAmounts =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    TaxRateDescription = "tax_rate_description",
+                    TaxRatePercentage = "tax_rate_percentage",
+                },
+            ],
+            UsageCustomerIds = ["string"],
+        };
+
+        Invoices::InvoiceFetchUpcomingResponseLineItem copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AdjustmentTest : TestBase
@@ -4385,6 +4964,25 @@ public class PaymentAttemptTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::PaymentAttempt
+        {
+            ID = "id",
+            Amount = "amount",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PaymentProvider = Invoices::PaymentProvider.Stripe,
+            PaymentProviderID = "payment_provider_id",
+            ReceiptPdf = "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+            Succeeded = true,
+        };
+
+        Invoices::PaymentAttempt copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

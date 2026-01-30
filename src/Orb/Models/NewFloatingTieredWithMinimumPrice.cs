@@ -288,10 +288,13 @@ public sealed record class NewFloatingTieredWithMinimumPrice : JsonModel
 
     public NewFloatingTieredWithMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingTieredWithMinimumPrice(
         NewFloatingTieredWithMinimumPrice newFloatingTieredWithMinimumPrice
     )
         : base(newFloatingTieredWithMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -512,8 +515,11 @@ public sealed record class TieredWithMinimumConfig : JsonModel
 
     public TieredWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumConfig(TieredWithMinimumConfig tieredWithMinimumConfig)
         : base(tieredWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -603,8 +609,11 @@ public sealed record class TieredWithMinimumConfigTier : JsonModel
 
     public TieredWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredWithMinimumConfigTier(TieredWithMinimumConfigTier tieredWithMinimumConfigTier)
         : base(tieredWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -824,10 +833,10 @@ public record class NewFloatingTieredWithMinimumPriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingTieredWithMinimumPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingTieredWithMinimumPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -836,6 +845,16 @@ public record class NewFloatingTieredWithMinimumPriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingTieredWithMinimumPriceConversionRateConfigConverter

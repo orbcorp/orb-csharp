@@ -16,8 +16,12 @@ namespace Orb.Models.Customers.Credits;
 ///
 /// <para>Note that `currency` defaults to credits if not specified. To use a real
 /// world currency, set `currency` to an ISO 4217 string.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CreditListByExternalIDParams : ParamsBase
+public record class CreditListByExternalIDParams : ParamsBase
 {
     public string? ExternalCustomerID { get; init; }
 
@@ -93,11 +97,14 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
 
     public CreditListByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditListByExternalIDParams(CreditListByExternalIDParams creditListByExternalIDParams)
         : base(creditListByExternalIDParams)
     {
         this.ExternalCustomerID = creditListByExternalIDParams.ExternalCustomerID;
     }
+#pragma warning restore CS8618
 
     public CreditListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -132,6 +139,31 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["ExternalCustomerID"] = this.ExternalCustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CreditListByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -153,5 +185,10 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

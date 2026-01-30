@@ -288,10 +288,13 @@ public sealed record class NewFloatingBulkWithProrationPrice : JsonModel
 
     public NewFloatingBulkWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingBulkWithProrationPrice(
         NewFloatingBulkWithProrationPrice newFloatingBulkWithProrationPrice
     )
         : base(newFloatingBulkWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -359,8 +362,11 @@ public sealed record class BulkWithProrationConfig : JsonModel
 
     public BulkWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationConfig(BulkWithProrationConfig bulkWithProrationConfig)
         : base(bulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -440,8 +446,11 @@ public sealed record class Tier : JsonModel
 
     public Tier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Tier(Tier tier)
         : base(tier) { }
+#pragma warning restore CS8618
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -771,10 +780,10 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingBulkWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingBulkWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -783,6 +792,16 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingBulkWithProrationPriceConversionRateConfigConverter

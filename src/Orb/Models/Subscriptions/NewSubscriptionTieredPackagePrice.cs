@@ -77,14 +77,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : JsonModel
     /// <summary>
     /// Configuration for tiered_package pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.TieredPackageConfig TieredPackageConfig
+    public required TieredPackageConfig TieredPackageConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.TieredPackageConfig>(
-                "tiered_package_config"
-            );
+            return this._rawData.GetNotNullClass<TieredPackageConfig>("tiered_package_config");
         }
         init { this._rawData.Set("tiered_package_config", value); }
     }
@@ -304,10 +302,13 @@ public sealed record class NewSubscriptionTieredPackagePrice : JsonModel
 
     public NewSubscriptionTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionTieredPackagePrice(
         NewSubscriptionTieredPackagePrice newSubscriptionTieredPackagePrice
     )
         : base(newSubscriptionTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -447,12 +448,7 @@ sealed class NewSubscriptionTieredPackagePriceModelTypeConverter
 /// <summary>
 /// Configuration for tiered_package pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.TieredPackageConfig,
-        global::Orb.Models.Subscriptions.TieredPackageConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<TieredPackageConfig, TieredPackageConfigFromRaw>))]
 public sealed record class TieredPackageConfig : JsonModel
 {
     public required string PackageSize
@@ -471,20 +467,19 @@ public sealed record class TieredPackageConfig : JsonModel
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.TieredPackageConfigTier> Tiers
+    public required IReadOnlyList<TieredPackageConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
-            >("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<TieredPackageConfigTier>>("tiers");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<TieredPackageConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -500,10 +495,11 @@ public sealed record class TieredPackageConfig : JsonModel
 
     public TieredPackageConfig() { }
 
-    public TieredPackageConfig(
-        global::Orb.Models.Subscriptions.TieredPackageConfig tieredPackageConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredPackageConfig(TieredPackageConfig tieredPackageConfig)
         : base(tieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public TieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -518,8 +514,8 @@ public sealed record class TieredPackageConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.TieredPackageConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.TieredPackageConfig FromRawUnchecked(
+    /// <inheritdoc cref="TieredPackageConfigFromRaw.FromRawUnchecked"/>
+    public static TieredPackageConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -527,24 +523,17 @@ public sealed record class TieredPackageConfig : JsonModel
     }
 }
 
-class TieredPackageConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageConfig>
+class TieredPackageConfigFromRaw : IFromRawJson<TieredPackageConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.TieredPackageConfig FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.TieredPackageConfig.FromRawUnchecked(rawData);
+    public TieredPackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredPackageConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.TieredPackageConfigTier,
-        global::Orb.Models.Subscriptions.TieredPackageConfigTierFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<TieredPackageConfigTier, TieredPackageConfigTierFromRaw>))]
 public sealed record class TieredPackageConfigTier : JsonModel
 {
     /// <summary>
@@ -579,10 +568,11 @@ public sealed record class TieredPackageConfigTier : JsonModel
 
     public TieredPackageConfigTier() { }
 
-    public TieredPackageConfigTier(
-        global::Orb.Models.Subscriptions.TieredPackageConfigTier tieredPackageConfigTier
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredPackageConfigTier(TieredPackageConfigTier tieredPackageConfigTier)
         : base(tieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -597,8 +587,8 @@ public sealed record class TieredPackageConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.TieredPackageConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.TieredPackageConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="TieredPackageConfigTierFromRaw.FromRawUnchecked"/>
+    public static TieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -606,13 +596,12 @@ public sealed record class TieredPackageConfigTier : JsonModel
     }
 }
 
-class TieredPackageConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
+class TieredPackageConfigTierFromRaw : IFromRawJson<TieredPackageConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.TieredPackageConfigTier FromRawUnchecked(
+    public TieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.TieredPackageConfigTier.FromRawUnchecked(rawData);
+    ) => TieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackagePriceConversionRateConfigConverter))]
@@ -803,10 +792,10 @@ public record class NewSubscriptionTieredPackagePriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionTieredPackagePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewSubscriptionTieredPackagePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -815,6 +804,16 @@ public record class NewSubscriptionTieredPackagePriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionTieredPackagePriceConversionRateConfigConverter

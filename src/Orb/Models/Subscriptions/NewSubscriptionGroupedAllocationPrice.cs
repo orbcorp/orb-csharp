@@ -35,12 +35,12 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
     /// <summary>
     /// Configuration for grouped_allocation pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.GroupedAllocationConfig GroupedAllocationConfig
+    public required GroupedAllocationConfig GroupedAllocationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.GroupedAllocationConfig>(
+            return this._rawData.GetNotNullClass<GroupedAllocationConfig>(
                 "grouped_allocation_config"
             );
         }
@@ -303,10 +303,13 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
 
     public NewSubscriptionGroupedAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionGroupedAllocationPrice(
         NewSubscriptionGroupedAllocationPrice newSubscriptionGroupedAllocationPrice
     )
         : base(newSubscriptionGroupedAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionGroupedAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -402,12 +405,7 @@ sealed class NewSubscriptionGroupedAllocationPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedAllocationConfig,
-        global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<GroupedAllocationConfig, GroupedAllocationConfigFromRaw>))]
 public sealed record class GroupedAllocationConfig : JsonModel
 {
     /// <summary>
@@ -459,10 +457,11 @@ public sealed record class GroupedAllocationConfig : JsonModel
 
     public GroupedAllocationConfig() { }
 
-    public GroupedAllocationConfig(
-        global::Orb.Models.Subscriptions.GroupedAllocationConfig groupedAllocationConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedAllocationConfig(GroupedAllocationConfig groupedAllocationConfig)
         : base(groupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -477,8 +476,8 @@ public sealed record class GroupedAllocationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedAllocationConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -486,13 +485,12 @@ public sealed record class GroupedAllocationConfig : JsonModel
     }
 }
 
-class GroupedAllocationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedAllocationConfig>
+class GroupedAllocationConfigFromRaw : IFromRawJson<GroupedAllocationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+    public GroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.GroupedAllocationConfig.FromRawUnchecked(rawData);
+    ) => GroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -730,10 +728,10 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionGroupedAllocationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewSubscriptionGroupedAllocationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -742,6 +740,16 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionGroupedAllocationPriceConversionRateConfigConverter

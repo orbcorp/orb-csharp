@@ -180,9 +180,12 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment(PlanPhaseMinimumAdjustment planPhaseMinimumAdjustment)
         : base(planPhaseMinimumAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -325,10 +328,13 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
 
     public PlanPhaseMinimumAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanPhaseMinimumAdjustmentFilter(
         PlanPhaseMinimumAdjustmentFilter planPhaseMinimumAdjustmentFilter
     )
         : base(planPhaseMinimumAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public PlanPhaseMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

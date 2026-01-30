@@ -189,10 +189,10 @@ public record class SubscriptionUsage : ModelBase
         this.Switch((ungrouped) => ungrouped.Validate(), (grouped) => grouped.Validate());
     }
 
-    public virtual bool Equals(SubscriptionUsage? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionUsage? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -201,6 +201,16 @@ public record class SubscriptionUsage : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UngroupedSubscriptionUsage _ => 0,
+            GroupedSubscriptionUsage _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
@@ -288,8 +298,11 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
 
     public UngroupedSubscriptionUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UngroupedSubscriptionUsage(UngroupedSubscriptionUsage ungroupedSubscriptionUsage)
         : base(ungroupedSubscriptionUsage) { }
+#pragma warning restore CS8618
 
     public UngroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -380,8 +393,11 @@ public sealed record class Data : JsonModel
 
     public Data() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Data(Data data)
         : base(data) { }
+#pragma warning restore CS8618
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -442,8 +458,11 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillableMetric(BillableMetric billableMetric)
         : base(billableMetric) { }
+#pragma warning restore CS8618
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -515,8 +534,11 @@ public sealed record class DataUsage : JsonModel
 
     public DataUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DataUsage(DataUsage dataUsage)
         : base(dataUsage) { }
+#pragma warning restore CS8618
 
     public DataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -634,8 +656,11 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
 
     public GroupedSubscriptionUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsage(GroupedSubscriptionUsage groupedSubscriptionUsage)
         : base(groupedSubscriptionUsage) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -745,8 +770,11 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
 
     public GroupedSubscriptionUsageData() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageData(GroupedSubscriptionUsageData groupedSubscriptionUsageData)
         : base(groupedSubscriptionUsageData) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -815,10 +843,13 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonMode
 
     public GroupedSubscriptionUsageDataBillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageDataBillableMetric(
         GroupedSubscriptionUsageDataBillableMetric groupedSubscriptionUsageDataBillableMetric
     )
         : base(groupedSubscriptionUsageDataBillableMetric) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageDataBillableMetric(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -885,8 +916,11 @@ public sealed record class MetricGroup : JsonModel
 
     public MetricGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricGroup(MetricGroup metricGroup)
         : base(metricGroup) { }
+#pragma warning restore CS8618
 
     public MetricGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -963,10 +997,13 @@ public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 
     public GroupedSubscriptionUsageDataUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageDataUsage(
         GroupedSubscriptionUsageDataUsage groupedSubscriptionUsageDataUsage
     )
         : base(groupedSubscriptionUsageDataUsage) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageDataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {

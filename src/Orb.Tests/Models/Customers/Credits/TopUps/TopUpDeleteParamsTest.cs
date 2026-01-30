@@ -33,4 +33,18 @@ public class TopUpDeleteParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpDeleteParams
+        {
+            CustomerID = "customer_id",
+            TopUpID = "top_up_id",
+        };
+
+        TopUpDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

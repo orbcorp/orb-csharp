@@ -125,6 +125,23 @@ public class SubscriptionChangeListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionChangeListParams
+        {
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+            Limit = 1,
+            Status = Status.Pending,
+        };
+
+        SubscriptionChangeListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class StatusTest : TestBase

@@ -304,10 +304,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice : JsonModel
 
     public NewPlanCumulativeGroupedBulkPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanCumulativeGroupedBulkPrice(
         NewPlanCumulativeGroupedBulkPrice newPlanCumulativeGroupedBulkPrice
     )
         : base(newPlanCumulativeGroupedBulkPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -452,10 +455,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
         NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig
     )
         : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -553,10 +559,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
         NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
     )
         : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue) { }
+#pragma warning restore CS8618
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -831,10 +840,10 @@ public record class NewPlanCumulativeGroupedBulkPriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanCumulativeGroupedBulkPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanCumulativeGroupedBulkPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -843,6 +852,16 @@ public record class NewPlanCumulativeGroupedBulkPriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanCumulativeGroupedBulkPriceConversionRateConfigConverter

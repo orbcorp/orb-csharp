@@ -145,6 +145,29 @@ public class MaximumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Maximum
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+
+        Maximum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MaximumFilterTest : TestBase
@@ -232,6 +255,21 @@ public class MaximumFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaximumFilter
+        {
+            Field = MaximumFilterField.PriceID,
+            Operator = MaximumFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MaximumFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

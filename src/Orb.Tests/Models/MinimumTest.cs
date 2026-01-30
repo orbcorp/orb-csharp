@@ -145,6 +145,29 @@ public class MinimumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Minimum
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+
+        Minimum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MinimumFilterTest : TestBase
@@ -232,6 +255,21 @@ public class MinimumFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumFilter
+        {
+            Field = MinimumFilterField.PriceID,
+            Operator = MinimumFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MinimumFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

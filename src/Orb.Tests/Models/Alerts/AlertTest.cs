@@ -324,6 +324,35 @@ public class AlertTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+            BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+        };
+
+        Alert copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MetricTest : TestBase
@@ -369,6 +398,16 @@ public class MetricTest : TestBase
         var model = new Metric { ID = "id" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Metric { ID = "id" };
+
+        Metric copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -451,6 +490,22 @@ public class PlanTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Plan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+            PlanVersion = "plan_version",
+        };
+
+        Plan copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -571,5 +626,15 @@ public class BalanceAlertStatusTest : TestBase
         var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
+
+        BalanceAlertStatus copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

@@ -31,8 +31,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
             Limit = 1,
-            Status = InvoiceListSummaryParamsStatus.Draft,
-            StatusValue = [StatusModel.Draft],
+            Status = [InvoiceListSummaryParamsStatus.Draft],
             SubscriptionID = "subscription_id",
         };
 
@@ -54,9 +53,10 @@ public class InvoiceListSummaryParamsTest : TestBase
         DateTimeOffset expectedInvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         bool expectedIsRecurring = true;
         long expectedLimit = 1;
-        ApiEnum<string, InvoiceListSummaryParamsStatus> expectedStatus =
-            InvoiceListSummaryParamsStatus.Draft;
-        List<ApiEnum<string, StatusModel>> expectedStatusValue = [StatusModel.Draft];
+        List<ApiEnum<string, InvoiceListSummaryParamsStatus>> expectedStatus =
+        [
+            InvoiceListSummaryParamsStatus.Draft,
+        ];
         string expectedSubscriptionID = "subscription_id";
 
         Assert.Equal(expectedAmount, parameters.Amount);
@@ -76,12 +76,11 @@ public class InvoiceListSummaryParamsTest : TestBase
         Assert.Equal(expectedInvoiceDateLte, parameters.InvoiceDateLte);
         Assert.Equal(expectedIsRecurring, parameters.IsRecurring);
         Assert.Equal(expectedLimit, parameters.Limit);
-        Assert.Equal(expectedStatus, parameters.Status);
-        Assert.NotNull(parameters.StatusValue);
-        Assert.Equal(expectedStatusValue.Count, parameters.StatusValue.Count);
-        for (int i = 0; i < expectedStatusValue.Count; i++)
+        Assert.NotNull(parameters.Status);
+        Assert.Equal(expectedStatus.Count, parameters.Status.Count);
+        for (int i = 0; i < expectedStatus.Count; i++)
         {
-            Assert.Equal(expectedStatusValue[i], parameters.StatusValue[i]);
+            Assert.Equal(expectedStatus[i], parameters.Status[i]);
         }
         Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
     }
@@ -107,8 +106,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
-            Status = InvoiceListSummaryParamsStatus.Draft,
-            StatusValue = [StatusModel.Draft],
+            Status = [InvoiceListSummaryParamsStatus.Draft],
             SubscriptionID = "subscription_id",
         };
 
@@ -137,8 +135,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
-            Status = InvoiceListSummaryParamsStatus.Draft,
-            StatusValue = [StatusModel.Draft],
+            Status = [InvoiceListSummaryParamsStatus.Draft],
             SubscriptionID = "subscription_id",
 
             // Null should be interpreted as omitted for these properties
@@ -188,8 +185,6 @@ public class InvoiceListSummaryParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("is_recurring"));
         Assert.Null(parameters.Status);
         Assert.False(parameters.RawQueryData.ContainsKey("status"));
-        Assert.Null(parameters.StatusValue);
-        Assert.False(parameters.RawQueryData.ContainsKey("status"));
         Assert.Null(parameters.SubscriptionID);
         Assert.False(parameters.RawQueryData.ContainsKey("subscription_id"));
     }
@@ -218,7 +213,6 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLte = null,
             IsRecurring = null,
             Status = null,
-            StatusValue = null,
             SubscriptionID = null,
         };
 
@@ -256,8 +250,6 @@ public class InvoiceListSummaryParamsTest : TestBase
         Assert.True(parameters.RawQueryData.ContainsKey("is_recurring"));
         Assert.Null(parameters.Status);
         Assert.True(parameters.RawQueryData.ContainsKey("status"));
-        Assert.Null(parameters.StatusValue);
-        Assert.True(parameters.RawQueryData.ContainsKey("status"));
         Assert.Null(parameters.SubscriptionID);
         Assert.True(parameters.RawQueryData.ContainsKey("subscription_id"));
     }
@@ -284,8 +276,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
             Limit = 1,
-            Status = null,
-            StatusValue = [StatusModel.Draft],
+            Status = [InvoiceListSummaryParamsStatus.Draft],
             SubscriptionID = "subscription_id",
         };
 
@@ -297,6 +288,37 @@ public class InvoiceListSummaryParamsTest : TestBase
             ),
             url
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceListSummaryParams
+        {
+            Amount = "amount",
+            AmountGt = "amount[gt]",
+            AmountLt = "amount[lt]",
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            DateType = InvoiceListSummaryParamsDateType.DueDate,
+            DueDate = "2019-12-27",
+            DueDateWindow = "due_date_window",
+            DueDateGt = "2019-12-27",
+            DueDateLt = "2019-12-27",
+            ExternalCustomerID = "external_customer_id",
+            InvoiceDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            IsRecurring = true,
+            Limit = 1,
+            Status = [InvoiceListSummaryParamsStatus.Draft],
+            SubscriptionID = "subscription_id",
+        };
+
+        InvoiceListSummaryParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -413,70 +435,6 @@ public class InvoiceListSummaryParamsStatusTest : TestBase
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, InvoiceListSummaryParamsStatus>
         >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class StatusModelTest : TestBase
-{
-    [Theory]
-    [InlineData(StatusModel.Draft)]
-    [InlineData(StatusModel.Issued)]
-    [InlineData(StatusModel.Paid)]
-    [InlineData(StatusModel.Synced)]
-    [InlineData(StatusModel.Void)]
-    public void Validation_Works(StatusModel rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, StatusModel> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, StatusModel>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(StatusModel.Draft)]
-    [InlineData(StatusModel.Issued)]
-    [InlineData(StatusModel.Paid)]
-    [InlineData(StatusModel.Synced)]
-    [InlineData(StatusModel.Void)]
-    public void SerializationRoundtrip_Works(StatusModel rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, StatusModel> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, StatusModel>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, StatusModel>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, StatusModel>>(
-            json,
-            ModelBase.SerializerOptions
-        );
 
         Assert.Equal(value, deserialized);
     }

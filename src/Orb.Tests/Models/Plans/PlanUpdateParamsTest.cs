@@ -69,4 +69,19 @@ public class PlanUpdateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PlanUpdateParams
+        {
+            PlanID = "plan_id",
+            ExternalPlanID = "external_plan_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PlanUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

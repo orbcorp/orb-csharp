@@ -301,10 +301,13 @@ public sealed record class NewPlanTieredWithMinimumPrice : JsonModel
 
     public NewPlanTieredWithMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPrice(
         NewPlanTieredWithMinimumPrice newPlanTieredWithMinimumPrice
     )
         : base(newPlanTieredWithMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -528,10 +531,13 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig 
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
         NewPlanTieredWithMinimumPriceTieredWithMinimumConfig newPlanTieredWithMinimumPriceTieredWithMinimumConfig
     )
         : base(newPlanTieredWithMinimumPriceTieredWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -631,10 +637,13 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigT
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
         NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier newPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
     )
         : base(newPlanTieredWithMinimumPriceTieredWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -859,10 +868,10 @@ public record class NewPlanTieredWithMinimumPriceConversionRateConfig : ModelBas
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanTieredWithMinimumPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanTieredWithMinimumPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -871,6 +880,16 @@ public record class NewPlanTieredWithMinimumPriceConversionRateConfig : ModelBas
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanTieredWithMinimumPriceConversionRateConfigConverter

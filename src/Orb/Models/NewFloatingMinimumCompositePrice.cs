@@ -287,10 +287,13 @@ public sealed record class NewFloatingMinimumCompositePrice : JsonModel
 
     public NewFloatingMinimumCompositePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingMinimumCompositePrice(
         NewFloatingMinimumCompositePrice newFloatingMinimumCompositePrice
     )
         : base(newFloatingMinimumCompositePrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -431,8 +434,11 @@ public sealed record class MinimumCompositeConfig : JsonModel
 
     public MinimumCompositeConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MinimumCompositeConfig(MinimumCompositeConfig minimumCompositeConfig)
         : base(minimumCompositeConfig) { }
+#pragma warning restore CS8618
 
     public MinimumCompositeConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -704,10 +710,10 @@ public record class NewFloatingMinimumCompositePriceConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingMinimumCompositePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingMinimumCompositePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -716,6 +722,16 @@ public record class NewFloatingMinimumCompositePriceConversionRateConfig : Model
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingMinimumCompositePriceConversionRateConfigConverter

@@ -80,9 +80,12 @@ public sealed record class Maximum : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Maximum() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Maximum(Maximum maximum)
         : base(maximum) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Maximum(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -173,8 +176,11 @@ public sealed record class MaximumFilter : JsonModel
 
     public MaximumFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaximumFilter(MaximumFilter maximumFilter)
         : base(maximumFilter) { }
+#pragma warning restore CS8618
 
     public MaximumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

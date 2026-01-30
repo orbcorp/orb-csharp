@@ -301,10 +301,13 @@ public sealed record class NewPlanBulkWithProrationPrice : JsonModel
 
     public NewPlanBulkWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanBulkWithProrationPrice(
         NewPlanBulkWithProrationPrice newPlanBulkWithProrationPrice
     )
         : base(newPlanBulkWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -378,10 +381,13 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig 
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig(
         NewPlanBulkWithProrationPriceBulkWithProrationConfig newPlanBulkWithProrationPriceBulkWithProrationConfig
     )
         : base(newPlanBulkWithProrationPriceBulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -473,10 +479,13 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfigT
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(
         NewPlanBulkWithProrationPriceBulkWithProrationConfigTier newPlanBulkWithProrationPriceBulkWithProrationConfigTier
     )
         : base(newPlanBulkWithProrationPriceBulkWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -813,10 +822,10 @@ public record class NewPlanBulkWithProrationPriceConversionRateConfig : ModelBas
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanBulkWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanBulkWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -825,6 +834,16 @@ public record class NewPlanBulkWithProrationPriceConversionRateConfig : ModelBas
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanBulkWithProrationPriceConversionRateConfigConverter

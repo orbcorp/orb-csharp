@@ -287,10 +287,13 @@ public sealed record class NewFloatingUnitWithProrationPrice : JsonModel
 
     public NewFloatingUnitWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingUnitWithProrationPrice(
         NewFloatingUnitWithProrationPrice newFloatingUnitWithProrationPrice
     )
         : base(newFloatingUnitWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingUnitWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -455,8 +458,11 @@ public sealed record class UnitWithProrationConfig : JsonModel
 
     public UnitWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UnitWithProrationConfig(UnitWithProrationConfig unitWithProrationConfig)
         : base(unitWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -683,10 +689,10 @@ public record class NewFloatingUnitWithProrationPriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingUnitWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingUnitWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -695,6 +701,16 @@ public record class NewFloatingUnitWithProrationPriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingUnitWithProrationPriceConversionRateConfigConverter

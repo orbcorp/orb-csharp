@@ -300,8 +300,11 @@ public sealed record class NewPlanMinimumCompositePrice : JsonModel
 
     public NewPlanMinimumCompositePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMinimumCompositePrice(NewPlanMinimumCompositePrice newPlanMinimumCompositePrice)
         : base(newPlanMinimumCompositePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -447,10 +450,13 @@ public sealed record class NewPlanMinimumCompositePriceMinimumCompositeConfig : 
 
     public NewPlanMinimumCompositePriceMinimumCompositeConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMinimumCompositePriceMinimumCompositeConfig(
         NewPlanMinimumCompositePriceMinimumCompositeConfig newPlanMinimumCompositePriceMinimumCompositeConfig
     )
         : base(newPlanMinimumCompositePriceMinimumCompositeConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanMinimumCompositePriceMinimumCompositeConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -727,10 +733,10 @@ public record class NewPlanMinimumCompositePriceConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanMinimumCompositePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanMinimumCompositePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -739,6 +745,16 @@ public record class NewPlanMinimumCompositePriceConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanMinimumCompositePriceConversionRateConfigConverter

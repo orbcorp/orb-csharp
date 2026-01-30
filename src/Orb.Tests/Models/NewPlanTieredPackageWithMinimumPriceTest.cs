@@ -652,6 +652,71 @@ public class NewPlanTieredPackageWithMinimumPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanTieredPackageWithMinimumPrice
+        {
+            Cadence = NewPlanTieredPackageWithMinimumPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = NewPlanTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum,
+            Name = "Annual fee",
+            TieredPackageWithMinimumConfig = new()
+            {
+                PackageSize = 0,
+                Tiers =
+                [
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        PerUnit = "per_unit",
+                        TierLowerBound = "tier_lower_bound",
+                    },
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        PerUnit = "per_unit",
+                        TierLowerBound = "tier_lower_bound",
+                    },
+                ],
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        NewPlanTieredPackageWithMinimumPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanTieredPackageWithMinimumPriceCadenceTest : TestBase
@@ -932,6 +997,34 @@ public class NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigT
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig
+        {
+            PackageSize = 0,
+            Tiers =
+            [
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    PerUnit = "per_unit",
+                    TierLowerBound = "tier_lower_bound",
+                },
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    PerUnit = "per_unit",
+                    TierLowerBound = "tier_lower_bound",
+                },
+            ],
+        };
+
+        NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTierTest : TestBase
@@ -1013,6 +1106,21 @@ public class NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigT
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier
+        {
+            MinimumAmount = "minimum_amount",
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        NewPlanTieredPackageWithMinimumPriceTieredPackageWithMinimumConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

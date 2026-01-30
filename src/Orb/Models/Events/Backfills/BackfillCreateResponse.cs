@@ -108,14 +108,12 @@ public sealed record class BackfillCreateResponse : JsonModel
     /// <summary>
     /// The status of the backfill.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Events.Backfills.Status> Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Events.Backfills.Status>
-            >("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawData.Set("status", value); }
     }
@@ -172,8 +170,11 @@ public sealed record class BackfillCreateResponse : JsonModel
 
     public BackfillCreateResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillCreateResponse(BackfillCreateResponse backfillCreateResponse)
         : base(backfillCreateResponse) { }
+#pragma warning restore CS8618
 
     public BackfillCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -208,7 +209,7 @@ class BackfillCreateResponseFromRaw : IFromRawJson<BackfillCreateResponse>
 /// <summary>
 /// The status of the backfill.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Events.Backfills.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     Pending,
@@ -217,9 +218,9 @@ public enum Status
     Reverted,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.Events.Backfills.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.Events.Backfills.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -227,28 +228,24 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.Events.Backfills
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "pending" => global::Orb.Models.Events.Backfills.Status.Pending,
-            "reflected" => global::Orb.Models.Events.Backfills.Status.Reflected,
-            "pending_revert" => global::Orb.Models.Events.Backfills.Status.PendingRevert,
-            "reverted" => global::Orb.Models.Events.Backfills.Status.Reverted,
-            _ => (global::Orb.Models.Events.Backfills.Status)(-1),
+            "pending" => Status.Pending,
+            "reflected" => Status.Reflected,
+            "pending_revert" => Status.PendingRevert,
+            "reverted" => Status.Reverted,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Events.Backfills.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Events.Backfills.Status.Pending => "pending",
-                global::Orb.Models.Events.Backfills.Status.Reflected => "reflected",
-                global::Orb.Models.Events.Backfills.Status.PendingRevert => "pending_revert",
-                global::Orb.Models.Events.Backfills.Status.Reverted => "reverted",
+                Status.Pending => "pending",
+                Status.Reflected => "reflected",
+                Status.PendingRevert => "pending_revert",
+                Status.Reverted => "reverted",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

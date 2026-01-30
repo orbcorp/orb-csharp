@@ -147,4 +147,19 @@ public class NewDimensionalPriceConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewDimensionalPriceConfiguration
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+
+        NewDimensionalPriceConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

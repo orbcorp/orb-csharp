@@ -103,8 +103,11 @@ public sealed record class UsageDiscount : JsonModel
 
     public UsageDiscount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UsageDiscount(UsageDiscount usageDiscount)
         : base(usageDiscount) { }
+#pragma warning restore CS8618
 
     public UsageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -236,8 +239,11 @@ public sealed record class UsageDiscountFilter : JsonModel
 
     public UsageDiscountFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UsageDiscountFilter(UsageDiscountFilter usageDiscountFilter)
         : base(usageDiscountFilter) { }
+#pragma warning restore CS8618
 
     public UsageDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

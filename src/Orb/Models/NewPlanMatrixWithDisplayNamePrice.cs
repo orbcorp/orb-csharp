@@ -304,10 +304,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice : JsonModel
 
     public NewPlanMatrixWithDisplayNamePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithDisplayNamePrice(
         NewPlanMatrixWithDisplayNamePrice newPlanMatrixWithDisplayNamePrice
     )
         : base(newPlanMatrixWithDisplayNamePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithDisplayNamePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -455,10 +458,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
         NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig
     )
         : base(newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -556,10 +562,13 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
         NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount
     )
         : base(newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -834,10 +843,10 @@ public record class NewPlanMatrixWithDisplayNamePriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanMatrixWithDisplayNamePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanMatrixWithDisplayNamePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -846,6 +855,16 @@ public record class NewPlanMatrixWithDisplayNamePriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanMatrixWithDisplayNamePriceConversionRateConfigConverter

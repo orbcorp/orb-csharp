@@ -92,8 +92,11 @@ public sealed record class AdjustmentInterval : JsonModel
 
     public AdjustmentInterval() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AdjustmentInterval(AdjustmentInterval adjustmentInterval)
         : base(adjustmentInterval) { }
+#pragma warning restore CS8618
 
     public AdjustmentInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -492,10 +495,10 @@ public record class Adjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(Adjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Adjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -504,6 +507,19 @@ public record class Adjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            PlanPhaseUsageDiscountAdjustment _ => 0,
+            PlanPhaseAmountDiscountAdjustment _ => 1,
+            PlanPhasePercentageDiscountAdjustment _ => 2,
+            PlanPhaseMinimumAdjustment _ => 3,
+            PlanPhaseMaximumAdjustment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class AdjustmentConverter : JsonConverter<Adjustment>

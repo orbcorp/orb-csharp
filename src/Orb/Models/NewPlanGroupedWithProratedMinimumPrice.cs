@@ -303,10 +303,13 @@ public sealed record class NewPlanGroupedWithProratedMinimumPrice : JsonModel
 
     public NewPlanGroupedWithProratedMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithProratedMinimumPrice(
         NewPlanGroupedWithProratedMinimumPrice newPlanGroupedWithProratedMinimumPrice
     )
         : base(newPlanGroupedWithProratedMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithProratedMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -460,10 +463,13 @@ public sealed record class NewPlanGroupedWithProratedMinimumPriceGroupedWithPror
 
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig(
         NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig newPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig
     )
         : base(newPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -738,10 +744,10 @@ public record class NewPlanGroupedWithProratedMinimumPriceConversionRateConfig :
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanGroupedWithProratedMinimumPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanGroupedWithProratedMinimumPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -750,6 +756,16 @@ public record class NewPlanGroupedWithProratedMinimumPriceConversionRateConfig :
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanGroupedWithProratedMinimumPriceConversionRateConfigConverter

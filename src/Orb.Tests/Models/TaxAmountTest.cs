@@ -79,4 +79,19 @@ public class TaxAmountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TaxAmount
+        {
+            Amount = "amount",
+            TaxRateDescription = "tax_rate_description",
+            TaxRatePercentage = "tax_rate_percentage",
+        };
+
+        TaxAmount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

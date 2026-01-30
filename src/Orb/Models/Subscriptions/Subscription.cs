@@ -517,11 +517,14 @@ public sealed record class Subscription : JsonModel
     )]
     public Subscription() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
     )]
     public Subscription(Subscription subscription)
         : base(subscription) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
@@ -798,10 +801,10 @@ public record class DiscountInterval : ModelBase
         );
     }
 
-    public virtual bool Equals(DiscountInterval? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(DiscountInterval? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -810,6 +813,17 @@ public record class DiscountInterval : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            AmountDiscountInterval _ => 0,
+            PercentageDiscountInterval _ => 1,
+            UsageDiscountInterval _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>

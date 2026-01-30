@@ -288,10 +288,13 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : JsonModel
 
     public NewFloatingMatrixWithDisplayNamePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingMatrixWithDisplayNamePrice(
         NewFloatingMatrixWithDisplayNamePrice newFloatingMatrixWithDisplayNamePrice
     )
         : base(newFloatingMatrixWithDisplayNamePrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingMatrixWithDisplayNamePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -438,8 +441,11 @@ public sealed record class MatrixWithDisplayNameConfig : JsonModel
 
     public MatrixWithDisplayNameConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameConfig(MatrixWithDisplayNameConfig matrixWithDisplayNameConfig)
         : base(matrixWithDisplayNameConfig) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -531,10 +537,13 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : JsonModel
 
     public MatrixWithDisplayNameConfigUnitAmount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithDisplayNameConfigUnitAmount(
         MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
     )
         : base(matrixWithDisplayNameConfigUnitAmount) { }
+#pragma warning restore CS8618
 
     public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -802,10 +811,10 @@ public record class NewFloatingMatrixWithDisplayNamePriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingMatrixWithDisplayNamePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingMatrixWithDisplayNamePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -814,6 +823,16 @@ public record class NewFloatingMatrixWithDisplayNamePriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigConverter

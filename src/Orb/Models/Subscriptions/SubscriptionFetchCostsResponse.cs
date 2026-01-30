@@ -43,10 +43,13 @@ public sealed record class SubscriptionFetchCostsResponse : JsonModel
 
     public SubscriptionFetchCostsResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionFetchCostsResponse(
         SubscriptionFetchCostsResponse subscriptionFetchCostsResponse
     )
         : base(subscriptionFetchCostsResponse) { }
+#pragma warning restore CS8618
 
     public SubscriptionFetchCostsResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

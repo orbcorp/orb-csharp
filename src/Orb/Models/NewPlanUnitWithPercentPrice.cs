@@ -300,8 +300,11 @@ public sealed record class NewPlanUnitWithPercentPrice : JsonModel
 
     public NewPlanUnitWithPercentPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanUnitWithPercentPrice(NewPlanUnitWithPercentPrice newPlanUnitWithPercentPrice)
         : base(newPlanUnitWithPercentPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -484,10 +487,13 @@ public sealed record class NewPlanUnitWithPercentPriceUnitWithPercentConfig : Js
 
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig(
         NewPlanUnitWithPercentPriceUnitWithPercentConfig newPlanUnitWithPercentPriceUnitWithPercentConfig
     )
         : base(newPlanUnitWithPercentPriceUnitWithPercentConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -710,10 +716,10 @@ public record class NewPlanUnitWithPercentPriceConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanUnitWithPercentPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanUnitWithPercentPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -722,6 +728,16 @@ public record class NewPlanUnitWithPercentPriceConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanUnitWithPercentPriceConversionRateConfigConverter

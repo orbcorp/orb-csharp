@@ -31,8 +31,11 @@ public sealed record class EventUpdateResponse : JsonModel
 
     public EventUpdateResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventUpdateResponse(EventUpdateResponse eventUpdateResponse)
         : base(eventUpdateResponse) { }
+#pragma warning restore CS8618
 
     public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

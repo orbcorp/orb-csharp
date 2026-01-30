@@ -66,8 +66,11 @@ public sealed record class TieredConfig : JsonModel
 
     public TieredConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredConfig(TieredConfig tieredConfig)
         : base(tieredConfig) { }
+#pragma warning restore CS8618
 
     public TieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -304,10 +304,13 @@ public sealed record class NewPlanThresholdTotalAmountPrice : JsonModel
 
     public NewPlanThresholdTotalAmountPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPrice(
         NewPlanThresholdTotalAmountPrice newPlanThresholdTotalAmountPrice
     )
         : base(newPlanThresholdTotalAmountPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanThresholdTotalAmountPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -503,10 +506,13 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
         NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig newPlanThresholdTotalAmountPriceThresholdTotalAmountConfig
     )
         : base(newPlanThresholdTotalAmountPriceThresholdTotalAmountConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -596,10 +602,13 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
         NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable newPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
     )
         : base(newPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable) { }
+#pragma warning restore CS8618
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -827,10 +836,10 @@ public record class NewPlanThresholdTotalAmountPriceConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanThresholdTotalAmountPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanThresholdTotalAmountPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -839,6 +848,16 @@ public record class NewPlanThresholdTotalAmountPriceConversionRateConfig : Model
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanThresholdTotalAmountPriceConversionRateConfigConverter

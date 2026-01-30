@@ -283,10 +283,13 @@ public sealed record class NewFloatingTieredPackagePrice : JsonModel
 
     public NewFloatingTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingTieredPackagePrice(
         NewFloatingTieredPackagePrice newFloatingTieredPackagePrice
     )
         : base(newFloatingTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -473,8 +476,11 @@ public sealed record class TieredPackageConfig : JsonModel
 
     public TieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageConfig(TieredPackageConfig tieredPackageConfig)
         : base(tieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public TieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -543,8 +549,11 @@ public sealed record class TieredPackageConfigTier : JsonModel
 
     public TieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageConfigTier(TieredPackageConfigTier tieredPackageConfigTier)
         : base(tieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -764,10 +773,10 @@ public record class NewFloatingTieredPackagePriceConversionRateConfig : ModelBas
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingTieredPackagePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingTieredPackagePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -776,6 +785,16 @@ public record class NewFloatingTieredPackagePriceConversionRateConfig : ModelBas
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingTieredPackagePriceConversionRateConfigConverter

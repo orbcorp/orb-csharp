@@ -287,10 +287,13 @@ public sealed record class NewFloatingGroupedAllocationPrice : JsonModel
 
     public NewFloatingGroupedAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingGroupedAllocationPrice(
         NewFloatingGroupedAllocationPrice newFloatingGroupedAllocationPrice
     )
         : base(newFloatingGroupedAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingGroupedAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -437,8 +440,11 @@ public sealed record class GroupedAllocationConfig : JsonModel
 
     public GroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedAllocationConfig(GroupedAllocationConfig groupedAllocationConfig)
         : base(groupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -704,10 +710,10 @@ public record class NewFloatingGroupedAllocationPriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingGroupedAllocationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingGroupedAllocationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -716,6 +722,16 @@ public record class NewFloatingGroupedAllocationPriceConversionRateConfig : Mode
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingGroupedAllocationPriceConversionRateConfigConverter

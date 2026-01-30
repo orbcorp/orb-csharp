@@ -46,14 +46,12 @@ public sealed record class PlanVersionPhase : JsonModel
         init { this._rawData.Set("duration", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Beta.DurationUnit>? DurationUnit
+    public required ApiEnum<string, DurationUnit>? DurationUnit
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, global::Orb.Models.Beta.DurationUnit>
-            >("duration_unit");
+            return this._rawData.GetNullableClass<ApiEnum<string, DurationUnit>>("duration_unit");
         }
         init { this._rawData.Set("duration_unit", value); }
     }
@@ -94,8 +92,11 @@ public sealed record class PlanVersionPhase : JsonModel
 
     public PlanVersionPhase() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanVersionPhase(PlanVersionPhase planVersionPhase)
         : base(planVersionPhase) { }
+#pragma warning restore CS8618
 
     public PlanVersionPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -126,7 +127,7 @@ class PlanVersionPhaseFromRaw : IFromRawJson<PlanVersionPhase>
         PlanVersionPhase.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.DurationUnitConverter))]
+[JsonConverter(typeof(DurationUnitConverter))]
 public enum DurationUnit
 {
     Daily,
@@ -136,9 +137,9 @@ public enum DurationUnit
     Annual,
 }
 
-sealed class DurationUnitConverter : JsonConverter<global::Orb.Models.Beta.DurationUnit>
+sealed class DurationUnitConverter : JsonConverter<DurationUnit>
 {
-    public override global::Orb.Models.Beta.DurationUnit Read(
+    public override DurationUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -146,18 +147,18 @@ sealed class DurationUnitConverter : JsonConverter<global::Orb.Models.Beta.Durat
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "daily" => global::Orb.Models.Beta.DurationUnit.Daily,
-            "monthly" => global::Orb.Models.Beta.DurationUnit.Monthly,
-            "quarterly" => global::Orb.Models.Beta.DurationUnit.Quarterly,
-            "semi_annual" => global::Orb.Models.Beta.DurationUnit.SemiAnnual,
-            "annual" => global::Orb.Models.Beta.DurationUnit.Annual,
-            _ => (global::Orb.Models.Beta.DurationUnit)(-1),
+            "daily" => DurationUnit.Daily,
+            "monthly" => DurationUnit.Monthly,
+            "quarterly" => DurationUnit.Quarterly,
+            "semi_annual" => DurationUnit.SemiAnnual,
+            "annual" => DurationUnit.Annual,
+            _ => (DurationUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.DurationUnit value,
+        DurationUnit value,
         JsonSerializerOptions options
     )
     {
@@ -165,11 +166,11 @@ sealed class DurationUnitConverter : JsonConverter<global::Orb.Models.Beta.Durat
             writer,
             value switch
             {
-                global::Orb.Models.Beta.DurationUnit.Daily => "daily",
-                global::Orb.Models.Beta.DurationUnit.Monthly => "monthly",
-                global::Orb.Models.Beta.DurationUnit.Quarterly => "quarterly",
-                global::Orb.Models.Beta.DurationUnit.SemiAnnual => "semi_annual",
-                global::Orb.Models.Beta.DurationUnit.Annual => "annual",
+                DurationUnit.Daily => "daily",
+                DurationUnit.Monthly => "monthly",
+                DurationUnit.Quarterly => "quarterly",
+                DurationUnit.SemiAnnual => "semi_annual",
+                DurationUnit.Annual => "annual",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -43,8 +43,11 @@ public sealed record class ConversionRateTieredConfig : JsonModel
 
     public ConversionRateTieredConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ConversionRateTieredConfig(ConversionRateTieredConfig conversionRateTieredConfig)
         : base(conversionRateTieredConfig) { }
+#pragma warning restore CS8618
 
     public ConversionRateTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

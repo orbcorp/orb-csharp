@@ -76,12 +76,12 @@ public sealed record class NewSubscriptionUnitWithProrationPrice : JsonModel
     /// <summary>
     /// Configuration for unit_with_proration pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.UnitWithProrationConfig UnitWithProrationConfig
+    public required UnitWithProrationConfig UnitWithProrationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.UnitWithProrationConfig>(
+            return this._rawData.GetNotNullClass<UnitWithProrationConfig>(
                 "unit_with_proration_config"
             );
         }
@@ -303,10 +303,13 @@ public sealed record class NewSubscriptionUnitWithProrationPrice : JsonModel
 
     public NewSubscriptionUnitWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionUnitWithProrationPrice(
         NewSubscriptionUnitWithProrationPrice newSubscriptionUnitWithProrationPrice
     )
         : base(newSubscriptionUnitWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionUnitWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -449,12 +452,7 @@ sealed class NewSubscriptionUnitWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for unit_with_proration pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.UnitWithProrationConfig,
-        global::Orb.Models.Subscriptions.UnitWithProrationConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<UnitWithProrationConfig, UnitWithProrationConfigFromRaw>))]
 public sealed record class UnitWithProrationConfig : JsonModel
 {
     /// <summary>
@@ -478,10 +476,11 @@ public sealed record class UnitWithProrationConfig : JsonModel
 
     public UnitWithProrationConfig() { }
 
-    public UnitWithProrationConfig(
-        global::Orb.Models.Subscriptions.UnitWithProrationConfig unitWithProrationConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public UnitWithProrationConfig(UnitWithProrationConfig unitWithProrationConfig)
         : base(unitWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public UnitWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -496,8 +495,8 @@ public sealed record class UnitWithProrationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.UnitWithProrationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.UnitWithProrationConfig FromRawUnchecked(
+    /// <inheritdoc cref="UnitWithProrationConfigFromRaw.FromRawUnchecked"/>
+    public static UnitWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -512,13 +511,12 @@ public sealed record class UnitWithProrationConfig : JsonModel
     }
 }
 
-class UnitWithProrationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.UnitWithProrationConfig>
+class UnitWithProrationConfigFromRaw : IFromRawJson<UnitWithProrationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.UnitWithProrationConfig FromRawUnchecked(
+    public UnitWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.UnitWithProrationConfig.FromRawUnchecked(rawData);
+    ) => UnitWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionUnitWithProrationPriceConversionRateConfigConverter))]
@@ -709,10 +707,10 @@ public record class NewSubscriptionUnitWithProrationPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionUnitWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewSubscriptionUnitWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -721,6 +719,16 @@ public record class NewSubscriptionUnitWithProrationPriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionUnitWithProrationPriceConversionRateConfigConverter

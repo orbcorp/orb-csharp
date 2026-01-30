@@ -212,12 +212,12 @@ public sealed record class Plan : JsonModel
     }
 
     [System::Obsolete("deprecated")]
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Models::Minimum>("minimum");
+            return this._rawData.GetNullableClass<Minimum>("minimum");
         }
         init { this._rawData.Set("minimum", value); }
     }
@@ -379,11 +379,14 @@ public sealed record class Plan : JsonModel
     )]
     public Plan() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete(
         "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
     public Plan(Plan plan)
         : base(plan) { }
+#pragma warning restore CS8618
 
     [System::Obsolete(
         "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
@@ -810,10 +813,10 @@ public record class PlanAdjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(PlanAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PlanAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -822,6 +825,19 @@ public record class PlanAdjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            Models::PlanPhaseUsageDiscountAdjustment _ => 0,
+            Models::PlanPhaseAmountDiscountAdjustment _ => 1,
+            Models::PlanPhasePercentageDiscountAdjustment _ => 2,
+            Models::PlanPhaseMinimumAdjustment _ => 3,
+            Models::PlanPhaseMaximumAdjustment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
@@ -1030,8 +1046,11 @@ public sealed record class BasePlan : JsonModel
 
     public BasePlan() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BasePlan(BasePlan basePlan)
         : base(basePlan) { }
+#pragma warning restore CS8618
 
     public BasePlan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1139,12 +1158,12 @@ public sealed record class PlanPlanPhase : JsonModel
         init { this._rawData.Set("maximum_amount", value); }
     }
 
-    public required Models::Minimum? Minimum
+    public required Minimum? Minimum
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Models::Minimum>("minimum");
+            return this._rawData.GetNullableClass<Minimum>("minimum");
         }
         init { this._rawData.Set("minimum", value); }
     }
@@ -1200,8 +1219,11 @@ public sealed record class PlanPlanPhase : JsonModel
 
     public PlanPlanPhase() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PlanPlanPhase(PlanPlanPhase planPlanPhase)
         : base(planPlanPhase) { }
+#pragma warning restore CS8618
 
     public PlanPlanPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1326,8 +1348,11 @@ public sealed record class Product : JsonModel
 
     public Product() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Product(Product product)
         : base(product) { }
+#pragma warning restore CS8618
 
     public Product(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1437,8 +1462,11 @@ public sealed record class TrialConfig : JsonModel
 
     public TrialConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TrialConfig(TrialConfig trialConfig)
         : base(trialConfig) { }
+#pragma warning restore CS8618
 
     public TrialConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

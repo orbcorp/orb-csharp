@@ -496,6 +496,54 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionMinimumCompositePrice
+        {
+            Cadence = Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual,
+            ItemID = "item_id",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            ModelType =
+                Subscriptions::NewSubscriptionMinimumCompositePriceModelType.MinimumComposite,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionMinimumCompositePrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewSubscriptionMinimumCompositePriceCadenceTest : TestBase
@@ -681,6 +729,20 @@ public class MinimumCompositeConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::MinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        Subscriptions::MinimumCompositeConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

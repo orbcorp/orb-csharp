@@ -12,14 +12,12 @@ namespace Orb.Models.Subscriptions;
 [JsonConverter(typeof(JsonModelConverter<DiscountOverride, DiscountOverrideFromRaw>))]
 public sealed record class DiscountOverride : JsonModel
 {
-    public required ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType> DiscountType
+    public required ApiEnum<string, DiscountType> DiscountType
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType>
-            >("discount_type");
+            return this._rawData.GetNotNullClass<ApiEnum<string, DiscountType>>("discount_type");
         }
         init { this._rawData.Set("discount_type", value); }
     }
@@ -76,8 +74,11 @@ public sealed record class DiscountOverride : JsonModel
 
     public DiscountOverride() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DiscountOverride(DiscountOverride discountOverride)
         : base(discountOverride) { }
+#pragma warning restore CS8618
 
     public DiscountOverride(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -101,9 +102,7 @@ public sealed record class DiscountOverride : JsonModel
     }
 
     [SetsRequiredMembers]
-    public DiscountOverride(
-        ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType> discountType
-    )
+    public DiscountOverride(ApiEnum<string, DiscountType> discountType)
         : this()
     {
         this.DiscountType = discountType;
@@ -117,7 +116,7 @@ class DiscountOverrideFromRaw : IFromRawJson<DiscountOverride>
         DiscountOverride.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Subscriptions.DiscountTypeConverter))]
+[JsonConverter(typeof(DiscountTypeConverter))]
 public enum DiscountType
 {
     Percentage,
@@ -125,9 +124,9 @@ public enum DiscountType
     Amount,
 }
 
-sealed class DiscountTypeConverter : JsonConverter<global::Orb.Models.Subscriptions.DiscountType>
+sealed class DiscountTypeConverter : JsonConverter<DiscountType>
 {
-    public override global::Orb.Models.Subscriptions.DiscountType Read(
+    public override DiscountType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -135,16 +134,16 @@ sealed class DiscountTypeConverter : JsonConverter<global::Orb.Models.Subscripti
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage" => global::Orb.Models.Subscriptions.DiscountType.Percentage,
-            "usage" => global::Orb.Models.Subscriptions.DiscountType.Usage,
-            "amount" => global::Orb.Models.Subscriptions.DiscountType.Amount,
-            _ => (global::Orb.Models.Subscriptions.DiscountType)(-1),
+            "percentage" => DiscountType.Percentage,
+            "usage" => DiscountType.Usage,
+            "amount" => DiscountType.Amount,
+            _ => (DiscountType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Subscriptions.DiscountType value,
+        DiscountType value,
         JsonSerializerOptions options
     )
     {
@@ -152,9 +151,9 @@ sealed class DiscountTypeConverter : JsonConverter<global::Orb.Models.Subscripti
             writer,
             value switch
             {
-                global::Orb.Models.Subscriptions.DiscountType.Percentage => "percentage",
-                global::Orb.Models.Subscriptions.DiscountType.Usage => "usage",
-                global::Orb.Models.Subscriptions.DiscountType.Amount => "amount",
+                DiscountType.Percentage => "percentage",
+                DiscountType.Usage => "usage",
+                DiscountType.Amount => "amount",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -26,4 +26,14 @@ public class BetaSetDefaultPlanVersionParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id/set_default_version"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BetaSetDefaultPlanVersionParams { PlanID = "plan_id", Version = 0 };
+
+        BetaSetDefaultPlanVersionParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

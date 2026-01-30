@@ -48,8 +48,12 @@ namespace Orb.Models.Events;
 /// previous billing period. * By default, no more than 100 events can be amended
 /// for a single customer in a 100 day period. For higher volume   updates, consider
 /// using the [event backfill](create-backfill) endpoint.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class EventUpdateParams : ParamsBase
+public record class EventUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -137,6 +141,8 @@ public sealed record class EventUpdateParams : ParamsBase
 
     public EventUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventUpdateParams(EventUpdateParams eventUpdateParams)
         : base(eventUpdateParams)
     {
@@ -144,6 +150,7 @@ public sealed record class EventUpdateParams : ParamsBase
 
         this._rawBodyData = new(eventUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public EventUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -184,6 +191,30 @@ public sealed record class EventUpdateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["EventID"] = this.EventID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(EventUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.EventID?.Equals(other.EventID) ?? other.EventID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -210,5 +241,10 @@ public sealed record class EventUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

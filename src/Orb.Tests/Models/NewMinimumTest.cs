@@ -428,6 +428,36 @@ public class NewMinimumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewMinimum
+        {
+            AdjustmentType = NewMinimumAdjustmentType.Minimum,
+            ItemID = "item_id",
+            MinimumAmount = "minimum_amount",
+            AppliesToAll = NewMinimumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMinimumPriceType.Usage,
+        };
+
+        NewMinimum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewMinimumAdjustmentTypeTest : TestBase
@@ -629,6 +659,21 @@ public class NewMinimumFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewMinimumFilter
+        {
+            Field = NewMinimumFilterField.PriceID,
+            Operator = NewMinimumFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        NewMinimumFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

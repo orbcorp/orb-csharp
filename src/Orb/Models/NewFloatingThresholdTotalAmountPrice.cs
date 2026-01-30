@@ -288,10 +288,13 @@ public sealed record class NewFloatingThresholdTotalAmountPrice : JsonModel
 
     public NewFloatingThresholdTotalAmountPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingThresholdTotalAmountPrice(
         NewFloatingThresholdTotalAmountPrice newFloatingThresholdTotalAmountPrice
     )
         : base(newFloatingThresholdTotalAmountPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingThresholdTotalAmountPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -486,8 +489,11 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
 
     public ThresholdTotalAmountConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ThresholdTotalAmountConfig(ThresholdTotalAmountConfig thresholdTotalAmountConfig)
         : base(thresholdTotalAmountConfig) { }
+#pragma warning restore CS8618
 
     public ThresholdTotalAmountConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -564,8 +570,11 @@ public sealed record class ConsumptionTable : JsonModel
 
     public ConsumptionTable() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ConsumptionTable(ConsumptionTable consumptionTable)
         : base(consumptionTable) { }
+#pragma warning restore CS8618
 
     public ConsumptionTable(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -784,10 +793,10 @@ public record class NewFloatingThresholdTotalAmountPriceConversionRateConfig : M
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingThresholdTotalAmountPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingThresholdTotalAmountPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -796,6 +805,16 @@ public record class NewFloatingThresholdTotalAmountPriceConversionRateConfig : M
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingThresholdTotalAmountPriceConversionRateConfigConverter

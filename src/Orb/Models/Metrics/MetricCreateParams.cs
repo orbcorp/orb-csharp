@@ -13,8 +13,12 @@ namespace Orb.Models.Metrics;
 /// This endpoint is used to create a [metric](/core-concepts###metric) using a SQL
 /// string. See [SQL support](/extensibility/advanced-metrics#sql-support) for a description
 /// of constructing SQL queries with examples.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class MetricCreateParams : ParamsBase
+public record class MetricCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -99,11 +103,14 @@ public sealed record class MetricCreateParams : ParamsBase
 
     public MetricCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricCreateParams(MetricCreateParams metricCreateParams)
         : base(metricCreateParams)
     {
         this._rawBodyData = new(metricCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public MetricCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -144,6 +151,28 @@ public sealed record class MetricCreateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(MetricCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/metrics")
@@ -168,5 +197,10 @@ public sealed record class MetricCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

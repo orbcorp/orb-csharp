@@ -291,10 +291,13 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : JsonM
 
     public NewFloatingScalableMatrixWithUnitPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingScalableMatrixWithUnitPricingPrice(
         NewFloatingScalableMatrixWithUnitPricingPrice newFloatingScalableMatrixWithUnitPricingPrice
     )
         : base(newFloatingScalableMatrixWithUnitPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -534,10 +537,13 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
 
     public ScalableMatrixWithUnitPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingConfig(
         ScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingConfig
     )
         : base(scalableMatrixWithUnitPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -620,10 +626,13 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         ScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingConfigMatrixScalingFactor
     )
         : base(scalableMatrixWithUnitPricingConfigMatrixScalingFactor) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -850,10 +859,10 @@ public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateC
 
     public virtual bool Equals(
         NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -862,6 +871,16 @@ public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateC
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigConverter

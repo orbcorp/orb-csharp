@@ -3333,117 +3333,6 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void MinimumValidationWorks()
-    {
-        Price value = new PriceMinimum()
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            },
-        };
-        value.Validate();
-    }
-
-    [Fact]
     public void MinimumCompositeValidationWorks()
     {
         Price value = new MinimumComposite()
@@ -7189,120 +7078,6 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void MinimumSerializationRoundtripWorks()
-    {
-        Price value = new PriceMinimum()
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            },
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
     public void MinimumCompositeSerializationRoundtripWorks()
     {
         Price value = new MinimumComposite()
@@ -8843,6 +8618,120 @@ public class UnitTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Unit
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = BillingMode.InAdvance,
+            Cadence = UnitCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = CompositePriceFilterField.PriceID,
+                    Operator = CompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = UnitPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        Unit copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BillingModeTest : TestBase
@@ -9058,6 +8947,21 @@ public class CompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CompositePriceFilter
+        {
+            Field = CompositePriceFilterField.PriceID,
+            Operator = CompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        CompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -10633,6 +10537,132 @@ public class TieredTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Tiered
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = TieredBillingMode.InAdvance,
+            Cadence = TieredCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = TieredPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            TieredConfig = new()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ],
+                Prorated = true,
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        Tiered copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredBillingModeTest : TestBase
@@ -10848,6 +10878,21 @@ public class TieredCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredCompositePriceFilter
+        {
+            Field = TieredCompositePriceFilterField.PriceID,
+            Operator = TieredCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        TieredCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -12303,6 +12348,120 @@ public class BulkTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Bulk
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = BulkBillingMode.InAdvance,
+            BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+            Cadence = BulkCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = BulkPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        Bulk copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkBillingModeTest : TestBase
@@ -12518,6 +12677,21 @@ public class BulkCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkCompositePriceFilter
+        {
+            Field = BulkCompositePriceFilterField.PriceID,
+            Operator = BulkCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        BulkCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -14061,6 +14235,128 @@ public class BulkWithFiltersTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithFilters
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = BulkWithFiltersBillingMode.InAdvance,
+            BulkWithFiltersConfig = new()
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            Cadence = BulkWithFiltersCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = BulkWithFiltersPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        BulkWithFilters copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithFiltersBillingModeTest : TestBase
@@ -14237,6 +14533,24 @@ public class BulkWithFiltersConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithFiltersConfig
+        {
+            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        BulkWithFiltersConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithFiltersConfigFilterTest : TestBase
@@ -14292,6 +14606,16 @@ public class BulkWithFiltersConfigFilterTest : TestBase
         var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
+
+        BulkWithFiltersConfigFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -14408,6 +14732,20 @@ public class BulkWithFiltersConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        BulkWithFiltersConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -14566,6 +14904,21 @@ public class BulkWithFiltersCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithFiltersCompositePriceFilter
+        {
+            Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+            Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        BulkWithFiltersCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -16026,6 +16379,120 @@ public class PackageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Package
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = PackageBillingMode.InAdvance,
+            Cadence = PackageCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+            PlanPhaseOrder = 0,
+            PriceType = PackagePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        Package copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PackageBillingModeTest : TestBase
@@ -16241,6 +16708,21 @@ public class PackageCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageCompositePriceFilter
+        {
+            Field = PackageCompositePriceFilterField.PriceID,
+            Operator = PackageCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PackageCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -17742,6 +18224,125 @@ public class MatrixTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Matrix
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixBillingMode.InAdvance,
+            Cadence = MatrixCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        Matrix copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixBillingModeTest : TestBase
@@ -17957,6 +18558,21 @@ public class MatrixCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixCompositePriceFilter
+        {
+            Field = MatrixCompositePriceFilterField.PriceID,
+            Operator = MatrixCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MatrixCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -19502,6 +20118,128 @@ public class ThresholdTotalAmountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdTotalAmount
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = ThresholdTotalAmountBillingMode.InAdvance,
+            Cadence = ThresholdTotalAmountCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = ThresholdTotalAmountPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            ThresholdTotalAmountConfig = new()
+            {
+                ConsumptionTable =
+                [
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                ],
+                Prorate = true,
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        ThresholdTotalAmount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ThresholdTotalAmountBillingModeTest : TestBase
@@ -19715,6 +20453,21 @@ public class ThresholdTotalAmountCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdTotalAmountCompositePriceFilter
+        {
+            Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+            Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ThresholdTotalAmountCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -20139,6 +20892,24 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdTotalAmountThresholdTotalAmountConfig
+        {
+            ConsumptionTable =
+            [
+                new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                new() { Threshold = "threshold", TotalAmount = "total_amount" },
+            ],
+            Prorate = true,
+        };
+
+        ThresholdTotalAmountThresholdTotalAmountConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableTest : TestBase
@@ -20212,6 +20983,20 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableTest 
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
+
+        ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -21500,6 +22285,128 @@ public class TieredPackageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackage
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = TieredPackageBillingMode.InAdvance,
+            Cadence = TieredPackageCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = TieredPackagePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            TieredPackageConfig = new()
+            {
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        TieredPackage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredPackageBillingModeTest : TestBase
@@ -21715,6 +22622,21 @@ public class TieredPackageCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageCompositePriceFilter
+        {
+            Field = TieredPackageCompositePriceFilterField.PriceID,
+            Operator = TieredPackageCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        TieredPackageCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -22071,6 +22993,24 @@ public class TieredPackageTieredPackageConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageTieredPackageConfig
+        {
+            PackageSize = "package_size",
+            Tiers =
+            [
+                new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        TieredPackageTieredPackageConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredPackageTieredPackageConfigTierTest : TestBase
@@ -22142,6 +23082,20 @@ public class TieredPackageTieredPackageConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        TieredPackageTieredPackageConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -23542,6 +24496,139 @@ public class TieredWithMinimumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithMinimum
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = TieredWithMinimumBillingMode.InAdvance,
+            Cadence = TieredWithMinimumCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = TieredWithMinimumPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            TieredWithMinimumConfig = new()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                HideZeroAmountTiers = true,
+                Prorate = true,
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        TieredWithMinimum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredWithMinimumBillingModeTest : TestBase
@@ -23755,6 +24842,21 @@ public class TieredWithMinimumCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithMinimumCompositePriceFilter
+        {
+            Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        TieredWithMinimumCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -24293,6 +25395,35 @@ public class TieredWithMinimumTieredWithMinimumConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithMinimumTieredWithMinimumConfig
+        {
+            Tiers =
+            [
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    TierLowerBound = "tier_lower_bound",
+                    UnitAmount = "unit_amount",
+                },
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    TierLowerBound = "tier_lower_bound",
+                    UnitAmount = "unit_amount",
+                },
+            ],
+            HideZeroAmountTiers = true,
+            Prorate = true,
+        };
+
+        TieredWithMinimumTieredWithMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredWithMinimumTieredWithMinimumConfigTierTest : TestBase
@@ -24372,6 +25503,21 @@ public class TieredWithMinimumTieredWithMinimumConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithMinimumTieredWithMinimumConfigTier
+        {
+            MinimumAmount = "minimum_amount",
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        TieredWithMinimumTieredWithMinimumConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -25660,6 +26806,128 @@ public class GroupedTieredTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTiered
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = GroupedTieredBillingMode.InAdvance,
+            Cadence = GroupedTieredCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            GroupedTieredConfig = new()
+            {
+                GroupingKey = "x",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = GroupedTieredPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        GroupedTiered copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedTieredBillingModeTest : TestBase
@@ -25875,6 +27143,21 @@ public class GroupedTieredCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredCompositePriceFilter
+        {
+            Field = GroupedTieredCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        GroupedTieredCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -26171,6 +27454,24 @@ public class GroupedTieredGroupedTieredConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredGroupedTieredConfig
+        {
+            GroupingKey = "x",
+            Tiers =
+            [
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+            ],
+        };
+
+        GroupedTieredGroupedTieredConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedTieredGroupedTieredConfigTierTest : TestBase
@@ -26242,6 +27543,20 @@ public class GroupedTieredGroupedTieredConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        GroupedTieredGroupedTieredConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -27701,6 +29016,138 @@ public class TieredPackageWithMinimumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimum
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = TieredPackageWithMinimumBillingMode.InAdvance,
+            Cadence = TieredPackageWithMinimumCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = TieredPackageWithMinimumPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            TieredPackageWithMinimumConfig = new()
+            {
+                PackageSize = 0,
+                Tiers =
+                [
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        PerUnit = "per_unit",
+                        TierLowerBound = "tier_lower_bound",
+                    },
+                    new()
+                    {
+                        MinimumAmount = "minimum_amount",
+                        PerUnit = "per_unit",
+                        TierLowerBound = "tier_lower_bound",
+                    },
+                ],
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        TieredPackageWithMinimum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredPackageWithMinimumBillingModeTest : TestBase
@@ -27910,6 +29357,21 @@ public class TieredPackageWithMinimumCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimumCompositePriceFilter
+        {
+            Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        TieredPackageWithMinimumCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -28330,6 +29792,34 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTest : TestBa
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimumTieredPackageWithMinimumConfig
+        {
+            PackageSize = 0,
+            Tiers =
+            [
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    PerUnit = "per_unit",
+                    TierLowerBound = "tier_lower_bound",
+                },
+                new()
+                {
+                    MinimumAmount = "minimum_amount",
+                    PerUnit = "per_unit",
+                    TierLowerBound = "tier_lower_bound",
+                },
+            ],
+        };
+
+        TieredPackageWithMinimumTieredPackageWithMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierTest : TestBase
@@ -28411,6 +29901,21 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierTest : Te
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimumTieredPackageWithMinimumConfigTier
+        {
+            MinimumAmount = "minimum_amount",
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        TieredPackageWithMinimumTieredPackageWithMinimumConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -29675,6 +31180,125 @@ public class PackageWithAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageWithAllocation
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = PackageWithAllocationBillingMode.InAdvance,
+            Cadence = PackageWithAllocationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PackageWithAllocationConfig = new()
+            {
+                Allocation = "allocation",
+                PackageAmount = "package_amount",
+                PackageSize = "package_size",
+            },
+            PlanPhaseOrder = 0,
+            PriceType = PackageWithAllocationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        PackageWithAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PackageWithAllocationBillingModeTest : TestBase
@@ -29886,6 +31510,21 @@ public class PackageWithAllocationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageWithAllocationCompositePriceFilter
+        {
+            Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+            Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PackageWithAllocationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -30163,6 +31802,21 @@ public class PackageWithAllocationPackageWithAllocationConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageWithAllocationPackageWithAllocationConfig
+        {
+            Allocation = "allocation",
+            PackageAmount = "package_amount",
+            PackageSize = "package_size",
+        };
+
+        PackageWithAllocationPackageWithAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -31437,6 +33091,120 @@ public class UnitWithPercentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithPercent
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = UnitWithPercentBillingMode.InAdvance,
+            Cadence = UnitWithPercentCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = UnitWithPercentPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        UnitWithPercent copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UnitWithPercentBillingModeTest : TestBase
@@ -31652,6 +33420,21 @@ public class UnitWithPercentCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithPercentCompositePriceFilter
+        {
+            Field = UnitWithPercentCompositePriceFilterField.PriceID,
+            Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        UnitWithPercentCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -31975,6 +33758,20 @@ public class UnitWithPercentUnitWithPercentConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithPercentUnitWithPercentConfig
+        {
+            Percent = "percent",
+            UnitAmount = "unit_amount",
+        };
+
+        UnitWithPercentUnitWithPercentConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -33245,6 +35042,126 @@ public class MatrixWithAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithAllocation
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithAllocationBillingMode.InAdvance,
+            Cadence = MatrixWithAllocationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithAllocationConfig = new()
+            {
+                Allocation = "allocation",
+                DefaultUnitAmount = "default_unit_amount",
+                Dimensions = ["string"],
+                MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithAllocationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        MatrixWithAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixWithAllocationBillingModeTest : TestBase
@@ -33458,6 +35375,21 @@ public class MatrixWithAllocationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithAllocationCompositePriceFilter
+        {
+            Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+            Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MatrixWithAllocationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -34939,6 +36871,122 @@ public class TieredWithProrationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithProration
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = TieredWithProrationBillingMode.InAdvance,
+            Cadence = TieredWithProrationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = TieredWithProrationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            TieredWithProrationConfig = new(
+                [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+            ),
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        TieredWithProration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredWithProrationBillingModeTest : TestBase
@@ -35152,6 +37200,21 @@ public class TieredWithProrationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithProrationCompositePriceFilter
+        {
+            Field = TieredWithProrationCompositePriceFilterField.PriceID,
+            Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        TieredWithProrationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -35482,6 +37545,19 @@ public class TieredWithProrationTieredWithProrationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithProrationTieredWithProrationConfig
+        {
+            Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
+        };
+
+        TieredWithProrationTieredWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TieredWithProrationTieredWithProrationConfigTierTest : TestBase
@@ -35555,6 +37631,20 @@ public class TieredWithProrationTieredWithProrationConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        TieredWithProrationTieredWithProrationConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -36769,6 +38859,120 @@ public class UnitWithProrationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithProration
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = UnitWithProrationBillingMode.InAdvance,
+            Cadence = UnitWithProrationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = UnitWithProrationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            UnitWithProrationConfig = new("unit_amount"),
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        UnitWithProration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UnitWithProrationBillingModeTest : TestBase
@@ -36982,6 +39186,21 @@ public class UnitWithProrationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithProrationCompositePriceFilter
+        {
+            Field = UnitWithProrationCompositePriceFilterField.PriceID,
+            Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        UnitWithProrationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -37285,6 +39504,16 @@ public class UnitWithProrationUnitWithProrationConfigTest : TestBase
         var model = new UnitWithProrationUnitWithProrationConfig { UnitAmount = "unit_amount" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithProrationUnitWithProrationConfig { UnitAmount = "unit_amount" };
+
+        UnitWithProrationUnitWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -38545,6 +40774,125 @@ public class GroupedAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedAllocation
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = GroupedAllocationBillingMode.InAdvance,
+            Cadence = GroupedAllocationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            GroupedAllocationConfig = new()
+            {
+                Allocation = "allocation",
+                GroupingKey = "x",
+                OverageUnitRate = "overage_unit_rate",
+            },
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = GroupedAllocationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        GroupedAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedAllocationBillingModeTest : TestBase
@@ -38758,6 +41106,21 @@ public class GroupedAllocationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedAllocationCompositePriceFilter
+        {
+            Field = GroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        GroupedAllocationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -39029,6 +41392,21 @@ public class GroupedAllocationGroupedAllocationConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedAllocationGroupedAllocationConfig
+        {
+            Allocation = "allocation",
+            GroupingKey = "x",
+            OverageUnitRate = "overage_unit_rate",
+        };
+
+        GroupedAllocationGroupedAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -40349,6 +42727,125 @@ public class BulkWithProrationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProration
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = BulkWithProrationBillingMode.InAdvance,
+            BulkWithProrationConfig = new(
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ]
+            ),
+            Cadence = BulkWithProrationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = BulkWithProrationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        BulkWithProration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithProrationBillingModeTest : TestBase
@@ -40501,6 +42998,23 @@ public class BulkWithProrationBulkWithProrationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationBulkWithProrationConfig
+        {
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        BulkWithProrationBulkWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithProrationBulkWithProrationConfigTierTest : TestBase
@@ -40616,6 +43130,20 @@ public class BulkWithProrationBulkWithProrationConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        BulkWithProrationBulkWithProrationConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -40774,6 +43302,21 @@ public class BulkWithProrationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationCompositePriceFilter
+        {
+            Field = BulkWithProrationCompositePriceFilterField.PriceID,
+            Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        BulkWithProrationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -42297,6 +44840,125 @@ public class GroupedWithProratedMinimumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithProratedMinimum
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = GroupedWithProratedMinimumBillingMode.InAdvance,
+            Cadence = GroupedWithProratedMinimumCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            GroupedWithProratedMinimumConfig = new()
+            {
+                GroupingKey = "x",
+                Minimum = "minimum",
+                UnitRate = "unit_rate",
+            },
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = GroupedWithProratedMinimumPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        GroupedWithProratedMinimum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedWithProratedMinimumBillingModeTest : TestBase
@@ -42508,6 +45170,21 @@ public class GroupedWithProratedMinimumCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithProratedMinimumCompositePriceFilter
+        {
+            Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        GroupedWithProratedMinimumCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -42789,6 +45466,21 @@ public class GroupedWithProratedMinimumGroupedWithProratedMinimumConfigTest : Te
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithProratedMinimumGroupedWithProratedMinimumConfig
+        {
+            GroupingKey = "x",
+            Minimum = "minimum",
+            UnitRate = "unit_rate",
+        };
+
+        GroupedWithProratedMinimumGroupedWithProratedMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -44207,6 +46899,134 @@ public class GroupedWithMeteredMinimumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMeteredMinimum
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = GroupedWithMeteredMinimumBillingMode.InAdvance,
+            Cadence = GroupedWithMeteredMinimumCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            GroupedWithMeteredMinimumConfig = new()
+            {
+                GroupingKey = "x",
+                MinimumUnitAmount = "minimum_unit_amount",
+                PricingKey = "pricing_key",
+                ScalingFactors =
+                [
+                    new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
+                ],
+                ScalingKey = "scaling_key",
+                UnitAmounts =
+                [
+                    new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
+                ],
+            },
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = GroupedWithMeteredMinimumPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        GroupedWithMeteredMinimum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedWithMeteredMinimumBillingModeTest : TestBase
@@ -44418,6 +47238,21 @@ public class GroupedWithMeteredMinimumCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMeteredMinimumCompositePriceFilter
+        {
+            Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        GroupedWithMeteredMinimumCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -44762,6 +47597,27 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigTest : Test
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig
+        {
+            GroupingKey = "x",
+            MinimumUnitAmount = "minimum_unit_amount",
+            PricingKey = "pricing_key",
+            ScalingFactors =
+            [
+                new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
+            ],
+            ScalingKey = "scaling_key",
+            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" }],
+        };
+
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactorTest : TestBase
@@ -44836,6 +47692,20 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFact
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
+        {
+            ScalingFactor = "scaling_factor",
+            ScalingValue = "scaling_value",
+        };
+
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmountTest : TestBase
@@ -44909,6 +47779,20 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmountT
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmount = "unit_amount",
+        };
+
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -46247,6 +49131,126 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMinMaxThresholds
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = GroupedWithMinMaxThresholdsBillingMode.InAdvance,
+            Cadence = GroupedWithMinMaxThresholdsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            GroupedWithMinMaxThresholdsConfig = new()
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            },
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = GroupedWithMinMaxThresholdsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        GroupedWithMinMaxThresholds copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedWithMinMaxThresholdsBillingModeTest : TestBase
@@ -46458,6 +49462,21 @@ public class GroupedWithMinMaxThresholdsCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsCompositePriceFilter
+        {
+            Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        GroupedWithMinMaxThresholdsCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -46745,6 +49764,22 @@ public class GroupedWithMinMaxThresholdsConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsConfig
+        {
+            GroupingKey = "x",
+            MaximumCharge = "maximum_charge",
+            MinimumCharge = "minimum_charge",
+            PerUnitRate = "per_unit_rate",
+        };
+
+        GroupedWithMinMaxThresholdsConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -48135,6 +51170,132 @@ public class MatrixWithDisplayNameTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithDisplayName
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithDisplayNameBillingMode.InAdvance,
+            Cadence = MatrixWithDisplayNameCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithDisplayNameConfig = new()
+            {
+                Dimension = "dimension",
+                UnitAmounts =
+                [
+                    new()
+                    {
+                        DimensionValue = "dimension_value",
+                        DisplayName = "display_name",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithDisplayNamePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        MatrixWithDisplayName copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixWithDisplayNameBillingModeTest : TestBase
@@ -48346,6 +51507,21 @@ public class MatrixWithDisplayNameCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithDisplayNameCompositePriceFilter
+        {
+            Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+            Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MatrixWithDisplayNameCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -48672,6 +51848,28 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithDisplayNameMatrixWithDisplayNameConfig
+        {
+            Dimension = "dimension",
+            UnitAmounts =
+            [
+                new()
+                {
+                    DimensionValue = "dimension_value",
+                    DisplayName = "display_name",
+                    UnitAmount = "unit_amount",
+                },
+            ],
+        };
+
+        MatrixWithDisplayNameMatrixWithDisplayNameConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmountTest : TestBase
@@ -48753,6 +51951,21 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmountTest : Te
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
+        {
+            DimensionValue = "dimension_value",
+            DisplayName = "display_name",
+            UnitAmount = "unit_amount",
+        };
+
+        MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -50111,6 +53324,129 @@ public class GroupedTieredPackageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredPackage
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = GroupedTieredPackageBillingMode.InAdvance,
+            Cadence = GroupedTieredPackageCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            GroupedTieredPackageConfig = new()
+            {
+                GroupingKey = "x",
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                ],
+            },
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = GroupedTieredPackagePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        GroupedTieredPackage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedTieredPackageBillingModeTest : TestBase
@@ -50324,6 +53660,21 @@ public class GroupedTieredPackageCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredPackageCompositePriceFilter
+        {
+            Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        GroupedTieredPackageCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -50632,6 +53983,25 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredPackageGroupedTieredPackageConfig
+        {
+            GroupingKey = "x",
+            PackageSize = "package_size",
+            Tiers =
+            [
+                new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        GroupedTieredPackageGroupedTieredPackageConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class GroupedTieredPackageGroupedTieredPackageConfigTierTest : TestBase
@@ -50705,6 +54075,20 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredPackageGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        GroupedTieredPackageGroupedTieredPackageConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -52067,6 +55451,129 @@ public class MaxGroupTieredPackageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaxGroupTieredPackage
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MaxGroupTieredPackageBillingMode.InAdvance,
+            Cadence = MaxGroupTieredPackageCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MaxGroupTieredPackageConfig = new()
+            {
+                GroupingKey = "x",
+                PackageSize = "package_size",
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MaxGroupTieredPackagePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        MaxGroupTieredPackage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MaxGroupTieredPackageBillingModeTest : TestBase
@@ -52278,6 +55785,21 @@ public class MaxGroupTieredPackageCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaxGroupTieredPackageCompositePriceFilter
+        {
+            Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+            Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MaxGroupTieredPackageCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -52588,6 +56110,25 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaxGroupTieredPackageMaxGroupTieredPackageConfig
+        {
+            GroupingKey = "x",
+            PackageSize = "package_size",
+            Tiers =
+            [
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+            ],
+        };
+
+        MaxGroupTieredPackageMaxGroupTieredPackageConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTierTest : TestBase
@@ -52661,6 +56202,20 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaxGroupTieredPackageMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        MaxGroupTieredPackageMaxGroupTieredPackageConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -54091,6 +57646,135 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricing
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = ScalableMatrixWithUnitPricingBillingMode.InAdvance,
+            Cadence = ScalableMatrixWithUnitPricingCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = ScalableMatrixWithUnitPricingPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            ScalableMatrixWithUnitPricingConfig = new()
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                UnitPrice = "unit_price",
+                Prorate = true,
+                SecondDimension = "second_dimension",
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        ScalableMatrixWithUnitPricing copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalableMatrixWithUnitPricingBillingModeTest : TestBase
@@ -54304,6 +57988,21 @@ public class ScalableMatrixWithUnitPricingCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingCompositePriceFilter
+        {
+            Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ScalableMatrixWithUnitPricingCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -54812,6 +58511,31 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigTes
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig
+        {
+            FirstDimension = "first_dimension",
+            MatrixScalingFactors =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    ScalingFactor = "scaling_factor",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            UnitPrice = "unit_price",
+            Prorate = true,
+            SecondDimension = "second_dimension",
+        };
+
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest
@@ -54956,6 +58680,23 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMat
             };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
+
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor copied =
+            new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -56358,6 +60099,138 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricing
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = ScalableMatrixWithTieredPricingBillingMode.InAdvance,
+            Cadence = ScalableMatrixWithTieredPricingCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = ScalableMatrixWithTieredPricingPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            ScalableMatrixWithTieredPricingConfig = new()
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+                SecondDimension = "second_dimension",
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        ScalableMatrixWithTieredPricing copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalableMatrixWithTieredPricingBillingModeTest : TestBase
@@ -56571,6 +60444,21 @@ public class ScalableMatrixWithTieredPricingCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingCompositePriceFilter
+        {
+            Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ScalableMatrixWithTieredPricingCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -57117,6 +61005,34 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig
+        {
+            FirstDimension = "first_dimension",
+            MatrixScalingFactors =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    ScalingFactor = "scaling_factor",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            Tiers =
+            [
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+            ],
+            SecondDimension = "second_dimension",
+        };
+
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactorTest
@@ -57262,6 +61178,23 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
+
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTierTest : TestBase
@@ -57335,6 +61268,22 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier copied = new(
+            model
+        );
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -58669,6 +62618,132 @@ public class CumulativeGroupedBulkTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedBulk
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = CumulativeGroupedBulkBillingMode.InAdvance,
+            Cadence = CumulativeGroupedBulkCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            CumulativeGroupedBulkConfig = new()
+            {
+                DimensionValues =
+                [
+                    new()
+                    {
+                        GroupingKey = "x",
+                        TierLowerBound = "tier_lower_bound",
+                        UnitAmount = "unit_amount",
+                    },
+                ],
+                Group = "group",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = CumulativeGroupedBulkPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        CumulativeGroupedBulk copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CumulativeGroupedBulkBillingModeTest : TestBase
@@ -58880,6 +62955,21 @@ public class CumulativeGroupedBulkCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedBulkCompositePriceFilter
+        {
+            Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        CumulativeGroupedBulkCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -59206,6 +63296,28 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedBulkCumulativeGroupedBulkConfig
+        {
+            DimensionValues =
+            [
+                new()
+                {
+                    GroupingKey = "x",
+                    TierLowerBound = "tier_lower_bound",
+                    UnitAmount = "unit_amount",
+                },
+            ],
+            Group = "group",
+        };
+
+        CumulativeGroupedBulkCumulativeGroupedBulkConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValueTest : TestBase
@@ -59287,6 +63399,21 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValueTest 
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
+        {
+            GroupingKey = "x",
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
+
+        CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -60625,6 +64752,126 @@ public class CumulativeGroupedAllocationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedAllocation
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = CumulativeGroupedAllocationBillingMode.InAdvance,
+            Cadence = CumulativeGroupedAllocationCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            CumulativeGroupedAllocationConfig = new()
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = CumulativeGroupedAllocationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        CumulativeGroupedAllocation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CumulativeGroupedAllocationBillingModeTest : TestBase
@@ -60836,6 +65083,21 @@ public class CumulativeGroupedAllocationCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedAllocationCompositePriceFilter
+        {
+            Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        CumulativeGroupedAllocationCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -61124,6 +65386,22 @@ public class CumulativeGroupedAllocationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedAllocationConfig
+        {
+            CumulativeAllocation = "cumulative_allocation",
+            GroupAllocation = "group_allocation",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        CumulativeGroupedAllocationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CumulativeGroupedAllocationPriceTypeTest : TestBase
@@ -61177,1788 +65455,6 @@ public class CumulativeGroupedAllocationPriceTypeTest : TestBase
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, CumulativeGroupedAllocationPriceType>
         >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class PriceMinimumTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            },
-        };
-
-        string expectedID = "id";
-        BillableMetricTiny expectedBillableMetric = new("id");
-        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = DurationUnit.Day,
-        };
-        ApiEnum<string, PriceMinimumBillingMode> expectedBillingMode =
-            PriceMinimumBillingMode.InAdvance;
-        ApiEnum<string, PriceMinimumCadence> expectedCadence = PriceMinimumCadence.OneTime;
-        List<PriceMinimumCompositePriceFilter> expectedCompositePriceFilters =
-        [
-            new()
-            {
-                Field = PriceMinimumCompositePriceFilterField.PriceID,
-                Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                Values = ["string"],
-            },
-        ];
-        double expectedConversionRate = 0;
-        PriceMinimumConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Allocation expectedCreditAllocation = new()
-        {
-            AllowsRollover = true,
-            Currency = "currency",
-            CustomExpiration = new()
-            {
-                Duration = 0,
-                DurationUnit = CustomExpirationDurationUnit.Day,
-            },
-            Filters =
-            [
-                new()
-                {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
-                    Values = ["string"],
-                },
-            ],
-        };
-        string expectedCurrency = "currency";
-        SharedDiscount expectedDiscount = new PercentageDiscount()
-        {
-            DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscountValue = 0.15,
-            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-            Filters =
-            [
-                new()
-                {
-                    Field = PercentageDiscountFilterField.PriceID,
-                    Operator = PercentageDiscountFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            Reason = "reason",
-        };
-        string expectedExternalPriceID = "external_price_id";
-        double expectedFixedPriceQuantity = 0;
-        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = DurationUnit.Day,
-        };
-        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
-        Maximum expectedMaximum = new()
-        {
-            AppliesToPriceIds = ["string"],
-            Filters =
-            [
-                new()
-                {
-                    Field = MaximumFilterField.PriceID,
-                    Operator = MaximumFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            MaximumAmount = "maximum_amount",
-        };
-        string expectedMaximumAmount = "maximum_amount";
-        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
-        Minimum expectedMinimum = new()
-        {
-            AppliesToPriceIds = ["string"],
-            Filters =
-            [
-                new()
-                {
-                    Field = MinimumFilterField.PriceID,
-                    Operator = MinimumFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            MinimumAmount = "minimum_amount",
-        };
-        string expectedMinimumAmount = "minimum_amount";
-        MinimumConfig expectedMinimumConfig = new()
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
-        string expectedName = "name";
-        long expectedPlanPhaseOrder = 0;
-        ApiEnum<string, PriceMinimumPriceType> expectedPriceType = PriceMinimumPriceType.UsagePrice;
-        string expectedReplacesPriceID = "replaces_price_id";
-        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
-        {
-            DimensionValues = ["string"],
-            DimensionalPriceGroupID = "dimensional_price_group_id",
-        };
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedBillableMetric, model.BillableMetric);
-        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
-        Assert.Equal(expectedBillingMode, model.BillingMode);
-        Assert.Equal(expectedCadence, model.Cadence);
-        Assert.NotNull(model.CompositePriceFilters);
-        Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
-        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
-        {
-            Assert.Equal(expectedCompositePriceFilters[i], model.CompositePriceFilters[i]);
-        }
-        Assert.Equal(expectedConversionRate, model.ConversionRate);
-        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
-        Assert.Equal(expectedCreatedAt, model.CreatedAt);
-        Assert.Equal(expectedCreditAllocation, model.CreditAllocation);
-        Assert.Equal(expectedCurrency, model.Currency);
-        Assert.Equal(expectedDiscount, model.Discount);
-        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
-        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
-        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
-        Assert.Equal(expectedItem, model.Item);
-        Assert.Equal(expectedMaximum, model.Maximum);
-        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
-        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, model.Metadata[item.Key]);
-        }
-        Assert.Equal(expectedMinimum, model.Minimum);
-        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
-        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
-        Assert.Equal(expectedName, model.Name);
-        Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
-        Assert.Equal(expectedPriceType, model.PriceType);
-        Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
-        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            },
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimum>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            },
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimum>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedID = "id";
-        BillableMetricTiny expectedBillableMetric = new("id");
-        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = DurationUnit.Day,
-        };
-        ApiEnum<string, PriceMinimumBillingMode> expectedBillingMode =
-            PriceMinimumBillingMode.InAdvance;
-        ApiEnum<string, PriceMinimumCadence> expectedCadence = PriceMinimumCadence.OneTime;
-        List<PriceMinimumCompositePriceFilter> expectedCompositePriceFilters =
-        [
-            new()
-            {
-                Field = PriceMinimumCompositePriceFilterField.PriceID,
-                Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                Values = ["string"],
-            },
-        ];
-        double expectedConversionRate = 0;
-        PriceMinimumConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            };
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Allocation expectedCreditAllocation = new()
-        {
-            AllowsRollover = true,
-            Currency = "currency",
-            CustomExpiration = new()
-            {
-                Duration = 0,
-                DurationUnit = CustomExpirationDurationUnit.Day,
-            },
-            Filters =
-            [
-                new()
-                {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
-                    Values = ["string"],
-                },
-            ],
-        };
-        string expectedCurrency = "currency";
-        SharedDiscount expectedDiscount = new PercentageDiscount()
-        {
-            DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscountValue = 0.15,
-            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-            Filters =
-            [
-                new()
-                {
-                    Field = PercentageDiscountFilterField.PriceID,
-                    Operator = PercentageDiscountFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            Reason = "reason",
-        };
-        string expectedExternalPriceID = "external_price_id";
-        double expectedFixedPriceQuantity = 0;
-        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
-        {
-            Duration = 0,
-            DurationUnit = DurationUnit.Day,
-        };
-        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
-        Maximum expectedMaximum = new()
-        {
-            AppliesToPriceIds = ["string"],
-            Filters =
-            [
-                new()
-                {
-                    Field = MaximumFilterField.PriceID,
-                    Operator = MaximumFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            MaximumAmount = "maximum_amount",
-        };
-        string expectedMaximumAmount = "maximum_amount";
-        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
-        Minimum expectedMinimum = new()
-        {
-            AppliesToPriceIds = ["string"],
-            Filters =
-            [
-                new()
-                {
-                    Field = MinimumFilterField.PriceID,
-                    Operator = MinimumFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            MinimumAmount = "minimum_amount",
-        };
-        string expectedMinimumAmount = "minimum_amount";
-        MinimumConfig expectedMinimumConfig = new()
-        {
-            MinimumAmount = "minimum_amount",
-            Prorated = true,
-        };
-        JsonElement expectedModelType = JsonSerializer.SerializeToElement("minimum");
-        string expectedName = "name";
-        long expectedPlanPhaseOrder = 0;
-        ApiEnum<string, PriceMinimumPriceType> expectedPriceType = PriceMinimumPriceType.UsagePrice;
-        string expectedReplacesPriceID = "replaces_price_id";
-        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
-        {
-            DimensionValues = ["string"],
-            DimensionalPriceGroupID = "dimensional_price_group_id",
-        };
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
-        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
-        Assert.Equal(expectedBillingMode, deserialized.BillingMode);
-        Assert.Equal(expectedCadence, deserialized.Cadence);
-        Assert.NotNull(deserialized.CompositePriceFilters);
-        Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
-        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
-        {
-            Assert.Equal(expectedCompositePriceFilters[i], deserialized.CompositePriceFilters[i]);
-        }
-        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
-        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
-        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
-        Assert.Equal(expectedCreditAllocation, deserialized.CreditAllocation);
-        Assert.Equal(expectedCurrency, deserialized.Currency);
-        Assert.Equal(expectedDiscount, deserialized.Discount);
-        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
-        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
-        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
-        Assert.Equal(expectedItem, deserialized.Item);
-        Assert.Equal(expectedMaximum, deserialized.Maximum);
-        Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
-        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.Equal(value, deserialized.Metadata[item.Key]);
-        }
-        Assert.Equal(expectedMinimum, deserialized.Minimum);
-        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
-        Assert.Equal(expectedMinimumConfig, deserialized.MinimumConfig);
-        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
-        Assert.Equal(expectedName, deserialized.Name);
-        Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
-        Assert.Equal(expectedPriceType, deserialized.PriceType);
-        Assert.Equal(expectedReplacesPriceID, deserialized.ReplacesPriceID);
-        Assert.Equal(
-            expectedDimensionalPriceConfiguration,
-            deserialized.DimensionalPriceConfiguration
-        );
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-            },
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-        };
-
-        Assert.Null(model.DimensionalPriceConfiguration);
-        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-
-            DimensionalPriceConfiguration = null,
-        };
-
-        Assert.Null(model.DimensionalPriceConfiguration);
-        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
-    }
-
-    [Fact]
-    public void OptionalNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new PriceMinimum
-        {
-            ID = "id",
-            BillableMetric = new("id"),
-            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            BillingMode = PriceMinimumBillingMode.InAdvance,
-            Cadence = PriceMinimumCadence.OneTime,
-            CompositePriceFilters =
-            [
-                new()
-                {
-                    Field = PriceMinimumCompositePriceFilterField.PriceID,
-                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreditAllocation = new()
-            {
-                AllowsRollover = true,
-                Currency = "currency",
-                CustomExpiration = new()
-                {
-                    Duration = 0,
-                    DurationUnit = CustomExpirationDurationUnit.Day,
-                },
-                Filters =
-                [
-                    new()
-                    {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-            },
-            Currency = "currency",
-            Discount = new PercentageDiscount()
-            {
-                DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscountValue = 0.15,
-                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = PercentageDiscountFilterField.PriceID,
-                        Operator = PercentageDiscountFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                Reason = "reason",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
-            Item = new() { ID = "id", Name = "name" },
-            Maximum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MaximumFilterField.PriceID,
-                        Operator = MaximumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MaximumAmount = "maximum_amount",
-            },
-            MaximumAmount = "maximum_amount",
-            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
-            Minimum = new()
-            {
-                AppliesToPriceIds = ["string"],
-                Filters =
-                [
-                    new()
-                    {
-                        Field = MinimumFilterField.PriceID,
-                        Operator = MinimumFilterOperator.Includes,
-                        Values = ["string"],
-                    },
-                ],
-                MinimumAmount = "minimum_amount",
-            },
-            MinimumAmount = "minimum_amount",
-            MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
-            Name = "name",
-            PlanPhaseOrder = 0,
-            PriceType = PriceMinimumPriceType.UsagePrice,
-            ReplacesPriceID = "replaces_price_id",
-
-            DimensionalPriceConfiguration = null,
-        };
-
-        model.Validate();
-    }
-}
-
-public class PriceMinimumBillingModeTest : TestBase
-{
-    [Theory]
-    [InlineData(PriceMinimumBillingMode.InAdvance)]
-    [InlineData(PriceMinimumBillingMode.InArrear)]
-    public void Validation_Works(PriceMinimumBillingMode rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumBillingMode> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(PriceMinimumBillingMode.InAdvance)]
-    [InlineData(PriceMinimumBillingMode.InArrear)]
-    public void SerializationRoundtrip_Works(PriceMinimumBillingMode rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumBillingMode> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumBillingMode>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class PriceMinimumCadenceTest : TestBase
-{
-    [Theory]
-    [InlineData(PriceMinimumCadence.OneTime)]
-    [InlineData(PriceMinimumCadence.Monthly)]
-    [InlineData(PriceMinimumCadence.Quarterly)]
-    [InlineData(PriceMinimumCadence.SemiAnnual)]
-    [InlineData(PriceMinimumCadence.Annual)]
-    [InlineData(PriceMinimumCadence.Custom)]
-    public void Validation_Works(PriceMinimumCadence rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumCadence> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(PriceMinimumCadence.OneTime)]
-    [InlineData(PriceMinimumCadence.Monthly)]
-    [InlineData(PriceMinimumCadence.Quarterly)]
-    [InlineData(PriceMinimumCadence.SemiAnnual)]
-    [InlineData(PriceMinimumCadence.Annual)]
-    [InlineData(PriceMinimumCadence.Custom)]
-    public void SerializationRoundtrip_Works(PriceMinimumCadence rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumCadence> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumCadence>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class PriceMinimumCompositePriceFilterTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new PriceMinimumCompositePriceFilter
-        {
-            Field = PriceMinimumCompositePriceFilterField.PriceID,
-            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-            Values = ["string"],
-        };
-
-        ApiEnum<string, PriceMinimumCompositePriceFilterField> expectedField =
-            PriceMinimumCompositePriceFilterField.PriceID;
-        ApiEnum<string, PriceMinimumCompositePriceFilterOperator> expectedOperator =
-            PriceMinimumCompositePriceFilterOperator.Includes;
-        List<string> expectedValues = ["string"];
-
-        Assert.Equal(expectedField, model.Field);
-        Assert.Equal(expectedOperator, model.Operator);
-        Assert.Equal(expectedValues.Count, model.Values.Count);
-        for (int i = 0; i < expectedValues.Count; i++)
-        {
-            Assert.Equal(expectedValues[i], model.Values[i]);
-        }
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new PriceMinimumCompositePriceFilter
-        {
-            Field = PriceMinimumCompositePriceFilterField.PriceID,
-            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-            Values = ["string"],
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumCompositePriceFilter>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new PriceMinimumCompositePriceFilter
-        {
-            Field = PriceMinimumCompositePriceFilterField.PriceID,
-            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-            Values = ["string"],
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumCompositePriceFilter>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        ApiEnum<string, PriceMinimumCompositePriceFilterField> expectedField =
-            PriceMinimumCompositePriceFilterField.PriceID;
-        ApiEnum<string, PriceMinimumCompositePriceFilterOperator> expectedOperator =
-            PriceMinimumCompositePriceFilterOperator.Includes;
-        List<string> expectedValues = ["string"];
-
-        Assert.Equal(expectedField, deserialized.Field);
-        Assert.Equal(expectedOperator, deserialized.Operator);
-        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
-        for (int i = 0; i < expectedValues.Count; i++)
-        {
-            Assert.Equal(expectedValues[i], deserialized.Values[i]);
-        }
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new PriceMinimumCompositePriceFilter
-        {
-            Field = PriceMinimumCompositePriceFilterField.PriceID,
-            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
-            Values = ["string"],
-        };
-
-        model.Validate();
-    }
-}
-
-public class PriceMinimumCompositePriceFilterFieldTest : TestBase
-{
-    [Theory]
-    [InlineData(PriceMinimumCompositePriceFilterField.PriceID)]
-    [InlineData(PriceMinimumCompositePriceFilterField.ItemID)]
-    [InlineData(PriceMinimumCompositePriceFilterField.PriceType)]
-    [InlineData(PriceMinimumCompositePriceFilterField.Currency)]
-    [InlineData(PriceMinimumCompositePriceFilterField.PricingUnitID)]
-    public void Validation_Works(PriceMinimumCompositePriceFilterField rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumCompositePriceFilterField> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterField>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(PriceMinimumCompositePriceFilterField.PriceID)]
-    [InlineData(PriceMinimumCompositePriceFilterField.ItemID)]
-    [InlineData(PriceMinimumCompositePriceFilterField.PriceType)]
-    [InlineData(PriceMinimumCompositePriceFilterField.Currency)]
-    [InlineData(PriceMinimumCompositePriceFilterField.PricingUnitID)]
-    public void SerializationRoundtrip_Works(PriceMinimumCompositePriceFilterField rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumCompositePriceFilterField> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterField>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterField>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterField>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class PriceMinimumCompositePriceFilterOperatorTest : TestBase
-{
-    [Theory]
-    [InlineData(PriceMinimumCompositePriceFilterOperator.Includes)]
-    [InlineData(PriceMinimumCompositePriceFilterOperator.Excludes)]
-    public void Validation_Works(PriceMinimumCompositePriceFilterOperator rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumCompositePriceFilterOperator> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(PriceMinimumCompositePriceFilterOperator.Includes)]
-    [InlineData(PriceMinimumCompositePriceFilterOperator.Excludes)]
-    public void SerializationRoundtrip_Works(PriceMinimumCompositePriceFilterOperator rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumCompositePriceFilterOperator> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class PriceMinimumConversionRateConfigTest : TestBase
-{
-    [Fact]
-    public void UnitValidationWorks()
-    {
-        PriceMinimumConversionRateConfig value = new SharedUnitConversionRateConfig()
-        {
-            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-            UnitConfig = new("unit_amount"),
-        };
-        value.Validate();
-    }
-
-    [Fact]
-    public void TieredValidationWorks()
-    {
-        PriceMinimumConversionRateConfig value = new SharedTieredConversionRateConfig()
-        {
-            ConversionRateType = ConversionRateType.Tiered,
-            TieredConfig = new(
-                [
-                    new()
-                    {
-                        FirstUnit = 0,
-                        UnitAmount = "unit_amount",
-                        LastUnit = 0,
-                    },
-                ]
-            ),
-        };
-        value.Validate();
-    }
-
-    [Fact]
-    public void UnitSerializationRoundtripWorks()
-    {
-        PriceMinimumConversionRateConfig value = new SharedUnitConversionRateConfig()
-        {
-            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
-            UnitConfig = new("unit_amount"),
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumConversionRateConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void TieredSerializationRoundtripWorks()
-    {
-        PriceMinimumConversionRateConfig value = new SharedTieredConversionRateConfig()
-        {
-            ConversionRateType = ConversionRateType.Tiered,
-            TieredConfig = new(
-                [
-                    new()
-                    {
-                        FirstUnit = 0,
-                        UnitAmount = "unit_amount",
-                        LastUnit = 0,
-                    },
-                ]
-            ),
-        };
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumConversionRateConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MinimumConfigTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
-
-        string expectedMinimumAmount = "minimum_amount";
-        bool expectedProrated = true;
-
-        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedProrated, model.Prorated);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedMinimumAmount = "minimum_amount";
-        bool expectedProrated = true;
-
-        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
-        Assert.Equal(expectedProrated, deserialized.Prorated);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount" };
-
-        Assert.Null(model.Prorated);
-        Assert.False(model.RawData.ContainsKey("prorated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new MinimumConfig { MinimumAmount = "minimum_amount" };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-
-            // Null should be interpreted as omitted for these properties
-            Prorated = null,
-        };
-
-        Assert.Null(model.Prorated);
-        Assert.False(model.RawData.ContainsKey("prorated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new MinimumConfig
-        {
-            MinimumAmount = "minimum_amount",
-
-            // Null should be interpreted as omitted for these properties
-            Prorated = null,
-        };
-
-        model.Validate();
-    }
-}
-
-public class PriceMinimumPriceTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(PriceMinimumPriceType.UsagePrice)]
-    [InlineData(PriceMinimumPriceType.FixedPrice)]
-    [InlineData(PriceMinimumPriceType.CompositePrice)]
-    public void Validation_Works(PriceMinimumPriceType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumPriceType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(PriceMinimumPriceType.UsagePrice)]
-    [InlineData(PriceMinimumPriceType.FixedPrice)]
-    [InlineData(PriceMinimumPriceType.CompositePrice)]
-    public void SerializationRoundtrip_Works(PriceMinimumPriceType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, PriceMinimumPriceType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceMinimumPriceType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
 
         Assert.Equal(value, deserialized);
     }
@@ -64177,6 +66673,120 @@ public class MinimumCompositeTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumComposite
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MinimumCompositeBillingMode.InAdvance,
+            Cadence = MinimumCompositeCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MinimumCompositeCompositePriceFilterField.PriceID,
+                    Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            MinimumCompositeConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MinimumCompositePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        MinimumComposite copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MinimumCompositeBillingModeTest : TestBase
@@ -64392,6 +67002,21 @@ public class MinimumCompositeCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumCompositeCompositePriceFilter
+        {
+            Field = MinimumCompositeCompositePriceFilterField.PriceID,
+            Operator = MinimumCompositeCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MinimumCompositeCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -64701,6 +67326,20 @@ public class MinimumCompositeMinimumCompositeConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumCompositeMinimumCompositeConfig
+        {
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        MinimumCompositeMinimumCompositeConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -65962,6 +68601,120 @@ public class PercentTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Percent
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = PercentBillingMode.InAdvance,
+            Cadence = PercentCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PercentConfig = new(0),
+            PlanPhaseOrder = 0,
+            PriceType = PercentPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        Percent copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PercentBillingModeTest : TestBase
@@ -66177,6 +68930,21 @@ public class PercentCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentCompositePriceFilter
+        {
+            Field = PercentCompositePriceFilterField.PriceID,
+            Operator = PercentCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PercentCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -66422,6 +69190,16 @@ public class PercentConfigTest : TestBase
         var model = new PercentConfig { Percent = 0 };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentConfig { Percent = 0 };
+
+        PercentConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -67738,6 +70516,125 @@ public class EventOutputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventOutput
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = EventOutputBillingMode.InAdvance,
+            Cadence = EventOutputCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            EventOutputConfig = new()
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = EventOutputPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+        };
+
+        EventOutput copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class EventOutputBillingModeTest : TestBase
@@ -67953,6 +70850,21 @@ public class EventOutputCompositePriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventOutputCompositePriceFilter
+        {
+            Field = EventOutputCompositePriceFilterField.PriceID,
+            Operator = EventOutputCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        EventOutputCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -68274,6 +71186,21 @@ public class EventOutputConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventOutputConfig
+        {
+            UnitRatingKey = "x",
+            DefaultUnitRate = "default_unit_rate",
+            GroupingKey = "grouping_key",
+        };
+
+        EventOutputConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

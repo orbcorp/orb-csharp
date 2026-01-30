@@ -13,8 +13,12 @@ namespace Orb.Models.Invoices;
 ///
 /// <para>This endpoint only allows deletion of one-off line items (not subscription-based
 /// line items). The invoice must be in a draft status for this operation to succeed.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceDeleteLineItemParams : ParamsBase
+public record class InvoiceDeleteLineItemParams : ParamsBase
 {
     public required string InvoiceID { get; init; }
 
@@ -22,12 +26,15 @@ public sealed record class InvoiceDeleteLineItemParams : ParamsBase
 
     public InvoiceDeleteLineItemParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceDeleteLineItemParams(InvoiceDeleteLineItemParams invoiceDeleteLineItemParams)
         : base(invoiceDeleteLineItemParams)
     {
         this.InvoiceID = invoiceDeleteLineItemParams.InvoiceID;
         this.LineItemID = invoiceDeleteLineItemParams.LineItemID;
     }
+#pragma warning restore CS8618
 
     public InvoiceDeleteLineItemParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -62,6 +69,30 @@ public sealed record class InvoiceDeleteLineItemParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["InvoiceID"] = this.InvoiceID,
+                ["LineItemID"] = this.LineItemID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceDeleteLineItemParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this.InvoiceID.Equals(other.InvoiceID)
+            && (this.LineItemID?.Equals(other.LineItemID) ?? other.LineItemID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
+    }
+
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
@@ -84,5 +115,10 @@ public sealed record class InvoiceDeleteLineItemParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

@@ -501,6 +501,57 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingBulkWithProrationPrice
+        {
+            BulkWithProrationConfig = new(
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ]
+            ),
+            Cadence = NewFloatingBulkWithProrationPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingBulkWithProrationPriceModelType.BulkWithProration,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingBulkWithProrationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BulkWithProrationConfigTest : TestBase
@@ -597,6 +648,23 @@ public class BulkWithProrationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationConfig
+        {
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        BulkWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TierTest : TestBase
@@ -690,6 +758,16 @@ public class TierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+
+        Tier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

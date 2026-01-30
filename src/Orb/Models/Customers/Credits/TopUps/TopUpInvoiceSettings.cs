@@ -87,8 +87,11 @@ public sealed record class TopUpInvoiceSettings : JsonModel
 
     public TopUpInvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpInvoiceSettings(TopUpInvoiceSettings topUpInvoiceSettings)
         : base(topUpInvoiceSettings) { }
+#pragma warning restore CS8618
 
     public TopUpInvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {

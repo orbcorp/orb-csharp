@@ -451,6 +451,52 @@ public class NewFloatingUnitWithProrationPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingUnitWithProrationPrice
+        {
+            Cadence = NewFloatingUnitWithProrationPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingUnitWithProrationPriceModelType.UnitWithProration,
+            Name = "Annual fee",
+            UnitWithProrationConfig = new("unit_amount"),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingUnitWithProrationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewFloatingUnitWithProrationPriceCadenceTest : TestBase
@@ -616,6 +662,16 @@ public class UnitWithProrationConfigTest : TestBase
         var model = new UnitWithProrationConfig { UnitAmount = "unit_amount" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithProrationConfig { UnitAmount = "unit_amount" };
+
+        UnitWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

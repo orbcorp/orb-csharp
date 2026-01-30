@@ -17,8 +17,12 @@ namespace Orb.Models.Customers;
 /// `name`, `email`, `email_delivery`, `tax_id`, `auto_collection`, `metadata`, `shipping_address`,
 /// `billing_address`, and `additional_emails` of an existing customer. Other fields
 /// on a customer are currently immutable.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CustomerUpdateParams : ParamsBase
+public record class CustomerUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -366,31 +370,32 @@ public sealed record class CustomerUpdateParams : ParamsBase
     /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
     /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
     /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
-    /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
+    /// | | Poland | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish
+    /// Tax ID Number | | Portugal | `eu_vat` | European VAT Number | | Romania |
+    /// `eu_vat` | European VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number
+    /// | | Russia | `ru_inn` | Russian INN | | Russia | `ru_kpp` | Russian KPP |
+    /// | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal
+    /// NINEA Number | | Serbia | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst`
+    /// | Singaporean GST | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia
+    /// | `eu_vat` | European VAT Number | | Slovenia | `eu_vat` | European VAT Number
+    /// | | Slovenia | `si_tin` | Slovenia Tax Number (davčna številka) | | South
+    /// Africa | `za_vat` | South African VAT Number | | South Korea | `kr_brn` |
+    /// Korean BRN | | Spain | `es_cif` | Spanish NIF Number (previously Spanish CIF
+    /// Number) | | Spain | `eu_vat` | European VAT Number | | Suriname | `sr_fin`
+    /// | Suriname FIN Number | | Sweden | `eu_vat` | European VAT Number | | Switzerland
+    /// | `ch_uid` | Switzerland UID Number | | Switzerland | `ch_vat` | Switzerland
+    /// VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT | | Tajikistan | `tj_tin`
+    /// | Tajikistan Tax Identification Number | | Tanzania | `tz_vat` | Tanzania
+    /// VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey | `tr_tin` | Turkish
+    /// Tax Identification Number | | Uganda | `ug_tin` | Uganda Tax Identification
+    /// Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United Arab Emirates | `ae_trn`
+    /// | United Arab Emirates TRN | | United Kingdom | `gb_vat` | United Kingdom
+    /// VAT Number | | United States | `us_ein` | United States EIN | | Uruguay |
+    /// `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin` | Uzbekistan TIN
+    /// Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number | | Venezuela | `ve_rif`
+    /// | Venezuelan RIF Number | | Vietnam | `vn_tin` | Vietnamese Tax ID Number
+    /// | | Zambia | `zm_tin` | Zambia Tax Identification Number | | Zimbabwe | `zw_tin`
+    /// | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public CustomerTaxID? TaxID
     {
@@ -404,6 +409,8 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
     public CustomerUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParams(CustomerUpdateParams customerUpdateParams)
         : base(customerUpdateParams)
     {
@@ -411,6 +418,7 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
         this._rawBodyData = new(customerUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CustomerUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -451,6 +459,30 @@ public sealed record class CustomerUpdateParams : ParamsBase
         );
     }
 
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            new Dictionary<string, object?>()
+            {
+                ["CustomerID"] = this.CustomerID,
+                ["HeaderData"] = this._rawHeaderData.Freeze(),
+                ["QueryData"] = this._rawQueryData.Freeze(),
+                ["BodyData"] = this._rawBodyData.Freeze(),
+            },
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CustomerUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
+    }
+
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
@@ -478,6 +510,11 @@ public sealed record class CustomerUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -530,10 +567,13 @@ public sealed record class CustomerUpdateParamsPaymentConfiguration : JsonModel
 
     public CustomerUpdateParamsPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsPaymentConfiguration(
         CustomerUpdateParamsPaymentConfiguration customerUpdateParamsPaymentConfiguration
     )
         : base(customerUpdateParamsPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsPaymentConfiguration(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -633,10 +673,13 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
 
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
         CustomerUpdateParamsPaymentConfigurationPaymentProvider customerUpdateParamsPaymentConfigurationPaymentProvider
     )
         : base(customerUpdateParamsPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1193,10 +1236,10 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
         );
     }
 
-    public virtual bool Equals(CustomerUpdateParamsTaxConfiguration? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomerUpdateParamsTaxConfiguration? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1205,6 +1248,20 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewAvalaraTaxConfiguration _ => 0,
+            NewTaxJarConfiguration _ => 1,
+            NewSphereConfiguration _ => 2,
+            CustomerUpdateParamsTaxConfigurationNumeral _ => 3,
+            CustomerUpdateParamsTaxConfigurationAnrok _ => 4,
+            CustomerUpdateParamsTaxConfigurationStripe _ => 5,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomerUpdateParamsTaxConfigurationConverter
@@ -1439,10 +1496,13 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : JsonMod
         this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsTaxConfigurationNumeral(
         CustomerUpdateParamsTaxConfigurationNumeral customerUpdateParamsTaxConfigurationNumeral
     )
         : base(customerUpdateParamsTaxConfigurationNumeral) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsTaxConfigurationNumeral(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1544,10 +1604,13 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsTaxConfigurationAnrok(
         CustomerUpdateParamsTaxConfigurationAnrok customerUpdateParamsTaxConfigurationAnrok
     )
         : base(customerUpdateParamsTaxConfigurationAnrok) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsTaxConfigurationAnrok(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1649,10 +1712,13 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : JsonMode
         this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateParamsTaxConfigurationStripe(
         CustomerUpdateParamsTaxConfigurationStripe customerUpdateParamsTaxConfigurationStripe
     )
         : base(customerUpdateParamsTaxConfigurationStripe) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateParamsTaxConfigurationStripe(
         IReadOnlyDictionary<string, JsonElement> rawData

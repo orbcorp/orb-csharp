@@ -193,6 +193,29 @@ public class LedgerListByExternalIDParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new LedgerListByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Cursor = "cursor",
+            EntryStatus = LedgerListByExternalIDParamsEntryStatus.Committed,
+            EntryType = LedgerListByExternalIDParamsEntryType.Increment,
+            Limit = 1,
+            MinimumAmount = "minimum_amount",
+        };
+
+        LedgerListByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class LedgerListByExternalIDParamsEntryStatusTest : TestBase

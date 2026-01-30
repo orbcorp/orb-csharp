@@ -350,31 +350,32 @@ public sealed record class Customer : JsonModel
     /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
     /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
     /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
-    /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
+    /// | | Poland | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish
+    /// Tax ID Number | | Portugal | `eu_vat` | European VAT Number | | Romania |
+    /// `eu_vat` | European VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number
+    /// | | Russia | `ru_inn` | Russian INN | | Russia | `ru_kpp` | Russian KPP |
+    /// | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal
+    /// NINEA Number | | Serbia | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst`
+    /// | Singaporean GST | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia
+    /// | `eu_vat` | European VAT Number | | Slovenia | `eu_vat` | European VAT Number
+    /// | | Slovenia | `si_tin` | Slovenia Tax Number (davčna številka) | | South
+    /// Africa | `za_vat` | South African VAT Number | | South Korea | `kr_brn` |
+    /// Korean BRN | | Spain | `es_cif` | Spanish NIF Number (previously Spanish CIF
+    /// Number) | | Spain | `eu_vat` | European VAT Number | | Suriname | `sr_fin`
+    /// | Suriname FIN Number | | Sweden | `eu_vat` | European VAT Number | | Switzerland
+    /// | `ch_uid` | Switzerland UID Number | | Switzerland | `ch_vat` | Switzerland
+    /// VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT | | Tajikistan | `tj_tin`
+    /// | Tajikistan Tax Identification Number | | Tanzania | `tz_vat` | Tanzania
+    /// VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey | `tr_tin` | Turkish
+    /// Tax Identification Number | | Uganda | `ug_tin` | Uganda Tax Identification
+    /// Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United Arab Emirates | `ae_trn`
+    /// | United Arab Emirates TRN | | United Kingdom | `gb_vat` | United Kingdom
+    /// VAT Number | | United States | `us_ein` | United States EIN | | Uruguay |
+    /// `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin` | Uzbekistan TIN
+    /// Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number | | Venezuela | `ve_rif`
+    /// | Venezuelan RIF Number | | Vietnam | `vn_tin` | Vietnamese Tax ID Number
+    /// | | Zambia | `zm_tin` | Zambia Tax Identification Number | | Zimbabwe | `zw_tin`
+    /// | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public required CustomerTaxID? TaxID
     {
@@ -487,8 +488,11 @@ public sealed record class Customer : JsonModel
 
     public Customer() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Customer(Customer customer)
         : base(customer) { }
+#pragma warning restore CS8618
 
     public Customer(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -561,8 +565,11 @@ public sealed record class Hierarchy : JsonModel
 
     public Hierarchy() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Hierarchy(Hierarchy hierarchy)
         : base(hierarchy) { }
+#pragma warning restore CS8618
 
     public Hierarchy(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -693,8 +700,11 @@ public sealed record class AccountingSyncConfiguration : JsonModel
 
     public AccountingSyncConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingSyncConfiguration(AccountingSyncConfiguration accountingSyncConfiguration)
         : base(accountingSyncConfiguration) { }
+#pragma warning restore CS8618
 
     public AccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -760,8 +770,11 @@ public sealed record class AccountingProvider : JsonModel
 
     public AccountingProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingProvider(AccountingProvider accountingProvider)
         : base(accountingProvider) { }
+#pragma warning restore CS8618
 
     public AccountingProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -882,8 +895,11 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
 
     public CustomerPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerPaymentConfiguration(CustomerPaymentConfiguration customerPaymentConfiguration)
         : base(customerPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerPaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -980,10 +996,13 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
 
     public CustomerPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerPaymentConfigurationPaymentProvider(
         CustomerPaymentConfigurationPaymentProvider customerPaymentConfigurationPaymentProvider
     )
         : base(customerPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1093,8 +1112,11 @@ public sealed record class ReportingConfiguration : JsonModel
 
     public ReportingConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReportingConfiguration(ReportingConfiguration reportingConfiguration)
         : base(reportingConfiguration) { }
+#pragma warning restore CS8618
 
     public ReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

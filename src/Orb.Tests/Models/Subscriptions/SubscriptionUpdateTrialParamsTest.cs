@@ -72,6 +72,21 @@ public class SubscriptionUpdateTrialParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUpdateTrialParams
+        {
+            SubscriptionID = "subscription_id",
+            TrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+            Shift = true,
+        };
+
+        SubscriptionUpdateTrialParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }
 
 public class TrialEndDateTest : TestBase

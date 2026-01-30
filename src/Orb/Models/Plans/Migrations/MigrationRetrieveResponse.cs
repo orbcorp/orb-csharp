@@ -44,14 +44,12 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("plan_id", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Plans.Migrations.Status> Status
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Plans.Migrations.Status>
-            >("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawData.Set("status", value); }
     }
@@ -67,8 +65,11 @@ public sealed record class MigrationRetrieveResponse : JsonModel
 
     public MigrationRetrieveResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationRetrieveResponse(MigrationRetrieveResponse migrationRetrieveResponse)
         : base(migrationRetrieveResponse) { }
+#pragma warning restore CS8618
 
     public MigrationRetrieveResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -316,10 +317,10 @@ public record class EffectiveTime : ModelBase
         this.Switch((_) => { }, (_) => { }, (unionMember2) => unionMember2.Validate());
     }
 
-    public virtual bool Equals(EffectiveTime? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EffectiveTime? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -328,6 +329,17 @@ public record class EffectiveTime : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            ApiEnum<string, UnionMember2> _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EffectiveTimeConverter : JsonConverter<EffectiveTime?>
@@ -371,7 +383,10 @@ sealed class EffectiveTimeConverter : JsonConverter<EffectiveTime?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -432,7 +447,7 @@ sealed class UnionMember2Converter : JsonConverter<UnionMember2>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Plans.Migrations.StatusConverter))]
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     NotStarted,
@@ -442,9 +457,9 @@ public enum Status
     Canceled,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.Plans.Migrations.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.Plans.Migrations.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -452,30 +467,26 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.Plans.Migrations
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "not_started" => global::Orb.Models.Plans.Migrations.Status.NotStarted,
-            "in_progress" => global::Orb.Models.Plans.Migrations.Status.InProgress,
-            "completed" => global::Orb.Models.Plans.Migrations.Status.Completed,
-            "action_needed" => global::Orb.Models.Plans.Migrations.Status.ActionNeeded,
-            "canceled" => global::Orb.Models.Plans.Migrations.Status.Canceled,
-            _ => (global::Orb.Models.Plans.Migrations.Status)(-1),
+            "not_started" => Status.NotStarted,
+            "in_progress" => Status.InProgress,
+            "completed" => Status.Completed,
+            "action_needed" => Status.ActionNeeded,
+            "canceled" => Status.Canceled,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Plans.Migrations.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Plans.Migrations.Status.NotStarted => "not_started",
-                global::Orb.Models.Plans.Migrations.Status.InProgress => "in_progress",
-                global::Orb.Models.Plans.Migrations.Status.Completed => "completed",
-                global::Orb.Models.Plans.Migrations.Status.ActionNeeded => "action_needed",
-                global::Orb.Models.Plans.Migrations.Status.Canceled => "canceled",
+                Status.NotStarted => "not_started",
+                Status.InProgress => "in_progress",
+                Status.Completed => "completed",
+                Status.ActionNeeded => "action_needed",
+                Status.Canceled => "canceled",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -27,4 +27,14 @@ public class InvoiceFetchUpcomingParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceFetchUpcomingParams { SubscriptionID = "subscription_id" };
+
+        InvoiceFetchUpcomingParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

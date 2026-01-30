@@ -410,6 +410,38 @@ public class NewAllocationPriceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewAllocationPrice
+        {
+            Amount = "10.00",
+            Cadence = Cadence.Monthly,
+            Currency = "USD",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            ExpiresAtEndOfCadence = true,
+            Filters =
+            [
+                new()
+                {
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ItemID = "item_id",
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        NewAllocationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CadenceTest : TestBase
@@ -565,6 +597,21 @@ public class NewAllocationPriceFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewAllocationPriceFilter
+        {
+            Field = NewAllocationPriceFilterField.ItemID,
+            Operator = NewAllocationPriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        NewAllocationPriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

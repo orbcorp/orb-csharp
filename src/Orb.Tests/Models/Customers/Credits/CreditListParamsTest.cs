@@ -122,4 +122,21 @@ public class CreditListParamsTest : TestBase
             url
         );
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CreditListParams
+        {
+            CustomerID = "customer_id",
+            Currency = "currency",
+            Cursor = "cursor",
+            IncludeAllBlocks = true,
+            Limit = 1,
+        };
+
+        CreditListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

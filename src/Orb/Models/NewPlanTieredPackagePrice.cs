@@ -301,8 +301,11 @@ public sealed record class NewPlanTieredPackagePrice : JsonModel
 
     public NewPlanTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredPackagePrice(NewPlanTieredPackagePrice newPlanTieredPackagePrice)
         : base(newPlanTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -496,10 +499,13 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfig : JsonMo
 
     public NewPlanTieredPackagePriceTieredPackageConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredPackagePriceTieredPackageConfig(
         NewPlanTieredPackagePriceTieredPackageConfig newPlanTieredPackagePriceTieredPackageConfig
     )
         : base(newPlanTieredPackagePriceTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredPackagePriceTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -577,10 +583,13 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfigTier : Js
 
     public NewPlanTieredPackagePriceTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanTieredPackagePriceTieredPackageConfigTier(
         NewPlanTieredPackagePriceTieredPackageConfigTier newPlanTieredPackagePriceTieredPackageConfigTier
     )
         : base(newPlanTieredPackagePriceTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public NewPlanTieredPackagePriceTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -803,10 +812,10 @@ public record class NewPlanTieredPackagePriceConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewPlanTieredPackagePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewPlanTieredPackagePriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -815,6 +824,16 @@ public record class NewPlanTieredPackagePriceConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanTieredPackagePriceConversionRateConfigConverter

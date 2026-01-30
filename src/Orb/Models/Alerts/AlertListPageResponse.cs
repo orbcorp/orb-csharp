@@ -49,8 +49,11 @@ public sealed record class AlertListPageResponse : JsonModel
 
     public AlertListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AlertListPageResponse(AlertListPageResponse alertListPageResponse)
         : base(alertListPageResponse) { }
+#pragma warning restore CS8618
 
     public AlertListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -36,12 +36,12 @@ public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice : JsonM
     /// <summary>
     /// Configuration for grouped_with_metered_minimum pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig GroupedWithMeteredMinimumConfig
+    public required GroupedWithMeteredMinimumConfig GroupedWithMeteredMinimumConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig>(
+            return this._rawData.GetNotNullClass<GroupedWithMeteredMinimumConfig>(
                 "grouped_with_metered_minimum_config"
             );
         }
@@ -307,10 +307,13 @@ public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice : JsonM
 
     public NewSubscriptionGroupedWithMeteredMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionGroupedWithMeteredMinimumPrice(
         NewSubscriptionGroupedWithMeteredMinimumPrice newSubscriptionGroupedWithMeteredMinimumPrice
     )
         : base(newSubscriptionGroupedWithMeteredMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionGroupedWithMeteredMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -410,8 +413,8 @@ sealed class NewSubscriptionGroupedWithMeteredMinimumPriceCadenceConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig,
-        global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfigFromRaw
+        GroupedWithMeteredMinimumConfig,
+        GroupedWithMeteredMinimumConfigFromRaw
     >)
 )]
 public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
@@ -459,18 +462,16 @@ public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
     /// <summary>
     /// Scale the unit rates by the scaling factor.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.ScalingFactor> ScalingFactors
+    public required IReadOnlyList<ScalingFactor> ScalingFactors
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.ScalingFactor>
-            >("scaling_factors");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ScalingFactor>>("scaling_factors");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.ScalingFactor>>(
+            this._rawData.Set<ImmutableArray<ScalingFactor>>(
                 "scaling_factors",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -494,18 +495,16 @@ public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
     /// Apply per unit pricing to each pricing value. The minimum amount is applied
     /// any unmatched usage.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.UnitAmount> UnitAmounts
+    public required IReadOnlyList<UnitAmount> UnitAmounts
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.UnitAmount>
-            >("unit_amounts");
+            return this._rawData.GetNotNullStruct<ImmutableArray<UnitAmount>>("unit_amounts");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.UnitAmount>>(
+            this._rawData.Set<ImmutableArray<UnitAmount>>(
                 "unit_amounts",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -531,10 +530,13 @@ public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
 
     public GroupedWithMeteredMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedWithMeteredMinimumConfig(
-        global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig groupedWithMeteredMinimumConfig
+        GroupedWithMeteredMinimumConfig groupedWithMeteredMinimumConfig
     )
         : base(groupedWithMeteredMinimumConfig) { }
+#pragma warning restore CS8618
 
     public GroupedWithMeteredMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -549,8 +551,8 @@ public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedWithMeteredMinimumConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedWithMeteredMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -558,24 +560,18 @@ public sealed record class GroupedWithMeteredMinimumConfig : JsonModel
     }
 }
 
-class GroupedWithMeteredMinimumConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig>
+class GroupedWithMeteredMinimumConfigFromRaw : IFromRawJson<GroupedWithMeteredMinimumConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig FromRawUnchecked(
+    public GroupedWithMeteredMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig.FromRawUnchecked(rawData);
+    ) => GroupedWithMeteredMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a scaling factor
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ScalingFactor,
-        global::Orb.Models.Subscriptions.ScalingFactorFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<ScalingFactor, ScalingFactorFromRaw>))]
 public sealed record class ScalingFactor : JsonModel
 {
     public required string ScalingFactorValue
@@ -607,8 +603,11 @@ public sealed record class ScalingFactor : JsonModel
 
     public ScalingFactor() { }
 
-    public ScalingFactor(global::Orb.Models.Subscriptions.ScalingFactor scalingFactor)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ScalingFactor(ScalingFactor scalingFactor)
         : base(scalingFactor) { }
+#pragma warning restore CS8618
 
     public ScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -623,32 +622,24 @@ public sealed record class ScalingFactor : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ScalingFactorFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ScalingFactor FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="ScalingFactorFromRaw.FromRawUnchecked"/>
+    public static ScalingFactor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class ScalingFactorFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.ScalingFactor>
+class ScalingFactorFromRaw : IFromRawJson<ScalingFactor>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ScalingFactor FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.ScalingFactor.FromRawUnchecked(rawData);
+    public ScalingFactor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ScalingFactor.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a unit amount
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.UnitAmount,
-        global::Orb.Models.Subscriptions.UnitAmountFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<UnitAmount, UnitAmountFromRaw>))]
 public sealed record class UnitAmount : JsonModel
 {
     public required string PricingValue
@@ -683,8 +674,11 @@ public sealed record class UnitAmount : JsonModel
 
     public UnitAmount() { }
 
-    public UnitAmount(global::Orb.Models.Subscriptions.UnitAmount unitAmount)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public UnitAmount(UnitAmount unitAmount)
         : base(unitAmount) { }
+#pragma warning restore CS8618
 
     public UnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -699,21 +693,18 @@ public sealed record class UnitAmount : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.UnitAmountFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.UnitAmount FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="UnitAmountFromRaw.FromRawUnchecked"/>
+    public static UnitAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UnitAmountFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.UnitAmount>
+class UnitAmountFromRaw : IFromRawJson<UnitAmount>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.UnitAmount FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.UnitAmount.FromRawUnchecked(rawData);
+    public UnitAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        UnitAmount.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -953,10 +944,10 @@ public record class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateC
 
     public virtual bool Equals(
         NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -965,6 +956,16 @@ public record class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateC
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigConverter

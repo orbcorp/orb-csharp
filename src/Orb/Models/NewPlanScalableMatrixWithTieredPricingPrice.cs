@@ -304,10 +304,13 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPrice : JsonMod
 
     public NewPlanScalableMatrixWithTieredPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithTieredPricingPrice(
         NewPlanScalableMatrixWithTieredPricingPrice newPlanScalableMatrixWithTieredPricingPrice
     )
         : base(newPlanScalableMatrixWithTieredPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -541,10 +544,13 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig(
         NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig
     )
         : base(newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -637,12 +643,15 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
         NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
     )
         : base(
             newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
         ) { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -724,11 +733,14 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier()
     { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier(
         NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier
     )
         : base(newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier)
     { }
+#pragma warning restore CS8618
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -958,10 +970,10 @@ public record class NewPlanScalableMatrixWithTieredPricingPriceConversionRateCon
 
     public virtual bool Equals(
         NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -970,6 +982,16 @@ public record class NewPlanScalableMatrixWithTieredPricingPriceConversionRateCon
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConverter

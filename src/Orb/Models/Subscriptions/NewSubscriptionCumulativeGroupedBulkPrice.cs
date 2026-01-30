@@ -36,12 +36,12 @@ public sealed record class NewSubscriptionCumulativeGroupedBulkPrice : JsonModel
     /// <summary>
     /// Configuration for cumulative_grouped_bulk pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig CumulativeGroupedBulkConfig
+    public required CumulativeGroupedBulkConfig CumulativeGroupedBulkConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig>(
+            return this._rawData.GetNotNullClass<CumulativeGroupedBulkConfig>(
                 "cumulative_grouped_bulk_config"
             );
         }
@@ -304,10 +304,13 @@ public sealed record class NewSubscriptionCumulativeGroupedBulkPrice : JsonModel
 
     public NewSubscriptionCumulativeGroupedBulkPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionCumulativeGroupedBulkPrice(
         NewSubscriptionCumulativeGroupedBulkPrice newSubscriptionCumulativeGroupedBulkPrice
     )
         : base(newSubscriptionCumulativeGroupedBulkPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionCumulativeGroupedBulkPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -406,28 +409,25 @@ sealed class NewSubscriptionCumulativeGroupedBulkPriceCadenceConverter
 /// Configuration for cumulative_grouped_bulk pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig,
-        global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfigFromRaw
-    >)
+    typeof(JsonModelConverter<CumulativeGroupedBulkConfig, CumulativeGroupedBulkConfigFromRaw>)
 )]
 public sealed record class CumulativeGroupedBulkConfig : JsonModel
 {
     /// <summary>
     /// Each tier lower bound must have the same group of values.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.DimensionValue> DimensionValues
+    public required IReadOnlyList<DimensionValue> DimensionValues
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.DimensionValue>
-            >("dimension_values");
+            return this._rawData.GetNotNullStruct<ImmutableArray<DimensionValue>>(
+                "dimension_values"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.DimensionValue>>(
+            this._rawData.Set<ImmutableArray<DimensionValue>>(
                 "dimension_values",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -456,10 +456,11 @@ public sealed record class CumulativeGroupedBulkConfig : JsonModel
 
     public CumulativeGroupedBulkConfig() { }
 
-    public CumulativeGroupedBulkConfig(
-        global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig cumulativeGroupedBulkConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public CumulativeGroupedBulkConfig(CumulativeGroupedBulkConfig cumulativeGroupedBulkConfig)
         : base(cumulativeGroupedBulkConfig) { }
+#pragma warning restore CS8618
 
     public CumulativeGroupedBulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -474,8 +475,8 @@ public sealed record class CumulativeGroupedBulkConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig FromRawUnchecked(
+    /// <inheritdoc cref="CumulativeGroupedBulkConfigFromRaw.FromRawUnchecked"/>
+    public static CumulativeGroupedBulkConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -483,24 +484,18 @@ public sealed record class CumulativeGroupedBulkConfig : JsonModel
     }
 }
 
-class CumulativeGroupedBulkConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig>
+class CumulativeGroupedBulkConfigFromRaw : IFromRawJson<CumulativeGroupedBulkConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig FromRawUnchecked(
+    public CumulativeGroupedBulkConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
+    ) => CumulativeGroupedBulkConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.DimensionValue,
-        global::Orb.Models.Subscriptions.DimensionValueFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<DimensionValue, DimensionValueFromRaw>))]
 public sealed record class DimensionValue : JsonModel
 {
     /// <summary>
@@ -552,8 +547,11 @@ public sealed record class DimensionValue : JsonModel
 
     public DimensionValue() { }
 
-    public DimensionValue(global::Orb.Models.Subscriptions.DimensionValue dimensionValue)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DimensionValue(DimensionValue dimensionValue)
         : base(dimensionValue) { }
+#pragma warning restore CS8618
 
     public DimensionValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -568,21 +566,18 @@ public sealed record class DimensionValue : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.DimensionValueFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.DimensionValue FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DimensionValueFromRaw.FromRawUnchecked"/>
+    public static DimensionValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DimensionValueFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.DimensionValue>
+class DimensionValueFromRaw : IFromRawJson<DimensionValue>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.DimensionValue FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.DimensionValue.FromRawUnchecked(rawData);
+    public DimensionValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DimensionValue.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -820,10 +815,12 @@ public record class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfi
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -832,6 +829,16 @@ public record class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfi
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfigConverter

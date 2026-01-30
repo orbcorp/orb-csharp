@@ -298,8 +298,11 @@ public sealed record class NewSubscriptionMatrixPrice : JsonModel
 
     public NewSubscriptionMatrixPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionMatrixPrice(NewSubscriptionMatrixPrice newSubscriptionMatrixPrice)
         : base(newSubscriptionMatrixPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionMatrixPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -624,10 +627,10 @@ public record class NewSubscriptionMatrixPriceConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionMatrixPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewSubscriptionMatrixPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -636,6 +639,16 @@ public record class NewSubscriptionMatrixPriceConversionRateConfig : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionMatrixPriceConversionRateConfigConverter

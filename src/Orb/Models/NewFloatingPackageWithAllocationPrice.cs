@@ -287,10 +287,13 @@ public sealed record class NewFloatingPackageWithAllocationPrice : JsonModel
 
     public NewFloatingPackageWithAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingPackageWithAllocationPrice(
         NewFloatingPackageWithAllocationPrice newFloatingPackageWithAllocationPrice
     )
         : base(newFloatingPackageWithAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingPackageWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -478,8 +481,11 @@ public sealed record class PackageWithAllocationConfig : JsonModel
 
     public PackageWithAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PackageWithAllocationConfig(PackageWithAllocationConfig packageWithAllocationConfig)
         : base(packageWithAllocationConfig) { }
+#pragma warning restore CS8618
 
     public PackageWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -699,10 +705,10 @@ public record class NewFloatingPackageWithAllocationPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingPackageWithAllocationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingPackageWithAllocationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -711,6 +717,16 @@ public record class NewFloatingPackageWithAllocationPriceConversionRateConfig : 
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingPackageWithAllocationPriceConversionRateConfigConverter

@@ -93,4 +93,22 @@ public class SubscriptionUpdateParamsTest : TestBase
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/subscriptions/subscription_id"), url);
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUpdateParams
+        {
+            SubscriptionID = "subscription_id",
+            AutoCollection = true,
+            DefaultInvoiceMemo = "default_invoice_memo",
+            InvoicingThreshold = "10.00",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+        };
+
+        SubscriptionUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
 }

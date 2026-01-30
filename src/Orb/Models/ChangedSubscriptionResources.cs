@@ -120,8 +120,11 @@ public sealed record class ChangedSubscriptionResources : JsonModel
 
     public ChangedSubscriptionResources() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ChangedSubscriptionResources(ChangedSubscriptionResources changedSubscriptionResources)
         : base(changedSubscriptionResources) { }
+#pragma warning restore CS8618
 
     public ChangedSubscriptionResources(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -352,31 +355,32 @@ public sealed record class CreatedInvoice : JsonModel
     /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
     /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
     /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
-    /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
+    /// | | Poland | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish
+    /// Tax ID Number | | Portugal | `eu_vat` | European VAT Number | | Romania |
+    /// `eu_vat` | European VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number
+    /// | | Russia | `ru_inn` | Russian INN | | Russia | `ru_kpp` | Russian KPP |
+    /// | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal
+    /// NINEA Number | | Serbia | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst`
+    /// | Singaporean GST | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia
+    /// | `eu_vat` | European VAT Number | | Slovenia | `eu_vat` | European VAT Number
+    /// | | Slovenia | `si_tin` | Slovenia Tax Number (davčna številka) | | South
+    /// Africa | `za_vat` | South African VAT Number | | South Korea | `kr_brn` |
+    /// Korean BRN | | Spain | `es_cif` | Spanish NIF Number (previously Spanish CIF
+    /// Number) | | Spain | `eu_vat` | European VAT Number | | Suriname | `sr_fin`
+    /// | Suriname FIN Number | | Sweden | `eu_vat` | European VAT Number | | Switzerland
+    /// | `ch_uid` | Switzerland UID Number | | Switzerland | `ch_vat` | Switzerland
+    /// VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT | | Tajikistan | `tj_tin`
+    /// | Tajikistan Tax Identification Number | | Tanzania | `tz_vat` | Tanzania
+    /// VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey | `tr_tin` | Turkish
+    /// Tax Identification Number | | Uganda | `ug_tin` | Uganda Tax Identification
+    /// Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United Arab Emirates | `ae_trn`
+    /// | United Arab Emirates TRN | | United Kingdom | `gb_vat` | United Kingdom
+    /// VAT Number | | United States | `us_ein` | United States EIN | | Uruguay |
+    /// `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin` | Uzbekistan TIN
+    /// Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number | | Venezuela | `ve_rif`
+    /// | Venezuelan RIF Number | | Vietnam | `vn_tin` | Vietnamese Tax ID Number
+    /// | | Zambia | `zm_tin` | Zambia Tax Identification Number | | Zimbabwe | `zw_tin`
+    /// | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public required CustomerTaxID? CustomerTaxID
     {
@@ -893,9 +897,12 @@ public sealed record class CreatedInvoice : JsonModel
     [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice(CreatedInvoice createdInvoice)
         : base(createdInvoice) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -1001,8 +1008,11 @@ public sealed record class AutoCollection : JsonModel
 
     public AutoCollection() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AutoCollection(AutoCollection autoCollection)
         : base(autoCollection) { }
+#pragma warning restore CS8618
 
     public AutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1125,8 +1135,11 @@ public sealed record class CreditNote : JsonModel
 
     public CreditNote() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNote(CreditNote creditNote)
         : base(creditNote) { }
+#pragma warning restore CS8618
 
     public CreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1296,8 +1309,11 @@ public sealed record class CustomerBalanceTransaction : JsonModel
 
     public CustomerBalanceTransaction() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerBalanceTransaction(CustomerBalanceTransaction customerBalanceTransaction)
         : base(customerBalanceTransaction) { }
+#pragma warning restore CS8618
 
     public CustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1783,8 +1799,11 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LineItem(LineItem lineItem)
         : base(lineItem) { }
+#pragma warning restore CS8618
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2193,10 +2212,10 @@ public record class LineItemAdjustment : ModelBase
         );
     }
 
-    public virtual bool Equals(LineItemAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LineItemAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2205,6 +2224,19 @@ public record class LineItemAdjustment : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            MonetaryUsageDiscountAdjustment _ => 0,
+            MonetaryAmountDiscountAdjustment _ => 1,
+            MonetaryPercentageDiscountAdjustment _ => 2,
+            MonetaryMinimumAdjustment _ => 3,
+            MonetaryMaximumAdjustment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LineItemAdjustmentConverter : JsonConverter<LineItemAdjustment>
@@ -2606,10 +2638,10 @@ public record class SubLineItem : ModelBase
         );
     }
 
-    public virtual bool Equals(SubLineItem? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubLineItem? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2618,6 +2650,17 @@ public record class SubLineItem : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            MatrixSubLineItem _ => 0,
+            TierSubLineItem _ => 1,
+            OtherSubLineItem _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubLineItemConverter : JsonConverter<SubLineItem>
@@ -2835,8 +2878,11 @@ public sealed record class PaymentAttempt : JsonModel
 
     public PaymentAttempt() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PaymentAttempt(PaymentAttempt paymentAttempt)
         : base(paymentAttempt) { }
+#pragma warning restore CS8618
 
     public PaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {

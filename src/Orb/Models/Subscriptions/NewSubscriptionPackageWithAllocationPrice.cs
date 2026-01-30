@@ -76,12 +76,12 @@ public sealed record class NewSubscriptionPackageWithAllocationPrice : JsonModel
     /// <summary>
     /// Configuration for package_with_allocation pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.PackageWithAllocationConfig PackageWithAllocationConfig
+    public required PackageWithAllocationConfig PackageWithAllocationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.PackageWithAllocationConfig>(
+            return this._rawData.GetNotNullClass<PackageWithAllocationConfig>(
                 "package_with_allocation_config"
             );
         }
@@ -303,10 +303,13 @@ public sealed record class NewSubscriptionPackageWithAllocationPrice : JsonModel
 
     public NewSubscriptionPackageWithAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionPackageWithAllocationPrice(
         NewSubscriptionPackageWithAllocationPrice newSubscriptionPackageWithAllocationPrice
     )
         : base(newSubscriptionPackageWithAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionPackageWithAllocationPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -452,10 +455,7 @@ sealed class NewSubscriptionPackageWithAllocationPriceModelTypeConverter
 /// Configuration for package_with_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.PackageWithAllocationConfig,
-        global::Orb.Models.Subscriptions.PackageWithAllocationConfigFromRaw
-    >)
+    typeof(JsonModelConverter<PackageWithAllocationConfig, PackageWithAllocationConfigFromRaw>)
 )]
 public sealed record class PackageWithAllocationConfig : JsonModel
 {
@@ -499,10 +499,11 @@ public sealed record class PackageWithAllocationConfig : JsonModel
 
     public PackageWithAllocationConfig() { }
 
-    public PackageWithAllocationConfig(
-        global::Orb.Models.Subscriptions.PackageWithAllocationConfig packageWithAllocationConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PackageWithAllocationConfig(PackageWithAllocationConfig packageWithAllocationConfig)
         : base(packageWithAllocationConfig) { }
+#pragma warning restore CS8618
 
     public PackageWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -517,8 +518,8 @@ public sealed record class PackageWithAllocationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.PackageWithAllocationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.PackageWithAllocationConfig FromRawUnchecked(
+    /// <inheritdoc cref="PackageWithAllocationConfigFromRaw.FromRawUnchecked"/>
+    public static PackageWithAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -526,13 +527,12 @@ public sealed record class PackageWithAllocationConfig : JsonModel
     }
 }
 
-class PackageWithAllocationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.PackageWithAllocationConfig>
+class PackageWithAllocationConfigFromRaw : IFromRawJson<PackageWithAllocationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.PackageWithAllocationConfig FromRawUnchecked(
+    public PackageWithAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.PackageWithAllocationConfig.FromRawUnchecked(rawData);
+    ) => PackageWithAllocationConfig.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionPackageWithAllocationPriceConversionRateConfigConverter))]
@@ -723,10 +723,12 @@ public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfi
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionPackageWithAllocationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewSubscriptionPackageWithAllocationPriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -735,6 +737,16 @@ public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfi
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionPackageWithAllocationPriceConversionRateConfigConverter
