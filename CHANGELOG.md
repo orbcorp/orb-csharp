@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.2.0 (2026-01-30)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/orbcorp/orb-csharp/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([2cd2dd8](https://github.com/orbcorp/orb-csharp/commit/2cd2dd8f519176f3618044ca6d4641e678af001b))
+* **api:** api update ([d8f27e8](https://github.com/orbcorp/orb-csharp/commit/d8f27e8e10dc99f7d6e51186171181a05a59547d))
+* **api:** api update ([3bd6cd6](https://github.com/orbcorp/orb-csharp/commit/3bd6cd6413b421ff644eee7f195e6fe0af47c56c))
+* **client:** add `ToString` and `Equals` methods ([fed62bb](https://github.com/orbcorp/orb-csharp/commit/fed62bbc34caf8266c8c6b7a6646754677d45637))
+* **client:** add `ToString` to `ApiEnum` ([551d3d9](https://github.com/orbcorp/orb-csharp/commit/551d3d983edbc2dd99c0143b2779146fa00ae80f))
+* **client:** add Equals and ToString to params ([8a87021](https://github.com/orbcorp/orb-csharp/commit/8a870218bc1eebf9e4430ed69fedc206e7b9f25c))
+
+
+### Bug Fixes
+
+* **client:** handle unions containing unknown types properly ([bb13041](https://github.com/orbcorp/orb-csharp/commit/bb13041f80e071a51a8aa845c2a5b2e720e4cd75))
+* **client:** improve union equality method ([5635581](https://github.com/orbcorp/orb-csharp/commit/563558107f3fa7d5e947ecf758875794c3e04dff))
+
+
+### Chores
+
+* change visibility of QueryString() and AddDefaultHeaders ([3f5afb6](https://github.com/orbcorp/orb-csharp/commit/3f5afb6e4e6d0c32a52e82c68c219391a09a0313))
+* **internal:** add copy constructor tests ([9c7927a](https://github.com/orbcorp/orb-csharp/commit/9c7927a2079895ffcd40cc12611748f7b61bad02))
+* **internal:** codegen related update ([2bc3e43](https://github.com/orbcorp/orb-csharp/commit/2bc3e436b724ff58d3191ea1c4632be595a9e5f5))
+* **internal:** ignore stainless-internal artifacts ([f9055f0](https://github.com/orbcorp/orb-csharp/commit/f9055f0118384c77b1ef687b756e5a49f3f417dc))
+* **internal:** improve HttpResponse qualification ([2a92abb](https://github.com/orbcorp/orb-csharp/commit/2a92abb2b86492e4018b9c8fa5d75ad9486d55fc))
+* **internal:** simplify imports ([79d3471](https://github.com/orbcorp/orb-csharp/commit/79d34710f779ca309e84faddc3e28bfa5b9c73bc))
+* **internal:** update `actions/checkout` version ([5849a89](https://github.com/orbcorp/orb-csharp/commit/5849a89be72919068177e2830142c600a0bb7aeb))
+
 ## 0.1.0 (2026-01-14)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/orbcorp/orb-csharp/compare/v0.0.1...v0.1.0)
