@@ -32,6 +32,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            LicenseType = new("id"),
         };
 
         string expectedID = "XuxCbt7x9L82yyeF";
@@ -58,6 +59,7 @@ public class AlertTest : TestBase
         [
             new() { InAlert = true, ThresholdValue = 0 },
         ];
+        LicenseType expectedLicenseType = new("id");
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -80,6 +82,7 @@ public class AlertTest : TestBase
         {
             Assert.Equal(expectedBalanceAlertStatus[i], model.BalanceAlertStatus[i]);
         }
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -104,6 +107,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            LicenseType = new("id"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -134,6 +138,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            LicenseType = new("id"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -164,6 +169,7 @@ public class AlertTest : TestBase
         [
             new() { InAlert = true, ThresholdValue = 0 },
         ];
+        LicenseType expectedLicenseType = new("id");
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -186,6 +192,7 @@ public class AlertTest : TestBase
         {
             Assert.Equal(expectedBalanceAlertStatus[i], deserialized.BalanceAlertStatus[i]);
         }
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -210,6 +217,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            LicenseType = new("id"),
         };
 
         model.Validate();
@@ -240,6 +248,8 @@ public class AlertTest : TestBase
 
         Assert.Null(model.BalanceAlertStatus);
         Assert.False(model.RawData.ContainsKey("balance_alert_status"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -291,10 +301,13 @@ public class AlertTest : TestBase
             Type = AlertType.CreditBalanceDepleted,
 
             BalanceAlertStatus = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.BalanceAlertStatus);
         Assert.True(model.RawData.ContainsKey("balance_alert_status"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -320,6 +333,7 @@ public class AlertTest : TestBase
             Type = AlertType.CreditBalanceDepleted,
 
             BalanceAlertStatus = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -347,6 +361,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            LicenseType = new("id"),
         };
 
         Alert copied = new(model);
@@ -517,6 +532,7 @@ public class AlertTypeTest : TestBase
     [InlineData(AlertType.CreditBalanceRecovered)]
     [InlineData(AlertType.UsageExceeded)]
     [InlineData(AlertType.CostExceeded)]
+    [InlineData(AlertType.LicenseBalanceThresholdReached)]
     public void Validation_Works(AlertType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -542,6 +558,7 @@ public class AlertTypeTest : TestBase
     [InlineData(AlertType.CreditBalanceRecovered)]
     [InlineData(AlertType.UsageExceeded)]
     [InlineData(AlertType.CostExceeded)]
+    [InlineData(AlertType.LicenseBalanceThresholdReached)]
     public void SerializationRoundtrip_Works(AlertType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -634,6 +651,68 @@ public class BalanceAlertStatusTest : TestBase
         var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
 
         BalanceAlertStatus copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class LicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        string expectedID = "id";
+
+        Assert.Equal(expectedID, model.ID);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+
+        Assert.Equal(expectedID, deserialized.ID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        LicenseType copied = new(model);
 
         Assert.Equal(model, copied);
     }

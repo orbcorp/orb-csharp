@@ -176,6 +176,19 @@ public sealed record class Alert : JsonModel
         }
     }
 
+    /// <summary>
+    /// Minified license type for alert serialization.
+    /// </summary>
+    public LicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<LicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -196,6 +209,7 @@ public sealed record class Alert : JsonModel
         {
             item.Validate();
         }
+        this.LicenseType?.Validate();
     }
 
     public Alert() { }
@@ -403,6 +417,7 @@ public enum AlertType
     CreditBalanceRecovered,
     UsageExceeded,
     CostExceeded,
+    LicenseBalanceThresholdReached,
 }
 
 sealed class AlertTypeConverter : JsonConverter<AlertType>
@@ -420,6 +435,7 @@ sealed class AlertTypeConverter : JsonConverter<AlertType>
             "credit_balance_recovered" => AlertType.CreditBalanceRecovered,
             "usage_exceeded" => AlertType.UsageExceeded,
             "cost_exceeded" => AlertType.CostExceeded,
+            "license_balance_threshold_reached" => AlertType.LicenseBalanceThresholdReached,
             _ => (AlertType)(-1),
         };
     }
@@ -439,6 +455,7 @@ sealed class AlertTypeConverter : JsonConverter<AlertType>
                 AlertType.CreditBalanceRecovered => "credit_balance_recovered",
                 AlertType.UsageExceeded => "usage_exceeded",
                 AlertType.CostExceeded => "cost_exceeded",
+                AlertType.LicenseBalanceThresholdReached => "license_balance_threshold_reached",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -522,4 +539,68 @@ class BalanceAlertStatusFromRaw : IFromRawJson<BalanceAlertStatus>
     /// <inheritdoc/>
     public BalanceAlertStatus FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BalanceAlertStatus.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Minified license type for alert serialization.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<LicenseType, LicenseTypeFromRaw>))]
+public sealed record class LicenseType : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+    }
+
+    public LicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public LicenseType(LicenseType licenseType)
+        : base(licenseType) { }
+#pragma warning restore CS8618
+
+    public LicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    LicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="LicenseTypeFromRaw.FromRawUnchecked"/>
+    public static LicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public LicenseType(string id)
+        : this()
+    {
+        this.ID = id;
+    }
+}
+
+class LicenseTypeFromRaw : IFromRawJson<LicenseType>
+{
+    /// <inheritdoc/>
+    public LicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LicenseType.FromRawUnchecked(rawData);
 }
