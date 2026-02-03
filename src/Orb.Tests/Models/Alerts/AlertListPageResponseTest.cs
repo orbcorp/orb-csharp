@@ -35,6 +35,7 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    LicenseType = new("id"),
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -61,6 +62,7 @@ public class AlertListPageResponseTest : TestBase
                 Thresholds = [new(0)],
                 Type = AlertType.CreditBalanceDepleted,
                 BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                LicenseType = new("id"),
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -103,6 +105,7 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    LicenseType = new("id"),
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -143,6 +146,7 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    LicenseType = new("id"),
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -176,6 +180,7 @@ public class AlertListPageResponseTest : TestBase
                 Thresholds = [new(0)],
                 Type = AlertType.CreditBalanceDepleted,
                 BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                LicenseType = new("id"),
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -218,6 +223,7 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    LicenseType = new("id"),
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -252,6 +258,7 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    LicenseType = new("id"),
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
