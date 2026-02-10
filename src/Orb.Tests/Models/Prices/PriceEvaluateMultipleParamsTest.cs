@@ -62,6 +62,7 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "price_id",
@@ -116,6 +117,7 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                         Duration = 0,
                         DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                     },
+                    LicenseTypeID = "license_type_id",
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },
                 PriceID = "price_id",
@@ -217,6 +219,7 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "price_id",
@@ -280,6 +283,7 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "price_id",
@@ -362,6 +366,7 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "price_id",
@@ -421,6 +426,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -467,6 +473,7 @@ public class PriceEvaluationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string expectedPriceID = "price_id";
@@ -527,6 +534,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -585,6 +593,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -638,6 +647,7 @@ public class PriceEvaluationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string expectedPriceID = "price_id";
@@ -698,6 +708,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -749,6 +760,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -801,6 +813,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -852,6 +865,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -907,6 +921,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -1030,6 +1045,7 @@ public class PriceEvaluationTest : TestBase
                     Duration = 0,
                     DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "price_id",
@@ -1081,6 +1097,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1136,6 +1153,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1179,6 +1197,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1229,6 +1248,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1272,6 +1292,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1320,6 +1341,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1371,6 +1393,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1422,6 +1445,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1484,6 +1508,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1535,6 +1560,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1597,6 +1623,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1646,6 +1673,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1689,6 +1717,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1738,6 +1767,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1783,6 +1813,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1826,6 +1857,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1874,6 +1906,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1922,6 +1955,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -1971,6 +2005,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2029,6 +2064,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2077,6 +2113,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2133,6 +2170,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2185,6 +2223,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2238,6 +2277,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2297,6 +2337,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2359,6 +2400,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2415,6 +2457,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2463,6 +2506,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2506,6 +2550,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2548,6 +2593,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2595,6 +2641,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         value.Validate();
@@ -2638,6 +2685,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2696,6 +2744,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2742,6 +2791,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2795,6 +2845,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2841,6 +2892,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2892,6 +2944,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2946,6 +2999,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3000,6 +3054,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3065,6 +3120,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3119,6 +3175,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3184,6 +3241,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3236,6 +3294,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3282,6 +3341,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3334,6 +3394,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3382,6 +3443,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3428,6 +3490,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3479,6 +3542,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3530,6 +3594,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3582,6 +3647,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3643,6 +3709,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3694,6 +3761,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3753,6 +3821,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3808,6 +3877,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3864,6 +3934,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3926,6 +3997,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3991,6 +4063,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4050,6 +4123,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4101,6 +4175,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4147,6 +4222,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4192,6 +4268,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4242,6 +4319,7 @@ public class PriceTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4298,6 +4376,7 @@ public class PriceBulkWithFiltersTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -4344,6 +4423,7 @@ public class PriceBulkWithFiltersTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedBulkWithFiltersConfig, model.BulkWithFiltersConfig);
@@ -4362,6 +4442,7 @@ public class PriceBulkWithFiltersTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -4417,6 +4498,7 @@ public class PriceBulkWithFiltersTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -4474,6 +4556,7 @@ public class PriceBulkWithFiltersTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -4527,6 +4610,7 @@ public class PriceBulkWithFiltersTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedBulkWithFiltersConfig, deserialized.BulkWithFiltersConfig);
@@ -4548,6 +4632,7 @@ public class PriceBulkWithFiltersTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -4603,6 +4688,7 @@ public class PriceBulkWithFiltersTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -4649,6 +4735,8 @@ public class PriceBulkWithFiltersTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
     }
@@ -4705,6 +4793,7 @@ public class PriceBulkWithFiltersTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -4728,6 +4817,8 @@ public class PriceBulkWithFiltersTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
     }
@@ -4761,6 +4852,7 @@ public class PriceBulkWithFiltersTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -4812,6 +4904,7 @@ public class PriceBulkWithFiltersTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -5375,6 +5468,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -5422,6 +5516,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, model.Cadence);
@@ -5443,6 +5538,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -5496,6 +5592,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -5551,6 +5648,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -5605,6 +5703,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, deserialized.Cadence);
@@ -5629,6 +5728,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -5682,6 +5782,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -5726,6 +5827,8 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
     }
@@ -5778,6 +5881,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -5801,6 +5905,8 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
     }
@@ -5832,6 +5938,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -5881,6 +5988,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -6186,6 +6294,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -6233,6 +6342,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, model.Cadence);
@@ -6254,6 +6364,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -6307,6 +6418,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -6362,6 +6474,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -6416,6 +6529,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, deserialized.Cadence);
@@ -6440,6 +6554,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -6493,6 +6608,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -6537,6 +6653,8 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
     }
@@ -6589,6 +6707,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -6612,6 +6731,8 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
     }
@@ -6643,6 +6764,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -6692,6 +6814,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -6991,6 +7114,7 @@ public class PricePercentTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7028,6 +7152,7 @@ public class PricePercentTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, model.Cadence);
@@ -7046,6 +7171,7 @@ public class PricePercentTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -7093,6 +7219,7 @@ public class PricePercentTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7142,6 +7269,7 @@ public class PricePercentTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7186,6 +7314,7 @@ public class PricePercentTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, deserialized.Cadence);
@@ -7207,6 +7336,7 @@ public class PricePercentTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -7254,6 +7384,7 @@ public class PricePercentTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7292,6 +7423,8 @@ public class PricePercentTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
     }
@@ -7332,6 +7465,7 @@ public class PricePercentTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -7355,6 +7489,8 @@ public class PricePercentTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
     }
@@ -7380,6 +7516,7 @@ public class PricePercentTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -7423,6 +7560,7 @@ public class PricePercentTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7681,6 +7819,7 @@ public class PriceEventOutputTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7723,6 +7862,7 @@ public class PriceEventOutputTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, model.Cadence);
@@ -7741,6 +7881,7 @@ public class PriceEventOutputTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -7793,6 +7934,7 @@ public class PriceEventOutputTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7847,6 +7989,7 @@ public class PriceEventOutputTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -7896,6 +8039,7 @@ public class PriceEventOutputTest : TestBase
             Duration = 0,
             DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedCadence, deserialized.Cadence);
@@ -7917,6 +8061,7 @@ public class PriceEventOutputTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -7969,6 +8114,7 @@ public class PriceEventOutputTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -8012,6 +8158,8 @@ public class PriceEventOutputTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
     }
@@ -8062,6 +8210,7 @@ public class PriceEventOutputTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -8085,6 +8234,8 @@ public class PriceEventOutputTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
     }
@@ -8115,6 +8266,7 @@ public class PriceEventOutputTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -8163,6 +8315,7 @@ public class PriceEventOutputTest : TestBase
                 Duration = 0,
                 DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 

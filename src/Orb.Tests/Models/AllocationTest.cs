@@ -29,6 +29,7 @@ public class AllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
 
         bool expectedAllowsRollover = true;
@@ -47,6 +48,7 @@ public class AllocationTest : TestBase
                 Values = ["string"],
             },
         ];
+        string expectedLicenseTypeID = "license_type_id";
 
         Assert.Equal(expectedAllowsRollover, model.AllowsRollover);
         Assert.Equal(expectedCurrency, model.Currency);
@@ -57,6 +59,7 @@ public class AllocationTest : TestBase
         {
             Assert.Equal(expectedFilters[i], model.Filters[i]);
         }
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
     }
 
     [Fact]
@@ -80,6 +83,7 @@ public class AllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -112,6 +116,7 @@ public class AllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -137,6 +142,7 @@ public class AllocationTest : TestBase
                 Values = ["string"],
             },
         ];
+        string expectedLicenseTypeID = "license_type_id";
 
         Assert.Equal(expectedAllowsRollover, deserialized.AllowsRollover);
         Assert.Equal(expectedCurrency, deserialized.Currency);
@@ -147,10 +153,145 @@ public class AllocationTest : TestBase
         {
             Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
         }
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
     }
 
     [Fact]
     public void Validation_Works()
+    {
+        var model = new Allocation
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            LicenseTypeID = "license_type_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Allocation
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+        };
+
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Allocation
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Allocation
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+
+            // Null should be interpreted as omitted for these properties
+            Filters = null,
+        };
+
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Allocation
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+
+            // Null should be interpreted as omitted for these properties
+            Filters = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Allocation
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+        };
+
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
     {
         var model = new Allocation
         {
@@ -176,7 +317,7 @@ public class AllocationTest : TestBase
     }
 
     [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
         var model = new Allocation
         {
@@ -187,14 +328,25 @@ public class AllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = CustomExpirationDurationUnit.Day,
             },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+
+            LicenseTypeID = null,
         };
 
-        Assert.Null(model.Filters);
-        Assert.False(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
     }
 
     [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
         var model = new Allocation
         {
@@ -205,47 +357,17 @@ public class AllocationTest : TestBase
                 Duration = 0,
                 DurationUnit = CustomExpirationDurationUnit.Day,
             },
-        };
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
 
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Allocation
-        {
-            AllowsRollover = true,
-            Currency = "currency",
-            CustomExpiration = new()
-            {
-                Duration = 0,
-                DurationUnit = CustomExpirationDurationUnit.Day,
-            },
-
-            // Null should be interpreted as omitted for these properties
-            Filters = null,
-        };
-
-        Assert.Null(model.Filters);
-        Assert.False(model.RawData.ContainsKey("filters"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Allocation
-        {
-            AllowsRollover = true,
-            Currency = "currency",
-            CustomExpiration = new()
-            {
-                Duration = 0,
-                DurationUnit = CustomExpirationDurationUnit.Day,
-            },
-
-            // Null should be interpreted as omitted for these properties
-            Filters = null,
+            LicenseTypeID = null,
         };
 
         model.Validate();
@@ -272,6 +394,7 @@ public class AllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
 
         Allocation copied = new(model);

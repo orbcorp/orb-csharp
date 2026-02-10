@@ -53,6 +53,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -116,6 +117,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -164,6 +171,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -239,6 +247,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -288,6 +302,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -350,6 +365,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -407,6 +428,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -469,6 +491,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -517,6 +545,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -580,6 +609,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -628,6 +663,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -696,6 +732,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -744,6 +786,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -815,6 +858,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -863,6 +912,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -934,6 +984,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -982,6 +1038,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1064,6 +1121,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1112,6 +1175,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1183,6 +1247,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1231,6 +1301,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1312,6 +1383,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1360,6 +1437,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1428,6 +1506,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1476,6 +1560,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1539,6 +1624,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1587,6 +1678,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1656,6 +1748,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1704,6 +1802,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1769,6 +1868,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1817,6 +1922,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1880,6 +1986,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -1928,6 +2040,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -1996,6 +2109,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2050,6 +2169,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2112,6 +2232,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2160,6 +2286,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2228,6 +2355,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2276,6 +2409,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2353,6 +2487,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2401,6 +2541,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2470,6 +2611,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2518,6 +2665,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2593,6 +2741,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2641,6 +2795,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2713,6 +2868,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2761,6 +2922,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2833,6 +2995,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -2881,6 +3049,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -2959,6 +3128,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3007,6 +3182,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3088,6 +3264,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3136,6 +3318,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -3211,6 +3394,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3259,6 +3448,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -3328,6 +3518,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3376,6 +3572,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3439,6 +3636,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3487,6 +3690,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3550,6 +3754,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3598,6 +3808,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3666,6 +3877,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         value.Validate();
     }
@@ -3714,6 +3931,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3777,6 +3995,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -3828,6 +4052,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3903,6 +4128,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -3955,6 +4186,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4016,6 +4248,12 @@ public class PriceTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4077,6 +4315,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4139,6 +4378,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4190,6 +4435,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4253,6 +4499,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4304,6 +4556,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4372,6 +4625,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4423,6 +4682,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4494,6 +4754,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4545,6 +4811,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4616,6 +4883,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4667,6 +4940,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4749,6 +5023,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4800,6 +5080,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4871,6 +5152,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -4922,6 +5209,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5003,6 +5291,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5054,6 +5348,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5122,6 +5417,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5173,6 +5474,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5236,6 +5538,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5287,6 +5595,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5356,6 +5665,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5407,6 +5722,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5472,6 +5788,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5523,6 +5845,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5586,6 +5909,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5637,6 +5966,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5705,6 +6035,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5762,6 +6098,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5824,6 +6161,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5875,6 +6218,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -5943,6 +6287,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -5994,6 +6344,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6071,6 +6422,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6122,6 +6479,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6191,6 +6549,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6242,6 +6606,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6317,6 +6682,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6368,6 +6739,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6440,6 +6812,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6491,6 +6869,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6563,6 +6942,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6614,6 +6999,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6692,6 +7078,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6743,6 +7135,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -6824,6 +7217,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -6875,6 +7274,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -6950,6 +7350,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -7001,6 +7407,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -7070,6 +7477,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -7121,6 +7534,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -7184,6 +7598,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -7235,6 +7655,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -7298,6 +7719,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -7349,6 +7776,7 @@ public class PriceTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -7417,6 +7845,12 @@ public class PriceTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
@@ -7471,6 +7905,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -7534,6 +7969,12 @@ public class UnitTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -7579,6 +8020,7 @@ public class UnitTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -7647,6 +8089,12 @@ public class UnitTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        LicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -7687,6 +8135,7 @@ public class UnitTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedUnitConfig, model.UnitConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -7733,6 +8182,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -7795,6 +8245,12 @@ public class UnitTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -7848,6 +8304,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -7911,6 +8368,12 @@ public class UnitTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -7960,6 +8423,7 @@ public class UnitTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -8028,6 +8492,12 @@ public class UnitTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        LicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -8071,6 +8541,7 @@ public class UnitTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -8117,6 +8588,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -8180,6 +8652,12 @@ public class UnitTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -8229,6 +8707,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -8291,6 +8770,8 @@ public class UnitTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -8337,6 +8818,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -8444,6 +8926,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -8504,10 +8987,13 @@ public class UnitTest : TestBase
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -8554,6 +9040,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -8614,6 +9101,7 @@ public class UnitTest : TestBase
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -8663,6 +9151,7 @@ public class UnitTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -8725,6 +9214,12 @@ public class UnitTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -9222,6 +9717,101 @@ public class UnitPriceTypeTest : TestBase
     }
 }
 
+public class LicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        LicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class TieredTest : TestBase
 {
     [Fact]
@@ -9268,6 +9858,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -9343,6 +9934,12 @@ public class TieredTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -9389,6 +9986,7 @@ public class TieredTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -9469,6 +10067,12 @@ public class TieredTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -9509,6 +10113,7 @@ public class TieredTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedTieredConfig, model.TieredConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -9555,6 +10160,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -9629,6 +10235,12 @@ public class TieredTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -9682,6 +10294,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -9757,6 +10370,12 @@ public class TieredTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -9807,6 +10426,7 @@ public class TieredTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -9887,6 +10507,12 @@ public class TieredTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -9930,6 +10556,7 @@ public class TieredTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -9976,6 +10603,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -10051,6 +10679,12 @@ public class TieredTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -10100,6 +10734,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -10174,6 +10809,8 @@ public class TieredTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -10220,6 +10857,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -10339,6 +10977,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -10411,10 +11050,13 @@ public class TieredTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -10461,6 +11103,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -10533,6 +11176,7 @@ public class TieredTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -10582,6 +11226,7 @@ public class TieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -10656,6 +11301,12 @@ public class TieredTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -11151,6 +11802,101 @@ public class TieredPriceTypeTest : TestBase
     }
 }
 
+public class TieredLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        TieredLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class BulkTest : TestBase
 {
     [Fact]
@@ -11198,6 +11944,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -11260,6 +12007,12 @@ public class BulkTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -11308,6 +12061,7 @@ public class BulkTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -11375,6 +12129,12 @@ public class BulkTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        BulkLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -11415,6 +12175,7 @@ public class BulkTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -11462,6 +12223,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -11523,6 +12285,12 @@ public class BulkTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -11577,6 +12345,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -11639,6 +12408,12 @@ public class BulkTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -11691,6 +12466,7 @@ public class BulkTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -11758,6 +12534,12 @@ public class BulkTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        BulkLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -11801,6 +12583,7 @@ public class BulkTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -11848,6 +12631,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -11910,6 +12694,12 @@ public class BulkTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -11960,6 +12750,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -12021,6 +12812,8 @@ public class BulkTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -12068,6 +12861,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -12175,6 +12969,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -12234,10 +13029,13 @@ public class BulkTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -12285,6 +13083,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -12344,6 +13143,7 @@ public class BulkTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -12394,6 +13194,7 @@ public class BulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -12455,6 +13256,12 @@ public class BulkTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -12950,6 +13757,101 @@ public class BulkPriceTypeTest : TestBase
     }
 }
 
+public class BulkLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new BulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new BulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new BulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new BulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        BulkLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class BulkWithFiltersTest : TestBase
 {
     [Fact]
@@ -13005,6 +13907,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -13067,6 +13970,12 @@ public class BulkWithFiltersTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -13123,6 +14032,7 @@ public class BulkWithFiltersTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -13191,6 +14101,12 @@ public class BulkWithFiltersTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        BulkWithFiltersLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -13231,6 +14147,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -13286,6 +14203,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -13347,6 +14265,12 @@ public class BulkWithFiltersTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -13412,6 +14336,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -13473,6 +14398,12 @@ public class BulkWithFiltersTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -13537,6 +14468,7 @@ public class BulkWithFiltersTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -13605,6 +14537,12 @@ public class BulkWithFiltersTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        BulkWithFiltersLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -13648,6 +14586,7 @@ public class BulkWithFiltersTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -13703,6 +14642,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -13765,6 +14705,12 @@ public class BulkWithFiltersTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -13823,6 +14769,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -13884,6 +14831,8 @@ public class BulkWithFiltersTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -13939,6 +14888,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -14054,6 +15004,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -14113,10 +15064,13 @@ public class BulkWithFiltersTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -14172,6 +15126,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -14231,6 +15186,7 @@ public class BulkWithFiltersTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -14289,6 +15245,7 @@ public class BulkWithFiltersTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -14350,6 +15307,12 @@ public class BulkWithFiltersTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -15173,6 +16136,101 @@ public class BulkWithFiltersPriceTypeTest : TestBase
     }
 }
 
+public class BulkWithFiltersLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new BulkWithFiltersLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new BulkWithFiltersLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new BulkWithFiltersLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new BulkWithFiltersLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithFiltersLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        BulkWithFiltersLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class PackageTest : TestBase
 {
     [Fact]
@@ -15219,6 +16277,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -15282,6 +16341,12 @@ public class PackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -15328,6 +16393,7 @@ public class PackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -15400,6 +16466,12 @@ public class PackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        PackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -15440,6 +16512,7 @@ public class PackageTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -15486,6 +16559,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -15548,6 +16622,12 @@ public class PackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -15601,6 +16681,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -15663,6 +16744,12 @@ public class PackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -15717,6 +16804,7 @@ public class PackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -15789,6 +16877,12 @@ public class PackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        PackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -15832,6 +16926,7 @@ public class PackageTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -15878,6 +16973,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -15941,6 +17037,12 @@ public class PackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -15990,6 +17092,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -16052,6 +17155,8 @@ public class PackageTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -16098,6 +17203,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -16205,6 +17311,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -16265,10 +17372,13 @@ public class PackageTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -16315,6 +17425,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -16375,6 +17486,7 @@ public class PackageTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -16424,6 +17536,7 @@ public class PackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -16486,6 +17599,12 @@ public class PackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -16979,6 +18098,101 @@ public class PackagePriceTypeTest : TestBase
     }
 }
 
+public class PackageLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PackageLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PackageLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        PackageLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class MatrixTest : TestBase
 {
     [Fact]
@@ -17025,6 +18239,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -17093,6 +18308,12 @@ public class MatrixTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -17139,6 +18360,7 @@ public class MatrixTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -17212,6 +18434,12 @@ public class MatrixTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MatrixLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -17252,6 +18480,7 @@ public class MatrixTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -17298,6 +18527,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -17365,6 +18595,12 @@ public class MatrixTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -17418,6 +18654,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -17486,6 +18723,12 @@ public class MatrixTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -17536,6 +18779,7 @@ public class MatrixTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -17609,6 +18853,12 @@ public class MatrixTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MatrixLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -17652,6 +18902,7 @@ public class MatrixTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -17698,6 +18949,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -17766,6 +19018,12 @@ public class MatrixTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -17815,6 +19073,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -17882,6 +19141,8 @@ public class MatrixTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -17928,6 +19189,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -18040,6 +19302,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -18105,10 +19368,13 @@ public class MatrixTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -18155,6 +19421,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -18220,6 +19487,7 @@ public class MatrixTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -18269,6 +19537,7 @@ public class MatrixTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -18336,6 +19605,12 @@ public class MatrixTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -18831,6 +20106,101 @@ public class MatrixPriceTypeTest : TestBase
     }
 }
 
+public class MatrixLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MatrixLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class ThresholdTotalAmountTest : TestBase
 {
     [Fact]
@@ -18877,6 +20247,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -18948,6 +20319,12 @@ public class ThresholdTotalAmountTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -18996,6 +20373,7 @@ public class ThresholdTotalAmountTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -19073,6 +20451,12 @@ public class ThresholdTotalAmountTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        ThresholdTotalAmountLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -19113,6 +20497,7 @@ public class ThresholdTotalAmountTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedThresholdTotalAmountConfig, model.ThresholdTotalAmountConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -19159,6 +20544,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -19229,6 +20615,12 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -19285,6 +20677,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -19356,6 +20749,12 @@ public class ThresholdTotalAmountTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -19411,6 +20810,7 @@ public class ThresholdTotalAmountTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -19488,6 +20888,12 @@ public class ThresholdTotalAmountTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        ThresholdTotalAmountLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -19531,6 +20937,7 @@ public class ThresholdTotalAmountTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -19577,6 +20984,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -19648,6 +21056,12 @@ public class ThresholdTotalAmountTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -19697,6 +21111,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -19767,6 +21182,8 @@ public class ThresholdTotalAmountTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -19813,6 +21230,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -19928,6 +21346,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -19996,10 +21415,13 @@ public class ThresholdTotalAmountTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -20046,6 +21468,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -20114,6 +21537,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -20163,6 +21587,7 @@ public class ThresholdTotalAmountTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -20233,6 +21658,12 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -21000,6 +22431,101 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableTest 
     }
 }
 
+public class ThresholdTotalAmountLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ThresholdTotalAmountLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ThresholdTotalAmountLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ThresholdTotalAmountLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ThresholdTotalAmountLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdTotalAmountLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        ThresholdTotalAmountLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class TieredPackageTest : TestBase
 {
     [Fact]
@@ -21046,6 +22572,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -21117,6 +22644,12 @@ public class TieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -21164,6 +22697,7 @@ public class TieredPackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -21241,6 +22775,12 @@ public class TieredPackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredPackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -21281,6 +22821,7 @@ public class TieredPackageTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedTieredPackageConfig, model.TieredPackageConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -21327,6 +22868,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -21397,6 +22939,12 @@ public class TieredPackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -21453,6 +23001,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -21524,6 +23073,12 @@ public class TieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -21578,6 +23133,7 @@ public class TieredPackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -21655,6 +23211,12 @@ public class TieredPackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredPackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -21698,6 +23260,7 @@ public class TieredPackageTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -21744,6 +23307,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -21815,6 +23379,12 @@ public class TieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -21864,6 +23434,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -21934,6 +23505,8 @@ public class TieredPackageTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -21980,6 +23553,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -22095,6 +23669,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -22163,10 +23738,13 @@ public class TieredPackageTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -22213,6 +23791,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -22281,6 +23860,7 @@ public class TieredPackageTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -22330,6 +23910,7 @@ public class TieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -22400,6 +23981,12 @@ public class TieredPackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -23099,6 +24686,101 @@ public class TieredPackageTieredPackageConfigTierTest : TestBase
     }
 }
 
+public class TieredPackageLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        TieredPackageLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class TieredWithMinimumTest : TestBase
 {
     [Fact]
@@ -23145,6 +24827,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -23227,6 +24910,12 @@ public class TieredWithMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -23275,6 +24964,7 @@ public class TieredWithMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -23363,6 +25053,12 @@ public class TieredWithMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredWithMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -23403,6 +25099,7 @@ public class TieredWithMinimumTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedTieredWithMinimumConfig, model.TieredWithMinimumConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -23449,6 +25146,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -23530,6 +25228,12 @@ public class TieredWithMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -23586,6 +25290,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -23668,6 +25373,12 @@ public class TieredWithMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -23723,6 +25434,7 @@ public class TieredWithMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -23811,6 +25523,12 @@ public class TieredWithMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredWithMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -23854,6 +25572,7 @@ public class TieredWithMinimumTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -23900,6 +25619,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -23982,6 +25702,12 @@ public class TieredWithMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -24031,6 +25757,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -24112,6 +25839,8 @@ public class TieredWithMinimumTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -24158,6 +25887,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -24284,6 +26014,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -24363,10 +26094,13 @@ public class TieredWithMinimumTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -24413,6 +26147,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -24492,6 +26227,7 @@ public class TieredWithMinimumTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -24541,6 +26277,7 @@ public class TieredWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -24622,6 +26359,12 @@ public class TieredWithMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -25521,6 +27264,101 @@ public class TieredWithMinimumTieredWithMinimumConfigTierTest : TestBase
     }
 }
 
+public class TieredWithMinimumLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        TieredWithMinimumLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class GroupedTieredTest : TestBase
 {
     [Fact]
@@ -25567,6 +27405,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -25638,6 +27477,12 @@ public class GroupedTieredTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -25685,6 +27530,7 @@ public class GroupedTieredTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -25762,6 +27608,12 @@ public class GroupedTieredTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedTieredLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -25802,6 +27654,7 @@ public class GroupedTieredTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -25848,6 +27701,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -25918,6 +27772,12 @@ public class GroupedTieredTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -25974,6 +27834,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26045,6 +27906,12 @@ public class GroupedTieredTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -26099,6 +27966,7 @@ public class GroupedTieredTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -26176,6 +28044,12 @@ public class GroupedTieredTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedTieredLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -26219,6 +28093,7 @@ public class GroupedTieredTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -26265,6 +28140,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26336,6 +28212,12 @@ public class GroupedTieredTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -26385,6 +28267,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26455,6 +28338,8 @@ public class GroupedTieredTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -26501,6 +28386,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26616,6 +28502,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26684,10 +28571,13 @@ public class GroupedTieredTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -26734,6 +28624,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26802,6 +28693,7 @@ public class GroupedTieredTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -26851,6 +28743,7 @@ public class GroupedTieredTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -26921,6 +28814,12 @@ public class GroupedTieredTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -27620,6 +29519,101 @@ public class GroupedTieredPriceTypeTest : TestBase
     }
 }
 
+public class GroupedTieredLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new GroupedTieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new GroupedTieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new GroupedTieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new GroupedTieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        GroupedTieredLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class TieredPackageWithMinimumTest : TestBase
 {
     [Fact]
@@ -27666,6 +29660,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -27747,6 +29742,12 @@ public class TieredPackageWithMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -27795,6 +29796,7 @@ public class TieredPackageWithMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -27885,6 +29887,12 @@ public class TieredPackageWithMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredPackageWithMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -27925,6 +29933,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedTieredPackageWithMinimumConfig, model.TieredPackageWithMinimumConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -27971,6 +29980,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -28051,6 +30061,12 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -28107,6 +30123,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -28188,6 +30205,12 @@ public class TieredPackageWithMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -28243,6 +30266,7 @@ public class TieredPackageWithMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -28333,6 +30357,12 @@ public class TieredPackageWithMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredPackageWithMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -28379,6 +30409,7 @@ public class TieredPackageWithMinimumTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -28425,6 +30456,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -28506,6 +30538,12 @@ public class TieredPackageWithMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -28555,6 +30593,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -28635,6 +30674,8 @@ public class TieredPackageWithMinimumTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -28681,6 +30722,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -28806,6 +30848,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -28884,10 +30927,13 @@ public class TieredPackageWithMinimumTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -28934,6 +30980,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -29012,6 +31059,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -29061,6 +31109,7 @@ public class TieredPackageWithMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -29141,6 +31190,12 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -29919,6 +31974,101 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierTest : Te
     }
 }
 
+public class TieredPackageWithMinimumLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredPackageWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredPackageWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredPackageWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredPackageWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPackageWithMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        TieredPackageWithMinimumLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class PackageWithAllocationTest : TestBase
 {
     [Fact]
@@ -29965,6 +32115,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -30033,6 +32184,12 @@ public class PackageWithAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -30081,6 +32238,7 @@ public class PackageWithAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -30157,6 +32315,12 @@ public class PackageWithAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        PackageWithAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -30197,6 +32361,7 @@ public class PackageWithAllocationTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -30243,6 +32408,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -30310,6 +32476,12 @@ public class PackageWithAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -30366,6 +32538,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -30434,6 +32607,12 @@ public class PackageWithAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -30489,6 +32668,7 @@ public class PackageWithAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -30565,6 +32745,12 @@ public class PackageWithAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        PackageWithAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -30608,6 +32794,7 @@ public class PackageWithAllocationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -30654,6 +32841,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -30722,6 +32910,12 @@ public class PackageWithAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -30771,6 +32965,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -30838,6 +33033,8 @@ public class PackageWithAllocationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -30884,6 +33081,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -30996,6 +33194,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -31061,10 +33260,13 @@ public class PackageWithAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -31111,6 +33313,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -31176,6 +33379,7 @@ public class PackageWithAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -31225,6 +33429,7 @@ public class PackageWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -31292,6 +33497,12 @@ public class PackageWithAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -31878,6 +34089,101 @@ public class PackageWithAllocationPriceTypeTest : TestBase
     }
 }
 
+public class PackageWithAllocationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PackageWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PackageWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PackageWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PackageWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        PackageWithAllocationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class UnitWithPercentTest : TestBase
 {
     [Fact]
@@ -31924,6 +34230,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -31987,6 +34294,12 @@ public class UnitWithPercentTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -32034,6 +34347,7 @@ public class UnitWithPercentTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -32107,6 +34421,12 @@ public class UnitWithPercentTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        UnitWithPercentLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -32147,6 +34467,7 @@ public class UnitWithPercentTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedUnitWithPercentConfig, model.UnitWithPercentConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -32193,6 +34514,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -32255,6 +34577,12 @@ public class UnitWithPercentTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -32311,6 +34639,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -32374,6 +34703,12 @@ public class UnitWithPercentTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -32428,6 +34763,7 @@ public class UnitWithPercentTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -32501,6 +34837,12 @@ public class UnitWithPercentTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        UnitWithPercentLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -32544,6 +34886,7 @@ public class UnitWithPercentTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -32590,6 +34933,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -32653,6 +34997,12 @@ public class UnitWithPercentTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -32702,6 +35052,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -32764,6 +35115,8 @@ public class UnitWithPercentTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -32810,6 +35163,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -32917,6 +35271,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -32977,10 +35332,13 @@ public class UnitWithPercentTest : TestBase
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -33027,6 +35385,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -33087,6 +35446,7 @@ public class UnitWithPercentTest : TestBase
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -33136,6 +35496,7 @@ public class UnitWithPercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -33198,6 +35559,12 @@ public class UnitWithPercentTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -33775,6 +36142,101 @@ public class UnitWithPercentUnitWithPercentConfigTest : TestBase
     }
 }
 
+public class UnitWithPercentLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new UnitWithPercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new UnitWithPercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new UnitWithPercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new UnitWithPercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithPercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        UnitWithPercentLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class MatrixWithAllocationTest : TestBase
 {
     [Fact]
@@ -33821,6 +36283,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -33890,6 +36353,12 @@ public class MatrixWithAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -33938,6 +36407,7 @@ public class MatrixWithAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -34013,6 +36483,12 @@ public class MatrixWithAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MatrixWithAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -34053,6 +36529,7 @@ public class MatrixWithAllocationTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -34099,6 +36576,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -34167,6 +36645,12 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -34223,6 +36707,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -34292,6 +36777,12 @@ public class MatrixWithAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -34347,6 +36838,7 @@ public class MatrixWithAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -34422,6 +36914,12 @@ public class MatrixWithAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MatrixWithAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -34465,6 +36963,7 @@ public class MatrixWithAllocationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -34511,6 +37010,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -34580,6 +37080,12 @@ public class MatrixWithAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -34629,6 +37135,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -34697,6 +37204,8 @@ public class MatrixWithAllocationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -34743,6 +37252,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -34856,6 +37366,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -34922,10 +37433,13 @@ public class MatrixWithAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -34972,6 +37486,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -35038,6 +37553,7 @@ public class MatrixWithAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -35087,6 +37603,7 @@ public class MatrixWithAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -35155,6 +37672,12 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -35644,6 +38167,101 @@ public class MatrixWithAllocationPriceTypeTest : TestBase
     }
 }
 
+public class MatrixWithAllocationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MatrixWithAllocationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class TieredWithProrationTest : TestBase
 {
     [Fact]
@@ -35690,6 +38308,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -35755,6 +38374,12 @@ public class TieredWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -35803,6 +38428,7 @@ public class TieredWithProrationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -35874,6 +38500,12 @@ public class TieredWithProrationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredWithProrationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -35914,6 +38546,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedTieredWithProrationConfig, model.TieredWithProrationConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -35960,6 +38593,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36024,6 +38658,12 @@ public class TieredWithProrationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -36080,6 +38720,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36145,6 +38786,12 @@ public class TieredWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -36200,6 +38847,7 @@ public class TieredWithProrationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -36271,6 +38919,12 @@ public class TieredWithProrationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        TieredWithProrationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -36314,6 +38968,7 @@ public class TieredWithProrationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -36360,6 +39015,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36425,6 +39081,12 @@ public class TieredWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -36474,6 +39136,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36538,6 +39201,8 @@ public class TieredWithProrationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -36584,6 +39249,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36693,6 +39359,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36755,10 +39422,13 @@ public class TieredWithProrationTest : TestBase
             ),
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -36805,6 +39475,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36867,6 +39538,7 @@ public class TieredWithProrationTest : TestBase
             ),
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -36916,6 +39588,7 @@ public class TieredWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -36980,6 +39653,12 @@ public class TieredWithProrationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -37648,6 +40327,101 @@ public class TieredWithProrationTieredWithProrationConfigTierTest : TestBase
     }
 }
 
+public class TieredWithProrationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        TieredWithProrationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class UnitWithProrationTest : TestBase
 {
     [Fact]
@@ -37694,6 +40468,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -37757,6 +40532,12 @@ public class UnitWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -37805,6 +40586,7 @@ public class UnitWithProrationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -37876,6 +40658,12 @@ public class UnitWithProrationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        UnitWithProrationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -37916,6 +40704,7 @@ public class UnitWithProrationTest : TestBase
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedUnitWithProrationConfig, model.UnitWithProrationConfig);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -37962,6 +40751,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38024,6 +40814,12 @@ public class UnitWithProrationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -38080,6 +40876,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38143,6 +40940,12 @@ public class UnitWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -38198,6 +41001,7 @@ public class UnitWithProrationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -38269,6 +41073,12 @@ public class UnitWithProrationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        UnitWithProrationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -38312,6 +41122,7 @@ public class UnitWithProrationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -38358,6 +41169,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38421,6 +41233,12 @@ public class UnitWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -38470,6 +41288,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38532,6 +41351,8 @@ public class UnitWithProrationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -38578,6 +41399,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38685,6 +41507,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38745,10 +41568,13 @@ public class UnitWithProrationTest : TestBase
             UnitWithProrationConfig = new("unit_amount"),
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -38795,6 +41621,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38855,6 +41682,7 @@ public class UnitWithProrationTest : TestBase
             UnitWithProrationConfig = new("unit_amount"),
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -38904,6 +41732,7 @@ public class UnitWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -38966,6 +41795,12 @@ public class UnitWithProrationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -39517,6 +42352,101 @@ public class UnitWithProrationUnitWithProrationConfigTest : TestBase
     }
 }
 
+public class UnitWithProrationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new UnitWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new UnitWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new UnitWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new UnitWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new UnitWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        UnitWithProrationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class GroupedAllocationTest : TestBase
 {
     [Fact]
@@ -39563,6 +42493,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -39631,6 +42562,12 @@ public class GroupedAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -39679,6 +42616,7 @@ public class GroupedAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -39753,6 +42691,12 @@ public class GroupedAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -39793,6 +42737,7 @@ public class GroupedAllocationTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -39839,6 +42784,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -39906,6 +42852,12 @@ public class GroupedAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -39962,6 +42914,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40030,6 +42983,12 @@ public class GroupedAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -40085,6 +43044,7 @@ public class GroupedAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -40159,6 +43119,12 @@ public class GroupedAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -40202,6 +43168,7 @@ public class GroupedAllocationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -40248,6 +43215,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40316,6 +43284,12 @@ public class GroupedAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -40365,6 +43339,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40432,6 +43407,8 @@ public class GroupedAllocationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -40478,6 +43455,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40590,6 +43568,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40655,10 +43634,13 @@ public class GroupedAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -40705,6 +43687,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40770,6 +43753,7 @@ public class GroupedAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -40819,6 +43803,7 @@ public class GroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -40886,6 +43871,12 @@ public class GroupedAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -41470,6 +44461,101 @@ public class GroupedAllocationPriceTypeTest : TestBase
     }
 }
 
+public class GroupedAllocationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new GroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new GroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new GroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new GroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        GroupedAllocationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class BulkWithProrationTest : TestBase
 {
     [Fact]
@@ -41522,6 +44608,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -41584,6 +44671,12 @@ public class BulkWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -41638,6 +44731,7 @@ public class BulkWithProrationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -41706,6 +44800,12 @@ public class BulkWithProrationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        BulkWithProrationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -41746,6 +44846,7 @@ public class BulkWithProrationTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -41798,6 +44899,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -41859,6 +44961,12 @@ public class BulkWithProrationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -41921,6 +45029,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -41983,6 +45092,12 @@ public class BulkWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -42044,6 +45159,7 @@ public class BulkWithProrationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -42112,6 +45228,12 @@ public class BulkWithProrationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        BulkWithProrationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -42155,6 +45277,7 @@ public class BulkWithProrationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -42207,6 +45330,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -42269,6 +45393,12 @@ public class BulkWithProrationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -42324,6 +45454,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -42385,6 +45516,8 @@ public class BulkWithProrationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -42437,6 +45570,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -42549,6 +45683,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -42608,10 +45743,13 @@ public class BulkWithProrationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -42664,6 +45802,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -42723,6 +45862,7 @@ public class BulkWithProrationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -42778,6 +45918,7 @@ public class BulkWithProrationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -42839,6 +45980,12 @@ public class BulkWithProrationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -43571,6 +46718,101 @@ public class BulkWithProrationPriceTypeTest : TestBase
     }
 }
 
+public class BulkWithProrationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new BulkWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new BulkWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new BulkWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new BulkWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        BulkWithProrationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class GroupedWithProratedMinimumTest : TestBase
 {
     [Fact]
@@ -43617,6 +46859,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -43685,6 +46928,12 @@ public class GroupedWithProratedMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -43733,6 +46982,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -43810,6 +47060,12 @@ public class GroupedWithProratedMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedWithProratedMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -43853,6 +47109,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -43899,6 +47156,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -43966,6 +47224,12 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -44022,6 +47286,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44090,6 +47355,12 @@ public class GroupedWithProratedMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -44145,6 +47416,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -44222,6 +47494,12 @@ public class GroupedWithProratedMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedWithProratedMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -44268,6 +47546,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -44314,6 +47593,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44382,6 +47662,12 @@ public class GroupedWithProratedMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -44431,6 +47717,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44498,6 +47785,8 @@ public class GroupedWithProratedMinimumTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -44544,6 +47833,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44656,6 +47946,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44721,10 +48012,13 @@ public class GroupedWithProratedMinimumTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -44771,6 +48065,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44836,6 +48131,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -44885,6 +48181,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -44952,6 +48249,12 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -45540,6 +48843,101 @@ public class GroupedWithProratedMinimumPriceTypeTest : TestBase
     }
 }
 
+public class GroupedWithProratedMinimumLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new GroupedWithProratedMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new GroupedWithProratedMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimumLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new GroupedWithProratedMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimumLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new GroupedWithProratedMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithProratedMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        GroupedWithProratedMinimumLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class GroupedWithMeteredMinimumTest : TestBase
 {
     [Fact]
@@ -45586,6 +48984,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -45663,6 +49062,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -45711,6 +49116,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -45797,6 +49203,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedWithMeteredMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -45840,6 +49252,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -45886,6 +49299,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -45962,6 +49376,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -46018,6 +49438,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -46095,6 +49516,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -46150,6 +49577,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -46236,6 +49664,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedWithMeteredMinimumLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -46282,6 +49716,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -46328,6 +49763,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -46405,6 +49841,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -46454,6 +49896,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -46530,6 +49973,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -46576,6 +50021,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -46697,6 +50143,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -46771,10 +50218,13 @@ public class GroupedWithMeteredMinimumTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -46821,6 +50271,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -46895,6 +50346,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -46944,6 +50396,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -47020,6 +50473,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -47854,6 +51313,101 @@ public class GroupedWithMeteredMinimumPriceTypeTest : TestBase
     }
 }
 
+public class GroupedWithMeteredMinimumLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new GroupedWithMeteredMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new GroupedWithMeteredMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimumLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new GroupedWithMeteredMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimumLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new GroupedWithMeteredMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMeteredMinimumLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        GroupedWithMeteredMinimumLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class GroupedWithMinMaxThresholdsTest : TestBase
 {
     [Fact]
@@ -47900,6 +51454,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -47969,6 +51524,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -48017,6 +51578,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -48094,6 +51656,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedWithMinMaxThresholdsLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -48137,6 +51705,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -48183,6 +51752,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -48251,6 +51821,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -48307,6 +51883,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -48376,6 +51953,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -48431,6 +52014,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -48508,6 +52092,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedWithMinMaxThresholdsLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -48554,6 +52144,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -48600,6 +52191,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -48669,6 +52261,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -48718,6 +52316,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -48786,6 +52385,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -48832,6 +52433,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -48945,6 +52547,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -49011,10 +52614,13 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -49061,6 +52667,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -49127,6 +52734,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -49176,6 +52784,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -49244,6 +52853,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -49839,6 +53454,101 @@ public class GroupedWithMinMaxThresholdsPriceTypeTest : TestBase
     }
 }
 
+public class GroupedWithMinMaxThresholdsLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedWithMinMaxThresholdsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        GroupedWithMinMaxThresholdsLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class MatrixWithDisplayNameTest : TestBase
 {
     [Fact]
@@ -49885,6 +53595,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -49960,6 +53671,12 @@ public class MatrixWithDisplayNameTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -50008,6 +53725,7 @@ public class MatrixWithDisplayNameTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -50091,6 +53809,12 @@ public class MatrixWithDisplayNameTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MatrixWithDisplayNameLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -50131,6 +53855,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -50177,6 +53902,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -50251,6 +53977,12 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -50307,6 +54039,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -50382,6 +54115,12 @@ public class MatrixWithDisplayNameTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -50437,6 +54176,7 @@ public class MatrixWithDisplayNameTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -50520,6 +54260,12 @@ public class MatrixWithDisplayNameTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MatrixWithDisplayNameLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -50563,6 +54309,7 @@ public class MatrixWithDisplayNameTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -50609,6 +54356,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -50684,6 +54432,12 @@ public class MatrixWithDisplayNameTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -50733,6 +54487,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -50807,6 +54562,8 @@ public class MatrixWithDisplayNameTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -50853,6 +54610,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -50972,6 +54730,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -51044,10 +54803,13 @@ public class MatrixWithDisplayNameTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -51094,6 +54856,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -51166,6 +54929,7 @@ public class MatrixWithDisplayNameTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -51215,6 +54979,7 @@ public class MatrixWithDisplayNameTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -51289,6 +55054,12 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -52027,6 +55798,101 @@ public class MatrixWithDisplayNamePriceTypeTest : TestBase
     }
 }
 
+public class MatrixWithDisplayNameLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithDisplayNameLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithDisplayNameLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithDisplayNameLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithDisplayNameLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithDisplayNameLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MatrixWithDisplayNameLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class GroupedTieredPackageTest : TestBase
 {
     [Fact]
@@ -52073,6 +55939,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -52145,6 +56012,12 @@ public class GroupedTieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -52193,6 +56066,7 @@ public class GroupedTieredPackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -52271,6 +56145,12 @@ public class GroupedTieredPackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedTieredPackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -52311,6 +56191,7 @@ public class GroupedTieredPackageTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -52357,6 +56238,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -52428,6 +56310,12 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -52484,6 +56372,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -52556,6 +56445,12 @@ public class GroupedTieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -52611,6 +56506,7 @@ public class GroupedTieredPackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -52689,6 +56585,12 @@ public class GroupedTieredPackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        GroupedTieredPackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -52732,6 +56634,7 @@ public class GroupedTieredPackageTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -52778,6 +56681,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -52850,6 +56754,12 @@ public class GroupedTieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -52899,6 +56809,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -52970,6 +56881,8 @@ public class GroupedTieredPackageTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -53016,6 +56929,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -53132,6 +57046,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -53201,10 +57116,13 @@ public class GroupedTieredPackageTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -53251,6 +57169,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -53320,6 +57239,7 @@ public class GroupedTieredPackageTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -53369,6 +57289,7 @@ public class GroupedTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -53440,6 +57361,12 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -54150,6 +58077,101 @@ public class GroupedTieredPackagePriceTypeTest : TestBase
     }
 }
 
+public class GroupedTieredPackageLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new GroupedTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new GroupedTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new GroupedTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new GroupedTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new GroupedTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        GroupedTieredPackageLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class MaxGroupTieredPackageTest : TestBase
 {
     [Fact]
@@ -54196,6 +58218,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -54268,6 +58291,12 @@ public class MaxGroupTieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -54316,6 +58345,7 @@ public class MaxGroupTieredPackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -54396,6 +58426,12 @@ public class MaxGroupTieredPackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MaxGroupTieredPackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -54436,6 +58472,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -54482,6 +58519,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -54553,6 +58591,12 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -54609,6 +58653,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -54681,6 +58726,12 @@ public class MaxGroupTieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -54736,6 +58787,7 @@ public class MaxGroupTieredPackageTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -54816,6 +58868,12 @@ public class MaxGroupTieredPackageTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MaxGroupTieredPackageLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -54859,6 +58917,7 @@ public class MaxGroupTieredPackageTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -54905,6 +58964,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -54977,6 +59037,12 @@ public class MaxGroupTieredPackageTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -55026,6 +59092,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -55097,6 +59164,8 @@ public class MaxGroupTieredPackageTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -55143,6 +59212,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -55259,6 +59329,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -55328,10 +59399,13 @@ public class MaxGroupTieredPackageTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -55378,6 +59452,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -55447,6 +59522,7 @@ public class MaxGroupTieredPackageTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -55496,6 +59572,7 @@ public class MaxGroupTieredPackageTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -55567,6 +59644,12 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -56277,6 +60360,101 @@ public class MaxGroupTieredPackagePriceTypeTest : TestBase
     }
 }
 
+public class MaxGroupTieredPackageLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MaxGroupTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MaxGroupTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MaxGroupTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MaxGroupTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaxGroupTieredPackageLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MaxGroupTieredPackageLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class ScalableMatrixWithUnitPricingTest : TestBase
 {
     [Fact]
@@ -56323,6 +60501,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -56401,6 +60580,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -56449,6 +60634,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -56536,6 +60722,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        ScalableMatrixWithUnitPricingLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -56579,6 +60771,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             model.ScalableMatrixWithUnitPricingConfig
         );
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -56625,6 +60818,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -56702,6 +60896,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -56758,6 +60958,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -56836,6 +61037,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -56891,6 +61098,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -56978,6 +61186,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        ScalableMatrixWithUnitPricingLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -57024,6 +61238,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -57070,6 +61285,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -57148,6 +61364,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -57197,6 +61419,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -57274,6 +61497,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -57320,6 +61545,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -57442,6 +61668,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -57517,10 +61744,13 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -57567,6 +61797,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -57642,6 +61873,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -57691,6 +61923,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -57768,6 +62001,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -58700,6 +62939,101 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMat
     }
 }
 
+public class ScalableMatrixWithUnitPricingLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithUnitPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        ScalableMatrixWithUnitPricingLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class ScalableMatrixWithTieredPricingTest : TestBase
 {
     [Fact]
@@ -58746,6 +63080,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -58827,6 +63162,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -58875,6 +63216,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -58965,6 +63307,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        ScalableMatrixWithTieredPricingLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -59008,6 +63356,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             model.ScalableMatrixWithTieredPricingConfig
         );
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -59054,6 +63403,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -59134,6 +63484,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -59190,6 +63546,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -59271,6 +63628,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -59326,6 +63689,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -59416,6 +63780,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        ScalableMatrixWithTieredPricingLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -59462,6 +63832,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -59508,6 +63879,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -59589,6 +63961,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -59638,6 +64016,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -59718,6 +64097,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -59764,6 +64145,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -59889,6 +64271,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -59967,10 +64350,13 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -60017,6 +64403,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -60095,6 +64482,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -60144,6 +64532,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -60224,6 +64613,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -61287,6 +65682,101 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
     }
 }
 
+public class ScalableMatrixWithTieredPricingLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ScalableMatrixWithTieredPricingLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        ScalableMatrixWithTieredPricingLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class CumulativeGroupedBulkTest : TestBase
 {
     [Fact]
@@ -61333,6 +65823,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -61408,6 +65899,12 @@ public class CumulativeGroupedBulkTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -61456,6 +65953,7 @@ public class CumulativeGroupedBulkTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         CumulativeGroupedBulkCumulativeGroupedBulkConfig expectedCumulativeGroupedBulkConfig = new()
         {
@@ -61539,6 +66037,12 @@ public class CumulativeGroupedBulkTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        CumulativeGroupedBulkLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -61579,6 +66083,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -61625,6 +66130,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -61699,6 +66205,12 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -61755,6 +66267,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -61830,6 +66343,12 @@ public class CumulativeGroupedBulkTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -61885,6 +66404,7 @@ public class CumulativeGroupedBulkTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         CumulativeGroupedBulkCumulativeGroupedBulkConfig expectedCumulativeGroupedBulkConfig = new()
         {
@@ -61968,6 +66488,12 @@ public class CumulativeGroupedBulkTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        CumulativeGroupedBulkLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -62011,6 +66537,7 @@ public class CumulativeGroupedBulkTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -62057,6 +66584,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -62132,6 +66660,12 @@ public class CumulativeGroupedBulkTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -62181,6 +66715,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -62255,6 +66790,8 @@ public class CumulativeGroupedBulkTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -62301,6 +66838,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -62420,6 +66958,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -62492,10 +67031,13 @@ public class CumulativeGroupedBulkTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -62542,6 +67084,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -62614,6 +67157,7 @@ public class CumulativeGroupedBulkTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -62663,6 +67207,7 @@ public class CumulativeGroupedBulkTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedBulkConfig = new()
             {
@@ -62737,6 +67282,12 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -63475,6 +68026,101 @@ public class CumulativeGroupedBulkPriceTypeTest : TestBase
     }
 }
 
+public class CumulativeGroupedBulkLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new CumulativeGroupedBulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new CumulativeGroupedBulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new CumulativeGroupedBulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new CumulativeGroupedBulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedBulkLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        CumulativeGroupedBulkLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class CumulativeGroupedAllocationTest : TestBase
 {
     [Fact]
@@ -63521,6 +68167,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -63590,6 +68237,12 @@ public class CumulativeGroupedAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -63638,6 +68291,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         CumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig = new()
         {
@@ -63715,6 +68369,12 @@ public class CumulativeGroupedAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        CumulativeGroupedAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -63758,6 +68418,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -63804,6 +68465,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -63872,6 +68534,12 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -63928,6 +68596,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -63997,6 +68666,12 @@ public class CumulativeGroupedAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -64052,6 +68727,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         CumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig = new()
         {
@@ -64129,6 +68805,12 @@ public class CumulativeGroupedAllocationTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        CumulativeGroupedAllocationLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -64175,6 +68857,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -64221,6 +68904,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -64290,6 +68974,12 @@ public class CumulativeGroupedAllocationTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -64339,6 +69029,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -64407,6 +69098,8 @@ public class CumulativeGroupedAllocationTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -64453,6 +69146,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -64566,6 +69260,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -64632,10 +69327,13 @@ public class CumulativeGroupedAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -64682,6 +69380,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -64748,6 +69447,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -64797,6 +69497,7 @@ public class CumulativeGroupedAllocationTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             CumulativeGroupedAllocationConfig = new()
             {
@@ -64865,6 +69566,12 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -65460,6 +70167,101 @@ public class CumulativeGroupedAllocationPriceTypeTest : TestBase
     }
 }
 
+public class CumulativeGroupedAllocationLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new CumulativeGroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new CumulativeGroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocationLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new CumulativeGroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocationLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new CumulativeGroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CumulativeGroupedAllocationLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        CumulativeGroupedAllocationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class MinimumCompositeTest : TestBase
 {
     [Fact]
@@ -65506,6 +70308,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -65569,6 +70372,12 @@ public class MinimumCompositeTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -65616,6 +70425,7 @@ public class MinimumCompositeTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -65689,6 +70499,12 @@ public class MinimumCompositeTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MinimumCompositeLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -65729,6 +70545,7 @@ public class MinimumCompositeTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -65775,6 +70592,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -65837,6 +70655,12 @@ public class MinimumCompositeTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -65893,6 +70717,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -65956,6 +70781,12 @@ public class MinimumCompositeTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -66010,6 +70841,7 @@ public class MinimumCompositeTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -66083,6 +70915,12 @@ public class MinimumCompositeTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        MinimumCompositeLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -66126,6 +70964,7 @@ public class MinimumCompositeTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -66172,6 +71011,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -66235,6 +71075,12 @@ public class MinimumCompositeTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -66284,6 +71130,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -66346,6 +71193,8 @@ public class MinimumCompositeTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -66392,6 +71241,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -66499,6 +71349,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -66559,10 +71410,13 @@ public class MinimumCompositeTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -66609,6 +71463,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -66669,6 +71524,7 @@ public class MinimumCompositeTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -66718,6 +71574,7 @@ public class MinimumCompositeTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -66780,6 +71637,12 @@ public class MinimumCompositeTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -67403,6 +72266,101 @@ public class MinimumCompositePriceTypeTest : TestBase
     }
 }
 
+public class MinimumCompositeLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MinimumCompositeLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MinimumCompositeLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MinimumCompositeLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MinimumCompositeLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MinimumCompositeLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MinimumCompositeLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MinimumCompositeLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class PercentTest : TestBase
 {
     [Fact]
@@ -67449,6 +72407,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -67512,6 +72471,12 @@ public class PercentTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -67558,6 +72523,7 @@ public class PercentTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -67626,6 +72592,12 @@ public class PercentTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        PercentLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -67666,6 +72638,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -67712,6 +72685,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -67774,6 +72748,12 @@ public class PercentTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -67827,6 +72807,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -67889,6 +72870,12 @@ public class PercentTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -67943,6 +72930,7 @@ public class PercentTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -68011,6 +72999,12 @@ public class PercentTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        PercentLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -68054,6 +73048,7 @@ public class PercentTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -68100,6 +73095,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -68163,6 +73159,12 @@ public class PercentTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -68212,6 +73214,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -68274,6 +73277,8 @@ public class PercentTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -68320,6 +73325,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -68427,6 +73433,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -68487,10 +73494,13 @@ public class PercentTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -68537,6 +73547,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -68597,6 +73608,7 @@ public class PercentTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -68646,6 +73658,7 @@ public class PercentTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -68708,6 +73721,12 @@ public class PercentTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -69263,6 +74282,101 @@ public class PercentPriceTypeTest : TestBase
     }
 }
 
+public class PercentLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PercentLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PercentLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PercentLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        PercentLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
 public class EventOutputTest : TestBase
 {
     [Fact]
@@ -69309,6 +74423,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -69377,6 +74492,12 @@ public class EventOutputTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string expectedID = "id";
@@ -69424,6 +74545,7 @@ public class EventOutputTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -69497,6 +74619,12 @@ public class EventOutputTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        EventOutputLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
@@ -69537,6 +74665,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedPriceType, model.PriceType);
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
     }
 
     [Fact]
@@ -69583,6 +74712,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -69650,6 +74780,12 @@ public class EventOutputTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -69706,6 +74842,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -69774,6 +74911,12 @@ public class EventOutputTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -69828,6 +74971,7 @@ public class EventOutputTest : TestBase
                     Values = ["string"],
                 },
             ],
+            LicenseTypeID = "license_type_id",
         };
         string expectedCurrency = "currency";
         SharedDiscount expectedDiscount = new PercentageDiscount()
@@ -69901,6 +75045,12 @@ public class EventOutputTest : TestBase
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
+        EventOutputLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
@@ -69944,6 +75094,7 @@ public class EventOutputTest : TestBase
             expectedDimensionalPriceConfiguration,
             deserialized.DimensionalPriceConfiguration
         );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
 
     [Fact]
@@ -69990,6 +75141,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -70058,6 +75210,12 @@ public class EventOutputTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
 
         model.Validate();
@@ -70107,6 +75265,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -70174,6 +75333,8 @@ public class EventOutputTest : TestBase
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -70220,6 +75381,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -70332,6 +75494,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -70397,10 +75560,13 @@ public class EventOutputTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         Assert.Null(model.DimensionalPriceConfiguration);
         Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
     }
 
     [Fact]
@@ -70447,6 +75613,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -70512,6 +75679,7 @@ public class EventOutputTest : TestBase
             ReplacesPriceID = "replaces_price_id",
 
             DimensionalPriceConfiguration = null,
+            LicenseType = null,
         };
 
         model.Validate();
@@ -70561,6 +75729,7 @@ public class EventOutputTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -70628,6 +75797,12 @@ public class EventOutputTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
 
@@ -71261,5 +76436,100 @@ public class EventOutputPriceTypeTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class EventOutputLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new EventOutputLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new EventOutputLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<EventOutputLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new EventOutputLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<EventOutputLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new EventOutputLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventOutputLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        EventOutputLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

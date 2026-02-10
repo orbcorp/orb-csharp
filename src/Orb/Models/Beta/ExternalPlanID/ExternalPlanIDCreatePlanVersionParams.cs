@@ -1445,6 +1445,46 @@ public record class Price : ModelBase
         }
     }
 
+    public string? LicenseTypeID
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.LicenseTypeID,
+                newPlanTiered: (x) => x.LicenseTypeID,
+                newPlanBulk: (x) => x.LicenseTypeID,
+                bulkWithFilters: (x) => x.LicenseTypeID,
+                newPlanPackage: (x) => x.LicenseTypeID,
+                newPlanMatrix: (x) => x.LicenseTypeID,
+                newPlanThresholdTotalAmount: (x) => x.LicenseTypeID,
+                newPlanTieredPackage: (x) => x.LicenseTypeID,
+                newPlanTieredWithMinimum: (x) => x.LicenseTypeID,
+                newPlanGroupedTiered: (x) => x.LicenseTypeID,
+                newPlanTieredPackageWithMinimum: (x) => x.LicenseTypeID,
+                newPlanPackageWithAllocation: (x) => x.LicenseTypeID,
+                newPlanUnitWithPercent: (x) => x.LicenseTypeID,
+                newPlanMatrixWithAllocation: (x) => x.LicenseTypeID,
+                tieredWithProration: (x) => x.LicenseTypeID,
+                newPlanUnitWithProration: (x) => x.LicenseTypeID,
+                newPlanGroupedAllocation: (x) => x.LicenseTypeID,
+                newPlanBulkWithProration: (x) => x.LicenseTypeID,
+                newPlanGroupedWithProratedMinimum: (x) => x.LicenseTypeID,
+                newPlanGroupedWithMeteredMinimum: (x) => x.LicenseTypeID,
+                groupedWithMinMaxThresholds: (x) => x.LicenseTypeID,
+                newPlanMatrixWithDisplayName: (x) => x.LicenseTypeID,
+                newPlanGroupedTieredPackage: (x) => x.LicenseTypeID,
+                newPlanMaxGroupTieredPackage: (x) => x.LicenseTypeID,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.LicenseTypeID,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
+                newPlanCumulativeGroupedBulk: (x) => x.LicenseTypeID,
+                cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                newPlanMinimumComposite: (x) => x.LicenseTypeID,
+                percent: (x) => x.LicenseTypeID,
+                eventOutput: (x) => x.LicenseTypeID
+            );
+        }
+    }
+
     public string? ReferenceID
     {
         get
@@ -3799,6 +3839,19 @@ public sealed record class BulkWithFilters : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -3860,6 +3913,7 @@ public sealed record class BulkWithFilters : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -4723,6 +4777,19 @@ public sealed record class TieredWithProration : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -4784,6 +4851,7 @@ public sealed record class TieredWithProration : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -5579,6 +5647,19 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -5640,6 +5721,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -6384,6 +6466,19 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -6445,6 +6540,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -7183,6 +7279,19 @@ public sealed record class Percent : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -7239,6 +7348,7 @@ public sealed record class Percent : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -7927,6 +8037,19 @@ public sealed record class EventOutput : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -7988,6 +8111,7 @@ public sealed record class EventOutput : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -9832,6 +9956,46 @@ public record class ReplacePricePrice : ModelBase
                 newPlanMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
+            );
+        }
+    }
+
+    public string? LicenseTypeID
+    {
+        get
+        {
+            return Match<string?>(
+                newPlanUnit: (x) => x.LicenseTypeID,
+                newPlanTiered: (x) => x.LicenseTypeID,
+                newPlanBulk: (x) => x.LicenseTypeID,
+                bulkWithFilters: (x) => x.LicenseTypeID,
+                newPlanPackage: (x) => x.LicenseTypeID,
+                newPlanMatrix: (x) => x.LicenseTypeID,
+                newPlanThresholdTotalAmount: (x) => x.LicenseTypeID,
+                newPlanTieredPackage: (x) => x.LicenseTypeID,
+                newPlanTieredWithMinimum: (x) => x.LicenseTypeID,
+                newPlanGroupedTiered: (x) => x.LicenseTypeID,
+                newPlanTieredPackageWithMinimum: (x) => x.LicenseTypeID,
+                newPlanPackageWithAllocation: (x) => x.LicenseTypeID,
+                newPlanUnitWithPercent: (x) => x.LicenseTypeID,
+                newPlanMatrixWithAllocation: (x) => x.LicenseTypeID,
+                tieredWithProration: (x) => x.LicenseTypeID,
+                newPlanUnitWithProration: (x) => x.LicenseTypeID,
+                newPlanGroupedAllocation: (x) => x.LicenseTypeID,
+                newPlanBulkWithProration: (x) => x.LicenseTypeID,
+                newPlanGroupedWithProratedMinimum: (x) => x.LicenseTypeID,
+                newPlanGroupedWithMeteredMinimum: (x) => x.LicenseTypeID,
+                groupedWithMinMaxThresholds: (x) => x.LicenseTypeID,
+                newPlanMatrixWithDisplayName: (x) => x.LicenseTypeID,
+                newPlanGroupedTieredPackage: (x) => x.LicenseTypeID,
+                newPlanMaxGroupTieredPackage: (x) => x.LicenseTypeID,
+                newPlanScalableMatrixWithUnitPricing: (x) => x.LicenseTypeID,
+                newPlanScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
+                newPlanCumulativeGroupedBulk: (x) => x.LicenseTypeID,
+                cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                newPlanMinimumComposite: (x) => x.LicenseTypeID,
+                percent: (x) => x.LicenseTypeID,
+                eventOutput: (x) => x.LicenseTypeID
             );
         }
     }
@@ -12279,6 +12443,19 @@ public sealed record class ReplacePricePriceBulkWithFilters : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -12340,6 +12517,7 @@ public sealed record class ReplacePricePriceBulkWithFilters : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -13271,6 +13449,19 @@ public sealed record class ReplacePricePriceTieredWithProration : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -13332,6 +13523,7 @@ public sealed record class ReplacePricePriceTieredWithProration : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -14156,6 +14348,19 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : JsonMo
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -14217,6 +14422,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : JsonMo
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -14982,6 +15188,19 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : JsonMo
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -15043,6 +15262,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : JsonMo
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -15805,6 +16025,19 @@ public sealed record class ReplacePricePricePercent : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -15861,6 +16094,7 @@ public sealed record class ReplacePricePricePercent : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -16571,6 +16805,19 @@ public sealed record class ReplacePricePriceEventOutput : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -16632,6 +16879,7 @@ public sealed record class ReplacePricePriceEventOutput : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }

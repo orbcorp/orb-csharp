@@ -3223,6 +3223,21 @@ public sealed record class Unit : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public LicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<LicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -3260,6 +3275,7 @@ public sealed record class Unit : JsonModel
         _ = this.ReplacesPriceID;
         this.UnitConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -3956,6 +3972,97 @@ sealed class UnitPriceTypeConverter : JsonConverter<UnitPriceType>
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<LicenseType, LicenseTypeFromRaw>))]
+public sealed record class LicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public LicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public LicenseType(LicenseType licenseType)
+        : base(licenseType) { }
+#pragma warning restore CS8618
+
+    public LicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    LicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="LicenseTypeFromRaw.FromRawUnchecked"/>
+    public static LicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class LicenseTypeFromRaw : IFromRawJson<LicenseType>
+{
+    /// <inheritdoc/>
+    public LicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<Tiered, TieredFromRaw>))]
 public sealed record class Tiered : JsonModel
 {
@@ -4287,6 +4394,21 @@ public sealed record class Tiered : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public TieredLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TieredLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -4324,6 +4446,7 @@ public sealed record class Tiered : JsonModel
         _ = this.ReplacesPriceID;
         this.TieredConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -5024,6 +5147,99 @@ sealed class TieredPriceTypeConverter : JsonConverter<TieredPriceType>
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<TieredLicenseType, TieredLicenseTypeFromRaw>))]
+public sealed record class TieredLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public TieredLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredLicenseType(TieredLicenseType tieredLicenseType)
+        : base(tieredLicenseType) { }
+#pragma warning restore CS8618
+
+    public TieredLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static TieredLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredLicenseTypeFromRaw : IFromRawJson<TieredLicenseType>
+{
+    /// <inheritdoc/>
+    public TieredLicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<Bulk, BulkFromRaw>))]
 public sealed record class Bulk : JsonModel
 {
@@ -5353,6 +5569,21 @@ public sealed record class Bulk : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public BulkLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BulkLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -5390,6 +5621,7 @@ public sealed record class Bulk : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -6089,6 +6321,97 @@ sealed class BulkPriceTypeConverter : JsonConverter<BulkPriceType>
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<BulkLicenseType, BulkLicenseTypeFromRaw>))]
+public sealed record class BulkLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public BulkLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public BulkLicenseType(BulkLicenseType bulkLicenseType)
+        : base(bulkLicenseType) { }
+#pragma warning restore CS8618
+
+    public BulkLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BulkLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="BulkLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static BulkLicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class BulkLicenseTypeFromRaw : IFromRawJson<BulkLicenseType>
+{
+    /// <inheritdoc/>
+    public BulkLicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        BulkLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<BulkWithFilters, BulkWithFiltersFromRaw>))]
 public sealed record class BulkWithFilters : JsonModel
 {
@@ -6424,6 +6747,21 @@ public sealed record class BulkWithFilters : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public BulkWithFiltersLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BulkWithFiltersLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -6466,6 +6804,7 @@ public sealed record class BulkWithFilters : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -7436,6 +7775,102 @@ sealed class BulkWithFiltersPriceTypeConverter : JsonConverter<BulkWithFiltersPr
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<BulkWithFiltersLicenseType, BulkWithFiltersLicenseTypeFromRaw>)
+)]
+public sealed record class BulkWithFiltersLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public BulkWithFiltersLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public BulkWithFiltersLicenseType(BulkWithFiltersLicenseType bulkWithFiltersLicenseType)
+        : base(bulkWithFiltersLicenseType) { }
+#pragma warning restore CS8618
+
+    public BulkWithFiltersLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BulkWithFiltersLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="BulkWithFiltersLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static BulkWithFiltersLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class BulkWithFiltersLicenseTypeFromRaw : IFromRawJson<BulkWithFiltersLicenseType>
+{
+    /// <inheritdoc/>
+    public BulkWithFiltersLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithFiltersLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<Package, PackageFromRaw>))]
 public sealed record class Package : JsonModel
 {
@@ -7767,6 +8202,21 @@ public sealed record class Package : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public PackageLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PackageLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -7804,6 +8254,7 @@ public sealed record class Package : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -8504,6 +8955,99 @@ sealed class PackagePriceTypeConverter : JsonConverter<PackagePriceType>
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<PackageLicenseType, PackageLicenseTypeFromRaw>))]
+public sealed record class PackageLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public PackageLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PackageLicenseType(PackageLicenseType packageLicenseType)
+        : base(packageLicenseType) { }
+#pragma warning restore CS8618
+
+    public PackageLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PackageLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PackageLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static PackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PackageLicenseTypeFromRaw : IFromRawJson<PackageLicenseType>
+{
+    /// <inheritdoc/>
+    public PackageLicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PackageLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<Matrix, MatrixFromRaw>))]
 public sealed record class Matrix : JsonModel
 {
@@ -8835,6 +9379,21 @@ public sealed record class Matrix : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public MatrixLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MatrixLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -8872,6 +9431,7 @@ public sealed record class Matrix : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -9572,6 +10132,99 @@ sealed class MatrixPriceTypeConverter : JsonConverter<MatrixPriceType>
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<MatrixLicenseType, MatrixLicenseTypeFromRaw>))]
+public sealed record class MatrixLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public MatrixLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MatrixLicenseType(MatrixLicenseType matrixLicenseType)
+        : base(matrixLicenseType) { }
+#pragma warning restore CS8618
+
+    public MatrixLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MatrixLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static MatrixLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MatrixLicenseTypeFromRaw : IFromRawJson<MatrixLicenseType>
+{
+    /// <inheritdoc/>
+    public MatrixLicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<ThresholdTotalAmount, ThresholdTotalAmountFromRaw>))]
 public sealed record class ThresholdTotalAmount : JsonModel
 {
@@ -9909,6 +10562,21 @@ public sealed record class ThresholdTotalAmount : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public ThresholdTotalAmountLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ThresholdTotalAmountLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -9951,6 +10619,7 @@ public sealed record class ThresholdTotalAmount : JsonModel
         _ = this.ReplacesPriceID;
         this.ThresholdTotalAmountConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -10858,6 +11527,107 @@ class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableFromRaw
     ) => ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ThresholdTotalAmountLicenseType,
+        ThresholdTotalAmountLicenseTypeFromRaw
+    >)
+)]
+public sealed record class ThresholdTotalAmountLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public ThresholdTotalAmountLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ThresholdTotalAmountLicenseType(
+        ThresholdTotalAmountLicenseType thresholdTotalAmountLicenseType
+    )
+        : base(thresholdTotalAmountLicenseType) { }
+#pragma warning restore CS8618
+
+    public ThresholdTotalAmountLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ThresholdTotalAmountLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ThresholdTotalAmountLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static ThresholdTotalAmountLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ThresholdTotalAmountLicenseTypeFromRaw : IFromRawJson<ThresholdTotalAmountLicenseType>
+{
+    /// <inheritdoc/>
+    public ThresholdTotalAmountLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ThresholdTotalAmountLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<TieredPackage, TieredPackageFromRaw>))]
 public sealed record class TieredPackage : JsonModel
 {
@@ -11193,6 +11963,21 @@ public sealed record class TieredPackage : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public TieredPackageLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TieredPackageLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -11235,6 +12020,7 @@ public sealed record class TieredPackage : JsonModel
         _ = this.ReplacesPriceID;
         this.TieredPackageConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -12118,6 +12904,102 @@ class TieredPackageTieredPackageConfigTierFromRaw
     ) => TieredPackageTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<TieredPackageLicenseType, TieredPackageLicenseTypeFromRaw>)
+)]
+public sealed record class TieredPackageLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public TieredPackageLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredPackageLicenseType(TieredPackageLicenseType tieredPackageLicenseType)
+        : base(tieredPackageLicenseType) { }
+#pragma warning restore CS8618
+
+    public TieredPackageLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredPackageLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredPackageLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static TieredPackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredPackageLicenseTypeFromRaw : IFromRawJson<TieredPackageLicenseType>
+{
+    /// <inheritdoc/>
+    public TieredPackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<TieredWithMinimum, TieredWithMinimumFromRaw>))]
 public sealed record class TieredWithMinimum : JsonModel
 {
@@ -12455,6 +13337,21 @@ public sealed record class TieredWithMinimum : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public TieredWithMinimumLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TieredWithMinimumLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -12497,6 +13394,7 @@ public sealed record class TieredWithMinimum : JsonModel
         _ = this.ReplacesPriceID;
         this.TieredWithMinimumConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -13439,6 +14337,102 @@ class TieredWithMinimumTieredWithMinimumConfigTierFromRaw
     ) => TieredWithMinimumTieredWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<TieredWithMinimumLicenseType, TieredWithMinimumLicenseTypeFromRaw>)
+)]
+public sealed record class TieredWithMinimumLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public TieredWithMinimumLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredWithMinimumLicenseType(TieredWithMinimumLicenseType tieredWithMinimumLicenseType)
+        : base(tieredWithMinimumLicenseType) { }
+#pragma warning restore CS8618
+
+    public TieredWithMinimumLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredWithMinimumLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredWithMinimumLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static TieredWithMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredWithMinimumLicenseTypeFromRaw : IFromRawJson<TieredWithMinimumLicenseType>
+{
+    /// <inheritdoc/>
+    public TieredWithMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithMinimumLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<GroupedTiered, GroupedTieredFromRaw>))]
 public sealed record class GroupedTiered : JsonModel
 {
@@ -13774,6 +14768,21 @@ public sealed record class GroupedTiered : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public GroupedTieredLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<GroupedTieredLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -13816,6 +14825,7 @@ public sealed record class GroupedTiered : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -14699,6 +15709,102 @@ sealed class GroupedTieredPriceTypeConverter : JsonConverter<GroupedTieredPriceT
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<GroupedTieredLicenseType, GroupedTieredLicenseTypeFromRaw>)
+)]
+public sealed record class GroupedTieredLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public GroupedTieredLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedTieredLicenseType(GroupedTieredLicenseType groupedTieredLicenseType)
+        : base(groupedTieredLicenseType) { }
+#pragma warning restore CS8618
+
+    public GroupedTieredLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedTieredLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="GroupedTieredLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static GroupedTieredLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class GroupedTieredLicenseTypeFromRaw : IFromRawJson<GroupedTieredLicenseType>
+{
+    /// <inheritdoc/>
+    public GroupedTieredLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<TieredPackageWithMinimum, TieredPackageWithMinimumFromRaw>)
 )]
@@ -15038,6 +16144,23 @@ public sealed record class TieredPackageWithMinimum : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public TieredPackageWithMinimumLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TieredPackageWithMinimumLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -15080,6 +16203,7 @@ public sealed record class TieredPackageWithMinimum : JsonModel
         _ = this.ReplacesPriceID;
         this.TieredPackageWithMinimumConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -15987,6 +17111,107 @@ class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierFromRaw
     ) => TieredPackageWithMinimumTieredPackageWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        TieredPackageWithMinimumLicenseType,
+        TieredPackageWithMinimumLicenseTypeFromRaw
+    >)
+)]
+public sealed record class TieredPackageWithMinimumLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public TieredPackageWithMinimumLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredPackageWithMinimumLicenseType(
+        TieredPackageWithMinimumLicenseType tieredPackageWithMinimumLicenseType
+    )
+        : base(tieredPackageWithMinimumLicenseType) { }
+#pragma warning restore CS8618
+
+    public TieredPackageWithMinimumLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredPackageWithMinimumLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredPackageWithMinimumLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static TieredPackageWithMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredPackageWithMinimumLicenseTypeFromRaw : IFromRawJson<TieredPackageWithMinimumLicenseType>
+{
+    /// <inheritdoc/>
+    public TieredPackageWithMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageWithMinimumLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<PackageWithAllocation, PackageWithAllocationFromRaw>))]
 public sealed record class PackageWithAllocation : JsonModel
 {
@@ -16324,6 +17549,21 @@ public sealed record class PackageWithAllocation : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public PackageWithAllocationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PackageWithAllocationLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -16366,6 +17606,7 @@ public sealed record class PackageWithAllocation : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -17171,6 +18412,107 @@ sealed class PackageWithAllocationPriceTypeConverter : JsonConverter<PackageWith
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PackageWithAllocationLicenseType,
+        PackageWithAllocationLicenseTypeFromRaw
+    >)
+)]
+public sealed record class PackageWithAllocationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public PackageWithAllocationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PackageWithAllocationLicenseType(
+        PackageWithAllocationLicenseType packageWithAllocationLicenseType
+    )
+        : base(packageWithAllocationLicenseType) { }
+#pragma warning restore CS8618
+
+    public PackageWithAllocationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PackageWithAllocationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PackageWithAllocationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static PackageWithAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PackageWithAllocationLicenseTypeFromRaw : IFromRawJson<PackageWithAllocationLicenseType>
+{
+    /// <inheritdoc/>
+    public PackageWithAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PackageWithAllocationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<UnitWithPercent, UnitWithPercentFromRaw>))]
 public sealed record class UnitWithPercent : JsonModel
 {
@@ -17508,6 +18850,21 @@ public sealed record class UnitWithPercent : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public UnitWithPercentLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<UnitWithPercentLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -17550,6 +18907,7 @@ public sealed record class UnitWithPercent : JsonModel
         _ = this.ReplacesPriceID;
         this.UnitWithPercentConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -18341,6 +19699,102 @@ class UnitWithPercentUnitWithPercentConfigFromRaw
     ) => UnitWithPercentUnitWithPercentConfig.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<UnitWithPercentLicenseType, UnitWithPercentLicenseTypeFromRaw>)
+)]
+public sealed record class UnitWithPercentLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public UnitWithPercentLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public UnitWithPercentLicenseType(UnitWithPercentLicenseType unitWithPercentLicenseType)
+        : base(unitWithPercentLicenseType) { }
+#pragma warning restore CS8618
+
+    public UnitWithPercentLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UnitWithPercentLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="UnitWithPercentLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static UnitWithPercentLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class UnitWithPercentLicenseTypeFromRaw : IFromRawJson<UnitWithPercentLicenseType>
+{
+    /// <inheritdoc/>
+    public UnitWithPercentLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UnitWithPercentLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<MatrixWithAllocation, MatrixWithAllocationFromRaw>))]
 public sealed record class MatrixWithAllocation : JsonModel
 {
@@ -18678,6 +20132,21 @@ public sealed record class MatrixWithAllocation : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public MatrixWithAllocationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MatrixWithAllocationLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -18720,6 +20189,7 @@ public sealed record class MatrixWithAllocation : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -19433,6 +20903,107 @@ sealed class MatrixWithAllocationPriceTypeConverter : JsonConverter<MatrixWithAl
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MatrixWithAllocationLicenseType,
+        MatrixWithAllocationLicenseTypeFromRaw
+    >)
+)]
+public sealed record class MatrixWithAllocationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public MatrixWithAllocationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MatrixWithAllocationLicenseType(
+        MatrixWithAllocationLicenseType matrixWithAllocationLicenseType
+    )
+        : base(matrixWithAllocationLicenseType) { }
+#pragma warning restore CS8618
+
+    public MatrixWithAllocationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixWithAllocationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MatrixWithAllocationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static MatrixWithAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MatrixWithAllocationLicenseTypeFromRaw : IFromRawJson<MatrixWithAllocationLicenseType>
+{
+    /// <inheritdoc/>
+    public MatrixWithAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithAllocationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<TieredWithProration, TieredWithProrationFromRaw>))]
 public sealed record class TieredWithProration : JsonModel
 {
@@ -19770,6 +21341,21 @@ public sealed record class TieredWithProration : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public TieredWithProrationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TieredWithProrationLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -19812,6 +21398,7 @@ public sealed record class TieredWithProration : JsonModel
         _ = this.ReplacesPriceID;
         this.TieredWithProrationConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -20702,6 +22289,107 @@ class TieredWithProrationTieredWithProrationConfigTierFromRaw
     ) => TieredWithProrationTieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        TieredWithProrationLicenseType,
+        TieredWithProrationLicenseTypeFromRaw
+    >)
+)]
+public sealed record class TieredWithProrationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public TieredWithProrationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredWithProrationLicenseType(
+        TieredWithProrationLicenseType tieredWithProrationLicenseType
+    )
+        : base(tieredWithProrationLicenseType) { }
+#pragma warning restore CS8618
+
+    public TieredWithProrationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredWithProrationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredWithProrationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static TieredWithProrationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredWithProrationLicenseTypeFromRaw : IFromRawJson<TieredWithProrationLicenseType>
+{
+    /// <inheritdoc/>
+    public TieredWithProrationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithProrationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<UnitWithProration, UnitWithProrationFromRaw>))]
 public sealed record class UnitWithProration : JsonModel
 {
@@ -21039,6 +22727,21 @@ public sealed record class UnitWithProration : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public UnitWithProrationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<UnitWithProrationLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -21081,6 +22784,7 @@ public sealed record class UnitWithProration : JsonModel
         _ = this.ReplacesPriceID;
         this.UnitWithProrationConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -21870,6 +23574,102 @@ class UnitWithProrationUnitWithProrationConfigFromRaw
     ) => UnitWithProrationUnitWithProrationConfig.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<UnitWithProrationLicenseType, UnitWithProrationLicenseTypeFromRaw>)
+)]
+public sealed record class UnitWithProrationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public UnitWithProrationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public UnitWithProrationLicenseType(UnitWithProrationLicenseType unitWithProrationLicenseType)
+        : base(unitWithProrationLicenseType) { }
+#pragma warning restore CS8618
+
+    public UnitWithProrationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    UnitWithProrationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="UnitWithProrationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static UnitWithProrationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class UnitWithProrationLicenseTypeFromRaw : IFromRawJson<UnitWithProrationLicenseType>
+{
+    /// <inheritdoc/>
+    public UnitWithProrationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UnitWithProrationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<GroupedAllocation, GroupedAllocationFromRaw>))]
 public sealed record class GroupedAllocation : JsonModel
 {
@@ -22207,6 +24007,21 @@ public sealed record class GroupedAllocation : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public GroupedAllocationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<GroupedAllocationLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -22249,6 +24064,7 @@ public sealed record class GroupedAllocation : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -23059,6 +24875,102 @@ sealed class GroupedAllocationPriceTypeConverter : JsonConverter<GroupedAllocati
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<GroupedAllocationLicenseType, GroupedAllocationLicenseTypeFromRaw>)
+)]
+public sealed record class GroupedAllocationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public GroupedAllocationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedAllocationLicenseType(GroupedAllocationLicenseType groupedAllocationLicenseType)
+        : base(groupedAllocationLicenseType) { }
+#pragma warning restore CS8618
+
+    public GroupedAllocationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedAllocationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="GroupedAllocationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static GroupedAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class GroupedAllocationLicenseTypeFromRaw : IFromRawJson<GroupedAllocationLicenseType>
+{
+    /// <inheritdoc/>
+    public GroupedAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedAllocationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<BulkWithProration, BulkWithProrationFromRaw>))]
 public sealed record class BulkWithProration : JsonModel
 {
@@ -23396,6 +25308,21 @@ public sealed record class BulkWithProration : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public BulkWithProrationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BulkWithProrationLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -23438,6 +25365,7 @@ public sealed record class BulkWithProration : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -24334,6 +26262,102 @@ sealed class BulkWithProrationPriceTypeConverter : JsonConverter<BulkWithProrati
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<BulkWithProrationLicenseType, BulkWithProrationLicenseTypeFromRaw>)
+)]
+public sealed record class BulkWithProrationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public BulkWithProrationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public BulkWithProrationLicenseType(BulkWithProrationLicenseType bulkWithProrationLicenseType)
+        : base(bulkWithProrationLicenseType) { }
+#pragma warning restore CS8618
+
+    public BulkWithProrationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    BulkWithProrationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="BulkWithProrationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static BulkWithProrationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class BulkWithProrationLicenseTypeFromRaw : IFromRawJson<BulkWithProrationLicenseType>
+{
+    /// <inheritdoc/>
+    public BulkWithProrationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithProrationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<GroupedWithProratedMinimum, GroupedWithProratedMinimumFromRaw>)
 )]
@@ -24673,6 +26697,23 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public GroupedWithProratedMinimumLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<GroupedWithProratedMinimumLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -24715,6 +26756,7 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -25534,6 +27576,108 @@ sealed class GroupedWithProratedMinimumPriceTypeConverter
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        GroupedWithProratedMinimumLicenseType,
+        GroupedWithProratedMinimumLicenseTypeFromRaw
+    >)
+)]
+public sealed record class GroupedWithProratedMinimumLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public GroupedWithProratedMinimumLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedWithProratedMinimumLicenseType(
+        GroupedWithProratedMinimumLicenseType groupedWithProratedMinimumLicenseType
+    )
+        : base(groupedWithProratedMinimumLicenseType) { }
+#pragma warning restore CS8618
+
+    public GroupedWithProratedMinimumLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedWithProratedMinimumLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="GroupedWithProratedMinimumLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static GroupedWithProratedMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class GroupedWithProratedMinimumLicenseTypeFromRaw
+    : IFromRawJson<GroupedWithProratedMinimumLicenseType>
+{
+    /// <inheritdoc/>
+    public GroupedWithProratedMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithProratedMinimumLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<GroupedWithMeteredMinimum, GroupedWithMeteredMinimumFromRaw>)
 )]
@@ -25873,6 +28017,23 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public GroupedWithMeteredMinimumLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<GroupedWithMeteredMinimumLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -25915,6 +28076,7 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -26975,6 +29137,108 @@ sealed class GroupedWithMeteredMinimumPriceTypeConverter
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        GroupedWithMeteredMinimumLicenseType,
+        GroupedWithMeteredMinimumLicenseTypeFromRaw
+    >)
+)]
+public sealed record class GroupedWithMeteredMinimumLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public GroupedWithMeteredMinimumLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedWithMeteredMinimumLicenseType(
+        GroupedWithMeteredMinimumLicenseType groupedWithMeteredMinimumLicenseType
+    )
+        : base(groupedWithMeteredMinimumLicenseType) { }
+#pragma warning restore CS8618
+
+    public GroupedWithMeteredMinimumLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedWithMeteredMinimumLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="GroupedWithMeteredMinimumLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static GroupedWithMeteredMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class GroupedWithMeteredMinimumLicenseTypeFromRaw
+    : IFromRawJson<GroupedWithMeteredMinimumLicenseType>
+{
+    /// <inheritdoc/>
+    public GroupedWithMeteredMinimumLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMeteredMinimumLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<GroupedWithMinMaxThresholds, GroupedWithMinMaxThresholdsFromRaw>)
 )]
@@ -27314,6 +29578,23 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public GroupedWithMinMaxThresholdsLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<GroupedWithMinMaxThresholdsLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -27356,6 +29637,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -28187,6 +30469,108 @@ sealed class GroupedWithMinMaxThresholdsPriceTypeConverter
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        GroupedWithMinMaxThresholdsLicenseType,
+        GroupedWithMinMaxThresholdsLicenseTypeFromRaw
+    >)
+)]
+public sealed record class GroupedWithMinMaxThresholdsLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public GroupedWithMinMaxThresholdsLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedWithMinMaxThresholdsLicenseType(
+        GroupedWithMinMaxThresholdsLicenseType groupedWithMinMaxThresholdsLicenseType
+    )
+        : base(groupedWithMinMaxThresholdsLicenseType) { }
+#pragma warning restore CS8618
+
+    public GroupedWithMinMaxThresholdsLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedWithMinMaxThresholdsLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="GroupedWithMinMaxThresholdsLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static GroupedWithMinMaxThresholdsLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class GroupedWithMinMaxThresholdsLicenseTypeFromRaw
+    : IFromRawJson<GroupedWithMinMaxThresholdsLicenseType>
+{
+    /// <inheritdoc/>
+    public GroupedWithMinMaxThresholdsLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedWithMinMaxThresholdsLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<MatrixWithDisplayName, MatrixWithDisplayNameFromRaw>))]
 public sealed record class MatrixWithDisplayName : JsonModel
 {
@@ -28524,6 +30908,21 @@ public sealed record class MatrixWithDisplayName : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public MatrixWithDisplayNameLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MatrixWithDisplayNameLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -28566,6 +30965,7 @@ public sealed record class MatrixWithDisplayName : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -29479,6 +31879,107 @@ sealed class MatrixWithDisplayNamePriceTypeConverter : JsonConverter<MatrixWithD
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MatrixWithDisplayNameLicenseType,
+        MatrixWithDisplayNameLicenseTypeFromRaw
+    >)
+)]
+public sealed record class MatrixWithDisplayNameLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public MatrixWithDisplayNameLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MatrixWithDisplayNameLicenseType(
+        MatrixWithDisplayNameLicenseType matrixWithDisplayNameLicenseType
+    )
+        : base(matrixWithDisplayNameLicenseType) { }
+#pragma warning restore CS8618
+
+    public MatrixWithDisplayNameLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixWithDisplayNameLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MatrixWithDisplayNameLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static MatrixWithDisplayNameLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MatrixWithDisplayNameLicenseTypeFromRaw : IFromRawJson<MatrixWithDisplayNameLicenseType>
+{
+    /// <inheritdoc/>
+    public MatrixWithDisplayNameLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithDisplayNameLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<GroupedTieredPackage, GroupedTieredPackageFromRaw>))]
 public sealed record class GroupedTieredPackage : JsonModel
 {
@@ -29816,6 +32317,21 @@ public sealed record class GroupedTieredPackage : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public GroupedTieredPackageLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<GroupedTieredPackageLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -29858,6 +32374,7 @@ public sealed record class GroupedTieredPackage : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -30767,6 +33284,107 @@ sealed class GroupedTieredPackagePriceTypeConverter : JsonConverter<GroupedTiere
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        GroupedTieredPackageLicenseType,
+        GroupedTieredPackageLicenseTypeFromRaw
+    >)
+)]
+public sealed record class GroupedTieredPackageLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public GroupedTieredPackageLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedTieredPackageLicenseType(
+        GroupedTieredPackageLicenseType groupedTieredPackageLicenseType
+    )
+        : base(groupedTieredPackageLicenseType) { }
+#pragma warning restore CS8618
+
+    public GroupedTieredPackageLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    GroupedTieredPackageLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="GroupedTieredPackageLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static GroupedTieredPackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class GroupedTieredPackageLicenseTypeFromRaw : IFromRawJson<GroupedTieredPackageLicenseType>
+{
+    /// <inheritdoc/>
+    public GroupedTieredPackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredPackageLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<MaxGroupTieredPackage, MaxGroupTieredPackageFromRaw>))]
 public sealed record class MaxGroupTieredPackage : JsonModel
 {
@@ -31104,6 +33722,21 @@ public sealed record class MaxGroupTieredPackage : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public MaxGroupTieredPackageLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MaxGroupTieredPackageLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -31146,6 +33779,7 @@ public sealed record class MaxGroupTieredPackage : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -32054,6 +34688,107 @@ sealed class MaxGroupTieredPackagePriceTypeConverter : JsonConverter<MaxGroupTie
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MaxGroupTieredPackageLicenseType,
+        MaxGroupTieredPackageLicenseTypeFromRaw
+    >)
+)]
+public sealed record class MaxGroupTieredPackageLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public MaxGroupTieredPackageLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MaxGroupTieredPackageLicenseType(
+        MaxGroupTieredPackageLicenseType maxGroupTieredPackageLicenseType
+    )
+        : base(maxGroupTieredPackageLicenseType) { }
+#pragma warning restore CS8618
+
+    public MaxGroupTieredPackageLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MaxGroupTieredPackageLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MaxGroupTieredPackageLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static MaxGroupTieredPackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MaxGroupTieredPackageLicenseTypeFromRaw : IFromRawJson<MaxGroupTieredPackageLicenseType>
+{
+    /// <inheritdoc/>
+    public MaxGroupTieredPackageLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaxGroupTieredPackageLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<ScalableMatrixWithUnitPricing, ScalableMatrixWithUnitPricingFromRaw>)
 )]
@@ -32393,6 +35128,23 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public ScalableMatrixWithUnitPricingLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ScalableMatrixWithUnitPricingLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -32435,6 +35187,7 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         _ = this.ReplacesPriceID;
         this.ScalableMatrixWithUnitPricingConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -33398,6 +36151,110 @@ class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScal
         );
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ScalableMatrixWithUnitPricingLicenseType,
+        ScalableMatrixWithUnitPricingLicenseTypeFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithUnitPricingLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public ScalableMatrixWithUnitPricingLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ScalableMatrixWithUnitPricingLicenseType(
+        ScalableMatrixWithUnitPricingLicenseType scalableMatrixWithUnitPricingLicenseType
+    )
+        : base(scalableMatrixWithUnitPricingLicenseType) { }
+#pragma warning restore CS8618
+
+    public ScalableMatrixWithUnitPricingLicenseType(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ScalableMatrixWithUnitPricingLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ScalableMatrixWithUnitPricingLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static ScalableMatrixWithUnitPricingLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ScalableMatrixWithUnitPricingLicenseTypeFromRaw
+    : IFromRawJson<ScalableMatrixWithUnitPricingLicenseType>
+{
+    /// <inheritdoc/>
+    public ScalableMatrixWithUnitPricingLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithUnitPricingLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<
         ScalableMatrixWithTieredPricing,
@@ -33740,6 +36597,23 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public ScalableMatrixWithTieredPricingLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ScalableMatrixWithTieredPricingLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -33782,6 +36656,7 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         _ = this.ReplacesPriceID;
         this.ScalableMatrixWithTieredPricingConfig.Validate();
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -34832,6 +37707,110 @@ class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTierFr
         );
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ScalableMatrixWithTieredPricingLicenseType,
+        ScalableMatrixWithTieredPricingLicenseTypeFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithTieredPricingLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public ScalableMatrixWithTieredPricingLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ScalableMatrixWithTieredPricingLicenseType(
+        ScalableMatrixWithTieredPricingLicenseType scalableMatrixWithTieredPricingLicenseType
+    )
+        : base(scalableMatrixWithTieredPricingLicenseType) { }
+#pragma warning restore CS8618
+
+    public ScalableMatrixWithTieredPricingLicenseType(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ScalableMatrixWithTieredPricingLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ScalableMatrixWithTieredPricingLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static ScalableMatrixWithTieredPricingLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ScalableMatrixWithTieredPricingLicenseTypeFromRaw
+    : IFromRawJson<ScalableMatrixWithTieredPricingLicenseType>
+{
+    /// <inheritdoc/>
+    public ScalableMatrixWithTieredPricingLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithTieredPricingLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<CumulativeGroupedBulk, CumulativeGroupedBulkFromRaw>))]
 public sealed record class CumulativeGroupedBulk : JsonModel
 {
@@ -35169,6 +38148,21 @@ public sealed record class CumulativeGroupedBulk : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public CumulativeGroupedBulkLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CumulativeGroupedBulkLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -35211,6 +38205,7 @@ public sealed record class CumulativeGroupedBulk : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -36122,6 +39117,107 @@ sealed class CumulativeGroupedBulkPriceTypeConverter : JsonConverter<CumulativeG
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        CumulativeGroupedBulkLicenseType,
+        CumulativeGroupedBulkLicenseTypeFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedBulkLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public CumulativeGroupedBulkLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public CumulativeGroupedBulkLicenseType(
+        CumulativeGroupedBulkLicenseType cumulativeGroupedBulkLicenseType
+    )
+        : base(cumulativeGroupedBulkLicenseType) { }
+#pragma warning restore CS8618
+
+    public CumulativeGroupedBulkLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CumulativeGroupedBulkLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="CumulativeGroupedBulkLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static CumulativeGroupedBulkLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class CumulativeGroupedBulkLicenseTypeFromRaw : IFromRawJson<CumulativeGroupedBulkLicenseType>
+{
+    /// <inheritdoc/>
+    public CumulativeGroupedBulkLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedBulkLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(
     typeof(JsonModelConverter<CumulativeGroupedAllocation, CumulativeGroupedAllocationFromRaw>)
 )]
@@ -36461,6 +39557,23 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public CumulativeGroupedAllocationLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CumulativeGroupedAllocationLicenseType>(
+                "license_type"
+            );
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -36503,6 +39616,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -37334,6 +40448,108 @@ sealed class CumulativeGroupedAllocationPriceTypeConverter
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        CumulativeGroupedAllocationLicenseType,
+        CumulativeGroupedAllocationLicenseTypeFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedAllocationLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public CumulativeGroupedAllocationLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public CumulativeGroupedAllocationLicenseType(
+        CumulativeGroupedAllocationLicenseType cumulativeGroupedAllocationLicenseType
+    )
+        : base(cumulativeGroupedAllocationLicenseType) { }
+#pragma warning restore CS8618
+
+    public CumulativeGroupedAllocationLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CumulativeGroupedAllocationLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="CumulativeGroupedAllocationLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static CumulativeGroupedAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class CumulativeGroupedAllocationLicenseTypeFromRaw
+    : IFromRawJson<CumulativeGroupedAllocationLicenseType>
+{
+    /// <inheritdoc/>
+    public CumulativeGroupedAllocationLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedAllocationLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<MinimumComposite, MinimumCompositeFromRaw>))]
 public sealed record class MinimumComposite : JsonModel
 {
@@ -37671,6 +40887,21 @@ public sealed record class MinimumComposite : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public MinimumCompositeLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MinimumCompositeLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -37713,6 +40944,7 @@ public sealed record class MinimumComposite : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -38522,6 +41754,102 @@ sealed class MinimumCompositePriceTypeConverter : JsonConverter<MinimumComposite
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<MinimumCompositeLicenseType, MinimumCompositeLicenseTypeFromRaw>)
+)]
+public sealed record class MinimumCompositeLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public MinimumCompositeLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MinimumCompositeLicenseType(MinimumCompositeLicenseType minimumCompositeLicenseType)
+        : base(minimumCompositeLicenseType) { }
+#pragma warning restore CS8618
+
+    public MinimumCompositeLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MinimumCompositeLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MinimumCompositeLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static MinimumCompositeLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MinimumCompositeLicenseTypeFromRaw : IFromRawJson<MinimumCompositeLicenseType>
+{
+    /// <inheritdoc/>
+    public MinimumCompositeLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MinimumCompositeLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<Percent, PercentFromRaw>))]
 public sealed record class Percent : JsonModel
 {
@@ -38853,6 +42181,21 @@ public sealed record class Percent : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public PercentLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PercentLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -38890,6 +42233,7 @@ public sealed record class Percent : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -39657,6 +43001,99 @@ sealed class PercentPriceTypeConverter : JsonConverter<PercentPriceType>
     }
 }
 
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<PercentLicenseType, PercentLicenseTypeFromRaw>))]
+public sealed record class PercentLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public PercentLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PercentLicenseType(PercentLicenseType percentLicenseType)
+        : base(percentLicenseType) { }
+#pragma warning restore CS8618
+
+    public PercentLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PercentLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PercentLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static PercentLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PercentLicenseTypeFromRaw : IFromRawJson<PercentLicenseType>
+{
+    /// <inheritdoc/>
+    public PercentLicenseType FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PercentLicenseType.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(JsonModelConverter<EventOutput, EventOutputFromRaw>))]
 public sealed record class EventOutput : JsonModel
 {
@@ -39990,6 +43427,21 @@ public sealed record class EventOutput : JsonModel
         init { this._rawData.Set("dimensional_price_configuration", value); }
     }
 
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public EventOutputLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<EventOutputLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -40032,6 +43484,7 @@ public sealed record class EventOutput : JsonModel
         this.PriceType.Validate();
         _ = this.ReplacesPriceID;
         this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
     }
 
     [System::Obsolete(
@@ -40836,4 +44289,98 @@ sealed class EventOutputPriceTypeConverter : JsonConverter<EventOutputPriceType>
             options
         );
     }
+}
+
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<EventOutputLicenseType, EventOutputLicenseTypeFromRaw>))]
+public sealed record class EventOutputLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public EventOutputLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public EventOutputLicenseType(EventOutputLicenseType eventOutputLicenseType)
+        : base(eventOutputLicenseType) { }
+#pragma warning restore CS8618
+
+    public EventOutputLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    EventOutputLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="EventOutputLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static EventOutputLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class EventOutputLicenseTypeFromRaw : IFromRawJson<EventOutputLicenseType>
+{
+    /// <inheritdoc/>
+    public EventOutputLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => EventOutputLicenseType.FromRawUnchecked(rawData);
 }

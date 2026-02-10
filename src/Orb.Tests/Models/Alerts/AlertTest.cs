@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models;
 using Orb.Models.Alerts;
+using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Alerts;
 
@@ -38,7 +38,7 @@ public class AlertTest : TestBase
         string expectedID = "XuxCbt7x9L82yyeF";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCurrency = "currency";
-        CustomerMinified expectedCustomer = new()
+        Models::CustomerMinified expectedCustomer = new()
         {
             ID = "id",
             ExternalCustomerID = "external_customer_id",
@@ -52,7 +52,7 @@ public class AlertTest : TestBase
             Name = "Example plan",
             PlanVersion = "plan_version",
         };
-        SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
+        Models::SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
         List<Threshold> expectedThresholds = [new(0)];
         ApiEnum<string, AlertType> expectedType = AlertType.CreditBalanceDepleted;
         List<BalanceAlertStatus> expectedBalanceAlertStatus =
@@ -148,7 +148,7 @@ public class AlertTest : TestBase
         string expectedID = "XuxCbt7x9L82yyeF";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCurrency = "currency";
-        CustomerMinified expectedCustomer = new()
+        Models::CustomerMinified expectedCustomer = new()
         {
             ID = "id",
             ExternalCustomerID = "external_customer_id",
@@ -162,7 +162,7 @@ public class AlertTest : TestBase
             Name = "Example plan",
             PlanVersion = "plan_version",
         };
-        SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
+        Models::SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
         List<Threshold> expectedThresholds = [new(0)];
         ApiEnum<string, AlertType> expectedType = AlertType.CreditBalanceDepleted;
         List<BalanceAlertStatus> expectedBalanceAlertStatus =

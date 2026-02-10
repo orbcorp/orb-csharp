@@ -183,6 +183,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new PercentageDiscount()
@@ -249,6 +250,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -520,6 +527,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                 Values = ["string"],
                             },
                         ],
+                        LicenseTypeID = "license_type_id",
                     },
                     Currency = "currency",
                     Discount = new PercentageDiscount()
@@ -586,6 +594,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                    LicenseType = new()
+                    {
+                        ID = "id",
+                        GroupingKey = "grouping_key",
+                        Name = "name",
                     },
                 },
                 Quantity = 1,
@@ -932,6 +946,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new PercentageDiscount()
@@ -998,6 +1013,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -1279,6 +1300,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new PercentageDiscount()
@@ -1345,6 +1367,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -1623,6 +1651,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                 Values = ["string"],
                             },
                         ],
+                        LicenseTypeID = "license_type_id",
                     },
                     Currency = "currency",
                     Discount = new PercentageDiscount()
@@ -1689,6 +1718,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                    LicenseType = new()
+                    {
+                        ID = "id",
+                        GroupingKey = "grouping_key",
+                        Name = "name",
                     },
                 },
                 Quantity = 1,
@@ -2035,6 +2070,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new PercentageDiscount()
@@ -2101,6 +2137,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -2376,6 +2418,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new PercentageDiscount()
@@ -2442,6 +2485,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -3216,6 +3265,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -3282,6 +3332,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -3385,6 +3441,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -3447,6 +3504,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         double expectedQuantity = 1;
@@ -3590,6 +3653,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -3656,6 +3720,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -3774,6 +3844,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -3840,6 +3911,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -3951,6 +4028,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -4013,6 +4091,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         double expectedQuantity = 1;
@@ -4156,6 +4240,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -4222,6 +4307,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -4333,6 +4424,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -4399,6 +4491,12 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,

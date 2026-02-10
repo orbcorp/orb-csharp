@@ -2147,6 +2147,46 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
         }
     }
 
+    public string? LicenseTypeID
+    {
+        get
+        {
+            return Match<string?>(
+                newSubscriptionUnit: (x) => x.LicenseTypeID,
+                newSubscriptionTiered: (x) => x.LicenseTypeID,
+                newSubscriptionBulk: (x) => x.LicenseTypeID,
+                bulkWithFilters: (x) => x.LicenseTypeID,
+                newSubscriptionPackage: (x) => x.LicenseTypeID,
+                newSubscriptionMatrix: (x) => x.LicenseTypeID,
+                newSubscriptionThresholdTotalAmount: (x) => x.LicenseTypeID,
+                newSubscriptionTieredPackage: (x) => x.LicenseTypeID,
+                newSubscriptionTieredWithMinimum: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedTiered: (x) => x.LicenseTypeID,
+                newSubscriptionTieredPackageWithMinimum: (x) => x.LicenseTypeID,
+                newSubscriptionPackageWithAllocation: (x) => x.LicenseTypeID,
+                newSubscriptionUnitWithPercent: (x) => x.LicenseTypeID,
+                newSubscriptionMatrixWithAllocation: (x) => x.LicenseTypeID,
+                tieredWithProration: (x) => x.LicenseTypeID,
+                newSubscriptionUnitWithProration: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedAllocation: (x) => x.LicenseTypeID,
+                newSubscriptionBulkWithProration: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedWithProratedMinimum: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedWithMeteredMinimum: (x) => x.LicenseTypeID,
+                groupedWithMinMaxThresholds: (x) => x.LicenseTypeID,
+                newSubscriptionMatrixWithDisplayName: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedTieredPackage: (x) => x.LicenseTypeID,
+                newSubscriptionMaxGroupTieredPackage: (x) => x.LicenseTypeID,
+                newSubscriptionScalableMatrixWithUnitPricing: (x) => x.LicenseTypeID,
+                newSubscriptionScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
+                newSubscriptionCumulativeGroupedBulk: (x) => x.LicenseTypeID,
+                cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                newSubscriptionMinimumComposite: (x) => x.LicenseTypeID,
+                percent: (x) => x.LicenseTypeID,
+                eventOutput: (x) => x.LicenseTypeID
+            );
+        }
+    }
+
     public string? ReferenceID
     {
         get
@@ -4795,6 +4835,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -4856,6 +4909,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -5845,6 +5899,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -5906,6 +5973,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -6779,6 +6847,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -6840,6 +6921,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -7642,6 +7724,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -7703,6 +7798,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -8501,6 +8597,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -8557,6 +8666,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -9303,6 +9413,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -9364,6 +9487,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -11445,6 +11569,46 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
+            );
+        }
+    }
+
+    public string? LicenseTypeID
+    {
+        get
+        {
+            return Match<string?>(
+                newSubscriptionUnit: (x) => x.LicenseTypeID,
+                newSubscriptionTiered: (x) => x.LicenseTypeID,
+                newSubscriptionBulk: (x) => x.LicenseTypeID,
+                bulkWithFilters: (x) => x.LicenseTypeID,
+                newSubscriptionPackage: (x) => x.LicenseTypeID,
+                newSubscriptionMatrix: (x) => x.LicenseTypeID,
+                newSubscriptionThresholdTotalAmount: (x) => x.LicenseTypeID,
+                newSubscriptionTieredPackage: (x) => x.LicenseTypeID,
+                newSubscriptionTieredWithMinimum: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedTiered: (x) => x.LicenseTypeID,
+                newSubscriptionTieredPackageWithMinimum: (x) => x.LicenseTypeID,
+                newSubscriptionPackageWithAllocation: (x) => x.LicenseTypeID,
+                newSubscriptionUnitWithPercent: (x) => x.LicenseTypeID,
+                newSubscriptionMatrixWithAllocation: (x) => x.LicenseTypeID,
+                tieredWithProration: (x) => x.LicenseTypeID,
+                newSubscriptionUnitWithProration: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedAllocation: (x) => x.LicenseTypeID,
+                newSubscriptionBulkWithProration: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedWithProratedMinimum: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedWithMeteredMinimum: (x) => x.LicenseTypeID,
+                groupedWithMinMaxThresholds: (x) => x.LicenseTypeID,
+                newSubscriptionMatrixWithDisplayName: (x) => x.LicenseTypeID,
+                newSubscriptionGroupedTieredPackage: (x) => x.LicenseTypeID,
+                newSubscriptionMaxGroupTieredPackage: (x) => x.LicenseTypeID,
+                newSubscriptionScalableMatrixWithUnitPricing: (x) => x.LicenseTypeID,
+                newSubscriptionScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
+                newSubscriptionCumulativeGroupedBulk: (x) => x.LicenseTypeID,
+                cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                newSubscriptionMinimumComposite: (x) => x.LicenseTypeID,
+                percent: (x) => x.LicenseTypeID,
+                eventOutput: (x) => x.LicenseTypeID
             );
         }
     }
@@ -14104,6 +14268,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -14165,6 +14342,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -15157,6 +15335,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -15218,6 +15409,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -16093,6 +16285,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -16154,6 +16359,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -16956,6 +17162,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -17017,6 +17236,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -17815,6 +18035,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -17871,6 +18104,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
@@ -18627,6 +18861,19 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -18688,6 +18935,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }

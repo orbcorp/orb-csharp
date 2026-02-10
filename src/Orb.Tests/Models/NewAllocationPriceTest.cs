@@ -32,6 +32,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -54,6 +55,7 @@ public class NewAllocationPriceTest : TestBase
             },
         ];
         string expectedItemID = "item_id";
+        string expectedLicenseTypeID = "license_type_id";
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
         Assert.Equal(expectedAmount, model.Amount);
@@ -68,6 +70,7 @@ public class NewAllocationPriceTest : TestBase
             Assert.Equal(expectedFilters[i], model.Filters[i]);
         }
         Assert.Equal(expectedItemID, model.ItemID);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.Equal(expectedPerUnitCostBasis, model.PerUnitCostBasis);
     }
 
@@ -95,6 +98,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -131,6 +135,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -160,6 +165,7 @@ public class NewAllocationPriceTest : TestBase
             },
         ];
         string expectedItemID = "item_id";
+        string expectedLicenseTypeID = "license_type_id";
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
         Assert.Equal(expectedAmount, deserialized.Amount);
@@ -174,6 +180,7 @@ public class NewAllocationPriceTest : TestBase
             Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
         }
         Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.Equal(expectedPerUnitCostBasis, deserialized.PerUnitCostBasis);
     }
 
@@ -201,6 +208,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -231,6 +239,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
         };
 
         Assert.Null(model.PerUnitCostBasis);
@@ -261,6 +270,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
         };
 
         model.Validate();
@@ -290,6 +300,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
 
             // Null should be interpreted as omitted for these properties
             PerUnitCostBasis = null,
@@ -323,6 +334,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
 
             // Null should be interpreted as omitted for these properties
             PerUnitCostBasis = null,
@@ -350,6 +362,8 @@ public class NewAllocationPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("filters"));
         Assert.Null(model.ItemID);
         Assert.False(model.RawData.ContainsKey("item_id"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
     }
 
     [Fact]
@@ -380,6 +394,7 @@ public class NewAllocationPriceTest : TestBase
             ExpiresAtEndOfCadence = null,
             Filters = null,
             ItemID = null,
+            LicenseTypeID = null,
         };
 
         Assert.Null(model.CustomExpiration);
@@ -390,6 +405,8 @@ public class NewAllocationPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("filters"));
         Assert.Null(model.ItemID);
         Assert.True(model.RawData.ContainsKey("item_id"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
     }
 
     [Fact]
@@ -406,6 +423,7 @@ public class NewAllocationPriceTest : TestBase
             ExpiresAtEndOfCadence = null,
             Filters = null,
             ItemID = null,
+            LicenseTypeID = null,
         };
 
         model.Validate();
@@ -435,6 +453,7 @@ public class NewAllocationPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 

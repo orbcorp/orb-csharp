@@ -49,7 +49,8 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// body of this request, Orb will also generate a one-off invoice for the customer
 /// for the credits pre-purchase. Note that you _must_ provide the `per_unit_cost_basis`,
 /// since the total charges on the invoice are calculated by multiplying the cost
-/// basis with the number of credit units added.</para>
+/// basis with the number of credit units added. Additionally, Orb also enforces
+/// invoice generation when a non-zero `per_unit_cost_basis` value is provided.</para>
 ///
 /// <para>## Deducting Credits Orb allows you to deduct credits from a customer by
 /// creating an entry of type `decrement`. Orb matches the algorithm for automatic

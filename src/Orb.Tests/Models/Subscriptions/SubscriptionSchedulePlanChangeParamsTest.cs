@@ -72,6 +72,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             },
                         ],
                         ItemID = "item_id",
+                        LicenseTypeID = "license_type_id",
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -125,6 +126,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         ReferenceID = "reference_id",
                     },
@@ -212,6 +214,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             },
                         ],
                         ItemID = "item_id",
+                        LicenseTypeID = "license_type_id",
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -264,6 +267,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         ReferenceID = "reference_id",
                     },
@@ -334,6 +338,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         },
                     ],
                     ItemID = "item_id",
+                    LicenseTypeID = "license_type_id",
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 Discounts =
@@ -386,6 +391,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         Duration = 0,
                         DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                     },
+                    LicenseTypeID = "license_type_id",
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     ReferenceID = "reference_id",
                 },
@@ -477,6 +483,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         },
                     ],
                     ItemID = "item_id",
+                    LicenseTypeID = "license_type_id",
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 Discounts =
@@ -528,6 +535,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         Duration = 0,
                         DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                     },
+                    LicenseTypeID = "license_type_id",
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     ReferenceID = "reference_id",
                 },
@@ -846,6 +854,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             },
                         ],
                         ItemID = "item_id",
+                        LicenseTypeID = "license_type_id",
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -899,6 +908,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         ReferenceID = "reference_id",
                     },
@@ -986,6 +996,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             },
                         ],
                         ItemID = "item_id",
+                        LicenseTypeID = "license_type_id",
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -1038,6 +1049,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                             Duration = 0,
                             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                         },
+                        LicenseTypeID = "license_type_id",
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         ReferenceID = "reference_id",
                     },
@@ -1837,6 +1849,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -1889,6 +1902,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -1917,6 +1931,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -1970,6 +1985,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2019,6 +2035,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2071,6 +2088,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -2114,6 +2132,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2166,6 +2185,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -2202,6 +2222,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -2255,6 +2276,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2304,6 +2326,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2356,6 +2379,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -2486,6 +2510,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2538,6 +2563,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -2592,6 +2618,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2649,6 +2676,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2694,6 +2722,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2747,6 +2776,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2792,6 +2822,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2845,6 +2876,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2899,6 +2931,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -2952,6 +2985,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3017,6 +3051,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3070,6 +3105,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3134,6 +3170,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3185,6 +3222,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3231,6 +3269,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3286,6 +3325,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3333,6 +3373,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3379,6 +3420,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3430,6 +3472,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3481,6 +3524,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3533,6 +3577,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3598,6 +3643,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3649,6 +3695,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3707,6 +3754,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3762,6 +3810,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3817,6 +3866,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3879,6 +3929,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -3944,6 +3995,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4002,6 +4054,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4053,6 +4106,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4103,6 +4157,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4148,6 +4203,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4198,6 +4254,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4243,6 +4300,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4307,6 +4365,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4359,6 +4418,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4419,6 +4479,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4471,6 +4532,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4531,6 +4593,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4592,6 +4655,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4652,6 +4716,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4724,6 +4789,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4784,6 +4850,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4855,6 +4922,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4913,6 +4981,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -4966,6 +5035,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5028,6 +5098,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5082,6 +5153,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5135,6 +5207,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5193,6 +5266,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5251,6 +5325,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5310,6 +5385,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5382,6 +5458,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5440,6 +5517,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5505,6 +5583,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5567,6 +5646,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5629,6 +5709,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5698,6 +5779,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5770,6 +5852,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5835,6 +5918,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5893,6 +5977,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -5950,6 +6035,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6002,6 +6088,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6059,6 +6146,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6122,6 +6210,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6173,6 +6262,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -6192,6 +6282,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -6250,6 +6341,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6311,6 +6403,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6370,6 +6463,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -6392,6 +6486,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -6450,6 +6545,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -6500,6 +6596,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -6561,6 +6659,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -6587,6 +6686,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -6624,6 +6725,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -6678,6 +6780,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -7313,6 +7416,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -7356,6 +7460,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -7375,6 +7480,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -7427,6 +7533,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -7482,6 +7589,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -7533,6 +7641,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -7555,6 +7664,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -7607,6 +7717,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -7651,6 +7762,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -7700,6 +7813,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -7726,6 +7840,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -7757,6 +7873,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -7805,6 +7922,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -8252,6 +8370,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -8303,6 +8422,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -8325,6 +8445,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -8381,6 +8502,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -8440,6 +8562,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -8499,6 +8622,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -8524,6 +8648,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -8580,6 +8705,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -8628,6 +8754,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -8685,6 +8813,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -8711,6 +8840,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -8746,6 +8877,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -8798,6 +8930,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -9163,6 +9296,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -9214,6 +9348,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -9236,6 +9371,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -9292,6 +9428,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -9351,6 +9488,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -9410,6 +9548,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -9435,6 +9574,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -9491,6 +9631,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -9539,6 +9680,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -9596,6 +9739,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -9622,6 +9766,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -9657,6 +9803,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -9709,6 +9856,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -10066,6 +10214,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -10109,6 +10258,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -10128,6 +10278,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -10177,6 +10328,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -10229,6 +10381,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -10280,6 +10433,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -10302,6 +10456,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -10351,6 +10506,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -10392,6 +10548,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -10435,6 +10593,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -10461,6 +10620,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -10489,6 +10650,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -10534,6 +10696,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -10866,6 +11029,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -10914,6 +11078,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -10933,6 +11098,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -10987,6 +11153,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -11044,6 +11211,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -11100,6 +11268,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -11122,6 +11291,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -11176,6 +11346,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -11222,6 +11393,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -11275,6 +11448,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -11301,6 +11475,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -11334,6 +11510,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -11384,6 +11561,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -12583,6 +12761,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -12634,6 +12813,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -12662,6 +12842,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -12714,6 +12895,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -12762,6 +12944,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -12813,6 +12996,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -12856,6 +13040,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -12907,6 +13092,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -12943,6 +13129,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 },
             ],
             ItemID = "item_id",
+            LicenseTypeID = "license_type_id",
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -12995,6 +13182,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13043,6 +13231,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -13094,6 +13283,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -13222,6 +13412,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     },
                 ],
                 ItemID = "item_id",
+                LicenseTypeID = "license_type_id",
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -13273,6 +13464,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             },
@@ -13326,6 +13518,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13383,6 +13576,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13428,6 +13622,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13481,6 +13676,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13526,6 +13722,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13579,6 +13776,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13633,6 +13831,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13686,6 +13885,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13751,6 +13951,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13804,6 +14005,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13868,6 +14070,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13919,6 +14122,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -13965,6 +14169,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14020,6 +14225,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14067,6 +14273,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14113,6 +14320,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14164,6 +14372,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14215,6 +14424,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14267,6 +14477,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14332,6 +14543,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14383,6 +14595,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14441,6 +14654,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14496,6 +14710,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14551,6 +14766,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14613,6 +14829,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14678,6 +14895,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14736,6 +14954,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14787,6 +15006,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14837,6 +15057,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14882,6 +15103,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14932,6 +15154,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -14977,6 +15200,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15041,6 +15265,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15093,6 +15318,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15153,6 +15379,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15205,6 +15432,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15265,6 +15493,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15326,6 +15555,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15386,6 +15616,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15458,6 +15689,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15518,6 +15750,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15589,6 +15822,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15647,6 +15881,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15700,6 +15935,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15762,6 +15998,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15816,6 +16053,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15869,6 +16107,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15927,6 +16166,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -15985,6 +16225,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16044,6 +16285,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16116,6 +16358,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16174,6 +16417,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16239,6 +16483,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16301,6 +16546,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16363,6 +16609,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16432,6 +16679,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16504,6 +16752,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16569,6 +16818,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16627,6 +16877,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16684,6 +16935,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16736,6 +16988,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16793,6 +17046,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16856,6 +17110,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -16907,6 +17162,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -16926,6 +17182,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -16984,6 +17241,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -17045,6 +17303,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -17104,6 +17363,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -17126,6 +17386,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -17184,6 +17445,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -17234,6 +17496,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -17295,6 +17559,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -17321,6 +17586,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -17358,6 +17625,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -17412,6 +17680,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -18048,6 +18317,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -18091,6 +18361,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -18110,6 +18381,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -18162,6 +18434,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -18217,6 +18490,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -18268,6 +18542,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -18290,6 +18565,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -18342,6 +18618,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -18386,6 +18663,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -18435,6 +18714,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -18461,6 +18741,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -18492,6 +18774,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -18540,6 +18823,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -18987,6 +19271,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -19038,6 +19323,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -19060,6 +19346,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -19116,6 +19403,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -19175,6 +19463,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -19234,6 +19523,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -19259,6 +19549,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -19315,6 +19606,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -19363,6 +19655,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -19420,6 +19714,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -19446,6 +19741,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -19481,6 +19778,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -19533,6 +19831,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -19898,6 +20197,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -19949,6 +20249,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -19971,6 +20272,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -20027,6 +20329,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -20086,6 +20389,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -20145,6 +20449,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -20170,6 +20475,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -20226,6 +20532,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -20274,6 +20581,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -20331,6 +20640,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -20357,6 +20667,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -20392,6 +20704,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -20444,6 +20757,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -20801,6 +21115,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -20844,6 +21159,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -20863,6 +21179,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -20912,6 +21229,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -20964,6 +21282,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -21015,6 +21334,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -21037,6 +21357,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -21086,6 +21407,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -21127,6 +21449,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -21170,6 +21494,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -21196,6 +21521,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -21224,6 +21551,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -21269,6 +21597,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -21605,6 +21934,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -21653,6 +21983,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -21672,6 +22003,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -21727,6 +22059,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -21785,6 +22118,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -21841,6 +22175,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -21863,6 +22198,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -21918,6 +22254,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
@@ -21965,6 +22302,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -22020,6 +22359,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -22046,6 +22386,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -22080,6 +22422,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                 FixedPriceQuantity = null,
                 InvoiceGroupingKey = null,
                 InvoicingCycleConfiguration = null,
+                LicenseTypeID = null,
                 Metadata = null,
                 ReferenceID = null,
             };
@@ -22131,6 +22474,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
                     Duration = 0,
                     DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
+                LicenseTypeID = "license_type_id",
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 ReferenceID = "reference_id",
             };
