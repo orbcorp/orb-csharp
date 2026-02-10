@@ -139,7 +139,7 @@ public static class MultipartJsonSerializer
         var multipartElement = MultipartJsonSerializer.SerializeToElement(value, options);
         void SerializeParts(string name, JsonElement element)
         {
-            HttpContent content;
+            HttpContent? content;
             string? fileName = null;
             switch (element.ValueKind)
             {
@@ -188,17 +188,21 @@ public static class MultipartJsonSerializer
                 default:
                     throw new ArgumentOutOfRangeException(nameof(element));
             }
-            if (name == "")
+
+            if (content != null)
             {
-                formDataContent.Add(content);
-            }
-            else if (fileName == null)
-            {
-                formDataContent.Add(content, name);
-            }
-            else
-            {
-                formDataContent.Add(content, name, fileName);
+                if (name == "")
+                {
+                    formDataContent.Add(content);
+                }
+                else if (fileName == null)
+                {
+                    formDataContent.Add(content, name);
+                }
+                else
+                {
+                    formDataContent.Add(content, name, fileName);
+                }
             }
         }
         SerializeParts("", multipartElement.Json);
