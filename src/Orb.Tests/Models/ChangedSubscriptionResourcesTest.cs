@@ -264,6 +264,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -332,6 +333,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -680,6 +687,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -748,6 +756,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -1097,6 +1111,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -1164,6 +1179,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -1510,6 +1531,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -1577,6 +1599,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -1953,6 +1981,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -2021,6 +2050,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -2369,6 +2404,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -2437,6 +2473,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -2801,6 +2843,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -2869,6 +2912,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -3217,6 +3266,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -3285,6 +3335,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -3641,6 +3697,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -3708,6 +3765,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -4054,6 +4117,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -4121,6 +4185,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -4497,6 +4567,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -4565,6 +4636,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -4913,6 +4990,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -4981,6 +5059,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -5339,6 +5423,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -5407,6 +5492,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -5755,6 +5846,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -5823,6 +5915,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -6107,6 +6205,7 @@ public class CreatedInvoiceTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -6173,6 +6272,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -6447,6 +6552,7 @@ public class CreatedInvoiceTest : TestBase
                                 Values = ["string"],
                             },
                         ],
+                        LicenseTypeID = "license_type_id",
                     },
                     Currency = "currency",
                     Discount = new Models::PercentageDiscount()
@@ -6513,6 +6619,12 @@ public class CreatedInvoiceTest : TestBase
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                    LicenseType = new()
+                    {
+                        ID = "id",
+                        GroupingKey = "grouping_key",
+                        Name = "name",
                     },
                 },
                 Quantity = 1,
@@ -6861,6 +6973,7 @@ public class CreatedInvoiceTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -6927,6 +7040,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -7210,6 +7329,7 @@ public class CreatedInvoiceTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -7276,6 +7396,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -7557,6 +7683,7 @@ public class CreatedInvoiceTest : TestBase
                                 Values = ["string"],
                             },
                         ],
+                        LicenseTypeID = "license_type_id",
                     },
                     Currency = "currency",
                     Discount = new Models::PercentageDiscount()
@@ -7623,6 +7750,12 @@ public class CreatedInvoiceTest : TestBase
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                    LicenseType = new()
+                    {
+                        ID = "id",
+                        GroupingKey = "grouping_key",
+                        Name = "name",
                     },
                 },
                 Quantity = 1,
@@ -7971,6 +8104,7 @@ public class CreatedInvoiceTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -8037,6 +8171,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -8314,6 +8454,7 @@ public class CreatedInvoiceTest : TestBase
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -8380,6 +8521,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -9160,6 +9307,7 @@ public class LineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -9226,6 +9374,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -9334,6 +9488,7 @@ public class LineItemTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new Models::PercentageDiscount()
@@ -9400,6 +9555,12 @@ public class LineItemTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         double expectedQuantity = 1;
@@ -9550,6 +9711,7 @@ public class LineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -9616,6 +9778,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -9740,6 +9908,7 @@ public class LineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -9806,6 +9975,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -9921,6 +10096,7 @@ public class LineItemTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new Models::PercentageDiscount()
@@ -9987,6 +10163,12 @@ public class LineItemTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         double expectedQuantity = 1;
@@ -10137,6 +10319,7 @@ public class LineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -10203,6 +10386,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -10321,6 +10510,7 @@ public class LineItemTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -10387,6 +10577,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,

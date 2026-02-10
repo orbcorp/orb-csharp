@@ -64,6 +64,16 @@ public sealed record class Allocation : JsonModel
         }
     }
 
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -74,6 +84,7 @@ public sealed record class Allocation : JsonModel
         {
             item.Validate();
         }
+        _ = this.LicenseTypeID;
     }
 
     public Allocation() { }

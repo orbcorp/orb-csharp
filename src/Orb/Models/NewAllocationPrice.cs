@@ -117,6 +117,19 @@ public sealed record class NewAllocationPrice : JsonModel
     }
 
     /// <summary>
+    /// The license type ID to associate the price with license allocation.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// The (per-unit) cost basis of each created block. If non-zero, a customer
     /// will be invoiced according to the quantity and per unit cost basis specified
     /// for the allocation each cadence.
@@ -152,6 +165,7 @@ public sealed record class NewAllocationPrice : JsonModel
             item.Validate();
         }
         _ = this.ItemID;
+        _ = this.LicenseTypeID;
         _ = this.PerUnitCostBasis;
     }
 

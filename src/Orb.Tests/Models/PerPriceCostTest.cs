@@ -54,6 +54,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -121,6 +122,12 @@ public class PerPriceCostTest : TestBase
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
                 },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
+                },
             },
             PriceID = "price_id",
             Subtotal = "subtotal",
@@ -169,6 +176,7 @@ public class PerPriceCostTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -232,6 +240,12 @@ public class PerPriceCostTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string expectedPriceID = "price_id";
         string expectedSubtotal = "subtotal";
@@ -291,6 +305,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -357,6 +372,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
@@ -420,6 +441,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -487,6 +509,12 @@ public class PerPriceCostTest : TestBase
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
                 },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
+                },
             },
             PriceID = "price_id",
             Subtotal = "subtotal",
@@ -542,6 +570,7 @@ public class PerPriceCostTest : TestBase
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new PercentageDiscount()
@@ -605,6 +634,12 @@ public class PerPriceCostTest : TestBase
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
             },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
         };
         string expectedPriceID = "price_id";
         string expectedSubtotal = "subtotal";
@@ -664,6 +699,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -730,6 +766,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
@@ -787,6 +829,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -853,6 +896,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
@@ -910,6 +959,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -976,6 +1026,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
@@ -1032,6 +1088,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -1098,6 +1155,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
@@ -1157,6 +1220,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -1223,6 +1287,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
@@ -1281,6 +1351,7 @@ public class PerPriceCostTest : TestBase
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new PercentageDiscount()
@@ -1347,6 +1418,12 @@ public class PerPriceCostTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             PriceID = "price_id",
