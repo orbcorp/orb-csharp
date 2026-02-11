@@ -1,6 +1,5 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -231,21 +230,16 @@ public record class InvoiceListSummaryParams : ParamsBase
         }
     }
 
-    public IReadOnlyList<ApiEnum<string, InvoiceListSummaryParamsStatus>>? Status
+    public ApiEnum<string, InvoiceListSummaryParamsStatus>? Status
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<
-                ImmutableArray<ApiEnum<string, InvoiceListSummaryParamsStatus>>
+            return this._rawQueryData.GetNullableClass<
+                ApiEnum<string, InvoiceListSummaryParamsStatus>
             >("status");
         }
-        init
-        {
-            this._rawQueryData.Set<ImmutableArray<
-                ApiEnum<string, InvoiceListSummaryParamsStatus>
-            >?>("status", value == null ? null : ImmutableArray.ToImmutableArray(value));
-        }
+        init { this._rawQueryData.Set("status", value); }
     }
 
     public string? SubscriptionID
