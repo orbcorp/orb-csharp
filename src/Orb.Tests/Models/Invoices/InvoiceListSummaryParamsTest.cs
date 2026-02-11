@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
@@ -31,7 +30,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
             Limit = 1,
-            Status = [InvoiceListSummaryParamsStatus.Draft],
+            Status = InvoiceListSummaryParamsStatus.Draft,
             SubscriptionID = "subscription_id",
         };
 
@@ -53,10 +52,8 @@ public class InvoiceListSummaryParamsTest : TestBase
         DateTimeOffset expectedInvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         bool expectedIsRecurring = true;
         long expectedLimit = 1;
-        List<ApiEnum<string, InvoiceListSummaryParamsStatus>> expectedStatus =
-        [
-            InvoiceListSummaryParamsStatus.Draft,
-        ];
+        ApiEnum<string, InvoiceListSummaryParamsStatus> expectedStatus =
+            InvoiceListSummaryParamsStatus.Draft;
         string expectedSubscriptionID = "subscription_id";
 
         Assert.Equal(expectedAmount, parameters.Amount);
@@ -76,12 +73,7 @@ public class InvoiceListSummaryParamsTest : TestBase
         Assert.Equal(expectedInvoiceDateLte, parameters.InvoiceDateLte);
         Assert.Equal(expectedIsRecurring, parameters.IsRecurring);
         Assert.Equal(expectedLimit, parameters.Limit);
-        Assert.NotNull(parameters.Status);
-        Assert.Equal(expectedStatus.Count, parameters.Status.Count);
-        for (int i = 0; i < expectedStatus.Count; i++)
-        {
-            Assert.Equal(expectedStatus[i], parameters.Status[i]);
-        }
+        Assert.Equal(expectedStatus, parameters.Status);
         Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
     }
 
@@ -106,7 +98,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
-            Status = [InvoiceListSummaryParamsStatus.Draft],
+            Status = InvoiceListSummaryParamsStatus.Draft,
             SubscriptionID = "subscription_id",
         };
 
@@ -135,7 +127,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
-            Status = [InvoiceListSummaryParamsStatus.Draft],
+            Status = InvoiceListSummaryParamsStatus.Draft,
             SubscriptionID = "subscription_id",
 
             // Null should be interpreted as omitted for these properties
@@ -276,7 +268,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
             Limit = 1,
-            Status = [InvoiceListSummaryParamsStatus.Draft],
+            Status = InvoiceListSummaryParamsStatus.Draft,
             SubscriptionID = "subscription_id",
         };
 
@@ -284,7 +276,7 @@ public class InvoiceListSummaryParamsTest : TestBase
 
         Assert.Equal(
             new Uri(
-                "https://api.withorb.com/v1/invoices/summary?amount=amount&amount%5bgt%5d=amount%5bgt%5d&amount%5blt%5d=amount%5blt%5d&cursor=cursor&customer_id=customer_id&date_type=due_date&due_date=2019-12-27&due_date_window=due_date_window&due_date%5bgt%5d=2019-12-27&due_date%5blt%5d=2019-12-27&external_customer_id=external_customer_id&invoice_date%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&is_recurring=true&limit=1&status%5b%5d=draft&subscription_id=subscription_id"
+                "https://api.withorb.com/v1/invoices/summary?amount=amount&amount%5bgt%5d=amount%5bgt%5d&amount%5blt%5d=amount%5blt%5d&cursor=cursor&customer_id=customer_id&date_type=due_date&due_date=2019-12-27&due_date_window=due_date_window&due_date%5bgt%5d=2019-12-27&due_date%5blt%5d=2019-12-27&external_customer_id=external_customer_id&invoice_date%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&invoice_date%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&is_recurring=true&limit=1&status=draft&subscription_id=subscription_id"
             ),
             url
         );
@@ -312,7 +304,7 @@ public class InvoiceListSummaryParamsTest : TestBase
             InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             IsRecurring = true,
             Limit = 1,
-            Status = [InvoiceListSummaryParamsStatus.Draft],
+            Status = InvoiceListSummaryParamsStatus.Draft,
             SubscriptionID = "subscription_id",
         };
 
