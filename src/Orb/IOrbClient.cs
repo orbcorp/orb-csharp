@@ -86,6 +86,10 @@ public interface IOrbClient : IDisposable
     ISubscriptionChangeService SubscriptionChanges { get; }
 
     ICreditBlockService CreditBlocks { get; }
+
+    ILicenseTypeService LicenseTypes { get; }
+
+    ILicenseService Licenses { get; }
 }
 
 /// <summary>
@@ -152,6 +156,10 @@ public interface IOrbClientWithRawResponse : IDisposable
     ISubscriptionChangeServiceWithRawResponse SubscriptionChanges { get; }
 
     ICreditBlockServiceWithRawResponse CreditBlocks { get; }
+
+    ILicenseTypeServiceWithRawResponse LicenseTypes { get; }
+
+    ILicenseServiceWithRawResponse Licenses { get; }
 
     /// <summary>
     /// Sends a request to the Orb REST API.

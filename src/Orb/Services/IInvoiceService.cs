@@ -139,6 +139,29 @@ public interface IInvoiceService
     );
 
     /// <summary>
+    /// This endpoint allows an eligible invoice to be issued manually. This is only
+    /// possible with invoices where status is `draft`, `will_auto_issue` is false,
+    /// and an `eligible_to_issue_at` is a time in the past. Issuing an invoice could
+    /// possibly trigger side effects, some of which could be customer-visible (e.g.
+    /// sending emails, auto-collecting payment, syncing the invoice to external
+    /// providers, etc).
+    ///
+    /// <para>This is a lighter-weight alternative to the issue invoice endpoint,
+    /// returning an invoice summary without any line item details.</para>
+    /// </summary>
+    Task<InvoiceIssueSummaryResponse> IssueSummary(
+        InvoiceIssueSummaryParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="IssueSummary(InvoiceIssueSummaryParams, CancellationToken)"/>
+    Task<InvoiceIssueSummaryResponse> IssueSummary(
+        string invoiceID,
+        InvoiceIssueSummaryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This is a lighter-weight endpoint that returns a list of all [`Invoice`](/core-concepts#invoice)
     /// summaries for an account in a list format.
     ///
@@ -313,6 +336,22 @@ public interface IInvoiceServiceWithRawResponse
     Task<HttpResponse<Invoice>> Issue(
         string invoiceID,
         InvoiceIssueParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /invoices/summary/{invoice_id}/issue`, but is otherwise the
+    /// same as <see cref="IInvoiceService.IssueSummary(InvoiceIssueSummaryParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<InvoiceIssueSummaryResponse>> IssueSummary(
+        InvoiceIssueSummaryParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="IssueSummary(InvoiceIssueSummaryParams, CancellationToken)"/>
+    Task<HttpResponse<InvoiceIssueSummaryResponse>> IssueSummary(
+        string invoiceID,
+        InvoiceIssueSummaryParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

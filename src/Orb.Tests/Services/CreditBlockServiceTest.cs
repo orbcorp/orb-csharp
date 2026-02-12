@@ -24,4 +24,15 @@ public class CreditBlockServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
     }
+
+    [Fact]
+    public async Task ListInvoices_Works()
+    {
+        var response = await this.client.CreditBlocks.ListInvoices(
+            "block_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        response.Validate();
+    }
 }
