@@ -86,6 +86,28 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
         init { this._rawData.Set("maximum_initial_balance", value); }
     }
 
+    /// <summary>
+    /// User specified key-value pairs for the resource. If not present, this defaults
+    /// to an empty dictionary. Individual keys can be removed by setting the value
+    /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
+    /// to `null`.
+    /// </summary>
+    public required IReadOnlyDictionary<string, string> Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
     public required string? PerUnitCostBasis
     {
         get
@@ -120,6 +142,7 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
             item.Validate();
         }
         _ = this.MaximumInitialBalance;
+        _ = this.Metadata;
         _ = this.PerUnitCostBasis;
         this.Status.Validate();
     }
