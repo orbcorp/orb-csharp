@@ -28,6 +28,7 @@ public class CreditListResponseTest : TestBase
                 },
             ],
             MaximumInitialBalance = 0,
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
             Status = Status.Active,
         };
@@ -46,6 +47,7 @@ public class CreditListResponseTest : TestBase
             },
         ];
         double expectedMaximumInitialBalance = 0;
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
         ApiEnum<string, Status> expectedStatus = Status.Active;
 
@@ -59,6 +61,13 @@ public class CreditListResponseTest : TestBase
             Assert.Equal(expectedFilters[i], model.Filters[i]);
         }
         Assert.Equal(expectedMaximumInitialBalance, model.MaximumInitialBalance);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
         Assert.Equal(expectedPerUnitCostBasis, model.PerUnitCostBasis);
         Assert.Equal(expectedStatus, model.Status);
     }
@@ -82,6 +91,7 @@ public class CreditListResponseTest : TestBase
                 },
             ],
             MaximumInitialBalance = 0,
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
             Status = Status.Active,
         };
@@ -114,6 +124,7 @@ public class CreditListResponseTest : TestBase
                 },
             ],
             MaximumInitialBalance = 0,
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
             Status = Status.Active,
         };
@@ -139,6 +150,7 @@ public class CreditListResponseTest : TestBase
             },
         ];
         double expectedMaximumInitialBalance = 0;
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
         ApiEnum<string, Status> expectedStatus = Status.Active;
 
@@ -152,6 +164,13 @@ public class CreditListResponseTest : TestBase
             Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
         }
         Assert.Equal(expectedMaximumInitialBalance, deserialized.MaximumInitialBalance);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
         Assert.Equal(expectedPerUnitCostBasis, deserialized.PerUnitCostBasis);
         Assert.Equal(expectedStatus, deserialized.Status);
     }
@@ -175,6 +194,7 @@ public class CreditListResponseTest : TestBase
                 },
             ],
             MaximumInitialBalance = 0,
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
             Status = Status.Active,
         };
@@ -201,6 +221,7 @@ public class CreditListResponseTest : TestBase
                 },
             ],
             MaximumInitialBalance = 0,
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
             Status = Status.Active,
         };

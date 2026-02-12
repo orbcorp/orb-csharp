@@ -17,6 +17,11 @@ namespace Orb.Models.Customers.Credits;
 /// <para>Note that `currency` defaults to credits if not specified. To use a real
 /// world currency, set `currency` to an ISO 4217 string.</para>
 ///
+/// <para>Results can be filtered by the block's `effective_date` using the `effective_date[gte]`,
+/// `effective_date[gt]`, `effective_date[lt]`, and `effective_date[lte]` query parameters.
+/// This filters on when the credit block becomes effective, which may differ from
+/// creation time for backdated credits.</para>
+///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>
@@ -50,6 +55,46 @@ public record class CreditListByExternalIDParams : ParamsBase
             return this._rawQueryData.GetNullableClass<string>("cursor");
         }
         init { this._rawQueryData.Set("cursor", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateGt
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[gt]");
+        }
+        init { this._rawQueryData.Set("effective_date[gt]", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateGte
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[gte]");
+        }
+        init { this._rawQueryData.Set("effective_date[gte]", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateLt
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[lt]");
+        }
+        init { this._rawQueryData.Set("effective_date[lt]", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateLte
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[lte]");
+        }
+        init { this._rawQueryData.Set("effective_date[lte]", value); }
     }
 
     /// <summary>
