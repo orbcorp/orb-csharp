@@ -94,6 +94,17 @@ public class InvoiceServiceTest : TestBase
     }
 
     [Fact]
+    public async Task IssueSummary_Works()
+    {
+        var response = await this.client.Invoices.IssueSummary(
+            "invoice_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        response.Validate();
+    }
+
+    [Fact]
     public async Task ListSummary_Works()
     {
         var page = await this.client.Invoices.ListSummary(

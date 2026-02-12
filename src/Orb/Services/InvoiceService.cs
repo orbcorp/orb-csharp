@@ -164,6 +164,30 @@ public sealed class InvoiceService : IInvoiceService
     }
 
     /// <inheritdoc/>
+    public async Task<InvoiceIssueSummaryResponse> IssueSummary(
+        InvoiceIssueSummaryParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.IssueSummary(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<InvoiceIssueSummaryResponse> IssueSummary(
+        string invoiceID,
+        InvoiceIssueSummaryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.IssueSummary(parameters with { InvoiceID = invoiceID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
     public async Task<InvoiceListSummaryPage> ListSummary(
         InvoiceListSummaryParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -502,6 +526,51 @@ public sealed class InvoiceServiceWithRawResponse : IInvoiceServiceWithRawRespon
         parameters ??= new();
 
         return this.Issue(parameters with { InvoiceID = invoiceID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<InvoiceIssueSummaryResponse>> IssueSummary(
+        InvoiceIssueSummaryParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.InvoiceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.InvoiceID' cannot be null");
+        }
+
+        HttpRequest<InvoiceIssueSummaryParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<InvoiceIssueSummaryResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<InvoiceIssueSummaryResponse>> IssueSummary(
+        string invoiceID,
+        InvoiceIssueSummaryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.IssueSummary(parameters with { InvoiceID = invoiceID }, cancellationToken);
     }
 
     /// <inheritdoc/>

@@ -62,6 +62,34 @@ public interface ICreditBlockService
         CreditBlockDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// This endpoint returns the credit block and its associated purchasing invoices.
+    ///
+    /// <para>If a credit block was purchased (as opposed to being manually added
+    /// or allocated from a subscription), this endpoint returns the invoices that
+    /// were created to charge the customer for the credit block. For credit blocks
+    /// with payment schedules spanning multiple periods (e.g., monthly payments over
+    /// 12 months), multiple invoices will be returned.</para>
+    ///
+    /// <para>If the credit block was not purchased (e.g., manual increment, allocation),
+    /// an empty invoices list is returned.</para>
+    ///
+    /// <para>**Note: This endpoint is currently experimental and its interface may
+    /// change in future releases. Please contact support before building production
+    /// integrations against this endpoint.**</para>
+    /// </summary>
+    Task<CreditBlockListInvoicesResponse> ListInvoices(
+        CreditBlockListInvoicesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>
+    Task<CreditBlockListInvoicesResponse> ListInvoices(
+        string blockID,
+        CreditBlockListInvoicesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -106,6 +134,22 @@ public interface ICreditBlockServiceWithRawResponse
     Task<HttpResponse> Delete(
         string blockID,
         CreditBlockDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /credit_blocks/{block_id}/invoices`, but is otherwise the
+    /// same as <see cref="ICreditBlockService.ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(
+        CreditBlockListInvoicesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>
+    Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(
+        string blockID,
+        CreditBlockListInvoicesParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

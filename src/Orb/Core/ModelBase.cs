@@ -15,6 +15,7 @@ using Customers = Orb.Models.Customers;
 using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
 using Invoices = Orb.Models.Invoices;
 using Ledger = Orb.Models.Customers.Credits.Ledger;
+using Licenses = Orb.Models.Licenses;
 using Metrics = Orb.Models.Metrics;
 using Migrations = Orb.Models.Plans.Migrations;
 using Plans = Orb.Models.Plans;
@@ -562,6 +563,20 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Invoices::InvoiceFetchUpcomingResponseStatus>(),
             new ApiEnumConverter<
                 string,
+                Invoices::InvoiceIssueSummaryResponseCustomerBalanceTransactionAction
+            >(),
+            new ApiEnumConverter<
+                string,
+                Invoices::InvoiceIssueSummaryResponseCustomerBalanceTransactionType
+            >(),
+            new ApiEnumConverter<string, Invoices::InvoiceIssueSummaryResponseInvoiceSource>(),
+            new ApiEnumConverter<
+                string,
+                Invoices::InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider
+            >(),
+            new ApiEnumConverter<string, Invoices::InvoiceIssueSummaryResponseStatus>(),
+            new ApiEnumConverter<
+                string,
                 Invoices::InvoiceListSummaryResponseCustomerBalanceTransactionAction
             >(),
             new ApiEnumConverter<
@@ -926,6 +941,16 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, CreditBlocks::Field>(),
             new ApiEnumConverter<string, CreditBlocks::Operator>(),
             new ApiEnumConverter<string, CreditBlocks::Status>(),
+            new ApiEnumConverter<string, CreditBlocks::BlockFilterField>(),
+            new ApiEnumConverter<string, CreditBlocks::BlockFilterOperator>(),
+            new ApiEnumConverter<string, CreditBlocks::BlockStatus>(),
+            new ApiEnumConverter<string, CreditBlocks::InvoiceStatus>(),
+            new ApiEnumConverter<string, Licenses::LicenseCreateResponseStatus>(),
+            new ApiEnumConverter<string, Licenses::LicenseRetrieveResponseStatus>(),
+            new ApiEnumConverter<string, Licenses::LicenseListResponseStatus>(),
+            new ApiEnumConverter<string, Licenses::LicenseDeactivateResponseStatus>(),
+            new ApiEnumConverter<string, Licenses::LicenseRetrieveByExternalIDResponseStatus>(),
+            new ApiEnumConverter<string, Licenses::Status>(),
         },
     };
 
