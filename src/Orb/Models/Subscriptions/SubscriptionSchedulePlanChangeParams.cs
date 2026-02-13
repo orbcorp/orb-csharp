@@ -671,13 +671,19 @@ public record class SubscriptionSchedulePlanChangeParams : ParamsBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(
-            new Dictionary<string, object?>()
-            {
-                ["SubscriptionID"] = this.SubscriptionID,
-                ["HeaderData"] = this._rawHeaderData.Freeze(),
-                ["QueryData"] = this._rawQueryData.Freeze(),
-                ["BodyData"] = this._rawBodyData.Freeze(),
-            },
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["SubscriptionID"] = JsonSerializer.SerializeToElement(this.SubscriptionID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
             ModelBase.ToStringSerializerOptions
         );
 
@@ -1268,7 +1274,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -3806,7 +3815,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -5561,7 +5573,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -6509,7 +6524,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -7386,7 +7404,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -8263,7 +8284,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -9079,7 +9103,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -9939,7 +9966,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -10704,7 +10734,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -13237,7 +13270,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -14997,7 +15033,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -15947,7 +15986,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -16824,7 +16866,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -17701,7 +17746,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -18523,7 +18571,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
@@ -19390,7 +19441,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
     int VariantIndex()
     {
