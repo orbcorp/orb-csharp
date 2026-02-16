@@ -37,6 +37,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                     CustomDueDate = "2019-12-27",
                     InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
+                    MarkAsPaid = true,
                     Memo = "memo",
                     NetTerms = 0,
                     RequireSuccessfulPayment = true,
@@ -69,6 +70,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -109,6 +111,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                     CustomDueDate = "2019-12-27",
                     InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
+                    MarkAsPaid = true,
                     Memo = "memo",
                     NetTerms = 0,
                     RequireSuccessfulPayment = true,
@@ -154,6 +157,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                     CustomDueDate = "2019-12-27",
                     InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
+                    MarkAsPaid = true,
                     Memo = "memo",
                     NetTerms = 0,
                     RequireSuccessfulPayment = true,
@@ -196,6 +200,7 @@ public class BodyTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -289,6 +294,7 @@ public class BodyTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -415,6 +421,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -444,6 +451,7 @@ public class IncrementTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -500,6 +508,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -542,6 +551,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -578,6 +588,7 @@ public class IncrementTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -634,6 +645,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -756,6 +768,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -998,6 +1011,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -1007,6 +1021,7 @@ public class InvoiceSettingsTest : TestBase
         Ledger::CustomDueDate expectedCustomDueDate = "2019-12-27";
         Ledger::InvoiceDate expectedInvoiceDate = "2019-12-27";
         string expectedItemID = "item_id";
+        bool expectedMarkAsPaid = true;
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
         bool expectedRequireSuccessfulPayment = true;
@@ -1015,6 +1030,7 @@ public class InvoiceSettingsTest : TestBase
         Assert.Equal(expectedCustomDueDate, model.CustomDueDate);
         Assert.Equal(expectedInvoiceDate, model.InvoiceDate);
         Assert.Equal(expectedItemID, model.ItemID);
+        Assert.Equal(expectedMarkAsPaid, model.MarkAsPaid);
         Assert.Equal(expectedMemo, model.Memo);
         Assert.Equal(expectedNetTerms, model.NetTerms);
         Assert.Equal(expectedRequireSuccessfulPayment, model.RequireSuccessfulPayment);
@@ -1029,6 +1045,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -1052,6 +1069,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -1068,6 +1086,7 @@ public class InvoiceSettingsTest : TestBase
         Ledger::CustomDueDate expectedCustomDueDate = "2019-12-27";
         Ledger::InvoiceDate expectedInvoiceDate = "2019-12-27";
         string expectedItemID = "item_id";
+        bool expectedMarkAsPaid = true;
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
         bool expectedRequireSuccessfulPayment = true;
@@ -1076,6 +1095,7 @@ public class InvoiceSettingsTest : TestBase
         Assert.Equal(expectedCustomDueDate, deserialized.CustomDueDate);
         Assert.Equal(expectedInvoiceDate, deserialized.InvoiceDate);
         Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedMarkAsPaid, deserialized.MarkAsPaid);
         Assert.Equal(expectedMemo, deserialized.Memo);
         Assert.Equal(expectedNetTerms, deserialized.NetTerms);
         Assert.Equal(expectedRequireSuccessfulPayment, deserialized.RequireSuccessfulPayment);
@@ -1090,6 +1110,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -1111,6 +1132,8 @@ public class InvoiceSettingsTest : TestBase
             NetTerms = 0,
         };
 
+        Assert.Null(model.MarkAsPaid);
+        Assert.False(model.RawData.ContainsKey("mark_as_paid"));
         Assert.Null(model.RequireSuccessfulPayment);
         Assert.False(model.RawData.ContainsKey("require_successful_payment"));
     }
@@ -1144,9 +1167,12 @@ public class InvoiceSettingsTest : TestBase
             NetTerms = 0,
 
             // Null should be interpreted as omitted for these properties
+            MarkAsPaid = null,
             RequireSuccessfulPayment = null,
         };
 
+        Assert.Null(model.MarkAsPaid);
+        Assert.False(model.RawData.ContainsKey("mark_as_paid"));
         Assert.Null(model.RequireSuccessfulPayment);
         Assert.False(model.RawData.ContainsKey("require_successful_payment"));
     }
@@ -1164,6 +1190,7 @@ public class InvoiceSettingsTest : TestBase
             NetTerms = 0,
 
             // Null should be interpreted as omitted for these properties
+            MarkAsPaid = null,
             RequireSuccessfulPayment = null,
         };
 
@@ -1176,6 +1203,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
         };
 
@@ -1197,6 +1225,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
         };
 
@@ -1209,6 +1238,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
 
             CustomDueDate = null,
@@ -1236,6 +1266,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
 
             CustomDueDate = null,
@@ -1257,6 +1288,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,

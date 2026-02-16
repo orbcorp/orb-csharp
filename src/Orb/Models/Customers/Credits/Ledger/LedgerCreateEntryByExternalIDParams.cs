@@ -1377,6 +1377,27 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     }
 
     /// <summary>
+    /// If true, the new credits purchase invoice will be marked as paid.
+    /// </summary>
+    public bool? MarkAsPaid
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("mark_as_paid");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("mark_as_paid", value);
+        }
+    }
+
+    /// <summary>
     /// An optional memo to display on the invoice.
     /// </summary>
     public string? Memo
@@ -1436,6 +1457,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
         this.CustomDueDate?.Validate();
         this.InvoiceDate?.Validate();
         _ = this.ItemID;
+        _ = this.MarkAsPaid;
         _ = this.Memo;
         _ = this.NetTerms;
         _ = this.RequireSuccessfulPayment;
