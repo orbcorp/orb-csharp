@@ -37,6 +37,13 @@ public class BillableMetricTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Name = "name",
             Status = Status.Active,
+            ParameterDefinitions =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
         };
 
         string expectedID = "id";
@@ -60,6 +67,13 @@ public class BillableMetricTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         string expectedName = "name";
         ApiEnum<string, Status> expectedStatus = Status.Active;
+        List<Dictionary<string, JsonElement>> expectedParameterDefinitions =
+        [
+            new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        ];
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedDescription, model.Description);
@@ -73,6 +87,21 @@ public class BillableMetricTest : TestBase
         }
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedStatus, model.Status);
+        Assert.NotNull(model.ParameterDefinitions);
+        Assert.Equal(expectedParameterDefinitions.Count, model.ParameterDefinitions.Count);
+        for (int i = 0; i < expectedParameterDefinitions.Count; i++)
+        {
+            Assert.Equal(
+                expectedParameterDefinitions[i].Count,
+                model.ParameterDefinitions[i].Count
+            );
+            foreach (var item in expectedParameterDefinitions[i])
+            {
+                Assert.True(model.ParameterDefinitions[i].TryGetValue(item.Key, out var value));
+
+                Assert.True(JsonElement.DeepEquals(value, model.ParameterDefinitions[i][item.Key]));
+            }
+        }
     }
 
     [Fact]
@@ -102,6 +131,13 @@ public class BillableMetricTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Name = "name",
             Status = Status.Active,
+            ParameterDefinitions =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -140,6 +176,13 @@ public class BillableMetricTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Name = "name",
             Status = Status.Active,
+            ParameterDefinitions =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -170,6 +213,13 @@ public class BillableMetricTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         string expectedName = "name";
         ApiEnum<string, Status> expectedStatus = Status.Active;
+        List<Dictionary<string, JsonElement>> expectedParameterDefinitions =
+        [
+            new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        ];
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedDescription, deserialized.Description);
@@ -183,6 +233,25 @@ public class BillableMetricTest : TestBase
         }
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedStatus, deserialized.Status);
+        Assert.NotNull(deserialized.ParameterDefinitions);
+        Assert.Equal(expectedParameterDefinitions.Count, deserialized.ParameterDefinitions.Count);
+        for (int i = 0; i < expectedParameterDefinitions.Count; i++)
+        {
+            Assert.Equal(
+                expectedParameterDefinitions[i].Count,
+                deserialized.ParameterDefinitions[i].Count
+            );
+            foreach (var item in expectedParameterDefinitions[i])
+            {
+                Assert.True(
+                    deserialized.ParameterDefinitions[i].TryGetValue(item.Key, out var value)
+                );
+
+                Assert.True(
+                    JsonElement.DeepEquals(value, deserialized.ParameterDefinitions[i][item.Key])
+                );
+            }
+        }
     }
 
     [Fact]
@@ -212,6 +281,147 @@ public class BillableMetricTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Name = "name",
             Status = Status.Active,
+            ParameterDefinitions =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new BillableMetric
+        {
+            ID = "id",
+            Description = "description",
+            Item = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExternalConnections =
+                [
+                    new()
+                    {
+                        ExternalConnectionName =
+                            ItemExternalConnectionExternalConnectionName.Stripe,
+                        ExternalEntityID = "external_entity_id",
+                    },
+                ],
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Name = "name",
+                ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            Status = Status.Active,
+        };
+
+        Assert.Null(model.ParameterDefinitions);
+        Assert.False(model.RawData.ContainsKey("parameter_definitions"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new BillableMetric
+        {
+            ID = "id",
+            Description = "description",
+            Item = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExternalConnections =
+                [
+                    new()
+                    {
+                        ExternalConnectionName =
+                            ItemExternalConnectionExternalConnectionName.Stripe,
+                        ExternalEntityID = "external_entity_id",
+                    },
+                ],
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Name = "name",
+                ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            Status = Status.Active,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new BillableMetric
+        {
+            ID = "id",
+            Description = "description",
+            Item = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExternalConnections =
+                [
+                    new()
+                    {
+                        ExternalConnectionName =
+                            ItemExternalConnectionExternalConnectionName.Stripe,
+                        ExternalEntityID = "external_entity_id",
+                    },
+                ],
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Name = "name",
+                ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            Status = Status.Active,
+
+            ParameterDefinitions = null,
+        };
+
+        Assert.Null(model.ParameterDefinitions);
+        Assert.True(model.RawData.ContainsKey("parameter_definitions"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new BillableMetric
+        {
+            ID = "id",
+            Description = "description",
+            Item = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExternalConnections =
+                [
+                    new()
+                    {
+                        ExternalConnectionName =
+                            ItemExternalConnectionExternalConnectionName.Stripe,
+                        ExternalEntityID = "external_entity_id",
+                    },
+                ],
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Name = "name",
+                ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            Status = Status.Active,
+
+            ParameterDefinitions = null,
         };
 
         model.Validate();
@@ -244,6 +454,13 @@ public class BillableMetricTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Name = "name",
             Status = Status.Active,
+            ParameterDefinitions =
+            [
+                new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+            ],
         };
 
         BillableMetric copied = new(model);

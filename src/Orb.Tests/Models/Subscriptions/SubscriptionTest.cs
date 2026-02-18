@@ -641,6 +641,10 @@ public class SubscriptionTest : TestBase
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
             ],
             RedeemedCoupon = new()
@@ -1272,6 +1276,10 @@ public class SubscriptionTest : TestBase
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 UsageCustomerIds = ["string"],
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
             },
         ];
         CouponRedemption expectedRedeemedCoupon = new()
@@ -1977,6 +1985,10 @@ public class SubscriptionTest : TestBase
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
             ],
             RedeemedCoupon = new()
@@ -2628,6 +2640,10 @@ public class SubscriptionTest : TestBase
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
             ],
             RedeemedCoupon = new()
@@ -3266,6 +3282,10 @@ public class SubscriptionTest : TestBase
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 UsageCustomerIds = ["string"],
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
             },
         ];
         CouponRedemption expectedRedeemedCoupon = new()
@@ -3980,6 +4000,10 @@ public class SubscriptionTest : TestBase
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
             ],
             RedeemedCoupon = new()
@@ -4625,6 +4649,10 @@ public class SubscriptionTest : TestBase
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                 },
             ],
             RedeemedCoupon = new()

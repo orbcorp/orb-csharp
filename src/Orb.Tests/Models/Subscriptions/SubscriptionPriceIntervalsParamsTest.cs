@@ -59,6 +59,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     MaximumAmount = 0,
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = 0,
                     Price = new NewFloatingUnitPrice()
                     {
@@ -151,6 +155,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                             Quantity = 5,
                         },
                     ],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
                 },
@@ -210,6 +218,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     },
                 ],
                 MaximumAmount = 0,
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
                 MinimumAmount = 0,
                 Price = new NewFloatingUnitPrice()
                 {
@@ -301,6 +313,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         Quantity = 5,
                     },
                 ],
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 UsageCustomerIds = ["string"],
             },
@@ -439,6 +455,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     MaximumAmount = 0,
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = 0,
                     Price = new NewFloatingUnitPrice()
                     {
@@ -529,6 +549,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                             Quantity = 5,
                         },
                     ],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
                 },
@@ -599,6 +623,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     MaximumAmount = 0,
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = 0,
                     Price = new NewFloatingUnitPrice()
                     {
@@ -689,6 +717,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                             Quantity = 5,
                         },
                     ],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
                 },
@@ -778,6 +810,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     MaximumAmount = 0,
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = 0,
                     Price = new NewFloatingUnitPrice()
                     {
@@ -870,6 +906,10 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                             Quantity = 5,
                         },
                     ],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     UsageCustomerIds = ["string"],
                 },
@@ -937,6 +977,10 @@ public class AddTest : TestBase
                 },
             ],
             MaximumAmount = 0,
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = 0,
             Price = new NewFloatingUnitPrice()
             {
@@ -1021,6 +1065,10 @@ public class AddTest : TestBase
             },
         ];
         double expectedMaximumAmount = 0;
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         double expectedMinimumAmount = 0;
         Subscriptions::PriceModel expectedPrice = new NewFloatingUnitPrice()
         {
@@ -1088,6 +1136,14 @@ public class AddTest : TestBase
             );
         }
         Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.NotNull(model.MetricParameterOverrides);
+        Assert.Equal(expectedMetricParameterOverrides.Count, model.MetricParameterOverrides.Count);
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(model.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.MetricParameterOverrides[item.Key]));
+        }
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedPrice, model.Price);
         Assert.Equal(expectedPriceID, model.PriceID);
@@ -1143,6 +1199,10 @@ public class AddTest : TestBase
                 },
             ],
             MaximumAmount = 0,
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = 0,
             Price = new NewFloatingUnitPrice()
             {
@@ -1239,6 +1299,10 @@ public class AddTest : TestBase
                 },
             ],
             MaximumAmount = 0,
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = 0,
             Price = new NewFloatingUnitPrice()
             {
@@ -1330,6 +1394,10 @@ public class AddTest : TestBase
             },
         ];
         double expectedMaximumAmount = 0;
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         double expectedMinimumAmount = 0;
         Subscriptions::PriceModel expectedPrice = new NewFloatingUnitPrice()
         {
@@ -1397,6 +1465,19 @@ public class AddTest : TestBase
             );
         }
         Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.NotNull(deserialized.MetricParameterOverrides);
+        Assert.Equal(
+            expectedMetricParameterOverrides.Count,
+            deserialized.MetricParameterOverrides.Count
+        );
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(deserialized.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(
+                JsonElement.DeepEquals(value, deserialized.MetricParameterOverrides[item.Key])
+            );
+        }
         Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
         Assert.Equal(expectedPrice, deserialized.Price);
         Assert.Equal(expectedPriceID, deserialized.PriceID);
@@ -1452,6 +1533,10 @@ public class AddTest : TestBase
                 },
             ],
             MaximumAmount = 0,
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = 0,
             Price = new NewFloatingUnitPrice()
             {
@@ -1522,6 +1607,8 @@ public class AddTest : TestBase
         Assert.False(model.RawData.ContainsKey("fixed_fee_quantity_transitions"));
         Assert.Null(model.MaximumAmount);
         Assert.False(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.False(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.MinimumAmount);
         Assert.False(model.RawData.ContainsKey("minimum_amount"));
         Assert.Null(model.Price);
@@ -1558,6 +1645,7 @@ public class AddTest : TestBase
             Filter = null,
             FixedFeeQuantityTransitions = null,
             MaximumAmount = null,
+            MetricParameterOverrides = null,
             MinimumAmount = null,
             Price = null,
             PriceID = null,
@@ -1580,6 +1668,8 @@ public class AddTest : TestBase
         Assert.True(model.RawData.ContainsKey("fixed_fee_quantity_transitions"));
         Assert.Null(model.MaximumAmount);
         Assert.True(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.True(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.MinimumAmount);
         Assert.True(model.RawData.ContainsKey("minimum_amount"));
         Assert.Null(model.Price);
@@ -1605,6 +1695,7 @@ public class AddTest : TestBase
             Filter = null,
             FixedFeeQuantityTransitions = null,
             MaximumAmount = null,
+            MetricParameterOverrides = null,
             MinimumAmount = null,
             Price = null,
             PriceID = null,
@@ -1658,6 +1749,10 @@ public class AddTest : TestBase
                 },
             ],
             MaximumAmount = 0,
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = 0,
             Price = new NewFloatingUnitPrice()
             {
@@ -10572,6 +10667,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             UsageCustomerIds = ["string"],
         };
@@ -10591,6 +10690,10 @@ public class EditTest : TestBase
                 Quantity = 5,
             },
         ];
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
@@ -10612,6 +10715,14 @@ public class EditTest : TestBase
                 expectedFixedFeeQuantityTransitions[i],
                 model.FixedFeeQuantityTransitions[i]
             );
+        }
+        Assert.NotNull(model.MetricParameterOverrides);
+        Assert.Equal(expectedMetricParameterOverrides.Count, model.MetricParameterOverrides.Count);
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(model.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.MetricParameterOverrides[item.Key]));
         }
         Assert.Equal(expectedStartDate, model.StartDate);
         Assert.NotNull(model.UsageCustomerIds);
@@ -10640,6 +10751,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             UsageCustomerIds = ["string"],
         };
@@ -10671,6 +10786,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             UsageCustomerIds = ["string"],
         };
@@ -10697,6 +10816,10 @@ public class EditTest : TestBase
                 Quantity = 5,
             },
         ];
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
@@ -10717,6 +10840,19 @@ public class EditTest : TestBase
             Assert.Equal(
                 expectedFixedFeeQuantityTransitions[i],
                 deserialized.FixedFeeQuantityTransitions[i]
+            );
+        }
+        Assert.NotNull(deserialized.MetricParameterOverrides);
+        Assert.Equal(
+            expectedMetricParameterOverrides.Count,
+            deserialized.MetricParameterOverrides.Count
+        );
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(deserialized.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(
+                JsonElement.DeepEquals(value, deserialized.MetricParameterOverrides[item.Key])
             );
         }
         Assert.Equal(expectedStartDate, deserialized.StartDate);
@@ -10746,6 +10882,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             UsageCustomerIds = ["string"],
         };
@@ -10771,6 +10911,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             UsageCustomerIds = ["string"],
         };
 
@@ -10796,6 +10940,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             UsageCustomerIds = ["string"],
         };
 
@@ -10820,6 +10968,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             UsageCustomerIds = ["string"],
 
             // Null should be interpreted as omitted for these properties
@@ -10848,6 +11000,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             UsageCustomerIds = ["string"],
 
             // Null should be interpreted as omitted for these properties
@@ -10876,6 +11032,8 @@ public class EditTest : TestBase
         Assert.False(model.RawData.ContainsKey("filter"));
         Assert.Null(model.FixedFeeQuantityTransitions);
         Assert.False(model.RawData.ContainsKey("fixed_fee_quantity_transitions"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.False(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.UsageCustomerIds);
         Assert.False(model.RawData.ContainsKey("usage_customer_ids"));
     }
@@ -10905,6 +11063,7 @@ public class EditTest : TestBase
             EndDate = null,
             Filter = null,
             FixedFeeQuantityTransitions = null,
+            MetricParameterOverrides = null,
             UsageCustomerIds = null,
         };
 
@@ -10918,6 +11077,8 @@ public class EditTest : TestBase
         Assert.True(model.RawData.ContainsKey("filter"));
         Assert.Null(model.FixedFeeQuantityTransitions);
         Assert.True(model.RawData.ContainsKey("fixed_fee_quantity_transitions"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.True(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.UsageCustomerIds);
         Assert.True(model.RawData.ContainsKey("usage_customer_ids"));
     }
@@ -10935,6 +11096,7 @@ public class EditTest : TestBase
             EndDate = null,
             Filter = null,
             FixedFeeQuantityTransitions = null,
+            MetricParameterOverrides = null,
             UsageCustomerIds = null,
         };
 
@@ -10959,6 +11121,10 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             UsageCustomerIds = ["string"],
         };

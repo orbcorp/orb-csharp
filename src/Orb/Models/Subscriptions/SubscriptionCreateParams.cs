@@ -1527,6 +1527,28 @@ public sealed record class AddPrice : JsonModel
     }
 
     /// <summary>
+    /// Override values for parameterized billable metric variables. Keys are parameter
+    /// names, values are the override values.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's minimum amount
     /// for this price.
     /// </summary>
@@ -1606,6 +1628,7 @@ public sealed record class AddPrice : JsonModel
         _ = this.EndDate;
         _ = this.ExternalPriceID;
         _ = this.MaximumAmount;
+        _ = this.MetricParameterOverrides;
         _ = this.MinimumAmount;
         _ = this.PlanPhaseOrder;
         this.Price?.Validate();
@@ -10277,6 +10300,28 @@ public sealed record class ReplacePrice : JsonModel
     }
 
     /// <summary>
+    /// Override values for parameterized billable metric variables. Keys are parameter
+    /// names, values are the override values.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// [DEPRECATED] Use add_adjustments instead. The subscription's minimum amount
     /// for the replacement price.
     /// </summary>
@@ -10329,6 +10374,7 @@ public sealed record class ReplacePrice : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         _ = this.MaximumAmount;
+        _ = this.MetricParameterOverrides;
         _ = this.MinimumAmount;
         this.Price?.Validate();
         _ = this.PriceID;
