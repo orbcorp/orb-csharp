@@ -1,6 +1,8 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Orb.Core;
@@ -95,6 +97,31 @@ public sealed record class BillableMetric : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
+    public IReadOnlyList<IReadOnlyDictionary<string, JsonElement>>? ParameterDefinitions
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<FrozenDictionary<string, JsonElement>>
+            >("parameter_definitions");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<FrozenDictionary<string, JsonElement>>?>(
+                "parameter_definitions",
+                value == null
+                    ? null
+                    : ImmutableArray.ToImmutableArray(
+                        Enumerable.Select(
+                            value,
+                            (item) => FrozenDictionary.ToFrozenDictionary(item)
+                        )
+                    )
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -104,6 +131,7 @@ public sealed record class BillableMetric : JsonModel
         _ = this.Metadata;
         _ = this.Name;
         this.Status.Validate();
+        _ = this.ParameterDefinitions;
     }
 
     public BillableMetric() { }

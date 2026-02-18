@@ -296,6 +296,28 @@ public sealed record class PriceEvaluation : JsonModel
     }
 
     /// <summary>
+    /// Optional overrides for parameterized billable metric parameters. If the metric
+    /// has parameter definitions and no overrides are provided, defaults will be used.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// New floating price request body params.
     /// </summary>
     public Price? Price
@@ -327,6 +349,7 @@ public sealed record class PriceEvaluation : JsonModel
         _ = this.ExternalPriceID;
         _ = this.Filter;
         _ = this.GroupingKeys;
+        _ = this.MetricParameterOverrides;
         this.Price?.Validate();
         _ = this.PriceID;
     }

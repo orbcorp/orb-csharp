@@ -26,6 +26,10 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                     ExternalPriceID = "external_price_id",
                     Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
                     GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     Price = new Models::NewFloatingUnitPrice()
                     {
                         Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -81,6 +85,10 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                 ExternalPriceID = "external_price_id",
                 Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
                 GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
                 Price = new Models::NewFloatingUnitPrice()
                 {
                     Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -183,6 +191,10 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                     ExternalPriceID = "external_price_id",
                     Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
                     GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     Price = new Models::NewFloatingUnitPrice()
                     {
                         Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -247,6 +259,10 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                     ExternalPriceID = "external_price_id",
                     Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
                     GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     Price = new Models::NewFloatingUnitPrice()
                     {
                         Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -330,6 +346,10 @@ public class PriceEvaluateMultipleParamsTest : TestBase
                     ExternalPriceID = "external_price_id",
                     Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
                     GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     Price = new Models::NewFloatingUnitPrice()
                     {
                         Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -390,6 +410,10 @@ public class PriceEvaluationTest : TestBase
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -438,6 +462,10 @@ public class PriceEvaluationTest : TestBase
         [
             "case when my_event_type = 'foo' then true else false end",
         ];
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         Price expectedPrice = new Models::NewFloatingUnitPrice()
         {
             Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -486,6 +514,14 @@ public class PriceEvaluationTest : TestBase
         {
             Assert.Equal(expectedGroupingKeys[i], model.GroupingKeys[i]);
         }
+        Assert.NotNull(model.MetricParameterOverrides);
+        Assert.Equal(expectedMetricParameterOverrides.Count, model.MetricParameterOverrides.Count);
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(model.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.MetricParameterOverrides[item.Key]));
+        }
         Assert.Equal(expectedPrice, model.Price);
         Assert.Equal(expectedPriceID, model.PriceID);
     }
@@ -498,6 +534,10 @@ public class PriceEvaluationTest : TestBase
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -557,6 +597,10 @@ public class PriceEvaluationTest : TestBase
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -612,6 +656,10 @@ public class PriceEvaluationTest : TestBase
         [
             "case when my_event_type = 'foo' then true else false end",
         ];
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         Price expectedPrice = new Models::NewFloatingUnitPrice()
         {
             Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -660,6 +708,19 @@ public class PriceEvaluationTest : TestBase
         {
             Assert.Equal(expectedGroupingKeys[i], deserialized.GroupingKeys[i]);
         }
+        Assert.NotNull(deserialized.MetricParameterOverrides);
+        Assert.Equal(
+            expectedMetricParameterOverrides.Count,
+            deserialized.MetricParameterOverrides.Count
+        );
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(deserialized.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(
+                JsonElement.DeepEquals(value, deserialized.MetricParameterOverrides[item.Key])
+            );
+        }
         Assert.Equal(expectedPrice, deserialized.Price);
         Assert.Equal(expectedPriceID, deserialized.PriceID);
     }
@@ -672,6 +733,10 @@ public class PriceEvaluationTest : TestBase
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -724,6 +789,10 @@ public class PriceEvaluationTest : TestBase
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -777,6 +846,10 @@ public class PriceEvaluationTest : TestBase
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -829,6 +902,10 @@ public class PriceEvaluationTest : TestBase
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -885,6 +962,10 @@ public class PriceEvaluationTest : TestBase
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
@@ -945,6 +1026,8 @@ public class PriceEvaluationTest : TestBase
         Assert.False(model.RawData.ContainsKey("external_price_id"));
         Assert.Null(model.Filter);
         Assert.False(model.RawData.ContainsKey("filter"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.False(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.Price);
         Assert.False(model.RawData.ContainsKey("price"));
         Assert.Null(model.PriceID);
@@ -971,6 +1054,7 @@ public class PriceEvaluationTest : TestBase
 
             ExternalPriceID = null,
             Filter = null,
+            MetricParameterOverrides = null,
             Price = null,
             PriceID = null,
         };
@@ -979,6 +1063,8 @@ public class PriceEvaluationTest : TestBase
         Assert.True(model.RawData.ContainsKey("external_price_id"));
         Assert.Null(model.Filter);
         Assert.True(model.RawData.ContainsKey("filter"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.True(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.Price);
         Assert.True(model.RawData.ContainsKey("price"));
         Assert.Null(model.PriceID);
@@ -994,6 +1080,7 @@ public class PriceEvaluationTest : TestBase
 
             ExternalPriceID = null,
             Filter = null,
+            MetricParameterOverrides = null,
             Price = null,
             PriceID = null,
         };
@@ -1009,6 +1096,10 @@ public class PriceEvaluationTest : TestBase
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             Price = new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,

@@ -41,6 +41,13 @@ public class MetricListPageResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Name = "name",
                     Status = Status.Active,
+                    ParameterDefinitions =
+                    [
+                        new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -72,6 +79,13 @@ public class MetricListPageResponseTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Name = "name",
                 Status = Status.Active,
+                ParameterDefinitions =
+                [
+                    new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                ],
             },
         ];
         Models::PaginationMetadata expectedPaginationMetadata = new()
@@ -119,6 +133,13 @@ public class MetricListPageResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Name = "name",
                     Status = Status.Active,
+                    ParameterDefinitions =
+                    [
+                        new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -164,6 +185,13 @@ public class MetricListPageResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Name = "name",
                     Status = Status.Active,
+                    ParameterDefinitions =
+                    [
+                        new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -202,6 +230,13 @@ public class MetricListPageResponseTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Name = "name",
                 Status = Status.Active,
+                ParameterDefinitions =
+                [
+                    new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                ],
             },
         ];
         Models::PaginationMetadata expectedPaginationMetadata = new()
@@ -249,6 +284,13 @@ public class MetricListPageResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Name = "name",
                     Status = Status.Active,
+                    ParameterDefinitions =
+                    [
+                        new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -288,6 +330,13 @@ public class MetricListPageResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Name = "name",
                     Status = Status.Active,
+                    ParameterDefinitions =
+                    [
+                        new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },

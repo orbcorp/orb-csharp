@@ -192,6 +192,28 @@ public sealed record class PriceInterval : JsonModel
         }
     }
 
+    /// <summary>
+    /// Override values for parameterized billable metric variables. Keys are parameter
+    /// names, values are the override values.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -209,6 +231,7 @@ public sealed record class PriceInterval : JsonModel
         this.Price.Validate();
         _ = this.StartDate;
         _ = this.UsageCustomerIds;
+        _ = this.MetricParameterOverrides;
     }
 
     public PriceInterval() { }

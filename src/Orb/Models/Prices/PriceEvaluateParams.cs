@@ -140,6 +140,28 @@ public record class PriceEvaluateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Optional overrides for parameterized billable metric parameters. If the metric
+    /// has parameter definitions and no overrides are provided, defaults will be used.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
     public PriceEvaluateParams() { }
 
 #pragma warning disable CS8618

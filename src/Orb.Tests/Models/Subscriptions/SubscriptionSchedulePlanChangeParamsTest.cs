@@ -88,6 +88,10 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     ExternalPriceID = "external_price_id",
                     MaximumAmount = "1.23",
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = "1.23",
                     PlanPhaseOrder = 0,
                     Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -230,6 +234,10 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                     ExternalPriceID = "external_price_id",
                     FixedPriceQuantity = 2,
                     MaximumAmount = "1.23",
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = "1.23",
                     Price = new Subscriptions::NewSubscriptionUnitPrice()
                     {
@@ -354,6 +362,10 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 ExternalPriceID = "external_price_id",
                 MaximumAmount = "1.23",
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
                 MinimumAmount = "1.23",
                 PlanPhaseOrder = 0,
                 Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -499,6 +511,10 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                 ExternalPriceID = "external_price_id",
                 FixedPriceQuantity = 2,
                 MaximumAmount = "1.23",
+                MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
                 MinimumAmount = "1.23",
                 Price = new Subscriptions::NewSubscriptionUnitPrice()
                 {
@@ -870,6 +886,10 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     ExternalPriceID = "external_price_id",
                     MaximumAmount = "1.23",
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = "1.23",
                     PlanPhaseOrder = 0,
                     Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -1012,6 +1032,10 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                     ExternalPriceID = "external_price_id",
                     FixedPriceQuantity = 2,
                     MaximumAmount = "1.23",
+                    MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
                     MinimumAmount = "1.23",
                     Price = new Subscriptions::NewSubscriptionUnitPrice()
                     {
@@ -1865,6 +1889,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             PlanPhaseOrder = 0,
             Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -1947,6 +1975,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedExternalPriceID = "external_price_id";
         string expectedMaximumAmount = "1.23";
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedMinimumAmount = "1.23";
         long expectedPlanPhaseOrder = 0;
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice expectedPrice =
@@ -2002,6 +2034,14 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
         Assert.Equal(expectedEndDate, model.EndDate);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.NotNull(model.MetricParameterOverrides);
+        Assert.Equal(expectedMetricParameterOverrides.Count, model.MetricParameterOverrides.Count);
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(model.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.MetricParameterOverrides[item.Key]));
+        }
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPrice, model.Price);
@@ -2051,6 +2091,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             PlanPhaseOrder = 0,
             Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -2148,6 +2192,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             PlanPhaseOrder = 0,
             Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -2238,6 +2286,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedExternalPriceID = "external_price_id";
         string expectedMaximumAmount = "1.23";
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedMinimumAmount = "1.23";
         long expectedPlanPhaseOrder = 0;
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice expectedPrice =
@@ -2293,6 +2345,19 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
         Assert.Equal(expectedEndDate, deserialized.EndDate);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.NotNull(deserialized.MetricParameterOverrides);
+        Assert.Equal(
+            expectedMetricParameterOverrides.Count,
+            deserialized.MetricParameterOverrides.Count
+        );
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(deserialized.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(
+                JsonElement.DeepEquals(value, deserialized.MetricParameterOverrides[item.Key])
+            );
+        }
         Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
         Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
         Assert.Equal(expectedPrice, deserialized.Price);
@@ -2342,6 +2407,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             PlanPhaseOrder = 0,
             Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -2405,6 +2474,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("external_price_id"));
         Assert.Null(model.MaximumAmount);
         Assert.False(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.False(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.MinimumAmount);
         Assert.False(model.RawData.ContainsKey("minimum_amount"));
         Assert.Null(model.PlanPhaseOrder);
@@ -2435,6 +2506,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = null,
             ExternalPriceID = null,
             MaximumAmount = null,
+            MetricParameterOverrides = null,
             MinimumAmount = null,
             PlanPhaseOrder = null,
             Price = null,
@@ -2452,6 +2524,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("external_price_id"));
         Assert.Null(model.MaximumAmount);
         Assert.True(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.True(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.MinimumAmount);
         Assert.True(model.RawData.ContainsKey("minimum_amount"));
         Assert.Null(model.PlanPhaseOrder);
@@ -2474,6 +2548,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = null,
             ExternalPriceID = null,
             MaximumAmount = null,
+            MetricParameterOverrides = null,
             MinimumAmount = null,
             PlanPhaseOrder = null,
             Price = null,
@@ -2526,6 +2601,10 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             PlanPhaseOrder = 0,
             Price = new Subscriptions::NewSubscriptionUnitPrice()
@@ -12777,6 +12856,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 2,
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             Price = new Subscriptions::NewSubscriptionUnitPrice()
             {
@@ -12858,6 +12941,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 2;
         string expectedMaximumAmount = "1.23";
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedMinimumAmount = "1.23";
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice expectedPrice =
             new Subscriptions::NewSubscriptionUnitPrice()
@@ -12912,6 +12999,14 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.NotNull(model.MetricParameterOverrides);
+        Assert.Equal(expectedMetricParameterOverrides.Count, model.MetricParameterOverrides.Count);
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(model.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.MetricParameterOverrides[item.Key]));
+        }
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedPrice, model.Price);
         Assert.Equal(expectedPriceID, model.PriceID);
@@ -12960,6 +13055,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 2,
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             Price = new Subscriptions::NewSubscriptionUnitPrice()
             {
@@ -13056,6 +13155,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 2,
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             Price = new Subscriptions::NewSubscriptionUnitPrice()
             {
@@ -13145,6 +13248,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 2;
         string expectedMaximumAmount = "1.23";
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedMinimumAmount = "1.23";
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice expectedPrice =
             new Subscriptions::NewSubscriptionUnitPrice()
@@ -13199,6 +13306,19 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.NotNull(deserialized.MetricParameterOverrides);
+        Assert.Equal(
+            expectedMetricParameterOverrides.Count,
+            deserialized.MetricParameterOverrides.Count
+        );
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(deserialized.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(
+                JsonElement.DeepEquals(value, deserialized.MetricParameterOverrides[item.Key])
+            );
+        }
         Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
         Assert.Equal(expectedPrice, deserialized.Price);
         Assert.Equal(expectedPriceID, deserialized.PriceID);
@@ -13247,6 +13367,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 2,
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             Price = new Subscriptions::NewSubscriptionUnitPrice()
             {
@@ -13311,6 +13435,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("fixed_price_quantity"));
         Assert.Null(model.MaximumAmount);
         Assert.False(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.False(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.MinimumAmount);
         Assert.False(model.RawData.ContainsKey("minimum_amount"));
         Assert.Null(model.Price);
@@ -13342,6 +13468,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = null,
             FixedPriceQuantity = null,
             MaximumAmount = null,
+            MetricParameterOverrides = null,
             MinimumAmount = null,
             Price = null,
             PriceID = null,
@@ -13357,6 +13484,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("fixed_price_quantity"));
         Assert.Null(model.MaximumAmount);
         Assert.True(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MetricParameterOverrides);
+        Assert.True(model.RawData.ContainsKey("metric_parameter_overrides"));
         Assert.Null(model.MinimumAmount);
         Assert.True(model.RawData.ContainsKey("minimum_amount"));
         Assert.Null(model.Price);
@@ -13377,6 +13506,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = null,
             FixedPriceQuantity = null,
             MaximumAmount = null,
+            MetricParameterOverrides = null,
             MinimumAmount = null,
             Price = null,
             PriceID = null,
@@ -13428,6 +13558,10 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 2,
             MaximumAmount = "1.23",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             MinimumAmount = "1.23",
             Price = new Subscriptions::NewSubscriptionUnitPrice()
             {

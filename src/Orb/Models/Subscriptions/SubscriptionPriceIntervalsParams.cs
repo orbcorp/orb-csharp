@@ -485,6 +485,28 @@ public sealed record class Add : JsonModel
     }
 
     /// <summary>
+    /// Override values for parameterized billable metric variables. Keys are parameter
+    /// names, values are the override values (number or string).
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// The minimum amount that will be billed for this price interval for a given
     /// billing period.
     /// </summary>
@@ -566,6 +588,7 @@ public sealed record class Add : JsonModel
             item.Validate();
         }
         _ = this.MaximumAmount;
+        _ = this.MetricParameterOverrides;
         _ = this.MinimumAmount;
         this.Price?.Validate();
         _ = this.PriceID;
@@ -10001,6 +10024,28 @@ public sealed record class Edit : JsonModel
     }
 
     /// <summary>
+    /// Override values for parameterized billable metric variables. Keys are parameter
+    /// names, values are the override values (number or string).
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// The updated start date of this price interval. If not specified, the start
     /// date will not be updated.
     /// </summary>
@@ -10058,6 +10103,7 @@ public sealed record class Edit : JsonModel
         {
             item.Validate();
         }
+        _ = this.MetricParameterOverrides;
         this.StartDate?.Validate();
         _ = this.UsageCustomerIds;
     }
