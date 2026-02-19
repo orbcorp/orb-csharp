@@ -147,9 +147,11 @@ public interface ILedgerService
     /// in the body of this request, Orb will also generate a one-off invoice for
     /// the customer for the credits pre-purchase. Note that you _must_ provide the
     /// `per_unit_cost_basis`, since the total charges on the invoice are calculated
-    /// by multiplying the cost basis with the number of credit units added. Additionally,
-    /// Orb also enforces invoice generation when a non-zero `per_unit_cost_basis`
-    /// value is provided.</para>
+    /// by multiplying the cost basis with the number of credit units added. * if
+    /// `per_unit_cost_basis` is greater than zero, an invoice will be generated
+    /// and `invoice_settings` must be included * if `invoice_settings` is passed,
+    /// one of either `custom_due_date` or `net_terms` is required to determine the
+    /// due date</para>
     ///
     /// <para>## Deducting Credits Orb allows you to deduct credits from a customer
     /// by creating an entry of type `decrement`. Orb matches the algorithm for automatic
@@ -247,9 +249,11 @@ public interface ILedgerService
     /// in the body of this request, Orb will also generate a one-off invoice for
     /// the customer for the credits pre-purchase. Note that you _must_ provide the
     /// `per_unit_cost_basis`, since the total charges on the invoice are calculated
-    /// by multiplying the cost basis with the number of credit units added. Additionally,
-    /// Orb also enforces invoice generation when a non-zero `per_unit_cost_basis`
-    /// value is provided.</para>
+    /// by multiplying the cost basis with the number of credit units added. * if
+    /// `per_unit_cost_basis` is greater than zero, an invoice will be generated
+    /// and `invoice_settings` must be included * if `invoice_settings` is passed,
+    /// one of either `custom_due_date` or `net_terms` is required to determine the
+    /// due date</para>
     ///
     /// <para>## Deducting Credits Orb allows you to deduct credits from a customer
     /// by creating an entry of type `decrement`. Orb matches the algorithm for automatic
