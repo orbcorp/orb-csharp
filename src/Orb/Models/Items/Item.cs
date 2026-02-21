@@ -260,6 +260,7 @@ public enum ItemExternalConnectionExternalConnectionName
     Avalara,
     Anrok,
     Numeral,
+    StripeTax,
 }
 
 sealed class ItemExternalConnectionExternalConnectionNameConverter
@@ -281,6 +282,7 @@ sealed class ItemExternalConnectionExternalConnectionNameConverter
             "avalara" => ItemExternalConnectionExternalConnectionName.Avalara,
             "anrok" => ItemExternalConnectionExternalConnectionName.Anrok,
             "numeral" => ItemExternalConnectionExternalConnectionName.Numeral,
+            "stripe_tax" => ItemExternalConnectionExternalConnectionName.StripeTax,
             _ => (ItemExternalConnectionExternalConnectionName)(-1),
         };
     }
@@ -303,6 +305,7 @@ sealed class ItemExternalConnectionExternalConnectionNameConverter
                 ItemExternalConnectionExternalConnectionName.Avalara => "avalara",
                 ItemExternalConnectionExternalConnectionName.Anrok => "anrok",
                 ItemExternalConnectionExternalConnectionName.Numeral => "numeral",
+                ItemExternalConnectionExternalConnectionName.StripeTax => "stripe_tax",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

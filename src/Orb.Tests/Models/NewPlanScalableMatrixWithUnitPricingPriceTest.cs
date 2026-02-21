@@ -31,6 +31,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -87,6 +88,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             };
@@ -177,6 +179,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -245,6 +248,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -308,6 +312,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             };
@@ -401,6 +406,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -463,6 +469,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -521,6 +528,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -552,6 +560,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -625,6 +634,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -671,6 +681,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceTest : TestBase
                     },
                 ],
                 UnitPrice = "unit_price",
+                GroupingKey = "x",
                 Prorate = true,
                 SecondDimension = "second_dimension",
             },
@@ -850,6 +861,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
                 },
             ],
             UnitPrice = "unit_price",
+            GroupingKey = "x",
             Prorate = true,
             SecondDimension = "second_dimension",
         };
@@ -865,6 +877,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             },
         ];
         string expectedUnitPrice = "unit_price";
+        string expectedGroupingKey = "x";
         bool expectedProrate = true;
         string expectedSecondDimension = "second_dimension";
 
@@ -875,6 +888,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             Assert.Equal(expectedMatrixScalingFactors[i], model.MatrixScalingFactors[i]);
         }
         Assert.Equal(expectedUnitPrice, model.UnitPrice);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
         Assert.Equal(expectedProrate, model.Prorate);
         Assert.Equal(expectedSecondDimension, model.SecondDimension);
     }
@@ -895,6 +909,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
                 },
             ],
             UnitPrice = "unit_price",
+            GroupingKey = "x",
             Prorate = true,
             SecondDimension = "second_dimension",
         };
@@ -925,6 +940,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
                 },
             ],
             UnitPrice = "unit_price",
+            GroupingKey = "x",
             Prorate = true,
             SecondDimension = "second_dimension",
         };
@@ -948,6 +964,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             },
         ];
         string expectedUnitPrice = "unit_price";
+        string expectedGroupingKey = "x";
         bool expectedProrate = true;
         string expectedSecondDimension = "second_dimension";
 
@@ -958,6 +975,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             Assert.Equal(expectedMatrixScalingFactors[i], deserialized.MatrixScalingFactors[i]);
         }
         Assert.Equal(expectedUnitPrice, deserialized.UnitPrice);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
         Assert.Equal(expectedProrate, deserialized.Prorate);
         Assert.Equal(expectedSecondDimension, deserialized.SecondDimension);
     }
@@ -978,6 +996,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
                 },
             ],
             UnitPrice = "unit_price",
+            GroupingKey = "x",
             Prorate = true,
             SecondDimension = "second_dimension",
         };
@@ -1003,6 +1022,8 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             UnitPrice = "unit_price",
         };
 
+        Assert.Null(model.GroupingKey);
+        Assert.False(model.RawData.ContainsKey("grouping_key"));
         Assert.Null(model.Prorate);
         Assert.False(model.RawData.ContainsKey("prorate"));
         Assert.Null(model.SecondDimension);
@@ -1047,10 +1068,13 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             ],
             UnitPrice = "unit_price",
 
+            GroupingKey = null,
             Prorate = null,
             SecondDimension = null,
         };
 
+        Assert.Null(model.GroupingKey);
+        Assert.True(model.RawData.ContainsKey("grouping_key"));
         Assert.Null(model.Prorate);
         Assert.True(model.RawData.ContainsKey("prorate"));
         Assert.Null(model.SecondDimension);
@@ -1074,6 +1098,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
             ],
             UnitPrice = "unit_price",
 
+            GroupingKey = null,
             Prorate = null,
             SecondDimension = null,
         };
@@ -1097,6 +1122,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
                 },
             ],
             UnitPrice = "unit_price",
+            GroupingKey = "x",
             Prorate = true,
             SecondDimension = "second_dimension",
         };

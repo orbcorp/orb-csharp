@@ -531,6 +531,19 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
     }
 
     /// <summary>
+    /// The property used to group this price
+    /// </summary>
+    public string? GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
     /// If true, the unit price will be prorated to the billing period
     /// </summary>
     public bool? Prorate
@@ -565,6 +578,7 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
             item.Validate();
         }
         _ = this.UnitPrice;
+        _ = this.GroupingKey;
         _ = this.Prorate;
         _ = this.SecondDimension;
     }
