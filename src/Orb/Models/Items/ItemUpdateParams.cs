@@ -289,6 +289,7 @@ public enum ExternalConnectionName
     Avalara,
     Anrok,
     Numeral,
+    StripeTax,
 }
 
 sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionName>
@@ -309,6 +310,7 @@ sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionN
             "avalara" => ExternalConnectionName.Avalara,
             "anrok" => ExternalConnectionName.Anrok,
             "numeral" => ExternalConnectionName.Numeral,
+            "stripe_tax" => ExternalConnectionName.StripeTax,
             _ => (ExternalConnectionName)(-1),
         };
     }
@@ -331,6 +333,7 @@ sealed class ExternalConnectionNameConverter : JsonConverter<ExternalConnectionN
                 ExternalConnectionName.Avalara => "avalara",
                 ExternalConnectionName.Anrok => "anrok",
                 ExternalConnectionName.Numeral => "numeral",
+                ExternalConnectionName.StripeTax => "stripe_tax",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

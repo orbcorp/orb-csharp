@@ -389,6 +389,7 @@ public class ItemExternalConnectionExternalConnectionNameTest : TestBase
     [InlineData(ItemExternalConnectionExternalConnectionName.Avalara)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Anrok)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Numeral)]
+    [InlineData(ItemExternalConnectionExternalConnectionName.StripeTax)]
     public void Validation_Works(ItemExternalConnectionExternalConnectionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -416,6 +417,7 @@ public class ItemExternalConnectionExternalConnectionNameTest : TestBase
     [InlineData(ItemExternalConnectionExternalConnectionName.Avalara)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Anrok)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Numeral)]
+    [InlineData(ItemExternalConnectionExternalConnectionName.StripeTax)]
     public void SerializationRoundtrip_Works(ItemExternalConnectionExternalConnectionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us
