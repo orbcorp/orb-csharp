@@ -12,13 +12,13 @@ using System = System;
 namespace Orb.Models.Invoices;
 
 /// <summary>
-/// This endpoint allows you to update the `metadata`, `net_terms`, `due_date`, and
-/// `invoice_date` properties on an invoice. If you pass null for the metadata value,
-/// it will clear any existing metadata for that invoice.
+/// This endpoint allows you to update the `metadata`, `net_terms`, `due_date`, `invoice_date`,
+/// and `auto_collection` properties on an invoice. If you pass null for the metadata
+/// value, it will clear any existing metadata for that invoice.
 ///
 /// <para>`metadata` can be modified regardless of invoice state. `net_terms`, `due_date`,
-/// and `invoice_date` can only be modified if the invoice is in a `draft` state.
-/// `invoice_date` can only be modified for non-subscription invoices.</para>
+/// `invoice_date`, and `auto_collection` can only be modified if the invoice is in
+/// a `draft` state. `invoice_date` can only be modified for non-subscription invoices.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -33,6 +33,21 @@ public record class InvoiceUpdateParams : ParamsBase
     }
 
     public string? InvoiceID { get; init; }
+
+    /// <summary>
+    /// Determines whether this invoice will automatically attempt to charge a saved
+    /// payment method, if any. Can only be modified on draft invoices. If not specified,
+    /// the invoice's existing setting is unchanged.
+    /// </summary>
+    public bool? AutoCollection
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
+        }
+        init { this._rawBodyData.Set("auto_collection", value); }
+    }
 
     /// <summary>
     /// An optional custom due date for the invoice. If not set, the due date will

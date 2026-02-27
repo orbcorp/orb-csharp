@@ -30,6 +30,7 @@ public class InvoiceCreateParamsTest : TestBase
                     UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 },
             ],
+            AutoCollection = true,
             CustomerID = "4khy3nwzktxv7",
             Discount = new Models::PercentageDiscount()
             {
@@ -70,6 +71,7 @@ public class InvoiceCreateParamsTest : TestBase
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
             },
         ];
+        bool expectedAutoCollection = true;
         string expectedCustomerID = "4khy3nwzktxv7";
         Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
         {
@@ -101,6 +103,7 @@ public class InvoiceCreateParamsTest : TestBase
         {
             Assert.Equal(expectedLineItems[i], parameters.LineItems[i]);
         }
+        Assert.Equal(expectedAutoCollection, parameters.AutoCollection);
         Assert.Equal(expectedCustomerID, parameters.CustomerID);
         Assert.Equal(expectedDiscount, parameters.Discount);
         Assert.Equal(expectedDueDate, parameters.DueDate);
@@ -138,6 +141,7 @@ public class InvoiceCreateParamsTest : TestBase
                     UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 },
             ],
+            AutoCollection = true,
             CustomerID = "4khy3nwzktxv7",
             Discount = new Models::PercentageDiscount()
             {
@@ -186,6 +190,7 @@ public class InvoiceCreateParamsTest : TestBase
                     UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 },
             ],
+            AutoCollection = true,
             CustomerID = "4khy3nwzktxv7",
             Discount = new Models::PercentageDiscount()
             {
@@ -240,6 +245,8 @@ public class InvoiceCreateParamsTest : TestBase
             WillAutoIssue = false,
         };
 
+        Assert.Null(parameters.AutoCollection);
+        Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.CustomerID);
         Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
         Assert.Null(parameters.Discount);
@@ -278,6 +285,7 @@ public class InvoiceCreateParamsTest : TestBase
             ],
             WillAutoIssue = false,
 
+            AutoCollection = null,
             CustomerID = null,
             Discount = null,
             DueDate = null,
@@ -287,6 +295,8 @@ public class InvoiceCreateParamsTest : TestBase
             NetTerms = null,
         };
 
+        Assert.Null(parameters.AutoCollection);
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.CustomerID);
         Assert.True(parameters.RawBodyData.ContainsKey("customer_id"));
         Assert.Null(parameters.Discount);
@@ -350,6 +360,7 @@ public class InvoiceCreateParamsTest : TestBase
                     UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 },
             ],
+            AutoCollection = true,
             CustomerID = "4khy3nwzktxv7",
             Discount = new Models::PercentageDiscount()
             {
