@@ -7,9 +7,13 @@ using Orb.Models.Items;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The Item resource represents a sellable product or good. Items are associated
+/// with all line items, billable metrics, and prices and are used for defining external
+/// sync behavior for invoices and tax calculation purposes.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IItemService
 {

@@ -8,9 +8,12 @@ using Orb.Models.CreditNotes;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Credit Note](/invoicing/credit-notes) resource represents a credit that
+/// has been applied to a particular invoice.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface ICreditNoteService
 {

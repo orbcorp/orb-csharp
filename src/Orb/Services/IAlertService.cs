@@ -7,9 +7,14 @@ using Orb.Models.Alerts;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// [Alerts within Orb](/product-catalog/configuring-alerts) monitor spending, usage,
+/// or credit balance and trigger webhooks when a threshold is exceeded.
+///
+/// <para>Alerts created through the API can be scoped to either customers or subscriptions.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IAlertService
 {
