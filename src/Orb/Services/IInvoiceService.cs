@@ -43,12 +43,13 @@ public interface IInvoiceService
 
     /// <summary>
     /// This endpoint allows you to update the `metadata`, `net_terms`, `due_date`,
-    /// and `invoice_date` properties on an invoice. If you pass null for the metadata
-    /// value, it will clear any existing metadata for that invoice.
+    /// `invoice_date`, and `auto_collection` properties on an invoice. If you pass
+    /// null for the metadata value, it will clear any existing metadata for that invoice.
     ///
     /// <para>`metadata` can be modified regardless of invoice state. `net_terms`,
-    /// `due_date`, and `invoice_date` can only be modified if the invoice is in a
-    /// `draft` state. `invoice_date` can only be modified for non-subscription invoices.</para>
+    /// `due_date`, `invoice_date`, and `auto_collection` can only be modified if
+    /// the invoice is in a `draft` state. `invoice_date` can only be modified for
+    /// non-subscription invoices.</para>
     /// </summary>
     Task<Invoice> Update(
         InvoiceUpdateParams parameters,

@@ -72,6 +72,21 @@ public record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
+    /// Determines whether this invoice will automatically attempt to charge a saved
+    /// payment method, if any. If not specified, the invoice inherits the customer's
+    /// auto_collection setting.
+    /// </summary>
+    public bool? AutoCollection
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
+        }
+        init { this._rawBodyData.Set("auto_collection", value); }
+    }
+
+    /// <summary>
     /// The id of the `Customer` to create this invoice for. One of `customer_id`
     /// and `external_customer_id` are required.
     /// </summary>
