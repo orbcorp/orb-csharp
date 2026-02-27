@@ -8,9 +8,19 @@ using Orb.Models.Prices.ExternalPriceID;
 namespace Orb.Services.Prices;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The Price resource represents a price that can be billed on a subscription, resulting
+/// in a charge on an invoice in the form of an invoice line item. Prices take a quantity
+/// and determine an amount to bill.
+///
+/// <para>Orb supports a few different pricing models out of the box. Each of these
+/// models is serialized differently in a given Price object. The model_type field
+/// determines the key for the configuration object that is present.</para>
+///
+/// <para>For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IExternalPriceIDService
 {

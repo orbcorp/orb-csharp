@@ -8,9 +8,15 @@ using Orb.Models.Invoices;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// An [`Invoice`](/core-concepts#invoice) is a fundamental billing entity, representing
+/// the request for payment for a single subscription. This includes a set of line
+/// items, which correspond to prices in the subscription's plan and can represent
+/// fixed recurring fees or usage-based fees. They are generated at the end of a
+/// billing period, or as the result of an action, such as a cancellation.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IInvoiceService
 {

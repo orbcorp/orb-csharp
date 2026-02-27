@@ -8,9 +8,25 @@ using Orb.Services.Customers;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// A customer is a buyer of your products, and the other party to the billing relationship.
+///
+/// <para>In Orb, customers are assigned system generated identifiers automatically,
+/// but it's often desirable to have these match existing identifiers in your system.
+/// To avoid having to denormalize Orb ID information, you can pass in an `external_customer_id`
+/// with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
+/// for further information about how these aliases work in Orb.</para>
+///
+/// <para>In addition to having an identifier in your system, a customer may exist
+/// in a payment provider solution like Stripe. Use the `payment_provider_id` and
+/// the `payment_provider` enum field to express this mapping.</para>
+///
+/// <para>A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
+/// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
+/// for information on what this timezone parameter influences within Orb.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface ICustomerService
 {

@@ -7,9 +7,13 @@ using Orb.Models.Events.Volume;
 namespace Orb.Services.Events;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Event](/core-concepts#event) resource represents a usage event that has been
+/// created for a customer. Events are the core of Orb's usage-based billing model,
+/// and are used to calculate the usage charges for a given billing period.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IVolumeService
 {

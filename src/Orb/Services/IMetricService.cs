@@ -7,9 +7,13 @@ using Orb.Models.Metrics;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The Metric resource represents a calculation of a quantity based on events. Metrics
+/// are defined by the query that transforms raw usage events into meaningful values
+/// for your customers.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IMetricService
 {

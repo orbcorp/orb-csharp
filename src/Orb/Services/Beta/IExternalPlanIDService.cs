@@ -9,9 +9,13 @@ using Orb.Models.Plans;
 namespace Orb.Services.Beta;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
+/// be subscribed to by a customer. Plans define the billing behavior of the subscription.
+/// You can see more about how to configure prices in the [Price resource](/reference/price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IExternalPlanIDService
 {
