@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Orb.Models;
+using Plans = Orb.Models.Plans;
 
 namespace Orb.Tests.Services;
 
@@ -41,6 +42,55 @@ public class PlanServiceTest : TestBase
                             ItemID = "item_id",
                             LicenseTypeID = "license_type_id",
                             PerUnitCostBasis = "per_unit_cost_basis",
+                        },
+                        LicenseAllocationPrice = new Plans::Unit()
+                        {
+                            Cadence = Plans::Cadence.Annual,
+                            ItemID = "item_id",
+                            LicenseAllocations =
+                            [
+                                new()
+                                {
+                                    Amount = "amount",
+                                    Currency = "currency",
+                                    WriteOffOverage = true,
+                                },
+                            ],
+                            Name = "Annual fee",
+                            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                            BillableMetricID = "billable_metric_id",
+                            BilledInAdvance = true,
+                            BillingCycleConfiguration = new()
+                            {
+                                Duration = 0,
+                                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                            },
+                            ConversionRate = 0,
+                            ConversionRateConfig = new SharedUnitConversionRateConfig()
+                            {
+                                ConversionRateType =
+                                    SharedUnitConversionRateConfigConversionRateType.Unit,
+                                UnitConfig = new("unit_amount"),
+                            },
+                            Currency = "currency",
+                            DimensionalPriceConfiguration = new()
+                            {
+                                DimensionValues = ["string"],
+                                DimensionalPriceGroupID = "dimensional_price_group_id",
+                                ExternalDimensionalPriceGroupID =
+                                    "external_dimensional_price_group_id",
+                            },
+                            ExternalPriceID = "external_price_id",
+                            FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "x",
+                            InvoicingCycleConfiguration = new()
+                            {
+                                Duration = 0,
+                                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                            },
+                            LicenseTypeID = "license_type_id",
+                            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                            ReferenceID = "reference_id",
                         },
                         PlanPhaseOrder = 0,
                         PriceValue = new NewPlanUnitPrice()

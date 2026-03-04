@@ -428,11 +428,148 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, UsageDiscountIntervalFilterOperator>(),
             new ApiEnumConverter<string, Beta::DurationUnit>(),
             new ApiEnumConverter<string, Beta::Cadence>(),
+            new ApiEnumConverter<string, Beta::TieredCadence>(),
+            new ApiEnumConverter<string, Beta::BulkCadence>(),
+            new ApiEnumConverter<string, Beta::BulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Beta::PackageCadence>(),
+            new ApiEnumConverter<string, Beta::MatrixCadence>(),
+            new ApiEnumConverter<string, Beta::ThresholdTotalAmountCadence>(),
+            new ApiEnumConverter<string, Beta::TieredPackageCadence>(),
+            new ApiEnumConverter<string, Beta::TieredWithMinimumCadence>(),
+            new ApiEnumConverter<string, Beta::GroupedTieredCadence>(),
+            new ApiEnumConverter<string, Beta::TieredPackageWithMinimumCadence>(),
+            new ApiEnumConverter<string, Beta::PackageWithAllocationCadence>(),
+            new ApiEnumConverter<string, Beta::UnitWithPercentCadence>(),
+            new ApiEnumConverter<string, Beta::MatrixWithAllocationCadence>(),
             new ApiEnumConverter<string, Beta::TieredWithProrationCadence>(),
+            new ApiEnumConverter<string, Beta::UnitWithProrationCadence>(),
+            new ApiEnumConverter<string, Beta::GroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Beta::BulkWithProrationCadence>(),
+            new ApiEnumConverter<string, Beta::GroupedWithProratedMinimumCadence>(),
+            new ApiEnumConverter<string, Beta::GroupedWithMeteredMinimumCadence>(),
             new ApiEnumConverter<string, Beta::GroupedWithMinMaxThresholdsCadence>(),
+            new ApiEnumConverter<string, Beta::MatrixWithDisplayNameCadence>(),
+            new ApiEnumConverter<string, Beta::GroupedTieredPackageCadence>(),
+            new ApiEnumConverter<string, Beta::MaxGroupTieredPackageCadence>(),
+            new ApiEnumConverter<string, Beta::ScalableMatrixWithUnitPricingCadence>(),
+            new ApiEnumConverter<string, Beta::ScalableMatrixWithTieredPricingCadence>(),
+            new ApiEnumConverter<string, Beta::CumulativeGroupedBulkCadence>(),
             new ApiEnumConverter<string, Beta::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Beta::MinimumCompositeCadence>(),
             new ApiEnumConverter<string, Beta::PercentCadence>(),
             new ApiEnumConverter<string, Beta::EventOutputCadence>(),
+            new ApiEnumConverter<string, Beta::PriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Beta::PriceTieredWithProrationCadence>(),
+            new ApiEnumConverter<string, Beta::PriceGroupedWithMinMaxThresholdsCadence>(),
+            new ApiEnumConverter<string, Beta::PriceCumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Beta::PricePercentCadence>(),
+            new ApiEnumConverter<string, Beta::PriceEventOutputCadence>(),
+            new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceUnitCadence>(),
+            new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceTieredCadence>(),
+            new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceBulkCadence>(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceBulkWithFiltersCadence
+            >(),
+            new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPricePackageCadence>(),
+            new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceMatrixCadence>(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceThresholdTotalAmountCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceTieredPackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceTieredWithMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceGroupedTieredCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceTieredPackageWithMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPricePackageWithAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceUnitWithPercentCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceMatrixWithAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceTieredWithProrationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceUnitWithProrationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceBulkWithProrationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceGroupedWithProratedMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceGroupedWithMeteredMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceGroupedWithMinMaxThresholdsCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceMatrixWithDisplayNameCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceGroupedTieredPackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceMaxGroupTieredPackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceScalableMatrixWithUnitPricingCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceScalableMatrixWithTieredPricingCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceCumulativeGroupedBulkCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceCumulativeGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceMinimumCompositeCadence
+            >(),
+            new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPricePercentCadence>(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePriceLicenseAllocationPriceEventOutputCadence
+            >(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceBulkWithFiltersCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceTieredWithProrationCadence>(),
             new ApiEnumConverter<
@@ -446,11 +583,166 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Beta::ReplacePricePricePercentCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceEventOutputCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::Cadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::TieredCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::BulkCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::BulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PackageCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::MatrixCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::ThresholdTotalAmountCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::TieredPackageCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::TieredWithMinimumCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::GroupedTieredCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::TieredPackageWithMinimumCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PackageWithAllocationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::UnitWithPercentCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::MatrixWithAllocationCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::TieredWithProrationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::UnitWithProrationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::GroupedAllocationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::BulkWithProrationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::GroupedWithProratedMinimumCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::GroupedWithMeteredMinimumCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::GroupedWithMinMaxThresholdsCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::MatrixWithDisplayNameCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::GroupedTieredPackageCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::MaxGroupTieredPackageCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::ScalableMatrixWithUnitPricingCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::ScalableMatrixWithTieredPricingCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::CumulativeGroupedBulkCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::MinimumCompositeCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::PercentCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::EventOutputCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PriceTieredWithProrationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PriceGroupedWithMinMaxThresholdsCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PriceCumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PricePercentCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::PriceEventOutputCadence>(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceUnitCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceTieredCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceBulkCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceBulkWithFiltersCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPricePackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceMatrixCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceThresholdTotalAmountCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceTieredPackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceTieredWithMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceGroupedTieredCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceTieredPackageWithMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPricePackageWithAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceUnitWithPercentCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceMatrixWithAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceTieredWithProrationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceUnitWithProrationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceBulkWithProrationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceGroupedWithProratedMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceGroupedWithMeteredMinimumCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceGroupedWithMinMaxThresholdsCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceMatrixWithDisplayNameCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceGroupedTieredPackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceMaxGroupTieredPackageCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceScalableMatrixWithUnitPricingCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceScalableMatrixWithTieredPricingCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceCumulativeGroupedBulkCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceCumulativeGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceMinimumCompositeCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPricePercentCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePriceLicenseAllocationPriceEventOutputCadence
+            >(),
             new ApiEnumConverter<string, ExternalPlanID::ReplacePricePriceBulkWithFiltersCadence>(),
             new ApiEnumConverter<
                 string,
@@ -601,11 +893,42 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Plans::PlanStatus>(),
             new ApiEnumConverter<string, Plans::TrialPeriodUnit>(),
             new ApiEnumConverter<string, Plans::Cadence>(),
+            new ApiEnumConverter<string, Plans::TieredCadence>(),
+            new ApiEnumConverter<string, Plans::BulkCadence>(),
+            new ApiEnumConverter<string, Plans::BulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Plans::PackageCadence>(),
+            new ApiEnumConverter<string, Plans::MatrixCadence>(),
+            new ApiEnumConverter<string, Plans::ThresholdTotalAmountCadence>(),
+            new ApiEnumConverter<string, Plans::TieredPackageCadence>(),
+            new ApiEnumConverter<string, Plans::TieredWithMinimumCadence>(),
+            new ApiEnumConverter<string, Plans::GroupedTieredCadence>(),
+            new ApiEnumConverter<string, Plans::TieredPackageWithMinimumCadence>(),
+            new ApiEnumConverter<string, Plans::PackageWithAllocationCadence>(),
+            new ApiEnumConverter<string, Plans::UnitWithPercentCadence>(),
+            new ApiEnumConverter<string, Plans::MatrixWithAllocationCadence>(),
             new ApiEnumConverter<string, Plans::TieredWithProrationCadence>(),
+            new ApiEnumConverter<string, Plans::UnitWithProrationCadence>(),
+            new ApiEnumConverter<string, Plans::GroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Plans::BulkWithProrationCadence>(),
+            new ApiEnumConverter<string, Plans::GroupedWithProratedMinimumCadence>(),
+            new ApiEnumConverter<string, Plans::GroupedWithMeteredMinimumCadence>(),
             new ApiEnumConverter<string, Plans::GroupedWithMinMaxThresholdsCadence>(),
+            new ApiEnumConverter<string, Plans::MatrixWithDisplayNameCadence>(),
+            new ApiEnumConverter<string, Plans::GroupedTieredPackageCadence>(),
+            new ApiEnumConverter<string, Plans::MaxGroupTieredPackageCadence>(),
+            new ApiEnumConverter<string, Plans::ScalableMatrixWithUnitPricingCadence>(),
+            new ApiEnumConverter<string, Plans::ScalableMatrixWithTieredPricingCadence>(),
+            new ApiEnumConverter<string, Plans::CumulativeGroupedBulkCadence>(),
             new ApiEnumConverter<string, Plans::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Plans::MinimumCompositeCadence>(),
             new ApiEnumConverter<string, Plans::PercentCadence>(),
             new ApiEnumConverter<string, Plans::EventOutputCadence>(),
+            new ApiEnumConverter<string, Plans::PricePriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Plans::PricePriceTieredWithProrationCadence>(),
+            new ApiEnumConverter<string, Plans::PricePriceGroupedWithMinMaxThresholdsCadence>(),
+            new ApiEnumConverter<string, Plans::PricePriceCumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Plans::PricePricePercentCadence>(),
+            new ApiEnumConverter<string, Plans::PricePriceEventOutputCadence>(),
             new ApiEnumConverter<string, Plans::DurationUnit>(),
             new ApiEnumConverter<string, Plans::Status>(),
             new ApiEnumConverter<string, Plans::PlanListParamsStatus>(),
