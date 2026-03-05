@@ -15,8 +15,9 @@ namespace Orb.Models.Customers;
 /// <summary>
 /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
 /// `name`, `email`, `email_delivery`, `tax_id`, `auto_collection`, `metadata`, `shipping_address`,
-/// `billing_address`, and `additional_emails` of an existing customer. Other fields
-/// on a customer are currently immutable.
+/// `billing_address`, `additional_emails`, and `currency` of an existing customer.
+/// `currency` can only be set if it has not already been set on the customer. Other
+/// fields on a customer are currently immutable.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -108,7 +109,8 @@ public record class CustomerUpdateParams : ParamsBase
 
     /// <summary>
     /// An ISO 4217 currency string used for the customer's invoices and balance.
-    /// If not set at creation time, will be set at subscription creation time.
+    /// This can only be set if the customer does not already have a currency configured.
+    /// If not set at creation or update time, it will be set at subscription creation time.
     /// </summary>
     public string? Currency
     {

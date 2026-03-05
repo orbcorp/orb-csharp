@@ -107,7 +107,8 @@ public record class CustomerUpdateByExternalIDParams : ParamsBase
 
     /// <summary>
     /// An ISO 4217 currency string used for the customer's invoices and balance.
-    /// If not set at creation time, will be set at subscription creation time.
+    /// This can only be set if the customer does not already have a currency configured.
+    /// If not set at creation or update time, it will be set at subscription creation time.
     /// </summary>
     public string? Currency
     {

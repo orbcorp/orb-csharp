@@ -68,8 +68,9 @@ public interface ICustomerService
     /// <summary>
     /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
     /// `name`, `email`, `email_delivery`, `tax_id`, `auto_collection`, `metadata`,
-    /// `shipping_address`, `billing_address`, and `additional_emails` of an existing
-    /// customer. Other fields on a customer are currently immutable.
+    /// `shipping_address`, `billing_address`, `additional_emails`, and `currency`
+    /// of an existing customer. `currency` can only be set if it has not already
+    /// been set on the customer. Other fields on a customer are currently immutable.
     /// </summary>
     Task<Customer> Update(
         CustomerUpdateParams parameters,
