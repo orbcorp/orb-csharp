@@ -17,14 +17,18 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Thresholds = [new(0)],
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            GroupingKeys = ["string"],
             MetricID = "metric_id",
+            PricingUnitID = "pricing_unit_id",
         };
 
         string expectedSubscriptionID = "subscription_id";
         List<Threshold> expectedThresholds = [new(0)];
         ApiEnum<string, AlertCreateForSubscriptionParamsType> expectedType =
             AlertCreateForSubscriptionParamsType.UsageExceeded;
+        List<string> expectedGroupingKeys = ["string"];
         string expectedMetricID = "metric_id";
+        string expectedPricingUnitID = "pricing_unit_id";
 
         Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
         Assert.Equal(expectedThresholds.Count, parameters.Thresholds.Count);
@@ -33,7 +37,14 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             Assert.Equal(expectedThresholds[i], parameters.Thresholds[i]);
         }
         Assert.Equal(expectedType, parameters.Type);
+        Assert.NotNull(parameters.GroupingKeys);
+        Assert.Equal(expectedGroupingKeys.Count, parameters.GroupingKeys.Count);
+        for (int i = 0; i < expectedGroupingKeys.Count; i++)
+        {
+            Assert.Equal(expectedGroupingKeys[i], parameters.GroupingKeys[i]);
+        }
         Assert.Equal(expectedMetricID, parameters.MetricID);
+        Assert.Equal(expectedPricingUnitID, parameters.PricingUnitID);
     }
 
     [Fact]
@@ -46,8 +57,12 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
         };
 
+        Assert.Null(parameters.GroupingKeys);
+        Assert.False(parameters.RawBodyData.ContainsKey("grouping_keys"));
         Assert.Null(parameters.MetricID);
         Assert.False(parameters.RawBodyData.ContainsKey("metric_id"));
+        Assert.Null(parameters.PricingUnitID);
+        Assert.False(parameters.RawBodyData.ContainsKey("pricing_unit_id"));
     }
 
     [Fact]
@@ -59,11 +74,17 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             Thresholds = [new(0)],
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
 
+            GroupingKeys = null,
             MetricID = null,
+            PricingUnitID = null,
         };
 
+        Assert.Null(parameters.GroupingKeys);
+        Assert.True(parameters.RawBodyData.ContainsKey("grouping_keys"));
         Assert.Null(parameters.MetricID);
         Assert.True(parameters.RawBodyData.ContainsKey("metric_id"));
+        Assert.Null(parameters.PricingUnitID);
+        Assert.True(parameters.RawBodyData.ContainsKey("pricing_unit_id"));
     }
 
     [Fact]
@@ -92,7 +113,9 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Thresholds = [new(0)],
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            GroupingKeys = ["string"],
             MetricID = "metric_id",
+            PricingUnitID = "pricing_unit_id",
         };
 
         AlertCreateForSubscriptionParams copied = new(parameters);

@@ -74,6 +74,25 @@ public record class AlertCreateForSubscriptionParams : ParamsBase
     }
 
     /// <summary>
+    /// The property keys to group cost alerts by. Only applicable for cost_exceeded alerts.
+    /// </summary>
+    public IReadOnlyList<string>? GroupingKeys
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("grouping_keys");
+        }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "grouping_keys",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// The metric to track usage for.
     /// </summary>
     public string? MetricID
@@ -84,6 +103,20 @@ public record class AlertCreateForSubscriptionParams : ParamsBase
             return this._rawBodyData.GetNullableClass<string>("metric_id");
         }
         init { this._rawBodyData.Set("metric_id", value); }
+    }
+
+    /// <summary>
+    /// The pricing unit to use for grouped cost alerts. Required when grouping_keys
+    /// is set.
+    /// </summary>
+    public string? PricingUnitID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("pricing_unit_id");
+        }
+        init { this._rawBodyData.Set("pricing_unit_id", value); }
     }
 
     public AlertCreateForSubscriptionParams() { }

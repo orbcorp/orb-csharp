@@ -177,6 +177,26 @@ public sealed record class Alert : JsonModel
     }
 
     /// <summary>
+    /// The property keys to group cost alerts by. Only present for cost alerts with
+    /// grouping enabled.
+    /// </summary>
+    public IReadOnlyList<string>? GroupingKeys
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("grouping_keys");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "grouping_keys",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Minified license type for alert serialization.
     /// </summary>
     public LicenseType? LicenseType
@@ -209,6 +229,7 @@ public sealed record class Alert : JsonModel
         {
             item.Validate();
         }
+        _ = this.GroupingKeys;
         this.LicenseType?.Validate();
     }
 
