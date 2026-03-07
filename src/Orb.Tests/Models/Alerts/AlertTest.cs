@@ -32,6 +32,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
             LicenseType = new("id"),
         };
 
@@ -59,6 +60,7 @@ public class AlertTest : TestBase
         [
             new() { InAlert = true, ThresholdValue = 0 },
         ];
+        List<string> expectedGroupingKeys = ["string"];
         LicenseType expectedLicenseType = new("id");
 
         Assert.Equal(expectedID, model.ID);
@@ -81,6 +83,12 @@ public class AlertTest : TestBase
         for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
         {
             Assert.Equal(expectedBalanceAlertStatus[i], model.BalanceAlertStatus[i]);
+        }
+        Assert.NotNull(model.GroupingKeys);
+        Assert.Equal(expectedGroupingKeys.Count, model.GroupingKeys.Count);
+        for (int i = 0; i < expectedGroupingKeys.Count; i++)
+        {
+            Assert.Equal(expectedGroupingKeys[i], model.GroupingKeys[i]);
         }
         Assert.Equal(expectedLicenseType, model.LicenseType);
     }
@@ -107,6 +115,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
             LicenseType = new("id"),
         };
 
@@ -138,6 +147,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
             LicenseType = new("id"),
         };
 
@@ -169,6 +179,7 @@ public class AlertTest : TestBase
         [
             new() { InAlert = true, ThresholdValue = 0 },
         ];
+        List<string> expectedGroupingKeys = ["string"];
         LicenseType expectedLicenseType = new("id");
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -191,6 +202,12 @@ public class AlertTest : TestBase
         for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
         {
             Assert.Equal(expectedBalanceAlertStatus[i], deserialized.BalanceAlertStatus[i]);
+        }
+        Assert.NotNull(deserialized.GroupingKeys);
+        Assert.Equal(expectedGroupingKeys.Count, deserialized.GroupingKeys.Count);
+        for (int i = 0; i < expectedGroupingKeys.Count; i++)
+        {
+            Assert.Equal(expectedGroupingKeys[i], deserialized.GroupingKeys[i]);
         }
         Assert.Equal(expectedLicenseType, deserialized.LicenseType);
     }
@@ -217,6 +234,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
             LicenseType = new("id"),
         };
 
@@ -248,6 +266,8 @@ public class AlertTest : TestBase
 
         Assert.Null(model.BalanceAlertStatus);
         Assert.False(model.RawData.ContainsKey("balance_alert_status"));
+        Assert.Null(model.GroupingKeys);
+        Assert.False(model.RawData.ContainsKey("grouping_keys"));
         Assert.Null(model.LicenseType);
         Assert.False(model.RawData.ContainsKey("license_type"));
     }
@@ -301,11 +321,14 @@ public class AlertTest : TestBase
             Type = AlertType.CreditBalanceDepleted,
 
             BalanceAlertStatus = null,
+            GroupingKeys = null,
             LicenseType = null,
         };
 
         Assert.Null(model.BalanceAlertStatus);
         Assert.True(model.RawData.ContainsKey("balance_alert_status"));
+        Assert.Null(model.GroupingKeys);
+        Assert.True(model.RawData.ContainsKey("grouping_keys"));
         Assert.Null(model.LicenseType);
         Assert.True(model.RawData.ContainsKey("license_type"));
     }
@@ -333,6 +356,7 @@ public class AlertTest : TestBase
             Type = AlertType.CreditBalanceDepleted,
 
             BalanceAlertStatus = null,
+            GroupingKeys = null,
             LicenseType = null,
         };
 
@@ -361,6 +385,7 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
             LicenseType = new("id"),
         };
 
