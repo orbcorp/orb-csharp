@@ -14,13 +14,13 @@ namespace Orb.Core;
 ///
 /// <para>Use <see cref="MultipartJsonSerializer"/> to construct or read instances of this class.</para>
 /// </summary>
-public readonly struct MultipartJsonElement()
+public readonly struct MultipartJsonElement
 {
     /// <summary>
     /// A <see cref="JsonElement"/> with <see cref="BinaryContents">placeholders</see>
     /// for <see cref="BinaryContent"/>.
     /// </summary>
-    internal JsonElement Json { get; init; }
+    internal JsonElement Json { get; init; } = default;
 
     /// <summary>
     /// A dictionary from placeholder string in <see cref="Json">the JSON</see> to
@@ -30,6 +30,8 @@ public readonly struct MultipartJsonElement()
         FrozenDictionary.ToFrozenDictionary(new Dictionary<Guid, BinaryContent>());
 
     public static implicit operator MultipartJsonElement(JsonElement json) => new() { Json = json };
+
+    public MultipartJsonElement() { }
 
     public override string ToString() =>
         JsonSerializer.Serialize(
@@ -175,7 +177,7 @@ public static class MultipartJsonSerializer
 
     static readonly ThreadLocal<
         Dictionary<JsonSerializerOptions, JsonSerializerOptions>
-    > MultipartSerializerOptionsCache = new(() => []);
+    > MultipartSerializerOptionsCache = new(() => new());
 
     static readonly JsonSerializerOptions DefaultMultipartSerializerOptions =
         MultipartSerializerOptions(new());
@@ -206,7 +208,7 @@ public static class MultipartJsonSerializer
         var previousBinaryContents = CurrentBinaryContents.Value;
         try
         {
-            CurrentBinaryContents.Value = [];
+            CurrentBinaryContents.Value = new();
             var element = JsonSerializer.SerializeToElement(
                 value,
                 MultipartSerializerOptions(options)
@@ -249,7 +251,7 @@ public static class MultipartJsonSerializer
         JsonSerializerOptions? options = null
     )
     {
-        MultipartFormDataContent formDataContent = [];
+        MultipartFormDataContent formDataContent = new();
         var multipartElement = MultipartJsonSerializer.SerializeToElement(value, options);
         void SerializeParts(string name, JsonElement element)
         {
