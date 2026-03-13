@@ -1008,6 +1008,7 @@ public class CustomerPaymentProviderTest : TestBase
     [InlineData(CustomerPaymentProvider.StripeCharge)]
     [InlineData(CustomerPaymentProvider.StripeInvoice)]
     [InlineData(CustomerPaymentProvider.Netsuite)]
+    [InlineData(CustomerPaymentProvider.NetsuiteAmpersand)]
     public void Validation_Works(CustomerPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1033,6 +1034,7 @@ public class CustomerPaymentProviderTest : TestBase
     [InlineData(CustomerPaymentProvider.StripeCharge)]
     [InlineData(CustomerPaymentProvider.StripeInvoice)]
     [InlineData(CustomerPaymentProvider.Netsuite)]
+    [InlineData(CustomerPaymentProvider.NetsuiteAmpersand)]
     public void SerializationRoundtrip_Works(CustomerPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1300,6 +1302,7 @@ public class AccountingProviderProviderTypeTest : TestBase
     [Theory]
     [InlineData(AccountingProviderProviderType.Quickbooks)]
     [InlineData(AccountingProviderProviderType.Netsuite)]
+    [InlineData(AccountingProviderProviderType.NetsuiteAmpersand)]
     public void Validation_Works(AccountingProviderProviderType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1322,6 +1325,7 @@ public class AccountingProviderProviderTypeTest : TestBase
     [Theory]
     [InlineData(AccountingProviderProviderType.Quickbooks)]
     [InlineData(AccountingProviderProviderType.Netsuite)]
+    [InlineData(AccountingProviderProviderType.NetsuiteAmpersand)]
     public void SerializationRoundtrip_Works(AccountingProviderProviderType rawValue)
     {
         // force implicit conversion because Theory can't do that for us

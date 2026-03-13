@@ -610,6 +610,7 @@ public enum CustomerPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    NetsuiteAmpersand,
 }
 
 sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentProvider>
@@ -627,6 +628,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
             "stripe_charge" => CustomerPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerPaymentProvider.StripeInvoice,
             "netsuite" => CustomerPaymentProvider.Netsuite,
+            "netsuite_ampersand" => CustomerPaymentProvider.NetsuiteAmpersand,
             _ => (CustomerPaymentProvider)(-1),
         };
     }
@@ -646,6 +648,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
                 CustomerPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerPaymentProvider.Netsuite => "netsuite",
+                CustomerPaymentProvider.NetsuiteAmpersand => "netsuite_ampersand",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -810,6 +813,7 @@ public enum AccountingProviderProviderType
 {
     Quickbooks,
     Netsuite,
+    NetsuiteAmpersand,
 }
 
 sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingProviderProviderType>
@@ -824,6 +828,7 @@ sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingP
         {
             "quickbooks" => AccountingProviderProviderType.Quickbooks,
             "netsuite" => AccountingProviderProviderType.Netsuite,
+            "netsuite_ampersand" => AccountingProviderProviderType.NetsuiteAmpersand,
             _ => (AccountingProviderProviderType)(-1),
         };
     }
@@ -840,6 +845,7 @@ sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingP
             {
                 AccountingProviderProviderType.Quickbooks => "quickbooks",
                 AccountingProviderProviderType.Netsuite => "netsuite",
+                AccountingProviderProviderType.NetsuiteAmpersand => "netsuite_ampersand",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
