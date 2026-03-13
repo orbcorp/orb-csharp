@@ -761,6 +761,7 @@ public enum CustomerCreateParamsPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    NetsuiteAmpersand,
 }
 
 sealed class CustomerCreateParamsPaymentProviderConverter
@@ -779,6 +780,7 @@ sealed class CustomerCreateParamsPaymentProviderConverter
             "stripe_charge" => CustomerCreateParamsPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerCreateParamsPaymentProvider.StripeInvoice,
             "netsuite" => CustomerCreateParamsPaymentProvider.Netsuite,
+            "netsuite_ampersand" => CustomerCreateParamsPaymentProvider.NetsuiteAmpersand,
             _ => (CustomerCreateParamsPaymentProvider)(-1),
         };
     }
@@ -798,6 +800,7 @@ sealed class CustomerCreateParamsPaymentProviderConverter
                 CustomerCreateParamsPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerCreateParamsPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerCreateParamsPaymentProvider.Netsuite => "netsuite",
+                CustomerCreateParamsPaymentProvider.NetsuiteAmpersand => "netsuite_ampersand",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -811,6 +811,7 @@ public enum CustomerUpdateByExternalIDParamsPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    NetsuiteAmpersand,
 }
 
 sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
@@ -829,6 +830,8 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
             "stripe_charge" => CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice,
             "netsuite" => CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite,
+            "netsuite_ampersand" =>
+                CustomerUpdateByExternalIDParamsPaymentProvider.NetsuiteAmpersand,
             _ => (CustomerUpdateByExternalIDParamsPaymentProvider)(-1),
         };
     }
@@ -848,6 +851,8 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
                 CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite => "netsuite",
+                CustomerUpdateByExternalIDParamsPaymentProvider.NetsuiteAmpersand =>
+                    "netsuite_ampersand",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -867,6 +867,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.NetsuiteAmpersand)]
     public void Validation_Works(CustomerUpdateByExternalIDParamsPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -891,6 +892,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.NetsuiteAmpersand)]
     public void SerializationRoundtrip_Works(
         CustomerUpdateByExternalIDParamsPaymentProvider rawValue
     )
