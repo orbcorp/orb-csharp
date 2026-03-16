@@ -254,7 +254,7 @@ public record class Adjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PlanPhaseUsageDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -277,7 +277,7 @@ public record class Adjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PlanPhaseAmountDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -300,7 +300,7 @@ public record class Adjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PlanPhasePercentageDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -323,7 +323,7 @@ public record class Adjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PlanPhaseMinimumAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -344,7 +344,7 @@ public record class Adjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PlanPhaseMaximumAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -364,7 +364,7 @@ public record class Adjustment : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -375,11 +375,11 @@ public record class Adjustment : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (PlanPhaseUsageDiscountAdjustment value) => {...},
-    ///     (PlanPhaseAmountDiscountAdjustment value) => {...},
-    ///     (PlanPhasePercentageDiscountAdjustment value) => {...},
-    ///     (PlanPhaseMinimumAdjustment value) => {...},
-    ///     (PlanPhaseMaximumAdjustment value) => {...}
+    ///     (PlanPhaseUsageDiscountAdjustment value) =&gt; {...},
+    ///     (PlanPhaseAmountDiscountAdjustment value) =&gt; {...},
+    ///     (PlanPhasePercentageDiscountAdjustment value) =&gt; {...},
+    ///     (PlanPhaseMinimumAdjustment value) =&gt; {...},
+    ///     (PlanPhaseMaximumAdjustment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -418,7 +418,7 @@ public record class Adjustment : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -429,11 +429,11 @@ public record class Adjustment : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (PlanPhaseUsageDiscountAdjustment value) => {...},
-    ///     (PlanPhaseAmountDiscountAdjustment value) => {...},
-    ///     (PlanPhasePercentageDiscountAdjustment value) => {...},
-    ///     (PlanPhaseMinimumAdjustment value) => {...},
-    ///     (PlanPhaseMaximumAdjustment value) => {...}
+    ///     (PlanPhaseUsageDiscountAdjustment value) =&gt; {...},
+    ///     (PlanPhaseAmountDiscountAdjustment value) =&gt; {...},
+    ///     (PlanPhasePercentageDiscountAdjustment value) =&gt; {...},
+    ///     (PlanPhaseMinimumAdjustment value) =&gt; {...},
+    ///     (PlanPhaseMaximumAdjustment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

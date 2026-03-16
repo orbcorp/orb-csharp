@@ -85,7 +85,7 @@ public record class PriceCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static PriceCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -898,7 +898,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -919,7 +919,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -940,7 +940,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingBulkPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -961,7 +961,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="BulkWithFilters"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -982,7 +982,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1005,7 +1005,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1026,7 +1026,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingThresholdTotalAmountPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1049,7 +1049,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1072,7 +1072,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredWithMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1095,7 +1095,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedTieredPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1118,7 +1118,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPackageWithMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1141,7 +1141,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingPackageWithAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1164,7 +1164,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitWithPercentPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1187,7 +1187,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixWithAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1210,7 +1210,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1233,7 +1233,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1256,7 +1256,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1279,7 +1279,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingBulkWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1302,7 +1302,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedWithProratedMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1325,7 +1325,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedWithMeteredMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1348,7 +1348,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="GroupedWithMinMaxThresholds"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1371,7 +1371,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixWithDisplayNamePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1394,7 +1394,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1417,7 +1417,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMaxGroupTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1440,7 +1440,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingScalableMatrixWithUnitPricingPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1463,7 +1463,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingScalableMatrixWithTieredPricingPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1486,7 +1486,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingCumulativeGroupedBulkPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1509,7 +1509,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CumulativeGroupedAllocation"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1532,7 +1532,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMinimumCompositePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1555,7 +1555,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Percent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1576,7 +1576,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="EventOutput"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1596,7 +1596,7 @@ public record class Body : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1607,37 +1607,37 @@ public record class Body : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (NewFloatingUnitPrice value) => {...},
-    ///     (NewFloatingTieredPrice value) => {...},
-    ///     (NewFloatingBulkPrice value) => {...},
-    ///     (BulkWithFilters value) => {...},
-    ///     (NewFloatingPackagePrice value) => {...},
-    ///     (NewFloatingMatrixPrice value) => {...},
-    ///     (NewFloatingThresholdTotalAmountPrice value) => {...},
-    ///     (NewFloatingTieredPackagePrice value) => {...},
-    ///     (NewFloatingTieredWithMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedTieredPrice value) => {...},
-    ///     (NewFloatingTieredPackageWithMinimumPrice value) => {...},
-    ///     (NewFloatingPackageWithAllocationPrice value) => {...},
-    ///     (NewFloatingUnitWithPercentPrice value) => {...},
-    ///     (NewFloatingMatrixWithAllocationPrice value) => {...},
-    ///     (NewFloatingTieredWithProrationPrice value) => {...},
-    ///     (NewFloatingUnitWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedAllocationPrice value) => {...},
-    ///     (NewFloatingBulkWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedWithProratedMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (GroupedWithMinMaxThresholds value) => {...},
-    ///     (NewFloatingMatrixWithDisplayNamePrice value) => {...},
-    ///     (NewFloatingGroupedTieredPackagePrice value) => {...},
-    ///     (NewFloatingMaxGroupTieredPackagePrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
-    ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
-    ///     (CumulativeGroupedAllocation value) => {...},
-    ///     (NewFloatingMinimumCompositePrice value) => {...},
-    ///     (Percent value) => {...},
-    ///     (EventOutput value) => {...}
+    ///     (NewFloatingUnitPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPrice value) =&gt; {...},
+    ///     (NewFloatingBulkPrice value) =&gt; {...},
+    ///     (BulkWithFilters value) =&gt; {...},
+    ///     (NewFloatingPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMatrixPrice value) =&gt; {...},
+    ///     (NewFloatingThresholdTotalAmountPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackageWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
+    ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingBulkWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithProratedMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) =&gt; {...},
+    ///     (GroupedWithMinMaxThresholds value) =&gt; {...},
+    ///     (NewFloatingMatrixWithDisplayNamePrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMaxGroupTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) =&gt; {...},
+    ///     (NewFloatingCumulativeGroupedBulkPrice value) =&gt; {...},
+    ///     (CumulativeGroupedAllocation value) =&gt; {...},
+    ///     (NewFloatingMinimumCompositePrice value) =&gt; {...},
+    ///     (Percent value) =&gt; {...},
+    ///     (EventOutput value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1780,7 +1780,7 @@ public record class Body : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1791,37 +1791,37 @@ public record class Body : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (NewFloatingUnitPrice value) => {...},
-    ///     (NewFloatingTieredPrice value) => {...},
-    ///     (NewFloatingBulkPrice value) => {...},
-    ///     (BulkWithFilters value) => {...},
-    ///     (NewFloatingPackagePrice value) => {...},
-    ///     (NewFloatingMatrixPrice value) => {...},
-    ///     (NewFloatingThresholdTotalAmountPrice value) => {...},
-    ///     (NewFloatingTieredPackagePrice value) => {...},
-    ///     (NewFloatingTieredWithMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedTieredPrice value) => {...},
-    ///     (NewFloatingTieredPackageWithMinimumPrice value) => {...},
-    ///     (NewFloatingPackageWithAllocationPrice value) => {...},
-    ///     (NewFloatingUnitWithPercentPrice value) => {...},
-    ///     (NewFloatingMatrixWithAllocationPrice value) => {...},
-    ///     (NewFloatingTieredWithProrationPrice value) => {...},
-    ///     (NewFloatingUnitWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedAllocationPrice value) => {...},
-    ///     (NewFloatingBulkWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedWithProratedMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (GroupedWithMinMaxThresholds value) => {...},
-    ///     (NewFloatingMatrixWithDisplayNamePrice value) => {...},
-    ///     (NewFloatingGroupedTieredPackagePrice value) => {...},
-    ///     (NewFloatingMaxGroupTieredPackagePrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
-    ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
-    ///     (CumulativeGroupedAllocation value) => {...},
-    ///     (NewFloatingMinimumCompositePrice value) => {...},
-    ///     (Percent value) => {...},
-    ///     (EventOutput value) => {...}
+    ///     (NewFloatingUnitPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPrice value) =&gt; {...},
+    ///     (NewFloatingBulkPrice value) =&gt; {...},
+    ///     (BulkWithFilters value) =&gt; {...},
+    ///     (NewFloatingPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMatrixPrice value) =&gt; {...},
+    ///     (NewFloatingThresholdTotalAmountPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackageWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
+    ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingBulkWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithProratedMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) =&gt; {...},
+    ///     (GroupedWithMinMaxThresholds value) =&gt; {...},
+    ///     (NewFloatingMatrixWithDisplayNamePrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMaxGroupTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) =&gt; {...},
+    ///     (NewFloatingCumulativeGroupedBulkPrice value) =&gt; {...},
+    ///     (CumulativeGroupedAllocation value) =&gt; {...},
+    ///     (NewFloatingMinimumCompositePrice value) =&gt; {...},
+    ///     (Percent value) =&gt; {...},
+    ///     (EventOutput value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3525,7 +3525,7 @@ public record class ConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3546,7 +3546,7 @@ public record class ConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3566,7 +3566,7 @@ public record class ConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -3577,8 +3577,8 @@ public record class ConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3607,7 +3607,7 @@ public record class ConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -3618,8 +3618,8 @@ public record class ConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4328,7 +4328,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4349,7 +4349,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4369,7 +4369,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -4380,8 +4380,8 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4410,7 +4410,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -4421,8 +4421,8 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5134,7 +5134,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5155,7 +5155,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5175,7 +5175,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5186,8 +5186,8 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5216,7 +5216,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5227,8 +5227,8 @@ public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5880,7 +5880,7 @@ public record class PercentConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5901,7 +5901,7 @@ public record class PercentConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5921,7 +5921,7 @@ public record class PercentConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5932,8 +5932,8 @@ public record class PercentConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5962,7 +5962,7 @@ public record class PercentConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5973,8 +5973,8 @@ public record class PercentConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6663,7 +6663,7 @@ public record class EventOutputConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6684,7 +6684,7 @@ public record class EventOutputConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6704,7 +6704,7 @@ public record class EventOutputConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6715,8 +6715,8 @@ public record class EventOutputConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6745,7 +6745,7 @@ public record class EventOutputConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6756,8 +6756,8 @@ public record class EventOutputConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

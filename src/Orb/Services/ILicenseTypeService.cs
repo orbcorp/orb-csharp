@@ -33,9 +33,9 @@ public interface ILicenseTypeService
     /// <summary>
     /// This endpoint is used to create a new license type.
     ///
-    /// <para>License types are used to group licenses and define billing behavior.
-    /// Each license type has a name and a grouping key that determines how metrics
-    /// are aggregated for billing purposes.</para>
+    /// <para>License types are used to group licenses and define billing behavior. Each
+    /// license type has a name and a grouping key that determines how metrics are
+    /// aggregated for billing purposes.</para>
     /// </summary>
     Task<LicenseTypeCreateResponse> Create(
         LicenseTypeCreateParams parameters,
@@ -64,9 +64,9 @@ public interface ILicenseTypeService
     /// This endpoint returns a list of all license types configured for the account,
     /// ordered in ascending order by creation time.
     ///
-    /// <para>License types are used to group licenses and define billing behavior.
-    /// Each license type has a name and a grouping key that determines how metrics
-    /// are aggregated for billing purposes.</para>
+    /// <para>License types are used to group licenses and define billing behavior. Each
+    /// license type has a name and a grouping key that determines how metrics are
+    /// aggregated for billing purposes.</para>
     /// </summary>
     Task<LicenseTypeListPage> List(
         LicenseTypeListParams? parameters = null,
@@ -88,7 +88,7 @@ public interface ILicenseTypeServiceWithRawResponse
     ILicenseTypeServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /license_types`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /license_types</c>, but is otherwise the
     /// same as <see cref="ILicenseTypeService.Create(LicenseTypeCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseTypeCreateResponse>> Create(
@@ -97,7 +97,7 @@ public interface ILicenseTypeServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /license_types/{license_type_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /license_types/{license_type_id}</c>, but is otherwise the
     /// same as <see cref="ILicenseTypeService.Retrieve(LicenseTypeRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseTypeRetrieveResponse>> Retrieve(
@@ -113,7 +113,7 @@ public interface ILicenseTypeServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /license_types`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /license_types</c>, but is otherwise the
     /// same as <see cref="ILicenseTypeService.List(LicenseTypeListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseTypeListPage>> List(

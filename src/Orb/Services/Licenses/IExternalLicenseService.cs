@@ -59,7 +59,7 @@ public interface IExternalLicenseServiceWithRawResponse
     IExternalLicenseServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /licenses/external_licenses/{external_license_id}/usage`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /licenses/external_licenses/{external_license_id}/usage</c>, but is otherwise the
     /// same as <see cref="IExternalLicenseService.GetUsage(ExternalLicenseGetUsageParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ExternalLicenseGetUsageResponse>> GetUsage(

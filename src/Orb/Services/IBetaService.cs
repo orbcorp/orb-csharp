@@ -97,7 +97,7 @@ public interface IBetaServiceWithRawResponse
     IExternalPlanIDServiceWithRawResponse ExternalPlanID { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/{plan_id}/versions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/{plan_id}/versions</c>, but is otherwise the
     /// same as <see cref="IBetaService.CreatePlanVersion(BetaCreatePlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanVersion>> CreatePlanVersion(
@@ -113,7 +113,7 @@ public interface IBetaServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/{plan_id}/versions/{version}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/{plan_id}/versions/{version}</c>, but is otherwise the
     /// same as <see cref="IBetaService.FetchPlanVersion(BetaFetchPlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanVersion>> FetchPlanVersion(
@@ -129,7 +129,7 @@ public interface IBetaServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/{plan_id}/set_default_version`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/{plan_id}/set_default_version</c>, but is otherwise the
     /// same as <see cref="IBetaService.SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> SetDefaultPlanVersion(

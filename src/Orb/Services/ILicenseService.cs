@@ -34,9 +34,10 @@ public interface ILicenseService
     /// <summary>
     /// This endpoint is used to create a new license for a user.
     ///
-    /// <para>If a start date is provided, the license will be activated at the **start**
-    /// of the specified date in the customer's timezone. Otherwise, the activation
-    /// time will default to the **start** of the current day in the customer's timezone.</para>
+    /// <para>If a start date is provided, the license will be activated at the
+    /// **start** of the specified date in the customer's timezone. Otherwise, the
+    /// activation time will default to the **start** of the current day in the
+    /// customer's timezone.</para>
     /// </summary>
     Task<LicenseCreateResponse> Create(
         LicenseCreateParams parameters,
@@ -69,9 +70,10 @@ public interface ILicenseService
     /// <summary>
     /// This endpoint is used to deactivate an existing license.
     ///
-    /// <para>If an end date is provided, the license will be deactivated at the **start**
-    /// of the specified date in the customer's timezone. Otherwise, the deactivation
-    /// time will default to the **end** of the current day in the customer's timezone.</para>
+    /// <para>If an end date is provided, the license will be deactivated at the
+    /// **start** of the specified date in the customer's timezone. Otherwise, the
+    /// deactivation time will default to the **end** of the current day in the
+    /// customer's timezone.</para>
     /// </summary>
     Task<LicenseDeactivateResponse> Deactivate(
         LicenseDeactivateParams parameters,
@@ -119,7 +121,7 @@ public interface ILicenseServiceWithRawResponse
     IUsageServiceWithRawResponse Usage { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /licenses`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /licenses</c>, but is otherwise the
     /// same as <see cref="ILicenseService.Create(LicenseCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseCreateResponse>> Create(
@@ -128,7 +130,7 @@ public interface ILicenseServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /licenses/{license_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /licenses/{license_id}</c>, but is otherwise the
     /// same as <see cref="ILicenseService.Retrieve(LicenseRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseRetrieveResponse>> Retrieve(
@@ -144,7 +146,7 @@ public interface ILicenseServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /licenses`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /licenses</c>, but is otherwise the
     /// same as <see cref="ILicenseService.List(LicenseListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseListPage>> List(
@@ -153,7 +155,7 @@ public interface ILicenseServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /licenses/{license_id}/deactivate`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /licenses/{license_id}/deactivate</c>, but is otherwise the
     /// same as <see cref="ILicenseService.Deactivate(LicenseDeactivateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseDeactivateResponse>> Deactivate(
@@ -169,7 +171,7 @@ public interface ILicenseServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /licenses/external_license_id/{external_license_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /licenses/external_license_id/{external_license_id}</c>, but is otherwise the
     /// same as <see cref="ILicenseService.RetrieveByExternalID(LicenseRetrieveByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LicenseRetrieveByExternalIDResponse>> RetrieveByExternalID(

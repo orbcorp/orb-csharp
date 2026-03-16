@@ -31,9 +31,9 @@ public interface IMetricService
     IMetricService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// This endpoint is used to create a [metric](/core-concepts###metric) using
-    /// a SQL string. See [SQL support](/extensibility/advanced-metrics#sql-support)
-    /// for a description of constructing SQL queries with examples.
+    /// This endpoint is used to create a [metric](/core-concepts###metric) using a SQL
+    /// string. See [SQL support](/extensibility/advanced-metrics#sql-support) for a
+    /// description of constructing SQL queries with examples.
     /// </summary>
     Task<BillableMetric> Create(
         MetricCreateParams parameters,
@@ -41,9 +41,9 @@ public interface IMetricService
     );
 
     /// <summary>
-    /// This endpoint allows you to update the `metadata` property on a metric. If
-    /// you pass `null` for the metadata value, it will clear any existing metadata
-    /// for that invoice.
+    /// This endpoint allows you to update the `metadata` property on a metric. If you
+    /// pass `null` for the metadata value, it will clear any existing metadata for that
+    /// invoice.
     /// </summary>
     Task<BillableMetric> Update(
         MetricUpdateParams parameters,
@@ -58,9 +58,9 @@ public interface IMetricService
     );
 
     /// <summary>
-    /// This endpoint is used to fetch [metric](/core-concepts##metric) details given
-    /// a metric identifier. It returns information about the metrics including its
-    /// name, description, and item.
+    /// This endpoint is used to fetch [metric](/core-concepts##metric) details given a
+    /// metric identifier. It returns information about the metrics including its name,
+    /// description, and item.
     /// </summary>
     Task<MetricListPage> List(
         MetricListParams? parameters = null,
@@ -98,7 +98,7 @@ public interface IMetricServiceWithRawResponse
     IMetricServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /metrics`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /metrics</c>, but is otherwise the
     /// same as <see cref="IMetricService.Create(MetricCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BillableMetric>> Create(
@@ -107,7 +107,7 @@ public interface IMetricServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /metrics/{metric_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /metrics/{metric_id}</c>, but is otherwise the
     /// same as <see cref="IMetricService.Update(MetricUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BillableMetric>> Update(
@@ -123,7 +123,7 @@ public interface IMetricServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /metrics`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /metrics</c>, but is otherwise the
     /// same as <see cref="IMetricService.List(MetricListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<MetricListPage>> List(
@@ -132,7 +132,7 @@ public interface IMetricServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /metrics/{metric_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /metrics/{metric_id}</c>, but is otherwise the
     /// same as <see cref="IMetricService.Fetch(MetricFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BillableMetric>> Fetch(

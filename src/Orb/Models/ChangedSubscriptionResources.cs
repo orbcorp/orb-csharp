@@ -1532,8 +1532,8 @@ public sealed record class LineItem : JsonModel
 
     /// <summary>
     /// All adjustments applied to the line item in the order they were applied based
-    /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
-    /// discounts -> minimums -> maximums).
+    /// on invoice calculations (ie. usage discounts -&gt; amount discounts -&gt;
+    /// percentage discounts -&gt; minimums -&gt; maximums).
     /// </summary>
     public required IReadOnlyList<LineItemAdjustment> Adjustments
     {
@@ -1962,7 +1962,7 @@ public record class LineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryUsageDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1985,7 +1985,7 @@ public record class LineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryAmountDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2008,7 +2008,7 @@ public record class LineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryPercentageDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2031,7 +2031,7 @@ public record class LineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryMinimumAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2052,7 +2052,7 @@ public record class LineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryMaximumAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2072,7 +2072,7 @@ public record class LineItemAdjustment : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2083,11 +2083,11 @@ public record class LineItemAdjustment : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (MonetaryUsageDiscountAdjustment value) => {...},
-    ///     (MonetaryAmountDiscountAdjustment value) => {...},
-    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
-    ///     (MonetaryMinimumAdjustment value) => {...},
-    ///     (MonetaryMaximumAdjustment value) => {...}
+    ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryMinimumAdjustment value) =&gt; {...},
+    ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2128,7 +2128,7 @@ public record class LineItemAdjustment : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2139,11 +2139,11 @@ public record class LineItemAdjustment : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (MonetaryUsageDiscountAdjustment value) => {...},
-    ///     (MonetaryAmountDiscountAdjustment value) => {...},
-    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
-    ///     (MonetaryMinimumAdjustment value) => {...},
-    ///     (MonetaryMaximumAdjustment value) => {...}
+    ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryMinimumAdjustment value) =&gt; {...},
+    ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2473,7 +2473,7 @@ public record class SubLineItem : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MatrixSubLineItem"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2494,7 +2494,7 @@ public record class SubLineItem : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="TierSubLineItem"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2515,7 +2515,7 @@ public record class SubLineItem : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OtherSubLineItem"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2535,7 +2535,7 @@ public record class SubLineItem : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2546,9 +2546,9 @@ public record class SubLineItem : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (MatrixSubLineItem value) => {...},
-    ///     (TierSubLineItem value) => {...},
-    ///     (OtherSubLineItem value) => {...}
+    ///     (MatrixSubLineItem value) =&gt; {...},
+    ///     (TierSubLineItem value) =&gt; {...},
+    ///     (OtherSubLineItem value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2579,7 +2579,7 @@ public record class SubLineItem : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2590,9 +2590,9 @@ public record class SubLineItem : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (MatrixSubLineItem value) => {...},
-    ///     (TierSubLineItem value) => {...},
-    ///     (OtherSubLineItem value) => {...}
+    ///     (MatrixSubLineItem value) =&gt; {...},
+    ///     (TierSubLineItem value) =&gt; {...},
+    ///     (OtherSubLineItem value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

@@ -121,7 +121,7 @@ public record class SubscriptionUpdateTrialParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static SubscriptionUpdateTrialParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -243,7 +243,7 @@ public record class TrialEndDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -262,14 +262,14 @@ public record class TrialEndDate : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="ApiEnum<string, UnionMember1>"/>.
+    /// type <see cref="ApiEnum{TRaw, TEnum}"/> with a <c>TRaw</c> of <c>string</c> and a <c>TEnum</c> of UnionMember1>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickUnionMember1(out var value)) {
-    ///     // `value` is of type `ApiEnum<string, UnionMember1>`
+    ///     // `value` is of type `ApiEnum&lt;string, UnionMember1&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -284,7 +284,7 @@ public record class TrialEndDate : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -295,8 +295,8 @@ public record class TrialEndDate : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, UnionMember1> value) => {...}
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, UnionMember1&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -323,7 +323,7 @@ public record class TrialEndDate : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -334,8 +334,8 @@ public record class TrialEndDate : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, UnionMember1> value) => {...}
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, UnionMember1&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

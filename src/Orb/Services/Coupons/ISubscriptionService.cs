@@ -33,8 +33,8 @@ public interface ISubscriptionService
 
     /// <summary>
     /// This endpoint returns a list of all subscriptions that have redeemed a given
-    /// coupon as a [paginated](/api-reference/pagination) list, ordered starting
-    /// from the most recently created subscription. For a full discussion of the
+    /// coupon as a [paginated](/api-reference/pagination) list, ordered starting from
+    /// the most recently created subscription. For a full discussion of the
     /// subscription resource, see [Subscription](/core-concepts#subscription).
     /// </summary>
     Task<SubscriptionListPage> List(
@@ -64,7 +64,7 @@ public interface ISubscriptionServiceWithRawResponse
     ISubscriptionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /coupons/{coupon_id}/subscriptions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /coupons/{coupon_id}/subscriptions</c>, but is otherwise the
     /// same as <see cref="ISubscriptionService.List(SubscriptionListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SubscriptionListPage>> List(

@@ -38,9 +38,9 @@ public interface IExternalPriceIDService
     IExternalPriceIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// This endpoint allows you to update the `metadata` property on a price. If
-    /// you pass null for the metadata value, it will clear any existing metadata
-    /// for that price.
+    /// This endpoint allows you to update the `metadata` property on a price. If you
+    /// pass null for the metadata value, it will clear any existing metadata for that
+    /// price.
     /// </summary>
     Task<Price> Update(
         ExternalPriceIDUpdateParams parameters,
@@ -55,9 +55,9 @@ public interface IExternalPriceIDService
     );
 
     /// <summary>
-    /// This endpoint returns a price given an external price id. See the [price creation
-    /// API](/api-reference/price/create-price) for more information about external
-    /// price aliases.
+    /// This endpoint returns a price given an external price id. See the [price
+    /// creation API](/api-reference/price/create-price) for more information about
+    /// external price aliases.
     /// </summary>
     Task<Price> Fetch(
         ExternalPriceIDFetchParams parameters,
@@ -86,7 +86,7 @@ public interface IExternalPriceIDServiceWithRawResponse
     IExternalPriceIDServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /prices/external_price_id/{external_price_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /prices/external_price_id/{external_price_id}</c>, but is otherwise the
     /// same as <see cref="IExternalPriceIDService.Update(ExternalPriceIDUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Price>> Update(
@@ -102,7 +102,7 @@ public interface IExternalPriceIDServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /prices/external_price_id/{external_price_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /prices/external_price_id/{external_price_id}</c>, but is otherwise the
     /// same as <see cref="IExternalPriceIDService.Fetch(ExternalPriceIDFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Price>> Fetch(

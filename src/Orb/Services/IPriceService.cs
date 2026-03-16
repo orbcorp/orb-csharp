@@ -42,9 +42,9 @@ public interface IPriceService
 
     /// <summary>
     /// This endpoint is used to create a [price](/product-catalog/price-configuration).
-    /// A price created using this endpoint is always an add-on, meaning that it's
-    /// not associated with a specific plan and can instead be individually added
-    /// to subscriptions, including subscriptions on different plans.
+    /// A price created using this endpoint is always an add-on, meaning that it's not
+    /// associated with a specific plan and can instead be individually added to
+    /// subscriptions, including subscriptions on different plans.
     ///
     /// <para>An `external_price_id` can be optionally specified as an alias to allow
     /// ergonomic interaction with prices in the Orb API.</para>
@@ -58,9 +58,9 @@ public interface IPriceService
     );
 
     /// <summary>
-    /// This endpoint allows you to update the `metadata` property on a price. If
-    /// you pass null for the metadata value, it will clear any existing metadata
-    /// for that price.
+    /// This endpoint allows you to update the `metadata` property on a price. If you
+    /// pass null for the metadata value, it will clear any existing metadata for that
+    /// price.
     /// </summary>
     Task<Models::Price> Update(
         PriceUpdateParams parameters,
@@ -75,7 +75,8 @@ public interface IPriceService
     );
 
     /// <summary>
-    /// This endpoint is used to list all add-on prices created using the [price creation endpoint](/api-reference/price/create-price).
+    /// This endpoint is used to list all add-on prices created using the [price
+    /// creation endpoint](/api-reference/price/create-price).
     /// </summary>
     Task<PriceListPage> List(
         PriceListParams? parameters = null,
@@ -95,18 +96,19 @@ public interface IPriceService
     /// <para>1. Showing detailed usage and costs to the end customer. 2. Auditing
     /// subtotals on invoice line items.</para>
     ///
-    /// <para>For these workflows, the expressiveness of computed properties in both
-    /// the filters and grouping is critical. For example, if you'd like to show your
+    /// <para>For these workflows, the expressiveness of computed properties in both the
+    /// filters and grouping is critical. For example, if you'd like to show your
     /// customer their usage grouped by hour and another property, you can do so with
-    /// the following `grouping_keys`: `["hour_floor_timestamp_millis(timestamp_millis)",
-    /// "my_property"]`. If you'd like to examine a customer's usage for a specific
-    /// property value, you can do so with the following `filter`: `my_property =
-    /// 'foo' AND my_other_property = 'bar'`.</para>
+    /// the following `grouping_keys`:
+    /// `["hour_floor_timestamp_millis(timestamp_millis)", "my_property"]`. If you'd
+    /// like to examine a customer's usage for a specific property value, you can do so
+    /// with the following `filter`: `my_property = 'foo' AND my_other_property =
+    /// 'bar'`.</para>
     ///
-    /// <para>By default, the start of the time range must be no more than 100 days
-    /// ago and the length of the results must be no greater than 1000. Note that
-    /// this is a POST endpoint rather than a GET endpoint because it employs a JSON
-    /// body rather than query parameters.</para>
+    /// <para>By default, the start of the time range must be no more than 100 days ago
+    /// and the length of the results must be no greater than 1000. Note that this is a
+    /// POST endpoint rather than a GET endpoint because it employs a JSON body rather
+    /// than query parameters.</para>
     /// </summary>
     Task<PriceEvaluateResponse> Evaluate(
         PriceEvaluateParams parameters,
@@ -123,31 +125,34 @@ public interface IPriceService
     /// <summary>
     /// This endpoint is used to evaluate the output of price(s) for a given customer
     /// and time range over ingested events. It enables filtering and grouping the
-    /// output using [computed properties](/extensibility/advanced-metrics#computed-properties),
-    /// supporting the following workflows:
+    /// output using [computed
+    /// properties](/extensibility/advanced-metrics#computed-properties), supporting the
+    /// following workflows:
     ///
     /// <para>1. Showing detailed usage and costs to the end customer. 2. Auditing
     /// subtotals on invoice line items.</para>
     ///
-    /// <para>For these workflows, the expressiveness of computed properties in both
-    /// the filters and grouping is critical. For example, if you'd like to show your
+    /// <para>For these workflows, the expressiveness of computed properties in both the
+    /// filters and grouping is critical. For example, if you'd like to show your
     /// customer their usage grouped by hour and another property, you can do so with
-    /// the following `grouping_keys`: `["hour_floor_timestamp_millis(timestamp_millis)",
-    /// "my_property"]`. If you'd like to examine a customer's usage for a specific
-    /// property value, you can do so with the following `filter`: `my_property =
-    /// 'foo' AND my_other_property = 'bar'`.</para>
+    /// the following `grouping_keys`:
+    /// `["hour_floor_timestamp_millis(timestamp_millis)", "my_property"]`. If you'd
+    /// like to examine a customer's usage for a specific property value, you can do so
+    /// with the following `filter`: `my_property = 'foo' AND my_other_property =
+    /// 'bar'`.</para>
     ///
     /// <para>Prices may either reference existing prices in your Orb account or be
-    /// defined inline in the request body. Up to 100 prices can be evaluated in
-    /// a single request.</para>
+    /// defined inline in the request body. Up to 100 prices can be evaluated in a
+    /// single request.</para>
     ///
     /// <para>Prices are evaluated on ingested events and the start of the time range
     /// must be no more than 100 days ago. To evaluate based off a set of provided
-    /// events, the [evaluate preview events](/api-reference/price/evaluate-preview-events)
-    /// endpoint can be used instead.</para>
+    /// events, the [evaluate preview
+    /// events](/api-reference/price/evaluate-preview-events) endpoint can be used
+    /// instead.</para>
     ///
-    /// <para>Note that this is a POST endpoint rather than a GET endpoint because
-    /// it employs a JSON body rather than query parameters.</para>
+    /// <para>Note that this is a POST endpoint rather than a GET endpoint because it
+    /// employs a JSON body rather than query parameters.</para>
     /// </summary>
     Task<PriceEvaluateMultipleResponse> EvaluateMultiple(
         PriceEvaluateMultipleParams parameters,
@@ -155,10 +160,11 @@ public interface IPriceService
     );
 
     /// <summary>
-    /// This endpoint evaluates prices on preview events instead of actual usage,
-    /// making it ideal for building price calculators and cost estimation tools.
-    /// You can filter and group results using [computed properties](/extensibility/advanced-metrics#computed-properties)
-    /// to analyze pricing across different dimensions.
+    /// This endpoint evaluates prices on preview events instead of actual usage, making
+    /// it ideal for building price calculators and cost estimation tools. You can
+    /// filter and group results using [computed
+    /// properties](/extensibility/advanced-metrics#computed-properties) to analyze
+    /// pricing across different dimensions.
     ///
     /// <para>Prices may either reference existing prices in your Orb account or be
     /// defined inline in the request body. The endpoint has the following limitations:
@@ -166,10 +172,11 @@ public interface IPriceService
     /// events can be provided in a single request.</para>
     ///
     /// <para>A top-level customer_id is required to evaluate the preview events.
-    /// Additionally, all events without a customer_id will have the top-level customer_id added.</para>
+    /// Additionally, all events without a customer_id will have the top-level
+    /// customer_id added.</para>
     ///
-    /// <para>Note that this is a POST endpoint rather than a GET endpoint because
-    /// it employs a JSON body rather than query parameters.</para>
+    /// <para>Note that this is a POST endpoint rather than a GET endpoint because it
+    /// employs a JSON body rather than query parameters.</para>
     /// </summary>
     Task<PriceEvaluatePreviewEventsResponse> EvaluatePreviewEvents(
         PriceEvaluatePreviewEventsParams parameters,
@@ -208,7 +215,7 @@ public interface IPriceServiceWithRawResponse
     IExternalPriceIDServiceWithRawResponse ExternalPriceID { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /prices`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /prices</c>, but is otherwise the
     /// same as <see cref="IPriceService.Create(PriceCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Models::Price>> Create(
@@ -217,7 +224,7 @@ public interface IPriceServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /prices/{price_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /prices/{price_id}</c>, but is otherwise the
     /// same as <see cref="IPriceService.Update(PriceUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Models::Price>> Update(
@@ -233,7 +240,7 @@ public interface IPriceServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /prices`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /prices</c>, but is otherwise the
     /// same as <see cref="IPriceService.List(PriceListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PriceListPage>> List(
@@ -242,7 +249,7 @@ public interface IPriceServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /prices/{price_id}/evaluate`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /prices/{price_id}/evaluate</c>, but is otherwise the
     /// same as <see cref="IPriceService.Evaluate(PriceEvaluateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PriceEvaluateResponse>> Evaluate(
@@ -258,7 +265,7 @@ public interface IPriceServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /prices/evaluate`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /prices/evaluate</c>, but is otherwise the
     /// same as <see cref="IPriceService.EvaluateMultiple(PriceEvaluateMultipleParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PriceEvaluateMultipleResponse>> EvaluateMultiple(
@@ -267,7 +274,7 @@ public interface IPriceServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /prices/evaluate_preview_events`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /prices/evaluate_preview_events</c>, but is otherwise the
     /// same as <see cref="IPriceService.EvaluatePreviewEvents(PriceEvaluatePreviewEventsParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PriceEvaluatePreviewEventsResponse>> EvaluatePreviewEvents(
@@ -276,7 +283,7 @@ public interface IPriceServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /prices/{price_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /prices/{price_id}</c>, but is otherwise the
     /// same as <see cref="IPriceService.Fetch(PriceFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Models::Price>> Fetch(

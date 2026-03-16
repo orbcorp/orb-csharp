@@ -40,13 +40,13 @@ public interface ICreditService
     /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
     /// expired and depleted blocks) will be included in the response.</para>
     ///
-    /// <para>Note that `currency` defaults to credits if not specified. To use a
-    /// real world currency, set `currency` to an ISO 4217 string.</para>
+    /// <para>Note that `currency` defaults to credits if not specified. To use a real
+    /// world currency, set `currency` to an ISO 4217 string.</para>
     ///
-    /// <para>Results can be filtered by the block's `effective_date` using the `effective_date[gte]`,
-    /// `effective_date[gt]`, `effective_date[lt]`, and `effective_date[lte]` query
-    /// parameters. This filters on when the credit block becomes effective, which
-    /// may differ from creation time for backdated credits.</para>
+    /// <para>Results can be filtered by the block's `effective_date` using the
+    /// `effective_date[gte]`, `effective_date[gt]`, `effective_date[lt]`, and
+    /// `effective_date[lte]` query parameters. This filters on when the credit block
+    /// becomes effective, which may differ from creation time for backdated credits.</para>
     /// </summary>
     Task<CreditListPage> List(
         CreditListParams parameters,
@@ -66,13 +66,13 @@ public interface ICreditService
     /// <para>If `include_all_blocks` is set to `true`, all credit blocks (including
     /// expired and depleted blocks) will be included in the response.</para>
     ///
-    /// <para>Note that `currency` defaults to credits if not specified. To use a
-    /// real world currency, set `currency` to an ISO 4217 string.</para>
+    /// <para>Note that `currency` defaults to credits if not specified. To use a real
+    /// world currency, set `currency` to an ISO 4217 string.</para>
     ///
-    /// <para>Results can be filtered by the block's `effective_date` using the `effective_date[gte]`,
-    /// `effective_date[gt]`, `effective_date[lt]`, and `effective_date[lte]` query
-    /// parameters. This filters on when the credit block becomes effective, which
-    /// may differ from creation time for backdated credits.</para>
+    /// <para>Results can be filtered by the block's `effective_date` using the
+    /// `effective_date[gte]`, `effective_date[gt]`, `effective_date[lt]`, and
+    /// `effective_date[lte]` query parameters. This filters on when the credit block
+    /// becomes effective, which may differ from creation time for backdated credits.</para>
     /// </summary>
     Task<CreditListByExternalIDPage> ListByExternalID(
         CreditListByExternalIDParams parameters,
@@ -105,7 +105,7 @@ public interface ICreditServiceWithRawResponse
     ITopUpServiceWithRawResponse TopUps { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/{customer_id}/credits`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/{customer_id}/credits</c>, but is otherwise the
     /// same as <see cref="ICreditService.List(CreditListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CreditListPage>> List(
@@ -121,7 +121,7 @@ public interface ICreditServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}/credits`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/external_customer_id/{external_customer_id}/credits</c>, but is otherwise the
     /// same as <see cref="ICreditService.ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CreditListByExternalIDPage>> ListByExternalID(

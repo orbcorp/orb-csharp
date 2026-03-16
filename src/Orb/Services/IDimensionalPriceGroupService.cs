@@ -31,14 +31,13 @@ public interface IDimensionalPriceGroupService
 
     /// <summary>
     /// A dimensional price group is used to partition the result of a billable metric
-    /// by a set of dimensions. Prices in a price group must specify the partition
-    /// used to derive their usage.
+    /// by a set of dimensions. Prices in a price group must specify the partition used
+    /// to derive their usage.
     ///
-    /// <para>For example, suppose we have a billable metric that measures the number
-    /// of widgets used and we want to charge differently depending on the color of
-    /// the widget. We can create a price group with a dimension "color" and two
-    /// prices: one that charges \$10 per red widget and one that charges \$20 per
-    /// blue widget.</para>
+    /// <para>For example, suppose we have a billable metric that measures the number of
+    /// widgets used and we want to charge differently depending on the color of the
+    /// widget. We can create a price group with a dimension "color" and two prices: one
+    /// that charges \$10 per red widget and one that charges \$20 per blue widget.</para>
     /// </summary>
     Task<DimensionalPriceGroup> Create(
         DimensionalPriceGroupCreateParams parameters,
@@ -62,8 +61,8 @@ public interface IDimensionalPriceGroupService
 
     /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
-    /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
-    /// price group are currently immutable.
+    /// and `metadata` of an existing dimensional price group. Other fields on a
+    /// dimensional price group are currently immutable.
     /// </summary>
     Task<DimensionalPriceGroup> Update(
         DimensionalPriceGroupUpdateParams parameters,
@@ -104,7 +103,7 @@ public interface IDimensionalPriceGroupServiceWithRawResponse
     IExternalDimensionalPriceGroupIDServiceWithRawResponse ExternalDimensionalPriceGroupID { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /dimensional_price_groups`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /dimensional_price_groups</c>, but is otherwise the
     /// same as <see cref="IDimensionalPriceGroupService.Create(DimensionalPriceGroupCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<DimensionalPriceGroup>> Create(
@@ -113,7 +112,7 @@ public interface IDimensionalPriceGroupServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /dimensional_price_groups/{dimensional_price_group_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /dimensional_price_groups/{dimensional_price_group_id}</c>, but is otherwise the
     /// same as <see cref="IDimensionalPriceGroupService.Retrieve(DimensionalPriceGroupRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<DimensionalPriceGroup>> Retrieve(
@@ -129,7 +128,7 @@ public interface IDimensionalPriceGroupServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /dimensional_price_groups/{dimensional_price_group_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /dimensional_price_groups/{dimensional_price_group_id}</c>, but is otherwise the
     /// same as <see cref="IDimensionalPriceGroupService.Update(DimensionalPriceGroupUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<DimensionalPriceGroup>> Update(
@@ -145,7 +144,7 @@ public interface IDimensionalPriceGroupServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /dimensional_price_groups`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /dimensional_price_groups</c>, but is otherwise the
     /// same as <see cref="IDimensionalPriceGroupService.List(DimensionalPriceGroupListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<DimensionalPriceGroupListPage>> List(

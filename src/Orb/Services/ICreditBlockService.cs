@@ -48,14 +48,14 @@ public interface ICreditBlockService
     /// This endpoint deletes a credit block by its ID.
     ///
     /// <para>When a credit block is deleted: - The block is removed from the customer's
-    /// credit ledger. - Any usage of the credit block is reversed, and the ledger
-    /// is replayed as if the block never existed. - If invoices were generated from
-    /// the purchase of the credit block, they will be deleted if in draft status,
-    ///   voided if issued, or a credit note will be issued if the invoice is paid.</para>
+    /// credit ledger. - Any usage of the credit block is reversed, and the ledger is
+    /// replayed as if the block never existed. - If invoices were generated from the
+    /// purchase of the credit block, they will be deleted if in draft status,   voided
+    /// if issued, or a credit note will be issued if the invoice is paid.</para>
     ///
-    /// <para><Note> Issued invoices that had credits applied from this block will
-    /// not be regenerated, but the ledger will reflect the state as if credits from
-    /// the deleted block were never applied. </Note></para>
+    /// <para><Note> Issued invoices that had credits applied from this block will not
+    /// be regenerated, but the ledger will reflect the state as if credits from the
+    /// deleted block were never applied. </Note></para>
     /// </summary>
     Task Delete(CreditBlockDeleteParams parameters, CancellationToken cancellationToken = default);
 
@@ -69,14 +69,14 @@ public interface ICreditBlockService
     /// <summary>
     /// This endpoint returns the credit block and its associated purchasing invoices.
     ///
-    /// <para>If a credit block was purchased (as opposed to being manually added
-    /// or allocated from a subscription), this endpoint returns the invoices that
-    /// were created to charge the customer for the credit block. For credit blocks
-    /// with payment schedules spanning multiple periods (e.g., monthly payments over
-    /// 12 months), multiple invoices will be returned.</para>
+    /// <para>If a credit block was purchased (as opposed to being manually added or
+    /// allocated from a subscription), this endpoint returns the invoices that were
+    /// created to charge the customer for the credit block. For credit blocks with
+    /// payment schedules spanning multiple periods (e.g., monthly payments over 12
+    /// months), multiple invoices will be returned.</para>
     ///
-    /// <para>If the credit block was not purchased (e.g., manual increment, allocation),
-    /// an empty invoices list is returned.</para>
+    /// <para>If the credit block was not purchased (e.g., manual increment,
+    /// allocation), an empty invoices list is returned.</para>
     ///
     /// <para>**Note: This endpoint is currently experimental and its interface may
     /// change in future releases. Please contact support before building production
@@ -109,7 +109,7 @@ public interface ICreditBlockServiceWithRawResponse
     ICreditBlockServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /credit_blocks/{block_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /credit_blocks/{block_id}</c>, but is otherwise the
     /// same as <see cref="ICreditBlockService.Retrieve(CreditBlockRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CreditBlockRetrieveResponse>> Retrieve(
@@ -125,7 +125,7 @@ public interface ICreditBlockServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /credit_blocks/{block_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /credit_blocks/{block_id}</c>, but is otherwise the
     /// same as <see cref="ICreditBlockService.Delete(CreditBlockDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -141,7 +141,7 @@ public interface ICreditBlockServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /credit_blocks/{block_id}/invoices`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /credit_blocks/{block_id}/invoices</c>, but is otherwise the
     /// same as <see cref="ICreditBlockService.ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(

@@ -181,7 +181,7 @@ public record class PriceEvaluatePreviewEventsParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static PriceEvaluatePreviewEventsParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -1374,7 +1374,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1395,7 +1395,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1416,7 +1416,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingBulkPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1437,7 +1437,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1461,7 +1461,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1482,7 +1482,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1503,7 +1503,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingThresholdTotalAmountPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1526,7 +1526,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1549,7 +1549,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredWithMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1572,7 +1572,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedTieredPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1595,7 +1595,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPackageWithMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1618,7 +1618,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingPackageWithAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1641,7 +1641,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitWithPercentPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1664,7 +1664,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixWithAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1687,7 +1687,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1710,7 +1710,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1733,7 +1733,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1756,7 +1756,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingBulkWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1779,7 +1779,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedWithProratedMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1802,7 +1802,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedWithMeteredMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1825,7 +1825,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1851,7 +1851,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixWithDisplayNamePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1874,7 +1874,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1897,7 +1897,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMaxGroupTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1920,7 +1920,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingScalableMatrixWithUnitPricingPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1943,7 +1943,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingScalableMatrixWithTieredPricingPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1966,7 +1966,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingCumulativeGroupedBulkPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1989,7 +1989,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2015,7 +2015,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMinimumCompositePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2038,7 +2038,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2061,7 +2061,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2084,7 +2084,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2095,37 +2095,37 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (NewFloatingUnitPrice value) => {...},
-    ///     (NewFloatingTieredPrice value) => {...},
-    ///     (NewFloatingBulkPrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value) => {...},
-    ///     (NewFloatingPackagePrice value) => {...},
-    ///     (NewFloatingMatrixPrice value) => {...},
-    ///     (NewFloatingThresholdTotalAmountPrice value) => {...},
-    ///     (NewFloatingTieredPackagePrice value) => {...},
-    ///     (NewFloatingTieredWithMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedTieredPrice value) => {...},
-    ///     (NewFloatingTieredPackageWithMinimumPrice value) => {...},
-    ///     (NewFloatingPackageWithAllocationPrice value) => {...},
-    ///     (NewFloatingUnitWithPercentPrice value) => {...},
-    ///     (NewFloatingMatrixWithAllocationPrice value) => {...},
-    ///     (NewFloatingTieredWithProrationPrice value) => {...},
-    ///     (NewFloatingUnitWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedAllocationPrice value) => {...},
-    ///     (NewFloatingBulkWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedWithProratedMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value) => {...},
-    ///     (NewFloatingMatrixWithDisplayNamePrice value) => {...},
-    ///     (NewFloatingGroupedTieredPackagePrice value) => {...},
-    ///     (NewFloatingMaxGroupTieredPackagePrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
-    ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value) => {...},
-    ///     (NewFloatingMinimumCompositePrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value) => {...}
+    ///     (NewFloatingUnitPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPrice value) =&gt; {...},
+    ///     (NewFloatingBulkPrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value) =&gt; {...},
+    ///     (NewFloatingPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMatrixPrice value) =&gt; {...},
+    ///     (NewFloatingThresholdTotalAmountPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackageWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
+    ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingBulkWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithProratedMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value) =&gt; {...},
+    ///     (NewFloatingMatrixWithDisplayNamePrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMaxGroupTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) =&gt; {...},
+    ///     (NewFloatingCumulativeGroupedBulkPrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value) =&gt; {...},
+    ///     (NewFloatingMinimumCompositePrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2270,7 +2270,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2281,37 +2281,37 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : Model
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (NewFloatingUnitPrice value) => {...},
-    ///     (NewFloatingTieredPrice value) => {...},
-    ///     (NewFloatingBulkPrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value) => {...},
-    ///     (NewFloatingPackagePrice value) => {...},
-    ///     (NewFloatingMatrixPrice value) => {...},
-    ///     (NewFloatingThresholdTotalAmountPrice value) => {...},
-    ///     (NewFloatingTieredPackagePrice value) => {...},
-    ///     (NewFloatingTieredWithMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedTieredPrice value) => {...},
-    ///     (NewFloatingTieredPackageWithMinimumPrice value) => {...},
-    ///     (NewFloatingPackageWithAllocationPrice value) => {...},
-    ///     (NewFloatingUnitWithPercentPrice value) => {...},
-    ///     (NewFloatingMatrixWithAllocationPrice value) => {...},
-    ///     (NewFloatingTieredWithProrationPrice value) => {...},
-    ///     (NewFloatingUnitWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedAllocationPrice value) => {...},
-    ///     (NewFloatingBulkWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedWithProratedMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value) => {...},
-    ///     (NewFloatingMatrixWithDisplayNamePrice value) => {...},
-    ///     (NewFloatingGroupedTieredPackagePrice value) => {...},
-    ///     (NewFloatingMaxGroupTieredPackagePrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
-    ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value) => {...},
-    ///     (NewFloatingMinimumCompositePrice value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value) => {...},
-    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value) => {...}
+    ///     (NewFloatingUnitPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPrice value) =&gt; {...},
+    ///     (NewFloatingBulkPrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value) =&gt; {...},
+    ///     (NewFloatingPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMatrixPrice value) =&gt; {...},
+    ///     (NewFloatingThresholdTotalAmountPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackageWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
+    ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingBulkWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithProratedMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value) =&gt; {...},
+    ///     (NewFloatingMatrixWithDisplayNamePrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMaxGroupTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) =&gt; {...},
+    ///     (NewFloatingCumulativeGroupedBulkPrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value) =&gt; {...},
+    ///     (NewFloatingMinimumCompositePrice value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value) =&gt; {...},
+    ///     (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4202,7 +4202,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4223,7 +4223,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4243,7 +4243,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -4254,8 +4254,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4284,7 +4284,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -4295,8 +4295,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5066,7 +5066,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5087,7 +5087,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5107,7 +5107,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5118,8 +5118,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5148,7 +5148,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5159,8 +5159,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5930,7 +5930,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5951,7 +5951,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5971,7 +5971,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5982,8 +5982,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6012,7 +6012,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6023,8 +6023,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6736,7 +6736,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6757,7 +6757,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6777,7 +6777,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6788,8 +6788,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6818,7 +6818,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6829,8 +6829,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -7589,7 +7589,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -7610,7 +7610,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -7630,7 +7630,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -7641,8 +7641,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -7671,7 +7671,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -7682,8 +7682,8 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
