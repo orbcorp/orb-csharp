@@ -27,7 +27,8 @@ public interface IUsageService
     IUsageService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns usage and remaining credits for all licenses of a given type on a subscription.
+    /// Returns usage and remaining credits for all licenses of a given type on a
+    /// subscription.
     ///
     /// <para>Date range defaults to the current billing period if not specified.</para>
     /// </summary>
@@ -68,7 +69,7 @@ public interface IUsageServiceWithRawResponse
     IUsageServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /licenses/usage`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /licenses/usage</c>, but is otherwise the
     /// same as <see cref="IUsageService.GetAllUsage(UsageGetAllUsageParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UsageGetAllUsageResponse>> GetAllUsage(
@@ -77,7 +78,7 @@ public interface IUsageServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /licenses/{license_id}/usage`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /licenses/{license_id}/usage</c>, but is otherwise the
     /// same as <see cref="IUsageService.GetUsage(UsageGetUsageParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UsageGetUsageResponse>> GetUsage(

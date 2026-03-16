@@ -17,9 +17,9 @@ namespace Orb.Models.CreditBlocks;
 /// purchase of the credit block, they will be deleted if in draft status,   voided
 /// if issued, or a credit note will be issued if the invoice is paid.</para>
 ///
-/// <para><Note> Issued invoices that had credits applied from this block will not
-/// be regenerated, but the ledger will reflect the state as if credits from the
-/// deleted block were never applied. </Note></para>
+/// <para>&lt;Note&gt; Issued invoices that had credits applied from this block will
+/// not be regenerated, but the ledger will reflect the state as if credits from the
+/// deleted block were never applied. &lt;/Note&gt;</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -61,7 +61,7 @@ public record class CreditBlockDeleteParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CreditBlockDeleteParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

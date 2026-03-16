@@ -291,7 +291,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="IncrementLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -312,7 +312,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="DecrementLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -333,7 +333,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="ExpirationChangeLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -356,7 +356,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CreditBlockExpiryLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -379,7 +379,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VoidLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -400,7 +400,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VoidInitiatedLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -423,7 +423,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="AmendmentLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -443,7 +443,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -454,13 +454,13 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (IncrementLedgerEntry value) => {...},
-    ///     (DecrementLedgerEntry value) => {...},
-    ///     (ExpirationChangeLedgerEntry value) => {...},
-    ///     (CreditBlockExpiryLedgerEntry value) => {...},
-    ///     (VoidLedgerEntry value) => {...},
-    ///     (VoidInitiatedLedgerEntry value) => {...},
-    ///     (AmendmentLedgerEntry value) => {...}
+    ///     (IncrementLedgerEntry value) =&gt; {...},
+    ///     (DecrementLedgerEntry value) =&gt; {...},
+    ///     (ExpirationChangeLedgerEntry value) =&gt; {...},
+    ///     (CreditBlockExpiryLedgerEntry value) =&gt; {...},
+    ///     (VoidLedgerEntry value) =&gt; {...},
+    ///     (VoidInitiatedLedgerEntry value) =&gt; {...},
+    ///     (AmendmentLedgerEntry value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -509,7 +509,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -520,13 +520,13 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (IncrementLedgerEntry value) => {...},
-    ///     (DecrementLedgerEntry value) => {...},
-    ///     (ExpirationChangeLedgerEntry value) => {...},
-    ///     (CreditBlockExpiryLedgerEntry value) => {...},
-    ///     (VoidLedgerEntry value) => {...},
-    ///     (VoidInitiatedLedgerEntry value) => {...},
-    ///     (AmendmentLedgerEntry value) => {...}
+    ///     (IncrementLedgerEntry value) =&gt; {...},
+    ///     (DecrementLedgerEntry value) =&gt; {...},
+    ///     (ExpirationChangeLedgerEntry value) =&gt; {...},
+    ///     (CreditBlockExpiryLedgerEntry value) =&gt; {...},
+    ///     (VoidLedgerEntry value) =&gt; {...},
+    ///     (VoidInitiatedLedgerEntry value) =&gt; {...},
+    ///     (AmendmentLedgerEntry value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

@@ -32,10 +32,11 @@ public interface ITopUpService
     /// <summary>
     /// This endpoint allows you to create a new top-up for a specified customer's
     /// balance. While this top-up is active, the customer's balance will added in
-    /// increments of the specified amount whenever the balance reaches the specified threshold.
+    /// increments of the specified amount whenever the balance reaches the specified
+    /// threshold.
     ///
-    /// <para>If a top-up already exists for this customer in the same currency,
-    /// the existing top-up will be replaced.</para>
+    /// <para>If a top-up already exists for this customer in the same currency, the
+    /// existing top-up will be replaced.</para>
     /// </summary>
     Task<TopUpCreateResponse> Create(
         TopUpCreateParams parameters,
@@ -80,10 +81,11 @@ public interface ITopUpService
     /// <summary>
     /// This endpoint allows you to create a new top-up for a specified customer's
     /// balance. While this top-up is active, the customer's balance will added in
-    /// increments of the specified amount whenever the balance reaches the specified threshold.
+    /// increments of the specified amount whenever the balance reaches the specified
+    /// threshold.
     ///
-    /// <para>If a top-up already exists for this customer in the same currency,
-    /// the existing top-up will be replaced.</para>
+    /// <para>If a top-up already exists for this customer in the same currency, the
+    /// existing top-up will be replaced.</para>
     /// </summary>
     Task<TopUpCreateByExternalIDResponse> CreateByExternalID(
         TopUpCreateByExternalIDParams parameters,
@@ -143,7 +145,7 @@ public interface ITopUpServiceWithRawResponse
     ITopUpServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /customers/{customer_id}/credits/top_ups`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /customers/{customer_id}/credits/top_ups</c>, but is otherwise the
     /// same as <see cref="ITopUpService.Create(TopUpCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<TopUpCreateResponse>> Create(
@@ -159,7 +161,7 @@ public interface ITopUpServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/{customer_id}/credits/top_ups`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/{customer_id}/credits/top_ups</c>, but is otherwise the
     /// same as <see cref="ITopUpService.List(TopUpListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<TopUpListPage>> List(
@@ -175,7 +177,7 @@ public interface ITopUpServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /customers/{customer_id}/credits/top_ups/{top_up_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /customers/{customer_id}/credits/top_ups/{top_up_id}</c>, but is otherwise the
     /// same as <see cref="ITopUpService.Delete(TopUpDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -191,7 +193,7 @@ public interface ITopUpServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /customers/external_customer_id/{external_customer_id}/credits/top_ups`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /customers/external_customer_id/{external_customer_id}/credits/top_ups</c>, but is otherwise the
     /// same as <see cref="ITopUpService.CreateByExternalID(TopUpCreateByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<TopUpCreateByExternalIDResponse>> CreateByExternalID(
@@ -207,7 +209,7 @@ public interface ITopUpServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /customers/external_customer_id/{external_customer_id}/credits/top_ups/{top_up_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /customers/external_customer_id/{external_customer_id}/credits/top_ups/{top_up_id}</c>, but is otherwise the
     /// same as <see cref="ITopUpService.DeleteByExternalID(TopUpDeleteByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> DeleteByExternalID(
@@ -223,7 +225,7 @@ public interface ITopUpServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}/credits/top_ups`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/external_customer_id/{external_customer_id}/credits/top_ups</c>, but is otherwise the
     /// same as <see cref="ITopUpService.ListByExternalID(TopUpListByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<TopUpListByExternalIDPage>> ListByExternalID(

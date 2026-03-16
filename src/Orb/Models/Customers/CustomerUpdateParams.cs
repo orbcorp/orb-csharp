@@ -447,7 +447,7 @@ public record class CustomerUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CustomerUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -959,7 +959,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewAvalaraTaxConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -980,7 +980,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewTaxJarConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1001,7 +1001,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSphereConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1022,7 +1022,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CustomerUpdateParamsTaxConfigurationNumeral"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1045,7 +1045,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CustomerUpdateParamsTaxConfigurationAnrok"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1068,7 +1068,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CustomerUpdateParamsTaxConfigurationStripe"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1090,7 +1090,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1101,12 +1101,12 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (NewAvalaraTaxConfiguration value) => {...},
-    ///     (NewTaxJarConfiguration value) => {...},
-    ///     (NewSphereConfiguration value) => {...},
-    ///     (CustomerUpdateParamsTaxConfigurationNumeral value) => {...},
-    ///     (CustomerUpdateParamsTaxConfigurationAnrok value) => {...},
-    ///     (CustomerUpdateParamsTaxConfigurationStripe value) => {...}
+    ///     (NewAvalaraTaxConfiguration value) =&gt; {...},
+    ///     (NewTaxJarConfiguration value) =&gt; {...},
+    ///     (NewSphereConfiguration value) =&gt; {...},
+    ///     (CustomerUpdateParamsTaxConfigurationNumeral value) =&gt; {...},
+    ///     (CustomerUpdateParamsTaxConfigurationAnrok value) =&gt; {...},
+    ///     (CustomerUpdateParamsTaxConfigurationStripe value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1151,7 +1151,7 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1162,12 +1162,12 @@ public record class CustomerUpdateParamsTaxConfiguration : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (NewAvalaraTaxConfiguration value) => {...},
-    ///     (NewTaxJarConfiguration value) => {...},
-    ///     (NewSphereConfiguration value) => {...},
-    ///     (CustomerUpdateParamsTaxConfigurationNumeral value) => {...},
-    ///     (CustomerUpdateParamsTaxConfigurationAnrok value) => {...},
-    ///     (CustomerUpdateParamsTaxConfigurationStripe value) => {...}
+    ///     (NewAvalaraTaxConfiguration value) =&gt; {...},
+    ///     (NewTaxJarConfiguration value) =&gt; {...},
+    ///     (NewSphereConfiguration value) =&gt; {...},
+    ///     (CustomerUpdateParamsTaxConfigurationNumeral value) =&gt; {...},
+    ///     (CustomerUpdateParamsTaxConfigurationAnrok value) =&gt; {...},
+    ///     (CustomerUpdateParamsTaxConfigurationStripe value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

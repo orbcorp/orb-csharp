@@ -62,7 +62,7 @@ namespace Orb.Models.Events;
 /// collide). - The `timestamp` field in the event body will be used to determine
 /// which billable period a given event falls into. For example, with a monthly billing
 /// cycle starting from the first of December, Orb will calculate metrics based on
-/// events that fall into the range `12-01 00:00:00 <= timestamp < 01-01 00:00:00`.</para>
+/// events that fall into the range `12-01 00:00:00 &lt;= timestamp &lt; 01-01 00:00:00`.</para>
 ///
 /// <para>## Logging metadata</para>
 ///
@@ -97,10 +97,10 @@ namespace Orb.Models.Events;
 ///
 /// <para>In cases where usage is reported in aggregate for a historical timeframe,
 /// the timestamp must be within the grace period set for your account. Events with
-/// `timestamp < current_time - grace_period` will not be accepted as a valid event,
-/// and will throw validation errors. Enforcing the grace period enables Orb to accurately
-/// map usage to the correct billing cycle and ensure that all usage is billed for
-/// in the corresponding billing period.</para>
+/// `timestamp &lt; current_time - grace_period` will not be accepted as a valid
+/// event, and will throw validation errors. Enforcing the grace period enables Orb
+/// to accurately map usage to the correct billing cycle and ensure that all usage
+/// is billed for in the corresponding billing period.</para>
 ///
 /// <para>In general, Orb does not expect events with future dated timestamps. In
 /// cases where the timestamp is at least 24 hours ahead of the current time, the
@@ -275,7 +275,7 @@ public record class EventIngestParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static EventIngestParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

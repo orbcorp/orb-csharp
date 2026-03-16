@@ -95,7 +95,7 @@ public interface IItemServiceWithRawResponse
     IItemServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /items`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /items</c>, but is otherwise the
     /// same as <see cref="IItemService.Create(ItemCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Item>> Create(
@@ -104,7 +104,7 @@ public interface IItemServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /items/{item_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /items/{item_id}</c>, but is otherwise the
     /// same as <see cref="IItemService.Update(ItemUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Item>> Update(
@@ -120,7 +120,7 @@ public interface IItemServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /items`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /items</c>, but is otherwise the
     /// same as <see cref="IItemService.List(ItemListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<ItemListPage>> List(
@@ -129,7 +129,7 @@ public interface IItemServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /items/{item_id}/archive`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /items/{item_id}/archive</c>, but is otherwise the
     /// same as <see cref="IItemService.Archive(ItemArchiveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Item>> Archive(
@@ -145,7 +145,7 @@ public interface IItemServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /items/{item_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /items/{item_id}</c>, but is otherwise the
     /// same as <see cref="IItemService.Fetch(ItemFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Item>> Fetch(

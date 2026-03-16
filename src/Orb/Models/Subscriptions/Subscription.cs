@@ -628,7 +628,7 @@ public record class DiscountInterval : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="AmountDiscountInterval"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -649,7 +649,7 @@ public record class DiscountInterval : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PercentageDiscountInterval"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -670,7 +670,7 @@ public record class DiscountInterval : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UsageDiscountInterval"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -690,7 +690,7 @@ public record class DiscountInterval : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -701,9 +701,9 @@ public record class DiscountInterval : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (AmountDiscountInterval value) => {...},
-    ///     (PercentageDiscountInterval value) => {...},
-    ///     (UsageDiscountInterval value) => {...}
+    ///     (AmountDiscountInterval value) =&gt; {...},
+    ///     (PercentageDiscountInterval value) =&gt; {...},
+    ///     (UsageDiscountInterval value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -736,7 +736,7 @@ public record class DiscountInterval : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -747,9 +747,9 @@ public record class DiscountInterval : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (AmountDiscountInterval value) => {...},
-    ///     (PercentageDiscountInterval value) => {...},
-    ///     (UsageDiscountInterval value) => {...}
+    ///     (AmountDiscountInterval value) =&gt; {...},
+    ///     (PercentageDiscountInterval value) =&gt; {...},
+    ///     (UsageDiscountInterval value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
