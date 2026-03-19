@@ -131,6 +131,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -1664,6 +1665,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -3220,6 +3222,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -4763,6 +4766,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -6303,6 +6307,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -7868,6 +7873,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -9405,6 +9411,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -10053,6 +10060,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -10700,6 +10708,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -11350,6 +11359,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -11999,6 +12009,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
