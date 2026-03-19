@@ -647,6 +647,21 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
     }
 
     /// <summary>
+    /// The ID of a shared payment token granted by an agent to use as the default
+    /// payment instrument for this customer. When set, auto-collection will use
+    /// this token instead of the customer's default payment method.
+    /// </summary>
+    public string? DefaultSharedPaymentToken
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_shared_payment_token");
+        }
+        init { this._rawData.Set("default_shared_payment_token", value); }
+    }
+
+    /// <summary>
     /// List of Stripe payment method types to exclude for this customer. Excluded
     /// payment methods will not be available for the customer to select during payment,
     /// and will not be used for auto-collection. If a customer's default payment
@@ -680,6 +695,7 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
     public override void Validate()
     {
         this.ProviderType.Validate();
+        _ = this.DefaultSharedPaymentToken;
         _ = this.ExcludedPaymentMethodTypes;
     }
 

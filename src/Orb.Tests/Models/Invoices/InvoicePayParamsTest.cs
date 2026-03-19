@@ -8,17 +8,27 @@ public class InvoicePayParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new InvoicePayParams { InvoiceID = "invoice_id" };
+        var parameters = new InvoicePayParams
+        {
+            InvoiceID = "invoice_id",
+            SharedPaymentTokenID = "shared_payment_token_id",
+        };
 
         string expectedInvoiceID = "invoice_id";
+        string expectedSharedPaymentTokenID = "shared_payment_token_id";
 
         Assert.Equal(expectedInvoiceID, parameters.InvoiceID);
+        Assert.Equal(expectedSharedPaymentTokenID, parameters.SharedPaymentTokenID);
     }
 
     [Fact]
     public void Url_Works()
     {
-        InvoicePayParams parameters = new() { InvoiceID = "invoice_id" };
+        InvoicePayParams parameters = new()
+        {
+            InvoiceID = "invoice_id",
+            SharedPaymentTokenID = "shared_payment_token_id",
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
@@ -28,7 +38,11 @@ public class InvoicePayParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new InvoicePayParams { InvoiceID = "invoice_id" };
+        var parameters = new InvoicePayParams
+        {
+            InvoiceID = "invoice_id",
+            SharedPaymentTokenID = "shared_payment_token_id",
+        };
 
         InvoicePayParams copied = new(parameters);
 

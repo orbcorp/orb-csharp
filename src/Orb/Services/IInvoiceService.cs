@@ -213,15 +213,17 @@ public interface IInvoiceService
     );
 
     /// <summary>
-    /// This endpoint collects payment for an invoice using the customer's default
-    /// payment method. This action can only be taken on invoices with status "issued".
+    /// This endpoint collects payment for an invoice. By default, it uses the
+    /// customer's default payment method. Optionally, a shared payment token (SPT) can
+    /// be provided to pay using agent-granted credentials instead. This action can only
+    /// be taken on invoices with status "issued".
     /// </summary>
     Task<Invoice> Pay(InvoicePayParams parameters, CancellationToken cancellationToken = default);
 
     /// <inheritdoc cref="Pay(InvoicePayParams, CancellationToken)"/>
     Task<Invoice> Pay(
         string invoiceID,
-        InvoicePayParams? parameters = null,
+        InvoicePayParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -405,7 +407,7 @@ public interface IInvoiceServiceWithRawResponse
     /// <inheritdoc cref="Pay(InvoicePayParams, CancellationToken)"/>
     Task<HttpResponse<Invoice>> Pay(
         string invoiceID,
-        InvoicePayParams? parameters = null,
+        InvoicePayParams parameters,
         CancellationToken cancellationToken = default
     );
 

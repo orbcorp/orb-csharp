@@ -130,7 +130,7 @@ public class InvoiceServiceTest : TestBase
     {
         var invoice = await this.client.Invoices.Pay(
             "invoice_id",
-            new(),
+            new() { SharedPaymentTokenID = "shared_payment_token_id" },
             TestContext.Current.CancellationToken
         );
         invoice.Validate();

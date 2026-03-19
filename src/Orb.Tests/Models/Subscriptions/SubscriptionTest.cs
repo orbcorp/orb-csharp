@@ -130,6 +130,7 @@ public class SubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -774,6 +775,7 @@ public class SubscriptionTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -1474,6 +1476,7 @@ public class SubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -2129,6 +2132,7 @@ public class SubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -2780,6 +2784,7 @@ public class SubscriptionTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -3489,6 +3494,7 @@ public class SubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -4138,6 +4144,7 @@ public class SubscriptionTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],

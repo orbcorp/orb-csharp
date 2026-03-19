@@ -236,12 +236,10 @@ public sealed class InvoiceService : IInvoiceService
     /// <inheritdoc/>
     public Task<Invoice> Pay(
         string invoiceID,
-        InvoicePayParams? parameters = null,
+        InvoicePayParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.Pay(parameters with { InvoiceID = invoiceID }, cancellationToken);
     }
 
@@ -678,12 +676,10 @@ public sealed class InvoiceServiceWithRawResponse : IInvoiceServiceWithRawRespon
     /// <inheritdoc/>
     public Task<HttpResponse<Invoice>> Pay(
         string invoiceID,
-        InvoicePayParams? parameters = null,
+        InvoicePayParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.Pay(parameters with { InvoiceID = invoiceID }, cancellationToken);
     }
 
