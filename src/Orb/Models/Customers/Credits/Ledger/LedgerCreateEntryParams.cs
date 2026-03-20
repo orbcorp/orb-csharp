@@ -106,22 +106,14 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// </summary>
 public record class LedgerCreateEntryParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
+    public JsonElement RawBodyData { get; private init; }
 
     public string? CustomerID { get; init; }
 
     public required Body Body
     {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<Body>("body");
-        }
-        init { this._rawBodyData.Set("body", value); }
+        get { return WrappedJsonSerializer.GetNotNullClass<Body>(this.RawBodyData, "RawBodyData"); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public LedgerCreateEntryParams() { }
@@ -133,19 +125,19 @@ public record class LedgerCreateEntryParams : ParamsBase
     {
         this.CustomerID = ledgerCreateEntryParams.CustomerID;
 
-        this._rawBodyData = new(ledgerCreateEntryParams._rawBodyData);
+        this.RawBodyData = ledgerCreateEntryParams.RawBodyData;
     }
 #pragma warning restore CS8618
 
     public LedgerCreateEntryParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -153,13 +145,13 @@ public record class LedgerCreateEntryParams : ParamsBase
     LedgerCreateEntryParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string customerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
         this.CustomerID = customerID;
     }
 #pragma warning restore CS8618
@@ -168,14 +160,14 @@ public record class LedgerCreateEntryParams : ParamsBase
     public static LedgerCreateEntryParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string customerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            rawBodyData,
             customerID
         );
     }
@@ -192,7 +184,7 @@ public record class LedgerCreateEntryParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
                 }
             ),
             ModelBase.ToStringSerializerOptions
@@ -207,7 +199,7 @@ public record class LedgerCreateEntryParams : ParamsBase
         return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)

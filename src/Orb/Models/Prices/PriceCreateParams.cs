@@ -30,23 +30,15 @@ namespace Orb.Models.Prices;
 /// </summary>
 public record class PriceCreateParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
+    public JsonElement RawBodyData { get; private init; }
 
     /// <summary>
     /// New floating price request body params.
     /// </summary>
     public required Body Body
     {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<Body>("body");
-        }
-        init { this._rawBodyData.Set("body", value); }
+        get { return WrappedJsonSerializer.GetNotNullClass<Body>(this.RawBodyData, "RawBodyData"); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public PriceCreateParams() { }
@@ -56,19 +48,19 @@ public record class PriceCreateParams : ParamsBase
     public PriceCreateParams(PriceCreateParams priceCreateParams)
         : base(priceCreateParams)
     {
-        this._rawBodyData = new(priceCreateParams._rawBodyData);
+        this.RawBodyData = priceCreateParams.RawBodyData;
     }
 #pragma warning restore CS8618
 
     public PriceCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -76,12 +68,12 @@ public record class PriceCreateParams : ParamsBase
     PriceCreateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 #pragma warning restore CS8618
 
@@ -89,13 +81,13 @@ public record class PriceCreateParams : ParamsBase
     public static PriceCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            rawBodyData
         );
     }
 
@@ -110,7 +102,7 @@ public record class PriceCreateParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
                 }
             ),
             ModelBase.ToStringSerializerOptions
@@ -124,7 +116,7 @@ public record class PriceCreateParams : ParamsBase
         }
         return this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)

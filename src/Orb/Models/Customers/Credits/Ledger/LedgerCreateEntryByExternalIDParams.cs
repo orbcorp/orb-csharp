@@ -106,11 +106,7 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// </summary>
 public record class LedgerCreateEntryByExternalIDParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
+    public JsonElement RawBodyData { get; private init; }
 
     public string? ExternalCustomerID { get; init; }
 
@@ -118,12 +114,12 @@ public record class LedgerCreateEntryByExternalIDParams : ParamsBase
     {
         get
         {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<LedgerCreateEntryByExternalIDParamsBody>(
-                "body"
+            return WrappedJsonSerializer.GetNotNullClass<LedgerCreateEntryByExternalIDParamsBody>(
+                this.RawBodyData,
+                "RawBodyData"
             );
         }
-        init { this._rawBodyData.Set("body", value); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public LedgerCreateEntryByExternalIDParams() { }
@@ -137,19 +133,19 @@ public record class LedgerCreateEntryByExternalIDParams : ParamsBase
     {
         this.ExternalCustomerID = ledgerCreateEntryByExternalIDParams.ExternalCustomerID;
 
-        this._rawBodyData = new(ledgerCreateEntryByExternalIDParams._rawBodyData);
+        this.RawBodyData = ledgerCreateEntryByExternalIDParams.RawBodyData;
     }
 #pragma warning restore CS8618
 
     public LedgerCreateEntryByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -157,13 +153,13 @@ public record class LedgerCreateEntryByExternalIDParams : ParamsBase
     LedgerCreateEntryByExternalIDParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string externalCustomerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
         this.ExternalCustomerID = externalCustomerID;
     }
 #pragma warning restore CS8618
@@ -172,14 +168,14 @@ public record class LedgerCreateEntryByExternalIDParams : ParamsBase
     public static LedgerCreateEntryByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string externalCustomerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            rawBodyData,
             externalCustomerID
         );
     }
@@ -198,7 +194,7 @@ public record class LedgerCreateEntryByExternalIDParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
                 }
             ),
             ModelBase.ToStringSerializerOptions
@@ -216,7 +212,7 @@ public record class LedgerCreateEntryByExternalIDParams : ParamsBase
             )
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
