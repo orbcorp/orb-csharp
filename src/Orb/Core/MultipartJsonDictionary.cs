@@ -97,17 +97,7 @@ sealed class MultipartJsonDictionary
         {
             throw new OrbInvalidDataException($"'{key}' cannot be absent");
         }
-        T deserialized;
-        try
-        {
-            deserialized =
-                MultipartJsonSerializer.Deserialize<T>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException($"'{key}' cannot be null");
-        }
-        catch (JsonException e)
-        {
-            throw new OrbInvalidDataException($"'{key}' must be of type {typeof(T).FullName}", e);
-        }
+        T? deserialized = WrappedMultipartJsonSerializer.GetNotNullClass<T>(element, key);
         _deserializedData[key] = deserialized;
         return deserialized;
     }
@@ -123,17 +113,7 @@ sealed class MultipartJsonDictionary
         {
             throw new OrbInvalidDataException($"'{key}' cannot be absent");
         }
-        T deserialized;
-        try
-        {
-            deserialized =
-                MultipartJsonSerializer.Deserialize<T?>(element, ModelBase.SerializerOptions)
-                ?? throw new OrbInvalidDataException($"'{key}' cannot be null");
-        }
-        catch (JsonException e)
-        {
-            throw new OrbInvalidDataException($"'{key}' must be of type {typeof(T).FullName}", e);
-        }
+        T deserialized = WrappedMultipartJsonSerializer.GetNotNullStruct<T>(element, key);
         _deserializedData[key] = deserialized;
         return deserialized;
     }
@@ -150,18 +130,7 @@ sealed class MultipartJsonDictionary
             _deserializedData[key] = null;
             return null;
         }
-        T? deserialized;
-        try
-        {
-            deserialized = MultipartJsonSerializer.Deserialize<T?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        catch (JsonException e)
-        {
-            throw new OrbInvalidDataException($"'{key}' must be of type {typeof(T).FullName}", e);
-        }
+        T? deserialized = WrappedMultipartJsonSerializer.GetNullableClass<T>(element, key);
         _deserializedData[key] = deserialized;
         return deserialized;
     }
@@ -178,18 +147,7 @@ sealed class MultipartJsonDictionary
             _deserializedData[key] = null;
             return null;
         }
-        T? deserialized;
-        try
-        {
-            deserialized = MultipartJsonSerializer.Deserialize<T?>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        }
-        catch (JsonException e)
-        {
-            throw new OrbInvalidDataException($"'{key}' must be of type {typeof(T).FullName}", e);
-        }
+        T? deserialized = WrappedMultipartJsonSerializer.GetNullableStruct<T>(element, key);
         _deserializedData[key] = deserialized;
         return deserialized;
     }
