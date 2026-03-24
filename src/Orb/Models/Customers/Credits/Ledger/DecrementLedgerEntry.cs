@@ -158,6 +158,11 @@ public sealed record class DecrementLedgerEntry : JsonModel
         init { this._rawData.Set("starting_balance", value); }
     }
 
+    /// <summary>
+    /// This field is deprecated and will always be null. Decrements are not associated
+    /// with individual events.
+    /// </summary>
+    [System::Obsolete("deprecated")]
     public string? EventID
     {
         get
