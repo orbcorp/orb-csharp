@@ -2158,12 +2158,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2180,12 +2178,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2203,12 +2199,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2225,12 +2219,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2247,12 +2239,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2593,12 +2583,10 @@ sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItem
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2615,12 +2603,10 @@ sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItem
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2637,12 +2623,10 @@ sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItem
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

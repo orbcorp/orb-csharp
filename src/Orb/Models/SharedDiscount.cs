@@ -335,12 +335,10 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -354,12 +352,10 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     var deserialized = JsonSerializer.Deserialize<TrialDiscount>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -373,12 +369,10 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     var deserialized = JsonSerializer.Deserialize<UsageDiscount>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -392,12 +386,10 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

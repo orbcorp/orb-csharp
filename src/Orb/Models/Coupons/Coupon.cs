@@ -395,12 +395,10 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -414,12 +412,10 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

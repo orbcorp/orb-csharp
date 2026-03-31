@@ -668,12 +668,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Increment>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -687,12 +685,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Decrement>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -709,12 +705,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -728,12 +722,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Void>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -747,12 +739,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Amendment>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
