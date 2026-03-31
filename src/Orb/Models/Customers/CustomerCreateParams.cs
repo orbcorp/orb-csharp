@@ -1250,12 +1250,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1272,12 +1270,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1294,12 +1290,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1313,12 +1307,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Numeral>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1332,12 +1324,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Anrok>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1351,12 +1341,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Stripe>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

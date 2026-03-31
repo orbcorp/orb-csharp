@@ -2405,12 +2405,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<Unit>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2424,12 +2422,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<Tiered>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2443,12 +2439,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<Bulk>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2465,12 +2459,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2484,12 +2476,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<Package>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2503,12 +2493,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<Matrix>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2525,12 +2513,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2544,12 +2530,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<TieredPackage>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2566,12 +2550,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2585,12 +2567,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<GroupedTiered>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2607,12 +2587,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2629,12 +2607,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2651,12 +2627,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2673,12 +2647,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2695,12 +2667,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2717,12 +2687,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2739,12 +2707,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2761,12 +2727,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2783,12 +2747,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2805,12 +2767,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2827,12 +2787,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2849,12 +2807,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2871,12 +2827,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2893,12 +2847,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2915,12 +2867,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2937,12 +2887,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2959,12 +2907,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2981,12 +2927,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3003,12 +2947,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3022,12 +2964,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<Percent>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3041,12 +2981,10 @@ sealed class LicenseAllocationPriceConverter : JsonConverter<LicenseAllocationPr
                     var deserialized = JsonSerializer.Deserialize<EventOutput>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3813,12 +3751,10 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3835,12 +3771,10 @@ sealed class ConversionRateConfigConverter : JsonConverter<ConversionRateConfig>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4622,12 +4556,10 @@ sealed class TieredConversionRateConfigConverter : JsonConverter<TieredConversio
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4644,12 +4576,10 @@ sealed class TieredConversionRateConfigConverter : JsonConverter<TieredConversio
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -5431,12 +5361,10 @@ sealed class BulkConversionRateConfigConverter : JsonConverter<BulkConversionRat
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -5453,12 +5381,10 @@ sealed class BulkConversionRateConfigConverter : JsonConverter<BulkConversionRat
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6505,12 +6431,10 @@ sealed class BulkWithFiltersConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6527,12 +6451,10 @@ sealed class BulkWithFiltersConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -7316,12 +7238,10 @@ sealed class PackageConversionRateConfigConverter : JsonConverter<PackageConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -7338,12 +7258,10 @@ sealed class PackageConversionRateConfigConverter : JsonConverter<PackageConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -8125,12 +8043,10 @@ sealed class MatrixConversionRateConfigConverter : JsonConverter<MatrixConversio
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -8147,12 +8063,10 @@ sealed class MatrixConversionRateConfigConverter : JsonConverter<MatrixConversio
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -9126,12 +9040,10 @@ sealed class ThresholdTotalAmountConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -9148,12 +9060,10 @@ sealed class ThresholdTotalAmountConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10107,12 +10017,10 @@ sealed class TieredPackageConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10129,12 +10037,10 @@ sealed class TieredPackageConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -11148,12 +11054,10 @@ sealed class TieredWithMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -11170,12 +11074,10 @@ sealed class TieredWithMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -12129,12 +12031,10 @@ sealed class GroupedTieredConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -12151,12 +12051,10 @@ sealed class GroupedTieredConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13146,12 +13044,10 @@ sealed class TieredPackageWithMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13168,12 +13064,10 @@ sealed class TieredPackageWithMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14060,12 +13954,10 @@ sealed class PackageWithAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14082,12 +13974,10 @@ sealed class PackageWithAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14961,12 +14851,10 @@ sealed class UnitWithPercentConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14983,12 +14871,10 @@ sealed class UnitWithPercentConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -15791,12 +15677,10 @@ sealed class MatrixWithAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -15813,12 +15697,10 @@ sealed class MatrixWithAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -16785,12 +16667,10 @@ sealed class TieredWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -16807,12 +16687,10 @@ sealed class TieredWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -17683,12 +17561,10 @@ sealed class UnitWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -17705,12 +17581,10 @@ sealed class UnitWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -18602,12 +18476,10 @@ sealed class GroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -18624,12 +18496,10 @@ sealed class GroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -19597,12 +19467,10 @@ sealed class BulkWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -19619,12 +19487,10 @@ sealed class BulkWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -20530,12 +20396,10 @@ sealed class GroupedWithProratedMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -20552,12 +20416,10 @@ sealed class GroupedWithProratedMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -21664,12 +21526,10 @@ sealed class GroupedWithMeteredMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -21686,12 +21546,10 @@ sealed class GroupedWithMeteredMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -22611,12 +22469,10 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -22633,12 +22489,10 @@ sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -23630,12 +23484,10 @@ sealed class MatrixWithDisplayNameConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -23652,12 +23504,10 @@ sealed class MatrixWithDisplayNameConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -24643,12 +24493,10 @@ sealed class GroupedTieredPackageConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -24665,12 +24513,10 @@ sealed class GroupedTieredPackageConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -25655,12 +25501,10 @@ sealed class MaxGroupTieredPackageConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -25677,12 +25521,10 @@ sealed class MaxGroupTieredPackageConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -26724,12 +26566,10 @@ sealed class ScalableMatrixWithUnitPricingConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -26746,12 +26586,10 @@ sealed class ScalableMatrixWithUnitPricingConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -27870,12 +27708,10 @@ sealed class ScalableMatrixWithTieredPricingConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -27892,12 +27728,10 @@ sealed class ScalableMatrixWithTieredPricingConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -28875,12 +28709,10 @@ sealed class CumulativeGroupedBulkConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -28897,12 +28729,10 @@ sealed class CumulativeGroupedBulkConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -29822,12 +29652,10 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -29844,12 +29672,10 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -30742,12 +30568,10 @@ sealed class MinimumCompositeConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -30764,12 +30588,10 @@ sealed class MinimumCompositeConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -31620,12 +31442,10 @@ sealed class PercentConversionRateConfigConverter : JsonConverter<PercentConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -31642,12 +31462,10 @@ sealed class PercentConversionRateConfigConverter : JsonConverter<PercentConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -32537,12 +32355,10 @@ sealed class EventOutputConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -32559,12 +32375,10 @@ sealed class EventOutputConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34591,12 +34405,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34613,12 +34425,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34635,12 +34445,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34657,12 +34465,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34679,12 +34485,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34701,12 +34505,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34723,12 +34525,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34745,12 +34545,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34767,12 +34565,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34789,12 +34585,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34812,12 +34606,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34835,12 +34627,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34857,12 +34647,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34879,12 +34667,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34901,12 +34687,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34923,12 +34707,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34945,12 +34727,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34967,12 +34747,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -34990,12 +34768,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35013,12 +34789,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35036,12 +34810,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35059,12 +34831,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35081,12 +34851,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35104,12 +34872,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35127,12 +34893,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35150,12 +34914,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35173,12 +34935,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35196,12 +34956,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35218,12 +34976,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35240,12 +34996,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -35262,12 +35016,10 @@ sealed class PricePriceConverter : JsonConverter<PricePrice?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -36244,12 +35996,10 @@ sealed class PricePriceBulkWithFiltersConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -36266,12 +36016,10 @@ sealed class PricePriceBulkWithFiltersConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -37140,12 +36888,10 @@ sealed class PricePriceTieredWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -37162,12 +36908,10 @@ sealed class PricePriceTieredWithProrationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -37977,12 +37721,10 @@ sealed class PricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -37999,12 +37741,10 @@ sealed class PricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -38814,12 +38554,10 @@ sealed class PricePriceCumulativeGroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -38836,12 +38574,10 @@ sealed class PricePriceCumulativeGroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -39590,12 +39326,10 @@ sealed class PricePricePercentConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -39612,12 +39346,10 @@ sealed class PricePricePercentConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -40406,12 +40138,10 @@ sealed class PricePriceEventOutputConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -40428,12 +40158,10 @@ sealed class PricePriceEventOutputConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -40922,12 +40650,10 @@ sealed class AdjustmentAdjustmentConverter : JsonConverter<AdjustmentAdjustment>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -40944,12 +40670,10 @@ sealed class AdjustmentAdjustmentConverter : JsonConverter<AdjustmentAdjustment>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -40966,12 +40690,10 @@ sealed class AdjustmentAdjustmentConverter : JsonConverter<AdjustmentAdjustment>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -40985,12 +40707,10 @@ sealed class AdjustmentAdjustmentConverter : JsonConverter<AdjustmentAdjustment>
                     var deserialized = JsonSerializer.Deserialize<NewMinimum>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -41004,12 +40724,10 @@ sealed class AdjustmentAdjustmentConverter : JsonConverter<AdjustmentAdjustment>
                     var deserialized = JsonSerializer.Deserialize<NewMaximum>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

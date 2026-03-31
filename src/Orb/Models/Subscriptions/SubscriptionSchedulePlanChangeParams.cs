@@ -1329,12 +1329,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1351,12 +1349,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1373,12 +1369,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1392,12 +1386,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     var deserialized = JsonSerializer.Deserialize<NewMinimum>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1411,12 +1403,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     var deserialized = JsonSerializer.Deserialize<NewMaximum>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3919,12 +3909,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3941,12 +3929,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3963,12 +3949,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3986,12 +3970,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4008,12 +3990,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4030,12 +4010,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4053,12 +4031,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4076,12 +4052,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4099,12 +4073,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4122,12 +4094,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4145,12 +4115,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4168,12 +4136,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4191,12 +4157,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4214,12 +4178,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4237,12 +4199,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4260,12 +4220,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4283,12 +4241,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4306,12 +4262,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4329,12 +4283,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4352,12 +4304,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4375,12 +4325,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4398,12 +4346,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4421,12 +4367,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4444,12 +4388,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4467,12 +4409,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4490,12 +4430,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4513,12 +4451,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4536,12 +4472,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4559,12 +4493,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4582,12 +4514,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4605,12 +4535,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -5648,12 +5576,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -5670,12 +5596,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6599,12 +6523,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6621,12 +6543,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -7479,12 +7399,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -7501,12 +7419,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -8359,12 +8275,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -8381,12 +8295,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -9178,12 +9090,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -9200,12 +9110,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10041,12 +9949,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10063,12 +9969,10 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10812,12 +10716,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10834,12 +10736,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10856,12 +10756,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10875,12 +10773,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     var deserialized = JsonSerializer.Deserialize<NewMinimum>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -10894,12 +10790,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     var deserialized = JsonSerializer.Deserialize<NewMaximum>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13399,12 +13293,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13421,12 +13313,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13443,12 +13333,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13466,12 +13354,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13488,12 +13374,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13510,12 +13394,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13533,12 +13415,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13556,12 +13436,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13579,12 +13457,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13602,12 +13478,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13625,12 +13499,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13648,12 +13520,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13671,12 +13541,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13694,12 +13562,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13717,12 +13583,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13740,12 +13604,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13763,12 +13625,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13786,12 +13646,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13809,12 +13667,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13832,12 +13688,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13855,12 +13709,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13878,12 +13730,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13901,12 +13751,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13924,12 +13772,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13947,12 +13793,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13970,12 +13814,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -13993,12 +13835,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14016,12 +13856,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14039,12 +13877,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14062,12 +13898,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -14085,12 +13919,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -15131,12 +14963,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -15153,12 +14983,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -16084,12 +15912,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -16106,12 +15932,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -16964,12 +16788,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -16986,12 +16808,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -17844,12 +17664,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -17866,12 +17684,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -18669,12 +18485,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -18691,12 +18505,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -19539,12 +19351,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -19561,12 +19371,10 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
