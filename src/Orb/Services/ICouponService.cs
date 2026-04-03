@@ -48,8 +48,7 @@ public interface ICouponService
     ///
     /// <para>The list of coupons is ordered starting from the most recently created
     /// coupon. The response also includes `pagination_metadata`, which lets the caller
-    /// retrieve the next page of results if they exist. More information about
-    /// pagination can be found in the Pagination-metadata schema.</para>
+    /// retrieve the next page of results if they exist.</para>
     /// </summary>
     Task<CouponListPage> List(
         CouponListParams? parameters = null,

@@ -35,10 +35,10 @@ public interface IBackfillService
     /// are older than the ingestion grace period. Performing a backfill in Orb involves
     /// 3 steps:
     ///
-    /// <para>1. Create the backfill, specifying its parameters. 2. [Ingest](ingest)
-    /// usage events, referencing the backfill (query parameter `backfill_id`). 3.
-    /// [Close](close-backfill) the backfill, propagating the update in past usage
-    /// throughout Orb.</para>
+    /// <para>1. Create the backfill, specifying its parameters. 2.
+    /// [Ingest](/api-reference/event/ingest-events) usage events, referencing the
+    /// backfill (query parameter `backfill_id`). 3. [Close](close-backfill) the
+    /// backfill, propagating the update in past usage throughout Orb.</para>
     ///
     /// <para>Changes from a backfill are not reflected until the backfill is closed, so
     /// you won’t need to worry about your customers seeing partially updated usage
@@ -82,8 +82,7 @@ public interface IBackfillService
     /// <para>The list of backfills is ordered starting from the most recently created
     /// backfill. The response also includes
     /// [`pagination_metadata`](/api-reference/pagination), which lets the caller
-    /// retrieve the next page of results if they exist. More information about
-    /// pagination can be found in the [Pagination-metadata schema](pagination).</para>
+    /// retrieve the next page of results if they exist.</para>
     /// </summary>
     Task<BackfillListPage> List(
         BackfillListParams? parameters = null,

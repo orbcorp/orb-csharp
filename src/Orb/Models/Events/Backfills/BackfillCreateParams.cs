@@ -14,8 +14,8 @@ namespace Orb.Models.Events.Backfills;
 /// are older than the ingestion grace period. Performing a backfill in Orb involves
 /// 3 steps:
 ///
-/// <para>1. Create the backfill, specifying its parameters. 2. [Ingest](ingest) usage
-/// events, referencing the backfill (query parameter `backfill_id`). 3. [Close](close-backfill)
+/// <para>1. Create the backfill, specifying its parameters. 2. [Ingest](/api-reference/event/ingest-events)
+/// usage events, referencing the backfill (query parameter `backfill_id`). 3. [Close](close-backfill)
 /// the backfill, propagating the update in past usage throughout Orb.</para>
 ///
 /// <para>Changes from a backfill are not reflected until the backfill is closed,
