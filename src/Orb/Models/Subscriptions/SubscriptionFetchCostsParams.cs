@@ -17,9 +17,9 @@ namespace Orb.Models.Subscriptions;
 /// metric, in usage units rather than a currency).
 ///
 /// <para>The semantics of this endpoint exactly mirror those of [fetching a customer's
-/// costs](fetch-customer-costs). Use this endpoint to limit your analysis of costs
-/// to a specific subscription for the customer (e.g. to de-aggregate costs when
-/// a customer's subscription has started and stopped on the same day).</para>
+/// costs](/api-reference/customer/fetch-customer-costs). Use this endpoint to limit
+/// your analysis of costs to a specific subscription for the customer (e.g. to de-aggregate
+/// costs when a customer's subscription has started and stopped on the same day).</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
