@@ -20,7 +20,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     AllocationPrice = new()
                     {
                         Amount = "10.00",
@@ -47,7 +47,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     },
                     CanDeferBilling = true,
                     Discounts = [new Subscriptions::Amount(0)],
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     ExternalPriceID = "external_price_id",
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
@@ -111,7 +111,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     Adjustment = new NewPercentageDiscount()
                     {
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -133,7 +133,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         PriceType = NewPercentageDiscountPriceType.Usage,
                     },
                     AdjustmentID = "h74gfhdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
             AllowInvoiceCreditOrVoid = true,
@@ -145,7 +145,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     PriceIntervalID = "sdfs6wdjvn7ujokd",
                     BillingCycleDay = 0,
                     CanDeferBilling = true,
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
                     [
@@ -159,7 +159,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     UsageCustomerIds = ["string"],
                 },
             ],
@@ -168,8 +168,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 new()
                 {
                     AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
         };
@@ -179,7 +179,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
         [
             new()
             {
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                StartDate = BillingCycleRelativeDate.StartOfTerm,
                 AllocationPrice = new()
                 {
                     Amount = "10.00",
@@ -206,7 +206,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 },
                 CanDeferBilling = true,
                 Discounts = [new Subscriptions::Amount(0)],
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                EndDate = BillingCycleRelativeDate.StartOfTerm,
                 ExternalPriceID = "external_price_id",
                 Filter = "my_property > 100 AND my_other_property = 'bar'",
                 FixedFeeQuantityTransitions =
@@ -269,7 +269,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
         [
             new()
             {
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                StartDate = BillingCycleRelativeDate.StartOfTerm,
                 Adjustment = new NewPercentageDiscount()
                 {
                     AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -291,7 +291,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     PriceType = NewPercentageDiscountPriceType.Usage,
                 },
                 AdjustmentID = "h74gfhdjvn7ujokd",
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                EndDate = BillingCycleRelativeDate.StartOfTerm,
             },
         ];
         bool expectedAllowInvoiceCreditOrVoid = true;
@@ -303,7 +303,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 PriceIntervalID = "sdfs6wdjvn7ujokd",
                 BillingCycleDay = 0,
                 CanDeferBilling = true,
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                EndDate = BillingCycleRelativeDate.StartOfTerm,
                 Filter = "my_property > 100 AND my_other_property = 'bar'",
                 FixedFeeQuantityTransitions =
                 [
@@ -317,7 +317,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                StartDate = BillingCycleRelativeDate.StartOfTerm,
                 UsageCustomerIds = ["string"],
             },
         ];
@@ -326,8 +326,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             new()
             {
                 AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                EndDate = BillingCycleRelativeDate.StartOfTerm,
+                StartDate = BillingCycleRelativeDate.StartOfTerm,
             },
         ];
 
@@ -416,7 +416,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     AllocationPrice = new()
                     {
                         Amount = "10.00",
@@ -443,7 +443,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     },
                     CanDeferBilling = true,
                     Discounts = [new Subscriptions::Amount(0)],
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     ExternalPriceID = "external_price_id",
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
@@ -507,7 +507,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     Adjustment = new NewPercentageDiscount()
                     {
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -529,7 +529,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         PriceType = NewPercentageDiscountPriceType.Usage,
                     },
                     AdjustmentID = "h74gfhdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
             Edit =
@@ -539,7 +539,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     PriceIntervalID = "sdfs6wdjvn7ujokd",
                     BillingCycleDay = 0,
                     CanDeferBilling = true,
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
                     [
@@ -553,7 +553,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     UsageCustomerIds = ["string"],
                 },
             ],
@@ -562,8 +562,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 new()
                 {
                     AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
         };
@@ -584,7 +584,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     AllocationPrice = new()
                     {
                         Amount = "10.00",
@@ -611,7 +611,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     },
                     CanDeferBilling = true,
                     Discounts = [new Subscriptions::Amount(0)],
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     ExternalPriceID = "external_price_id",
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
@@ -675,7 +675,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     Adjustment = new NewPercentageDiscount()
                     {
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -697,7 +697,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         PriceType = NewPercentageDiscountPriceType.Usage,
                     },
                     AdjustmentID = "h74gfhdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
             Edit =
@@ -707,7 +707,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     PriceIntervalID = "sdfs6wdjvn7ujokd",
                     BillingCycleDay = 0,
                     CanDeferBilling = true,
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
                     [
@@ -721,7 +721,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     UsageCustomerIds = ["string"],
                 },
             ],
@@ -730,8 +730,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 new()
                 {
                     AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
 
@@ -771,7 +771,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     AllocationPrice = new()
                     {
                         Amount = "10.00",
@@ -798,7 +798,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     },
                     CanDeferBilling = true,
                     Discounts = [new Subscriptions::Amount(0)],
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     ExternalPriceID = "external_price_id",
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
@@ -862,7 +862,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             [
                 new()
                 {
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     Adjustment = new NewPercentageDiscount()
                     {
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -884,7 +884,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         PriceType = NewPercentageDiscountPriceType.Usage,
                     },
                     AdjustmentID = "h74gfhdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
             AllowInvoiceCreditOrVoid = true,
@@ -896,7 +896,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     PriceIntervalID = "sdfs6wdjvn7ujokd",
                     BillingCycleDay = 0,
                     CanDeferBilling = true,
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
                     Filter = "my_property > 100 AND my_other_property = 'bar'",
                     FixedFeeQuantityTransitions =
                     [
@@ -910,7 +910,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                     UsageCustomerIds = ["string"],
                 },
             ],
@@ -919,8 +919,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                 new()
                 {
                     AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = BillingCycleRelativeDate.StartOfTerm,
+                    StartDate = BillingCycleRelativeDate.StartOfTerm,
                 },
             ],
         };
@@ -938,7 +938,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             AllocationPrice = new()
             {
                 Amount = "10.00",
@@ -965,7 +965,7 @@ public class AddTest : TestBase
             },
             CanDeferBilling = true,
             Discounts = [new Subscriptions::Amount(0)],
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
@@ -1024,9 +1024,7 @@ public class AddTest : TestBase
             UsageCustomerIds = ["string"],
         };
 
-        Subscriptions::StartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::StartDate expectedStartDate = BillingCycleRelativeDate.StartOfTerm;
         NewAllocationPrice expectedAllocationPrice = new()
         {
             Amount = "10.00",
@@ -1053,7 +1051,7 @@ public class AddTest : TestBase
         };
         bool expectedCanDeferBilling = true;
         List<Subscriptions::Discount> expectedDiscounts = [new Subscriptions::Amount(0)];
-        Subscriptions::EndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::EndDate expectedEndDate = BillingCycleRelativeDate.StartOfTerm;
         string expectedExternalPriceID = "external_price_id";
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
         List<Subscriptions::FixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
@@ -1160,7 +1158,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             AllocationPrice = new()
             {
                 Amount = "10.00",
@@ -1187,7 +1185,7 @@ public class AddTest : TestBase
             },
             CanDeferBilling = true,
             Discounts = [new Subscriptions::Amount(0)],
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
@@ -1260,7 +1258,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             AllocationPrice = new()
             {
                 Amount = "10.00",
@@ -1287,7 +1285,7 @@ public class AddTest : TestBase
             },
             CanDeferBilling = true,
             Discounts = [new Subscriptions::Amount(0)],
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
@@ -1353,9 +1351,7 @@ public class AddTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        Subscriptions::StartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::StartDate expectedStartDate = BillingCycleRelativeDate.StartOfTerm;
         NewAllocationPrice expectedAllocationPrice = new()
         {
             Amount = "10.00",
@@ -1382,7 +1378,7 @@ public class AddTest : TestBase
         };
         bool expectedCanDeferBilling = true;
         List<Subscriptions::Discount> expectedDiscounts = [new Subscriptions::Amount(0)];
-        Subscriptions::EndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::EndDate expectedEndDate = BillingCycleRelativeDate.StartOfTerm;
         string expectedExternalPriceID = "external_price_id";
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
         List<Subscriptions::FixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
@@ -1494,7 +1490,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             AllocationPrice = new()
             {
                 Amount = "10.00",
@@ -1521,7 +1517,7 @@ public class AddTest : TestBase
             },
             CanDeferBilling = true,
             Discounts = [new Subscriptions::Amount(0)],
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
@@ -1586,10 +1582,7 @@ public class AddTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Subscriptions::Add
-        {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
+        var model = new Subscriptions::Add { StartDate = BillingCycleRelativeDate.StartOfTerm };
 
         Assert.Null(model.AllocationPrice);
         Assert.False(model.RawData.ContainsKey("allocation_price"));
@@ -1622,10 +1615,7 @@ public class AddTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Subscriptions::Add
-        {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
+        var model = new Subscriptions::Add { StartDate = BillingCycleRelativeDate.StartOfTerm };
 
         model.Validate();
     }
@@ -1635,7 +1625,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             AllocationPrice = null,
             CanDeferBilling = null,
@@ -1685,7 +1675,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             AllocationPrice = null,
             CanDeferBilling = null,
@@ -1710,7 +1700,7 @@ public class AddTest : TestBase
     {
         var model = new Subscriptions::Add
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             AllocationPrice = new()
             {
                 Amount = "10.00",
@@ -1737,7 +1727,7 @@ public class AddTest : TestBase
             },
             CanDeferBilling = true,
             Discounts = [new Subscriptions::Amount(0)],
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
@@ -9941,7 +9931,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             Adjustment = new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -9963,11 +9953,11 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate expectedStartDate =
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+            BillingCycleRelativeDate.StartOfTerm;
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment expectedAdjustment =
             new NewPercentageDiscount()
             {
@@ -9991,7 +9981,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
             };
         string expectedAdjustmentID = "h74gfhdjvn7ujokd";
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate expectedEndDate =
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+            BillingCycleRelativeDate.StartOfTerm;
 
         Assert.Equal(expectedStartDate, model.StartDate);
         Assert.Equal(expectedAdjustment, model.Adjustment);
@@ -10004,7 +9994,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             Adjustment = new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -10026,7 +10016,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -10044,7 +10034,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             Adjustment = new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -10066,7 +10056,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -10078,7 +10068,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
         Assert.NotNull(deserialized);
 
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate expectedStartDate =
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+            BillingCycleRelativeDate.StartOfTerm;
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment expectedAdjustment =
             new NewPercentageDiscount()
             {
@@ -10102,7 +10092,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
             };
         string expectedAdjustmentID = "h74gfhdjvn7ujokd";
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate expectedEndDate =
-            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+            BillingCycleRelativeDate.StartOfTerm;
 
         Assert.Equal(expectedStartDate, deserialized.StartDate);
         Assert.Equal(expectedAdjustment, deserialized.Adjustment);
@@ -10115,7 +10105,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             Adjustment = new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -10137,7 +10127,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         model.Validate();
@@ -10148,7 +10138,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Assert.Null(model.Adjustment);
@@ -10164,7 +10154,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         model.Validate();
@@ -10175,7 +10165,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             Adjustment = null,
             AdjustmentID = null,
@@ -10195,7 +10185,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             Adjustment = null,
             AdjustmentID = null,
@@ -10210,7 +10200,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
     {
         var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             Adjustment = new NewPercentageDiscount()
             {
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
@@ -10232,7 +10222,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment copied = new(model);
@@ -10659,7 +10649,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10673,16 +10663,14 @@ public class EditTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             UsageCustomerIds = ["string"],
         };
 
         string expectedPriceIntervalID = "sdfs6wdjvn7ujokd";
         long expectedBillingCycleDay = 0;
         bool expectedCanDeferBilling = true;
-        Subscriptions::EditEndDate expectedEndDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::EditEndDate expectedEndDate = BillingCycleRelativeDate.StartOfTerm;
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
         List<Subscriptions::EditFixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
         [
@@ -10696,9 +10684,7 @@ public class EditTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::EditStartDate expectedStartDate = BillingCycleRelativeDate.StartOfTerm;
         List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedPriceIntervalID, model.PriceIntervalID);
@@ -10743,7 +10729,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10757,7 +10743,7 @@ public class EditTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             UsageCustomerIds = ["string"],
         };
 
@@ -10778,7 +10764,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10792,7 +10778,7 @@ public class EditTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             UsageCustomerIds = ["string"],
         };
 
@@ -10806,9 +10792,7 @@ public class EditTest : TestBase
         string expectedPriceIntervalID = "sdfs6wdjvn7ujokd";
         long expectedBillingCycleDay = 0;
         bool expectedCanDeferBilling = true;
-        Subscriptions::EditEndDate expectedEndDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::EditEndDate expectedEndDate = BillingCycleRelativeDate.StartOfTerm;
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
         List<Subscriptions::EditFixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
         [
@@ -10822,9 +10806,7 @@ public class EditTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::EditStartDate expectedStartDate = BillingCycleRelativeDate.StartOfTerm;
         List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedPriceIntervalID, deserialized.PriceIntervalID);
@@ -10874,7 +10856,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10888,7 +10870,7 @@ public class EditTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             UsageCustomerIds = ["string"],
         };
 
@@ -10903,7 +10885,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10932,7 +10914,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10960,7 +10942,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -10992,7 +10974,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -11021,7 +11003,7 @@ public class EditTest : TestBase
         var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Assert.Null(model.BillingCycleDay);
@@ -11046,7 +11028,7 @@ public class EditTest : TestBase
         var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         model.Validate();
@@ -11058,7 +11040,7 @@ public class EditTest : TestBase
         var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             BillingCycleDay = null,
             CanDeferBilling = null,
@@ -11091,7 +11073,7 @@ public class EditTest : TestBase
         var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             BillingCycleDay = null,
             CanDeferBilling = null,
@@ -11113,7 +11095,7 @@ public class EditTest : TestBase
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
             CanDeferBilling = true,
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
             Filter = "my_property > 100 AND my_other_property = 'bar'",
             FixedFeeQuantityTransitions =
             [
@@ -11127,7 +11109,7 @@ public class EditTest : TestBase
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
             UsageCustomerIds = ["string"],
         };
 
@@ -11319,17 +11301,14 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         string expectedAdjustmentIntervalID = "sdfs6wdjvn7ujokd";
-        Subscriptions::EditAdjustmentEndDate expectedEndDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
-        Subscriptions::EditAdjustmentStartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::EditAdjustmentEndDate expectedEndDate = BillingCycleRelativeDate.StartOfTerm;
+        Subscriptions::EditAdjustmentStartDate expectedStartDate =
+            BillingCycleRelativeDate.StartOfTerm;
 
         Assert.Equal(expectedAdjustmentIntervalID, model.AdjustmentIntervalID);
         Assert.Equal(expectedEndDate, model.EndDate);
@@ -11342,8 +11321,8 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -11361,8 +11340,8 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -11373,12 +11352,9 @@ public class EditAdjustmentTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedAdjustmentIntervalID = "sdfs6wdjvn7ujokd";
-        Subscriptions::EditAdjustmentEndDate expectedEndDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
-        Subscriptions::EditAdjustmentStartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::EditAdjustmentEndDate expectedEndDate = BillingCycleRelativeDate.StartOfTerm;
+        Subscriptions::EditAdjustmentStartDate expectedStartDate =
+            BillingCycleRelativeDate.StartOfTerm;
 
         Assert.Equal(expectedAdjustmentIntervalID, deserialized.AdjustmentIntervalID);
         Assert.Equal(expectedEndDate, deserialized.EndDate);
@@ -11391,8 +11367,8 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         model.Validate();
@@ -11404,7 +11380,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Assert.Null(model.StartDate);
@@ -11417,7 +11393,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         model.Validate();
@@ -11429,7 +11405,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
 
             // Null should be interpreted as omitted for these properties
             StartDate = null,
@@ -11445,7 +11421,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
 
             // Null should be interpreted as omitted for these properties
             StartDate = null,
@@ -11460,7 +11436,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Assert.Null(model.EndDate);
@@ -11473,7 +11449,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         model.Validate();
@@ -11485,7 +11461,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             EndDate = null,
         };
@@ -11500,7 +11476,7 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
 
             EndDate = null,
         };
@@ -11514,8 +11490,8 @@ public class EditAdjustmentTest : TestBase
         var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
-            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EndDate = BillingCycleRelativeDate.StartOfTerm,
+            StartDate = BillingCycleRelativeDate.StartOfTerm,
         };
 
         Subscriptions::EditAdjustment copied = new(model);

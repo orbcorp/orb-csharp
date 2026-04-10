@@ -14,13 +14,14 @@ public class MigrationListResponseTest : TestBase
         var model = new MigrationListResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationListResponseStatus.NotStarted,
         };
 
         string expectedID = "id";
-        MigrationListResponseEffectiveTime expectedEffectiveTime = "2019-12-27";
+        MigrationListResponseEffectiveTime expectedEffectiveTime =
+            MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm;
         string expectedPlanID = "plan_id";
         ApiEnum<string, MigrationListResponseStatus> expectedStatus =
             MigrationListResponseStatus.NotStarted;
@@ -37,7 +38,7 @@ public class MigrationListResponseTest : TestBase
         var model = new MigrationListResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationListResponseStatus.NotStarted,
         };
@@ -57,7 +58,7 @@ public class MigrationListResponseTest : TestBase
         var model = new MigrationListResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationListResponseStatus.NotStarted,
         };
@@ -70,7 +71,8 @@ public class MigrationListResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
-        MigrationListResponseEffectiveTime expectedEffectiveTime = "2019-12-27";
+        MigrationListResponseEffectiveTime expectedEffectiveTime =
+            MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm;
         string expectedPlanID = "plan_id";
         ApiEnum<string, MigrationListResponseStatus> expectedStatus =
             MigrationListResponseStatus.NotStarted;
@@ -87,7 +89,7 @@ public class MigrationListResponseTest : TestBase
         var model = new MigrationListResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationListResponseStatus.NotStarted,
         };
@@ -101,7 +103,7 @@ public class MigrationListResponseTest : TestBase
         var model = new MigrationListResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationListResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationListResponseStatus.NotStarted,
         };
