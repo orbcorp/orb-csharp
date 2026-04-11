@@ -74,6 +74,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -192,6 +193,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -323,6 +325,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -449,6 +452,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -566,6 +570,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -684,6 +689,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -807,6 +813,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -933,6 +940,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1059,6 +1067,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1205,6 +1214,7 @@ public class PriceTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1322,6 +1332,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1458,6 +1469,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1581,6 +1593,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1699,6 +1712,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -1823,6 +1837,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -1943,6 +1958,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2067,6 +2083,7 @@ public class PriceTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2190,6 +2207,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2313,6 +2331,7 @@ public class PriceTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2445,6 +2464,7 @@ public class PriceTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2569,6 +2589,7 @@ public class PriceTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2686,6 +2707,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -2826,6 +2848,7 @@ public class PriceTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -2943,6 +2966,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -3070,6 +3094,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3204,6 +3229,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3353,6 +3379,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3477,6 +3504,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3594,6 +3622,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3712,6 +3741,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3836,6 +3866,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -3953,6 +3984,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4074,6 +4106,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4208,6 +4241,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4337,6 +4371,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4457,6 +4492,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4578,6 +4614,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -4704,6 +4741,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4833,6 +4871,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -4962,6 +5001,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5111,6 +5151,7 @@ public class PriceTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5231,6 +5272,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5370,6 +5412,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5496,6 +5539,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5617,6 +5661,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -5744,6 +5789,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5867,6 +5913,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -5994,6 +6041,7 @@ public class PriceTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -6120,6 +6168,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -6246,6 +6295,7 @@ public class PriceTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -6381,6 +6431,7 @@ public class PriceTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -6508,6 +6559,7 @@ public class PriceTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -6628,6 +6680,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -6771,6 +6824,7 @@ public class PriceTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -6891,6 +6945,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -7021,6 +7076,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7158,6 +7214,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7310,6 +7367,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7437,6 +7495,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7557,6 +7616,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7678,6 +7738,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7805,6 +7866,7 @@ public class PriceTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -7928,6 +7990,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -8043,6 +8106,7 @@ public class UnitTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -8117,6 +8181,7 @@ public class UnitTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -8205,6 +8270,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -8327,6 +8393,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -8446,6 +8513,7 @@ public class UnitTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -8520,6 +8588,7 @@ public class UnitTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -8611,6 +8680,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -8730,6 +8800,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -8841,6 +8912,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -8949,6 +9021,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -9063,6 +9136,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -9174,6 +9248,7 @@ public class UnitTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -9881,6 +9956,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -10009,6 +10085,7 @@ public class TieredTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -10095,6 +10172,7 @@ public class TieredTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -10183,6 +10261,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -10317,6 +10396,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -10449,6 +10529,7 @@ public class TieredTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -10535,6 +10616,7 @@ public class TieredTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -10626,6 +10708,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -10757,6 +10840,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -10880,6 +10964,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -11000,6 +11085,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -11126,6 +11212,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -11249,6 +11336,7 @@ public class TieredTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -11967,6 +12055,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -12084,6 +12173,7 @@ public class BulkTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -12158,6 +12248,7 @@ public class BulkTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -12246,6 +12337,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -12368,6 +12460,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -12489,6 +12582,7 @@ public class BulkTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -12563,6 +12657,7 @@ public class BulkTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -12654,6 +12749,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -12773,6 +12869,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -12884,6 +12981,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -12992,6 +13090,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -13106,6 +13205,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -13217,6 +13317,7 @@ public class BulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -13930,6 +14031,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -14055,6 +14157,7 @@ public class BulkWithFiltersTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -14130,6 +14233,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -14226,6 +14330,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -14359,6 +14464,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -14491,6 +14597,7 @@ public class BulkWithFiltersTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -14566,6 +14673,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -14665,6 +14773,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -14792,6 +14901,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -14911,6 +15021,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -15027,6 +15138,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -15149,6 +15261,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -15268,6 +15381,7 @@ public class BulkWithFiltersTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -16300,6 +16414,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -16416,6 +16531,7 @@ public class PackageTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -16494,6 +16610,7 @@ public class PackageTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -16582,6 +16699,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -16704,6 +16822,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -16827,6 +16946,7 @@ public class PackageTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -16905,6 +17025,7 @@ public class PackageTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -16996,6 +17117,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -17115,6 +17237,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -17226,6 +17349,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -17334,6 +17458,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -17448,6 +17573,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -17559,6 +17685,7 @@ public class PackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -18262,6 +18389,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -18383,6 +18511,7 @@ public class MatrixTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -18462,6 +18591,7 @@ public class MatrixTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMatrixConfig, model.MatrixConfig);
@@ -18550,6 +18680,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -18677,6 +18808,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -18802,6 +18934,7 @@ public class MatrixTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -18881,6 +19014,7 @@ public class MatrixTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMatrixConfig, deserialized.MatrixConfig);
@@ -18972,6 +19106,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -19096,6 +19231,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -19212,6 +19348,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -19325,6 +19462,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -19444,6 +19582,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -19560,6 +19699,7 @@ public class MatrixTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixConfig = new()
@@ -20270,6 +20410,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -20396,6 +20537,7 @@ public class ThresholdTotalAmountTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -20479,6 +20621,7 @@ public class ThresholdTotalAmountTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -20567,6 +20710,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -20700,6 +20844,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -20833,6 +20978,7 @@ public class ThresholdTotalAmountTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -20916,6 +21062,7 @@ public class ThresholdTotalAmountTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -21007,6 +21154,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -21134,6 +21282,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -21253,6 +21402,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -21369,6 +21519,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -21491,6 +21642,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -21610,6 +21762,7 @@ public class ThresholdTotalAmountTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -22595,6 +22748,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -22720,6 +22874,7 @@ public class TieredPackageTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -22803,6 +22958,7 @@ public class TieredPackageTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -22891,6 +23047,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23024,6 +23181,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23156,6 +23314,7 @@ public class TieredPackageTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -23239,6 +23398,7 @@ public class TieredPackageTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -23330,6 +23490,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23457,6 +23618,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23576,6 +23738,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23692,6 +23855,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23814,6 +23978,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -23933,6 +24098,7 @@ public class TieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -24850,6 +25016,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -24987,6 +25154,7 @@ public class TieredWithMinimumTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -25081,6 +25249,7 @@ public class TieredWithMinimumTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -25169,6 +25338,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -25313,6 +25483,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -25457,6 +25628,7 @@ public class TieredWithMinimumTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -25551,6 +25723,7 @@ public class TieredWithMinimumTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -25642,6 +25815,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -25780,6 +25954,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -25910,6 +26085,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -26037,6 +26213,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -26170,6 +26347,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -26300,6 +26478,7 @@ public class TieredWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -27437,6 +27616,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -27562,6 +27742,7 @@ public class GroupedTieredTest : TestBase
                 new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             ],
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -27637,6 +27818,7 @@ public class GroupedTieredTest : TestBase
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedGroupedTieredConfig, model.GroupedTieredConfig);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -27733,6 +27915,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -27866,6 +28049,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -27998,6 +28182,7 @@ public class GroupedTieredTest : TestBase
                 new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             ],
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -28073,6 +28258,7 @@ public class GroupedTieredTest : TestBase
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedGroupedTieredConfig, deserialized.GroupedTieredConfig);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -28172,6 +28358,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -28299,6 +28486,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -28418,6 +28606,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -28534,6 +28723,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -28656,6 +28846,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -28775,6 +28966,7 @@ public class GroupedTieredTest : TestBase
                     new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -29683,6 +29875,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -29819,6 +30012,7 @@ public class TieredPackageWithMinimumTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -29915,6 +30109,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -30003,6 +30198,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -30146,6 +30342,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -30289,6 +30486,7 @@ public class TieredPackageWithMinimumTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -30385,6 +30583,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -30479,6 +30678,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -30616,6 +30816,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -30745,6 +30946,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -30871,6 +31073,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -31003,6 +31206,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -31132,6 +31336,7 @@ public class TieredPackageWithMinimumTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -32138,6 +32343,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -32261,6 +32467,7 @@ public class PackageWithAllocationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -32343,6 +32550,7 @@ public class PackageWithAllocationTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -32431,6 +32639,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -32561,6 +32770,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -32691,6 +32901,7 @@ public class PackageWithAllocationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -32773,6 +32984,7 @@ public class PackageWithAllocationTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -32864,6 +33076,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -32988,6 +33201,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -33104,6 +33318,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -33217,6 +33432,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -33336,6 +33552,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -33452,6 +33669,7 @@ public class PackageWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -34253,6 +34471,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -34370,6 +34589,7 @@ public class UnitWithPercentTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -34449,6 +34669,7 @@ public class UnitWithPercentTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -34537,6 +34758,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -34662,6 +34884,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -34786,6 +35009,7 @@ public class UnitWithPercentTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -34865,6 +35089,7 @@ public class UnitWithPercentTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -34956,6 +35181,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -35075,6 +35301,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -35186,6 +35413,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -35294,6 +35522,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -35408,6 +35637,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -35519,6 +35749,7 @@ public class UnitWithPercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -36306,6 +36537,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -36430,6 +36662,7 @@ public class MatrixWithAllocationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -36511,6 +36744,7 @@ public class MatrixWithAllocationTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMatrixWithAllocationConfig, model.MatrixWithAllocationConfig);
@@ -36599,6 +36833,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -36730,6 +36965,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -36861,6 +37097,7 @@ public class MatrixWithAllocationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -36942,6 +37179,7 @@ public class MatrixWithAllocationTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMatrixWithAllocationConfig, deserialized.MatrixWithAllocationConfig);
@@ -37033,6 +37271,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -37158,6 +37397,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -37275,6 +37515,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -37389,6 +37630,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -37509,6 +37751,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -37626,6 +37869,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithAllocationConfig = new()
@@ -38331,6 +38575,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -38451,6 +38696,7 @@ public class TieredWithProrationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -38528,6 +38774,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -38616,6 +38863,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -38743,6 +38991,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -38870,6 +39119,7 @@ public class TieredWithProrationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -38947,6 +39197,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -39038,6 +39289,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -39159,6 +39411,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -39272,6 +39525,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -39382,6 +39636,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -39498,6 +39753,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -39611,6 +39867,7 @@ public class TieredWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -40491,6 +40748,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -40609,6 +40867,7 @@ public class UnitWithProrationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -40686,6 +40945,7 @@ public class UnitWithProrationTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -40774,6 +41034,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -40899,6 +41160,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -41024,6 +41286,7 @@ public class UnitWithProrationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -41101,6 +41364,7 @@ public class UnitWithProrationTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -41192,6 +41456,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -41311,6 +41576,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -41422,6 +41688,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -41530,6 +41797,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -41644,6 +41912,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -41755,6 +42024,7 @@ public class UnitWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -42522,6 +42792,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -42645,6 +42916,7 @@ public class GroupedAllocationTest : TestBase
             GroupingKey = "x",
             OverageUnitRate = "overage_unit_rate",
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -42720,6 +42992,7 @@ public class GroupedAllocationTest : TestBase
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedGroupedAllocationConfig, model.GroupedAllocationConfig);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -42813,6 +43086,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -42943,6 +43217,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -43073,6 +43348,7 @@ public class GroupedAllocationTest : TestBase
             GroupingKey = "x",
             OverageUnitRate = "overage_unit_rate",
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -43148,6 +43424,7 @@ public class GroupedAllocationTest : TestBase
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedGroupedAllocationConfig, deserialized.GroupedAllocationConfig);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -43244,6 +43521,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -43368,6 +43646,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -43484,6 +43763,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -43597,6 +43877,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -43716,6 +43997,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -43832,6 +44114,7 @@ public class GroupedAllocationTest : TestBase
                 GroupingKey = "x",
                 OverageUnitRate = "overage_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -44631,6 +44914,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -44754,6 +45038,7 @@ public class BulkWithProrationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -44829,6 +45114,7 @@ public class BulkWithProrationTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -44922,6 +45208,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45052,6 +45339,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45182,6 +45470,7 @@ public class BulkWithProrationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -45257,6 +45546,7 @@ public class BulkWithProrationTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -45353,6 +45643,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45477,6 +45768,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45593,6 +45885,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45706,6 +45999,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45825,6 +46119,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -45941,6 +46236,7 @@ public class BulkWithProrationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -46888,6 +47184,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -47012,6 +47309,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -47092,6 +47390,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             expectedGroupedWithProratedMinimumConfig,
             model.GroupedWithProratedMinimumConfig
         );
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -47185,6 +47484,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -47315,6 +47615,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -47446,6 +47747,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -47526,6 +47828,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             expectedGroupedWithProratedMinimumConfig,
             deserialized.GroupedWithProratedMinimumConfig
         );
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -47622,6 +47925,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -47746,6 +48050,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -47862,6 +48167,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -47975,6 +48281,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -48094,6 +48401,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -48210,6 +48518,7 @@ public class GroupedWithProratedMinimumTest : TestBase
                 Minimum = "minimum",
                 UnitRate = "unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -49022,6 +49331,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -49155,6 +49465,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -49235,6 +49546,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             expectedGroupedWithMeteredMinimumConfig,
             model.GroupedWithMeteredMinimumConfig
         );
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -49337,6 +49649,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -49476,6 +49789,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -49616,6 +49930,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -49696,6 +50011,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             expectedGroupedWithMeteredMinimumConfig,
             deserialized.GroupedWithMeteredMinimumConfig
         );
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -49801,6 +50117,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -49934,6 +50251,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -50059,6 +50377,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -50181,6 +50500,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -50309,6 +50629,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -50434,6 +50755,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
                     new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -51484,6 +51806,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -51608,6 +51931,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             MinimumCharge = "minimum_charge",
             PerUnitRate = "per_unit_rate",
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -51688,6 +52012,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             expectedGroupedWithMinMaxThresholdsConfig,
             model.GroupedWithMinMaxThresholdsConfig
         );
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -51782,6 +52107,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -51913,6 +52239,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -52044,6 +52371,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             MinimumCharge = "minimum_charge",
             PerUnitRate = "per_unit_rate",
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -52124,6 +52452,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             expectedGroupedWithMinMaxThresholdsConfig,
             deserialized.GroupedWithMinMaxThresholdsConfig
         );
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -52221,6 +52550,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -52346,6 +52676,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -52463,6 +52794,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -52577,6 +52909,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -52697,6 +53030,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -52814,6 +53148,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 MinimumCharge = "minimum_charge",
                 PerUnitRate = "per_unit_rate",
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -53618,6 +53953,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -53748,6 +54084,7 @@ public class MatrixWithDisplayNameTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -53837,6 +54174,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMatrixWithDisplayNameConfig, model.MatrixWithDisplayNameConfig);
@@ -53925,6 +54263,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -54062,6 +54401,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -54199,6 +54539,7 @@ public class MatrixWithDisplayNameTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -54288,6 +54629,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMatrixWithDisplayNameConfig, deserialized.MatrixWithDisplayNameConfig);
@@ -54379,6 +54721,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -54510,6 +54853,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -54633,6 +54977,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -54753,6 +55098,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -54879,6 +55225,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -55002,6 +55349,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MatrixWithDisplayNameConfig = new()
@@ -55972,6 +56320,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -56099,6 +56448,7 @@ public class GroupedTieredPackageTest : TestBase
                 new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             ],
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -56174,6 +56524,7 @@ public class GroupedTieredPackageTest : TestBase
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedGroupedTieredPackageConfig, model.GroupedTieredPackageConfig);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -56271,6 +56622,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -56405,6 +56757,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -56539,6 +56892,7 @@ public class GroupedTieredPackageTest : TestBase
                 new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             ],
         };
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -56614,6 +56968,7 @@ public class GroupedTieredPackageTest : TestBase
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedGroupedTieredPackageConfig, deserialized.GroupedTieredPackageConfig);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -56714,6 +57069,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -56842,6 +57198,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -56962,6 +57319,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -57079,6 +57437,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -57202,6 +57561,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -57322,6 +57682,7 @@ public class GroupedTieredPackageTest : TestBase
                     new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
                 ],
             },
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -58241,6 +58602,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -58368,6 +58730,7 @@ public class MaxGroupTieredPackageTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -58454,6 +58817,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaxGroupTieredPackageConfig, model.MaxGroupTieredPackageConfig);
@@ -58542,6 +58906,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -58676,6 +59041,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -58810,6 +59176,7 @@ public class MaxGroupTieredPackageTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -58896,6 +59263,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaxGroupTieredPackageConfig, deserialized.MaxGroupTieredPackageConfig);
@@ -58987,6 +59355,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -59115,6 +59484,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -59235,6 +59605,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -59352,6 +59723,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -59475,6 +59847,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -59595,6 +59968,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             MaxGroupTieredPackageConfig = new()
@@ -60524,6 +60898,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -60658,6 +61033,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -60752,6 +61128,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -60843,6 +61220,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -60984,6 +61362,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -61125,6 +61504,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -61219,6 +61599,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -61313,6 +61694,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -61448,6 +61830,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -61575,6 +61958,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -61699,6 +62083,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -61829,6 +62214,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -61956,6 +62342,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -63129,6 +63516,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -63265,6 +63653,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -63361,6 +63750,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -63452,6 +63842,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -63595,6 +63986,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -63738,6 +64130,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -63834,6 +64227,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -63928,6 +64322,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -64065,6 +64460,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -64194,6 +64590,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -64320,6 +64717,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -64452,6 +64850,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -64581,6 +64980,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -65885,6 +66285,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -66015,6 +66416,7 @@ public class CumulativeGroupedBulkTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -66092,6 +66494,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -66192,6 +66595,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -66329,6 +66733,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -66466,6 +66871,7 @@ public class CumulativeGroupedBulkTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -66543,6 +66949,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -66646,6 +67053,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -66777,6 +67185,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -66900,6 +67309,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -67020,6 +67430,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -67146,6 +67557,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -67269,6 +67681,7 @@ public class CumulativeGroupedBulkTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -68223,6 +68636,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -68347,6 +68761,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -68427,6 +68842,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -68521,6 +68937,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -68652,6 +69069,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -68783,6 +69201,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -68863,6 +69282,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -68960,6 +69380,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -69085,6 +69506,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -69202,6 +69624,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -69316,6 +69739,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -69436,6 +69860,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -69553,6 +69978,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -70357,6 +70783,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -70474,6 +70901,7 @@ public class MinimumCompositeTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -70553,6 +70981,7 @@ public class MinimumCompositeTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -70641,6 +71070,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -70766,6 +71196,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -70890,6 +71321,7 @@ public class MinimumCompositeTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -70969,6 +71401,7 @@ public class MinimumCompositeTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -71060,6 +71493,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -71179,6 +71613,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -71290,6 +71725,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -71398,6 +71834,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -71512,6 +71949,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -71623,6 +72061,7 @@ public class MinimumCompositeTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -72456,6 +72895,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -72572,6 +73012,7 @@ public class PercentTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -72646,6 +73087,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedDiscount, model.Discount);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -72734,6 +73176,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -72856,6 +73299,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -72979,6 +73423,7 @@ public class PercentTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -73053,6 +73498,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedDiscount, deserialized.Discount);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -73144,6 +73590,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -73263,6 +73710,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -73374,6 +73822,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -73482,6 +73931,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -73596,6 +74046,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -73707,6 +74158,7 @@ public class PercentTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -74478,6 +74930,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -74600,6 +75053,7 @@ public class EventOutputTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -74674,6 +75128,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedEventOutputConfig, model.EventOutputConfig);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, model.Item);
         Assert.Equal(expectedMaximum, model.Maximum);
@@ -74767,6 +75222,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -74897,6 +75353,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -75026,6 +75483,7 @@ public class EventOutputTest : TestBase
         };
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
         BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
@@ -75100,6 +75558,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedEventOutputConfig, deserialized.EventOutputConfig);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
         Assert.Equal(expectedItem, deserialized.Item);
         Assert.Equal(expectedMaximum, deserialized.Maximum);
@@ -75196,6 +75655,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -75320,6 +75780,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -75436,6 +75897,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -75549,6 +76011,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -75668,6 +76131,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
@@ -75784,6 +76248,7 @@ public class EventOutputTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()

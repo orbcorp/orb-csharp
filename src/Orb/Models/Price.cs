@@ -439,6 +439,46 @@ public record class Price : ModelBase
         }
     }
 
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            return Match<string?>(
+                unit: (x) => x.InvoiceGroupingKey,
+                tiered: (x) => x.InvoiceGroupingKey,
+                bulk: (x) => x.InvoiceGroupingKey,
+                bulkWithFilters: (x) => x.InvoiceGroupingKey,
+                package: (x) => x.InvoiceGroupingKey,
+                matrix: (x) => x.InvoiceGroupingKey,
+                thresholdTotalAmount: (x) => x.InvoiceGroupingKey,
+                tieredPackage: (x) => x.InvoiceGroupingKey,
+                tieredWithMinimum: (x) => x.InvoiceGroupingKey,
+                groupedTiered: (x) => x.InvoiceGroupingKey,
+                tieredPackageWithMinimum: (x) => x.InvoiceGroupingKey,
+                packageWithAllocation: (x) => x.InvoiceGroupingKey,
+                unitWithPercent: (x) => x.InvoiceGroupingKey,
+                matrixWithAllocation: (x) => x.InvoiceGroupingKey,
+                tieredWithProration: (x) => x.InvoiceGroupingKey,
+                unitWithProration: (x) => x.InvoiceGroupingKey,
+                groupedAllocation: (x) => x.InvoiceGroupingKey,
+                bulkWithProration: (x) => x.InvoiceGroupingKey,
+                groupedWithProratedMinimum: (x) => x.InvoiceGroupingKey,
+                groupedWithMeteredMinimum: (x) => x.InvoiceGroupingKey,
+                groupedWithMinMaxThresholds: (x) => x.InvoiceGroupingKey,
+                matrixWithDisplayName: (x) => x.InvoiceGroupingKey,
+                groupedTieredPackage: (x) => x.InvoiceGroupingKey,
+                maxGroupTieredPackage: (x) => x.InvoiceGroupingKey,
+                scalableMatrixWithUnitPricing: (x) => x.InvoiceGroupingKey,
+                scalableMatrixWithTieredPricing: (x) => x.InvoiceGroupingKey,
+                cumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
+                cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
+                minimumComposite: (x) => x.InvoiceGroupingKey,
+                percent: (x) => x.InvoiceGroupingKey,
+                eventOutput: (x) => x.InvoiceGroupingKey
+            );
+        }
+    }
+
     public BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -2991,6 +3031,16 @@ public sealed record class Unit : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -3199,6 +3249,7 @@ public sealed record class Unit : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -4161,6 +4212,16 @@ public sealed record class Tiered : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -4369,6 +4430,7 @@ public sealed record class Tiered : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -5348,6 +5410,16 @@ public sealed record class Bulk : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -5544,6 +5616,7 @@ public sealed record class Bulk : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -6523,6 +6596,16 @@ public sealed record class BulkWithFilters : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -6721,6 +6804,7 @@ public sealed record class BulkWithFilters : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -7966,6 +8050,16 @@ public sealed record class Package : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -8174,6 +8268,7 @@ public sealed record class Package : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -9142,6 +9237,16 @@ public sealed record class Matrix : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -9350,6 +9455,7 @@ public sealed record class Matrix : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.MatrixConfig.Validate();
@@ -10320,6 +10426,16 @@ public sealed record class ThresholdTotalAmount : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -10532,6 +10648,7 @@ public sealed record class ThresholdTotalAmount : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -11720,6 +11837,16 @@ public sealed record class TieredPackage : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -11932,6 +12059,7 @@ public sealed record class TieredPackage : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -13093,6 +13221,16 @@ public sealed record class TieredWithMinimum : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -13305,6 +13443,7 @@ public sealed record class TieredWithMinimum : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -14538,6 +14677,16 @@ public sealed record class GroupedTiered : JsonModel
         init { this._rawData.Set("grouped_tiered_config", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -14736,6 +14885,7 @@ public sealed record class GroupedTiered : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         this.GroupedTieredConfig.Validate();
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -15898,6 +16048,16 @@ public sealed record class TieredPackageWithMinimum : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -16112,6 +16272,7 @@ public sealed record class TieredPackageWithMinimum : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -17302,6 +17463,16 @@ public sealed record class PackageWithAllocation : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -17514,6 +17685,7 @@ public sealed record class PackageWithAllocation : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -18602,6 +18774,16 @@ public sealed record class UnitWithPercent : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -18814,6 +18996,7 @@ public sealed record class UnitWithPercent : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -19883,6 +20066,16 @@ public sealed record class MatrixWithAllocation : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -20095,6 +20288,7 @@ public sealed record class MatrixWithAllocation : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.MatrixWithAllocationConfig.Validate();
@@ -21091,6 +21285,16 @@ public sealed record class TieredWithProration : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -21303,6 +21507,7 @@ public sealed record class TieredWithProration : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -22476,6 +22681,16 @@ public sealed record class UnitWithProration : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -22688,6 +22903,7 @@ public sealed record class UnitWithProration : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -23770,6 +23986,16 @@ public sealed record class GroupedAllocation : JsonModel
         init { this._rawData.Set("grouped_allocation_config", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -23968,6 +24194,7 @@ public sealed record class GroupedAllocation : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         this.GroupedAllocationConfig.Validate();
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -25070,6 +25297,16 @@ public sealed record class BulkWithProration : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -25268,6 +25505,7 @@ public sealed record class BulkWithProration : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -26458,6 +26696,16 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
         init { this._rawData.Set("grouped_with_prorated_minimum_config", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -26658,6 +26906,7 @@ public sealed record class GroupedWithProratedMinimum : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         this.GroupedWithProratedMinimumConfig.Validate();
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -27777,6 +28026,16 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
         init { this._rawData.Set("grouped_with_metered_minimum_config", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -27977,6 +28236,7 @@ public sealed record class GroupedWithMeteredMinimum : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         this.GroupedWithMeteredMinimumConfig.Validate();
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -29337,6 +29597,16 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         init { this._rawData.Set("grouped_with_min_max_thresholds_config", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -29537,6 +29807,7 @@ public sealed record class GroupedWithMinMaxThresholds : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         this.GroupedWithMinMaxThresholdsConfig.Validate();
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -30651,6 +30922,16 @@ public sealed record class MatrixWithDisplayName : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -30863,6 +31144,7 @@ public sealed record class MatrixWithDisplayName : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.MatrixWithDisplayNameConfig.Validate();
@@ -32074,6 +32356,16 @@ public sealed record class GroupedTieredPackage : JsonModel
         init { this._rawData.Set("grouped_tiered_package_config", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -32272,6 +32564,7 @@ public sealed record class GroupedTieredPackage : JsonModel
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
         this.GroupedTieredPackageConfig.Validate();
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -33463,6 +33756,16 @@ public sealed record class MaxGroupTieredPackage : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -33675,6 +33978,7 @@ public sealed record class MaxGroupTieredPackage : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.MaxGroupTieredPackageConfig.Validate();
@@ -34868,6 +35172,16 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -35082,6 +35396,7 @@ public sealed record class ScalableMatrixWithUnitPricing : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -36350,6 +36665,16 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -36564,6 +36889,7 @@ public sealed record class ScalableMatrixWithTieredPricing : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -37915,6 +38241,16 @@ public sealed record class CumulativeGroupedBulk : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -38113,6 +38449,7 @@ public sealed record class CumulativeGroupedBulk : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -39323,6 +39660,16 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -39523,6 +39870,7 @@ public sealed record class CumulativeGroupedAllocation : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -40637,6 +40985,16 @@ public sealed record class MinimumComposite : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -40849,6 +41207,7 @@ public sealed record class MinimumComposite : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -41934,6 +42293,16 @@ public sealed record class Percent : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -42142,6 +42511,7 @@ public sealed record class Percent : JsonModel
         this.Discount?.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
@@ -43190,6 +43560,16 @@ public sealed record class EventOutput : JsonModel
         init { this._rawData.Set("fixed_price_quantity", value); }
     }
 
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
     public required BillingCycleConfiguration? InvoicingCycleConfiguration
     {
         get
@@ -43388,6 +43768,7 @@ public sealed record class EventOutput : JsonModel
         this.EventOutputConfig.Validate();
         _ = this.ExternalPriceID;
         _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
         this.Item.Validate();
         this.Maximum?.Validate();
