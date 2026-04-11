@@ -89,6 +89,7 @@ public class CostListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -232,6 +233,7 @@ public class CostListByExternalIDResponseTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -386,6 +388,7 @@ public class CostListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -543,6 +546,7 @@ public class CostListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -693,6 +697,7 @@ public class CostListByExternalIDResponseTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -847,6 +852,7 @@ public class CostListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -998,6 +1004,7 @@ public class CostListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
