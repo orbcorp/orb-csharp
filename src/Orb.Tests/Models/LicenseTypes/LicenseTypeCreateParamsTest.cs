@@ -8,14 +8,10 @@ public class LicenseTypeCreateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new LicenseTypeCreateParams
-        {
-            GroupingKey = "grouping_key",
-            Name = "name",
-        };
+        var parameters = new LicenseTypeCreateParams { GroupingKey = "x", Name = "x" };
 
-        string expectedGroupingKey = "grouping_key";
-        string expectedName = "name";
+        string expectedGroupingKey = "x";
+        string expectedName = "x";
 
         Assert.Equal(expectedGroupingKey, parameters.GroupingKey);
         Assert.Equal(expectedName, parameters.Name);
@@ -24,7 +20,7 @@ public class LicenseTypeCreateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        LicenseTypeCreateParams parameters = new() { GroupingKey = "grouping_key", Name = "name" };
+        LicenseTypeCreateParams parameters = new() { GroupingKey = "x", Name = "x" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
@@ -34,11 +30,7 @@ public class LicenseTypeCreateParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new LicenseTypeCreateParams
-        {
-            GroupingKey = "grouping_key",
-            Name = "name",
-        };
+        var parameters = new LicenseTypeCreateParams { GroupingKey = "x", Name = "x" };
 
         LicenseTypeCreateParams copied = new(parameters);
 
