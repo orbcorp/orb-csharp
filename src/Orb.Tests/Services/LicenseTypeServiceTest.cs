@@ -8,7 +8,7 @@ public class LicenseTypeServiceTest : TestBase
     public async Task Create_Works()
     {
         var licenseType = await this.client.LicenseTypes.Create(
-            new() { GroupingKey = "grouping_key", Name = "name" },
+            new() { GroupingKey = "x", Name = "x" },
             TestContext.Current.CancellationToken
         );
         licenseType.Validate();
