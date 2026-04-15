@@ -36,11 +36,13 @@ public class LicenseRetrieveByExternalIDParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/licenses/external_license_id/external_license_id?license_type_id=license_type_id&subscription_id=subscription_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/licenses/external_license_id/external_license_id?license_type_id=license_type_id&subscription_id=subscription_id"
+                ),
+                url
+            )
         );
     }
 

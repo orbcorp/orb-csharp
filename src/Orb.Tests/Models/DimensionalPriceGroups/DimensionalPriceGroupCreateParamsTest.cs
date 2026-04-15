@@ -92,7 +92,9 @@ public class DimensionalPriceGroupCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/dimensional_price_groups"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/dimensional_price_groups"), url)
+        );
     }
 
     [Fact]

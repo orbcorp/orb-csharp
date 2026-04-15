@@ -127,11 +127,13 @@ public class LedgerCreateEntryByExternalIDParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/ledger_entry"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/ledger_entry"
+                ),
+                url
+            )
         );
     }
 

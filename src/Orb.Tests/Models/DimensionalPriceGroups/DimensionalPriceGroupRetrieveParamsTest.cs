@@ -28,11 +28,13 @@ public class DimensionalPriceGroupRetrieveParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/dimensional_price_groups/dimensional_price_group_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/dimensional_price_groups/dimensional_price_group_id"
+                ),
+                url
+            )
         );
     }
 

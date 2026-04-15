@@ -140,11 +140,13 @@ public class UsageGetAllUsageParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/licenses/usage?license_type_id=license_type_id&subscription_id=subscription_id&cursor=cursor&end_date=2019-12-27&group_by%5b%5d=string&limit=1&start_date=2019-12-27"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/licenses/usage?license_type_id=license_type_id&subscription_id=subscription_id&cursor=cursor&end_date=2019-12-27&group_by%5b%5d=string&limit=1&start_date=2019-12-27"
+                ),
+                url
+            )
         );
     }
 

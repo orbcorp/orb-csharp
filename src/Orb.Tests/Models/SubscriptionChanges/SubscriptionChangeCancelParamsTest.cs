@@ -28,11 +28,13 @@ public class SubscriptionChangeCancelParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/subscription_changes/subscription_change_id/cancel"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscription_changes/subscription_change_id/cancel"
+                ),
+                url
+            )
         );
     }
 

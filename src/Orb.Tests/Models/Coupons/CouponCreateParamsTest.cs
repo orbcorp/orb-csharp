@@ -73,7 +73,7 @@ public class CouponCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/coupons"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/coupons"), url));
     }
 
     [Fact]

@@ -146,10 +146,10 @@ public class AlertListParamsTest : TestBase
     {
         AlertListParams parameters = new()
         {
-            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
             Cursor = "cursor",
             CustomerID = "customer_id",
             ExternalCustomerID = "external_customer_id",
@@ -159,11 +159,13 @@ public class AlertListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/alerts?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&cursor=cursor&customer_id=customer_id&external_customer_id=external_customer_id&limit=1&subscription_id=subscription_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/alerts?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&cursor=cursor&customer_id=customer_id&external_customer_id=external_customer_id&limit=1&subscription_id=subscription_id"
+                ),
+                url
+            )
         );
     }
 

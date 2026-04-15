@@ -28,11 +28,13 @@ public class CustomerSyncPaymentMethodsFromGatewayParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/customer_id/sync_payment_methods_from_gateway"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/customer_id/sync_payment_methods_from_gateway"
+                ),
+                url
+            )
         );
     }
 

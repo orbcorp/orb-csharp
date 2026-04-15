@@ -123,9 +123,11 @@ public class LedgerCreateEntryParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/customers/customer_id/credits/ledger_entry"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/customers/customer_id/credits/ledger_entry"),
+                url
+            )
         );
     }
 

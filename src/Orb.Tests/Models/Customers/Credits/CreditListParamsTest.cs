@@ -149,21 +149,23 @@ public class CreditListParamsTest : TestBase
             CustomerID = "customer_id",
             Currency = "currency",
             Cursor = "cursor",
-            EffectiveDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EffectiveDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EffectiveDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EffectiveDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            EffectiveDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            EffectiveDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            EffectiveDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            EffectiveDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
             IncludeAllBlocks = true,
             Limit = 1,
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/customer_id/credits?currency=currency&cursor=cursor&effective_date%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&effective_date%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&effective_date%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&effective_date%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&include_all_blocks=true&limit=1"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/customer_id/credits?currency=currency&cursor=cursor&effective_date%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&effective_date%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&effective_date%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&effective_date%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&include_all_blocks=true&limit=1"
+                ),
+                url
+            )
         );
     }
 

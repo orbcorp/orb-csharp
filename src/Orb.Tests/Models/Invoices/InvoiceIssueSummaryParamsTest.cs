@@ -52,7 +52,12 @@ public class InvoiceIssueSummaryParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/summary/invoice_id/issue"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/invoices/summary/invoice_id/issue"),
+                url
+            )
+        );
     }
 
     [Fact]

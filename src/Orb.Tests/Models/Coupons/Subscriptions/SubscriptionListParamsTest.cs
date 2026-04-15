@@ -85,11 +85,13 @@ public class SubscriptionListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/coupons/coupon_id/subscriptions?cursor=cursor&limit=1"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/coupons/coupon_id/subscriptions?cursor=cursor&limit=1"
+                ),
+                url
+            )
         );
     }
 
