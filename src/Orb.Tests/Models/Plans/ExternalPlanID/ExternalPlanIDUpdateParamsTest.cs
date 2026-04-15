@@ -70,9 +70,11 @@ public class ExternalPlanIDUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id"),
+                url
+            )
         );
     }
 

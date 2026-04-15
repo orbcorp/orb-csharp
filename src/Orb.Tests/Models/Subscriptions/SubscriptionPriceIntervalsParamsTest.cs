@@ -755,9 +755,11 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/price_intervals"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/price_intervals"),
+                url
+            )
         );
     }
 

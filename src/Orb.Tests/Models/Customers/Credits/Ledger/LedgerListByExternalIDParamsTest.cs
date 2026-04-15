@@ -172,10 +172,10 @@ public class LedgerListByExternalIDParamsTest : TestBase
         LedgerListByExternalIDParams parameters = new()
         {
             ExternalCustomerID = "external_customer_id",
-            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
             Currency = "currency",
             Cursor = "cursor",
             EntryStatus = LedgerListByExternalIDParamsEntryStatus.Committed,
@@ -186,11 +186,13 @@ public class LedgerListByExternalIDParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/ledger?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&currency=currency&cursor=cursor&entry_status=committed&entry_type=increment&limit=1&minimum_amount=minimum_amount"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/ledger?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&currency=currency&cursor=cursor&entry_status=committed&entry_type=increment&limit=1&minimum_amount=minimum_amount"
+                ),
+                url
+            )
         );
     }
 

@@ -24,7 +24,12 @@ public class BetaSetDefaultPlanVersionParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id/set_default_version"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/plans/plan_id/set_default_version"),
+                url
+            )
+        );
     }
 
     [Fact]

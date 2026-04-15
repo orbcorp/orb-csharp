@@ -337,7 +337,7 @@ public class InvoiceCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/invoices"), url));
     }
 
     [Fact]

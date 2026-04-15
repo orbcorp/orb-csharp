@@ -137,11 +137,13 @@ public class TopUpCreateByExternalIDParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/top_ups"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/top_ups"
+                ),
+                url
+            )
         );
     }
 

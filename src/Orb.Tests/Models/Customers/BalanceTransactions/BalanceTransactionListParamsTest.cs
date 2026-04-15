@@ -125,19 +125,21 @@ public class BalanceTransactionListParamsTest : TestBase
             CustomerID = "customer_id",
             Cursor = "cursor",
             Limit = 1,
-            OperationTimeGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            OperationTimeGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            OperationTimeLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            OperationTimeLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            OperationTimeGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            OperationTimeGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            OperationTimeLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            OperationTimeLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/customer_id/balance_transactions?cursor=cursor&limit=1&operation_time%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&operation_time%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&operation_time%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&operation_time%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/customer_id/balance_transactions?cursor=cursor&limit=1&operation_time%5bgt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&operation_time%5bgte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&operation_time%5blt%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00&operation_time%5blte%5d=2019-12-27T18%3a11%3a19.117%2b00%3a00"
+                ),
+                url
+            )
         );
     }
 

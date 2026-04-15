@@ -32,11 +32,13 @@ public class InvoiceDeleteLineItemParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/invoices/invoice_id/invoice_line_items/line_item_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/invoices/invoice_id/invoice_line_items/line_item_id"
+                ),
+                url
+            )
         );
     }
 
