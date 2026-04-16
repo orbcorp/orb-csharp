@@ -41,6 +41,7 @@ public class PlanServiceTest : TestBase
                             ],
                             ItemID = "item_id",
                             LicenseTypeID = "license_type_id",
+                            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                             PerUnitCostBasis = "per_unit_cost_basis",
                         },
                         LicenseAllocationPrice = new Plans::Unit()

@@ -103,6 +103,19 @@ public record class PlanCreateParams : ParamsBase
         init { this._rawBodyData.Set("default_invoice_memo", value); }
     }
 
+    /// <summary>
+    /// An optional user-defined description of the plan.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
+        init { this._rawBodyData.Set("description", value); }
+    }
+
     public string? ExternalPlanID
     {
         get

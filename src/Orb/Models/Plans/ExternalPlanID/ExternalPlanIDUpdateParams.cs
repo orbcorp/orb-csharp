@@ -10,8 +10,8 @@ using Orb.Core;
 namespace Orb.Models.Plans.ExternalPlanID;
 
 /// <summary>
-/// This endpoint can be used to update the `external_plan_id`, and `metadata` of
-/// an existing plan.
+/// This endpoint can be used to update the `external_plan_id`, `description`, and
+/// `metadata` of an existing plan.
 ///
 /// <para>Other fields on a plan are currently immutable.</para>
 ///
@@ -28,6 +28,19 @@ public record class ExternalPlanIDUpdateParams : ParamsBase
     }
 
     public string? OtherExternalPlanID { get; init; }
+
+    /// <summary>
+    /// An optional user-defined description of the plan.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
+        init { this._rawBodyData.Set("description", value); }
+    }
 
     /// <summary>
     /// An optional user-defined ID for this plan resource, used throughout the system

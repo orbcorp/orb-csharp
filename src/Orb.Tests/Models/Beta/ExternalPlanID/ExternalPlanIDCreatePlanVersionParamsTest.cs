@@ -71,6 +71,7 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -222,6 +223,7 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -373,6 +375,7 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
                     ],
                     ItemID = "item_id",
                     LicenseTypeID = "license_type_id",
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 LicenseAllocationPrice = new Unit()
@@ -529,6 +532,7 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
                     ],
                     ItemID = "item_id",
                     LicenseTypeID = "license_type_id",
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -805,6 +809,7 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -956,6 +961,7 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -1727,6 +1733,7 @@ public class AddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -1842,6 +1849,7 @@ public class AddPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         LicenseAllocationPrice expectedLicenseAllocationPrice = new Unit()
@@ -1965,6 +1973,7 @@ public class AddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -2091,6 +2100,7 @@ public class AddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -2213,6 +2223,7 @@ public class AddPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         LicenseAllocationPrice expectedLicenseAllocationPrice = new Unit()
@@ -2336,6 +2347,7 @@ public class AddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -2517,6 +2529,7 @@ public class AddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -52123,6 +52136,7 @@ public class ReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -52239,6 +52253,7 @@ public class ReplacePriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         ReplacePriceLicenseAllocationPrice expectedLicenseAllocationPrice =
@@ -52366,6 +52381,7 @@ public class ReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -52496,6 +52512,7 @@ public class ReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -52619,6 +52636,7 @@ public class ReplacePriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         ReplacePriceLicenseAllocationPrice expectedLicenseAllocationPrice =
@@ -52746,6 +52764,7 @@ public class ReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()
@@ -52932,6 +52951,7 @@ public class ReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new ReplacePriceLicenseAllocationPriceUnit()

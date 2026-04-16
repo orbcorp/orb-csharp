@@ -859,6 +859,12 @@ public interface ISubscriptionService
     /// <para>To be eligible, the subscription must currently be active and have a
     /// future cancellation. This operation will turn on auto-renew, ensuring that the
     /// subscription does not end at the currently scheduled cancellation time.</para>
+    ///
+    /// <para>Note: uncancellation is a lossy operation. Price intervals that were cut
+    /// short by the cancellation are extended to infinity (original end dates are
+    /// lost), and future intervals or phases scheduled after the cancellation time are
+    /// permanently deleted. For complex subscriptions with phases or scheduled plan
+    /// changes, consider creating a new plan change instead of uncancelling.</para>
     /// </summary>
     Task<MutatedSubscription> UnscheduleCancellation(
         SubscriptionUnscheduleCancellationParams parameters,
