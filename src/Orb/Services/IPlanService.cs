@@ -41,8 +41,8 @@ public interface IPlanService
     Task<Plan> Create(PlanCreateParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// This endpoint can be used to update the `external_plan_id`, and `metadata` of an
-    /// existing plan.
+    /// This endpoint can be used to update the `external_plan_id`, `description`, and
+    /// `metadata` of an existing plan.
     ///
     /// <para>Other fields on a plan are currently immutable.</para>
     /// </summary>

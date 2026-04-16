@@ -43,6 +43,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -165,6 +166,7 @@ public class PlanCreateParamsTest : TestBase
                 },
             ],
             DefaultInvoiceMemo = "default_invoice_memo",
+            Description = "description",
             ExternalPlanID = "external_plan_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             NetTerms = 0,
@@ -209,6 +211,7 @@ public class PlanCreateParamsTest : TestBase
                     ],
                     ItemID = "item_id",
                     LicenseTypeID = "license_type_id",
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 LicenseAllocationPrice = new Unit()
@@ -330,6 +333,7 @@ public class PlanCreateParamsTest : TestBase
             },
         ];
         string expectedDefaultInvoiceMemo = "default_invoice_memo";
+        string expectedDescription = "description";
         string expectedExternalPlanID = "external_plan_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         long expectedNetTerms = 0;
@@ -359,6 +363,7 @@ public class PlanCreateParamsTest : TestBase
             Assert.Equal(expectedAdjustments[i], parameters.Adjustments[i]);
         }
         Assert.Equal(expectedDefaultInvoiceMemo, parameters.DefaultInvoiceMemo);
+        Assert.Equal(expectedDescription, parameters.Description);
         Assert.Equal(expectedExternalPlanID, parameters.ExternalPlanID);
         Assert.NotNull(parameters.Metadata);
         Assert.Equal(expectedMetadata.Count, parameters.Metadata.Count);
@@ -411,6 +416,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -533,6 +539,7 @@ public class PlanCreateParamsTest : TestBase
                 },
             ],
             DefaultInvoiceMemo = "default_invoice_memo",
+            Description = "description",
             ExternalPlanID = "external_plan_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             NetTerms = 0,
@@ -585,6 +592,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -707,6 +715,7 @@ public class PlanCreateParamsTest : TestBase
                 },
             ],
             DefaultInvoiceMemo = "default_invoice_memo",
+            Description = "description",
             ExternalPlanID = "external_plan_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             NetTerms = 0,
@@ -762,6 +771,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -862,6 +872,8 @@ public class PlanCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("adjustments"));
         Assert.Null(parameters.DefaultInvoiceMemo);
         Assert.False(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
         Assert.Null(parameters.ExternalPlanID);
         Assert.False(parameters.RawBodyData.ContainsKey("external_plan_id"));
         Assert.Null(parameters.Metadata);
@@ -905,6 +917,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -1002,6 +1015,7 @@ public class PlanCreateParamsTest : TestBase
 
             Adjustments = null,
             DefaultInvoiceMemo = null,
+            Description = null,
             ExternalPlanID = null,
             Metadata = null,
             NetTerms = null,
@@ -1012,6 +1026,8 @@ public class PlanCreateParamsTest : TestBase
         Assert.True(parameters.RawBodyData.ContainsKey("adjustments"));
         Assert.Null(parameters.DefaultInvoiceMemo);
         Assert.True(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
+        Assert.Null(parameters.Description);
+        Assert.True(parameters.RawBodyData.ContainsKey("description"));
         Assert.Null(parameters.ExternalPlanID);
         Assert.True(parameters.RawBodyData.ContainsKey("external_plan_id"));
         Assert.Null(parameters.Metadata);
@@ -1055,6 +1071,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -1188,6 +1205,7 @@ public class PlanCreateParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     LicenseAllocationPrice = new Unit()
@@ -1310,6 +1328,7 @@ public class PlanCreateParamsTest : TestBase
                 },
             ],
             DefaultInvoiceMemo = "default_invoice_memo",
+            Description = "description",
             ExternalPlanID = "external_plan_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             NetTerms = 0,
@@ -1361,6 +1380,7 @@ public class PriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -1476,6 +1496,7 @@ public class PriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         LicenseAllocationPrice expectedLicenseAllocationPrice = new Unit()
@@ -1599,6 +1620,7 @@ public class PriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -1725,6 +1747,7 @@ public class PriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -1844,6 +1867,7 @@ public class PriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         LicenseAllocationPrice expectedLicenseAllocationPrice = new Unit()
@@ -1967,6 +1991,7 @@ public class PriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()
@@ -2148,6 +2173,7 @@ public class PriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             LicenseAllocationPrice = new Unit()

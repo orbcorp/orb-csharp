@@ -130,6 +130,27 @@ public sealed record class NewAllocationPrice : JsonModel
     }
 
     /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// The (per-unit) cost basis of each created block. If non-zero, a customer
     /// will be invoiced according to the quantity and per unit cost basis specified
     /// for the allocation each cadence.
@@ -166,6 +187,7 @@ public sealed record class NewAllocationPrice : JsonModel
         }
         _ = this.ItemID;
         _ = this.LicenseTypeID;
+        _ = this.Metadata;
         _ = this.PerUnitCostBasis;
     }
 

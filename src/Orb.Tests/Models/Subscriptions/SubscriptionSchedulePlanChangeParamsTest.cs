@@ -73,6 +73,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -219,6 +220,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -347,6 +349,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                     ],
                     ItemID = "item_id",
                     LicenseTypeID = "license_type_id",
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 Discounts =
@@ -496,6 +499,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                     ],
                     ItemID = "item_id",
                     LicenseTypeID = "license_type_id",
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
                 Discounts =
@@ -873,6 +877,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -1019,6 +1024,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
                         ],
                         ItemID = "item_id",
                         LicenseTypeID = "license_type_id",
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                         PerUnitCostBasis = "per_unit_cost_basis",
                     },
                     Discounts =
@@ -1876,6 +1882,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -1962,6 +1969,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -2078,6 +2086,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2179,6 +2188,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2273,6 +2283,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -2394,6 +2405,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -2588,6 +2600,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -12845,6 +12858,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -12930,6 +12944,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -13044,6 +13059,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -13144,6 +13160,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -13237,6 +13254,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         List<Subscriptions::DiscountOverride> expectedDiscounts =
@@ -13356,6 +13374,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =
@@ -13547,6 +13566,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
                 ],
                 ItemID = "item_id",
                 LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             Discounts =

@@ -33,6 +33,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -56,6 +57,7 @@ public class NewAllocationPriceTest : TestBase
         ];
         string expectedItemID = "item_id";
         string expectedLicenseTypeID = "license_type_id";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
         Assert.Equal(expectedAmount, model.Amount);
@@ -71,6 +73,14 @@ public class NewAllocationPriceTest : TestBase
         }
         Assert.Equal(expectedItemID, model.ItemID);
         Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
         Assert.Equal(expectedPerUnitCostBasis, model.PerUnitCostBasis);
     }
 
@@ -99,6 +109,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -136,6 +147,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -166,6 +178,7 @@ public class NewAllocationPriceTest : TestBase
         ];
         string expectedItemID = "item_id";
         string expectedLicenseTypeID = "license_type_id";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
         Assert.Equal(expectedAmount, deserialized.Amount);
@@ -181,6 +194,14 @@ public class NewAllocationPriceTest : TestBase
         }
         Assert.Equal(expectedItemID, deserialized.ItemID);
         Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
         Assert.Equal(expectedPerUnitCostBasis, deserialized.PerUnitCostBasis);
     }
 
@@ -209,6 +230,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
@@ -240,6 +262,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         Assert.Null(model.PerUnitCostBasis);
@@ -271,6 +294,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         model.Validate();
@@ -301,6 +325,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
 
             // Null should be interpreted as omitted for these properties
             PerUnitCostBasis = null,
@@ -335,6 +360,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
 
             // Null should be interpreted as omitted for these properties
             PerUnitCostBasis = null,
@@ -364,6 +390,8 @@ public class NewAllocationPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("item_id"));
         Assert.Null(model.LicenseTypeID);
         Assert.False(model.RawData.ContainsKey("license_type_id"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
     }
 
     [Fact]
@@ -395,6 +423,7 @@ public class NewAllocationPriceTest : TestBase
             Filters = null,
             ItemID = null,
             LicenseTypeID = null,
+            Metadata = null,
         };
 
         Assert.Null(model.CustomExpiration);
@@ -407,6 +436,8 @@ public class NewAllocationPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("item_id"));
         Assert.Null(model.LicenseTypeID);
         Assert.True(model.RawData.ContainsKey("license_type_id"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
     }
 
     [Fact]
@@ -424,6 +455,7 @@ public class NewAllocationPriceTest : TestBase
             Filters = null,
             ItemID = null,
             LicenseTypeID = null,
+            Metadata = null,
         };
 
         model.Validate();
@@ -454,6 +486,7 @@ public class NewAllocationPriceTest : TestBase
             ],
             ItemID = "item_id",
             LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
