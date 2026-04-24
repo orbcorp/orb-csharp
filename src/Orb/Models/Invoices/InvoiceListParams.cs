@@ -25,6 +25,10 @@ namespace Orb.Models.Invoices;
 /// values for each draft invoice, which may not always be up-to-date since Orb regularly
 /// refreshes invoices asynchronously.</para>
 ///
+/// <para>If you don't need line item details, minimums, maximums, or discounts, prefer
+/// the [list invoices summary](/api-reference/invoice/list-invoices-summary) endpoint
+/// for better performance.</para>
+///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>

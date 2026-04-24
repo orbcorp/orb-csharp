@@ -2225,9 +2225,9 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     }
 
     /// <summary>
-    /// A future date (specified in YYYY-MM-DD format) used for expiration change,
-    /// denoting when credits transferred (as part of a partial block expiration)
-    /// should expire.
+    /// A date (specified in YYYY-MM-DD format) used for expiration change, denoting
+    /// when credits transferred (as part of a partial block expiration) should expire.
+    /// This date must be on or after the effective date of the credit block.
     /// </summary>
     public required string TargetExpiryDate
     {
