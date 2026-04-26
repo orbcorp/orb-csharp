@@ -44,7 +44,7 @@ public class PlanServiceTest : TestBase
                             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                             PerUnitCostBasis = "per_unit_cost_basis",
                         },
-                        LicenseAllocationPrice = new Plans::Unit()
+                        LicenseAllocationPrice = new()
                         {
                             Cadence = Plans::Cadence.Annual,
                             ItemID = "item_id",
@@ -57,6 +57,7 @@ public class PlanServiceTest : TestBase
                                     WriteOffOverage = true,
                                 },
                             ],
+                            ModelType = Plans::ModelType.Unit,
                             Name = "Annual fee",
                             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                             BillableMetricID = "billable_metric_id",
