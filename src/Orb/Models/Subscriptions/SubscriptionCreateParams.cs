@@ -1715,6 +1715,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ItemID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ItemID,
                 cumulativeGroupedAllocation: (x) => x.ItemID,
+                dailyCreditAllowance: (x) => x.ItemID,
                 newSubscriptionMinimumComposite: (x) => x.ItemID,
                 percent: (x) => x.ItemID,
                 eventOutput: (x) => x.ItemID
@@ -1755,6 +1756,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.Name,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
+                dailyCreditAllowance: (x) => x.Name,
                 newSubscriptionMinimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -1795,6 +1797,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.BillableMetricID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillableMetricID,
                 cumulativeGroupedAllocation: (x) => x.BillableMetricID,
+                dailyCreditAllowance: (x) => x.BillableMetricID,
                 newSubscriptionMinimumComposite: (x) => x.BillableMetricID,
                 percent: (x) => x.BillableMetricID,
                 eventOutput: (x) => x.BillableMetricID
@@ -1835,6 +1838,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.BilledInAdvance,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BilledInAdvance,
                 cumulativeGroupedAllocation: (x) => x.BilledInAdvance,
+                dailyCreditAllowance: (x) => x.BilledInAdvance,
                 newSubscriptionMinimumComposite: (x) => x.BilledInAdvance,
                 percent: (x) => x.BilledInAdvance,
                 eventOutput: (x) => x.BilledInAdvance
@@ -1875,6 +1879,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -1915,6 +1920,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ConversionRate,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
+                dailyCreditAllowance: (x) => x.ConversionRate,
                 newSubscriptionMinimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -1955,6 +1961,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.Currency,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
+                dailyCreditAllowance: (x) => x.Currency,
                 newSubscriptionMinimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -1997,6 +2004,7 @@ public record class Price : ModelBase
                     x.DimensionalPriceConfiguration,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
+                dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -2037,6 +2045,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
+                dailyCreditAllowance: (x) => x.ExternalPriceID,
                 newSubscriptionMinimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -2077,6 +2086,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
+                dailyCreditAllowance: (x) => x.FixedPriceQuantity,
                 newSubscriptionMinimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -2117,6 +2127,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.InvoiceGroupingKey,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
+                dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMinimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -2158,6 +2169,7 @@ public record class Price : ModelBase
                     x.InvoicingCycleConfiguration,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -2198,6 +2210,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.LicenseTypeID,
                 cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                dailyCreditAllowance: (x) => x.LicenseTypeID,
                 newSubscriptionMinimumComposite: (x) => x.LicenseTypeID,
                 percent: (x) => x.LicenseTypeID,
                 eventOutput: (x) => x.LicenseTypeID
@@ -2238,6 +2251,7 @@ public record class Price : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ReferenceID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ReferenceID,
                 cumulativeGroupedAllocation: (x) => x.ReferenceID,
+                dailyCreditAllowance: (x) => x.ReferenceID,
                 newSubscriptionMinimumComposite: (x) => x.ReferenceID,
                 percent: (x) => x.ReferenceID,
                 eventOutput: (x) => x.ReferenceID
@@ -2414,6 +2428,12 @@ public record class Price : ModelBase
     }
 
     public Price(CumulativeGroupedAllocation value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(DailyCreditAllowance value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -3080,6 +3100,27 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="DailyCreditAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDailyCreditAllowance(out var value)) {
+    ///     // `value` is of type `DailyCreditAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickDailyCreditAllowance([NotNullWhen(true)] out DailyCreditAllowance? value)
+    {
+        value = this.Value as DailyCreditAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSubscriptionMinimumCompositePrice"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -3185,6 +3226,7 @@ public record class Price : ModelBase
     ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) =&gt; {...},
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (CumulativeGroupedAllocation value) =&gt; {...},
+    ///     (DailyCreditAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (Percent value) =&gt; {...},
     ///     (EventOutput value) =&gt; {...}
@@ -3221,6 +3263,7 @@ public record class Price : ModelBase
         System::Action<NewSubscriptionScalableMatrixWithTieredPricingPrice> newSubscriptionScalableMatrixWithTieredPricing,
         System::Action<NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
         System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
+        System::Action<DailyCreditAllowance> dailyCreditAllowance,
         System::Action<NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite,
         System::Action<Percent> percent,
         System::Action<EventOutput> eventOutput
@@ -3312,6 +3355,9 @@ public record class Price : ModelBase
             case CumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
+            case DailyCreditAllowance value:
+                dailyCreditAllowance(value);
+                break;
             case NewSubscriptionMinimumCompositePrice value:
                 newSubscriptionMinimumComposite(value);
                 break;
@@ -3369,6 +3415,7 @@ public record class Price : ModelBase
     ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) =&gt; {...},
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (CumulativeGroupedAllocation value) =&gt; {...},
+    ///     (DailyCreditAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (Percent value) =&gt; {...},
     ///     (EventOutput value) =&gt; {...}
@@ -3441,6 +3488,7 @@ public record class Price : ModelBase
             T
         > newSubscriptionCumulativeGroupedBulk,
         System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
+        System::Func<DailyCreditAllowance, T> dailyCreditAllowance,
         System::Func<NewSubscriptionMinimumCompositePrice, T> newSubscriptionMinimumComposite,
         System::Func<Percent, T> percent,
         System::Func<EventOutput, T> eventOutput
@@ -3495,6 +3543,7 @@ public record class Price : ModelBase
                 value
             ),
             CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
+            DailyCreditAllowance value => dailyCreditAllowance(value),
             NewSubscriptionMinimumCompositePrice value => newSubscriptionMinimumComposite(value),
             Percent value => percent(value),
             EventOutput value => eventOutput(value),
@@ -3576,6 +3625,8 @@ public record class Price : ModelBase
 
     public static implicit operator Price(CumulativeGroupedAllocation value) => new(value);
 
+    public static implicit operator Price(DailyCreditAllowance value) => new(value);
+
     public static implicit operator Price(NewSubscriptionMinimumCompositePrice value) => new(value);
 
     public static implicit operator Price(Percent value) => new(value);
@@ -3636,6 +3687,7 @@ public record class Price : ModelBase
             (newSubscriptionCumulativeGroupedBulk) =>
                 newSubscriptionCumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
             (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -3690,9 +3742,10 @@ public record class Price : ModelBase
             NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 25,
             NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
             CumulativeGroupedAllocation _ => 27,
-            NewSubscriptionMinimumCompositePrice _ => 28,
-            Percent _ => 29,
-            EventOutput _ => 30,
+            DailyCreditAllowance _ => 28,
+            NewSubscriptionMinimumCompositePrice _ => 29,
+            Percent _ => 30,
+            EventOutput _ => 31,
             _ => -1,
         };
     }
@@ -4283,6 +4336,26 @@ sealed class PriceConverter : JsonConverter<Price?>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "daily_credit_allowance":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<DailyCreditAllowance>(
                         element,
                         options
                     );
@@ -7800,6 +7873,928 @@ sealed class CumulativeGroupedAllocationConversionRateConfigConverter
     }
 }
 
+[JsonConverter(typeof(JsonModelConverter<DailyCreditAllowance, DailyCreditAllowanceFromRaw>))]
+public sealed record class DailyCreditAllowance : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<string, DailyCreditAllowanceCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, DailyCreditAllowanceCadence>>(
+                "cadence"
+            );
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// Configuration for daily_credit_allowance pricing
+    /// </summary>
+    public required DailyCreditAllowanceConfig DailyCreditAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<DailyCreditAllowanceConfig>(
+                "daily_credit_allowance_config"
+            );
+        }
+        init { this._rawData.Set("daily_credit_allowance_config", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public DailyCreditAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DailyCreditAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A transient ID that can be used to reference this price when adding adjustments
+    /// in the same API call.
+    /// </summary>
+    public string? ReferenceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
+        }
+        init { this._rawData.Set("reference_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        this.DailyCreditAllowanceConfig.Validate();
+        _ = this.ItemID;
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("daily_credit_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.Currency;
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+        _ = this.ReferenceID;
+    }
+
+    public DailyCreditAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DailyCreditAllowance(DailyCreditAllowance dailyCreditAllowance)
+        : base(dailyCreditAllowance) { }
+#pragma warning restore CS8618
+
+    public DailyCreditAllowance(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DailyCreditAllowance(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceFromRaw : IFromRawJson<DailyCreditAllowance>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowance.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(DailyCreditAllowanceCadenceConverter))]
+public enum DailyCreditAllowanceCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class DailyCreditAllowanceCadenceConverter : JsonConverter<DailyCreditAllowanceCadence>
+{
+    public override DailyCreditAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => DailyCreditAllowanceCadence.Annual,
+            "semi_annual" => DailyCreditAllowanceCadence.SemiAnnual,
+            "monthly" => DailyCreditAllowanceCadence.Monthly,
+            "quarterly" => DailyCreditAllowanceCadence.Quarterly,
+            "one_time" => DailyCreditAllowanceCadence.OneTime,
+            "custom" => DailyCreditAllowanceCadence.Custom,
+            _ => (DailyCreditAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DailyCreditAllowanceCadence.Annual => "annual",
+                DailyCreditAllowanceCadence.SemiAnnual => "semi_annual",
+                DailyCreditAllowanceCadence.Monthly => "monthly",
+                DailyCreditAllowanceCadence.Quarterly => "quarterly",
+                DailyCreditAllowanceCadence.OneTime => "one_time",
+                DailyCreditAllowanceCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for daily_credit_allowance pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<DailyCreditAllowanceConfig, DailyCreditAllowanceConfigFromRaw>)
+)]
+public sealed record class DailyCreditAllowanceConfig : JsonModel
+{
+    /// <summary>
+    /// Credits granted per day. Lose-it-or-use-it; does not roll over.
+    /// </summary>
+    public required string DailyAllowance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("daily_allowance");
+        }
+        init { this._rawData.Set("daily_allowance", value); }
+    }
+
+    /// <summary>
+    /// Default per-unit credit rate for any usage not bucketed into a specified matrix_value
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// One or two event property values to evaluate matrix groups by
+    /// </summary>
+    public required IReadOnlyList<string?> Dimensions
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Event property whose value identifies the day bucket the event belongs to
+    /// (e.g. 'event_day' set to an ISO date string in the customer's timezone).
+    /// The allowance resets per distinct value of this property.
+    /// </summary>
+    public required string EventDayProperty
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_day_property");
+        }
+        init { this._rawData.Set("event_day_property", value); }
+    }
+
+    /// <summary>
+    /// Per-dimension credit rates
+    /// </summary>
+    public required IReadOnlyList<MatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<MatrixValue>>("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MatrixValue>>(
+                "matrix_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DailyAllowance;
+        _ = this.DefaultUnitAmount;
+        _ = this.Dimensions;
+        _ = this.EventDayProperty;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+    }
+
+    public DailyCreditAllowanceConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DailyCreditAllowanceConfig(DailyCreditAllowanceConfig dailyCreditAllowanceConfig)
+        : base(dailyCreditAllowanceConfig) { }
+#pragma warning restore CS8618
+
+    public DailyCreditAllowanceConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DailyCreditAllowanceConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceConfigFromRaw : IFromRawJson<DailyCreditAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowanceConfig.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Per-dimension credit price for the daily credit allowance model.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<MatrixValue, MatrixValueFromRaw>))]
+public sealed record class MatrixValue : JsonModel
+{
+    /// <summary>
+    /// One or two matrix keys to filter usage to this value by. For example, ["model"]
+    /// could be used to apply a different credit rate to each AI model.
+    /// </summary>
+    public required IReadOnlyList<string?> DimensionValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Credits charged per unit of usage matching the specified dimension_values
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DimensionValues;
+        _ = this.UnitAmount;
+    }
+
+    public MatrixValue() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MatrixValue(MatrixValue matrixValue)
+        : base(matrixValue) { }
+#pragma warning restore CS8618
+
+    public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MatrixValue(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MatrixValueFromRaw.FromRawUnchecked"/>
+    public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MatrixValueFromRaw : IFromRawJson<MatrixValue>
+{
+    /// <inheritdoc/>
+    public MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixValue.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(DailyCreditAllowanceConversionRateConfigConverter))]
+public record class DailyCreditAllowanceConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public DailyCreditAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DailyCreditAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DailyCreditAllowanceConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of DailyCreditAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DailyCreditAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator DailyCreditAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator DailyCreditAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of DailyCreditAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(DailyCreditAllowanceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class DailyCreditAllowanceConversionRateConfigConverter
+    : JsonConverter<DailyCreditAllowanceConversionRateConfig>
+{
+    public override DailyCreditAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new DailyCreditAllowanceConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
 [JsonConverter(typeof(JsonModelConverter<Percent, PercentFromRaw>))]
 public sealed record class Percent : JsonModel
 {
@@ -10370,6 +11365,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ItemID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ItemID,
                 cumulativeGroupedAllocation: (x) => x.ItemID,
+                dailyCreditAllowance: (x) => x.ItemID,
                 newSubscriptionMinimumComposite: (x) => x.ItemID,
                 percent: (x) => x.ItemID,
                 eventOutput: (x) => x.ItemID
@@ -10410,6 +11406,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.Name,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
+                dailyCreditAllowance: (x) => x.Name,
                 newSubscriptionMinimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -10450,6 +11447,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.BillableMetricID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillableMetricID,
                 cumulativeGroupedAllocation: (x) => x.BillableMetricID,
+                dailyCreditAllowance: (x) => x.BillableMetricID,
                 newSubscriptionMinimumComposite: (x) => x.BillableMetricID,
                 percent: (x) => x.BillableMetricID,
                 eventOutput: (x) => x.BillableMetricID
@@ -10490,6 +11488,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.BilledInAdvance,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BilledInAdvance,
                 cumulativeGroupedAllocation: (x) => x.BilledInAdvance,
+                dailyCreditAllowance: (x) => x.BilledInAdvance,
                 newSubscriptionMinimumComposite: (x) => x.BilledInAdvance,
                 percent: (x) => x.BilledInAdvance,
                 eventOutput: (x) => x.BilledInAdvance
@@ -10530,6 +11529,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -10570,6 +11570,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ConversionRate,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
+                dailyCreditAllowance: (x) => x.ConversionRate,
                 newSubscriptionMinimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -10610,6 +11611,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.Currency,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
+                dailyCreditAllowance: (x) => x.Currency,
                 newSubscriptionMinimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -10652,6 +11654,7 @@ public record class ReplacePricePrice : ModelBase
                     x.DimensionalPriceConfiguration,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
+                dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -10692,6 +11695,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
+                dailyCreditAllowance: (x) => x.ExternalPriceID,
                 newSubscriptionMinimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -10732,6 +11736,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
+                dailyCreditAllowance: (x) => x.FixedPriceQuantity,
                 newSubscriptionMinimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -10772,6 +11777,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.InvoiceGroupingKey,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
+                dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMinimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -10813,6 +11819,7 @@ public record class ReplacePricePrice : ModelBase
                     x.InvoicingCycleConfiguration,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -10853,6 +11860,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.LicenseTypeID,
                 cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                dailyCreditAllowance: (x) => x.LicenseTypeID,
                 newSubscriptionMinimumComposite: (x) => x.LicenseTypeID,
                 percent: (x) => x.LicenseTypeID,
                 eventOutput: (x) => x.LicenseTypeID
@@ -10893,6 +11901,7 @@ public record class ReplacePricePrice : ModelBase
                 newSubscriptionScalableMatrixWithTieredPricing: (x) => x.ReferenceID,
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ReferenceID,
                 cumulativeGroupedAllocation: (x) => x.ReferenceID,
+                dailyCreditAllowance: (x) => x.ReferenceID,
                 newSubscriptionMinimumComposite: (x) => x.ReferenceID,
                 percent: (x) => x.ReferenceID,
                 eventOutput: (x) => x.ReferenceID
@@ -11118,6 +12127,15 @@ public record class ReplacePricePrice : ModelBase
 
     public ReplacePricePrice(
         ReplacePricePriceCumulativeGroupedAllocation value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public ReplacePricePrice(
+        ReplacePricePriceDailyCreditAllowance value,
         JsonElement? element = null
     )
     {
@@ -11793,6 +12811,29 @@ public record class ReplacePricePrice : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ReplacePricePriceDailyCreditAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDailyCreditAllowance(out var value)) {
+    ///     // `value` is of type `ReplacePricePriceDailyCreditAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickDailyCreditAllowance(
+        [NotNullWhen(true)] out ReplacePricePriceDailyCreditAllowance? value
+    )
+    {
+        value = this.Value as ReplacePricePriceDailyCreditAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSubscriptionMinimumCompositePrice"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -11898,6 +12939,7 @@ public record class ReplacePricePrice : ModelBase
     ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) =&gt; {...},
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (ReplacePricePriceCumulativeGroupedAllocation value) =&gt; {...},
+    ///     (ReplacePricePriceDailyCreditAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (ReplacePricePricePercent value) =&gt; {...},
     ///     (ReplacePricePriceEventOutput value) =&gt; {...}
@@ -11934,6 +12976,7 @@ public record class ReplacePricePrice : ModelBase
         System::Action<NewSubscriptionScalableMatrixWithTieredPricingPrice> newSubscriptionScalableMatrixWithTieredPricing,
         System::Action<NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
         System::Action<ReplacePricePriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
+        System::Action<ReplacePricePriceDailyCreditAllowance> dailyCreditAllowance,
         System::Action<NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite,
         System::Action<ReplacePricePricePercent> percent,
         System::Action<ReplacePricePriceEventOutput> eventOutput
@@ -12025,6 +13068,9 @@ public record class ReplacePricePrice : ModelBase
             case ReplacePricePriceCumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
+            case ReplacePricePriceDailyCreditAllowance value:
+                dailyCreditAllowance(value);
+                break;
             case NewSubscriptionMinimumCompositePrice value:
                 newSubscriptionMinimumComposite(value);
                 break;
@@ -12084,6 +13130,7 @@ public record class ReplacePricePrice : ModelBase
     ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) =&gt; {...},
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (ReplacePricePriceCumulativeGroupedAllocation value) =&gt; {...},
+    ///     (ReplacePricePriceDailyCreditAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (ReplacePricePricePercent value) =&gt; {...},
     ///     (ReplacePricePriceEventOutput value) =&gt; {...}
@@ -12156,6 +13203,7 @@ public record class ReplacePricePrice : ModelBase
             T
         > newSubscriptionCumulativeGroupedBulk,
         System::Func<ReplacePricePriceCumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
+        System::Func<ReplacePricePriceDailyCreditAllowance, T> dailyCreditAllowance,
         System::Func<NewSubscriptionMinimumCompositePrice, T> newSubscriptionMinimumComposite,
         System::Func<ReplacePricePricePercent, T> percent,
         System::Func<ReplacePricePriceEventOutput, T> eventOutput
@@ -12214,6 +13262,7 @@ public record class ReplacePricePrice : ModelBase
             ReplacePricePriceCumulativeGroupedAllocation value => cumulativeGroupedAllocation(
                 value
             ),
+            ReplacePricePriceDailyCreditAllowance value => dailyCreditAllowance(value),
             NewSubscriptionMinimumCompositePrice value => newSubscriptionMinimumComposite(value),
             ReplacePricePricePercent value => percent(value),
             ReplacePricePriceEventOutput value => eventOutput(value),
@@ -12323,6 +13372,10 @@ public record class ReplacePricePrice : ModelBase
         ReplacePricePriceCumulativeGroupedAllocation value
     ) => new(value);
 
+    public static implicit operator ReplacePricePrice(
+        ReplacePricePriceDailyCreditAllowance value
+    ) => new(value);
+
     public static implicit operator ReplacePricePrice(NewSubscriptionMinimumCompositePrice value) =>
         new(value);
 
@@ -12387,6 +13440,7 @@ public record class ReplacePricePrice : ModelBase
             (newSubscriptionCumulativeGroupedBulk) =>
                 newSubscriptionCumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
             (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -12441,9 +13495,10 @@ public record class ReplacePricePrice : ModelBase
             NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 25,
             NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
             ReplacePricePriceCumulativeGroupedAllocation _ => 27,
-            NewSubscriptionMinimumCompositePrice _ => 28,
-            ReplacePricePricePercent _ => 29,
-            ReplacePricePriceEventOutput _ => 30,
+            ReplacePricePriceDailyCreditAllowance _ => 28,
+            NewSubscriptionMinimumCompositePrice _ => 29,
+            ReplacePricePricePercent _ => 30,
+            ReplacePricePriceEventOutput _ => 31,
             _ => -1,
         };
     }
@@ -13037,6 +14092,27 @@ sealed class ReplacePricePriceConverter : JsonConverter<ReplacePricePrice?>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<ReplacePricePriceCumulativeGroupedAllocation>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "daily_credit_allowance":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<ReplacePricePriceDailyCreditAllowance>(
                             element,
                             options
                         );
@@ -16704,6 +17780,968 @@ sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigCon
     public override void Write(
         Utf8JsonWriter writer,
         ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ReplacePricePriceDailyCreditAllowance,
+        ReplacePricePriceDailyCreditAllowanceFromRaw
+    >)
+)]
+public sealed record class ReplacePricePriceDailyCreditAllowance : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<string, ReplacePricePriceDailyCreditAllowanceCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, ReplacePricePriceDailyCreditAllowanceCadence>
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// Configuration for daily_credit_allowance pricing
+    /// </summary>
+    public required ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig DailyCreditAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig>(
+                "daily_credit_allowance_config"
+            );
+        }
+        init { this._rawData.Set("daily_credit_allowance_config", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public ReplacePricePriceDailyCreditAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ReplacePricePriceDailyCreditAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A transient ID that can be used to reference this price when adding adjustments
+    /// in the same API call.
+    /// </summary>
+    public string? ReferenceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
+        }
+        init { this._rawData.Set("reference_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        this.DailyCreditAllowanceConfig.Validate();
+        _ = this.ItemID;
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("daily_credit_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.Currency;
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+        _ = this.ReferenceID;
+    }
+
+    public ReplacePricePriceDailyCreditAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ReplacePricePriceDailyCreditAllowance(
+        ReplacePricePriceDailyCreditAllowance replacePricePriceDailyCreditAllowance
+    )
+        : base(replacePricePriceDailyCreditAllowance) { }
+#pragma warning restore CS8618
+
+    public ReplacePricePriceDailyCreditAllowance(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReplacePricePriceDailyCreditAllowance(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ReplacePricePriceDailyCreditAllowanceFromRaw.FromRawUnchecked"/>
+    public static ReplacePricePriceDailyCreditAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ReplacePricePriceDailyCreditAllowanceFromRaw
+    : IFromRawJson<ReplacePricePriceDailyCreditAllowance>
+{
+    /// <inheritdoc/>
+    public ReplacePricePriceDailyCreditAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePricePriceDailyCreditAllowance.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(ReplacePricePriceDailyCreditAllowanceCadenceConverter))]
+public enum ReplacePricePriceDailyCreditAllowanceCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class ReplacePricePriceDailyCreditAllowanceCadenceConverter
+    : JsonConverter<ReplacePricePriceDailyCreditAllowanceCadence>
+{
+    public override ReplacePricePriceDailyCreditAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => ReplacePricePriceDailyCreditAllowanceCadence.Annual,
+            "semi_annual" => ReplacePricePriceDailyCreditAllowanceCadence.SemiAnnual,
+            "monthly" => ReplacePricePriceDailyCreditAllowanceCadence.Monthly,
+            "quarterly" => ReplacePricePriceDailyCreditAllowanceCadence.Quarterly,
+            "one_time" => ReplacePricePriceDailyCreditAllowanceCadence.OneTime,
+            "custom" => ReplacePricePriceDailyCreditAllowanceCadence.Custom,
+            _ => (ReplacePricePriceDailyCreditAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ReplacePricePriceDailyCreditAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ReplacePricePriceDailyCreditAllowanceCadence.Annual => "annual",
+                ReplacePricePriceDailyCreditAllowanceCadence.SemiAnnual => "semi_annual",
+                ReplacePricePriceDailyCreditAllowanceCadence.Monthly => "monthly",
+                ReplacePricePriceDailyCreditAllowanceCadence.Quarterly => "quarterly",
+                ReplacePricePriceDailyCreditAllowanceCadence.OneTime => "one_time",
+                ReplacePricePriceDailyCreditAllowanceCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for daily_credit_allowance pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig,
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigFromRaw
+    >)
+)]
+public sealed record class ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig
+    : JsonModel
+{
+    /// <summary>
+    /// Credits granted per day. Lose-it-or-use-it; does not roll over.
+    /// </summary>
+    public required string DailyAllowance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("daily_allowance");
+        }
+        init { this._rawData.Set("daily_allowance", value); }
+    }
+
+    /// <summary>
+    /// Default per-unit credit rate for any usage not bucketed into a specified matrix_value
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// One or two event property values to evaluate matrix groups by
+    /// </summary>
+    public required IReadOnlyList<string?> Dimensions
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Event property whose value identifies the day bucket the event belongs to
+    /// (e.g. 'event_day' set to an ISO date string in the customer's timezone).
+    /// The allowance resets per distinct value of this property.
+    /// </summary>
+    public required string EventDayProperty
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_day_property");
+        }
+        init { this._rawData.Set("event_day_property", value); }
+    }
+
+    /// <summary>
+    /// Per-dimension credit rates
+    /// </summary>
+    public required IReadOnlyList<ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue>
+            >("matrix_values", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DailyAllowance;
+        _ = this.DefaultUnitAmount;
+        _ = this.Dimensions;
+        _ = this.EventDayProperty;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+    }
+
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig(
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig replacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig
+    )
+        : base(replacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig) { }
+#pragma warning restore CS8618
+
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigFromRaw
+    : IFromRawJson<ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfig.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Per-dimension credit price for the daily credit allowance model.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue,
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue
+    : JsonModel
+{
+    /// <summary>
+    /// One or two matrix keys to filter usage to this value by. For example, ["model"]
+    /// could be used to apply a different credit rate to each AI model.
+    /// </summary>
+    public required IReadOnlyList<string?> DimensionValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Credits charged per unit of usage matching the specified dimension_values
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DimensionValues;
+        _ = this.UnitAmount;
+    }
+
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue(
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue replacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue
+    )
+        : base(replacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue) { }
+#pragma warning restore CS8618
+
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValueFromRaw
+    : IFromRawJson<ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        ReplacePricePriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(typeof(ReplacePricePriceDailyCreditAllowanceConversionRateConfigConverter))]
+public record class ReplacePricePriceDailyCreditAllowanceConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public ReplacePricePriceDailyCreditAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public ReplacePricePriceDailyCreditAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public ReplacePricePriceDailyCreditAllowanceConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of ReplacePricePriceDailyCreditAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of ReplacePricePriceDailyCreditAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator ReplacePricePriceDailyCreditAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator ReplacePricePriceDailyCreditAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of ReplacePricePriceDailyCreditAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(ReplacePricePriceDailyCreditAllowanceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class ReplacePricePriceDailyCreditAllowanceConversionRateConfigConverter
+    : JsonConverter<ReplacePricePriceDailyCreditAllowanceConversionRateConfig>
+{
+    public override ReplacePricePriceDailyCreditAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new ReplacePricePriceDailyCreditAllowanceConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ReplacePricePriceDailyCreditAllowanceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
