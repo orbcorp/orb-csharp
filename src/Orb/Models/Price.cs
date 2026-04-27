@@ -72,6 +72,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ID,
                 cumulativeGroupedBulk: (x) => x.ID,
                 cumulativeGroupedAllocation: (x) => x.ID,
+                dailyCreditAllowance: (x) => x.ID,
                 minimumComposite: (x) => x.ID,
                 percent: (x) => x.ID,
                 eventOutput: (x) => x.ID
@@ -112,6 +113,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.BillableMetric,
                 cumulativeGroupedBulk: (x) => x.BillableMetric,
                 cumulativeGroupedAllocation: (x) => x.BillableMetric,
+                dailyCreditAllowance: (x) => x.BillableMetric,
                 minimumComposite: (x) => x.BillableMetric,
                 percent: (x) => x.BillableMetric,
                 eventOutput: (x) => x.BillableMetric
@@ -152,6 +154,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
                 minimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -192,6 +195,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ConversionRate,
                 cumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
+                dailyCreditAllowance: (x) => x.ConversionRate,
                 minimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -232,6 +236,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.CreatedAt,
                 cumulativeGroupedBulk: (x) => x.CreatedAt,
                 cumulativeGroupedAllocation: (x) => x.CreatedAt,
+                dailyCreditAllowance: (x) => x.CreatedAt,
                 minimumComposite: (x) => x.CreatedAt,
                 percent: (x) => x.CreatedAt,
                 eventOutput: (x) => x.CreatedAt
@@ -272,6 +277,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.CreditAllocation,
                 cumulativeGroupedBulk: (x) => x.CreditAllocation,
                 cumulativeGroupedAllocation: (x) => x.CreditAllocation,
+                dailyCreditAllowance: (x) => x.CreditAllocation,
                 minimumComposite: (x) => x.CreditAllocation,
                 percent: (x) => x.CreditAllocation,
                 eventOutput: (x) => x.CreditAllocation
@@ -312,6 +318,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Currency,
                 cumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
+                dailyCreditAllowance: (x) => x.Currency,
                 minimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -352,6 +359,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Discount,
                 cumulativeGroupedBulk: (x) => x.Discount,
                 cumulativeGroupedAllocation: (x) => x.Discount,
+                dailyCreditAllowance: (x) => x.Discount,
                 minimumComposite: (x) => x.Discount,
                 percent: (x) => x.Discount,
                 eventOutput: (x) => x.Discount
@@ -392,6 +400,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
                 cumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
+                dailyCreditAllowance: (x) => x.ExternalPriceID,
                 minimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -432,6 +441,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
+                dailyCreditAllowance: (x) => x.FixedPriceQuantity,
                 minimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -472,6 +482,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
+                dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
                 minimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -512,6 +523,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
                 minimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -552,6 +564,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Item,
                 cumulativeGroupedBulk: (x) => x.Item,
                 cumulativeGroupedAllocation: (x) => x.Item,
+                dailyCreditAllowance: (x) => x.Item,
                 minimumComposite: (x) => x.Item,
                 percent: (x) => x.Item,
                 eventOutput: (x) => x.Item
@@ -592,6 +605,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Maximum,
                 cumulativeGroupedBulk: (x) => x.Maximum,
                 cumulativeGroupedAllocation: (x) => x.Maximum,
+                dailyCreditAllowance: (x) => x.Maximum,
                 minimumComposite: (x) => x.Maximum,
                 percent: (x) => x.Maximum,
                 eventOutput: (x) => x.Maximum
@@ -632,6 +646,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.MaximumAmount,
                 cumulativeGroupedBulk: (x) => x.MaximumAmount,
                 cumulativeGroupedAllocation: (x) => x.MaximumAmount,
+                dailyCreditAllowance: (x) => x.MaximumAmount,
                 minimumComposite: (x) => x.MaximumAmount,
                 percent: (x) => x.MaximumAmount,
                 eventOutput: (x) => x.MaximumAmount
@@ -672,6 +687,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Minimum,
                 cumulativeGroupedBulk: (x) => x.Minimum,
                 cumulativeGroupedAllocation: (x) => x.Minimum,
+                dailyCreditAllowance: (x) => x.Minimum,
                 minimumComposite: (x) => x.Minimum,
                 percent: (x) => x.Minimum,
                 eventOutput: (x) => x.Minimum
@@ -712,6 +728,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.MinimumAmount,
                 cumulativeGroupedBulk: (x) => x.MinimumAmount,
                 cumulativeGroupedAllocation: (x) => x.MinimumAmount,
+                dailyCreditAllowance: (x) => x.MinimumAmount,
                 minimumComposite: (x) => x.MinimumAmount,
                 percent: (x) => x.MinimumAmount,
                 eventOutput: (x) => x.MinimumAmount
@@ -752,6 +769,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ModelType,
                 cumulativeGroupedBulk: (x) => x.ModelType,
                 cumulativeGroupedAllocation: (x) => x.ModelType,
+                dailyCreditAllowance: (x) => x.ModelType,
                 minimumComposite: (x) => x.ModelType,
                 percent: (x) => x.ModelType,
                 eventOutput: (x) => x.ModelType
@@ -792,6 +810,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.Name,
                 cumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
+                dailyCreditAllowance: (x) => x.Name,
                 minimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -832,6 +851,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedBulk: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedAllocation: (x) => x.PlanPhaseOrder,
+                dailyCreditAllowance: (x) => x.PlanPhaseOrder,
                 minimumComposite: (x) => x.PlanPhaseOrder,
                 percent: (x) => x.PlanPhaseOrder,
                 eventOutput: (x) => x.PlanPhaseOrder
@@ -872,6 +892,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.ReplacesPriceID,
                 cumulativeGroupedBulk: (x) => x.ReplacesPriceID,
                 cumulativeGroupedAllocation: (x) => x.ReplacesPriceID,
+                dailyCreditAllowance: (x) => x.ReplacesPriceID,
                 minimumComposite: (x) => x.ReplacesPriceID,
                 percent: (x) => x.ReplacesPriceID,
                 eventOutput: (x) => x.ReplacesPriceID
@@ -912,6 +933,7 @@ public record class Price : ModelBase
                 scalableMatrixWithTieredPricing: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
+                dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
                 minimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -1082,6 +1104,12 @@ public record class Price : ModelBase
     }
 
     public Price(CumulativeGroupedAllocation value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(DailyCreditAllowance value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1714,6 +1742,27 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="DailyCreditAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDailyCreditAllowance(out var value)) {
+    ///     // `value` is of type `DailyCreditAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickDailyCreditAllowance([NotNullWhen(true)] out DailyCreditAllowance? value)
+    {
+        value = this.Value as DailyCreditAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MinimumComposite"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -1817,6 +1866,7 @@ public record class Price : ModelBase
     ///     (ScalableMatrixWithTieredPricing value) =&gt; {...},
     ///     (CumulativeGroupedBulk value) =&gt; {...},
     ///     (CumulativeGroupedAllocation value) =&gt; {...},
+    ///     (DailyCreditAllowance value) =&gt; {...},
     ///     (MinimumComposite value) =&gt; {...},
     ///     (Percent value) =&gt; {...},
     ///     (EventOutput value) =&gt; {...}
@@ -1853,6 +1903,7 @@ public record class Price : ModelBase
         System::Action<ScalableMatrixWithTieredPricing> scalableMatrixWithTieredPricing,
         System::Action<CumulativeGroupedBulk> cumulativeGroupedBulk,
         System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
+        System::Action<DailyCreditAllowance> dailyCreditAllowance,
         System::Action<MinimumComposite> minimumComposite,
         System::Action<Percent> percent,
         System::Action<EventOutput> eventOutput
@@ -1944,6 +1995,9 @@ public record class Price : ModelBase
             case CumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
+            case DailyCreditAllowance value:
+                dailyCreditAllowance(value);
+                break;
             case MinimumComposite value:
                 minimumComposite(value);
                 break;
@@ -2001,6 +2055,7 @@ public record class Price : ModelBase
     ///     (ScalableMatrixWithTieredPricing value) =&gt; {...},
     ///     (CumulativeGroupedBulk value) =&gt; {...},
     ///     (CumulativeGroupedAllocation value) =&gt; {...},
+    ///     (DailyCreditAllowance value) =&gt; {...},
     ///     (MinimumComposite value) =&gt; {...},
     ///     (Percent value) =&gt; {...},
     ///     (EventOutput value) =&gt; {...}
@@ -2037,6 +2092,7 @@ public record class Price : ModelBase
         System::Func<ScalableMatrixWithTieredPricing, T> scalableMatrixWithTieredPricing,
         System::Func<CumulativeGroupedBulk, T> cumulativeGroupedBulk,
         System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
+        System::Func<DailyCreditAllowance, T> dailyCreditAllowance,
         System::Func<MinimumComposite, T> minimumComposite,
         System::Func<Percent, T> percent,
         System::Func<EventOutput, T> eventOutput
@@ -2072,6 +2128,7 @@ public record class Price : ModelBase
             ScalableMatrixWithTieredPricing value => scalableMatrixWithTieredPricing(value),
             CumulativeGroupedBulk value => cumulativeGroupedBulk(value),
             CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
+            DailyCreditAllowance value => dailyCreditAllowance(value),
             MinimumComposite value => minimumComposite(value),
             Percent value => percent(value),
             EventOutput value => eventOutput(value),
@@ -2135,6 +2192,8 @@ public record class Price : ModelBase
 
     public static implicit operator Price(CumulativeGroupedAllocation value) => new(value);
 
+    public static implicit operator Price(DailyCreditAllowance value) => new(value);
+
     public static implicit operator Price(MinimumComposite value) => new(value);
 
     public static implicit operator Price(Percent value) => new(value);
@@ -2186,6 +2245,7 @@ public record class Price : ModelBase
             (scalableMatrixWithTieredPricing) => scalableMatrixWithTieredPricing.Validate(),
             (cumulativeGroupedBulk) => cumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
             (minimumComposite) => minimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -2240,9 +2300,10 @@ public record class Price : ModelBase
             ScalableMatrixWithTieredPricing _ => 25,
             CumulativeGroupedBulk _ => 26,
             CumulativeGroupedAllocation _ => 27,
-            MinimumComposite _ => 28,
-            Percent _ => 29,
-            EventOutput _ => 30,
+            DailyCreditAllowance _ => 28,
+            MinimumComposite _ => 29,
+            Percent _ => 30,
+            EventOutput _ => 31,
             _ => -1,
         };
     }
@@ -2793,6 +2854,26 @@ sealed class PriceConverter : JsonConverter<Price>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "daily_credit_allowance":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<DailyCreditAllowance>(
                         element,
                         options
                     );
@@ -40823,6 +40904,1457 @@ class CumulativeGroupedAllocationLicenseTypeFromRaw
     public CumulativeGroupedAllocationLicenseType FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CumulativeGroupedAllocationLicenseType.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<DailyCreditAllowance, DailyCreditAllowanceFromRaw>))]
+public sealed record class DailyCreditAllowance : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public required BillableMetricTiny? BillableMetric
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BillableMetricTiny>("billable_metric");
+        }
+        init { this._rawData.Set("billable_metric", value); }
+    }
+
+    public required BillingCycleConfiguration BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<BillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    public required ApiEnum<string, DailyCreditAllowanceBillingMode> BillingMode
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, DailyCreditAllowanceBillingMode>>(
+                "billing_mode"
+            );
+        }
+        init { this._rawData.Set("billing_mode", value); }
+    }
+
+    public required ApiEnum<string, DailyCreditAllowanceCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, DailyCreditAllowanceCadence>>(
+                "cadence"
+            );
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    public required IReadOnlyList<DailyCreditAllowanceCompositePriceFilter>? CompositePriceFilters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<DailyCreditAllowanceCompositePriceFilter>
+            >("composite_price_filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<DailyCreditAllowanceCompositePriceFilter>?>(
+                "composite_price_filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public required double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    public required DailyCreditAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DailyCreditAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    public required Allocation? CreditAllocation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Allocation>("credit_allocation");
+        }
+        init { this._rawData.Set("credit_allocation", value); }
+    }
+
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// Configuration for daily_credit_allowance pricing
+    /// </summary>
+    public required DailyCreditAllowanceConfig DailyCreditAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<DailyCreditAllowanceConfig>(
+                "daily_credit_allowance_config"
+            );
+        }
+        init { this._rawData.Set("daily_credit_allowance_config", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required SharedDiscount? Discount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SharedDiscount>("discount");
+        }
+        init { this._rawData.Set("discount", value); }
+    }
+
+    public required string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    public required double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    public required BillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
+    public required ItemSlim Item
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ItemSlim>("item");
+        }
+        init { this._rawData.Set("item", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Maximum? Maximum
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Maximum>("maximum");
+        }
+        init { this._rawData.Set("maximum", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MaximumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("maximum_amount");
+        }
+        init { this._rawData.Set("maximum_amount", value); }
+    }
+
+    /// <summary>
+    /// User specified key-value pairs for the resource. If not present, this defaults
+    /// to an empty dictionary. Individual keys can be removed by setting the value
+    /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
+    /// to `null`.
+    /// </summary>
+    public required IReadOnlyDictionary<string, string> Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Minimum? Minimum
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Minimum>("minimum");
+        }
+        init { this._rawData.Set("minimum", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MinimumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount");
+        }
+        init { this._rawData.Set("minimum_amount", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    public required long? PlanPhaseOrder
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("plan_phase_order");
+        }
+        init { this._rawData.Set("plan_phase_order", value); }
+    }
+
+    public required ApiEnum<string, DailyCreditAllowancePriceType> PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, DailyCreditAllowancePriceType>>(
+                "price_type"
+            );
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <summary>
+    /// The price id this price replaces. This price will take the place of the replaced
+    /// price in plan version migrations.
+    /// </summary>
+    public required string? ReplacesPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_price_id");
+        }
+        init { this._rawData.Set("replaces_price_id", value); }
+    }
+
+    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public DailyCreditAllowanceLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DailyCreditAllowanceLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.BillableMetric?.Validate();
+        this.BillingCycleConfiguration.Validate();
+        this.BillingMode.Validate();
+        this.Cadence.Validate();
+        foreach (var item in this.CompositePriceFilters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.CreatedAt;
+        this.CreditAllocation?.Validate();
+        _ = this.Currency;
+        this.DailyCreditAllowanceConfig.Validate();
+        this.Discount?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        this.Item.Validate();
+        this.Maximum?.Validate();
+        _ = this.MaximumAmount;
+        _ = this.Metadata;
+        this.Minimum?.Validate();
+        _ = this.MinimumAmount;
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("daily_credit_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.PlanPhaseOrder;
+        this.PriceType.Validate();
+        _ = this.ReplacesPriceID;
+        this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
+    }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public DailyCreditAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public DailyCreditAllowance(DailyCreditAllowance dailyCreditAllowance)
+        : base(dailyCreditAllowance) { }
+#pragma warning restore CS8618
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public DailyCreditAllowance(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    [SetsRequiredMembers]
+    DailyCreditAllowance(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceFromRaw : IFromRawJson<DailyCreditAllowance>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowance.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(DailyCreditAllowanceBillingModeConverter))]
+public enum DailyCreditAllowanceBillingMode
+{
+    InAdvance,
+    InArrear,
+}
+
+sealed class DailyCreditAllowanceBillingModeConverter
+    : JsonConverter<DailyCreditAllowanceBillingMode>
+{
+    public override DailyCreditAllowanceBillingMode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "in_advance" => DailyCreditAllowanceBillingMode.InAdvance,
+            "in_arrear" => DailyCreditAllowanceBillingMode.InArrear,
+            _ => (DailyCreditAllowanceBillingMode)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceBillingMode value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DailyCreditAllowanceBillingMode.InAdvance => "in_advance",
+                DailyCreditAllowanceBillingMode.InArrear => "in_arrear",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(DailyCreditAllowanceCadenceConverter))]
+public enum DailyCreditAllowanceCadence
+{
+    OneTime,
+    Monthly,
+    Quarterly,
+    SemiAnnual,
+    Annual,
+    Custom,
+}
+
+sealed class DailyCreditAllowanceCadenceConverter : JsonConverter<DailyCreditAllowanceCadence>
+{
+    public override DailyCreditAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "one_time" => DailyCreditAllowanceCadence.OneTime,
+            "monthly" => DailyCreditAllowanceCadence.Monthly,
+            "quarterly" => DailyCreditAllowanceCadence.Quarterly,
+            "semi_annual" => DailyCreditAllowanceCadence.SemiAnnual,
+            "annual" => DailyCreditAllowanceCadence.Annual,
+            "custom" => DailyCreditAllowanceCadence.Custom,
+            _ => (DailyCreditAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DailyCreditAllowanceCadence.OneTime => "one_time",
+                DailyCreditAllowanceCadence.Monthly => "monthly",
+                DailyCreditAllowanceCadence.Quarterly => "quarterly",
+                DailyCreditAllowanceCadence.SemiAnnual => "semi_annual",
+                DailyCreditAllowanceCadence.Annual => "annual",
+                DailyCreditAllowanceCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        DailyCreditAllowanceCompositePriceFilter,
+        DailyCreditAllowanceCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class DailyCreditAllowanceCompositePriceFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, DailyCreditAllowanceCompositePriceFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, DailyCreditAllowanceCompositePriceFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, DailyCreditAllowanceCompositePriceFilterOperator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, DailyCreditAllowanceCompositePriceFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public DailyCreditAllowanceCompositePriceFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DailyCreditAllowanceCompositePriceFilter(
+        DailyCreditAllowanceCompositePriceFilter dailyCreditAllowanceCompositePriceFilter
+    )
+        : base(dailyCreditAllowanceCompositePriceFilter) { }
+#pragma warning restore CS8618
+
+    public DailyCreditAllowanceCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DailyCreditAllowanceCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceCompositePriceFilterFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowanceCompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceCompositePriceFilterFromRaw
+    : IFromRawJson<DailyCreditAllowanceCompositePriceFilter>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowanceCompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowanceCompositePriceFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(DailyCreditAllowanceCompositePriceFilterFieldConverter))]
+public enum DailyCreditAllowanceCompositePriceFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class DailyCreditAllowanceCompositePriceFilterFieldConverter
+    : JsonConverter<DailyCreditAllowanceCompositePriceFilterField>
+{
+    public override DailyCreditAllowanceCompositePriceFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => DailyCreditAllowanceCompositePriceFilterField.PriceID,
+            "item_id" => DailyCreditAllowanceCompositePriceFilterField.ItemID,
+            "price_type" => DailyCreditAllowanceCompositePriceFilterField.PriceType,
+            "currency" => DailyCreditAllowanceCompositePriceFilterField.Currency,
+            "pricing_unit_id" => DailyCreditAllowanceCompositePriceFilterField.PricingUnitID,
+            _ => (DailyCreditAllowanceCompositePriceFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceCompositePriceFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DailyCreditAllowanceCompositePriceFilterField.PriceID => "price_id",
+                DailyCreditAllowanceCompositePriceFilterField.ItemID => "item_id",
+                DailyCreditAllowanceCompositePriceFilterField.PriceType => "price_type",
+                DailyCreditAllowanceCompositePriceFilterField.Currency => "currency",
+                DailyCreditAllowanceCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(DailyCreditAllowanceCompositePriceFilterOperatorConverter))]
+public enum DailyCreditAllowanceCompositePriceFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class DailyCreditAllowanceCompositePriceFilterOperatorConverter
+    : JsonConverter<DailyCreditAllowanceCompositePriceFilterOperator>
+{
+    public override DailyCreditAllowanceCompositePriceFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => DailyCreditAllowanceCompositePriceFilterOperator.Includes,
+            "excludes" => DailyCreditAllowanceCompositePriceFilterOperator.Excludes,
+            _ => (DailyCreditAllowanceCompositePriceFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceCompositePriceFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DailyCreditAllowanceCompositePriceFilterOperator.Includes => "includes",
+                DailyCreditAllowanceCompositePriceFilterOperator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(DailyCreditAllowanceConversionRateConfigConverter))]
+public record class DailyCreditAllowanceConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public DailyCreditAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DailyCreditAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DailyCreditAllowanceConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of DailyCreditAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of DailyCreditAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator DailyCreditAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator DailyCreditAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of DailyCreditAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(DailyCreditAllowanceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class DailyCreditAllowanceConversionRateConfigConverter
+    : JsonConverter<DailyCreditAllowanceConversionRateConfig>
+{
+    public override DailyCreditAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new DailyCreditAllowanceConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowanceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+/// <summary>
+/// Configuration for daily_credit_allowance pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<DailyCreditAllowanceConfig, DailyCreditAllowanceConfigFromRaw>)
+)]
+public sealed record class DailyCreditAllowanceConfig : JsonModel
+{
+    /// <summary>
+    /// Credits granted per day. Lose-it-or-use-it; does not roll over.
+    /// </summary>
+    public required string DailyAllowance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("daily_allowance");
+        }
+        init { this._rawData.Set("daily_allowance", value); }
+    }
+
+    /// <summary>
+    /// Default per-unit credit rate for any usage not bucketed into a specified matrix_value
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// One or two event property values to evaluate matrix groups by
+    /// </summary>
+    public required IReadOnlyList<string?> Dimensions
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Event property whose value identifies the day bucket the event belongs to
+    /// (e.g. 'event_day' set to an ISO date string in the customer's timezone).
+    /// The allowance resets per distinct value of this property.
+    /// </summary>
+    public required string EventDayProperty
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_day_property");
+        }
+        init { this._rawData.Set("event_day_property", value); }
+    }
+
+    /// <summary>
+    /// Per-dimension credit rates
+    /// </summary>
+    public required IReadOnlyList<DailyCreditAllowanceConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<DailyCreditAllowanceConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<DailyCreditAllowanceConfigMatrixValue>>(
+                "matrix_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DailyAllowance;
+        _ = this.DefaultUnitAmount;
+        _ = this.Dimensions;
+        _ = this.EventDayProperty;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+    }
+
+    public DailyCreditAllowanceConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DailyCreditAllowanceConfig(DailyCreditAllowanceConfig dailyCreditAllowanceConfig)
+        : base(dailyCreditAllowanceConfig) { }
+#pragma warning restore CS8618
+
+    public DailyCreditAllowanceConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DailyCreditAllowanceConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceConfigFromRaw : IFromRawJson<DailyCreditAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowanceConfig.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Per-dimension credit price for the daily credit allowance model.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        DailyCreditAllowanceConfigMatrixValue,
+        DailyCreditAllowanceConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class DailyCreditAllowanceConfigMatrixValue : JsonModel
+{
+    /// <summary>
+    /// One or two matrix keys to filter usage to this value by. For example, ["model"]
+    /// could be used to apply a different credit rate to each AI model.
+    /// </summary>
+    public required IReadOnlyList<string?> DimensionValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Credits charged per unit of usage matching the specified dimension_values
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DimensionValues;
+        _ = this.UnitAmount;
+    }
+
+    public DailyCreditAllowanceConfigMatrixValue() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DailyCreditAllowanceConfigMatrixValue(
+        DailyCreditAllowanceConfigMatrixValue dailyCreditAllowanceConfigMatrixValue
+    )
+        : base(dailyCreditAllowanceConfigMatrixValue) { }
+#pragma warning restore CS8618
+
+    public DailyCreditAllowanceConfigMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DailyCreditAllowanceConfigMatrixValue(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowanceConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceConfigMatrixValueFromRaw
+    : IFromRawJson<DailyCreditAllowanceConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowanceConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowanceConfigMatrixValue.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(DailyCreditAllowancePriceTypeConverter))]
+public enum DailyCreditAllowancePriceType
+{
+    UsagePrice,
+    FixedPrice,
+    CompositePrice,
+}
+
+sealed class DailyCreditAllowancePriceTypeConverter : JsonConverter<DailyCreditAllowancePriceType>
+{
+    public override DailyCreditAllowancePriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage_price" => DailyCreditAllowancePriceType.UsagePrice,
+            "fixed_price" => DailyCreditAllowancePriceType.FixedPrice,
+            "composite_price" => DailyCreditAllowancePriceType.CompositePrice,
+            _ => (DailyCreditAllowancePriceType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DailyCreditAllowancePriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                DailyCreditAllowancePriceType.UsagePrice => "usage_price",
+                DailyCreditAllowancePriceType.FixedPrice => "fixed_price",
+                DailyCreditAllowancePriceType.CompositePrice => "composite_price",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        DailyCreditAllowanceLicenseType,
+        DailyCreditAllowanceLicenseTypeFromRaw
+    >)
+)]
+public sealed record class DailyCreditAllowanceLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public DailyCreditAllowanceLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DailyCreditAllowanceLicenseType(
+        DailyCreditAllowanceLicenseType dailyCreditAllowanceLicenseType
+    )
+        : base(dailyCreditAllowanceLicenseType) { }
+#pragma warning restore CS8618
+
+    public DailyCreditAllowanceLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DailyCreditAllowanceLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DailyCreditAllowanceLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static DailyCreditAllowanceLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DailyCreditAllowanceLicenseTypeFromRaw : IFromRawJson<DailyCreditAllowanceLicenseType>
+{
+    /// <inheritdoc/>
+    public DailyCreditAllowanceLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DailyCreditAllowanceLicenseType.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<MinimumComposite, MinimumCompositeFromRaw>))]

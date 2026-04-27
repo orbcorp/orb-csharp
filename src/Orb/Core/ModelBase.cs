@@ -399,6 +399,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, CumulativeGroupedAllocationCompositePriceFilterField>(),
             new ApiEnumConverter<string, CumulativeGroupedAllocationCompositePriceFilterOperator>(),
             new ApiEnumConverter<string, CumulativeGroupedAllocationPriceType>(),
+            new ApiEnumConverter<string, DailyCreditAllowanceBillingMode>(),
+            new ApiEnumConverter<string, DailyCreditAllowanceCadence>(),
+            new ApiEnumConverter<string, DailyCreditAllowanceCompositePriceFilterField>(),
+            new ApiEnumConverter<string, DailyCreditAllowanceCompositePriceFilterOperator>(),
+            new ApiEnumConverter<string, DailyCreditAllowancePriceType>(),
             new ApiEnumConverter<string, MinimumCompositeBillingMode>(),
             new ApiEnumConverter<string, MinimumCompositeCadence>(),
             new ApiEnumConverter<string, MinimumCompositeCompositePriceFilterField>(),
@@ -433,6 +438,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Beta::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, Beta::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Beta::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Beta::DailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Beta::PercentCadence>(),
             new ApiEnumConverter<string, Beta::EventOutputCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceCadence>(),
@@ -447,6 +453,7 @@ public abstract record class ModelBase
                 string,
                 Beta::ReplacePricePriceCumulativeGroupedAllocationCadence
             >(),
+            new ApiEnumConverter<string, Beta::ReplacePricePriceDailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePricePricePercentCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceEventOutputCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::Cadence>(),
@@ -455,6 +462,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExternalPlanID::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::DailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::PercentCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::EventOutputCadence>(),
             new ApiEnumConverter<
@@ -477,6 +485,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 ExternalPlanID::ReplacePricePriceCumulativeGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePricePriceDailyCreditAllowanceCadence
             >(),
             new ApiEnumConverter<string, ExternalPlanID::ReplacePricePricePercentCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::ReplacePricePriceEventOutputCadence>(),
@@ -620,6 +632,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Plans::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, Plans::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Plans::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Plans::DailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Plans::PercentCadence>(),
             new ApiEnumConverter<string, Plans::EventOutputCadence>(),
             new ApiEnumConverter<string, Plans::DurationUnit>(),
@@ -640,11 +653,13 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Prices::Cadence>(),
             new ApiEnumConverter<string, Prices::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Prices::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Prices::DailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Prices::PercentCadence>(),
             new ApiEnumConverter<string, Prices::EventOutputCadence>(),
             new ApiEnumConverter<string, Prices::PriceBulkWithFiltersCadence>(),
             new ApiEnumConverter<string, Prices::PriceGroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Prices::PriceCumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Prices::PriceDailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Prices::PricePercentCadence>(),
             new ApiEnumConverter<string, Prices::PriceEventOutputCadence>(),
             new ApiEnumConverter<
@@ -658,6 +673,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 Prices::PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Prices::PriceEvaluatePreviewEventsParamsPriceEvaluationPriceDailyCreditAllowanceCadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -839,6 +858,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, Subscriptions::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Subscriptions::CumulativeGroupedAllocationCadence>(),
+            new ApiEnumConverter<string, Subscriptions::DailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Subscriptions::PercentCadence>(),
             new ApiEnumConverter<string, Subscriptions::EventOutputCadence>(),
             new ApiEnumConverter<string, Subscriptions::ExternalMarketplace>(),
@@ -854,6 +874,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 Subscriptions::ReplacePricePriceCumulativeGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::ReplacePricePriceDailyCreditAllowanceCadence
             >(),
             new ApiEnumConverter<string, Subscriptions::ReplacePricePricePercentCadence>(),
             new ApiEnumConverter<string, Subscriptions::ReplacePricePriceEventOutputCadence>(),
@@ -871,6 +895,7 @@ public abstract record class ModelBase
                 string,
                 Subscriptions::PriceModelCumulativeGroupedAllocationCadence
             >(),
+            new ApiEnumConverter<string, Subscriptions::PriceModelDailyCreditAllowanceCadence>(),
             new ApiEnumConverter<string, Subscriptions::PriceModelPercentCadence>(),
             new ApiEnumConverter<string, Subscriptions::PriceModelEventOutputCadence>(),
             new ApiEnumConverter<string, Subscriptions::ChangeOption>(),
@@ -896,6 +921,10 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowanceCadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentCadence
             >(),
             new ApiEnumConverter<
@@ -918,6 +947,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowanceCadence
             >(),
             new ApiEnumConverter<
                 string,
