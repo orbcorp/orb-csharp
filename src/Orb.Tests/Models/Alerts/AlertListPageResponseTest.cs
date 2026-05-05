@@ -37,6 +37,19 @@ public class AlertListPageResponseTest : TestBase
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                     GroupingKeys = ["string"],
                     LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -65,6 +78,16 @@ public class AlertListPageResponseTest : TestBase
                 BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                 GroupingKeys = ["string"],
                 LicenseType = new("id"),
+                PriceFilters =
+                [
+                    new()
+                    {
+                        Field = AlertPriceFilterField.PriceID,
+                        Operator = AlertPriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -109,6 +132,19 @@ public class AlertListPageResponseTest : TestBase
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                     GroupingKeys = ["string"],
                     LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -151,6 +187,19 @@ public class AlertListPageResponseTest : TestBase
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                     GroupingKeys = ["string"],
                     LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -186,6 +235,16 @@ public class AlertListPageResponseTest : TestBase
                 BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                 GroupingKeys = ["string"],
                 LicenseType = new("id"),
+                PriceFilters =
+                [
+                    new()
+                    {
+                        Field = AlertPriceFilterField.PriceID,
+                        Operator = AlertPriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -230,6 +289,19 @@ public class AlertListPageResponseTest : TestBase
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                     GroupingKeys = ["string"],
                     LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -266,6 +338,19 @@ public class AlertListPageResponseTest : TestBase
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
                     GroupingKeys = ["string"],
                     LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },

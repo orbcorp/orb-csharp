@@ -966,9 +966,13 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, Subscriptions::UnionMember1>(),
             new ApiEnumConverter<string, Alerts::AlertType>(),
+            new ApiEnumConverter<string, Alerts::AlertPriceFilterField>(),
+            new ApiEnumConverter<string, Alerts::AlertPriceFilterOperator>(),
             new ApiEnumConverter<string, Alerts::Type>(),
             new ApiEnumConverter<string, Alerts::AlertCreateForExternalCustomerParamsType>(),
             new ApiEnumConverter<string, Alerts::AlertCreateForSubscriptionParamsType>(),
+            new ApiEnumConverter<string, Alerts::Field>(),
+            new ApiEnumConverter<string, Alerts::Operator>(),
             new ApiEnumConverter<string, SubscriptionChanges::MutatedSubscriptionStatus>(),
             new ApiEnumConverter<
                 string,
