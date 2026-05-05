@@ -106,6 +106,29 @@ public record class AlertCreateForSubscriptionParams : ParamsBase
     }
 
     /// <summary>
+    /// Filters to scope which prices are included in grouped cost alert evaluation.
+    /// Supports filtering by price_id, item_id, or price_type with includes/excludes
+    /// operators. Only applicable when grouping_keys is set.
+    /// </summary>
+    public IReadOnlyList<PriceFilter>? PriceFilters
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<PriceFilter>>(
+                "price_filters"
+            );
+        }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<PriceFilter>?>(
+                "price_filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// The pricing unit to use for grouped cost alerts. Required when grouping_keys
     /// is set.
     /// </summary>
@@ -117,6 +140,31 @@ public record class AlertCreateForSubscriptionParams : ParamsBase
             return this._rawBodyData.GetNullableClass<string>("pricing_unit_id");
         }
         init { this._rawBodyData.Set("pricing_unit_id", value); }
+    }
+
+    /// <summary>
+    /// Per-group threshold overrides. Each override maps a specific combination of
+    /// grouping_keys values to a list of thresholds that fully replaces the default
+    /// thresholds for that group. An empty thresholds list silences the group. Groups
+    /// without an override use the default thresholds. Only applicable when grouping_keys
+    /// is set.
+    /// </summary>
+    public IReadOnlyList<ThresholdOverride>? ThresholdOverrides
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<ThresholdOverride>>(
+                "threshold_overrides"
+            );
+        }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<ThresholdOverride>?>(
+                "threshold_overrides",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public AlertCreateForSubscriptionParams() { }
@@ -288,4 +336,287 @@ sealed class AlertCreateForSubscriptionParamsTypeConverter
             options
         );
     }
+}
+
+[JsonConverter(typeof(JsonModelConverter<PriceFilter, PriceFilterFromRaw>))]
+public sealed record class PriceFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, Field> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, Operator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public PriceFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceFilter(PriceFilter priceFilter)
+        : base(priceFilter) { }
+#pragma warning restore CS8618
+
+    public PriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceFilterFromRaw.FromRawUnchecked"/>
+    public static PriceFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceFilterFromRaw : IFromRawJson<PriceFilter>
+{
+    /// <inheritdoc/>
+    public PriceFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PriceFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(FieldConverter))]
+public enum Field
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class FieldConverter : JsonConverter<Field>
+{
+    public override Field Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => Field.PriceID,
+            "item_id" => Field.ItemID,
+            "price_type" => Field.PriceType,
+            "currency" => Field.Currency,
+            "pricing_unit_id" => Field.PricingUnitID,
+            _ => (Field)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Field.PriceID => "price_id",
+                Field.ItemID => "item_id",
+                Field.PriceType => "price_type",
+                Field.Currency => "currency",
+                Field.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(OperatorConverter))]
+public enum Operator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class OperatorConverter : JsonConverter<Operator>
+{
+    public override Operator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Per-group threshold override on a grouped cost alert.
+///
+/// <para>- An empty `thresholds` list silences alerts for this group (never fires).
+/// - A non-empty list fully replaces the default thresholds for this group.</para>
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<ThresholdOverride, ThresholdOverrideFromRaw>))]
+public sealed record class ThresholdOverride : JsonModel
+{
+    /// <summary>
+    /// The values of the grouping keys that identify this group. The list length
+    /// must match the alert's grouping_keys, and values appear in the same order
+    /// as grouping_keys.
+    /// </summary>
+    public required IReadOnlyList<string> GroupValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("group_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "group_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The thresholds to apply to this group. An empty list silences alerts for this
+    /// group. A non-empty list fully replaces the default thresholds for this group.
+    /// </summary>
+    public required IReadOnlyList<Threshold> Thresholds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Threshold>>(
+                "thresholds",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.GroupValues;
+        foreach (var item in this.Thresholds)
+        {
+            item.Validate();
+        }
+    }
+
+    public ThresholdOverride() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ThresholdOverride(ThresholdOverride thresholdOverride)
+        : base(thresholdOverride) { }
+#pragma warning restore CS8618
+
+    public ThresholdOverride(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ThresholdOverride(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ThresholdOverrideFromRaw.FromRawUnchecked"/>
+    public static ThresholdOverride FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ThresholdOverrideFromRaw : IFromRawJson<ThresholdOverride>
+{
+    /// <inheritdoc/>
+    public ThresholdOverride FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ThresholdOverride.FromRawUnchecked(rawData);
 }
