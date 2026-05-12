@@ -12,6 +12,9 @@ namespace Orb.Models.Plans.Migrations;
 [JsonConverter(typeof(JsonModelConverter<MigrationCancelResponse, MigrationCancelResponseFromRaw>))]
 public sealed record class MigrationCancelResponse : JsonModel
 {
+    /// <summary>
+    /// Unique identifier for this plan version change.
+    /// </summary>
     public required string ID
     {
         get
@@ -22,6 +25,10 @@ public sealed record class MigrationCancelResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+    /// when scheduled to be at the end of the current billing period.
+    /// </summary>
     public required MigrationCancelResponseEffectiveTime? EffectiveTime
     {
         get
@@ -34,6 +41,9 @@ public sealed record class MigrationCancelResponse : JsonModel
         init { this._rawData.Set("effective_time", value); }
     }
 
+    /// <summary>
+    /// The ID of the plan being migrated.
+    /// </summary>
     public required string PlanID
     {
         get
@@ -44,6 +54,10 @@ public sealed record class MigrationCancelResponse : JsonModel
         init { this._rawData.Set("plan_id", value); }
     }
 
+    /// <summary>
+    /// Current status of the migration: 'not_started', 'in_progress', 'completed',
+    /// 'action_needed', or 'canceled'.
+    /// </summary>
     public required ApiEnum<string, MigrationCancelResponseStatus> Status
     {
         get
@@ -103,6 +117,10 @@ class MigrationCancelResponseFromRaw : IFromRawJson<MigrationCancelResponse>
     ) => MigrationCancelResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+/// when scheduled to be at the end of the current billing period.
+/// </summary>
 [JsonConverter(typeof(MigrationCancelResponseEffectiveTimeConverter))]
 public record class MigrationCancelResponseEffectiveTime : ModelBase
 {
@@ -481,6 +499,10 @@ sealed class MigrationCancelResponseEffectiveTimeUnionMember2Converter
     }
 }
 
+/// <summary>
+/// Current status of the migration: 'not_started', 'in_progress', 'completed', 'action_needed',
+/// or 'canceled'.
+/// </summary>
 [JsonConverter(typeof(MigrationCancelResponseStatusConverter))]
 public enum MigrationCancelResponseStatus
 {

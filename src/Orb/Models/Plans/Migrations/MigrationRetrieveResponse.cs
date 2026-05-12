@@ -14,6 +14,9 @@ namespace Orb.Models.Plans.Migrations;
 )]
 public sealed record class MigrationRetrieveResponse : JsonModel
 {
+    /// <summary>
+    /// Unique identifier for this plan version change.
+    /// </summary>
     public required string ID
     {
         get
@@ -24,6 +27,10 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+    /// when scheduled to be at the end of the current billing period.
+    /// </summary>
     public required EffectiveTime? EffectiveTime
     {
         get
@@ -34,6 +41,9 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("effective_time", value); }
     }
 
+    /// <summary>
+    /// The ID of the plan being migrated.
+    /// </summary>
     public required string PlanID
     {
         get
@@ -44,6 +54,10 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("plan_id", value); }
     }
 
+    /// <summary>
+    /// Current status of the migration: 'not_started', 'in_progress', 'completed',
+    /// 'action_needed', or 'canceled'.
+    /// </summary>
     public required ApiEnum<string, Status> Status
     {
         get
@@ -101,6 +115,10 @@ class MigrationRetrieveResponseFromRaw : IFromRawJson<MigrationRetrieveResponse>
     ) => MigrationRetrieveResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+/// when scheduled to be at the end of the current billing period.
+/// </summary>
 [JsonConverter(typeof(EffectiveTimeConverter))]
 public record class EffectiveTime : ModelBase
 {
@@ -450,6 +468,10 @@ sealed class UnionMember2Converter : JsonConverter<UnionMember2>
     }
 }
 
+/// <summary>
+/// Current status of the migration: 'not_started', 'in_progress', 'completed', 'action_needed',
+/// or 'canceled'.
+/// </summary>
 [JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
