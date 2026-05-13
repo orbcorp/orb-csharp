@@ -73,6 +73,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ID,
                 cumulativeGroupedAllocation: (x) => x.ID,
                 dailyCreditAllowance: (x) => x.ID,
+                meteredAllowance: (x) => x.ID,
                 minimumComposite: (x) => x.ID,
                 percent: (x) => x.ID,
                 eventOutput: (x) => x.ID
@@ -114,6 +115,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.BillableMetric,
                 cumulativeGroupedAllocation: (x) => x.BillableMetric,
                 dailyCreditAllowance: (x) => x.BillableMetric,
+                meteredAllowance: (x) => x.BillableMetric,
                 minimumComposite: (x) => x.BillableMetric,
                 percent: (x) => x.BillableMetric,
                 eventOutput: (x) => x.BillableMetric
@@ -155,6 +157,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
                 dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
+                meteredAllowance: (x) => x.BillingCycleConfiguration,
                 minimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -196,6 +199,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
                 dailyCreditAllowance: (x) => x.ConversionRate,
+                meteredAllowance: (x) => x.ConversionRate,
                 minimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -237,6 +241,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.CreatedAt,
                 cumulativeGroupedAllocation: (x) => x.CreatedAt,
                 dailyCreditAllowance: (x) => x.CreatedAt,
+                meteredAllowance: (x) => x.CreatedAt,
                 minimumComposite: (x) => x.CreatedAt,
                 percent: (x) => x.CreatedAt,
                 eventOutput: (x) => x.CreatedAt
@@ -278,6 +283,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.CreditAllocation,
                 cumulativeGroupedAllocation: (x) => x.CreditAllocation,
                 dailyCreditAllowance: (x) => x.CreditAllocation,
+                meteredAllowance: (x) => x.CreditAllocation,
                 minimumComposite: (x) => x.CreditAllocation,
                 percent: (x) => x.CreditAllocation,
                 eventOutput: (x) => x.CreditAllocation
@@ -319,6 +325,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
                 dailyCreditAllowance: (x) => x.Currency,
+                meteredAllowance: (x) => x.Currency,
                 minimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -360,6 +367,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Discount,
                 cumulativeGroupedAllocation: (x) => x.Discount,
                 dailyCreditAllowance: (x) => x.Discount,
+                meteredAllowance: (x) => x.Discount,
                 minimumComposite: (x) => x.Discount,
                 percent: (x) => x.Discount,
                 eventOutput: (x) => x.Discount
@@ -401,6 +409,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
                 dailyCreditAllowance: (x) => x.ExternalPriceID,
+                meteredAllowance: (x) => x.ExternalPriceID,
                 minimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -442,6 +451,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
                 dailyCreditAllowance: (x) => x.FixedPriceQuantity,
+                meteredAllowance: (x) => x.FixedPriceQuantity,
                 minimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -483,6 +493,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
                 dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
+                meteredAllowance: (x) => x.InvoiceGroupingKey,
                 minimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -524,6 +535,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
                 dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
+                meteredAllowance: (x) => x.InvoicingCycleConfiguration,
                 minimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -565,6 +577,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Item,
                 cumulativeGroupedAllocation: (x) => x.Item,
                 dailyCreditAllowance: (x) => x.Item,
+                meteredAllowance: (x) => x.Item,
                 minimumComposite: (x) => x.Item,
                 percent: (x) => x.Item,
                 eventOutput: (x) => x.Item
@@ -606,6 +619,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Maximum,
                 cumulativeGroupedAllocation: (x) => x.Maximum,
                 dailyCreditAllowance: (x) => x.Maximum,
+                meteredAllowance: (x) => x.Maximum,
                 minimumComposite: (x) => x.Maximum,
                 percent: (x) => x.Maximum,
                 eventOutput: (x) => x.Maximum
@@ -647,6 +661,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.MaximumAmount,
                 cumulativeGroupedAllocation: (x) => x.MaximumAmount,
                 dailyCreditAllowance: (x) => x.MaximumAmount,
+                meteredAllowance: (x) => x.MaximumAmount,
                 minimumComposite: (x) => x.MaximumAmount,
                 percent: (x) => x.MaximumAmount,
                 eventOutput: (x) => x.MaximumAmount
@@ -688,6 +703,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Minimum,
                 cumulativeGroupedAllocation: (x) => x.Minimum,
                 dailyCreditAllowance: (x) => x.Minimum,
+                meteredAllowance: (x) => x.Minimum,
                 minimumComposite: (x) => x.Minimum,
                 percent: (x) => x.Minimum,
                 eventOutput: (x) => x.Minimum
@@ -729,6 +745,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.MinimumAmount,
                 cumulativeGroupedAllocation: (x) => x.MinimumAmount,
                 dailyCreditAllowance: (x) => x.MinimumAmount,
+                meteredAllowance: (x) => x.MinimumAmount,
                 minimumComposite: (x) => x.MinimumAmount,
                 percent: (x) => x.MinimumAmount,
                 eventOutput: (x) => x.MinimumAmount
@@ -770,6 +787,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ModelType,
                 cumulativeGroupedAllocation: (x) => x.ModelType,
                 dailyCreditAllowance: (x) => x.ModelType,
+                meteredAllowance: (x) => x.ModelType,
                 minimumComposite: (x) => x.ModelType,
                 percent: (x) => x.ModelType,
                 eventOutput: (x) => x.ModelType
@@ -811,6 +829,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
                 dailyCreditAllowance: (x) => x.Name,
+                meteredAllowance: (x) => x.Name,
                 minimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -852,6 +871,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.PlanPhaseOrder,
                 cumulativeGroupedAllocation: (x) => x.PlanPhaseOrder,
                 dailyCreditAllowance: (x) => x.PlanPhaseOrder,
+                meteredAllowance: (x) => x.PlanPhaseOrder,
                 minimumComposite: (x) => x.PlanPhaseOrder,
                 percent: (x) => x.PlanPhaseOrder,
                 eventOutput: (x) => x.PlanPhaseOrder
@@ -893,6 +913,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.ReplacesPriceID,
                 cumulativeGroupedAllocation: (x) => x.ReplacesPriceID,
                 dailyCreditAllowance: (x) => x.ReplacesPriceID,
+                meteredAllowance: (x) => x.ReplacesPriceID,
                 minimumComposite: (x) => x.ReplacesPriceID,
                 percent: (x) => x.ReplacesPriceID,
                 eventOutput: (x) => x.ReplacesPriceID
@@ -934,6 +955,7 @@ public record class Price : ModelBase
                 cumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
                 dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
+                meteredAllowance: (x) => x.DimensionalPriceConfiguration,
                 minimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -1110,6 +1132,12 @@ public record class Price : ModelBase
     }
 
     public Price(DailyCreditAllowance value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(MeteredAllowance value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1763,6 +1791,27 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MeteredAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMeteredAllowance(out var value)) {
+    ///     // `value` is of type `MeteredAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMeteredAllowance([NotNullWhen(true)] out MeteredAllowance? value)
+    {
+        value = this.Value as MeteredAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MinimumComposite"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -1867,6 +1916,7 @@ public record class Price : ModelBase
     ///     (CumulativeGroupedBulk value) =&gt; {...},
     ///     (CumulativeGroupedAllocation value) =&gt; {...},
     ///     (DailyCreditAllowance value) =&gt; {...},
+    ///     (MeteredAllowance value) =&gt; {...},
     ///     (MinimumComposite value) =&gt; {...},
     ///     (Percent value) =&gt; {...},
     ///     (EventOutput value) =&gt; {...}
@@ -1904,6 +1954,7 @@ public record class Price : ModelBase
         System::Action<CumulativeGroupedBulk> cumulativeGroupedBulk,
         System::Action<CumulativeGroupedAllocation> cumulativeGroupedAllocation,
         System::Action<DailyCreditAllowance> dailyCreditAllowance,
+        System::Action<MeteredAllowance> meteredAllowance,
         System::Action<MinimumComposite> minimumComposite,
         System::Action<Percent> percent,
         System::Action<EventOutput> eventOutput
@@ -1998,6 +2049,9 @@ public record class Price : ModelBase
             case DailyCreditAllowance value:
                 dailyCreditAllowance(value);
                 break;
+            case MeteredAllowance value:
+                meteredAllowance(value);
+                break;
             case MinimumComposite value:
                 minimumComposite(value);
                 break;
@@ -2056,6 +2110,7 @@ public record class Price : ModelBase
     ///     (CumulativeGroupedBulk value) =&gt; {...},
     ///     (CumulativeGroupedAllocation value) =&gt; {...},
     ///     (DailyCreditAllowance value) =&gt; {...},
+    ///     (MeteredAllowance value) =&gt; {...},
     ///     (MinimumComposite value) =&gt; {...},
     ///     (Percent value) =&gt; {...},
     ///     (EventOutput value) =&gt; {...}
@@ -2093,6 +2148,7 @@ public record class Price : ModelBase
         System::Func<CumulativeGroupedBulk, T> cumulativeGroupedBulk,
         System::Func<CumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
         System::Func<DailyCreditAllowance, T> dailyCreditAllowance,
+        System::Func<MeteredAllowance, T> meteredAllowance,
         System::Func<MinimumComposite, T> minimumComposite,
         System::Func<Percent, T> percent,
         System::Func<EventOutput, T> eventOutput
@@ -2129,6 +2185,7 @@ public record class Price : ModelBase
             CumulativeGroupedBulk value => cumulativeGroupedBulk(value),
             CumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
             DailyCreditAllowance value => dailyCreditAllowance(value),
+            MeteredAllowance value => meteredAllowance(value),
             MinimumComposite value => minimumComposite(value),
             Percent value => percent(value),
             EventOutput value => eventOutput(value),
@@ -2194,6 +2251,8 @@ public record class Price : ModelBase
 
     public static implicit operator Price(DailyCreditAllowance value) => new(value);
 
+    public static implicit operator Price(MeteredAllowance value) => new(value);
+
     public static implicit operator Price(MinimumComposite value) => new(value);
 
     public static implicit operator Price(Percent value) => new(value);
@@ -2246,6 +2305,7 @@ public record class Price : ModelBase
             (cumulativeGroupedBulk) => cumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
             (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
+            (meteredAllowance) => meteredAllowance.Validate(),
             (minimumComposite) => minimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -2301,9 +2361,10 @@ public record class Price : ModelBase
             CumulativeGroupedBulk _ => 26,
             CumulativeGroupedAllocation _ => 27,
             DailyCreditAllowance _ => 28,
-            MinimumComposite _ => 29,
-            Percent _ => 30,
-            EventOutput _ => 31,
+            MeteredAllowance _ => 29,
+            MinimumComposite _ => 30,
+            Percent _ => 31,
+            EventOutput _ => 32,
             _ => -1,
         };
     }
@@ -2874,6 +2935,26 @@ sealed class PriceConverter : JsonConverter<Price>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<DailyCreditAllowance>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "metered_allowance":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<MeteredAllowance>(
                         element,
                         options
                     );
@@ -42355,6 +42436,1370 @@ class DailyCreditAllowanceLicenseTypeFromRaw : IFromRawJson<DailyCreditAllowance
     public DailyCreditAllowanceLicenseType FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => DailyCreditAllowanceLicenseType.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<MeteredAllowance, MeteredAllowanceFromRaw>))]
+public sealed record class MeteredAllowance : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public required BillableMetricTiny? BillableMetric
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BillableMetricTiny>("billable_metric");
+        }
+        init { this._rawData.Set("billable_metric", value); }
+    }
+
+    public required BillingCycleConfiguration BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<BillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    public required ApiEnum<string, MeteredAllowanceBillingMode> BillingMode
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MeteredAllowanceBillingMode>>(
+                "billing_mode"
+            );
+        }
+        init { this._rawData.Set("billing_mode", value); }
+    }
+
+    public required ApiEnum<string, MeteredAllowanceCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MeteredAllowanceCadence>>(
+                "cadence"
+            );
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    public required IReadOnlyList<MeteredAllowanceCompositePriceFilter>? CompositePriceFilters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<MeteredAllowanceCompositePriceFilter>
+            >("composite_price_filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MeteredAllowanceCompositePriceFilter>?>(
+                "composite_price_filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public required double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    public required MeteredAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MeteredAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    public required Allocation? CreditAllocation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Allocation>("credit_allocation");
+        }
+        init { this._rawData.Set("credit_allocation", value); }
+    }
+
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required SharedDiscount? Discount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SharedDiscount>("discount");
+        }
+        init { this._rawData.Set("discount", value); }
+    }
+
+    public required string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    public required double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    public required string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    public required BillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<BillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// A minimal representation of an Item containing only the essential identifying information.
+    /// </summary>
+    public required ItemSlim Item
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ItemSlim>("item");
+        }
+        init { this._rawData.Set("item", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Maximum? Maximum
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Maximum>("maximum");
+        }
+        init { this._rawData.Set("maximum", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MaximumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("maximum_amount");
+        }
+        init { this._rawData.Set("maximum_amount", value); }
+    }
+
+    /// <summary>
+    /// User specified key-value pairs for the resource. If not present, this defaults
+    /// to an empty dictionary. Individual keys can be removed by setting the value
+    /// to `null`, and the entire metadata mapping can be cleared by setting `metadata`
+    /// to `null`.
+    /// </summary>
+    public required IReadOnlyDictionary<string, string> Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Configuration for metered_allowance pricing
+    /// </summary>
+    public required MeteredAllowanceConfig MeteredAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<MeteredAllowanceConfig>(
+                "metered_allowance_config"
+            );
+        }
+        init { this._rawData.Set("metered_allowance_config", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required Minimum? Minimum
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Minimum>("minimum");
+        }
+        init { this._rawData.Set("minimum", value); }
+    }
+
+    [System::Obsolete("deprecated")]
+    public required string? MinimumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount");
+        }
+        init { this._rawData.Set("minimum_amount", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    public required long? PlanPhaseOrder
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("plan_phase_order");
+        }
+        init { this._rawData.Set("plan_phase_order", value); }
+    }
+
+    public required ApiEnum<string, MeteredAllowancePriceType> PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, MeteredAllowancePriceType>>(
+                "price_type"
+            );
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <summary>
+    /// The price id this price replaces. This price will take the place of the replaced
+    /// price in plan version migrations.
+    /// </summary>
+    public required string? ReplacesPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_price_id");
+        }
+        init { this._rawData.Set("replaces_price_id", value); }
+    }
+
+    public DimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// The LicenseType resource represents a type of license that can be assigned
+    /// to users. License types are used during billing by grouping metrics on the
+    /// configured grouping key.
+    /// </summary>
+    public MeteredAllowanceLicenseType? LicenseType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<MeteredAllowanceLicenseType>("license_type");
+        }
+        init { this._rawData.Set("license_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        this.BillableMetric?.Validate();
+        this.BillingCycleConfiguration.Validate();
+        this.BillingMode.Validate();
+        this.Cadence.Validate();
+        foreach (var item in this.CompositePriceFilters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.CreatedAt;
+        this.CreditAllocation?.Validate();
+        _ = this.Currency;
+        this.Discount?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        this.Item.Validate();
+        this.Maximum?.Validate();
+        _ = this.MaximumAmount;
+        _ = this.Metadata;
+        this.MeteredAllowanceConfig.Validate();
+        this.Minimum?.Validate();
+        _ = this.MinimumAmount;
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("metered_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.PlanPhaseOrder;
+        this.PriceType.Validate();
+        _ = this.ReplacesPriceID;
+        this.DimensionalPriceConfiguration?.Validate();
+        this.LicenseType?.Validate();
+    }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public MeteredAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public MeteredAllowance(MeteredAllowance meteredAllowance)
+        : base(meteredAllowance) { }
+#pragma warning restore CS8618
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    public MeteredAllowance(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    [SetsRequiredMembers]
+    MeteredAllowance(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MeteredAllowanceFromRaw.FromRawUnchecked"/>
+    public static MeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MeteredAllowanceFromRaw : IFromRawJson<MeteredAllowance>
+{
+    /// <inheritdoc/>
+    public MeteredAllowance FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MeteredAllowance.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(MeteredAllowanceBillingModeConverter))]
+public enum MeteredAllowanceBillingMode
+{
+    InAdvance,
+    InArrear,
+}
+
+sealed class MeteredAllowanceBillingModeConverter : JsonConverter<MeteredAllowanceBillingMode>
+{
+    public override MeteredAllowanceBillingMode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "in_advance" => MeteredAllowanceBillingMode.InAdvance,
+            "in_arrear" => MeteredAllowanceBillingMode.InArrear,
+            _ => (MeteredAllowanceBillingMode)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MeteredAllowanceBillingMode value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MeteredAllowanceBillingMode.InAdvance => "in_advance",
+                MeteredAllowanceBillingMode.InArrear => "in_arrear",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(MeteredAllowanceCadenceConverter))]
+public enum MeteredAllowanceCadence
+{
+    OneTime,
+    Monthly,
+    Quarterly,
+    SemiAnnual,
+    Annual,
+    Custom,
+}
+
+sealed class MeteredAllowanceCadenceConverter : JsonConverter<MeteredAllowanceCadence>
+{
+    public override MeteredAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "one_time" => MeteredAllowanceCadence.OneTime,
+            "monthly" => MeteredAllowanceCadence.Monthly,
+            "quarterly" => MeteredAllowanceCadence.Quarterly,
+            "semi_annual" => MeteredAllowanceCadence.SemiAnnual,
+            "annual" => MeteredAllowanceCadence.Annual,
+            "custom" => MeteredAllowanceCadence.Custom,
+            _ => (MeteredAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MeteredAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MeteredAllowanceCadence.OneTime => "one_time",
+                MeteredAllowanceCadence.Monthly => "monthly",
+                MeteredAllowanceCadence.Quarterly => "quarterly",
+                MeteredAllowanceCadence.SemiAnnual => "semi_annual",
+                MeteredAllowanceCadence.Annual => "annual",
+                MeteredAllowanceCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        MeteredAllowanceCompositePriceFilter,
+        MeteredAllowanceCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class MeteredAllowanceCompositePriceFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, MeteredAllowanceCompositePriceFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, MeteredAllowanceCompositePriceFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public MeteredAllowanceCompositePriceFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MeteredAllowanceCompositePriceFilter(
+        MeteredAllowanceCompositePriceFilter meteredAllowanceCompositePriceFilter
+    )
+        : base(meteredAllowanceCompositePriceFilter) { }
+#pragma warning restore CS8618
+
+    public MeteredAllowanceCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MeteredAllowanceCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MeteredAllowanceCompositePriceFilterFromRaw.FromRawUnchecked"/>
+    public static MeteredAllowanceCompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MeteredAllowanceCompositePriceFilterFromRaw
+    : IFromRawJson<MeteredAllowanceCompositePriceFilter>
+{
+    /// <inheritdoc/>
+    public MeteredAllowanceCompositePriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MeteredAllowanceCompositePriceFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(MeteredAllowanceCompositePriceFilterFieldConverter))]
+public enum MeteredAllowanceCompositePriceFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class MeteredAllowanceCompositePriceFilterFieldConverter
+    : JsonConverter<MeteredAllowanceCompositePriceFilterField>
+{
+    public override MeteredAllowanceCompositePriceFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => MeteredAllowanceCompositePriceFilterField.PriceID,
+            "item_id" => MeteredAllowanceCompositePriceFilterField.ItemID,
+            "price_type" => MeteredAllowanceCompositePriceFilterField.PriceType,
+            "currency" => MeteredAllowanceCompositePriceFilterField.Currency,
+            "pricing_unit_id" => MeteredAllowanceCompositePriceFilterField.PricingUnitID,
+            _ => (MeteredAllowanceCompositePriceFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MeteredAllowanceCompositePriceFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MeteredAllowanceCompositePriceFilterField.PriceID => "price_id",
+                MeteredAllowanceCompositePriceFilterField.ItemID => "item_id",
+                MeteredAllowanceCompositePriceFilterField.PriceType => "price_type",
+                MeteredAllowanceCompositePriceFilterField.Currency => "currency",
+                MeteredAllowanceCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(MeteredAllowanceCompositePriceFilterOperatorConverter))]
+public enum MeteredAllowanceCompositePriceFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class MeteredAllowanceCompositePriceFilterOperatorConverter
+    : JsonConverter<MeteredAllowanceCompositePriceFilterOperator>
+{
+    public override MeteredAllowanceCompositePriceFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => MeteredAllowanceCompositePriceFilterOperator.Includes,
+            "excludes" => MeteredAllowanceCompositePriceFilterOperator.Excludes,
+            _ => (MeteredAllowanceCompositePriceFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MeteredAllowanceCompositePriceFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MeteredAllowanceCompositePriceFilterOperator.Includes => "includes",
+                MeteredAllowanceCompositePriceFilterOperator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(MeteredAllowanceConversionRateConfigConverter))]
+public record class MeteredAllowanceConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public MeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public MeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public MeteredAllowanceConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of MeteredAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of MeteredAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator MeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator MeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of MeteredAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(MeteredAllowanceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class MeteredAllowanceConversionRateConfigConverter
+    : JsonConverter<MeteredAllowanceConversionRateConfig>
+{
+    public override MeteredAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new MeteredAllowanceConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MeteredAllowanceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+/// <summary>
+/// Configuration for metered_allowance pricing
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<MeteredAllowanceConfig, MeteredAllowanceConfigFromRaw>))]
+public sealed record class MeteredAllowanceConfig : JsonModel
+{
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents the allowance for
+    /// this period (e.g. 'storage_snapshot' emitting 3 × avg storage). Capped at
+    /// consumption — credit can never exceed actual usage.
+    /// </summary>
+    public required string AllowanceGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("allowance_grouping_value");
+        }
+        init { this._rawData.Set("allowance_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents consumption (e.g.
+    /// 'download'). Charged at unit_amount.
+    /// </summary>
+    public required string ConsumptionGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("consumption_grouping_value");
+        }
+        init { this._rawData.Set("consumption_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// Event property used to partition the metric into consumption and allowance
+    /// quantities (e.g. 'event_name'). The metric is queried with this key and the
+    /// two values below select which partition is which.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Per-unit price applied to gross consumption and to the allowance credit.
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <summary>
+    /// Sub-line label for the credit row (e.g. 'Up to 3x free egress').
+    /// </summary>
+    public string? AllowanceDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("allowance_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("allowance_display_name", value);
+        }
+    }
+
+    /// <summary>
+    /// Sub-line label for the gross consumption row (e.g. 'bytes gotten').
+    /// </summary>
+    public string? ConsumptionDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("consumption_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("consumption_display_name", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AllowanceGroupingValue;
+        _ = this.ConsumptionGroupingValue;
+        _ = this.GroupingKey;
+        _ = this.UnitAmount;
+        _ = this.AllowanceDisplayName;
+        _ = this.ConsumptionDisplayName;
+    }
+
+    public MeteredAllowanceConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MeteredAllowanceConfig(MeteredAllowanceConfig meteredAllowanceConfig)
+        : base(meteredAllowanceConfig) { }
+#pragma warning restore CS8618
+
+    public MeteredAllowanceConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MeteredAllowanceConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MeteredAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static MeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MeteredAllowanceConfigFromRaw : IFromRawJson<MeteredAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public MeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MeteredAllowanceConfig.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(MeteredAllowancePriceTypeConverter))]
+public enum MeteredAllowancePriceType
+{
+    UsagePrice,
+    FixedPrice,
+    CompositePrice,
+}
+
+sealed class MeteredAllowancePriceTypeConverter : JsonConverter<MeteredAllowancePriceType>
+{
+    public override MeteredAllowancePriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage_price" => MeteredAllowancePriceType.UsagePrice,
+            "fixed_price" => MeteredAllowancePriceType.FixedPrice,
+            "composite_price" => MeteredAllowancePriceType.CompositePrice,
+            _ => (MeteredAllowancePriceType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MeteredAllowancePriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MeteredAllowancePriceType.UsagePrice => "usage_price",
+                MeteredAllowancePriceType.FixedPrice => "fixed_price",
+                MeteredAllowancePriceType.CompositePrice => "composite_price",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// The LicenseType resource represents a type of license that can be assigned to
+/// users. License types are used during billing by grouping metrics on the configured
+/// grouping key.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<MeteredAllowanceLicenseType, MeteredAllowanceLicenseTypeFromRaw>)
+)]
+public sealed record class MeteredAllowanceLicenseType : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the license type.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The key used for grouping licenses of this type. This is typically a user
+    /// identifier field.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// The name of the license type.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.GroupingKey;
+        _ = this.Name;
+    }
+
+    public MeteredAllowanceLicenseType() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MeteredAllowanceLicenseType(MeteredAllowanceLicenseType meteredAllowanceLicenseType)
+        : base(meteredAllowanceLicenseType) { }
+#pragma warning restore CS8618
+
+    public MeteredAllowanceLicenseType(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MeteredAllowanceLicenseType(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MeteredAllowanceLicenseTypeFromRaw.FromRawUnchecked"/>
+    public static MeteredAllowanceLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MeteredAllowanceLicenseTypeFromRaw : IFromRawJson<MeteredAllowanceLicenseType>
+{
+    /// <inheritdoc/>
+    public MeteredAllowanceLicenseType FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MeteredAllowanceLicenseType.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<MinimumComposite, MinimumCompositeFromRaw>))]

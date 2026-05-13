@@ -3684,6 +3684,133 @@ public class PriceTest : TestBase
     }
 
     [Fact]
+    public void MeteredAllowanceValidationWorks()
+    {
+        Price value = new MeteredAllowance()
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void MinimumCompositeValidationWorks()
     {
         Price value = new MinimumComposite()
@@ -7787,6 +7914,136 @@ public class PriceTest : TestBase
             Name = "name",
             PlanPhaseOrder = 0,
             PriceType = DailyCreditAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void MeteredAllowanceSerializationRoundtripWorks()
+    {
+        Price value = new MeteredAllowance()
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
             ReplacesPriceID = "replaces_price_id",
             DimensionalPriceConfiguration = new()
             {
@@ -73244,6 +73501,2258 @@ public class DailyCreditAllowanceLicenseTypeTest : TestBase
         };
 
         DailyCreditAllowanceLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MeteredAllowanceTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        string expectedID = "id";
+        BillableMetricTiny expectedBillableMetric = new("id");
+        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ApiEnum<string, MeteredAllowanceBillingMode> expectedBillingMode =
+            MeteredAllowanceBillingMode.InAdvance;
+        ApiEnum<string, MeteredAllowanceCadence> expectedCadence = MeteredAllowanceCadence.OneTime;
+        List<MeteredAllowanceCompositePriceFilter> expectedCompositePriceFilters =
+        [
+            new()
+            {
+                Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        double expectedConversionRate = 0;
+        MeteredAllowanceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Allocation expectedCreditAllocation = new()
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            LicenseTypeID = "license_type_id",
+        };
+        string expectedCurrency = "currency";
+        SharedDiscount expectedDiscount = new PercentageDiscount()
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
+        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
+        Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        MeteredAllowanceConfig expectedMeteredAllowanceConfig = new()
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+        Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("metered_allowance");
+        string expectedName = "name";
+        long expectedPlanPhaseOrder = 0;
+        ApiEnum<string, MeteredAllowancePriceType> expectedPriceType =
+            MeteredAllowancePriceType.UsagePrice;
+        string expectedReplacesPriceID = "replaces_price_id";
+        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+        MeteredAllowanceLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedBillableMetric, model.BillableMetric);
+        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
+        Assert.Equal(expectedBillingMode, model.BillingMode);
+        Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
+        Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
+        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedCompositePriceFilters[i], model.CompositePriceFilters[i]);
+        }
+        Assert.Equal(expectedConversionRate, model.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCreditAllocation, model.CreditAllocation);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDiscount, model.Discount);
+        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedItem, model.Item);
+        Assert.Equal(expectedMaximum, model.Maximum);
+        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMeteredAllowanceConfig, model.MeteredAllowanceConfig);
+        Assert.Equal(expectedMinimum, model.Minimum);
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
+        Assert.Equal(expectedPriceType, model.PriceType);
+        Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
+        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowance>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowance>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        BillableMetricTiny expectedBillableMetric = new("id");
+        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ApiEnum<string, MeteredAllowanceBillingMode> expectedBillingMode =
+            MeteredAllowanceBillingMode.InAdvance;
+        ApiEnum<string, MeteredAllowanceCadence> expectedCadence = MeteredAllowanceCadence.OneTime;
+        List<MeteredAllowanceCompositePriceFilter> expectedCompositePriceFilters =
+        [
+            new()
+            {
+                Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        double expectedConversionRate = 0;
+        MeteredAllowanceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Allocation expectedCreditAllocation = new()
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            LicenseTypeID = "license_type_id",
+        };
+        string expectedCurrency = "currency";
+        SharedDiscount expectedDiscount = new PercentageDiscount()
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
+        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
+        Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        MeteredAllowanceConfig expectedMeteredAllowanceConfig = new()
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+        Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("metered_allowance");
+        string expectedName = "name";
+        long expectedPlanPhaseOrder = 0;
+        ApiEnum<string, MeteredAllowancePriceType> expectedPriceType =
+            MeteredAllowancePriceType.UsagePrice;
+        string expectedReplacesPriceID = "replaces_price_id";
+        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+        MeteredAllowanceLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
+        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
+        Assert.Equal(expectedBillingMode, deserialized.BillingMode);
+        Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
+        Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
+        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedCompositePriceFilters[i], deserialized.CompositePriceFilters[i]);
+        }
+        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
+        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCreditAllocation, deserialized.CreditAllocation);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDiscount, deserialized.Discount);
+        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedItem, deserialized.Item);
+        Assert.Equal(expectedMaximum, deserialized.Maximum);
+        Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMeteredAllowanceConfig, deserialized.MeteredAllowanceConfig);
+        Assert.Equal(expectedMinimum, deserialized.Minimum);
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
+        Assert.Equal(expectedName, deserialized.Name);
+        Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+        Assert.Equal(expectedReplacesPriceID, deserialized.ReplacesPriceID);
+        Assert.Equal(
+            expectedDimensionalPriceConfiguration,
+            deserialized.DimensionalPriceConfiguration
+        );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+        };
+
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+
+            DimensionalPriceConfiguration = null,
+            LicenseType = null,
+        };
+
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+
+            DimensionalPriceConfiguration = null,
+            LicenseType = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MeteredAllowance
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MeteredAllowanceBillingMode.InAdvance,
+            Cadence = MeteredAllowanceCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+                    Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MeteredAllowancePriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        MeteredAllowance copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MeteredAllowanceBillingModeTest : TestBase
+{
+    [Theory]
+    [InlineData(MeteredAllowanceBillingMode.InAdvance)]
+    [InlineData(MeteredAllowanceBillingMode.InArrear)]
+    public void Validation_Works(MeteredAllowanceBillingMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceBillingMode> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceBillingMode>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MeteredAllowanceBillingMode.InAdvance)]
+    [InlineData(MeteredAllowanceBillingMode.InArrear)]
+    public void SerializationRoundtrip_Works(MeteredAllowanceBillingMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceBillingMode> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceBillingMode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceBillingMode>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceBillingMode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(MeteredAllowanceCadence.OneTime)]
+    [InlineData(MeteredAllowanceCadence.Monthly)]
+    [InlineData(MeteredAllowanceCadence.Quarterly)]
+    [InlineData(MeteredAllowanceCadence.SemiAnnual)]
+    [InlineData(MeteredAllowanceCadence.Annual)]
+    [InlineData(MeteredAllowanceCadence.Custom)]
+    public void Validation_Works(MeteredAllowanceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceCadence>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MeteredAllowanceCadence.OneTime)]
+    [InlineData(MeteredAllowanceCadence.Monthly)]
+    [InlineData(MeteredAllowanceCadence.Quarterly)]
+    [InlineData(MeteredAllowanceCadence.SemiAnnual)]
+    [InlineData(MeteredAllowanceCadence.Annual)]
+    [InlineData(MeteredAllowanceCadence.Custom)]
+    public void SerializationRoundtrip_Works(MeteredAllowanceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceCadence>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowanceCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceCompositePriceFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MeteredAllowanceCompositePriceFilter
+        {
+            Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+            Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterField> expectedField =
+            MeteredAllowanceCompositePriceFilterField.PriceID;
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator> expectedOperator =
+            MeteredAllowanceCompositePriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MeteredAllowanceCompositePriceFilter
+        {
+            Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+            Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceCompositePriceFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MeteredAllowanceCompositePriceFilter
+        {
+            Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+            Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceCompositePriceFilter>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterField> expectedField =
+            MeteredAllowanceCompositePriceFilterField.PriceID;
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator> expectedOperator =
+            MeteredAllowanceCompositePriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MeteredAllowanceCompositePriceFilter
+        {
+            Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+            Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MeteredAllowanceCompositePriceFilter
+        {
+            Field = MeteredAllowanceCompositePriceFilterField.PriceID,
+            Operator = MeteredAllowanceCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MeteredAllowanceCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MeteredAllowanceCompositePriceFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.PriceID)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.ItemID)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.PriceType)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.Currency)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.PricingUnitID)]
+    public void Validation_Works(MeteredAllowanceCompositePriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.PriceID)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.ItemID)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.PriceType)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.Currency)]
+    [InlineData(MeteredAllowanceCompositePriceFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(MeteredAllowanceCompositePriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceCompositePriceFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MeteredAllowanceCompositePriceFilterOperator.Includes)]
+    [InlineData(MeteredAllowanceCompositePriceFilterOperator.Excludes)]
+    public void Validation_Works(MeteredAllowanceCompositePriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MeteredAllowanceCompositePriceFilterOperator.Includes)]
+    [InlineData(MeteredAllowanceCompositePriceFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(MeteredAllowanceCompositePriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MeteredAllowanceCompositePriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void UnitValidationWorks()
+    {
+        MeteredAllowanceConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void TieredValidationWorks()
+    {
+        MeteredAllowanceConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UnitSerializationRoundtripWorks()
+    {
+        MeteredAllowanceConversionRateConfig value = new SharedUnitConversionRateConfig()
+        {
+            ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+            UnitConfig = new("unit_amount"),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceConversionRateConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredSerializationRoundtripWorks()
+    {
+        MeteredAllowanceConversionRateConfig value = new SharedTieredConversionRateConfig()
+        {
+            ConversionRateType = ConversionRateType.Tiered,
+            TieredConfig = new(
+                [
+                    new()
+                    {
+                        FirstUnit = 0,
+                        UnitAmount = "unit_amount",
+                        LastUnit = 0,
+                    },
+                ]
+            ),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceConversionRateConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceConfigTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string expectedAllowanceGroupingValue = "x";
+        string expectedConsumptionGroupingValue = "x";
+        string expectedGroupingKey = "x";
+        string expectedUnitAmount = "unit_amount";
+        string expectedAllowanceDisplayName = "x";
+        string expectedConsumptionDisplayName = "x";
+
+        Assert.Equal(expectedAllowanceGroupingValue, model.AllowanceGroupingValue);
+        Assert.Equal(expectedConsumptionGroupingValue, model.ConsumptionGroupingValue);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedUnitAmount, model.UnitAmount);
+        Assert.Equal(expectedAllowanceDisplayName, model.AllowanceDisplayName);
+        Assert.Equal(expectedConsumptionDisplayName, model.ConsumptionDisplayName);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedAllowanceGroupingValue = "x";
+        string expectedConsumptionGroupingValue = "x";
+        string expectedGroupingKey = "x";
+        string expectedUnitAmount = "unit_amount";
+        string expectedAllowanceDisplayName = "x";
+        string expectedConsumptionDisplayName = "x";
+
+        Assert.Equal(expectedAllowanceGroupingValue, deserialized.AllowanceGroupingValue);
+        Assert.Equal(expectedConsumptionGroupingValue, deserialized.ConsumptionGroupingValue);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedUnitAmount, deserialized.UnitAmount);
+        Assert.Equal(expectedAllowanceDisplayName, deserialized.AllowanceDisplayName);
+        Assert.Equal(expectedConsumptionDisplayName, deserialized.ConsumptionDisplayName);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        Assert.Null(model.AllowanceDisplayName);
+        Assert.False(model.RawData.ContainsKey("allowance_display_name"));
+        Assert.Null(model.ConsumptionDisplayName);
+        Assert.False(model.RawData.ContainsKey("consumption_display_name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+
+            // Null should be interpreted as omitted for these properties
+            AllowanceDisplayName = null,
+            ConsumptionDisplayName = null,
+        };
+
+        Assert.Null(model.AllowanceDisplayName);
+        Assert.False(model.RawData.ContainsKey("allowance_display_name"));
+        Assert.Null(model.ConsumptionDisplayName);
+        Assert.False(model.RawData.ContainsKey("consumption_display_name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+
+            // Null should be interpreted as omitted for these properties
+            AllowanceDisplayName = null,
+            ConsumptionDisplayName = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        MeteredAllowanceConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MeteredAllowancePriceTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MeteredAllowancePriceType.UsagePrice)]
+    [InlineData(MeteredAllowancePriceType.FixedPrice)]
+    [InlineData(MeteredAllowancePriceType.CompositePrice)]
+    public void Validation_Works(MeteredAllowancePriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowancePriceType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowancePriceType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MeteredAllowancePriceType.UsagePrice)]
+    [InlineData(MeteredAllowancePriceType.FixedPrice)]
+    [InlineData(MeteredAllowancePriceType.CompositePrice)]
+    public void SerializationRoundtrip_Works(MeteredAllowancePriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MeteredAllowancePriceType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowancePriceType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowancePriceType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MeteredAllowancePriceType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MeteredAllowanceLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MeteredAllowanceLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MeteredAllowanceLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MeteredAllowanceLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MeteredAllowanceLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MeteredAllowanceLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MeteredAllowanceLicenseType copied = new(model);
 
         Assert.Equal(model, copied);
     }

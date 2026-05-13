@@ -4760,6 +4760,58 @@ public class PriceTest : TestBase
     }
 
     [Fact]
+    public void MeteredAllowanceValidationWorks()
+    {
+        Subscriptions::Price value = new Subscriptions::MeteredAllowance()
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
         Subscriptions::Price value = new Subscriptions::NewSubscriptionMinimumCompositePrice()
@@ -6582,6 +6634,64 @@ public class PriceTest : TestBase
                 MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
             },
             ItemID = "item_id",
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Price>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void MeteredAllowanceSerializationRoundtripWorks()
+    {
+        Subscriptions::Price value = new Subscriptions::MeteredAllowance()
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
@@ -11370,6 +11480,945 @@ public class DailyCreditAllowanceConversionRateConfigTest : TestBase
     }
 }
 
+public class MeteredAllowanceTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        ApiEnum<string, Subscriptions::MeteredAllowanceCadence> expectedCadence =
+            Subscriptions::MeteredAllowanceCadence.Annual;
+        string expectedItemID = "item_id";
+        Subscriptions::MeteredAllowanceConfig expectedMeteredAllowanceConfig = new()
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("metered_allowance");
+        string expectedName = "Annual fee";
+        string expectedBillableMetricID = "billable_metric_id";
+        bool expectedBilledInAdvance = true;
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        double expectedConversionRate = 0;
+        Subscriptions::MeteredAllowanceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string expectedCurrency = "currency";
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "x";
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        string expectedLicenseTypeID = "license_type_id";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedReferenceID = "reference_id";
+
+        Assert.Equal(expectedCadence, model.Cadence);
+        Assert.Equal(expectedItemID, model.ItemID);
+        Assert.Equal(expectedMeteredAllowanceConfig, model.MeteredAllowanceConfig);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
+        Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
+        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
+        Assert.Equal(expectedConversionRate, model.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedReferenceID, model.ReferenceID);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MeteredAllowance>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MeteredAllowance>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Subscriptions::MeteredAllowanceCadence> expectedCadence =
+            Subscriptions::MeteredAllowanceCadence.Annual;
+        string expectedItemID = "item_id";
+        Subscriptions::MeteredAllowanceConfig expectedMeteredAllowanceConfig = new()
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("metered_allowance");
+        string expectedName = "Annual fee";
+        string expectedBillableMetricID = "billable_metric_id";
+        bool expectedBilledInAdvance = true;
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        double expectedConversionRate = 0;
+        Subscriptions::MeteredAllowanceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string expectedCurrency = "currency";
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "x";
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        string expectedLicenseTypeID = "license_type_id";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedReferenceID = "reference_id";
+
+        Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedMeteredAllowanceConfig, deserialized.MeteredAllowanceConfig);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
+        Assert.Equal(expectedName, deserialized.Name);
+        Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
+        Assert.Equal(expectedBilledInAdvance, deserialized.BilledInAdvance);
+        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
+        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(
+            expectedDimensionalPriceConfiguration,
+            deserialized.DimensionalPriceConfiguration
+        );
+        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedReferenceID, deserialized.ReferenceID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+        };
+
+        Assert.Null(model.BillableMetricID);
+        Assert.False(model.RawData.ContainsKey("billable_metric_id"));
+        Assert.Null(model.BilledInAdvance);
+        Assert.False(model.RawData.ContainsKey("billed_in_advance"));
+        Assert.Null(model.BillingCycleConfiguration);
+        Assert.False(model.RawData.ContainsKey("billing_cycle_configuration"));
+        Assert.Null(model.ConversionRate);
+        Assert.False(model.RawData.ContainsKey("conversion_rate"));
+        Assert.Null(model.ConversionRateConfig);
+        Assert.False(model.RawData.ContainsKey("conversion_rate_config"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.ExternalPriceID);
+        Assert.False(model.RawData.ContainsKey("external_price_id"));
+        Assert.Null(model.FixedPriceQuantity);
+        Assert.False(model.RawData.ContainsKey("fixed_price_quantity"));
+        Assert.Null(model.InvoiceGroupingKey);
+        Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
+        Assert.Null(model.InvoicingCycleConfiguration);
+        Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.ReferenceID);
+        Assert.False(model.RawData.ContainsKey("reference_id"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+
+            BillableMetricID = null,
+            BilledInAdvance = null,
+            BillingCycleConfiguration = null,
+            ConversionRate = null,
+            ConversionRateConfig = null,
+            Currency = null,
+            DimensionalPriceConfiguration = null,
+            ExternalPriceID = null,
+            FixedPriceQuantity = null,
+            InvoiceGroupingKey = null,
+            InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
+            Metadata = null,
+            ReferenceID = null,
+        };
+
+        Assert.Null(model.BillableMetricID);
+        Assert.True(model.RawData.ContainsKey("billable_metric_id"));
+        Assert.Null(model.BilledInAdvance);
+        Assert.True(model.RawData.ContainsKey("billed_in_advance"));
+        Assert.Null(model.BillingCycleConfiguration);
+        Assert.True(model.RawData.ContainsKey("billing_cycle_configuration"));
+        Assert.Null(model.ConversionRate);
+        Assert.True(model.RawData.ContainsKey("conversion_rate"));
+        Assert.Null(model.ConversionRateConfig);
+        Assert.True(model.RawData.ContainsKey("conversion_rate_config"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.ExternalPriceID);
+        Assert.True(model.RawData.ContainsKey("external_price_id"));
+        Assert.Null(model.FixedPriceQuantity);
+        Assert.True(model.RawData.ContainsKey("fixed_price_quantity"));
+        Assert.Null(model.InvoiceGroupingKey);
+        Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
+        Assert.Null(model.InvoicingCycleConfiguration);
+        Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.ReferenceID);
+        Assert.True(model.RawData.ContainsKey("reference_id"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+
+            BillableMetricID = null,
+            BilledInAdvance = null,
+            BillingCycleConfiguration = null,
+            ConversionRate = null,
+            ConversionRateConfig = null,
+            Currency = null,
+            DimensionalPriceConfiguration = null,
+            ExternalPriceID = null,
+            FixedPriceQuantity = null,
+            InvoiceGroupingKey = null,
+            InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
+            Metadata = null,
+            ReferenceID = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::MeteredAllowance
+        {
+            Cadence = Subscriptions::MeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::MeteredAllowance copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MeteredAllowanceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Annual)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Monthly)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Quarterly)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.OneTime)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Custom)]
+    public void Validation_Works(Subscriptions::MeteredAllowanceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::MeteredAllowanceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::MeteredAllowanceCadence>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Annual)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Monthly)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Quarterly)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.OneTime)]
+    [InlineData(Subscriptions::MeteredAllowanceCadence.Custom)]
+    public void SerializationRoundtrip_Works(Subscriptions::MeteredAllowanceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::MeteredAllowanceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::MeteredAllowanceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::MeteredAllowanceCadence>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::MeteredAllowanceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MeteredAllowanceConfigTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string expectedAllowanceGroupingValue = "x";
+        string expectedConsumptionGroupingValue = "x";
+        string expectedGroupingKey = "x";
+        string expectedUnitAmount = "unit_amount";
+        string expectedAllowanceDisplayName = "x";
+        string expectedConsumptionDisplayName = "x";
+
+        Assert.Equal(expectedAllowanceGroupingValue, model.AllowanceGroupingValue);
+        Assert.Equal(expectedConsumptionGroupingValue, model.ConsumptionGroupingValue);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedUnitAmount, model.UnitAmount);
+        Assert.Equal(expectedAllowanceDisplayName, model.AllowanceDisplayName);
+        Assert.Equal(expectedConsumptionDisplayName, model.ConsumptionDisplayName);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MeteredAllowanceConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MeteredAllowanceConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedAllowanceGroupingValue = "x";
+        string expectedConsumptionGroupingValue = "x";
+        string expectedGroupingKey = "x";
+        string expectedUnitAmount = "unit_amount";
+        string expectedAllowanceDisplayName = "x";
+        string expectedConsumptionDisplayName = "x";
+
+        Assert.Equal(expectedAllowanceGroupingValue, deserialized.AllowanceGroupingValue);
+        Assert.Equal(expectedConsumptionGroupingValue, deserialized.ConsumptionGroupingValue);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedUnitAmount, deserialized.UnitAmount);
+        Assert.Equal(expectedAllowanceDisplayName, deserialized.AllowanceDisplayName);
+        Assert.Equal(expectedConsumptionDisplayName, deserialized.ConsumptionDisplayName);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        Assert.Null(model.AllowanceDisplayName);
+        Assert.False(model.RawData.ContainsKey("allowance_display_name"));
+        Assert.Null(model.ConsumptionDisplayName);
+        Assert.False(model.RawData.ContainsKey("consumption_display_name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+
+            // Null should be interpreted as omitted for these properties
+            AllowanceDisplayName = null,
+            ConsumptionDisplayName = null,
+        };
+
+        Assert.Null(model.AllowanceDisplayName);
+        Assert.False(model.RawData.ContainsKey("allowance_display_name"));
+        Assert.Null(model.ConsumptionDisplayName);
+        Assert.False(model.RawData.ContainsKey("consumption_display_name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+
+            // Null should be interpreted as omitted for these properties
+            AllowanceDisplayName = null,
+            ConsumptionDisplayName = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::MeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        Subscriptions::MeteredAllowanceConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MeteredAllowanceConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void UnitValidationWorks()
+    {
+        Subscriptions::MeteredAllowanceConversionRateConfig value =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void TieredValidationWorks()
+    {
+        Subscriptions::MeteredAllowanceConversionRateConfig value =
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UnitSerializationRoundtripWorks()
+    {
+        Subscriptions::MeteredAllowanceConversionRateConfig value =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::MeteredAllowanceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredSerializationRoundtripWorks()
+    {
+        Subscriptions::MeteredAllowanceConversionRateConfig value =
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::MeteredAllowanceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class PercentTest : TestBase
 {
     [Fact]
@@ -16084,6 +17133,59 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
+    public void MeteredAllowanceValidationWorks()
+    {
+        Subscriptions::ReplacePricePrice value =
+            new Subscriptions::ReplacePricePriceMeteredAllowance()
+            {
+                Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+                ItemID = "item_id",
+                MeteredAllowanceConfig = new()
+                {
+                    AllowanceGroupingValue = "x",
+                    ConsumptionGroupingValue = "x",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                    AllowanceDisplayName = "x",
+                    ConsumptionDisplayName = "x",
+                },
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            };
+        value.Validate();
+    }
+
+    [Fact]
     public void NewSubscriptionMinimumCompositeValidationWorks()
     {
         Subscriptions::ReplacePricePrice value =
@@ -17937,6 +19039,65 @@ public class ReplacePricePriceTest : TestBase
                     ],
                 },
                 ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                LicenseTypeID = "license_type_id",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ReplacePricePrice>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void MeteredAllowanceSerializationRoundtripWorks()
+    {
+        Subscriptions::ReplacePricePrice value =
+            new Subscriptions::ReplacePricePriceMeteredAllowance()
+            {
+                Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+                ItemID = "item_id",
+                MeteredAllowanceConfig = new()
+                {
+                    AllowanceGroupingValue = "x",
+                    ConsumptionGroupingValue = "x",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                    AllowanceDisplayName = "x",
+                    ConsumptionDisplayName = "x",
+                },
                 Name = "Annual fee",
                 BillableMetricID = "billable_metric_id",
                 BilledInAdvance = true,
@@ -22860,6 +24021,953 @@ public class ReplacePricePriceDailyCreditAllowanceConversionRateConfigTest : Tes
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceDailyCreditAllowanceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ReplacePricePriceMeteredAllowanceTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence> expectedCadence =
+            Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual;
+        string expectedItemID = "item_id";
+        Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig expectedMeteredAllowanceConfig =
+            new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            };
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("metered_allowance");
+        string expectedName = "Annual fee";
+        string expectedBillableMetricID = "billable_metric_id";
+        bool expectedBilledInAdvance = true;
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        double expectedConversionRate = 0;
+        Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string expectedCurrency = "currency";
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "x";
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        string expectedLicenseTypeID = "license_type_id";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedReferenceID = "reference_id";
+
+        Assert.Equal(expectedCadence, model.Cadence);
+        Assert.Equal(expectedItemID, model.ItemID);
+        Assert.Equal(expectedMeteredAllowanceConfig, model.MeteredAllowanceConfig);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
+        Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
+        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
+        Assert.Equal(expectedConversionRate, model.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
+        Assert.NotNull(model.Metadata);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedReferenceID, model.ReferenceID);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMeteredAllowance>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMeteredAllowance>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence> expectedCadence =
+            Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual;
+        string expectedItemID = "item_id";
+        Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig expectedMeteredAllowanceConfig =
+            new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            };
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement("metered_allowance");
+        string expectedName = "Annual fee";
+        string expectedBillableMetricID = "billable_metric_id";
+        bool expectedBilledInAdvance = true;
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        double expectedConversionRate = 0;
+        Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string expectedCurrency = "currency";
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "x";
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+        };
+        string expectedLicenseTypeID = "license_type_id";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedReferenceID = "reference_id";
+
+        Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedMeteredAllowanceConfig, deserialized.MeteredAllowanceConfig);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
+        Assert.Equal(expectedName, deserialized.Name);
+        Assert.Equal(expectedBillableMetricID, deserialized.BillableMetricID);
+        Assert.Equal(expectedBilledInAdvance, deserialized.BilledInAdvance);
+        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
+        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(
+            expectedDimensionalPriceConfiguration,
+            deserialized.DimensionalPriceConfiguration
+        );
+        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
+        Assert.NotNull(deserialized.Metadata);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedReferenceID, deserialized.ReferenceID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+        };
+
+        Assert.Null(model.BillableMetricID);
+        Assert.False(model.RawData.ContainsKey("billable_metric_id"));
+        Assert.Null(model.BilledInAdvance);
+        Assert.False(model.RawData.ContainsKey("billed_in_advance"));
+        Assert.Null(model.BillingCycleConfiguration);
+        Assert.False(model.RawData.ContainsKey("billing_cycle_configuration"));
+        Assert.Null(model.ConversionRate);
+        Assert.False(model.RawData.ContainsKey("conversion_rate"));
+        Assert.Null(model.ConversionRateConfig);
+        Assert.False(model.RawData.ContainsKey("conversion_rate_config"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.ExternalPriceID);
+        Assert.False(model.RawData.ContainsKey("external_price_id"));
+        Assert.Null(model.FixedPriceQuantity);
+        Assert.False(model.RawData.ContainsKey("fixed_price_quantity"));
+        Assert.Null(model.InvoiceGroupingKey);
+        Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
+        Assert.Null(model.InvoicingCycleConfiguration);
+        Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
+        Assert.Null(model.Metadata);
+        Assert.False(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.ReferenceID);
+        Assert.False(model.RawData.ContainsKey("reference_id"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+
+            BillableMetricID = null,
+            BilledInAdvance = null,
+            BillingCycleConfiguration = null,
+            ConversionRate = null,
+            ConversionRateConfig = null,
+            Currency = null,
+            DimensionalPriceConfiguration = null,
+            ExternalPriceID = null,
+            FixedPriceQuantity = null,
+            InvoiceGroupingKey = null,
+            InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
+            Metadata = null,
+            ReferenceID = null,
+        };
+
+        Assert.Null(model.BillableMetricID);
+        Assert.True(model.RawData.ContainsKey("billable_metric_id"));
+        Assert.Null(model.BilledInAdvance);
+        Assert.True(model.RawData.ContainsKey("billed_in_advance"));
+        Assert.Null(model.BillingCycleConfiguration);
+        Assert.True(model.RawData.ContainsKey("billing_cycle_configuration"));
+        Assert.Null(model.ConversionRate);
+        Assert.True(model.RawData.ContainsKey("conversion_rate"));
+        Assert.Null(model.ConversionRateConfig);
+        Assert.True(model.RawData.ContainsKey("conversion_rate_config"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.ExternalPriceID);
+        Assert.True(model.RawData.ContainsKey("external_price_id"));
+        Assert.Null(model.FixedPriceQuantity);
+        Assert.True(model.RawData.ContainsKey("fixed_price_quantity"));
+        Assert.Null(model.InvoiceGroupingKey);
+        Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
+        Assert.Null(model.InvoicingCycleConfiguration);
+        Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
+        Assert.Null(model.Metadata);
+        Assert.True(model.RawData.ContainsKey("metadata"));
+        Assert.Null(model.ReferenceID);
+        Assert.True(model.RawData.ContainsKey("reference_id"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+
+            BillableMetricID = null,
+            BilledInAdvance = null,
+            BillingCycleConfiguration = null,
+            ConversionRate = null,
+            ConversionRateConfig = null,
+            Currency = null,
+            DimensionalPriceConfiguration = null,
+            ExternalPriceID = null,
+            FixedPriceQuantity = null,
+            InvoiceGroupingKey = null,
+            InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
+            Metadata = null,
+            ReferenceID = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowance
+        {
+            Cadence = Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual,
+            ItemID = "item_id",
+            MeteredAllowanceConfig = new()
+            {
+                AllowanceGroupingValue = "x",
+                ConsumptionGroupingValue = "x",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+                AllowanceDisplayName = "x",
+                ConsumptionDisplayName = "x",
+            },
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::ReplacePricePriceMeteredAllowance copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ReplacePricePriceMeteredAllowanceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Monthly)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Quarterly)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.OneTime)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Custom)]
+    public void Validation_Works(Subscriptions::ReplacePricePriceMeteredAllowanceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Annual)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Monthly)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Quarterly)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.OneTime)]
+    [InlineData(Subscriptions::ReplacePricePriceMeteredAllowanceCadence.Custom)]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::ReplacePricePriceMeteredAllowanceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::ReplacePricePriceMeteredAllowanceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ReplacePricePriceMeteredAllowanceMeteredAllowanceConfigTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string expectedAllowanceGroupingValue = "x";
+        string expectedConsumptionGroupingValue = "x";
+        string expectedGroupingKey = "x";
+        string expectedUnitAmount = "unit_amount";
+        string expectedAllowanceDisplayName = "x";
+        string expectedConsumptionDisplayName = "x";
+
+        Assert.Equal(expectedAllowanceGroupingValue, model.AllowanceGroupingValue);
+        Assert.Equal(expectedConsumptionGroupingValue, model.ConsumptionGroupingValue);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedUnitAmount, model.UnitAmount);
+        Assert.Equal(expectedAllowanceDisplayName, model.AllowanceDisplayName);
+        Assert.Equal(expectedConsumptionDisplayName, model.ConsumptionDisplayName);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        string expectedAllowanceGroupingValue = "x";
+        string expectedConsumptionGroupingValue = "x";
+        string expectedGroupingKey = "x";
+        string expectedUnitAmount = "unit_amount";
+        string expectedAllowanceDisplayName = "x";
+        string expectedConsumptionDisplayName = "x";
+
+        Assert.Equal(expectedAllowanceGroupingValue, deserialized.AllowanceGroupingValue);
+        Assert.Equal(expectedConsumptionGroupingValue, deserialized.ConsumptionGroupingValue);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedUnitAmount, deserialized.UnitAmount);
+        Assert.Equal(expectedAllowanceDisplayName, deserialized.AllowanceDisplayName);
+        Assert.Equal(expectedConsumptionDisplayName, deserialized.ConsumptionDisplayName);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        Assert.Null(model.AllowanceDisplayName);
+        Assert.False(model.RawData.ContainsKey("allowance_display_name"));
+        Assert.Null(model.ConsumptionDisplayName);
+        Assert.False(model.RawData.ContainsKey("consumption_display_name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+
+            // Null should be interpreted as omitted for these properties
+            AllowanceDisplayName = null,
+            ConsumptionDisplayName = null,
+        };
+
+        Assert.Null(model.AllowanceDisplayName);
+        Assert.False(model.RawData.ContainsKey("allowance_display_name"));
+        Assert.Null(model.ConsumptionDisplayName);
+        Assert.False(model.RawData.ContainsKey("consumption_display_name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+
+            // Null should be interpreted as omitted for these properties
+            AllowanceDisplayName = null,
+            ConsumptionDisplayName = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        {
+            AllowanceGroupingValue = "x",
+            ConsumptionGroupingValue = "x",
+            GroupingKey = "x",
+            UnitAmount = "unit_amount",
+            AllowanceDisplayName = "x",
+            ConsumptionDisplayName = "x",
+        };
+
+        Subscriptions::ReplacePricePriceMeteredAllowanceMeteredAllowanceConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ReplacePricePriceMeteredAllowanceConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void UnitValidationWorks()
+    {
+        Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig value =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void TieredValidationWorks()
+    {
+        Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig value =
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UnitSerializationRoundtripWorks()
+    {
+        Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig value =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredSerializationRoundtripWorks()
+    {
+        Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig value =
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ReplacePricePriceMeteredAllowanceConversionRateConfig>(
                 element,
                 ModelBase.SerializerOptions
             );

@@ -1724,6 +1724,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ItemID,
                 cumulativeGroupedAllocation: (x) => x.ItemID,
                 dailyCreditAllowance: (x) => x.ItemID,
+                meteredAllowance: (x) => x.ItemID,
                 newSubscriptionMinimumComposite: (x) => x.ItemID,
                 percent: (x) => x.ItemID,
                 eventOutput: (x) => x.ItemID
@@ -1765,6 +1766,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
                 dailyCreditAllowance: (x) => x.Name,
+                meteredAllowance: (x) => x.Name,
                 newSubscriptionMinimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -1806,6 +1808,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillableMetricID,
                 cumulativeGroupedAllocation: (x) => x.BillableMetricID,
                 dailyCreditAllowance: (x) => x.BillableMetricID,
+                meteredAllowance: (x) => x.BillableMetricID,
                 newSubscriptionMinimumComposite: (x) => x.BillableMetricID,
                 percent: (x) => x.BillableMetricID,
                 eventOutput: (x) => x.BillableMetricID
@@ -1847,6 +1850,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BilledInAdvance,
                 cumulativeGroupedAllocation: (x) => x.BilledInAdvance,
                 dailyCreditAllowance: (x) => x.BilledInAdvance,
+                meteredAllowance: (x) => x.BilledInAdvance,
                 newSubscriptionMinimumComposite: (x) => x.BilledInAdvance,
                 percent: (x) => x.BilledInAdvance,
                 eventOutput: (x) => x.BilledInAdvance
@@ -1888,6 +1892,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
                 dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
+                meteredAllowance: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -1929,6 +1934,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
                 dailyCreditAllowance: (x) => x.ConversionRate,
+                meteredAllowance: (x) => x.ConversionRate,
                 newSubscriptionMinimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -1970,6 +1976,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
                 dailyCreditAllowance: (x) => x.Currency,
+                meteredAllowance: (x) => x.Currency,
                 newSubscriptionMinimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -2013,6 +2020,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
                 dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
+                meteredAllowance: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -2054,6 +2062,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
                 dailyCreditAllowance: (x) => x.ExternalPriceID,
+                meteredAllowance: (x) => x.ExternalPriceID,
                 newSubscriptionMinimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -2095,6 +2104,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
                 dailyCreditAllowance: (x) => x.FixedPriceQuantity,
+                meteredAllowance: (x) => x.FixedPriceQuantity,
                 newSubscriptionMinimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -2136,6 +2146,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
                 dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
+                meteredAllowance: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMinimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -2178,6 +2189,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
                 dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
+                meteredAllowance: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -2219,6 +2231,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.LicenseTypeID,
                 cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
                 dailyCreditAllowance: (x) => x.LicenseTypeID,
+                meteredAllowance: (x) => x.LicenseTypeID,
                 newSubscriptionMinimumComposite: (x) => x.LicenseTypeID,
                 percent: (x) => x.LicenseTypeID,
                 eventOutput: (x) => x.LicenseTypeID
@@ -2260,6 +2273,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ReferenceID,
                 cumulativeGroupedAllocation: (x) => x.ReferenceID,
                 dailyCreditAllowance: (x) => x.ReferenceID,
+                meteredAllowance: (x) => x.ReferenceID,
                 newSubscriptionMinimumComposite: (x) => x.ReferenceID,
                 percent: (x) => x.ReferenceID,
                 eventOutput: (x) => x.ReferenceID
@@ -2521,6 +2535,15 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePrice(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance value,
         JsonElement? element = null
     )
     {
@@ -3234,6 +3257,30 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMeteredAllowance(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMeteredAllowance(
+        [NotNullWhen(true)]
+            out SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance? value
+    )
+    {
+        value = this.Value as SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSubscriptionMinimumCompositePrice"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -3344,6 +3391,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePricePercent value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value) =&gt; {...}
@@ -3381,6 +3429,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
         System::Action<NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
         System::Action<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
         System::Action<SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance> dailyCreditAllowance,
+        System::Action<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance> meteredAllowance,
         System::Action<NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite,
         System::Action<SubscriptionSchedulePlanChangeParamsAddPricePricePercent> percent,
         System::Action<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput> eventOutput
@@ -3475,6 +3524,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
             case SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance value:
                 dailyCreditAllowance(value);
                 break;
+            case SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance value:
+                meteredAllowance(value);
+                break;
             case NewSubscriptionMinimumCompositePrice value:
                 newSubscriptionMinimumComposite(value);
                 break;
@@ -3535,6 +3587,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePricePercent value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value) =&gt; {...}
@@ -3623,6 +3676,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
             SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance,
             T
         > dailyCreditAllowance,
+        System::Func<
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance,
+            T
+        > meteredAllowance,
         System::Func<NewSubscriptionMinimumCompositePrice, T> newSubscriptionMinimumComposite,
         System::Func<SubscriptionSchedulePlanChangeParamsAddPricePricePercent, T> percent,
         System::Func<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput, T> eventOutput
@@ -3683,6 +3740,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 cumulativeGroupedAllocation(value),
             SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance value =>
                 dailyCreditAllowance(value),
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance value =>
+                meteredAllowance(value),
             NewSubscriptionMinimumCompositePrice value => newSubscriptionMinimumComposite(value),
             SubscriptionSchedulePlanChangeParamsAddPricePricePercent value => percent(value),
             SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value => eventOutput(
@@ -3811,6 +3870,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
     ) => new(value);
 
     public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePrice(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMinimumCompositePrice value
     ) => new(value);
 
@@ -3879,6 +3942,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionCumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
             (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
+            (meteredAllowance) => meteredAllowance.Validate(),
             (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -3934,9 +3998,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
             NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
             SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation _ => 27,
             SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance _ => 28,
-            NewSubscriptionMinimumCompositePrice _ => 29,
-            SubscriptionSchedulePlanChangeParamsAddPricePricePercent _ => 30,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput _ => 31,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance _ => 29,
+            NewSubscriptionMinimumCompositePrice _ => 30,
+            SubscriptionSchedulePlanChangeParamsAddPricePricePercent _ => 31,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput _ => 32,
             _ => -1,
         };
     }
@@ -4553,6 +4618,27 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "metered_allowance":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance>(
                             element,
                             options
                         );
@@ -9420,6 +9506,926 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowan
 
 [JsonConverter(
     typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance
+    : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence
+    > Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence
+                >
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for metered_allowance pricing
+    /// </summary>
+    public required SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig MeteredAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig>(
+                "metered_allowance_config"
+            );
+        }
+        init { this._rawData.Set("metered_allowance_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A transient ID that can be used to reference this price when adding adjustments
+    /// in the same API call.
+    /// </summary>
+    public string? ReferenceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
+        }
+        init { this._rawData.Set("reference_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.ItemID;
+        this.MeteredAllowanceConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("metered_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.Currency;
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+        _ = this.ReferenceID;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance subscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadenceConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadenceConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Annual,
+            "semi_annual" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.SemiAnnual,
+            "monthly" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Monthly,
+            "quarterly" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Quarterly,
+            "one_time" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.OneTime,
+            "custom" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Custom,
+            _ => (SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Annual =>
+                    "annual",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.SemiAnnual =>
+                    "semi_annual",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Monthly =>
+                    "monthly",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Quarterly =>
+                    "quarterly",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.OneTime =>
+                    "one_time",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceCadence.Custom =>
+                    "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for metered_allowance pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfigFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig
+    : JsonModel
+{
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents the allowance for
+    /// this period (e.g. 'storage_snapshot' emitting 3 × avg storage). Capped at
+    /// consumption — credit can never exceed actual usage.
+    /// </summary>
+    public required string AllowanceGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("allowance_grouping_value");
+        }
+        init { this._rawData.Set("allowance_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents consumption (e.g.
+    /// 'download'). Charged at unit_amount.
+    /// </summary>
+    public required string ConsumptionGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("consumption_grouping_value");
+        }
+        init { this._rawData.Set("consumption_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// Event property used to partition the metric into consumption and allowance
+    /// quantities (e.g. 'event_name'). The metric is queried with this key and the
+    /// two values below select which partition is which.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Per-unit price applied to gross consumption and to the allowance credit.
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <summary>
+    /// Sub-line label for the credit row (e.g. 'Up to 3x free egress').
+    /// </summary>
+    public string? AllowanceDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("allowance_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("allowance_display_name", value);
+        }
+    }
+
+    /// <summary>
+    /// Sub-line label for the gross consumption row (e.g. 'bytes gotten').
+    /// </summary>
+    public string? ConsumptionDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("consumption_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("consumption_display_name", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AllowanceGroupingValue;
+        _ = this.ConsumptionGroupingValue;
+        _ = this.GroupingKey;
+        _ = this.UnitAmount;
+        _ = this.AllowanceDisplayName;
+        _ = this.ConsumptionDisplayName;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig subscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfigFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceMeteredAllowanceConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfigConverter)
+)]
+public record class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig
+    : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig(
+        JsonElement element
+    )
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfigConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig(
+                    element
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowanceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePricePercent,
         SubscriptionSchedulePlanChangeParamsAddPricePricePercentFromRaw
     >)
@@ -12195,6 +13201,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ItemID,
                 cumulativeGroupedAllocation: (x) => x.ItemID,
                 dailyCreditAllowance: (x) => x.ItemID,
+                meteredAllowance: (x) => x.ItemID,
                 newSubscriptionMinimumComposite: (x) => x.ItemID,
                 percent: (x) => x.ItemID,
                 eventOutput: (x) => x.ItemID
@@ -12236,6 +13243,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
                 dailyCreditAllowance: (x) => x.Name,
+                meteredAllowance: (x) => x.Name,
                 newSubscriptionMinimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -12277,6 +13285,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillableMetricID,
                 cumulativeGroupedAllocation: (x) => x.BillableMetricID,
                 dailyCreditAllowance: (x) => x.BillableMetricID,
+                meteredAllowance: (x) => x.BillableMetricID,
                 newSubscriptionMinimumComposite: (x) => x.BillableMetricID,
                 percent: (x) => x.BillableMetricID,
                 eventOutput: (x) => x.BillableMetricID
@@ -12318,6 +13327,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BilledInAdvance,
                 cumulativeGroupedAllocation: (x) => x.BilledInAdvance,
                 dailyCreditAllowance: (x) => x.BilledInAdvance,
+                meteredAllowance: (x) => x.BilledInAdvance,
                 newSubscriptionMinimumComposite: (x) => x.BilledInAdvance,
                 percent: (x) => x.BilledInAdvance,
                 eventOutput: (x) => x.BilledInAdvance
@@ -12359,6 +13369,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
                 dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
+                meteredAllowance: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -12400,6 +13411,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
                 dailyCreditAllowance: (x) => x.ConversionRate,
+                meteredAllowance: (x) => x.ConversionRate,
                 newSubscriptionMinimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -12441,6 +13453,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
                 dailyCreditAllowance: (x) => x.Currency,
+                meteredAllowance: (x) => x.Currency,
                 newSubscriptionMinimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -12484,6 +13497,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
                 dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
+                meteredAllowance: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -12525,6 +13539,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
                 dailyCreditAllowance: (x) => x.ExternalPriceID,
+                meteredAllowance: (x) => x.ExternalPriceID,
                 newSubscriptionMinimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -12566,6 +13581,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
                 dailyCreditAllowance: (x) => x.FixedPriceQuantity,
+                meteredAllowance: (x) => x.FixedPriceQuantity,
                 newSubscriptionMinimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -12607,6 +13623,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
                 dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
+                meteredAllowance: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMinimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -12649,6 +13666,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
                 dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
+                meteredAllowance: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
@@ -12690,6 +13708,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.LicenseTypeID,
                 cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
                 dailyCreditAllowance: (x) => x.LicenseTypeID,
+                meteredAllowance: (x) => x.LicenseTypeID,
                 newSubscriptionMinimumComposite: (x) => x.LicenseTypeID,
                 percent: (x) => x.LicenseTypeID,
                 eventOutput: (x) => x.LicenseTypeID
@@ -12731,6 +13750,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk: (x) => x.ReferenceID,
                 cumulativeGroupedAllocation: (x) => x.ReferenceID,
                 dailyCreditAllowance: (x) => x.ReferenceID,
+                meteredAllowance: (x) => x.ReferenceID,
                 newSubscriptionMinimumComposite: (x) => x.ReferenceID,
                 percent: (x) => x.ReferenceID,
                 eventOutput: (x) => x.ReferenceID
@@ -12992,6 +14012,15 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance value,
         JsonElement? element = null
     )
     {
@@ -13707,6 +14736,30 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMeteredAllowance(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMeteredAllowance(
+        [NotNullWhen(true)]
+            out SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance? value
+    )
+    {
+        value = this.Value as SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSubscriptionMinimumCompositePrice"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -13818,6 +14871,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePricePercent value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value) =&gt; {...}
@@ -13855,6 +14909,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
         System::Action<NewSubscriptionCumulativeGroupedBulkPrice> newSubscriptionCumulativeGroupedBulk,
         System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
         System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance> dailyCreditAllowance,
+        System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance> meteredAllowance,
         System::Action<NewSubscriptionMinimumCompositePrice> newSubscriptionMinimumComposite,
         System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePricePercent> percent,
         System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput> eventOutput
@@ -13949,6 +15004,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
             case SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance value:
                 dailyCreditAllowance(value);
                 break;
+            case SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance value:
+                meteredAllowance(value);
+                break;
             case NewSubscriptionMinimumCompositePrice value:
                 newSubscriptionMinimumComposite(value);
                 break;
@@ -14009,6 +15067,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
     ///     (NewSubscriptionCumulativeGroupedBulkPrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance value) =&gt; {...},
     ///     (NewSubscriptionMinimumCompositePrice value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePricePercent value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value) =&gt; {...}
@@ -14097,6 +15156,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
             SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance,
             T
         > dailyCreditAllowance,
+        System::Func<
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance,
+            T
+        > meteredAllowance,
         System::Func<NewSubscriptionMinimumCompositePrice, T> newSubscriptionMinimumComposite,
         System::Func<SubscriptionSchedulePlanChangeParamsReplacePricePricePercent, T> percent,
         System::Func<
@@ -14160,6 +15223,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 cumulativeGroupedAllocation(value),
             SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance value =>
                 dailyCreditAllowance(value),
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance value =>
+                meteredAllowance(value),
             NewSubscriptionMinimumCompositePrice value => newSubscriptionMinimumComposite(value),
             SubscriptionSchedulePlanChangeParamsReplacePricePricePercent value => percent(value),
             SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value => eventOutput(
@@ -14288,6 +15353,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
     ) => new(value);
 
     public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePrice(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMinimumCompositePrice value
     ) => new(value);
 
@@ -14356,6 +15425,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionCumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
             (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
+            (meteredAllowance) => meteredAllowance.Validate(),
             (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
@@ -14413,9 +15483,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
             SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation _ =>
                 27,
             SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance _ => 28,
-            NewSubscriptionMinimumCompositePrice _ => 29,
-            SubscriptionSchedulePlanChangeParamsReplacePricePricePercent _ => 30,
-            SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput _ => 31,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance _ => 29,
+            NewSubscriptionMinimumCompositePrice _ => 30,
+            SubscriptionSchedulePlanChangeParamsReplacePricePricePercent _ => 31,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput _ => 32,
             _ => -1,
         };
     }
@@ -15032,6 +16103,27 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "metered_allowance":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance>(
                             element,
                             options
                         );
@@ -19897,6 +20989,928 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAll
     public override void Write(
         Utf8JsonWriter writer,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowanceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance
+    : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence
+    > Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence
+                >
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for metered_allowance pricing
+    /// </summary>
+    public required SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig MeteredAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig>(
+                "metered_allowance_config"
+            );
+        }
+        init { this._rawData.Set("metered_allowance_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A transient ID that can be used to reference this price when adding adjustments
+    /// in the same API call.
+    /// </summary>
+    public string? ReferenceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
+        }
+        init { this._rawData.Set("reference_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.ItemID;
+        this.MeteredAllowanceConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("metered_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.Currency;
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+        _ = this.ReferenceID;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance subscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadenceConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadenceConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Annual,
+            "semi_annual" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.SemiAnnual,
+            "monthly" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Monthly,
+            "quarterly" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Quarterly,
+            "one_time" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.OneTime,
+            "custom" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Custom,
+            _ => (SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Annual =>
+                    "annual",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.SemiAnnual =>
+                    "semi_annual",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Monthly =>
+                    "monthly",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Quarterly =>
+                    "quarterly",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.OneTime =>
+                    "one_time",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceCadence.Custom =>
+                    "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for metered_allowance pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfigFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+    : JsonModel
+{
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents the allowance for
+    /// this period (e.g. 'storage_snapshot' emitting 3 × avg storage). Capped at
+    /// consumption — credit can never exceed actual usage.
+    /// </summary>
+    public required string AllowanceGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("allowance_grouping_value");
+        }
+        init { this._rawData.Set("allowance_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents consumption (e.g.
+    /// 'download'). Charged at unit_amount.
+    /// </summary>
+    public required string ConsumptionGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("consumption_grouping_value");
+        }
+        init { this._rawData.Set("consumption_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// Event property used to partition the metric into consumption and allowance
+    /// quantities (e.g. 'event_name'). The metric is queried with this key and the
+    /// two values below select which partition is which.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Per-unit price applied to gross consumption and to the allowance credit.
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <summary>
+    /// Sub-line label for the credit row (e.g. 'Up to 3x free egress').
+    /// </summary>
+    public string? AllowanceDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("allowance_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("allowance_display_name", value);
+        }
+    }
+
+    /// <summary>
+    /// Sub-line label for the gross consumption row (e.g. 'bytes gotten').
+    /// </summary>
+    public string? ConsumptionDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("consumption_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("consumption_display_name", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AllowanceGroupingValue;
+        _ = this.ConsumptionGroupingValue;
+        _ = this.GroupingKey;
+        _ = this.UnitAmount;
+        _ = this.AllowanceDisplayName;
+        _ = this.ConsumptionDisplayName;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig subscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfigFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceMeteredAllowanceConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfigConverter)
+)]
+public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig
+    : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig(
+        JsonElement element
+    )
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfigConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig(
+                    element
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowanceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
