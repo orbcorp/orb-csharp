@@ -9,9 +9,8 @@ using Orb.Core;
 namespace Orb.Models.Metrics;
 
 /// <summary>
-/// This endpoint is used to fetch [metric](/core-concepts##metric) details given
-/// a metric identifier. It returns information about the metrics including its name,
-/// description, and item.
+/// This endpoint is used to list [metrics](/core-concepts#metric). It returns information
+/// about the metrics including its name, description, and item.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
