@@ -813,7 +813,6 @@ public enum AccountingProviderProviderType
 {
     Quickbooks,
     Netsuite,
-    NetsuiteAmpersand,
 }
 
 sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingProviderProviderType>
@@ -828,7 +827,6 @@ sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingP
         {
             "quickbooks" => AccountingProviderProviderType.Quickbooks,
             "netsuite" => AccountingProviderProviderType.Netsuite,
-            "netsuite_ampersand" => AccountingProviderProviderType.NetsuiteAmpersand,
             _ => (AccountingProviderProviderType)(-1),
         };
     }
@@ -845,7 +843,6 @@ sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingP
             {
                 AccountingProviderProviderType.Quickbooks => "quickbooks",
                 AccountingProviderProviderType.Netsuite => "netsuite",
-                AccountingProviderProviderType.NetsuiteAmpersand => "netsuite_ampersand",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

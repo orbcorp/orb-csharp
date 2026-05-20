@@ -23,7 +23,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = "provider_type",
+                        ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
@@ -99,7 +99,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = "provider_type",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -345,7 +345,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = "provider_type",
+                        ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
