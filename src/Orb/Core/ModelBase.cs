@@ -505,6 +505,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExternalPlanID::ReplacePricePricePercentCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::ReplacePricePriceEventOutputCadence>(),
             new ApiEnumConverter<string, CreditNotes::Reason>(),
+            new ApiEnumConverter<string, Customers::AccountingProviderConfigProviderType>(),
             new ApiEnumConverter<string, Customers::CustomerPaymentProvider>(),
             new ApiEnumConverter<string, Customers::AccountingProviderProviderType>(),
             new ApiEnumConverter<
