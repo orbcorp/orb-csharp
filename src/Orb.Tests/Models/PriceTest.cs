@@ -1773,6 +1773,150 @@ public class PriceTest : TestBase
     }
 
     [Fact]
+    public void MatrixWithThresholdDiscountsValidationWorks()
+    {
+        Price value = new MatrixWithThresholdDiscounts()
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void TieredWithProrationValidationWorks()
     {
         Price value = new TieredWithProration()
@@ -5958,6 +6102,153 @@ public class PriceTest : TestBase
             Name = "name",
             PlanPhaseOrder = 0,
             PriceType = MatrixWithAllocationPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Price>(element, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void MatrixWithThresholdDiscountsSerializationRoundtripWorks()
+    {
+        Price value = new MatrixWithThresholdDiscounts()
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
             ReplacesPriceID = "replaces_price_id",
             DimensionalPriceConfiguration = new()
             {
@@ -39015,6 +39306,3096 @@ public class MatrixWithAllocationLicenseTypeTest : TestBase
         };
 
         MatrixWithAllocationLicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MatrixWithThresholdDiscountsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        string expectedID = "id";
+        BillableMetricTiny expectedBillableMetric = new("id");
+        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ApiEnum<string, MatrixWithThresholdDiscountsBillingMode> expectedBillingMode =
+            MatrixWithThresholdDiscountsBillingMode.InAdvance;
+        ApiEnum<string, MatrixWithThresholdDiscountsCadence> expectedCadence =
+            MatrixWithThresholdDiscountsCadence.OneTime;
+        List<MatrixWithThresholdDiscountsCompositePriceFilter> expectedCompositePriceFilters =
+        [
+            new()
+            {
+                Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        double expectedConversionRate = 0;
+        MatrixWithThresholdDiscountsConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Allocation expectedCreditAllocation = new()
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            LicenseTypeID = "license_type_id",
+        };
+        string expectedCurrency = "currency";
+        SharedDiscount expectedDiscount = new PercentageDiscount()
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
+        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
+        MatrixWithThresholdDiscountsConfig expectedMatrixWithThresholdDiscountsConfig = new()
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+        Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "matrix_with_threshold_discounts"
+        );
+        string expectedName = "name";
+        long expectedPlanPhaseOrder = 0;
+        ApiEnum<string, MatrixWithThresholdDiscountsPriceType> expectedPriceType =
+            MatrixWithThresholdDiscountsPriceType.UsagePrice;
+        string expectedReplacesPriceID = "replaces_price_id";
+        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+        MatrixWithThresholdDiscountsLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedBillableMetric, model.BillableMetric);
+        Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
+        Assert.Equal(expectedBillingMode, model.BillingMode);
+        Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
+        Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
+        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedCompositePriceFilters[i], model.CompositePriceFilters[i]);
+        }
+        Assert.Equal(expectedConversionRate, model.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, model.ConversionRateConfig);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCreditAllocation, model.CreditAllocation);
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedDiscount, model.Discount);
+        Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedItem, model.Item);
+        Assert.Equal(
+            expectedMatrixWithThresholdDiscountsConfig,
+            model.MatrixWithThresholdDiscountsConfig
+        );
+        Assert.Equal(expectedMaximum, model.Maximum);
+        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, model.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMinimum, model.Minimum);
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
+        Assert.Equal(expectedName, model.Name);
+        Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
+        Assert.Equal(expectedPriceType, model.PriceType);
+        Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
+        Assert.Equal(expectedDimensionalPriceConfiguration, model.DimensionalPriceConfiguration);
+        Assert.Equal(expectedLicenseType, model.LicenseType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithThresholdDiscounts>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithThresholdDiscounts>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        BillableMetricTiny expectedBillableMetric = new("id");
+        BillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ApiEnum<string, MatrixWithThresholdDiscountsBillingMode> expectedBillingMode =
+            MatrixWithThresholdDiscountsBillingMode.InAdvance;
+        ApiEnum<string, MatrixWithThresholdDiscountsCadence> expectedCadence =
+            MatrixWithThresholdDiscountsCadence.OneTime;
+        List<MatrixWithThresholdDiscountsCompositePriceFilter> expectedCompositePriceFilters =
+        [
+            new()
+            {
+                Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        double expectedConversionRate = 0;
+        MatrixWithThresholdDiscountsConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Allocation expectedCreditAllocation = new()
+        {
+            AllowsRollover = true,
+            Currency = "currency",
+            CustomExpiration = new()
+            {
+                Duration = 0,
+                DurationUnit = CustomExpirationDurationUnit.Day,
+            },
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            LicenseTypeID = "license_type_id",
+        };
+        string expectedCurrency = "currency";
+        SharedDiscount expectedDiscount = new PercentageDiscount()
+        {
+            DiscountType = PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        string expectedExternalPriceID = "external_price_id";
+        double expectedFixedPriceQuantity = 0;
+        string expectedInvoiceGroupingKey = "invoice_grouping_key";
+        BillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        {
+            Duration = 0,
+            DurationUnit = DurationUnit.Day,
+        };
+        ItemSlim expectedItem = new() { ID = "id", Name = "name" };
+        MatrixWithThresholdDiscountsConfig expectedMatrixWithThresholdDiscountsConfig = new()
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+        Maximum expectedMaximum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+        };
+        string expectedMaximumAmount = "maximum_amount";
+        Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
+        Minimum expectedMinimum = new()
+        {
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MinimumAmount = "minimum_amount",
+        };
+        string expectedMinimumAmount = "minimum_amount";
+        JsonElement expectedModelType = JsonSerializer.SerializeToElement(
+            "matrix_with_threshold_discounts"
+        );
+        string expectedName = "name";
+        long expectedPlanPhaseOrder = 0;
+        ApiEnum<string, MatrixWithThresholdDiscountsPriceType> expectedPriceType =
+            MatrixWithThresholdDiscountsPriceType.UsagePrice;
+        string expectedReplacesPriceID = "replaces_price_id";
+        DimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        {
+            DimensionValues = ["string"],
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+        };
+        MatrixWithThresholdDiscountsLicenseType expectedLicenseType = new()
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
+        Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
+        Assert.Equal(expectedBillingMode, deserialized.BillingMode);
+        Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
+        Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
+        for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedCompositePriceFilters[i], deserialized.CompositePriceFilters[i]);
+        }
+        Assert.Equal(expectedConversionRate, deserialized.ConversionRate);
+        Assert.Equal(expectedConversionRateConfig, deserialized.ConversionRateConfig);
+        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCreditAllocation, deserialized.CreditAllocation);
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedDiscount, deserialized.Discount);
+        Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
+        Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
+        Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
+        Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedItem, deserialized.Item);
+        Assert.Equal(
+            expectedMatrixWithThresholdDiscountsConfig,
+            deserialized.MatrixWithThresholdDiscountsConfig
+        );
+        Assert.Equal(expectedMaximum, deserialized.Maximum);
+        Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, deserialized.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedMinimum, deserialized.Minimum);
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, deserialized.ModelType));
+        Assert.Equal(expectedName, deserialized.Name);
+        Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+        Assert.Equal(expectedReplacesPriceID, deserialized.ReplacesPriceID);
+        Assert.Equal(
+            expectedDimensionalPriceConfiguration,
+            deserialized.DimensionalPriceConfiguration
+        );
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+        };
+
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.False(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+
+            DimensionalPriceConfiguration = null,
+            LicenseType = null,
+        };
+
+        Assert.Null(model.DimensionalPriceConfiguration);
+        Assert.True(model.RawData.ContainsKey("dimensional_price_configuration"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+
+            DimensionalPriceConfiguration = null,
+            LicenseType = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithThresholdDiscounts
+        {
+            ID = "id",
+            BillableMetric = new("id"),
+            BillingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            BillingMode = MatrixWithThresholdDiscountsBillingMode.InAdvance,
+            Cadence = MatrixWithThresholdDiscountsCadence.OneTime,
+            CompositePriceFilters =
+            [
+                new()
+                {
+                    Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreditAllocation = new()
+            {
+                AllowsRollover = true,
+                Currency = "currency",
+                CustomExpiration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
+                },
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Field.PriceID,
+                        Operator = Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                LicenseTypeID = "license_type_id",
+            },
+            Currency = "currency",
+            Discount = new PercentageDiscount()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
+            InvoicingCycleConfiguration = new() { Duration = 0, DurationUnit = DurationUnit.Day },
+            Item = new() { ID = "id", Name = "name" },
+            MatrixWithThresholdDiscountsConfig = new()
+            {
+                DefaultUnitAmount = "default_unit_amount",
+                FirstDimension = "first_dimension",
+                MatrixValues =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        UnitAmount = "unit_amount",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                SecondDimension = "second_dimension",
+                ThresholdDiscountGroups =
+                [
+                    new()
+                    {
+                        AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                        BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                        CellCoordinates = "cell_coordinates",
+                        ThresholdAmount = "threshold_amount",
+                        Description = "description",
+                    },
+                ],
+            },
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            Name = "name",
+            PlanPhaseOrder = 0,
+            PriceType = MatrixWithThresholdDiscountsPriceType.UsagePrice,
+            ReplacesPriceID = "replaces_price_id",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
+            },
+        };
+
+        MatrixWithThresholdDiscounts copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MatrixWithThresholdDiscountsBillingModeTest : TestBase
+{
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsBillingMode.InAdvance)]
+    [InlineData(MatrixWithThresholdDiscountsBillingMode.InArrear)]
+    public void Validation_Works(MatrixWithThresholdDiscountsBillingMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsBillingMode> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsBillingMode>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsBillingMode.InAdvance)]
+    [InlineData(MatrixWithThresholdDiscountsBillingMode.InArrear)]
+    public void SerializationRoundtrip_Works(MatrixWithThresholdDiscountsBillingMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsBillingMode> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsBillingMode>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsBillingMode>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsBillingMode>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MatrixWithThresholdDiscountsCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsCadence.OneTime)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Monthly)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Quarterly)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.SemiAnnual)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Annual)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Custom)]
+    public void Validation_Works(MatrixWithThresholdDiscountsCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCadence>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsCadence.OneTime)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Monthly)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Quarterly)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.SemiAnnual)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Annual)]
+    [InlineData(MatrixWithThresholdDiscountsCadence.Custom)]
+    public void SerializationRoundtrip_Works(MatrixWithThresholdDiscountsCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCadence>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MatrixWithThresholdDiscountsCompositePriceFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsCompositePriceFilter
+        {
+            Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+            Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField> expectedField =
+            MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator> expectedOperator =
+            MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsCompositePriceFilter
+        {
+            Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+            Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithThresholdDiscountsCompositePriceFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsCompositePriceFilter
+        {
+            Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+            Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithThresholdDiscountsCompositePriceFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField> expectedField =
+            MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator> expectedOperator =
+            MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsCompositePriceFilter
+        {
+            Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+            Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsCompositePriceFilter
+        {
+            Field = MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID,
+            Operator = MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MatrixWithThresholdDiscountsCompositePriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MatrixWithThresholdDiscountsCompositePriceFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.ItemID)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.PriceType)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.Currency)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.PricingUnitID)]
+    public void Validation_Works(MatrixWithThresholdDiscountsCompositePriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.PriceID)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.ItemID)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.PriceType)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.Currency)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        MatrixWithThresholdDiscountsCompositePriceFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MatrixWithThresholdDiscountsCompositePriceFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterOperator.Excludes)]
+    public void Validation_Works(MatrixWithThresholdDiscountsCompositePriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterOperator.Includes)]
+    [InlineData(MatrixWithThresholdDiscountsCompositePriceFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        MatrixWithThresholdDiscountsCompositePriceFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsCompositePriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MatrixWithThresholdDiscountsConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void UnitValidationWorks()
+    {
+        MatrixWithThresholdDiscountsConversionRateConfig value =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void TieredValidationWorks()
+    {
+        MatrixWithThresholdDiscountsConversionRateConfig value =
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UnitSerializationRoundtripWorks()
+    {
+        MatrixWithThresholdDiscountsConversionRateConfig value =
+            new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithThresholdDiscountsConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredSerializationRoundtripWorks()
+    {
+        MatrixWithThresholdDiscountsConversionRateConfig value =
+            new SharedTieredConversionRateConfig()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithThresholdDiscountsConversionRateConfig>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MatrixWithThresholdDiscountsConfigTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        string expectedDefaultUnitAmount = "default_unit_amount";
+        string expectedFirstDimension = "first_dimension";
+        List<MatrixWithThresholdDiscountsConfigMatrixValue> expectedMatrixValues =
+        [
+            new()
+            {
+                FirstDimensionValue = "first_dimension_value",
+                UnitAmount = "unit_amount",
+                SecondDimensionValue = "second_dimension_value",
+            },
+        ];
+        string expectedSecondDimension = "second_dimension";
+        List<ThresholdDiscountGroup> expectedThresholdDiscountGroups =
+        [
+            new()
+            {
+                AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                CellCoordinates = "cell_coordinates",
+                ThresholdAmount = "threshold_amount",
+                Description = "description",
+            },
+        ];
+
+        Assert.Equal(expectedDefaultUnitAmount, model.DefaultUnitAmount);
+        Assert.Equal(expectedFirstDimension, model.FirstDimension);
+        Assert.Equal(expectedMatrixValues.Count, model.MatrixValues.Count);
+        for (int i = 0; i < expectedMatrixValues.Count; i++)
+        {
+            Assert.Equal(expectedMatrixValues[i], model.MatrixValues[i]);
+        }
+        Assert.Equal(expectedSecondDimension, model.SecondDimension);
+        Assert.NotNull(model.ThresholdDiscountGroups);
+        Assert.Equal(expectedThresholdDiscountGroups.Count, model.ThresholdDiscountGroups.Count);
+        for (int i = 0; i < expectedThresholdDiscountGroups.Count; i++)
+        {
+            Assert.Equal(expectedThresholdDiscountGroups[i], model.ThresholdDiscountGroups[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithThresholdDiscountsConfig>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithThresholdDiscountsConfig>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedDefaultUnitAmount = "default_unit_amount";
+        string expectedFirstDimension = "first_dimension";
+        List<MatrixWithThresholdDiscountsConfigMatrixValue> expectedMatrixValues =
+        [
+            new()
+            {
+                FirstDimensionValue = "first_dimension_value",
+                UnitAmount = "unit_amount",
+                SecondDimensionValue = "second_dimension_value",
+            },
+        ];
+        string expectedSecondDimension = "second_dimension";
+        List<ThresholdDiscountGroup> expectedThresholdDiscountGroups =
+        [
+            new()
+            {
+                AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                CellCoordinates = "cell_coordinates",
+                ThresholdAmount = "threshold_amount",
+                Description = "description",
+            },
+        ];
+
+        Assert.Equal(expectedDefaultUnitAmount, deserialized.DefaultUnitAmount);
+        Assert.Equal(expectedFirstDimension, deserialized.FirstDimension);
+        Assert.Equal(expectedMatrixValues.Count, deserialized.MatrixValues.Count);
+        for (int i = 0; i < expectedMatrixValues.Count; i++)
+        {
+            Assert.Equal(expectedMatrixValues[i], deserialized.MatrixValues[i]);
+        }
+        Assert.Equal(expectedSecondDimension, deserialized.SecondDimension);
+        Assert.NotNull(deserialized.ThresholdDiscountGroups);
+        Assert.Equal(
+            expectedThresholdDiscountGroups.Count,
+            deserialized.ThresholdDiscountGroups.Count
+        );
+        for (int i = 0; i < expectedThresholdDiscountGroups.Count; i++)
+        {
+            Assert.Equal(
+                expectedThresholdDiscountGroups[i],
+                deserialized.ThresholdDiscountGroups[i]
+            );
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+        };
+
+        Assert.Null(model.ThresholdDiscountGroups);
+        Assert.False(model.RawData.ContainsKey("threshold_discount_groups"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+
+            // Null should be interpreted as omitted for these properties
+            ThresholdDiscountGroups = null,
+        };
+
+        Assert.Null(model.ThresholdDiscountGroups);
+        Assert.False(model.RawData.ContainsKey("threshold_discount_groups"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+
+            // Null should be interpreted as omitted for these properties
+            ThresholdDiscountGroups = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        Assert.Null(model.SecondDimension);
+        Assert.False(model.RawData.ContainsKey("second_dimension"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+
+            SecondDimension = null,
+        };
+
+        Assert.Null(model.SecondDimension);
+        Assert.True(model.RawData.ContainsKey("second_dimension"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+
+            SecondDimension = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            FirstDimension = "first_dimension",
+            MatrixValues =
+            [
+                new()
+                {
+                    FirstDimensionValue = "first_dimension_value",
+                    UnitAmount = "unit_amount",
+                    SecondDimensionValue = "second_dimension_value",
+                },
+            ],
+            SecondDimension = "second_dimension",
+            ThresholdDiscountGroups =
+            [
+                new()
+                {
+                    AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+                    BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+                    CellCoordinates = "cell_coordinates",
+                    ThresholdAmount = "threshold_amount",
+                    Description = "description",
+                },
+            ],
+        };
+
+        MatrixWithThresholdDiscountsConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MatrixWithThresholdDiscountsConfigMatrixValueTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+            SecondDimensionValue = "second_dimension_value",
+        };
+
+        string expectedFirstDimensionValue = "first_dimension_value";
+        string expectedUnitAmount = "unit_amount";
+        string expectedSecondDimensionValue = "second_dimension_value";
+
+        Assert.Equal(expectedFirstDimensionValue, model.FirstDimensionValue);
+        Assert.Equal(expectedUnitAmount, model.UnitAmount);
+        Assert.Equal(expectedSecondDimensionValue, model.SecondDimensionValue);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+            SecondDimensionValue = "second_dimension_value",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithThresholdDiscountsConfigMatrixValue>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+            SecondDimensionValue = "second_dimension_value",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithThresholdDiscountsConfigMatrixValue>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        string expectedFirstDimensionValue = "first_dimension_value";
+        string expectedUnitAmount = "unit_amount";
+        string expectedSecondDimensionValue = "second_dimension_value";
+
+        Assert.Equal(expectedFirstDimensionValue, deserialized.FirstDimensionValue);
+        Assert.Equal(expectedUnitAmount, deserialized.UnitAmount);
+        Assert.Equal(expectedSecondDimensionValue, deserialized.SecondDimensionValue);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+            SecondDimensionValue = "second_dimension_value",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+        };
+
+        Assert.Null(model.SecondDimensionValue);
+        Assert.False(model.RawData.ContainsKey("second_dimension_value"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+
+            SecondDimensionValue = null,
+        };
+
+        Assert.Null(model.SecondDimensionValue);
+        Assert.True(model.RawData.ContainsKey("second_dimension_value"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+
+            SecondDimensionValue = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsConfigMatrixValue
+        {
+            FirstDimensionValue = "first_dimension_value",
+            UnitAmount = "unit_amount",
+            SecondDimensionValue = "second_dimension_value",
+        };
+
+        MatrixWithThresholdDiscountsConfigMatrixValue copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ThresholdDiscountGroupTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+            Description = "description",
+        };
+
+        string expectedAboveThresholdDiscountPercentage = "above_threshold_discount_percentage";
+        string expectedBelowThresholdDiscountPercentage = "below_threshold_discount_percentage";
+        string expectedCellCoordinates = "cell_coordinates";
+        string expectedThresholdAmount = "threshold_amount";
+        string expectedDescription = "description";
+
+        Assert.Equal(
+            expectedAboveThresholdDiscountPercentage,
+            model.AboveThresholdDiscountPercentage
+        );
+        Assert.Equal(
+            expectedBelowThresholdDiscountPercentage,
+            model.BelowThresholdDiscountPercentage
+        );
+        Assert.Equal(expectedCellCoordinates, model.CellCoordinates);
+        Assert.Equal(expectedThresholdAmount, model.ThresholdAmount);
+        Assert.Equal(expectedDescription, model.Description);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+            Description = "description",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ThresholdDiscountGroup>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+            Description = "description",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ThresholdDiscountGroup>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedAboveThresholdDiscountPercentage = "above_threshold_discount_percentage";
+        string expectedBelowThresholdDiscountPercentage = "below_threshold_discount_percentage";
+        string expectedCellCoordinates = "cell_coordinates";
+        string expectedThresholdAmount = "threshold_amount";
+        string expectedDescription = "description";
+
+        Assert.Equal(
+            expectedAboveThresholdDiscountPercentage,
+            deserialized.AboveThresholdDiscountPercentage
+        );
+        Assert.Equal(
+            expectedBelowThresholdDiscountPercentage,
+            deserialized.BelowThresholdDiscountPercentage
+        );
+        Assert.Equal(expectedCellCoordinates, deserialized.CellCoordinates);
+        Assert.Equal(expectedThresholdAmount, deserialized.ThresholdAmount);
+        Assert.Equal(expectedDescription, deserialized.Description);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+            Description = "description",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+        };
+
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+
+            Description = null,
+        };
+
+        Assert.Null(model.Description);
+        Assert.True(model.RawData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+
+            Description = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ThresholdDiscountGroup
+        {
+            AboveThresholdDiscountPercentage = "above_threshold_discount_percentage",
+            BelowThresholdDiscountPercentage = "below_threshold_discount_percentage",
+            CellCoordinates = "cell_coordinates",
+            ThresholdAmount = "threshold_amount",
+            Description = "description",
+        };
+
+        ThresholdDiscountGroup copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class MatrixWithThresholdDiscountsPriceTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsPriceType.UsagePrice)]
+    [InlineData(MatrixWithThresholdDiscountsPriceType.FixedPrice)]
+    [InlineData(MatrixWithThresholdDiscountsPriceType.CompositePrice)]
+    public void Validation_Works(MatrixWithThresholdDiscountsPriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsPriceType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsPriceType>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MatrixWithThresholdDiscountsPriceType.UsagePrice)]
+    [InlineData(MatrixWithThresholdDiscountsPriceType.FixedPrice)]
+    [InlineData(MatrixWithThresholdDiscountsPriceType.CompositePrice)]
+    public void SerializationRoundtrip_Works(MatrixWithThresholdDiscountsPriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MatrixWithThresholdDiscountsPriceType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsPriceType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsPriceType>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MatrixWithThresholdDiscountsPriceType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MatrixWithThresholdDiscountsLicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedGroupingKey, model.GroupingKey);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithThresholdDiscountsLicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithThresholdDiscountsLicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedGroupingKey = "grouping_key";
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixWithThresholdDiscountsLicenseType
+        {
+            ID = "id",
+            GroupingKey = "grouping_key",
+            Name = "name",
+        };
+
+        MatrixWithThresholdDiscountsLicenseType copied = new(model);
 
         Assert.Equal(model, copied);
     }

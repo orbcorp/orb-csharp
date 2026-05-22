@@ -429,6 +429,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.Currency,
                 newFloatingUnitWithPercent: (x) => x.Currency,
                 newFloatingMatrixWithAllocation: (x) => x.Currency,
+                matrixWithThresholdDiscounts: (x) => x.Currency,
                 newFloatingTieredWithProration: (x) => x.Currency,
                 newFloatingUnitWithProration: (x) => x.Currency,
                 newFloatingGroupedAllocation: (x) => x.Currency,
@@ -471,6 +472,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.ItemID,
                 newFloatingUnitWithPercent: (x) => x.ItemID,
                 newFloatingMatrixWithAllocation: (x) => x.ItemID,
+                matrixWithThresholdDiscounts: (x) => x.ItemID,
                 newFloatingTieredWithProration: (x) => x.ItemID,
                 newFloatingUnitWithProration: (x) => x.ItemID,
                 newFloatingGroupedAllocation: (x) => x.ItemID,
@@ -513,6 +515,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.Name,
                 newFloatingUnitWithPercent: (x) => x.Name,
                 newFloatingMatrixWithAllocation: (x) => x.Name,
+                matrixWithThresholdDiscounts: (x) => x.Name,
                 newFloatingTieredWithProration: (x) => x.Name,
                 newFloatingUnitWithProration: (x) => x.Name,
                 newFloatingGroupedAllocation: (x) => x.Name,
@@ -555,6 +558,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.BillableMetricID,
                 newFloatingUnitWithPercent: (x) => x.BillableMetricID,
                 newFloatingMatrixWithAllocation: (x) => x.BillableMetricID,
+                matrixWithThresholdDiscounts: (x) => x.BillableMetricID,
                 newFloatingTieredWithProration: (x) => x.BillableMetricID,
                 newFloatingUnitWithProration: (x) => x.BillableMetricID,
                 newFloatingGroupedAllocation: (x) => x.BillableMetricID,
@@ -597,6 +601,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.BilledInAdvance,
                 newFloatingUnitWithPercent: (x) => x.BilledInAdvance,
                 newFloatingMatrixWithAllocation: (x) => x.BilledInAdvance,
+                matrixWithThresholdDiscounts: (x) => x.BilledInAdvance,
                 newFloatingTieredWithProration: (x) => x.BilledInAdvance,
                 newFloatingUnitWithProration: (x) => x.BilledInAdvance,
                 newFloatingGroupedAllocation: (x) => x.BilledInAdvance,
@@ -639,6 +644,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.BillingCycleConfiguration,
                 newFloatingUnitWithPercent: (x) => x.BillingCycleConfiguration,
                 newFloatingMatrixWithAllocation: (x) => x.BillingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.BillingCycleConfiguration,
                 newFloatingTieredWithProration: (x) => x.BillingCycleConfiguration,
                 newFloatingUnitWithProration: (x) => x.BillingCycleConfiguration,
                 newFloatingGroupedAllocation: (x) => x.BillingCycleConfiguration,
@@ -681,6 +687,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.ConversionRate,
                 newFloatingUnitWithPercent: (x) => x.ConversionRate,
                 newFloatingMatrixWithAllocation: (x) => x.ConversionRate,
+                matrixWithThresholdDiscounts: (x) => x.ConversionRate,
                 newFloatingTieredWithProration: (x) => x.ConversionRate,
                 newFloatingUnitWithProration: (x) => x.ConversionRate,
                 newFloatingGroupedAllocation: (x) => x.ConversionRate,
@@ -723,6 +730,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.DimensionalPriceConfiguration,
                 newFloatingUnitWithPercent: (x) => x.DimensionalPriceConfiguration,
                 newFloatingMatrixWithAllocation: (x) => x.DimensionalPriceConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.DimensionalPriceConfiguration,
                 newFloatingTieredWithProration: (x) => x.DimensionalPriceConfiguration,
                 newFloatingUnitWithProration: (x) => x.DimensionalPriceConfiguration,
                 newFloatingGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
@@ -765,6 +773,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.ExternalPriceID,
                 newFloatingUnitWithPercent: (x) => x.ExternalPriceID,
                 newFloatingMatrixWithAllocation: (x) => x.ExternalPriceID,
+                matrixWithThresholdDiscounts: (x) => x.ExternalPriceID,
                 newFloatingTieredWithProration: (x) => x.ExternalPriceID,
                 newFloatingUnitWithProration: (x) => x.ExternalPriceID,
                 newFloatingGroupedAllocation: (x) => x.ExternalPriceID,
@@ -807,6 +816,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.FixedPriceQuantity,
                 newFloatingUnitWithPercent: (x) => x.FixedPriceQuantity,
                 newFloatingMatrixWithAllocation: (x) => x.FixedPriceQuantity,
+                matrixWithThresholdDiscounts: (x) => x.FixedPriceQuantity,
                 newFloatingTieredWithProration: (x) => x.FixedPriceQuantity,
                 newFloatingUnitWithProration: (x) => x.FixedPriceQuantity,
                 newFloatingGroupedAllocation: (x) => x.FixedPriceQuantity,
@@ -849,6 +859,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.InvoiceGroupingKey,
                 newFloatingUnitWithPercent: (x) => x.InvoiceGroupingKey,
                 newFloatingMatrixWithAllocation: (x) => x.InvoiceGroupingKey,
+                matrixWithThresholdDiscounts: (x) => x.InvoiceGroupingKey,
                 newFloatingTieredWithProration: (x) => x.InvoiceGroupingKey,
                 newFloatingUnitWithProration: (x) => x.InvoiceGroupingKey,
                 newFloatingGroupedAllocation: (x) => x.InvoiceGroupingKey,
@@ -891,6 +902,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.InvoicingCycleConfiguration,
                 newFloatingUnitWithPercent: (x) => x.InvoicingCycleConfiguration,
                 newFloatingMatrixWithAllocation: (x) => x.InvoicingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.InvoicingCycleConfiguration,
                 newFloatingTieredWithProration: (x) => x.InvoicingCycleConfiguration,
                 newFloatingUnitWithProration: (x) => x.InvoicingCycleConfiguration,
                 newFloatingGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
@@ -933,6 +945,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.LicenseTypeID,
                 newFloatingUnitWithPercent: (x) => x.LicenseTypeID,
                 newFloatingMatrixWithAllocation: (x) => x.LicenseTypeID,
+                matrixWithThresholdDiscounts: (x) => x.LicenseTypeID,
                 newFloatingTieredWithProration: (x) => x.LicenseTypeID,
                 newFloatingUnitWithProration: (x) => x.LicenseTypeID,
                 newFloatingGroupedAllocation: (x) => x.LicenseTypeID,
@@ -1035,6 +1048,12 @@ public record class Price : ModelBase
     }
 
     public Price(NewFloatingMatrixWithAllocationPrice value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(PriceMatrixWithThresholdDiscounts value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1466,6 +1485,29 @@ public record class Price : ModelBase
     )
     {
         value = this.Value as NewFloatingMatrixWithAllocationPrice;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PriceMatrixWithThresholdDiscounts"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMatrixWithThresholdDiscounts(out var value)) {
+    ///     // `value` is of type `PriceMatrixWithThresholdDiscounts`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMatrixWithThresholdDiscounts(
+        [NotNullWhen(true)] out PriceMatrixWithThresholdDiscounts? value
+    )
+    {
+        value = this.Value as PriceMatrixWithThresholdDiscounts;
         return value != null;
     }
 
@@ -1928,6 +1970,7 @@ public record class Price : ModelBase
     ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
     ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
     ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (PriceMatrixWithThresholdDiscounts value) =&gt; {...},
     ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
     ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
     ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
@@ -1966,6 +2009,7 @@ public record class Price : ModelBase
         System::Action<NewFloatingPackageWithAllocationPrice> newFloatingPackageWithAllocation,
         System::Action<NewFloatingUnitWithPercentPrice> newFloatingUnitWithPercent,
         System::Action<NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocation,
+        System::Action<PriceMatrixWithThresholdDiscounts> matrixWithThresholdDiscounts,
         System::Action<NewFloatingTieredWithProrationPrice> newFloatingTieredWithProration,
         System::Action<NewFloatingUnitWithProrationPrice> newFloatingUnitWithProration,
         System::Action<NewFloatingGroupedAllocationPrice> newFloatingGroupedAllocation,
@@ -2030,6 +2074,9 @@ public record class Price : ModelBase
                 break;
             case NewFloatingMatrixWithAllocationPrice value:
                 newFloatingMatrixWithAllocation(value);
+                break;
+            case PriceMatrixWithThresholdDiscounts value:
+                matrixWithThresholdDiscounts(value);
                 break;
             case NewFloatingTieredWithProrationPrice value:
                 newFloatingTieredWithProration(value);
@@ -2122,6 +2169,7 @@ public record class Price : ModelBase
     ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
     ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
     ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (PriceMatrixWithThresholdDiscounts value) =&gt; {...},
     ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
     ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
     ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
@@ -2163,6 +2211,7 @@ public record class Price : ModelBase
         System::Func<NewFloatingPackageWithAllocationPrice, T> newFloatingPackageWithAllocation,
         System::Func<NewFloatingUnitWithPercentPrice, T> newFloatingUnitWithPercent,
         System::Func<NewFloatingMatrixWithAllocationPrice, T> newFloatingMatrixWithAllocation,
+        System::Func<PriceMatrixWithThresholdDiscounts, T> matrixWithThresholdDiscounts,
         System::Func<NewFloatingTieredWithProrationPrice, T> newFloatingTieredWithProration,
         System::Func<NewFloatingUnitWithProrationPrice, T> newFloatingUnitWithProration,
         System::Func<NewFloatingGroupedAllocationPrice, T> newFloatingGroupedAllocation,
@@ -2214,6 +2263,7 @@ public record class Price : ModelBase
             NewFloatingPackageWithAllocationPrice value => newFloatingPackageWithAllocation(value),
             NewFloatingUnitWithPercentPrice value => newFloatingUnitWithPercent(value),
             NewFloatingMatrixWithAllocationPrice value => newFloatingMatrixWithAllocation(value),
+            PriceMatrixWithThresholdDiscounts value => matrixWithThresholdDiscounts(value),
             NewFloatingTieredWithProrationPrice value => newFloatingTieredWithProration(value),
             NewFloatingUnitWithProrationPrice value => newFloatingUnitWithProration(value),
             NewFloatingGroupedAllocationPrice value => newFloatingGroupedAllocation(value),
@@ -2271,6 +2321,8 @@ public record class Price : ModelBase
     public static implicit operator Price(NewFloatingUnitWithPercentPrice value) => new(value);
 
     public static implicit operator Price(NewFloatingMatrixWithAllocationPrice value) => new(value);
+
+    public static implicit operator Price(PriceMatrixWithThresholdDiscounts value) => new(value);
 
     public static implicit operator Price(NewFloatingTieredWithProrationPrice value) => new(value);
 
@@ -2348,6 +2400,7 @@ public record class Price : ModelBase
             (newFloatingPackageWithAllocation) => newFloatingPackageWithAllocation.Validate(),
             (newFloatingUnitWithPercent) => newFloatingUnitWithPercent.Validate(),
             (newFloatingMatrixWithAllocation) => newFloatingMatrixWithAllocation.Validate(),
+            (matrixWithThresholdDiscounts) => matrixWithThresholdDiscounts.Validate(),
             (newFloatingTieredWithProration) => newFloatingTieredWithProration.Validate(),
             (newFloatingUnitWithProration) => newFloatingUnitWithProration.Validate(),
             (newFloatingGroupedAllocation) => newFloatingGroupedAllocation.Validate(),
@@ -2408,25 +2461,26 @@ public record class Price : ModelBase
             NewFloatingPackageWithAllocationPrice _ => 11,
             NewFloatingUnitWithPercentPrice _ => 12,
             NewFloatingMatrixWithAllocationPrice _ => 13,
-            NewFloatingTieredWithProrationPrice _ => 14,
-            NewFloatingUnitWithProrationPrice _ => 15,
-            NewFloatingGroupedAllocationPrice _ => 16,
-            NewFloatingBulkWithProrationPrice _ => 17,
-            NewFloatingGroupedWithProratedMinimumPrice _ => 18,
-            NewFloatingGroupedWithMeteredMinimumPrice _ => 19,
-            PriceGroupedWithMinMaxThresholds _ => 20,
-            NewFloatingMatrixWithDisplayNamePrice _ => 21,
-            NewFloatingGroupedTieredPackagePrice _ => 22,
-            NewFloatingMaxGroupTieredPackagePrice _ => 23,
-            NewFloatingScalableMatrixWithUnitPricingPrice _ => 24,
-            NewFloatingScalableMatrixWithTieredPricingPrice _ => 25,
-            NewFloatingCumulativeGroupedBulkPrice _ => 26,
-            PriceCumulativeGroupedAllocation _ => 27,
-            PriceDailyCreditAllowance _ => 28,
-            PriceMeteredAllowance _ => 29,
-            NewFloatingMinimumCompositePrice _ => 30,
-            PricePercent _ => 31,
-            PriceEventOutput _ => 32,
+            PriceMatrixWithThresholdDiscounts _ => 14,
+            NewFloatingTieredWithProrationPrice _ => 15,
+            NewFloatingUnitWithProrationPrice _ => 16,
+            NewFloatingGroupedAllocationPrice _ => 17,
+            NewFloatingBulkWithProrationPrice _ => 18,
+            NewFloatingGroupedWithProratedMinimumPrice _ => 19,
+            NewFloatingGroupedWithMeteredMinimumPrice _ => 20,
+            PriceGroupedWithMinMaxThresholds _ => 21,
+            NewFloatingMatrixWithDisplayNamePrice _ => 22,
+            NewFloatingGroupedTieredPackagePrice _ => 23,
+            NewFloatingMaxGroupTieredPackagePrice _ => 24,
+            NewFloatingScalableMatrixWithUnitPricingPrice _ => 25,
+            NewFloatingScalableMatrixWithTieredPricingPrice _ => 26,
+            NewFloatingCumulativeGroupedBulkPrice _ => 27,
+            PriceCumulativeGroupedAllocation _ => 28,
+            PriceDailyCreditAllowance _ => 29,
+            PriceMeteredAllowance _ => 30,
+            NewFloatingMinimumCompositePrice _ => 31,
+            PricePercent _ => 32,
+            PriceEventOutput _ => 33,
             _ => -1,
         };
     }
@@ -2723,6 +2777,27 @@ sealed class PriceConverter : JsonConverter<Price?>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingMatrixWithAllocationPrice>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "matrix_with_threshold_discounts":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceMatrixWithThresholdDiscounts>(
                             element,
                             options
                         );
@@ -4110,6 +4185,1086 @@ sealed class PriceBulkWithFiltersConversionRateConfigConverter
     public override void Write(
         Utf8JsonWriter writer,
         PriceBulkWithFiltersConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscounts,
+        PriceMatrixWithThresholdDiscountsFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscounts : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<string, PriceMatrixWithThresholdDiscountsCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, PriceMatrixWithThresholdDiscountsCadence>
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string for which this price is billed in.
+    /// </summary>
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for matrix_with_threshold_discounts pricing
+    /// </summary>
+    public required PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig MatrixWithThresholdDiscountsConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>(
+                "matrix_with_threshold_discounts_config"
+            );
+        }
+        init { this._rawData.Set("matrix_with_threshold_discounts_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PriceMatrixWithThresholdDiscountsConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.Currency;
+        _ = this.ItemID;
+        this.MatrixWithThresholdDiscountsConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("matrix_with_threshold_discounts")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+    }
+
+    public PriceMatrixWithThresholdDiscounts()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscounts(
+        PriceMatrixWithThresholdDiscounts priceMatrixWithThresholdDiscounts
+    )
+        : base(priceMatrixWithThresholdDiscounts) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscounts(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscounts(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsFromRaw : IFromRawJson<PriceMatrixWithThresholdDiscounts>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceMatrixWithThresholdDiscounts.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(PriceMatrixWithThresholdDiscountsCadenceConverter))]
+public enum PriceMatrixWithThresholdDiscountsCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class PriceMatrixWithThresholdDiscountsCadenceConverter
+    : JsonConverter<PriceMatrixWithThresholdDiscountsCadence>
+{
+    public override PriceMatrixWithThresholdDiscountsCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => PriceMatrixWithThresholdDiscountsCadence.Annual,
+            "semi_annual" => PriceMatrixWithThresholdDiscountsCadence.SemiAnnual,
+            "monthly" => PriceMatrixWithThresholdDiscountsCadence.Monthly,
+            "quarterly" => PriceMatrixWithThresholdDiscountsCadence.Quarterly,
+            "one_time" => PriceMatrixWithThresholdDiscountsCadence.OneTime,
+            "custom" => PriceMatrixWithThresholdDiscountsCadence.Custom,
+            _ => (PriceMatrixWithThresholdDiscountsCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceMatrixWithThresholdDiscountsCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PriceMatrixWithThresholdDiscountsCadence.Annual => "annual",
+                PriceMatrixWithThresholdDiscountsCadence.SemiAnnual => "semi_annual",
+                PriceMatrixWithThresholdDiscountsCadence.Monthly => "monthly",
+                PriceMatrixWithThresholdDiscountsCadence.Quarterly => "quarterly",
+                PriceMatrixWithThresholdDiscountsCadence.OneTime => "one_time",
+                PriceMatrixWithThresholdDiscountsCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for matrix_with_threshold_discounts pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig,
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    : JsonModel
+{
+    /// <summary>
+    /// Unit price used for usage that does not match any defined matrix cell.
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// First matrix dimension key.
+    /// </summary>
+    public required string FirstDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension");
+        }
+        init { this._rawData.Set("first_dimension", value); }
+    }
+
+    /// <summary>
+    /// Per-cell unit prices.
+    /// </summary>
+    public required IReadOnlyList<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// Optional second matrix dimension key.
+    /// </summary>
+    public string? SecondDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension");
+        }
+        init { this._rawData.Set("second_dimension", value); }
+    }
+
+    public IReadOnlyList<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>? ThresholdDiscountGroups
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+            >("threshold_discount_groups");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>?>(
+                "threshold_discount_groups",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DefaultUnitAmount;
+        _ = this.FirstDimension;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+        _ = this.SecondDimension;
+        foreach (var item in this.ThresholdDiscountGroups ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    )
+        : base(priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    : IFromRawJson<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue,
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    : JsonModel
+{
+    public required string FirstDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension_value");
+        }
+        init { this._rawData.Set("first_dimension_value", value); }
+    }
+
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    public string? SecondDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension_value");
+        }
+        init { this._rawData.Set("second_dimension_value", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.FirstDimensionValue;
+        _ = this.UnitAmount;
+        _ = this.SecondDimensionValue;
+    }
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    )
+        : base(priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    : IFromRawJson<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup,
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    : JsonModel
+{
+    /// <summary>
+    /// Discount rate applied to spend above the threshold.
+    /// </summary>
+    public required string AboveThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("above_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("above_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Discount rate applied to spend at or below the threshold. Set to 0 for no
+    /// baseline discount.
+    /// </summary>
+    public required string BelowThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("below_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("below_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Semicolon-separated list of matrix cell coordinates targeted by this group.
+    /// Each coordinate is `first,second` when the matrix has two dimensions, or just
+    /// `first` for a single-dimension matrix. Example: `blue,circle;green,triangle`.
+    /// </summary>
+    public required string CellCoordinates
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("cell_coordinates");
+        }
+        init { this._rawData.Set("cell_coordinates", value); }
+    }
+
+    public required string ThresholdAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("threshold_amount");
+        }
+        init { this._rawData.Set("threshold_amount", value); }
+    }
+
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init { this._rawData.Set("description", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AboveThresholdDiscountPercentage;
+        _ = this.BelowThresholdDiscountPercentage;
+        _ = this.CellCoordinates;
+        _ = this.ThresholdAmount;
+        _ = this.Description;
+    }
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    )
+        : base(
+            priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+        ) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    : IFromRawJson<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(typeof(PriceMatrixWithThresholdDiscountsConversionRateConfigConverter))]
+public record class PriceMatrixWithThresholdDiscountsConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of PriceMatrixWithThresholdDiscountsConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of PriceMatrixWithThresholdDiscountsConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of PriceMatrixWithThresholdDiscountsConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(PriceMatrixWithThresholdDiscountsConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class PriceMatrixWithThresholdDiscountsConversionRateConfigConverter
+    : JsonConverter<PriceMatrixWithThresholdDiscountsConversionRateConfig>
+{
+    public override PriceMatrixWithThresholdDiscountsConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new PriceMatrixWithThresholdDiscountsConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceMatrixWithThresholdDiscountsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

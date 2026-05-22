@@ -320,6 +320,14 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, MatrixWithAllocationCompositePriceFilterField>(),
             new ApiEnumConverter<string, MatrixWithAllocationCompositePriceFilterOperator>(),
             new ApiEnumConverter<string, MatrixWithAllocationPriceType>(),
+            new ApiEnumConverter<string, MatrixWithThresholdDiscountsBillingMode>(),
+            new ApiEnumConverter<string, MatrixWithThresholdDiscountsCadence>(),
+            new ApiEnumConverter<string, MatrixWithThresholdDiscountsCompositePriceFilterField>(),
+            new ApiEnumConverter<
+                string,
+                MatrixWithThresholdDiscountsCompositePriceFilterOperator
+            >(),
+            new ApiEnumConverter<string, MatrixWithThresholdDiscountsPriceType>(),
             new ApiEnumConverter<string, TieredWithProrationBillingMode>(),
             new ApiEnumConverter<string, TieredWithProrationCadence>(),
             new ApiEnumConverter<string, TieredWithProrationCompositePriceFilterField>(),
@@ -440,6 +448,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Beta::Cadence>(),
             new ApiEnumConverter<string, Beta::ModelType>(),
             new ApiEnumConverter<string, Beta::BulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Beta::MatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, Beta::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, Beta::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Beta::CumulativeGroupedAllocationCadence>(),
@@ -450,6 +459,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceModelType>(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplacePricePriceMatrixWithThresholdDiscountsCadence
+            >(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceTieredWithProrationCadence>(),
             new ApiEnumConverter<
                 string,
@@ -466,6 +479,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExternalPlanID::Cadence>(),
             new ApiEnumConverter<string, ExternalPlanID::ModelType>(),
             new ApiEnumConverter<string, ExternalPlanID::BulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, ExternalPlanID::MatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::CumulativeGroupedAllocationCadence>(),
@@ -482,6 +496,10 @@ public abstract record class ModelBase
                 ExternalPlanID::ReplacePriceLicenseAllocationPriceModelType
             >(),
             new ApiEnumConverter<string, ExternalPlanID::ReplacePricePriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplacePricePriceMatrixWithThresholdDiscountsCadence
+            >(),
             new ApiEnumConverter<
                 string,
                 ExternalPlanID::ReplacePricePriceTieredWithProrationCadence
@@ -642,6 +660,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Plans::Cadence>(),
             new ApiEnumConverter<string, Plans::ModelType>(),
             new ApiEnumConverter<string, Plans::BulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Plans::MatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, Plans::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, Plans::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Plans::CumulativeGroupedAllocationCadence>(),
@@ -665,6 +684,7 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, Migrations::MigrationCancelResponseStatus>(),
             new ApiEnumConverter<string, Prices::Cadence>(),
+            new ApiEnumConverter<string, Prices::MatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, Prices::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Prices::CumulativeGroupedAllocationCadence>(),
             new ApiEnumConverter<string, Prices::DailyCreditAllowanceCadence>(),
@@ -672,6 +692,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Prices::PercentCadence>(),
             new ApiEnumConverter<string, Prices::EventOutputCadence>(),
             new ApiEnumConverter<string, Prices::PriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<string, Prices::PriceMatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, Prices::PriceGroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Prices::PriceCumulativeGroupedAllocationCadence>(),
             new ApiEnumConverter<string, Prices::PriceDailyCreditAllowanceCadence>(),
@@ -681,6 +702,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 Prices::PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Prices::PriceEvaluatePreviewEventsParamsPriceEvaluationPriceMatrixWithThresholdDiscountsCadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -875,6 +900,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::DataViewMode>(),
             new ApiEnumConverter<string, Subscriptions::GroupedSubscriptionUsageDataViewMode>(),
             new ApiEnumConverter<string, Subscriptions::Cadence>(),
+            new ApiEnumConverter<string, Subscriptions::MatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, Subscriptions::TieredWithProrationCadence>(),
             new ApiEnumConverter<string, Subscriptions::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Subscriptions::CumulativeGroupedAllocationCadence>(),
@@ -884,6 +910,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::EventOutputCadence>(),
             new ApiEnumConverter<string, Subscriptions::ExternalMarketplace>(),
             new ApiEnumConverter<string, Subscriptions::ReplacePricePriceBulkWithFiltersCadence>(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::ReplacePricePriceMatrixWithThresholdDiscountsCadence
+            >(),
             new ApiEnumConverter<
                 string,
                 Subscriptions::ReplacePricePriceTieredWithProrationCadence
@@ -911,6 +941,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::PriceModelBulkWithFiltersCadence>(),
             new ApiEnumConverter<
                 string,
+                Subscriptions::PriceModelMatrixWithThresholdDiscountsCadence
+            >(),
+            new ApiEnumConverter<
+                string,
                 Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence
             >(),
             new ApiEnumConverter<
@@ -929,6 +963,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence
             >(),
             new ApiEnumConverter<
                 string,
@@ -962,6 +1000,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersCadence
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence
             >(),
             new ApiEnumConverter<
                 string,

@@ -1709,6 +1709,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.ItemID,
                 newSubscriptionUnitWithPercent: (x) => x.ItemID,
                 newSubscriptionMatrixWithAllocation: (x) => x.ItemID,
+                matrixWithThresholdDiscounts: (x) => x.ItemID,
                 tieredWithProration: (x) => x.ItemID,
                 newSubscriptionUnitWithProration: (x) => x.ItemID,
                 newSubscriptionGroupedAllocation: (x) => x.ItemID,
@@ -1751,6 +1752,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.Name,
                 newSubscriptionUnitWithPercent: (x) => x.Name,
                 newSubscriptionMatrixWithAllocation: (x) => x.Name,
+                matrixWithThresholdDiscounts: (x) => x.Name,
                 tieredWithProration: (x) => x.Name,
                 newSubscriptionUnitWithProration: (x) => x.Name,
                 newSubscriptionGroupedAllocation: (x) => x.Name,
@@ -1793,6 +1795,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.BillableMetricID,
                 newSubscriptionUnitWithPercent: (x) => x.BillableMetricID,
                 newSubscriptionMatrixWithAllocation: (x) => x.BillableMetricID,
+                matrixWithThresholdDiscounts: (x) => x.BillableMetricID,
                 tieredWithProration: (x) => x.BillableMetricID,
                 newSubscriptionUnitWithProration: (x) => x.BillableMetricID,
                 newSubscriptionGroupedAllocation: (x) => x.BillableMetricID,
@@ -1835,6 +1838,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.BilledInAdvance,
                 newSubscriptionUnitWithPercent: (x) => x.BilledInAdvance,
                 newSubscriptionMatrixWithAllocation: (x) => x.BilledInAdvance,
+                matrixWithThresholdDiscounts: (x) => x.BilledInAdvance,
                 tieredWithProration: (x) => x.BilledInAdvance,
                 newSubscriptionUnitWithProration: (x) => x.BilledInAdvance,
                 newSubscriptionGroupedAllocation: (x) => x.BilledInAdvance,
@@ -1877,6 +1881,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.BillingCycleConfiguration,
                 newSubscriptionUnitWithPercent: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMatrixWithAllocation: (x) => x.BillingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.BillingCycleConfiguration,
                 tieredWithProration: (x) => x.BillingCycleConfiguration,
                 newSubscriptionUnitWithProration: (x) => x.BillingCycleConfiguration,
                 newSubscriptionGroupedAllocation: (x) => x.BillingCycleConfiguration,
@@ -1919,6 +1924,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.ConversionRate,
                 newSubscriptionUnitWithPercent: (x) => x.ConversionRate,
                 newSubscriptionMatrixWithAllocation: (x) => x.ConversionRate,
+                matrixWithThresholdDiscounts: (x) => x.ConversionRate,
                 tieredWithProration: (x) => x.ConversionRate,
                 newSubscriptionUnitWithProration: (x) => x.ConversionRate,
                 newSubscriptionGroupedAllocation: (x) => x.ConversionRate,
@@ -1961,6 +1967,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.Currency,
                 newSubscriptionUnitWithPercent: (x) => x.Currency,
                 newSubscriptionMatrixWithAllocation: (x) => x.Currency,
+                matrixWithThresholdDiscounts: (x) => x.Currency,
                 tieredWithProration: (x) => x.Currency,
                 newSubscriptionUnitWithProration: (x) => x.Currency,
                 newSubscriptionGroupedAllocation: (x) => x.Currency,
@@ -2003,6 +2010,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionUnitWithPercent: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMatrixWithAllocation: (x) => x.DimensionalPriceConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.DimensionalPriceConfiguration,
                 tieredWithProration: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionUnitWithProration: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
@@ -2047,6 +2055,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.ExternalPriceID,
                 newSubscriptionUnitWithPercent: (x) => x.ExternalPriceID,
                 newSubscriptionMatrixWithAllocation: (x) => x.ExternalPriceID,
+                matrixWithThresholdDiscounts: (x) => x.ExternalPriceID,
                 tieredWithProration: (x) => x.ExternalPriceID,
                 newSubscriptionUnitWithProration: (x) => x.ExternalPriceID,
                 newSubscriptionGroupedAllocation: (x) => x.ExternalPriceID,
@@ -2089,6 +2098,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.FixedPriceQuantity,
                 newSubscriptionUnitWithPercent: (x) => x.FixedPriceQuantity,
                 newSubscriptionMatrixWithAllocation: (x) => x.FixedPriceQuantity,
+                matrixWithThresholdDiscounts: (x) => x.FixedPriceQuantity,
                 tieredWithProration: (x) => x.FixedPriceQuantity,
                 newSubscriptionUnitWithProration: (x) => x.FixedPriceQuantity,
                 newSubscriptionGroupedAllocation: (x) => x.FixedPriceQuantity,
@@ -2131,6 +2141,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.InvoiceGroupingKey,
                 newSubscriptionUnitWithPercent: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMatrixWithAllocation: (x) => x.InvoiceGroupingKey,
+                matrixWithThresholdDiscounts: (x) => x.InvoiceGroupingKey,
                 tieredWithProration: (x) => x.InvoiceGroupingKey,
                 newSubscriptionUnitWithProration: (x) => x.InvoiceGroupingKey,
                 newSubscriptionGroupedAllocation: (x) => x.InvoiceGroupingKey,
@@ -2173,6 +2184,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionUnitWithPercent: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMatrixWithAllocation: (x) => x.InvoicingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.InvoicingCycleConfiguration,
                 tieredWithProration: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionUnitWithProration: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
@@ -2216,6 +2228,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.LicenseTypeID,
                 newSubscriptionUnitWithPercent: (x) => x.LicenseTypeID,
                 newSubscriptionMatrixWithAllocation: (x) => x.LicenseTypeID,
+                matrixWithThresholdDiscounts: (x) => x.LicenseTypeID,
                 tieredWithProration: (x) => x.LicenseTypeID,
                 newSubscriptionUnitWithProration: (x) => x.LicenseTypeID,
                 newSubscriptionGroupedAllocation: (x) => x.LicenseTypeID,
@@ -2258,6 +2271,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation: (x) => x.ReferenceID,
                 newSubscriptionUnitWithPercent: (x) => x.ReferenceID,
                 newSubscriptionMatrixWithAllocation: (x) => x.ReferenceID,
+                matrixWithThresholdDiscounts: (x) => x.ReferenceID,
                 tieredWithProration: (x) => x.ReferenceID,
                 newSubscriptionUnitWithProration: (x) => x.ReferenceID,
                 newSubscriptionGroupedAllocation: (x) => x.ReferenceID,
@@ -2400,6 +2414,15 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMatrixWithAllocationPrice value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePrice(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts value,
         JsonElement? element = null
     )
     {
@@ -2904,6 +2927,32 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMatrixWithThresholdDiscounts(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMatrixWithThresholdDiscounts(
+        [NotNullWhen(true)]
+            out SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts? value
+    )
+    {
+        value =
+            this.Value
+            as SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -3376,6 +3425,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
     ///     (NewSubscriptionPackageWithAllocationPrice value) =&gt; {...},
     ///     (NewSubscriptionUnitWithPercentPrice value) =&gt; {...},
     ///     (NewSubscriptionMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value) =&gt; {...},
     ///     (NewSubscriptionUnitWithProrationPrice value) =&gt; {...},
     ///     (NewSubscriptionGroupedAllocationPrice value) =&gt; {...},
@@ -3414,6 +3464,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
         System::Action<NewSubscriptionPackageWithAllocationPrice> newSubscriptionPackageWithAllocation,
         System::Action<NewSubscriptionUnitWithPercentPrice> newSubscriptionUnitWithPercent,
         System::Action<NewSubscriptionMatrixWithAllocationPrice> newSubscriptionMatrixWithAllocation,
+        System::Action<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts> matrixWithThresholdDiscounts,
         System::Action<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration> tieredWithProration,
         System::Action<NewSubscriptionUnitWithProrationPrice> newSubscriptionUnitWithProration,
         System::Action<NewSubscriptionGroupedAllocationPrice> newSubscriptionGroupedAllocation,
@@ -3478,6 +3529,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 break;
             case NewSubscriptionMatrixWithAllocationPrice value:
                 newSubscriptionMatrixWithAllocation(value);
+                break;
+            case SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts value:
+                matrixWithThresholdDiscounts(value);
                 break;
             case SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value:
                 tieredWithProration(value);
@@ -3572,6 +3626,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
     ///     (NewSubscriptionPackageWithAllocationPrice value) =&gt; {...},
     ///     (NewSubscriptionUnitWithPercentPrice value) =&gt; {...},
     ///     (NewSubscriptionMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value) =&gt; {...},
     ///     (NewSubscriptionUnitWithProrationPrice value) =&gt; {...},
     ///     (NewSubscriptionGroupedAllocationPrice value) =&gt; {...},
@@ -3625,6 +3680,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
             NewSubscriptionMatrixWithAllocationPrice,
             T
         > newSubscriptionMatrixWithAllocation,
+        System::Func<
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts,
+            T
+        > matrixWithThresholdDiscounts,
         System::Func<
             SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration,
             T
@@ -3709,6 +3768,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
             NewSubscriptionMatrixWithAllocationPrice value => newSubscriptionMatrixWithAllocation(
                 value
             ),
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts value =>
+                matrixWithThresholdDiscounts(value),
             SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value =>
                 tieredWithProration(value),
             NewSubscriptionUnitWithProrationPrice value => newSubscriptionUnitWithProration(value),
@@ -3807,6 +3868,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
 
     public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMatrixWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePrice(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts value
     ) => new(value);
 
     public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePrice(
@@ -3920,6 +3985,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
                 newSubscriptionPackageWithAllocation.Validate(),
             (newSubscriptionUnitWithPercent) => newSubscriptionUnitWithPercent.Validate(),
             (newSubscriptionMatrixWithAllocation) => newSubscriptionMatrixWithAllocation.Validate(),
+            (matrixWithThresholdDiscounts) => matrixWithThresholdDiscounts.Validate(),
             (tieredWithProration) => tieredWithProration.Validate(),
             (newSubscriptionUnitWithProration) => newSubscriptionUnitWithProration.Validate(),
             (newSubscriptionGroupedAllocation) => newSubscriptionGroupedAllocation.Validate(),
@@ -3983,25 +4049,26 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBas
             NewSubscriptionPackageWithAllocationPrice _ => 11,
             NewSubscriptionUnitWithPercentPrice _ => 12,
             NewSubscriptionMatrixWithAllocationPrice _ => 13,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration _ => 14,
-            NewSubscriptionUnitWithProrationPrice _ => 15,
-            NewSubscriptionGroupedAllocationPrice _ => 16,
-            NewSubscriptionBulkWithProrationPrice _ => 17,
-            NewSubscriptionGroupedWithProratedMinimumPrice _ => 18,
-            NewSubscriptionGroupedWithMeteredMinimumPrice _ => 19,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds _ => 20,
-            NewSubscriptionMatrixWithDisplayNamePrice _ => 21,
-            NewSubscriptionGroupedTieredPackagePrice _ => 22,
-            NewSubscriptionMaxGroupTieredPackagePrice _ => 23,
-            NewSubscriptionScalableMatrixWithUnitPricingPrice _ => 24,
-            NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 25,
-            NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation _ => 27,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance _ => 28,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance _ => 29,
-            NewSubscriptionMinimumCompositePrice _ => 30,
-            SubscriptionSchedulePlanChangeParamsAddPricePricePercent _ => 31,
-            SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput _ => 32,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts _ => 14,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration _ => 15,
+            NewSubscriptionUnitWithProrationPrice _ => 16,
+            NewSubscriptionGroupedAllocationPrice _ => 17,
+            NewSubscriptionBulkWithProrationPrice _ => 18,
+            NewSubscriptionGroupedWithProratedMinimumPrice _ => 19,
+            NewSubscriptionGroupedWithMeteredMinimumPrice _ => 20,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds _ => 21,
+            NewSubscriptionMatrixWithDisplayNamePrice _ => 22,
+            NewSubscriptionGroupedTieredPackagePrice _ => 23,
+            NewSubscriptionMaxGroupTieredPackagePrice _ => 24,
+            NewSubscriptionScalableMatrixWithUnitPricingPrice _ => 25,
+            NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 26,
+            NewSubscriptionCumulativeGroupedBulkPrice _ => 27,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation _ => 28,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceDailyCreditAllowance _ => 29,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceMeteredAllowance _ => 30,
+            NewSubscriptionMinimumCompositePrice _ => 31,
+            SubscriptionSchedulePlanChangeParamsAddPricePricePercent _ => 32,
+            SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput _ => 33,
             _ => -1,
         };
     }
@@ -4303,6 +4370,27 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "matrix_with_threshold_discounts":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts>(
                             element,
                             options
                         );
@@ -5790,6 +5878,1149 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     public override void Write(
         Utf8JsonWriter writer,
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts
+    : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence
+    > Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence
+                >
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for matrix_with_threshold_discounts pricing
+    /// </summary>
+    public required SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig MatrixWithThresholdDiscountsConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>(
+                "matrix_with_threshold_discounts_config"
+            );
+        }
+        init { this._rawData.Set("matrix_with_threshold_discounts_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A transient ID that can be used to reference this price when adding adjustments
+    /// in the same API call.
+    /// </summary>
+    public string? ReferenceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
+        }
+        init { this._rawData.Set("reference_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.ItemID;
+        this.MatrixWithThresholdDiscountsConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("matrix_with_threshold_discounts")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.Currency;
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+        _ = this.ReferenceID;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscounts.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadenceConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadenceConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Annual,
+            "semi_annual" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.SemiAnnual,
+            "monthly" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Monthly,
+            "quarterly" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Quarterly,
+            "one_time" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.OneTime,
+            "custom" =>
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Custom,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Annual =>
+                    "annual",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.SemiAnnual =>
+                    "semi_annual",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Monthly =>
+                    "monthly",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Quarterly =>
+                    "quarterly",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.OneTime =>
+                    "one_time",
+                SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsCadence.Custom =>
+                    "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for matrix_with_threshold_discounts pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    : JsonModel
+{
+    /// <summary>
+    /// Unit price used for usage that does not match any defined matrix cell.
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// First matrix dimension key.
+    /// </summary>
+    public required string FirstDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension");
+        }
+        init { this._rawData.Set("first_dimension", value); }
+    }
+
+    /// <summary>
+    /// Per-cell unit prices.
+    /// </summary>
+    public required IReadOnlyList<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// Optional second matrix dimension key.
+    /// </summary>
+    public string? SecondDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension");
+        }
+        init { this._rawData.Set("second_dimension", value); }
+    }
+
+    public IReadOnlyList<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>? ThresholdDiscountGroups
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+            >("threshold_discount_groups");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>?>(
+                "threshold_discount_groups",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DefaultUnitAmount;
+        _ = this.FirstDimension;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+        _ = this.SecondDimension;
+        foreach (var item in this.ThresholdDiscountGroups ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    : JsonModel
+{
+    public required string FirstDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension_value");
+        }
+        init { this._rawData.Set("first_dimension_value", value); }
+    }
+
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    public string? SecondDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension_value");
+        }
+        init { this._rawData.Set("second_dimension_value", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.FirstDimensionValue;
+        _ = this.UnitAmount;
+        _ = this.SecondDimensionValue;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    : JsonModel
+{
+    /// <summary>
+    /// Discount rate applied to spend above the threshold.
+    /// </summary>
+    public required string AboveThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("above_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("above_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Discount rate applied to spend at or below the threshold. Set to 0 for no
+    /// baseline discount.
+    /// </summary>
+    public required string BelowThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("below_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("below_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Semicolon-separated list of matrix cell coordinates targeted by this group.
+    /// Each coordinate is `first,second` when the matrix has two dimensions, or just
+    /// `first` for a single-dimension matrix. Example: `blue,circle;green,triangle`.
+    /// </summary>
+    public required string CellCoordinates
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("cell_coordinates");
+        }
+        init { this._rawData.Set("cell_coordinates", value); }
+    }
+
+    public required string ThresholdAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("threshold_amount");
+        }
+        init { this._rawData.Set("threshold_amount", value); }
+    }
+
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init { this._rawData.Set("description", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AboveThresholdDiscountPercentage;
+        _ = this.BelowThresholdDiscountPercentage;
+        _ = this.CellCoordinates;
+        _ = this.ThresholdAmount;
+        _ = this.Description;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfigConverter)
+)]
+public record class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig
+    : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        JsonElement element
+    )
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfigConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+                    element
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddPricePriceMatrixWithThresholdDiscountsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -13186,6 +14417,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.ItemID,
                 newSubscriptionUnitWithPercent: (x) => x.ItemID,
                 newSubscriptionMatrixWithAllocation: (x) => x.ItemID,
+                matrixWithThresholdDiscounts: (x) => x.ItemID,
                 tieredWithProration: (x) => x.ItemID,
                 newSubscriptionUnitWithProration: (x) => x.ItemID,
                 newSubscriptionGroupedAllocation: (x) => x.ItemID,
@@ -13228,6 +14460,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.Name,
                 newSubscriptionUnitWithPercent: (x) => x.Name,
                 newSubscriptionMatrixWithAllocation: (x) => x.Name,
+                matrixWithThresholdDiscounts: (x) => x.Name,
                 tieredWithProration: (x) => x.Name,
                 newSubscriptionUnitWithProration: (x) => x.Name,
                 newSubscriptionGroupedAllocation: (x) => x.Name,
@@ -13270,6 +14503,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.BillableMetricID,
                 newSubscriptionUnitWithPercent: (x) => x.BillableMetricID,
                 newSubscriptionMatrixWithAllocation: (x) => x.BillableMetricID,
+                matrixWithThresholdDiscounts: (x) => x.BillableMetricID,
                 tieredWithProration: (x) => x.BillableMetricID,
                 newSubscriptionUnitWithProration: (x) => x.BillableMetricID,
                 newSubscriptionGroupedAllocation: (x) => x.BillableMetricID,
@@ -13312,6 +14546,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.BilledInAdvance,
                 newSubscriptionUnitWithPercent: (x) => x.BilledInAdvance,
                 newSubscriptionMatrixWithAllocation: (x) => x.BilledInAdvance,
+                matrixWithThresholdDiscounts: (x) => x.BilledInAdvance,
                 tieredWithProration: (x) => x.BilledInAdvance,
                 newSubscriptionUnitWithProration: (x) => x.BilledInAdvance,
                 newSubscriptionGroupedAllocation: (x) => x.BilledInAdvance,
@@ -13354,6 +14589,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.BillingCycleConfiguration,
                 newSubscriptionUnitWithPercent: (x) => x.BillingCycleConfiguration,
                 newSubscriptionMatrixWithAllocation: (x) => x.BillingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.BillingCycleConfiguration,
                 tieredWithProration: (x) => x.BillingCycleConfiguration,
                 newSubscriptionUnitWithProration: (x) => x.BillingCycleConfiguration,
                 newSubscriptionGroupedAllocation: (x) => x.BillingCycleConfiguration,
@@ -13396,6 +14632,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.ConversionRate,
                 newSubscriptionUnitWithPercent: (x) => x.ConversionRate,
                 newSubscriptionMatrixWithAllocation: (x) => x.ConversionRate,
+                matrixWithThresholdDiscounts: (x) => x.ConversionRate,
                 tieredWithProration: (x) => x.ConversionRate,
                 newSubscriptionUnitWithProration: (x) => x.ConversionRate,
                 newSubscriptionGroupedAllocation: (x) => x.ConversionRate,
@@ -13438,6 +14675,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.Currency,
                 newSubscriptionUnitWithPercent: (x) => x.Currency,
                 newSubscriptionMatrixWithAllocation: (x) => x.Currency,
+                matrixWithThresholdDiscounts: (x) => x.Currency,
                 tieredWithProration: (x) => x.Currency,
                 newSubscriptionUnitWithProration: (x) => x.Currency,
                 newSubscriptionGroupedAllocation: (x) => x.Currency,
@@ -13480,6 +14718,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionUnitWithPercent: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionMatrixWithAllocation: (x) => x.DimensionalPriceConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.DimensionalPriceConfiguration,
                 tieredWithProration: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionUnitWithProration: (x) => x.DimensionalPriceConfiguration,
                 newSubscriptionGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
@@ -13524,6 +14763,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.ExternalPriceID,
                 newSubscriptionUnitWithPercent: (x) => x.ExternalPriceID,
                 newSubscriptionMatrixWithAllocation: (x) => x.ExternalPriceID,
+                matrixWithThresholdDiscounts: (x) => x.ExternalPriceID,
                 tieredWithProration: (x) => x.ExternalPriceID,
                 newSubscriptionUnitWithProration: (x) => x.ExternalPriceID,
                 newSubscriptionGroupedAllocation: (x) => x.ExternalPriceID,
@@ -13566,6 +14806,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.FixedPriceQuantity,
                 newSubscriptionUnitWithPercent: (x) => x.FixedPriceQuantity,
                 newSubscriptionMatrixWithAllocation: (x) => x.FixedPriceQuantity,
+                matrixWithThresholdDiscounts: (x) => x.FixedPriceQuantity,
                 tieredWithProration: (x) => x.FixedPriceQuantity,
                 newSubscriptionUnitWithProration: (x) => x.FixedPriceQuantity,
                 newSubscriptionGroupedAllocation: (x) => x.FixedPriceQuantity,
@@ -13608,6 +14849,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.InvoiceGroupingKey,
                 newSubscriptionUnitWithPercent: (x) => x.InvoiceGroupingKey,
                 newSubscriptionMatrixWithAllocation: (x) => x.InvoiceGroupingKey,
+                matrixWithThresholdDiscounts: (x) => x.InvoiceGroupingKey,
                 tieredWithProration: (x) => x.InvoiceGroupingKey,
                 newSubscriptionUnitWithProration: (x) => x.InvoiceGroupingKey,
                 newSubscriptionGroupedAllocation: (x) => x.InvoiceGroupingKey,
@@ -13650,6 +14892,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionUnitWithPercent: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionMatrixWithAllocation: (x) => x.InvoicingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.InvoicingCycleConfiguration,
                 tieredWithProration: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionUnitWithProration: (x) => x.InvoicingCycleConfiguration,
                 newSubscriptionGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
@@ -13693,6 +14936,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.LicenseTypeID,
                 newSubscriptionUnitWithPercent: (x) => x.LicenseTypeID,
                 newSubscriptionMatrixWithAllocation: (x) => x.LicenseTypeID,
+                matrixWithThresholdDiscounts: (x) => x.LicenseTypeID,
                 tieredWithProration: (x) => x.LicenseTypeID,
                 newSubscriptionUnitWithProration: (x) => x.LicenseTypeID,
                 newSubscriptionGroupedAllocation: (x) => x.LicenseTypeID,
@@ -13735,6 +14979,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation: (x) => x.ReferenceID,
                 newSubscriptionUnitWithPercent: (x) => x.ReferenceID,
                 newSubscriptionMatrixWithAllocation: (x) => x.ReferenceID,
+                matrixWithThresholdDiscounts: (x) => x.ReferenceID,
                 tieredWithProration: (x) => x.ReferenceID,
                 newSubscriptionUnitWithProration: (x) => x.ReferenceID,
                 newSubscriptionGroupedAllocation: (x) => x.ReferenceID,
@@ -13877,6 +15122,15 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMatrixWithAllocationPrice value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts value,
         JsonElement? element = null
     )
     {
@@ -14381,6 +15635,32 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMatrixWithThresholdDiscounts(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMatrixWithThresholdDiscounts(
+        [NotNullWhen(true)]
+            out SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts? value
+    )
+    {
+        value =
+            this.Value
+            as SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -14856,6 +16136,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
     ///     (NewSubscriptionPackageWithAllocationPrice value) =&gt; {...},
     ///     (NewSubscriptionUnitWithPercentPrice value) =&gt; {...},
     ///     (NewSubscriptionMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value) =&gt; {...},
     ///     (NewSubscriptionUnitWithProrationPrice value) =&gt; {...},
     ///     (NewSubscriptionGroupedAllocationPrice value) =&gt; {...},
@@ -14894,6 +16175,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
         System::Action<NewSubscriptionPackageWithAllocationPrice> newSubscriptionPackageWithAllocation,
         System::Action<NewSubscriptionUnitWithPercentPrice> newSubscriptionUnitWithPercent,
         System::Action<NewSubscriptionMatrixWithAllocationPrice> newSubscriptionMatrixWithAllocation,
+        System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts> matrixWithThresholdDiscounts,
         System::Action<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration> tieredWithProration,
         System::Action<NewSubscriptionUnitWithProrationPrice> newSubscriptionUnitWithProration,
         System::Action<NewSubscriptionGroupedAllocationPrice> newSubscriptionGroupedAllocation,
@@ -14958,6 +16240,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 break;
             case NewSubscriptionMatrixWithAllocationPrice value:
                 newSubscriptionMatrixWithAllocation(value);
+                break;
+            case SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts value:
+                matrixWithThresholdDiscounts(value);
                 break;
             case SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value:
                 tieredWithProration(value);
@@ -15052,6 +16337,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
     ///     (NewSubscriptionPackageWithAllocationPrice value) =&gt; {...},
     ///     (NewSubscriptionUnitWithPercentPrice value) =&gt; {...},
     ///     (NewSubscriptionMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts value) =&gt; {...},
     ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value) =&gt; {...},
     ///     (NewSubscriptionUnitWithProrationPrice value) =&gt; {...},
     ///     (NewSubscriptionGroupedAllocationPrice value) =&gt; {...},
@@ -15105,6 +16391,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
             NewSubscriptionMatrixWithAllocationPrice,
             T
         > newSubscriptionMatrixWithAllocation,
+        System::Func<
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts,
+            T
+        > matrixWithThresholdDiscounts,
         System::Func<
             SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration,
             T
@@ -15192,6 +16482,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
             NewSubscriptionMatrixWithAllocationPrice value => newSubscriptionMatrixWithAllocation(
                 value
             ),
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts value =>
+                matrixWithThresholdDiscounts(value),
             SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value =>
                 tieredWithProration(value),
             NewSubscriptionUnitWithProrationPrice value => newSubscriptionUnitWithProration(value),
@@ -15290,6 +16582,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
 
     public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMatrixWithAllocationPrice value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePrice(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts value
     ) => new(value);
 
     public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePrice(
@@ -15403,6 +16699,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
                 newSubscriptionPackageWithAllocation.Validate(),
             (newSubscriptionUnitWithPercent) => newSubscriptionUnitWithPercent.Validate(),
             (newSubscriptionMatrixWithAllocation) => newSubscriptionMatrixWithAllocation.Validate(),
+            (matrixWithThresholdDiscounts) => matrixWithThresholdDiscounts.Validate(),
             (tieredWithProration) => tieredWithProration.Validate(),
             (newSubscriptionUnitWithProration) => newSubscriptionUnitWithProration.Validate(),
             (newSubscriptionGroupedAllocation) => newSubscriptionGroupedAllocation.Validate(),
@@ -15466,27 +16763,29 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : Mode
             NewSubscriptionPackageWithAllocationPrice _ => 11,
             NewSubscriptionUnitWithPercentPrice _ => 12,
             NewSubscriptionMatrixWithAllocationPrice _ => 13,
-            SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration _ => 14,
-            NewSubscriptionUnitWithProrationPrice _ => 15,
-            NewSubscriptionGroupedAllocationPrice _ => 16,
-            NewSubscriptionBulkWithProrationPrice _ => 17,
-            NewSubscriptionGroupedWithProratedMinimumPrice _ => 18,
-            NewSubscriptionGroupedWithMeteredMinimumPrice _ => 19,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts _ =>
+                14,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration _ => 15,
+            NewSubscriptionUnitWithProrationPrice _ => 16,
+            NewSubscriptionGroupedAllocationPrice _ => 17,
+            NewSubscriptionBulkWithProrationPrice _ => 18,
+            NewSubscriptionGroupedWithProratedMinimumPrice _ => 19,
+            NewSubscriptionGroupedWithMeteredMinimumPrice _ => 20,
             SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds _ =>
-                20,
-            NewSubscriptionMatrixWithDisplayNamePrice _ => 21,
-            NewSubscriptionGroupedTieredPackagePrice _ => 22,
-            NewSubscriptionMaxGroupTieredPackagePrice _ => 23,
-            NewSubscriptionScalableMatrixWithUnitPricingPrice _ => 24,
-            NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 25,
-            NewSubscriptionCumulativeGroupedBulkPrice _ => 26,
+                21,
+            NewSubscriptionMatrixWithDisplayNamePrice _ => 22,
+            NewSubscriptionGroupedTieredPackagePrice _ => 23,
+            NewSubscriptionMaxGroupTieredPackagePrice _ => 24,
+            NewSubscriptionScalableMatrixWithUnitPricingPrice _ => 25,
+            NewSubscriptionScalableMatrixWithTieredPricingPrice _ => 26,
+            NewSubscriptionCumulativeGroupedBulkPrice _ => 27,
             SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation _ =>
-                27,
-            SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance _ => 28,
-            SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance _ => 29,
-            NewSubscriptionMinimumCompositePrice _ => 30,
-            SubscriptionSchedulePlanChangeParamsReplacePricePricePercent _ => 31,
-            SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput _ => 32,
+                28,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceDailyCreditAllowance _ => 29,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceMeteredAllowance _ => 30,
+            NewSubscriptionMinimumCompositePrice _ => 31,
+            SubscriptionSchedulePlanChangeParamsReplacePricePricePercent _ => 32,
+            SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput _ => 33,
             _ => -1,
         };
     }
@@ -15788,6 +17087,27 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "matrix_with_threshold_discounts":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts>(
                             element,
                             options
                         );
@@ -17278,6 +18598,1150 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     public override void Write(
         Utf8JsonWriter writer,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts
+    : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence
+    > Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence
+                >
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for matrix_with_threshold_discounts pricing
+    /// </summary>
+    public required SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig MatrixWithThresholdDiscountsConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>(
+                "matrix_with_threshold_discounts_config"
+            );
+        }
+        init { this._rawData.Set("matrix_with_threshold_discounts_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string, or custom pricing unit identifier, in which
+    /// this price is billed.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// A transient ID that can be used to reference this price when adding adjustments
+    /// in the same API call.
+    /// </summary>
+    public string? ReferenceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reference_id");
+        }
+        init { this._rawData.Set("reference_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.ItemID;
+        this.MatrixWithThresholdDiscountsConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("matrix_with_threshold_discounts")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        _ = this.Currency;
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+        _ = this.ReferenceID;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts)
+    { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscounts.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadenceConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadenceConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Annual,
+            "semi_annual" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.SemiAnnual,
+            "monthly" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Monthly,
+            "quarterly" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Quarterly,
+            "one_time" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.OneTime,
+            "custom" =>
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Custom,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Annual =>
+                    "annual",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.SemiAnnual =>
+                    "semi_annual",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Monthly =>
+                    "monthly",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Quarterly =>
+                    "quarterly",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.OneTime =>
+                    "one_time",
+                SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsCadence.Custom =>
+                    "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for matrix_with_threshold_discounts pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    : JsonModel
+{
+    /// <summary>
+    /// Unit price used for usage that does not match any defined matrix cell.
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// First matrix dimension key.
+    /// </summary>
+    public required string FirstDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension");
+        }
+        init { this._rawData.Set("first_dimension", value); }
+    }
+
+    /// <summary>
+    /// Per-cell unit prices.
+    /// </summary>
+    public required IReadOnlyList<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// Optional second matrix dimension key.
+    /// </summary>
+    public string? SecondDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension");
+        }
+        init { this._rawData.Set("second_dimension", value); }
+    }
+
+    public IReadOnlyList<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>? ThresholdDiscountGroups
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+            >("threshold_discount_groups");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>?>(
+                "threshold_discount_groups",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DefaultUnitAmount;
+        _ = this.FirstDimension;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+        _ = this.SecondDimension;
+        foreach (var item in this.ThresholdDiscountGroups ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    : JsonModel
+{
+    public required string FirstDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension_value");
+        }
+        init { this._rawData.Set("first_dimension_value", value); }
+    }
+
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    public string? SecondDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension_value");
+        }
+        init { this._rawData.Set("second_dimension_value", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.FirstDimensionValue;
+        _ = this.UnitAmount;
+        _ = this.SecondDimensionValue;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    : JsonModel
+{
+    /// <summary>
+    /// Discount rate applied to spend above the threshold.
+    /// </summary>
+    public required string AboveThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("above_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("above_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Discount rate applied to spend at or below the threshold. Set to 0 for no
+    /// baseline discount.
+    /// </summary>
+    public required string BelowThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("below_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("below_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Semicolon-separated list of matrix cell coordinates targeted by this group.
+    /// Each coordinate is `first,second` when the matrix has two dimensions, or just
+    /// `first` for a single-dimension matrix. Example: `blue,circle;green,triangle`.
+    /// </summary>
+    public required string CellCoordinates
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("cell_coordinates");
+        }
+        init { this._rawData.Set("cell_coordinates", value); }
+    }
+
+    public required string ThresholdAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("threshold_amount");
+        }
+        init { this._rawData.Set("threshold_amount", value); }
+    }
+
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init { this._rawData.Set("description", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AboveThresholdDiscountPercentage;
+        _ = this.BelowThresholdDiscountPercentage;
+        _ = this.CellCoordinates;
+        _ = this.ThresholdAmount;
+        _ = this.Description;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfigConverter)
+)]
+public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig
+    : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        JsonElement element
+    )
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfigConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig(
+                    element
+                );
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceMatrixWithThresholdDiscountsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
