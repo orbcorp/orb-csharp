@@ -20,6 +20,10 @@ namespace Orb.Models.Subscriptions;
 /// customer_id or external_customer_id query parameters. To filter subscriptions
 /// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.</para>
 ///
+/// <para>Subscriptions can be filtered by status using the status query parameter
+/// (one of `active`, `ended`, or `upcoming`). To filter for multiple statuses in
+/// a single request, use the status[] query parameter, e.g. `status[]=active&amp;status[]=ended`.</para>
+///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>

@@ -269,6 +269,11 @@ public interface ISubscriptionService
     /// customer_id or external_customer_id query parameters. To filter subscriptions
     /// for multiple customers, use the customer_id[] or external_customer_id[] query
     /// parameters.</para>
+    ///
+    /// <para>Subscriptions can be filtered by status using the status query parameter
+    /// (one of `active`, `ended`, or `upcoming`). To filter for multiple statuses in a
+    /// single request, use the status[] query parameter, e.g.
+    /// `status[]=active&status[]=ended`.</para>
     /// </summary>
     Task<SubscriptionListPage> List(
         SubscriptionListParams? parameters = null,
