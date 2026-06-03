@@ -153,26 +153,7 @@ namespace Orb.Models.Events;
 /// request payload size, but please give us a heads up if you’re changing either
 /// of these factors by an order of magnitude from initial setup.</para>
 ///
-/// <para>## Testing in debug mode The ingestion API supports a debug mode, which
-/// returns additional verbose output to indicate which event idempotency keys were
-/// newly ingested or duplicates from previous requests. To enable this mode, mark
-/// `debug=true` as a query parameter.</para>
-///
-/// <para>If `debug=true` is not specified, the response will only contain `validation_failed`.
-/// Orb will still honor the idempotency guarantees set [here](/events-and-metrics/event-ingestion#event-volume-and-concurrency)
-/// in all cases.</para>
-///
-/// <para>We strongly recommend that you only use debug mode as part of testing your
-/// initial Orb integration. Once you're ready to switch to production, disable debug
-/// mode to take advantage of improved performance and maximal throughput.</para>
-///
-/// <para>#### Example: ingestion response with `debug=true`</para>
-///
-/// <para>```json {   "debug": {     "duplicate": [],     "ingested": [       "B7E83HDMfJPAunXW",
-///       "SJs5DQJ3TnwSqEZE",       "8SivfDsNKwCeAXim"     ]   },   "validation_failed":
-/// [] } ```</para>
-///
-/// <para>#### Example: ingestion response with `debug=false`</para>
+/// <para>#### Example: ingestion response</para>
 ///
 /// <para>```json {   "validation_failed": [] } ```</para>
 ///
@@ -219,8 +200,9 @@ public record class EventIngestParams : ParamsBase
     }
 
     /// <summary>
-    /// Flag to enable additional debug information in the endpoint response
+    /// Pending Deprecation: Flag to enable additional debug information in the endpoint response
     /// </summary>
+    [Obsolete("deprecated")]
     public bool? Debug
     {
         get
