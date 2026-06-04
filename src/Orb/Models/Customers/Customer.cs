@@ -619,7 +619,6 @@ public enum CustomerPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
-    NetsuiteAmpersand,
 }
 
 sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentProvider>
@@ -637,7 +636,6 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
             "stripe_charge" => CustomerPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerPaymentProvider.StripeInvoice,
             "netsuite" => CustomerPaymentProvider.Netsuite,
-            "netsuite_ampersand" => CustomerPaymentProvider.NetsuiteAmpersand,
             _ => (CustomerPaymentProvider)(-1),
         };
     }
@@ -657,7 +655,6 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
                 CustomerPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerPaymentProvider.Netsuite => "netsuite",
-                CustomerPaymentProvider.NetsuiteAmpersand => "netsuite_ampersand",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
