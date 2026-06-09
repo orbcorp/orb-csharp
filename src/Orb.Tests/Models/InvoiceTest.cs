@@ -5090,6 +5090,7 @@ public class InvoicePaymentAttemptPaymentProviderTest : TestBase
 {
     [Theory]
     [InlineData(InvoicePaymentAttemptPaymentProvider.Stripe)]
+    [InlineData(InvoicePaymentAttemptPaymentProvider.Adyen)]
     public void Validation_Works(InvoicePaymentAttemptPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -5110,6 +5111,7 @@ public class InvoicePaymentAttemptPaymentProviderTest : TestBase
 
     [Theory]
     [InlineData(InvoicePaymentAttemptPaymentProvider.Stripe)]
+    [InlineData(InvoicePaymentAttemptPaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(InvoicePaymentAttemptPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us

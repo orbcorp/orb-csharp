@@ -2808,6 +2808,7 @@ class InvoicePaymentAttemptFromRaw : IFromRawJson<InvoicePaymentAttempt>
 public enum InvoicePaymentAttemptPaymentProvider
 {
     Stripe,
+    Adyen,
 }
 
 sealed class InvoicePaymentAttemptPaymentProviderConverter
@@ -2822,6 +2823,7 @@ sealed class InvoicePaymentAttemptPaymentProviderConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "stripe" => InvoicePaymentAttemptPaymentProvider.Stripe,
+            "adyen" => InvoicePaymentAttemptPaymentProvider.Adyen,
             _ => (InvoicePaymentAttemptPaymentProvider)(-1),
         };
     }
@@ -2837,6 +2839,7 @@ sealed class InvoicePaymentAttemptPaymentProviderConverter
             value switch
             {
                 InvoicePaymentAttemptPaymentProvider.Stripe => "stripe",
+                InvoicePaymentAttemptPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

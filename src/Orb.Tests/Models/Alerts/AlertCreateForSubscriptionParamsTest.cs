@@ -17,6 +17,7 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Thresholds = [new(0)],
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            Currency = "currency",
             GroupingKeys = ["string"],
             MetricID = "metric_id",
             PriceFilters =
@@ -28,7 +29,6 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
                     Values = ["string"],
                 },
             ],
-            PricingUnitID = "pricing_unit_id",
             ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
         };
 
@@ -36,6 +36,7 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
         List<Threshold> expectedThresholds = [new(0)];
         ApiEnum<string, AlertCreateForSubscriptionParamsType> expectedType =
             AlertCreateForSubscriptionParamsType.UsageExceeded;
+        string expectedCurrency = "currency";
         List<string> expectedGroupingKeys = ["string"];
         string expectedMetricID = "metric_id";
         List<PriceFilter> expectedPriceFilters =
@@ -47,7 +48,6 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
                 Values = ["string"],
             },
         ];
-        string expectedPricingUnitID = "pricing_unit_id";
         List<ThresholdOverride> expectedThresholdOverrides =
         [
             new() { GroupValues = ["string"], Thresholds = [new(0)] },
@@ -60,6 +60,7 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             Assert.Equal(expectedThresholds[i], parameters.Thresholds[i]);
         }
         Assert.Equal(expectedType, parameters.Type);
+        Assert.Equal(expectedCurrency, parameters.Currency);
         Assert.NotNull(parameters.GroupingKeys);
         Assert.Equal(expectedGroupingKeys.Count, parameters.GroupingKeys.Count);
         for (int i = 0; i < expectedGroupingKeys.Count; i++)
@@ -73,7 +74,6 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
         {
             Assert.Equal(expectedPriceFilters[i], parameters.PriceFilters[i]);
         }
-        Assert.Equal(expectedPricingUnitID, parameters.PricingUnitID);
         Assert.NotNull(parameters.ThresholdOverrides);
         Assert.Equal(expectedThresholdOverrides.Count, parameters.ThresholdOverrides.Count);
         for (int i = 0; i < expectedThresholdOverrides.Count; i++)
@@ -92,14 +92,14 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
         };
 
+        Assert.Null(parameters.Currency);
+        Assert.False(parameters.RawBodyData.ContainsKey("currency"));
         Assert.Null(parameters.GroupingKeys);
         Assert.False(parameters.RawBodyData.ContainsKey("grouping_keys"));
         Assert.Null(parameters.MetricID);
         Assert.False(parameters.RawBodyData.ContainsKey("metric_id"));
         Assert.Null(parameters.PriceFilters);
         Assert.False(parameters.RawBodyData.ContainsKey("price_filters"));
-        Assert.Null(parameters.PricingUnitID);
-        Assert.False(parameters.RawBodyData.ContainsKey("pricing_unit_id"));
         Assert.Null(parameters.ThresholdOverrides);
         Assert.False(parameters.RawBodyData.ContainsKey("threshold_overrides"));
     }
@@ -113,21 +113,21 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             Thresholds = [new(0)],
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
 
+            Currency = null,
             GroupingKeys = null,
             MetricID = null,
             PriceFilters = null,
-            PricingUnitID = null,
             ThresholdOverrides = null,
         };
 
+        Assert.Null(parameters.Currency);
+        Assert.True(parameters.RawBodyData.ContainsKey("currency"));
         Assert.Null(parameters.GroupingKeys);
         Assert.True(parameters.RawBodyData.ContainsKey("grouping_keys"));
         Assert.Null(parameters.MetricID);
         Assert.True(parameters.RawBodyData.ContainsKey("metric_id"));
         Assert.Null(parameters.PriceFilters);
         Assert.True(parameters.RawBodyData.ContainsKey("price_filters"));
-        Assert.Null(parameters.PricingUnitID);
-        Assert.True(parameters.RawBodyData.ContainsKey("pricing_unit_id"));
         Assert.Null(parameters.ThresholdOverrides);
         Assert.True(parameters.RawBodyData.ContainsKey("threshold_overrides"));
     }
@@ -160,6 +160,7 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Thresholds = [new(0)],
             Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            Currency = "currency",
             GroupingKeys = ["string"],
             MetricID = "metric_id",
             PriceFilters =
@@ -171,7 +172,6 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
                     Values = ["string"],
                 },
             ],
-            PricingUnitID = "pricing_unit_id",
             ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
         };
 

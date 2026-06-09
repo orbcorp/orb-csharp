@@ -41,6 +41,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
                 State = "state",
             },
             Currency = "currency",
+            DefaultPaymentMethodID = "default_payment_method_id",
             Email = "dev@stainless.com",
             EmailDelivery = true,
             ExternalCustomerID = "external_customer_id",
@@ -117,6 +118,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
             State = "state",
         };
         string expectedCurrency = "currency";
+        string expectedDefaultPaymentMethodID = "default_payment_method_id";
         string expectedEmail = "dev@stainless.com";
         bool expectedEmailDelivery = true;
         string expectedExternalCustomerID = "external_customer_id";
@@ -180,6 +182,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
         Assert.Equal(expectedAutoIssuance, parameters.AutoIssuance);
         Assert.Equal(expectedBillingAddress, parameters.BillingAddress);
         Assert.Equal(expectedCurrency, parameters.Currency);
+        Assert.Equal(expectedDefaultPaymentMethodID, parameters.DefaultPaymentMethodID);
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedEmailDelivery, parameters.EmailDelivery);
         Assert.Equal(expectedExternalCustomerID, parameters.ExternalCustomerID);
@@ -219,6 +222,8 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("billing_address"));
         Assert.Null(parameters.Currency);
         Assert.False(parameters.RawBodyData.ContainsKey("currency"));
+        Assert.Null(parameters.DefaultPaymentMethodID);
+        Assert.False(parameters.RawBodyData.ContainsKey("default_payment_method_id"));
         Assert.Null(parameters.Email);
         Assert.False(parameters.RawBodyData.ContainsKey("email"));
         Assert.Null(parameters.EmailDelivery);
@@ -260,6 +265,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
             AutoIssuance = null,
             BillingAddress = null,
             Currency = null,
+            DefaultPaymentMethodID = null,
             Email = null,
             EmailDelivery = null,
             ExternalCustomerID = null,
@@ -287,6 +293,8 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
         Assert.True(parameters.RawBodyData.ContainsKey("billing_address"));
         Assert.Null(parameters.Currency);
         Assert.True(parameters.RawBodyData.ContainsKey("currency"));
+        Assert.Null(parameters.DefaultPaymentMethodID);
+        Assert.True(parameters.RawBodyData.ContainsKey("default_payment_method_id"));
         Assert.Null(parameters.Email);
         Assert.True(parameters.RawBodyData.ContainsKey("email"));
         Assert.Null(parameters.EmailDelivery);
@@ -363,6 +371,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
                 State = "state",
             },
             Currency = "currency",
+            DefaultPaymentMethodID = "default_payment_method_id",
             Email = "dev@stainless.com",
             EmailDelivery = true,
             ExternalCustomerID = "external_customer_id",
@@ -950,6 +959,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.Adyen)]
     public void Validation_Works(CustomerUpdateByExternalIDParamsPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -974,6 +984,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerUpdateByExternalIDParamsPaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(
         CustomerUpdateByExternalIDParamsPaymentProvider rawValue
     )

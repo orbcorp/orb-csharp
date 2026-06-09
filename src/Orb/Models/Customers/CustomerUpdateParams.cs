@@ -123,6 +123,20 @@ public record class CustomerUpdateParams : ParamsBase
     }
 
     /// <summary>
+    /// The Orb ID of the payment method to set as this customer's default. Pass
+    /// `null` to clear the customer's default payment method.
+    /// </summary>
+    public string? DefaultPaymentMethodID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("default_payment_method_id");
+        }
+        init { this._rawBodyData.Set("default_payment_method_id", value); }
+    }
+
+    /// <summary>
     /// A valid customer email, to be used for invoicing and notifications.
     /// </summary>
     public string? Email
@@ -822,6 +836,7 @@ public enum CustomerUpdateParamsPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    Adyen,
 }
 
 sealed class CustomerUpdateParamsPaymentProviderConverter
@@ -840,6 +855,7 @@ sealed class CustomerUpdateParamsPaymentProviderConverter
             "stripe_charge" => CustomerUpdateParamsPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerUpdateParamsPaymentProvider.StripeInvoice,
             "netsuite" => CustomerUpdateParamsPaymentProvider.Netsuite,
+            "adyen" => CustomerUpdateParamsPaymentProvider.Adyen,
             _ => (CustomerUpdateParamsPaymentProvider)(-1),
         };
     }
@@ -859,6 +875,7 @@ sealed class CustomerUpdateParamsPaymentProviderConverter
                 CustomerUpdateParamsPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerUpdateParamsPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerUpdateParamsPaymentProvider.Netsuite => "netsuite",
+                CustomerUpdateParamsPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

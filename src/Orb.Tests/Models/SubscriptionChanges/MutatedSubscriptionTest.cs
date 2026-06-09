@@ -123,6 +123,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -1661,6 +1671,16 @@ public class MutatedSubscriptionTest : TestBase
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
             PaymentConfiguration = new()
             {
                 PaymentProviders =
@@ -3222,6 +3242,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -4770,6 +4800,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -6315,6 +6355,16 @@ public class MutatedSubscriptionTest : TestBase
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
             PaymentConfiguration = new()
             {
                 PaymentProviders =
@@ -7885,6 +7935,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -9427,6 +9487,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -10078,6 +10148,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -10728,6 +10808,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -11381,6 +11471,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -12033,6 +12133,16 @@ public class MutatedSubscriptionTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =

@@ -438,6 +438,23 @@ public sealed record class Customer : JsonModel
     }
 
     /// <summary>
+    /// A payment method represents a customer's stored payment instrument held with
+    /// an external payment provider (such as Adyen or Stripe).
+    ///
+    /// <para>The serialization is intentionally minimal for now; provider-pulled
+    /// details (e.g. card display metadata) will be added over time.</para>
+    /// </summary>
+    public DefaultPaymentMethod? DefaultPaymentMethod
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DefaultPaymentMethod>("default_payment_method");
+        }
+        init { this._rawData.Set("default_payment_method", value); }
+    }
+
+    /// <summary>
     /// Payment configuration for the customer, applicable when using Orb Invoicing
     /// with a supported payment provider such as Stripe.
     /// </summary>
@@ -491,6 +508,7 @@ public sealed record class Customer : JsonModel
         _ = this.Timezone;
         this.AccountingSyncConfiguration?.Validate();
         _ = this.AutomaticTaxEnabled;
+        this.DefaultPaymentMethod?.Validate();
         this.PaymentConfiguration?.Validate();
         this.ReportingConfiguration?.Validate();
     }
@@ -619,6 +637,7 @@ public enum CustomerPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    Adyen,
 }
 
 sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentProvider>
@@ -636,6 +655,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
             "stripe_charge" => CustomerPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerPaymentProvider.StripeInvoice,
             "netsuite" => CustomerPaymentProvider.Netsuite,
+            "adyen" => CustomerPaymentProvider.Adyen,
             _ => (CustomerPaymentProvider)(-1),
         };
     }
@@ -655,6 +675,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
                 CustomerPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerPaymentProvider.Netsuite => "netsuite",
+                CustomerPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -849,6 +870,217 @@ sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingP
             {
                 AccountingProviderProviderType.Quickbooks => "quickbooks",
                 AccountingProviderProviderType.Netsuite => "netsuite",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// A payment method represents a customer's stored payment instrument held with an
+/// external payment provider (such as Adyen or Stripe).
+///
+/// <para>The serialization is intentionally minimal for now; provider-pulled details
+/// (e.g. card display metadata) will be added over time.</para>
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<DefaultPaymentMethod, DefaultPaymentMethodFromRaw>))]
+public sealed record class DefaultPaymentMethod : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the payment method.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The time at which the payment method was created.
+    /// </summary>
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    /// <summary>
+    /// The ID of the Orb customer this payment method is attached to.
+    /// </summary>
+    public required string CustomerID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("customer_id");
+        }
+        init { this._rawData.Set("customer_id", value); }
+    }
+
+    /// <summary>
+    /// Whether this is the customer's default payment method.
+    /// </summary>
+    public required bool Default
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("default");
+        }
+        init { this._rawData.Set("default", value); }
+    }
+
+    /// <summary>
+    /// The identifier of this payment method in the external payment provider.
+    /// </summary>
+    public required string ExternalPaymentMethodID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_payment_method_id");
+        }
+        init { this._rawData.Set("external_payment_method_id", value); }
+    }
+
+    /// <summary>
+    /// The type of the underlying payment instrument, e.g. `card` or `us_bank_account`.
+    /// </summary>
+    public required ApiEnum<string, PaymentMethodType> PaymentMethodType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, PaymentMethodType>>(
+                "payment_method_type"
+            );
+        }
+        init { this._rawData.Set("payment_method_type", value); }
+    }
+
+    /// <summary>
+    /// The external payment provider this method belongs to, derived from the linked
+    /// payment gateway connection (e.g. `adyen` or `stripe`). Null if the connection
+    /// has been removed.
+    /// </summary>
+    public required string? ProviderType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_type");
+        }
+        init { this._rawData.Set("provider_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.CreatedAt;
+        _ = this.CustomerID;
+        _ = this.Default;
+        _ = this.ExternalPaymentMethodID;
+        this.PaymentMethodType.Validate();
+        _ = this.ProviderType;
+    }
+
+    public DefaultPaymentMethod() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DefaultPaymentMethod(DefaultPaymentMethod defaultPaymentMethod)
+        : base(defaultPaymentMethod) { }
+#pragma warning restore CS8618
+
+    public DefaultPaymentMethod(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DefaultPaymentMethod(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DefaultPaymentMethodFromRaw.FromRawUnchecked"/>
+    public static DefaultPaymentMethod FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DefaultPaymentMethodFromRaw : IFromRawJson<DefaultPaymentMethod>
+{
+    /// <inheritdoc/>
+    public DefaultPaymentMethod FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DefaultPaymentMethod.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The type of the underlying payment instrument, e.g. `card` or `us_bank_account`.
+/// </summary>
+[JsonConverter(typeof(PaymentMethodTypeConverter))]
+public enum PaymentMethodType
+{
+    Card,
+    UsBankAccount,
+    Link,
+    AmazonPay,
+    Crypto,
+}
+
+sealed class PaymentMethodTypeConverter : JsonConverter<PaymentMethodType>
+{
+    public override PaymentMethodType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "card" => PaymentMethodType.Card,
+            "us_bank_account" => PaymentMethodType.UsBankAccount,
+            "link" => PaymentMethodType.Link,
+            "amazon_pay" => PaymentMethodType.AmazonPay,
+            "crypto" => PaymentMethodType.Crypto,
+            _ => (PaymentMethodType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentMethodType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentMethodType.Card => "card",
+                PaymentMethodType.UsBankAccount => "us_bank_account",
+                PaymentMethodType.Link => "link",
+                PaymentMethodType.AmazonPay => "amazon_pay",
+                PaymentMethodType.Crypto => "crypto",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
