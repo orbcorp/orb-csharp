@@ -3168,7 +3168,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Currency = "currency",
                 ItemID = "item_id",
                 Name = "Annual fee",
-                PercentConfig = new(0),
+                PercentConfig = new()
+                {
+                    Percent = 1,
+                    MaximumAmount = "maximum_amount",
+                    MinimumAmount = "minimum_amount",
+                    Prorated = true,
+                },
                 BillableMetricID = "billable_metric_id",
                 BilledInAdvance = true,
                 BillingCycleConfiguration = new()
@@ -5198,7 +5204,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Currency = "currency",
                 ItemID = "item_id",
                 Name = "Annual fee",
-                PercentConfig = new(0),
+                PercentConfig = new()
+                {
+                    Percent = 1,
+                    MaximumAmount = "maximum_amount",
+                    MinimumAmount = "minimum_amount",
+                    Prorated = true,
+                },
                 BillableMetricID = "billable_metric_id",
                 BilledInAdvance = true,
                 BillingCycleConfiguration = new()
@@ -12220,7 +12232,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
@@ -12262,7 +12280,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
         JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "Annual fee";
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig expectedPercentConfig =
-            new(0);
+            new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
         NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
@@ -12330,7 +12354,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
@@ -12381,7 +12411,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
@@ -12431,7 +12467,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
         JsonElement expectedModelType = JsonSerializer.SerializeToElement("percent");
         string expectedName = "Annual fee";
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig expectedPercentConfig =
-            new(0);
+            new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
         NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
@@ -12502,7 +12544,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
@@ -12546,7 +12594,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
         };
 
         Assert.Null(model.BillableMetricID);
@@ -12584,7 +12638,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
         };
 
         model.Validate();
@@ -12599,7 +12659,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
 
             BillableMetricID = null,
             BilledInAdvance = null,
@@ -12650,7 +12716,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
 
             BillableMetricID = null,
             BilledInAdvance = null,
@@ -12678,7 +12750,13 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
-            PercentConfig = new(0),
+            PercentConfig = new()
+            {
+                Percent = 1,
+                MaximumAmount = "maximum_amount",
+                MinimumAmount = "minimum_amount",
+                Prorated = true,
+            },
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
@@ -12791,12 +12869,21 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
     {
         var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
         {
-            Percent = 0,
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
         };
 
-        double expectedPercent = 0;
+        double expectedPercent = 1;
+        string expectedMaximumAmount = "maximum_amount";
+        string expectedMinimumAmount = "minimum_amount";
+        bool expectedProrated = true;
 
         Assert.Equal(expectedPercent, model.Percent);
+        Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
+        Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
+        Assert.Equal(expectedProrated, model.Prorated);
     }
 
     [Fact]
@@ -12804,7 +12891,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
     {
         var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
         {
-            Percent = 0,
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -12822,7 +12912,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
     {
         var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
         {
-            Percent = 0,
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -12833,9 +12926,15 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
             );
         Assert.NotNull(deserialized);
 
-        double expectedPercent = 0;
+        double expectedPercent = 1;
+        string expectedMaximumAmount = "maximum_amount";
+        string expectedMinimumAmount = "minimum_amount";
+        bool expectedProrated = true;
 
         Assert.Equal(expectedPercent, deserialized.Percent);
+        Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
+        Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
+        Assert.Equal(expectedProrated, deserialized.Prorated);
     }
 
     [Fact]
@@ -12843,7 +12942,130 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
     {
         var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
         {
-            Percent = 0,
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+        };
+
+        Assert.Null(model.Prorated);
+        Assert.False(model.RawData.ContainsKey("prorated"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+
+            // Null should be interpreted as omitted for these properties
+            Prorated = null,
+        };
+
+        Assert.Null(model.Prorated);
+        Assert.False(model.RawData.ContainsKey("prorated"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+
+            // Null should be interpreted as omitted for these properties
+            Prorated = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            Prorated = true,
+        };
+
+        Assert.Null(model.MaximumAmount);
+        Assert.False(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MinimumAmount);
+        Assert.False(model.RawData.ContainsKey("minimum_amount"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            Prorated = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            Prorated = true,
+
+            MaximumAmount = null,
+            MinimumAmount = null,
+        };
+
+        Assert.Null(model.MaximumAmount);
+        Assert.True(model.RawData.ContainsKey("maximum_amount"));
+        Assert.Null(model.MinimumAmount);
+        Assert.True(model.RawData.ContainsKey("minimum_amount"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 1,
+            Prorated = true,
+
+            MaximumAmount = null,
+            MinimumAmount = null,
         };
 
         model.Validate();
@@ -12854,7 +13076,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
     {
         var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
         {
-            Percent = 0,
+            Percent = 1,
+            MaximumAmount = "maximum_amount",
+            MinimumAmount = "minimum_amount",
+            Prorated = true,
         };
 
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig copied = new(

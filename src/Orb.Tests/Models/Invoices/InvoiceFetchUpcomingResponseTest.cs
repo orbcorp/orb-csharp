@@ -5102,6 +5102,7 @@ public class PaymentProviderTest : TestBase
 {
     [Theory]
     [InlineData(Invoices::PaymentProvider.Stripe)]
+    [InlineData(Invoices::PaymentProvider.Adyen)]
     public void Validation_Works(Invoices::PaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -5123,6 +5124,7 @@ public class PaymentProviderTest : TestBase
 
     [Theory]
     [InlineData(Invoices::PaymentProvider.Stripe)]
+    [InlineData(Invoices::PaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(Invoices::PaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us

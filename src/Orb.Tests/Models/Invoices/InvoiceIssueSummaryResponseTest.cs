@@ -1654,6 +1654,7 @@ public class InvoiceIssueSummaryResponsePaymentAttemptPaymentProviderTest : Test
 {
     [Theory]
     [InlineData(InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider.Stripe)]
+    [InlineData(InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider.Adyen)]
     public void Validation_Works(InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1674,6 +1675,7 @@ public class InvoiceIssueSummaryResponsePaymentAttemptPaymentProviderTest : Test
 
     [Theory]
     [InlineData(InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider.Stripe)]
+    [InlineData(InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(
         InvoiceIssueSummaryResponsePaymentAttemptPaymentProvider rawValue
     )

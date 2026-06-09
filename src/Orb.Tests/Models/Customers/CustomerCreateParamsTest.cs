@@ -880,6 +880,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
     [InlineData(CustomerCreateParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerCreateParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerCreateParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerCreateParamsPaymentProvider.Adyen)]
     public void Validation_Works(CustomerCreateParamsPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -904,6 +905,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
     [InlineData(CustomerCreateParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerCreateParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerCreateParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerCreateParamsPaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(CustomerCreateParamsPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us

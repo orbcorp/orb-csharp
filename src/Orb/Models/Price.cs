@@ -47832,7 +47832,7 @@ sealed class PercentConversionRateConfigConverter : JsonConverter<PercentConvers
 public sealed record class PercentConfig : JsonModel
 {
     /// <summary>
-    /// What percent of the component subtotals to charge
+    /// Fraction of the component subtotals to charge (0 &lt; percent &lt;= 1).
     /// </summary>
     public required double Percent
     {
@@ -47844,10 +47844,62 @@ public sealed record class PercentConfig : JsonModel
         init { this._rawData.Set("percent", value); }
     }
 
+    /// <summary>
+    /// Maximum amount to charge. If unset, the fee has no upper bound.
+    /// </summary>
+    public string? MaximumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("maximum_amount");
+        }
+        init { this._rawData.Set("maximum_amount", value); }
+    }
+
+    /// <summary>
+    /// Minimum amount to charge. If unset, the fee is bounded below by 0.
+    /// </summary>
+    public string? MinimumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount");
+        }
+        init { this._rawData.Set("minimum_amount", value); }
+    }
+
+    /// <summary>
+    /// If true, the minimum_amount is prorated based on the service period. The
+    /// maximum_amount is an absolute cap (never prorated), and the percent applied
+    /// to upstream subtotals is never prorated either.
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("prorated", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Percent;
+        _ = this.MaximumAmount;
+        _ = this.MinimumAmount;
+        _ = this.Prorated;
     }
 
     public PercentConfig() { }

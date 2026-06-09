@@ -1471,6 +1471,7 @@ class InvoiceListSummaryResponsePaymentAttemptFromRaw
 public enum InvoiceListSummaryResponsePaymentAttemptPaymentProvider
 {
     Stripe,
+    Adyen,
 }
 
 sealed class InvoiceListSummaryResponsePaymentAttemptPaymentProviderConverter
@@ -1485,6 +1486,7 @@ sealed class InvoiceListSummaryResponsePaymentAttemptPaymentProviderConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "stripe" => InvoiceListSummaryResponsePaymentAttemptPaymentProvider.Stripe,
+            "adyen" => InvoiceListSummaryResponsePaymentAttemptPaymentProvider.Adyen,
             _ => (InvoiceListSummaryResponsePaymentAttemptPaymentProvider)(-1),
         };
     }
@@ -1500,6 +1502,7 @@ sealed class InvoiceListSummaryResponsePaymentAttemptPaymentProviderConverter
             value switch
             {
                 InvoiceListSummaryResponsePaymentAttemptPaymentProvider.Stripe => "stripe",
+                InvoiceListSummaryResponsePaymentAttemptPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -121,6 +121,20 @@ public record class CustomerUpdateByExternalIDParams : ParamsBase
     }
 
     /// <summary>
+    /// The Orb ID of the payment method to set as this customer's default. Pass
+    /// `null` to clear the customer's default payment method.
+    /// </summary>
+    public string? DefaultPaymentMethodID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("default_payment_method_id");
+        }
+        init { this._rawBodyData.Set("default_payment_method_id", value); }
+    }
+
+    /// <summary>
     /// A valid customer email, to be used for invoicing and notifications.
     /// </summary>
     public string? Email
@@ -834,6 +848,7 @@ public enum CustomerUpdateByExternalIDParamsPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    Adyen,
 }
 
 sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
@@ -852,6 +867,7 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
             "stripe_charge" => CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice,
             "netsuite" => CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite,
+            "adyen" => CustomerUpdateByExternalIDParamsPaymentProvider.Adyen,
             _ => (CustomerUpdateByExternalIDParamsPaymentProvider)(-1),
         };
     }
@@ -871,6 +887,7 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
                 CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite => "netsuite",
+                CustomerUpdateByExternalIDParamsPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -74,6 +74,20 @@ public record class AlertCreateForSubscriptionParams : ParamsBase
     }
 
     /// <summary>
+    /// The case sensitive currency or custom pricing unit to use for grouped cost
+    /// alerts. Required when grouping_keys is set.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("currency");
+        }
+        init { this._rawBodyData.Set("currency", value); }
+    }
+
+    /// <summary>
     /// The property keys to group cost alerts by. Only applicable for cost_exceeded alerts.
     /// </summary>
     public IReadOnlyList<string>? GroupingKeys
@@ -126,20 +140,6 @@ public record class AlertCreateForSubscriptionParams : ParamsBase
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
-    }
-
-    /// <summary>
-    /// The pricing unit to use for grouped cost alerts. Required when grouping_keys
-    /// is set.
-    /// </summary>
-    public string? PricingUnitID
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("pricing_unit_id");
-        }
-        init { this._rawBodyData.Set("pricing_unit_id", value); }
     }
 
     /// <summary>

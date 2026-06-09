@@ -526,6 +526,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Customers::AccountingProviderConfigProviderType>(),
             new ApiEnumConverter<string, Customers::CustomerPaymentProvider>(),
             new ApiEnumConverter<string, Customers::AccountingProviderProviderType>(),
+            new ApiEnumConverter<string, Customers::PaymentMethodType>(),
             new ApiEnumConverter<
                 string,
                 Customers::CustomerPaymentConfigurationPaymentProviderProviderType
