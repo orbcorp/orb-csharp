@@ -41,8 +41,8 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// "2022-12-28",   "per_unit_cost_basis": "0.20",   "description": "Purchased 100
 /// credits" } ```</para>
 ///
-/// <para>Note that by default, Orb will always first increment any _negative_ balance
-/// in existing blocks before adding the remaining amount to the desired credit block.</para>
+/// <para>Note that an `increment` entry always creates a new credit block (defined
+/// by the optional `effective_date` and `expiry_date`); it never modifies an existing block.</para>
 ///
 /// <para>### Invoicing for credits By default, Orb manipulates the credit ledger
 /// but does not charge for credits. However, if you pass `invoice_settings` in the
