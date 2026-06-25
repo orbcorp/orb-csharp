@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Beta;
 using Models = Orb.Models;
 
@@ -95,8 +96,8 @@ public class PlanVersionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -260,8 +261,8 @@ public class PlanVersionTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Field.PriceID,
-                            Operator = Models::Operator.Includes,
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -450,8 +451,8 @@ public class PlanVersionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -630,8 +631,8 @@ public class PlanVersionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -802,8 +803,8 @@ public class PlanVersionTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Field.PriceID,
-                            Operator = Models::Operator.Includes,
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -992,8 +993,8 @@ public class PlanVersionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1166,8 +1167,8 @@ public class PlanVersionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1339,6 +1340,39 @@ public class PlanVersionAdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        PlanVersionAdjustment value = new PlanVersionAdjustmentTieredPercentageDiscount()
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void PlanPhaseMinimumValidationWorks()
     {
         PlanVersionAdjustment value = new Models::PlanPhaseMinimumAdjustment()
@@ -1489,6 +1523,45 @@ public class PlanVersionAdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        PlanVersionAdjustment value = new PlanVersionAdjustmentTieredPercentageDiscount()
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
     public void PlanPhaseMinimumSerializationRoundtripWorks()
     {
         PlanVersionAdjustment value = new Models::PlanPhaseMinimumAdjustment()
@@ -1551,5 +1624,677 @@ public class PlanVersionAdjustmentTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class PlanVersionAdjustmentTieredPercentageDiscountTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<PlanVersionAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        long expectedPlanPhaseOrder = 0;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<PlanVersionAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
+        Assert.Equal(expectedReason, model.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, model.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<PlanVersionAdjustmentTieredPercentageDiscount>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<PlanVersionAdjustmentTieredPercentageDiscount>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<PlanVersionAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        long expectedPlanPhaseOrder = 0;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<PlanVersionAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, deserialized.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PlanPhaseOrder = 0,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        PlanVersionAdjustmentTieredPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class PlanVersionAdjustmentTieredPercentageDiscountFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField> expectedField =
+            PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            PlanVersionAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<PlanVersionAdjustmentTieredPercentageDiscountFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<PlanVersionAdjustmentTieredPercentageDiscountFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField> expectedField =
+            PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            PlanVersionAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        PlanVersionAdjustmentTieredPercentageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class PlanVersionAdjustmentTieredPercentageDiscountFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void Validation_Works(PlanVersionAdjustmentTieredPercentageDiscountFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        PlanVersionAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class PlanVersionAdjustmentTieredPercentageDiscountFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void Validation_Works(
+        PlanVersionAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(PlanVersionAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        PlanVersionAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanVersionAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class PlanVersionAdjustmentTieredPercentageDiscountTierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<PlanVersionAdjustmentTieredPercentageDiscountTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<PlanVersionAdjustmentTieredPercentageDiscountTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanVersionAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        PlanVersionAdjustmentTieredPercentageDiscountTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

@@ -583,7 +583,7 @@ public class BulkWithProrationConfigTest : TestBase
             ],
         };
 
-        List<Tier> expectedTiers =
+        List<BulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -636,7 +636,7 @@ public class BulkWithProrationConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Tier> expectedTiers =
+        List<BulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -682,12 +682,16 @@ public class BulkWithProrationConfigTest : TestBase
     }
 }
 
-public class TierTest : TestBase
+public class BulkWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -699,10 +703,17 @@ public class TierTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tier>(json, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfigTier>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -710,10 +721,17 @@ public class TierTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tier>(element, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfigTier>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -726,7 +744,11 @@ public class TierTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -734,7 +756,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount" };
+        var model = new BulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -743,7 +765,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount" };
+        var model = new BulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         model.Validate();
     }
@@ -751,7 +773,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier
+        var model = new BulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -765,7 +787,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier
+        var model = new BulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -778,9 +800,13 @@ public class TierTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
-        Tier copied = new(model);
+        BulkWithProrationConfigTier copied = new(model);
 
         Assert.Equal(model, copied);
     }

@@ -209,8 +209,8 @@ public class PlanListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -499,8 +499,8 @@ public class PlanListPageResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -806,8 +806,8 @@ public class PlanListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1112,8 +1112,8 @@ public class PlanListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1409,8 +1409,8 @@ public class PlanListPageResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1716,8 +1716,8 @@ public class PlanListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -2016,8 +2016,8 @@ public class PlanListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],

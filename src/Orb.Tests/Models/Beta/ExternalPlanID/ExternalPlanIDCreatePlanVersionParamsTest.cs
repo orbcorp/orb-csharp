@@ -1549,6 +1549,39 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        Adjustment value = new TieredPercentageDiscount()
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new Models::NewPercentageDiscount()
@@ -1703,6 +1736,1073 @@ public class AdjustmentTest : TestBase
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Adjustment>(
             element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        Adjustment value = new TieredPercentageDiscount()
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TieredPercentageDiscountTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<Tier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<bool, AppliesToAll> expectedAppliesToAll = AppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<Filter> expectedFilters =
+        [
+            new()
+            {
+                Field = Field.PriceID,
+                Operator = Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<string, PriceType> expectedPriceType = PriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, model.AppliesToAll);
+        Assert.NotNull(model.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, model.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], model.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.NotNull(model.Filters);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, model.PriceType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPercentageDiscount>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPercentageDiscount>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<Tier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<bool, AppliesToAll> expectedAppliesToAll = AppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<Filter> expectedFilters =
+        [
+            new()
+            {
+                Field = Field.PriceID,
+                Operator = Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<string, PriceType> expectedPriceType = PriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, deserialized.AppliesToAll);
+        Assert.NotNull(deserialized.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, deserialized.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], deserialized.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.NotNull(deserialized.Filters);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = PriceType.Usage,
+        };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = PriceType.Usage,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = PriceType.Usage,
+
+            // Null should be interpreted as omitted for these properties
+            IsInvoiceLevel = null,
+        };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = PriceType.Usage,
+
+            // Null should be interpreted as omitted for these properties
+            IsInvoiceLevel = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+        };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.False(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.False(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+
+            AppliesToAll = null,
+            AppliesToItemIds = null,
+            AppliesToPriceIds = null,
+            Currency = null,
+            Filters = null,
+            PriceType = null,
+        };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.True(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.True(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.True(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+
+            AppliesToAll = null,
+            AppliesToItemIds = null,
+            AppliesToPriceIds = null,
+            Currency = null,
+            Filters = null,
+            PriceType = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = AppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = PriceType.Usage,
+        };
+
+        TieredPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class TierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Tier>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Tier>(element, ModelBase.SerializerOptions);
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Tier { LowerBound = 0, Percentage = 0 };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Tier { LowerBound = 0, Percentage = 0 };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        Tier copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class AppliesToAllTest : TestBase
+{
+    [Theory]
+    [InlineData(AppliesToAll.True)]
+    public void Validation_Works(AppliesToAll rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<bool, AppliesToAll> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(AppliesToAll.True)]
+    public void SerializationRoundtrip_Works(AppliesToAll rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<bool, AppliesToAll> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<bool, AppliesToAll>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class FilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, Field> expectedField = Field.PriceID;
+        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Filter>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Filter>(element, ModelBase.SerializerOptions);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Field> expectedField = Field.PriceID;
+        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        Filter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class FieldTest : TestBase
+{
+    [Theory]
+    [InlineData(Field.PriceID)]
+    [InlineData(Field.ItemID)]
+    [InlineData(Field.PriceType)]
+    [InlineData(Field.Currency)]
+    [InlineData(Field.PricingUnitID)]
+    public void Validation_Works(Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Field> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Field.PriceID)]
+    [InlineData(Field.ItemID)]
+    [InlineData(Field.PriceType)]
+    [InlineData(Field.Currency)]
+    [InlineData(Field.PricingUnitID)]
+    public void SerializationRoundtrip_Works(Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Field> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class OperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(Operator.Includes)]
+    [InlineData(Operator.Excludes)]
+    public void Validation_Works(Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Operator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Operator.Includes)]
+    [InlineData(Operator.Excludes)]
+    public void SerializationRoundtrip_Works(Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Operator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class PriceTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(PriceType.Usage)]
+    [InlineData(PriceType.FixedInAdvance)]
+    [InlineData(PriceType.FixedInArrears)]
+    [InlineData(PriceType.Fixed)]
+    [InlineData(PriceType.InArrears)]
+    public void Validation_Works(PriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PriceType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PriceType.Usage)]
+    [InlineData(PriceType.FixedInAdvance)]
+    [InlineData(PriceType.FixedInArrears)]
+    [InlineData(PriceType.Fixed)]
+    [InlineData(PriceType.InArrears)]
+    public void SerializationRoundtrip_Works(PriceType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PriceType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PriceType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PriceType>>(
+            json,
             ModelBase.SerializerOptions
         );
 
@@ -7926,8 +9026,11 @@ public class BulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        List<Filter> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier> expectedTiers =
+        List<BulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<BulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -7987,8 +9090,11 @@ public class BulkWithFiltersConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Filter> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier> expectedTiers =
+        List<BulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<BulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -8041,12 +9147,12 @@ public class BulkWithFiltersConfigTest : TestBase
     }
 }
 
-public class FilterTest : TestBase
+public class BulkWithFiltersConfigFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         string expectedPropertyKey = "x";
         string expectedPropertyValue = "x";
@@ -8058,10 +9164,13 @@ public class FilterTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Filter>(json, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8069,10 +9178,13 @@ public class FilterTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Filter>(element, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigFilter>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -8085,7 +9197,7 @@ public class FilterTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         model.Validate();
     }
@@ -8093,20 +9205,24 @@ public class FilterTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Filter { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
-        Filter copied = new(model);
+        BulkWithFiltersConfigFilter copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class TierTest : TestBase
+public class BulkWithFiltersConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -8118,10 +9234,17 @@ public class TierTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tier>(json, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigTier>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8129,10 +9252,17 @@ public class TierTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tier>(element, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigTier>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -8145,7 +9275,11 @@ public class TierTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -8153,7 +9287,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount" };
+        var model = new BulkWithFiltersConfigTier { UnitAmount = "unit_amount" };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -8162,7 +9296,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount" };
+        var model = new BulkWithFiltersConfigTier { UnitAmount = "unit_amount" };
 
         model.Validate();
     }
@@ -8170,7 +9304,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier
+        var model = new BulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -8184,7 +9318,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier
+        var model = new BulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -8197,9 +9331,13 @@ public class TierTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
-        Tier copied = new(model);
+        BulkWithFiltersConfigTier copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -17064,6 +18202,42 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        ReplaceAdjustmentAdjustment value =
+            new ReplaceAdjustmentAdjustmentTieredPercentageDiscount()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+        value.Validate();
+    }
+
+    [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         ReplaceAdjustmentAdjustment value = new Models::NewPercentageDiscount()
@@ -17220,6 +18394,1149 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
             element,
             ModelBase.SerializerOptions
         );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        ReplaceAdjustmentAdjustment value =
+            new ReplaceAdjustmentAdjustmentTieredPercentageDiscount()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ReplaceAdjustmentAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<
+            bool,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > expectedAppliesToAll =
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<
+            string,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > expectedPriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, model.AppliesToAll);
+        Assert.NotNull(model.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, model.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], model.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.NotNull(model.Filters);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, model.PriceType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscount>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscount>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<
+            bool,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > expectedAppliesToAll =
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<
+            string,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > expectedPriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, deserialized.AppliesToAll);
+        Assert.NotNull(deserialized.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, deserialized.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], deserialized.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.NotNull(deserialized.Filters);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+
+            // Null should be interpreted as omitted for these properties
+            IsInvoiceLevel = null,
+        };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+
+            // Null should be interpreted as omitted for these properties
+            IsInvoiceLevel = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+        };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.False(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.False(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+
+            AppliesToAll = null,
+            AppliesToItemIds = null,
+            AppliesToPriceIds = null,
+            Currency = null,
+            Filters = null,
+            PriceType = null,
+        };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.True(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.True(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.True(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            IsInvoiceLevel = true,
+
+            AppliesToAll = null,
+            AppliesToItemIds = null,
+            AppliesToPriceIds = null,
+            Currency = null,
+            Filters = null,
+            PriceType = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        {
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+            AppliesToAll = ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+        };
+
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllTest : TestBase
+{
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True)]
+    public void Validation_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True)]
+    public void SerializationRoundtrip_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<
+            string,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > expectedField = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<
+            string,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > expectedField = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void Validation_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void Validation_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears)]
+    public void Validation_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed)]
+    [InlineData(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears)]
+    public void SerializationRoundtrip_Works(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }

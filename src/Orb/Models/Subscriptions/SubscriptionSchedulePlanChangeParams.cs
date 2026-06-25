@@ -944,7 +944,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
                 newUsageDiscount: (x) => x.Currency,
                 newAmountDiscount: (x) => x.Currency,
                 newMinimum: (x) => x.Currency,
-                newMaximum: (x) => x.Currency
+                newMaximum: (x) => x.Currency,
+                tieredPercentageDiscount: (x) => x.Currency
             );
         }
     }
@@ -958,7 +959,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
                 newUsageDiscount: (x) => x.IsInvoiceLevel,
                 newAmountDiscount: (x) => x.IsInvoiceLevel,
                 newMinimum: (x) => x.IsInvoiceLevel,
-                newMaximum: (x) => x.IsInvoiceLevel
+                newMaximum: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel
             );
         }
     }
@@ -1001,6 +1003,15 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
         NewMaximum value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount value,
         JsonElement? element = null
     )
     {
@@ -1119,6 +1130,32 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)]
+            out SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount? value
+    )
+    {
+        value =
+            this.Value
+            as SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -1136,7 +1173,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1146,7 +1184,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
         System::Action<NewUsageDiscount> newUsageDiscount,
         System::Action<NewAmountDiscount> newAmountDiscount,
         System::Action<NewMinimum> newMinimum,
-        System::Action<NewMaximum> newMaximum
+        System::Action<NewMaximum> newMaximum,
+        System::Action<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount> tieredPercentageDiscount
     )
     {
         switch (this.Value)
@@ -1165,6 +1204,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
                 break;
             case NewMaximum value:
                 newMaximum(value);
+                break;
+            case SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -1192,7 +1234,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1202,7 +1245,11 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
         System::Func<NewUsageDiscount, T> newUsageDiscount,
         System::Func<NewAmountDiscount, T> newAmountDiscount,
         System::Func<NewMinimum, T> newMinimum,
-        System::Func<NewMaximum, T> newMaximum
+        System::Func<NewMaximum, T> newMaximum,
+        System::Func<
+            SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount,
+            T
+        > tieredPercentageDiscount
     )
     {
         return this.Value switch
@@ -1212,6 +1259,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
             NewAmountDiscount value => newAmountDiscount(value),
             NewMinimum value => newMinimum(value),
             NewMaximum value => newMaximum(value),
+            SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount value =>
+                tieredPercentageDiscount(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment"
             ),
@@ -1238,6 +1287,10 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
         NewMaximum value
     ) => new(value);
 
+    public static implicit operator SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount value
+    ) => new(value);
+
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
     /// (based on its own <c>Validate</c> method).
@@ -1261,7 +1314,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
             (newUsageDiscount) => newUsageDiscount.Validate(),
             (newAmountDiscount) => newAmountDiscount.Validate(),
             (newMinimum) => newMinimum.Validate(),
-            (newMaximum) => newMaximum.Validate()
+            (newMaximum) => newMaximum.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate()
         );
     }
 
@@ -1292,6 +1346,8 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment 
             NewAmountDiscount _ => 2,
             NewMinimum _ => 3,
             NewMaximum _ => 4,
+            SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount _ =>
+                5,
             _ => -1,
         };
     }
@@ -1413,6 +1469,27 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
 
                 return new(element);
             }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(element);
@@ -1427,6 +1504,758 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
     )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+    : JsonModel
+{
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    public required IReadOnlyList<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier>
+            >("tiers");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier>
+            >("tiers", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// If set, the adjustment will apply to every price on the subscription.
+    /// </summary>
+    public ApiEnum<
+        bool,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+    >? AppliesToAll
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<
+                    bool,
+                    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+                >
+            >("applies_to_all");
+        }
+        init { this._rawData.Set("applies_to_all", value); }
+    }
+
+    /// <summary>
+    /// The set of item IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToItemIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_item_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The set of price IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices in the specified currency will have the adjustment applied.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// A list of filters that determine which prices this adjustment will apply to.
+    /// </summary>
+    public IReadOnlyList<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter>? Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// When false, this adjustment will be applied to a single price. Otherwise,
+    /// it will be applied at the invoice level, possibly to multiple prices.
+    /// </summary>
+    public bool? IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("is_invoice_level", value);
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices of the specified type will have the adjustment applied.
+    /// </summary>
+    public ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+    >? PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+                >
+            >("price_type");
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+        this.AppliesToAll?.Validate();
+        _ = this.AppliesToItemIds;
+        _ = this.AppliesToPriceIds;
+        _ = this.Currency;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        this.PriceType?.Validate();
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount(
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount subscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount)
+    { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount(
+        IReadOnlyList<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> tiers
+    )
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+    : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (0-1) discounted from spend in this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend; null for the final open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier(
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier subscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// If set, the adjustment will apply to every price on the subscription.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+{
+    True,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<bool>(ref reader, options) switch
+        {
+            true =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True =>
+                    true,
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+    : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+    > Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+                >
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+    > Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+                >
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter subscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterFieldConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterFieldConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            "item_id" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID,
+            "price_type" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType,
+            "currency" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency,
+            "pricing_unit_id" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID =>
+                    "price_id",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID =>
+                    "item_id",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType =>
+                    "price_type",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency =>
+                    "currency",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID =>
+                    "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            "excludes" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes =>
+                    "includes",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes =>
+                    "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// If set, only prices of the specified type will have the adjustment applied.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceTypeConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+{
+    Usage,
+    FixedInAdvance,
+    FixedInArrears,
+    Fixed,
+    InArrears,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceTypeConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+{
+    public override SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            "fixed_in_advance" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance,
+            "fixed_in_arrears" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears,
+            "fixed" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed,
+            "in_arrears" =>
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage =>
+                    "usage",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance =>
+                    "fixed_in_advance",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears =>
+                    "fixed_in_arrears",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed =>
+                    "fixed",
+                SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears =>
+                    "in_arrears",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
 
@@ -13714,7 +14543,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
                 newUsageDiscount: (x) => x.Currency,
                 newAmountDiscount: (x) => x.Currency,
                 newMinimum: (x) => x.Currency,
-                newMaximum: (x) => x.Currency
+                newMaximum: (x) => x.Currency,
+                tieredPercentageDiscount: (x) => x.Currency
             );
         }
     }
@@ -13728,7 +14558,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
                 newUsageDiscount: (x) => x.IsInvoiceLevel,
                 newAmountDiscount: (x) => x.IsInvoiceLevel,
                 newMinimum: (x) => x.IsInvoiceLevel,
-                newMaximum: (x) => x.IsInvoiceLevel
+                newMaximum: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel
             );
         }
     }
@@ -13771,6 +14602,15 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
         NewMaximum value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount value,
         JsonElement? element = null
     )
     {
@@ -13889,6 +14729,32 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)]
+            out SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount? value
+    )
+    {
+        value =
+            this.Value
+            as SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -13906,7 +14772,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -13916,7 +14783,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
         System::Action<NewUsageDiscount> newUsageDiscount,
         System::Action<NewAmountDiscount> newAmountDiscount,
         System::Action<NewMinimum> newMinimum,
-        System::Action<NewMaximum> newMaximum
+        System::Action<NewMaximum> newMaximum,
+        System::Action<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount> tieredPercentageDiscount
     )
     {
         switch (this.Value)
@@ -13935,6 +14803,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
                 break;
             case NewMaximum value:
                 newMaximum(value);
+                break;
+            case SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -13962,7 +14833,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -13972,7 +14844,11 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
         System::Func<NewUsageDiscount, T> newUsageDiscount,
         System::Func<NewAmountDiscount, T> newAmountDiscount,
         System::Func<NewMinimum, T> newMinimum,
-        System::Func<NewMaximum, T> newMaximum
+        System::Func<NewMaximum, T> newMaximum,
+        System::Func<
+            SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount,
+            T
+        > tieredPercentageDiscount
     )
     {
         return this.Value switch
@@ -13982,6 +14858,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
             NewAmountDiscount value => newAmountDiscount(value),
             NewMinimum value => newMinimum(value),
             NewMaximum value => newMaximum(value),
+            SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount value =>
+                tieredPercentageDiscount(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment"
             ),
@@ -14008,6 +14886,10 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
         NewMaximum value
     ) => new(value);
 
+    public static implicit operator SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount value
+    ) => new(value);
+
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
     /// (based on its own <c>Validate</c> method).
@@ -14031,7 +14913,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
             (newUsageDiscount) => newUsageDiscount.Validate(),
             (newAmountDiscount) => newAmountDiscount.Validate(),
             (newMinimum) => newMinimum.Validate(),
-            (newMaximum) => newMaximum.Validate()
+            (newMaximum) => newMaximum.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate()
         );
     }
 
@@ -14062,6 +14945,8 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
             NewAmountDiscount _ => 2,
             NewMinimum _ => 3,
             NewMaximum _ => 4,
+            SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount _ =>
+                5,
             _ => -1,
         };
     }
@@ -14183,6 +15068,27 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
 
                 return new(element);
             }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(element);
@@ -14197,6 +15103,759 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
     )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+    : JsonModel
+{
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    public required IReadOnlyList<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>
+            >("tiers");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>
+            >("tiers", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// If set, the adjustment will apply to every price on the subscription.
+    /// </summary>
+    public ApiEnum<
+        bool,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+    >? AppliesToAll
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<
+                    bool,
+                    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+                >
+            >("applies_to_all");
+        }
+        init { this._rawData.Set("applies_to_all", value); }
+    }
+
+    /// <summary>
+    /// The set of item IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToItemIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_item_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The set of price IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices in the specified currency will have the adjustment applied.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// A list of filters that determine which prices this adjustment will apply to.
+    /// </summary>
+    public IReadOnlyList<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>? Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// When false, this adjustment will be applied to a single price. Otherwise,
+    /// it will be applied at the invoice level, possibly to multiple prices.
+    /// </summary>
+    public bool? IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("is_invoice_level", value);
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices of the specified type will have the adjustment applied.
+    /// </summary>
+    public ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+    >? PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+                >
+            >("price_type");
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+        this.AppliesToAll?.Validate();
+        _ = this.AppliesToItemIds;
+        _ = this.AppliesToPriceIds;
+        _ = this.Currency;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        this.PriceType?.Validate();
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount subscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        IReadOnlyList<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> tiers
+    )
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+    : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (0-1) discounted from spend in this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend; null for the final open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier(
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier subscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// If set, the adjustment will apply to every price on the subscription.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+{
+    True,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<bool>(ref reader, options) switch
+        {
+            true =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True =>
+                    true,
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw
+    >)
+)]
+public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+    : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+    > Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+                >
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+    > Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+                >
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter subscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+        ) { }
+#pragma warning restore CS8618
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw.FromRawUnchecked"/>
+    public static SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>
+{
+    /// <inheritdoc/>
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter.FromRawUnchecked(
+            rawData
+        );
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFieldConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFieldConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            "item_id" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID,
+            "price_type" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType,
+            "currency" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency,
+            "pricing_unit_id" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID =>
+                    "price_id",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID =>
+                    "item_id",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType =>
+                    "price_type",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency =>
+                    "currency",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID =>
+                    "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            "excludes" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes =>
+                    "includes",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes =>
+                    "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// If set, only prices of the specified type will have the adjustment applied.
+/// </summary>
+[JsonConverter(
+    typeof(SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceTypeConverter)
+)]
+public enum SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+{
+    Usage,
+    FixedInAdvance,
+    FixedInArrears,
+    Fixed,
+    InArrears,
+}
+
+sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceTypeConverter
+    : JsonConverter<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+{
+    public override SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            "fixed_in_advance" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance,
+            "fixed_in_arrears" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears,
+            "fixed" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed,
+            "in_arrears" =>
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears,
+            _ =>
+                (SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType)(
+                    -1
+                ),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage =>
+                    "usage",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance =>
+                    "fixed_in_advance",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears =>
+                    "fixed_in_arrears",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed =>
+                    "fixed",
+                SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears =>
+                    "in_arrears",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
 

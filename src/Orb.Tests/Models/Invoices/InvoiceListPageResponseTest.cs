@@ -184,8 +184,8 @@ public class InvoiceListPageResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -532,8 +532,8 @@ public class InvoiceListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Field.PriceID,
-                                        Operator = Operator.Includes,
+                                        Field = AllocationFilterField.PriceID,
+                                        Operator = AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -898,8 +898,8 @@ public class InvoiceListPageResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1262,8 +1262,8 @@ public class InvoiceListPageResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1617,8 +1617,8 @@ public class InvoiceListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Field.PriceID,
-                                        Operator = Operator.Includes,
+                                        Field = AllocationFilterField.PriceID,
+                                        Operator = AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1983,8 +1983,8 @@ public class InvoiceListPageResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2341,8 +2341,8 @@ public class InvoiceListPageResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],

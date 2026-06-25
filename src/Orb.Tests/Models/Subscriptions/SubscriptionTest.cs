@@ -5,8 +5,8 @@ using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Customers;
-using Orb.Models.Subscriptions;
 using Plans = Orb.Models.Plans;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -15,7 +15,7 @@ public class SubscriptionTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Subscription
+        var model = new Subscriptions::Subscription
         {
             ID = "id",
             ActivePlanPhaseOrder = 0,
@@ -412,8 +412,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -571,8 +571,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -667,7 +667,7 @@ public class SubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = SubscriptionStatus.Active,
+            Status = Subscriptions::SubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
@@ -805,7 +805,7 @@ public class SubscriptionTest : TestBase
             ReportingConfiguration = new(true),
         };
         string expectedDefaultInvoiceMemo = "default_invoice_memo";
-        List<DiscountInterval> expectedDiscountIntervals =
+        List<Subscriptions::DiscountInterval> expectedDiscountIntervals =
         [
             new AmountDiscountInterval()
             {
@@ -1067,8 +1067,8 @@ public class SubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1219,8 +1219,8 @@ public class SubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1315,7 +1315,8 @@ public class SubscriptionTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, SubscriptionStatus> expectedStatus = SubscriptionStatus.Active;
+        ApiEnum<string, Subscriptions::SubscriptionStatus> expectedStatus =
+            Subscriptions::SubscriptionStatus.Active;
         SubscriptionTrialInfo expectedTrialInfo = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
         );
@@ -1385,7 +1386,7 @@ public class SubscriptionTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Subscription
+        var model = new Subscriptions::Subscription
         {
             ID = "id",
             ActivePlanPhaseOrder = 0,
@@ -1782,8 +1783,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1941,8 +1942,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2037,12 +2038,12 @@ public class SubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = SubscriptionStatus.Active,
+            Status = Subscriptions::SubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscription>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Subscription>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2053,7 +2054,7 @@ public class SubscriptionTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Subscription
+        var model = new Subscriptions::Subscription
         {
             ID = "id",
             ActivePlanPhaseOrder = 0,
@@ -2450,8 +2451,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2609,8 +2610,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2705,12 +2706,12 @@ public class SubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = SubscriptionStatus.Active,
+            Status = Subscriptions::SubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Subscription>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Subscription>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2850,7 +2851,7 @@ public class SubscriptionTest : TestBase
             ReportingConfiguration = new(true),
         };
         string expectedDefaultInvoiceMemo = "default_invoice_memo";
-        List<DiscountInterval> expectedDiscountIntervals =
+        List<Subscriptions::DiscountInterval> expectedDiscountIntervals =
         [
             new AmountDiscountInterval()
             {
@@ -3112,8 +3113,8 @@ public class SubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3264,8 +3265,8 @@ public class SubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3360,7 +3361,8 @@ public class SubscriptionTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, SubscriptionStatus> expectedStatus = SubscriptionStatus.Active;
+        ApiEnum<string, Subscriptions::SubscriptionStatus> expectedStatus =
+            Subscriptions::SubscriptionStatus.Active;
         SubscriptionTrialInfo expectedTrialInfo = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
         );
@@ -3439,7 +3441,7 @@ public class SubscriptionTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Subscription
+        var model = new Subscriptions::Subscription
         {
             ID = "id",
             ActivePlanPhaseOrder = 0,
@@ -3836,8 +3838,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3995,8 +3997,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -4091,7 +4093,7 @@ public class SubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = SubscriptionStatus.Active,
+            Status = Subscriptions::SubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
@@ -4101,7 +4103,7 @@ public class SubscriptionTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Subscription
+        var model = new Subscriptions::Subscription
         {
             ID = "id",
             ActivePlanPhaseOrder = 0,
@@ -4498,8 +4500,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -4657,8 +4659,8 @@ public class SubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -4753,11 +4755,11 @@ public class SubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = SubscriptionStatus.Active,
+            Status = Subscriptions::SubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
-        Subscription copied = new(model);
+        Subscriptions::Subscription copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -4768,7 +4770,7 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void AmountValidationWorks()
     {
-        DiscountInterval value = new AmountDiscountInterval()
+        Subscriptions::DiscountInterval value = new AmountDiscountInterval()
         {
             AmountDiscount = "amount_discount",
             AppliesToPriceIntervalIds = ["string"],
@@ -4791,7 +4793,7 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void PercentageValidationWorks()
     {
-        DiscountInterval value = new PercentageDiscountInterval()
+        Subscriptions::DiscountInterval value = new PercentageDiscountInterval()
         {
             AppliesToPriceIntervalIds = ["string"],
             DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
@@ -4814,7 +4816,7 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void UsageValidationWorks()
     {
-        DiscountInterval value = new UsageDiscountInterval()
+        Subscriptions::DiscountInterval value = new UsageDiscountInterval()
         {
             AppliesToPriceIntervalIds = ["string"],
             DiscountType = UsageDiscountIntervalDiscountType.Usage,
@@ -4835,9 +4837,39 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageValidationWorks()
+    {
+        Subscriptions::DiscountInterval value = new Subscriptions::TieredPercentage()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void AmountSerializationRoundtripWorks()
     {
-        DiscountInterval value = new AmountDiscountInterval()
+        Subscriptions::DiscountInterval value = new AmountDiscountInterval()
         {
             AmountDiscount = "amount_discount",
             AppliesToPriceIntervalIds = ["string"],
@@ -4855,7 +4887,7 @@ public class DiscountIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DiscountInterval>(
             element,
             ModelBase.SerializerOptions
         );
@@ -4866,7 +4898,7 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void PercentageSerializationRoundtripWorks()
     {
-        DiscountInterval value = new PercentageDiscountInterval()
+        Subscriptions::DiscountInterval value = new PercentageDiscountInterval()
         {
             AppliesToPriceIntervalIds = ["string"],
             DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
@@ -4884,7 +4916,7 @@ public class DiscountIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DiscountInterval>(
             element,
             ModelBase.SerializerOptions
         );
@@ -4895,7 +4927,7 @@ public class DiscountIntervalTest : TestBase
     [Fact]
     public void UsageSerializationRoundtripWorks()
     {
-        DiscountInterval value = new UsageDiscountInterval()
+        Subscriptions::DiscountInterval value = new UsageDiscountInterval()
         {
             AppliesToPriceIntervalIds = ["string"],
             DiscountType = UsageDiscountIntervalDiscountType.Usage,
@@ -4913,7 +4945,43 @@ public class DiscountIntervalTest : TestBase
             UsageDiscount = 0,
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DiscountInterval>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredPercentageSerializationRoundtripWorks()
+    {
+        Subscriptions::DiscountInterval value = new Subscriptions::TieredPercentage()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DiscountInterval>(
             element,
             ModelBase.SerializerOptions
         );
@@ -4922,23 +4990,647 @@ public class DiscountIntervalTest : TestBase
     }
 }
 
-public class SubscriptionStatusTest : TestBase
+public class TieredPercentageTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("tiered_percentage");
+        DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Subscriptions::TieredPercentageFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Subscriptions::TieredPercentageTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(
+            expectedAppliesToPriceIntervalIds.Count,
+            model.AppliesToPriceIntervalIds.Count
+        );
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIntervalIds[i], model.AppliesToPriceIntervalIds[i]);
+        }
+        Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
+        Assert.Equal(expectedEndDate, model.EndDate);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedStartDate, model.StartDate);
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredPercentage>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredPercentage>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("tiered_percentage");
+        DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Subscriptions::TieredPercentageFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Subscriptions::TieredPercentageTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(
+            expectedAppliesToPriceIntervalIds.Count,
+            deserialized.AppliesToPriceIntervalIds.Count
+        );
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
+        {
+            Assert.Equal(
+                expectedAppliesToPriceIntervalIds[i],
+                deserialized.AppliesToPriceIntervalIds[i]
+            );
+        }
+        Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));
+        Assert.Equal(expectedEndDate, deserialized.EndDate);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedStartDate, deserialized.StartDate);
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Subscriptions::TieredPercentageFilterField.PriceID,
+                    Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        Subscriptions::TieredPercentage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class TieredPercentageFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::TieredPercentageFilter
+        {
+            Field = Subscriptions::TieredPercentageFilterField.PriceID,
+            Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, Subscriptions::TieredPercentageFilterField> expectedField =
+            Subscriptions::TieredPercentageFilterField.PriceID;
+        ApiEnum<string, Subscriptions::TieredPercentageFilterOperator> expectedOperator =
+            Subscriptions::TieredPercentageFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::TieredPercentageFilter
+        {
+            Field = Subscriptions::TieredPercentageFilterField.PriceID,
+            Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredPercentageFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::TieredPercentageFilter
+        {
+            Field = Subscriptions::TieredPercentageFilterField.PriceID,
+            Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredPercentageFilter>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Subscriptions::TieredPercentageFilterField> expectedField =
+            Subscriptions::TieredPercentageFilterField.PriceID;
+        ApiEnum<string, Subscriptions::TieredPercentageFilterOperator> expectedOperator =
+            Subscriptions::TieredPercentageFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::TieredPercentageFilter
+        {
+            Field = Subscriptions::TieredPercentageFilterField.PriceID,
+            Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredPercentageFilter
+        {
+            Field = Subscriptions::TieredPercentageFilterField.PriceID,
+            Operator = Subscriptions::TieredPercentageFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        Subscriptions::TieredPercentageFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class TieredPercentageFilterFieldTest : TestBase
 {
     [Theory]
-    [InlineData(SubscriptionStatus.Active)]
-    [InlineData(SubscriptionStatus.Ended)]
-    [InlineData(SubscriptionStatus.Upcoming)]
-    public void Validation_Works(SubscriptionStatus rawValue)
+    [InlineData(Subscriptions::TieredPercentageFilterField.PriceID)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.ItemID)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.PriceType)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.Currency)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.PricingUnitID)]
+    public void Validation_Works(Subscriptions::TieredPercentageFilterField rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, SubscriptionStatus> value = rawValue;
+        ApiEnum<string, Subscriptions::TieredPercentageFilterField> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, SubscriptionStatus>>(
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::TieredPercentageFilterField.PriceID)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.ItemID)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.PriceType)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.Currency)]
+    [InlineData(Subscriptions::TieredPercentageFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(Subscriptions::TieredPercentageFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::TieredPercentageFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TieredPercentageFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::TieredPercentageFilterOperator.Includes)]
+    [InlineData(Subscriptions::TieredPercentageFilterOperator.Excludes)]
+    public void Validation_Works(Subscriptions::TieredPercentageFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::TieredPercentageFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::TieredPercentageFilterOperator.Includes)]
+    [InlineData(Subscriptions::TieredPercentageFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(Subscriptions::TieredPercentageFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::TieredPercentageFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::TieredPercentageFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TieredPercentageTierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredPercentageTier>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredPercentageTier>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier { LowerBound = 0, Percentage = 0 };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier { LowerBound = 0, Percentage = 0 };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::TieredPercentageTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        Subscriptions::TieredPercentageTier copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::SubscriptionStatus.Active)]
+    [InlineData(Subscriptions::SubscriptionStatus.Ended)]
+    [InlineData(Subscriptions::SubscriptionStatus.Upcoming)]
+    public void Validation_Works(Subscriptions::SubscriptionStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::SubscriptionStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Subscriptions::SubscriptionStatus>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -4948,19 +5640,18 @@ public class SubscriptionStatusTest : TestBase
     }
 
     [Theory]
-    [InlineData(SubscriptionStatus.Active)]
-    [InlineData(SubscriptionStatus.Ended)]
-    [InlineData(SubscriptionStatus.Upcoming)]
-    public void SerializationRoundtrip_Works(SubscriptionStatus rawValue)
+    [InlineData(Subscriptions::SubscriptionStatus.Active)]
+    [InlineData(Subscriptions::SubscriptionStatus.Ended)]
+    [InlineData(Subscriptions::SubscriptionStatus.Upcoming)]
+    public void SerializationRoundtrip_Works(Subscriptions::SubscriptionStatus rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, SubscriptionStatus> value = rawValue;
+        ApiEnum<string, Subscriptions::SubscriptionStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, SubscriptionStatus>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::SubscriptionStatus>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -4968,15 +5659,14 @@ public class SubscriptionStatusTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, SubscriptionStatus>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Subscriptions::SubscriptionStatus>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, SubscriptionStatus>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::SubscriptionStatus>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }

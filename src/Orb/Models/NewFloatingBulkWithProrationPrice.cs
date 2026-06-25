@@ -349,16 +349,18 @@ public sealed record class BulkWithProrationConfig : JsonModel
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<Tier> Tiers
+    public required IReadOnlyList<BulkWithProrationConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<Tier>>("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<BulkWithProrationConfigTier>>(
+                "tiers"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<Tier>>(
+            this._rawData.Set<ImmutableArray<BulkWithProrationConfigTier>>(
                 "tiers",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -404,7 +406,7 @@ public sealed record class BulkWithProrationConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public BulkWithProrationConfig(IReadOnlyList<Tier> tiers)
+    public BulkWithProrationConfig(IReadOnlyList<BulkWithProrationConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;
@@ -422,8 +424,10 @@ class BulkWithProrationConfigFromRaw : IFromRawJson<BulkWithProrationConfig>
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Tier, TierFromRaw>))]
-public sealed record class Tier : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<BulkWithProrationConfigTier, BulkWithProrationConfigTierFromRaw>)
+)]
+public sealed record class BulkWithProrationConfigTier : JsonModel
 {
     /// <summary>
     /// Cost per unit
@@ -458,46 +462,49 @@ public sealed record class Tier : JsonModel
         _ = this.TierLowerBound;
     }
 
-    public Tier() { }
+    public BulkWithProrationConfigTier() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Tier(Tier tier)
-        : base(tier) { }
+    public BulkWithProrationConfigTier(BulkWithProrationConfigTier bulkWithProrationConfigTier)
+        : base(bulkWithProrationConfigTier) { }
 #pragma warning restore CS8618
 
-    public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TierFromRaw.FromRawUnchecked"/>
-    public static Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="BulkWithProrationConfigTierFromRaw.FromRawUnchecked"/>
+    public static BulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Tier(string unitAmount)
+    public BulkWithProrationConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class TierFromRaw : IFromRawJson<Tier>
+class BulkWithProrationConfigTierFromRaw : IFromRawJson<BulkWithProrationConfigTier>
 {
     /// <inheritdoc/>
-    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier.FromRawUnchecked(rawData);
+    public BulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

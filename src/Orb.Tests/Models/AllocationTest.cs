@@ -24,8 +24,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39,12 +39,12 @@ public class AllocationTest : TestBase
             Duration = 0,
             DurationUnit = CustomExpirationDurationUnit.Day,
         };
-        List<Filter> expectedFilters =
+        List<AllocationFilter> expectedFilters =
         [
             new()
             {
-                Field = Field.PriceID,
-                Operator = Operator.Includes,
+                Field = AllocationFilterField.PriceID,
+                Operator = AllocationFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -78,8 +78,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -111,8 +111,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -133,12 +133,12 @@ public class AllocationTest : TestBase
             Duration = 0,
             DurationUnit = CustomExpirationDurationUnit.Day,
         };
-        List<Filter> expectedFilters =
+        List<AllocationFilter> expectedFilters =
         [
             new()
             {
-                Field = Field.PriceID,
-                Operator = Operator.Includes,
+                Field = AllocationFilterField.PriceID,
+                Operator = AllocationFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -172,8 +172,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -279,8 +279,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -306,8 +306,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -332,8 +332,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -361,8 +361,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -389,8 +389,8 @@ public class AllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -403,20 +403,21 @@ public class AllocationTest : TestBase
     }
 }
 
-public class FilterTest : TestBase
+public class AllocationFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter
+        var model = new AllocationFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AllocationFilterField.PriceID,
+            Operator = AllocationFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Field> expectedField = Field.PriceID;
-        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        ApiEnum<string, AllocationFilterField> expectedField = AllocationFilterField.PriceID;
+        ApiEnum<string, AllocationFilterOperator> expectedOperator =
+            AllocationFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -431,15 +432,18 @@ public class FilterTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter
+        var model = new AllocationFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AllocationFilterField.PriceID,
+            Operator = AllocationFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Filter>(json, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AllocationFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -447,19 +451,23 @@ public class FilterTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter
+        var model = new AllocationFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AllocationFilterField.PriceID,
+            Operator = AllocationFilterOperator.Includes,
             Values = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Filter>(element, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AllocationFilter>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Field> expectedField = Field.PriceID;
-        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        ApiEnum<string, AllocationFilterField> expectedField = AllocationFilterField.PriceID;
+        ApiEnum<string, AllocationFilterOperator> expectedOperator =
+            AllocationFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -474,10 +482,10 @@ public class FilterTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter
+        var model = new AllocationFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AllocationFilterField.PriceID,
+            Operator = AllocationFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -487,38 +495,38 @@ public class FilterTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Filter
+        var model = new AllocationFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AllocationFilterField.PriceID,
+            Operator = AllocationFilterOperator.Includes,
             Values = ["string"],
         };
 
-        Filter copied = new(model);
+        AllocationFilter copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class FieldTest : TestBase
+public class AllocationFilterFieldTest : TestBase
 {
     [Theory]
-    [InlineData(Field.PriceID)]
-    [InlineData(Field.ItemID)]
-    [InlineData(Field.PriceType)]
-    [InlineData(Field.Currency)]
-    [InlineData(Field.PricingUnitID)]
-    public void Validation_Works(Field rawValue)
+    [InlineData(AllocationFilterField.PriceID)]
+    [InlineData(AllocationFilterField.ItemID)]
+    [InlineData(AllocationFilterField.PriceType)]
+    [InlineData(AllocationFilterField.Currency)]
+    [InlineData(AllocationFilterField.PricingUnitID)]
+    public void Validation_Works(AllocationFilterField rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Field> value = rawValue;
+        ApiEnum<string, AllocationFilterField> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterField>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -528,18 +536,18 @@ public class FieldTest : TestBase
     }
 
     [Theory]
-    [InlineData(Field.PriceID)]
-    [InlineData(Field.ItemID)]
-    [InlineData(Field.PriceType)]
-    [InlineData(Field.Currency)]
-    [InlineData(Field.PricingUnitID)]
-    public void SerializationRoundtrip_Works(Field rawValue)
+    [InlineData(AllocationFilterField.PriceID)]
+    [InlineData(AllocationFilterField.ItemID)]
+    [InlineData(AllocationFilterField.PriceType)]
+    [InlineData(AllocationFilterField.Currency)]
+    [InlineData(AllocationFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(AllocationFilterField rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Field> value = rawValue;
+        ApiEnum<string, AllocationFilterField> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterField>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -550,12 +558,12 @@ public class FieldTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterField>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterField>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -564,22 +572,22 @@ public class FieldTest : TestBase
     }
 }
 
-public class OperatorTest : TestBase
+public class AllocationFilterOperatorTest : TestBase
 {
     [Theory]
-    [InlineData(Operator.Includes)]
-    [InlineData(Operator.Excludes)]
-    public void Validation_Works(Operator rawValue)
+    [InlineData(AllocationFilterOperator.Includes)]
+    [InlineData(AllocationFilterOperator.Excludes)]
+    public void Validation_Works(AllocationFilterOperator rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Operator> value = rawValue;
+        ApiEnum<string, AllocationFilterOperator> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterOperator>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -589,15 +597,15 @@ public class OperatorTest : TestBase
     }
 
     [Theory]
-    [InlineData(Operator.Includes)]
-    [InlineData(Operator.Excludes)]
-    public void SerializationRoundtrip_Works(Operator rawValue)
+    [InlineData(AllocationFilterOperator.Includes)]
+    [InlineData(AllocationFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(AllocationFilterOperator rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Operator> value = rawValue;
+        ApiEnum<string, AllocationFilterOperator> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterOperator>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -608,12 +616,12 @@ public class OperatorTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterOperator>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AllocationFilterOperator>>(
             json,
             ModelBase.SerializerOptions
         );

@@ -178,8 +178,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -523,8 +523,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -943,8 +943,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1298,8 +1298,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1650,8 +1650,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2070,8 +2070,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2419,8 +2419,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3267,8 +3267,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3444,8 +3444,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3657,8 +3657,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3849,8 +3849,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4034,8 +4034,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4247,8 +4247,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4432,8 +4432,8 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4628,6 +4628,39 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        Invoices::Adjustment value = new Invoices::TieredPercentageDiscount()
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void MonetaryMinimumValidationWorks()
     {
         Invoices::Adjustment value = new MonetaryMinimumAdjustment()
@@ -4777,6 +4810,45 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        Invoices::Adjustment value = new Invoices::TieredPercentageDiscount()
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Adjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
     public void MonetaryMinimumSerializationRoundtripWorks()
     {
         Invoices::Adjustment value = new MonetaryMinimumAdjustment()
@@ -4839,6 +4911,656 @@ public class AdjustmentTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class TieredPercentageDiscountTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Invoices::TieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<Invoices::Filter> expectedFilters =
+        [
+            new()
+            {
+                Field = Invoices::Field.PriceID,
+                Operator = Invoices::Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<Invoices::Tier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedReason, model.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, model.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Invoices::TieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::TieredPercentageDiscount>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Invoices::TieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::TieredPercentageDiscount>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<Invoices::Filter> expectedFilters =
+        [
+            new()
+            {
+                Field = Invoices::Field.PriceID,
+                Operator = Invoices::Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<Invoices::Tier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, deserialized.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Invoices::TieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::TieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Invoices::Field.PriceID,
+                    Operator = Invoices::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        Invoices::TieredPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class FilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Invoices::Filter
+        {
+            Field = Invoices::Field.PriceID,
+            Operator = Invoices::Operator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, Invoices::Field> expectedField = Invoices::Field.PriceID;
+        ApiEnum<string, Invoices::Operator> expectedOperator = Invoices::Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Invoices::Filter
+        {
+            Field = Invoices::Field.PriceID,
+            Operator = Invoices::Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Filter>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Invoices::Filter
+        {
+            Field = Invoices::Field.PriceID,
+            Operator = Invoices::Operator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Filter>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Invoices::Field> expectedField = Invoices::Field.PriceID;
+        ApiEnum<string, Invoices::Operator> expectedOperator = Invoices::Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Invoices::Filter
+        {
+            Field = Invoices::Field.PriceID,
+            Operator = Invoices::Operator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::Filter
+        {
+            Field = Invoices::Field.PriceID,
+            Operator = Invoices::Operator.Includes,
+            Values = ["string"],
+        };
+
+        Invoices::Filter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class FieldTest : TestBase
+{
+    [Theory]
+    [InlineData(Invoices::Field.PriceID)]
+    [InlineData(Invoices::Field.ItemID)]
+    [InlineData(Invoices::Field.PriceType)]
+    [InlineData(Invoices::Field.Currency)]
+    [InlineData(Invoices::Field.PricingUnitID)]
+    public void Validation_Works(Invoices::Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Invoices::Field> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Field>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Invoices::Field.PriceID)]
+    [InlineData(Invoices::Field.ItemID)]
+    [InlineData(Invoices::Field.PriceType)]
+    [InlineData(Invoices::Field.Currency)]
+    [InlineData(Invoices::Field.PricingUnitID)]
+    public void SerializationRoundtrip_Works(Invoices::Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Invoices::Field> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Field>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class OperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(Invoices::Operator.Includes)]
+    [InlineData(Invoices::Operator.Excludes)]
+    public void Validation_Works(Invoices::Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Invoices::Operator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Operator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Invoices::Operator.Includes)]
+    [InlineData(Invoices::Operator.Excludes)]
+    public void SerializationRoundtrip_Works(Invoices::Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Invoices::Operator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Operator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Invoices::Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Tier>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Tier>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Invoices::Tier { LowerBound = 0, Percentage = 0 };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Invoices::Tier { LowerBound = 0, Percentage = 0 };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Invoices::Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        Invoices::Tier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

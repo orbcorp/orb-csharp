@@ -43,12 +43,12 @@ public sealed record class Allocation : JsonModel
         init { this._rawData.Set("custom_expiration", value); }
     }
 
-    public IReadOnlyList<Filter>? Filters
+    public IReadOnlyList<AllocationFilter>? Filters
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters");
+            return this._rawData.GetNullableStruct<ImmutableArray<AllocationFilter>>("filters");
         }
         init
         {
@@ -57,7 +57,7 @@ public sealed record class Allocation : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<Filter>?>(
+            this._rawData.Set<ImmutableArray<AllocationFilter>?>(
                 "filters",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -122,18 +122,18 @@ class AllocationFromRaw : IFromRawJson<Allocation>
         Allocation.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
-public sealed record class Filter : JsonModel
+[JsonConverter(typeof(JsonModelConverter<AllocationFilter, AllocationFilterFromRaw>))]
+public sealed record class AllocationFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Field> Field
+    public required ApiEnum<string, AllocationFilterField> Field
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
+            return this._rawData.GetNotNullClass<ApiEnum<string, AllocationFilterField>>("field");
         }
         init { this._rawData.Set("field", value); }
     }
@@ -141,12 +141,14 @@ public sealed record class Filter : JsonModel
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Operator> Operator
+    public required ApiEnum<string, AllocationFilterOperator> Operator
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
+            return this._rawData.GetNotNullClass<ApiEnum<string, AllocationFilterOperator>>(
+                "operator"
+            );
         }
         init { this._rawData.Set("operator", value); }
     }
@@ -178,46 +180,48 @@ public sealed record class Filter : JsonModel
         _ = this.Values;
     }
 
-    public Filter() { }
+    public AllocationFilter() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Filter(Filter filter)
-        : base(filter) { }
+    public AllocationFilter(AllocationFilter allocationFilter)
+        : base(allocationFilter) { }
 #pragma warning restore CS8618
 
-    public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AllocationFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter(FrozenDictionary<string, JsonElement> rawData)
+    AllocationFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
-    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="AllocationFilterFromRaw.FromRawUnchecked"/>
+    public static AllocationFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FilterFromRaw : IFromRawJson<Filter>
+class AllocationFilterFromRaw : IFromRawJson<AllocationFilter>
 {
     /// <inheritdoc/>
-    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter.FromRawUnchecked(rawData);
+    public AllocationFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AllocationFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(FieldConverter))]
-public enum Field
+[JsonConverter(typeof(AllocationFilterFieldConverter))]
+public enum AllocationFilterField
 {
     PriceID,
     ItemID,
@@ -226,9 +230,9 @@ public enum Field
     PricingUnitID,
 }
 
-sealed class FieldConverter : JsonConverter<Field>
+sealed class AllocationFilterFieldConverter : JsonConverter<AllocationFilterField>
 {
-    public override Field Read(
+    public override AllocationFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -236,26 +240,30 @@ sealed class FieldConverter : JsonConverter<Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Field.PriceID,
-            "item_id" => Field.ItemID,
-            "price_type" => Field.PriceType,
-            "currency" => Field.Currency,
-            "pricing_unit_id" => Field.PricingUnitID,
-            _ => (Field)(-1),
+            "price_id" => AllocationFilterField.PriceID,
+            "item_id" => AllocationFilterField.ItemID,
+            "price_type" => AllocationFilterField.PriceType,
+            "currency" => AllocationFilterField.Currency,
+            "pricing_unit_id" => AllocationFilterField.PricingUnitID,
+            _ => (AllocationFilterField)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        AllocationFilterField value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Field.PriceID => "price_id",
-                Field.ItemID => "item_id",
-                Field.PriceType => "price_type",
-                Field.Currency => "currency",
-                Field.PricingUnitID => "pricing_unit_id",
+                AllocationFilterField.PriceID => "price_id",
+                AllocationFilterField.ItemID => "item_id",
+                AllocationFilterField.PriceType => "price_type",
+                AllocationFilterField.Currency => "currency",
+                AllocationFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -268,16 +276,16 @@ sealed class FieldConverter : JsonConverter<Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(OperatorConverter))]
-public enum Operator
+[JsonConverter(typeof(AllocationFilterOperatorConverter))]
+public enum AllocationFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorConverter : JsonConverter<Operator>
+sealed class AllocationFilterOperatorConverter : JsonConverter<AllocationFilterOperator>
 {
-    public override Operator Read(
+    public override AllocationFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -285,20 +293,24 @@ sealed class OperatorConverter : JsonConverter<Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Operator.Includes,
-            "excludes" => Operator.Excludes,
-            _ => (Operator)(-1),
+            "includes" => AllocationFilterOperator.Includes,
+            "excludes" => AllocationFilterOperator.Excludes,
+            _ => (AllocationFilterOperator)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        AllocationFilterOperator value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Operator.Includes => "includes",
-                Operator.Excludes => "excludes",
+                AllocationFilterOperator.Includes => "includes",
+                AllocationFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

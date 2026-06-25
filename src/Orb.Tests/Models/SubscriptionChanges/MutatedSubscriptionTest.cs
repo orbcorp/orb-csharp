@@ -4,9 +4,9 @@ using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers;
-using Orb.Models.Plans;
 using Orb.Models.SubscriptionChanges;
 using Models = Orb.Models;
+using Plans = Orb.Models.Plans;
 
 namespace Orb.Tests.Models.SubscriptionChanges;
 
@@ -336,7 +336,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -414,8 +414,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -502,8 +502,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -569,8 +573,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -922,8 +926,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -1366,8 +1371,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -1771,7 +1777,7 @@ public class MutatedSubscriptionTest : TestBase
         string expectedName = "name";
         long expectedNetTerms = 0;
         Models::SubscriptionChangeMinified expectedPendingSubscriptionChange = new("id");
-        Plan expectedPlan = new()
+        Plans::Plan expectedPlan = new()
         {
             ID = "id",
             Adjustments =
@@ -1884,7 +1890,7 @@ public class MutatedSubscriptionTest : TestBase
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                    DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIds = ["string"],
@@ -1962,8 +1968,8 @@ public class MutatedSubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2050,8 +2056,8 @@ public class MutatedSubscriptionTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Name = "name",
             },
-            Status = PlanStatus.Active,
-            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+            Status = Plans::PlanStatus.Active,
+            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = Plans::TrialPeriodUnit.Days },
             Version = 0,
         };
         List<Models::PriceInterval> expectedPriceIntervals =
@@ -2115,8 +2121,8 @@ public class MutatedSubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2463,8 +2469,8 @@ public class MutatedSubscriptionTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2887,8 +2893,8 @@ public class MutatedSubscriptionTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3455,7 +3461,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -3533,8 +3539,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3621,8 +3627,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -3688,8 +3698,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -4041,8 +4051,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -4485,8 +4496,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -5013,7 +5025,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -5091,8 +5103,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5179,8 +5191,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -5246,8 +5262,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5599,8 +5615,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -6043,8 +6060,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -6455,7 +6473,7 @@ public class MutatedSubscriptionTest : TestBase
         string expectedName = "name";
         long expectedNetTerms = 0;
         Models::SubscriptionChangeMinified expectedPendingSubscriptionChange = new("id");
-        Plan expectedPlan = new()
+        Plans::Plan expectedPlan = new()
         {
             ID = "id",
             Adjustments =
@@ -6568,7 +6586,7 @@ public class MutatedSubscriptionTest : TestBase
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                    DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIds = ["string"],
@@ -6646,8 +6664,8 @@ public class MutatedSubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -6734,8 +6752,8 @@ public class MutatedSubscriptionTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Name = "name",
             },
-            Status = PlanStatus.Active,
-            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+            Status = Plans::PlanStatus.Active,
+            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = Plans::TrialPeriodUnit.Days },
             Version = 0,
         };
         List<Models::PriceInterval> expectedPriceIntervals =
@@ -6799,8 +6817,8 @@ public class MutatedSubscriptionTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -7147,8 +7165,8 @@ public class MutatedSubscriptionTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -7571,8 +7589,8 @@ public class MutatedSubscriptionTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -8148,7 +8166,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -8226,8 +8244,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -8314,8 +8332,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -8381,8 +8403,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -8734,8 +8756,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -9178,8 +9201,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -9700,7 +9724,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -9778,8 +9802,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -9866,8 +9890,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -9933,8 +9961,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -10361,7 +10389,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -10439,8 +10467,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -10527,8 +10555,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -10594,8 +10626,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -11021,7 +11053,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -11099,8 +11131,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -11187,8 +11219,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -11254,8 +11290,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -11684,7 +11720,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -11762,8 +11798,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -11850,8 +11886,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -11917,8 +11957,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -12346,7 +12386,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -12424,8 +12464,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -12512,8 +12552,12 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = PlanStatus.Active,
-                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
+                Status = Plans::PlanStatus.Active,
+                TrialConfig = new()
+                {
+                    TrialPeriod = 0,
+                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                },
                 Version = 0,
             },
             PriceIntervals =
@@ -12579,8 +12623,8 @@ public class MutatedSubscriptionTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -12932,8 +12976,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -13376,8 +13421,9 @@ public class MutatedSubscriptionTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Field.PriceID,
-                                                Operator = Models::Operator.Includes,
+                                                Field = Models::AllocationFilterField.PriceID,
+                                                Operator =
+                                                    Models::AllocationFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -13649,6 +13695,36 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageValidationWorks()
+    {
+        DiscountInterval value = new TieredPercentage()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void AmountSerializationRoundtripWorks()
     {
         DiscountInterval value = new Models::AmountDiscountInterval()
@@ -13733,6 +13809,658 @@ public class DiscountIntervalTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredPercentageSerializationRoundtripWorks()
+    {
+        DiscountInterval value = new TieredPercentage()
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TieredPercentageTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("tiered_percentage");
+        DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Filter> expectedFilters =
+        [
+            new()
+            {
+                Field = Field.PriceID,
+                Operator = Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Tier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(
+            expectedAppliesToPriceIntervalIds.Count,
+            model.AppliesToPriceIntervalIds.Count
+        );
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIntervalIds[i], model.AppliesToPriceIntervalIds[i]);
+        }
+        Assert.True(JsonElement.DeepEquals(expectedDiscountType, model.DiscountType));
+        Assert.Equal(expectedEndDate, model.EndDate);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedStartDate, model.StartDate);
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPercentage>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TieredPercentage>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
+        JsonElement expectedDiscountType = JsonSerializer.SerializeToElement("tiered_percentage");
+        DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Filter> expectedFilters =
+        [
+            new()
+            {
+                Field = Field.PriceID,
+                Operator = Operator.Includes,
+                Values = ["string"],
+            },
+        ];
+        DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Tier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(
+            expectedAppliesToPriceIntervalIds.Count,
+            deserialized.AppliesToPriceIntervalIds.Count
+        );
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
+        {
+            Assert.Equal(
+                expectedAppliesToPriceIntervalIds[i],
+                deserialized.AppliesToPriceIntervalIds[i]
+            );
+        }
+        Assert.True(JsonElement.DeepEquals(expectedDiscountType, deserialized.DiscountType));
+        Assert.Equal(expectedEndDate, deserialized.EndDate);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedStartDate, deserialized.StartDate);
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredPercentage
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Field.PriceID,
+                    Operator = Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        TieredPercentage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class FilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, Field> expectedField = Field.PriceID;
+        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Filter>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Filter>(element, ModelBase.SerializerOptions);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Field> expectedField = Field.PriceID;
+        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Filter
+        {
+            Field = Field.PriceID,
+            Operator = Operator.Includes,
+            Values = ["string"],
+        };
+
+        Filter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class FieldTest : TestBase
+{
+    [Theory]
+    [InlineData(Field.PriceID)]
+    [InlineData(Field.ItemID)]
+    [InlineData(Field.PriceType)]
+    [InlineData(Field.Currency)]
+    [InlineData(Field.PricingUnitID)]
+    public void Validation_Works(Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Field> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Field.PriceID)]
+    [InlineData(Field.ItemID)]
+    [InlineData(Field.PriceType)]
+    [InlineData(Field.Currency)]
+    [InlineData(Field.PricingUnitID)]
+    public void SerializationRoundtrip_Works(Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Field> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class OperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(Operator.Includes)]
+    [InlineData(Operator.Excludes)]
+    public void Validation_Works(Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Operator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Operator.Includes)]
+    [InlineData(Operator.Excludes)]
+    public void SerializationRoundtrip_Works(Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Operator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Tier>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Tier>(element, ModelBase.SerializerOptions);
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Tier { LowerBound = 0, Percentage = 0 };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Tier { LowerBound = 0, Percentage = 0 };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Tier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        Tier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

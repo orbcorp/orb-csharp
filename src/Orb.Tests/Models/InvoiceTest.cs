@@ -178,8 +178,8 @@ public class InvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -523,8 +523,8 @@ public class InvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -942,8 +942,8 @@ public class InvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1294,8 +1294,8 @@ public class InvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1646,8 +1646,8 @@ public class InvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Field.PriceID,
-                                Operator = Operator.Includes,
+                                Field = AllocationFilterField.PriceID,
+                                Operator = AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2065,8 +2065,8 @@ public class InvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2414,8 +2414,8 @@ public class InvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Field.PriceID,
-                                    Operator = Operator.Includes,
+                                    Field = AllocationFilterField.PriceID,
+                                    Operator = AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3257,8 +3257,8 @@ public class InvoiceLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3434,8 +3434,8 @@ public class InvoiceLineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3647,8 +3647,8 @@ public class InvoiceLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3838,8 +3838,8 @@ public class InvoiceLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4022,8 +4022,8 @@ public class InvoiceLineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4235,8 +4235,8 @@ public class InvoiceLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4420,8 +4420,8 @@ public class InvoiceLineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4616,6 +4616,40 @@ public class InvoiceLineItemAdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        InvoiceLineItemAdjustment value = new InvoiceLineItemAdjustmentTieredPercentageDiscount()
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void MonetaryMinimumValidationWorks()
     {
         InvoiceLineItemAdjustment value = new MonetaryMinimumAdjustment()
@@ -4765,6 +4799,46 @@ public class InvoiceLineItemAdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        InvoiceLineItemAdjustment value = new InvoiceLineItemAdjustmentTieredPercentageDiscount()
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
     public void MonetaryMinimumSerializationRoundtripWorks()
     {
         InvoiceLineItemAdjustment value = new MonetaryMinimumAdjustment()
@@ -4827,6 +4901,693 @@ public class InvoiceLineItemAdjustmentTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class InvoiceLineItemAdjustmentTieredPercentageDiscountTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<InvoiceLineItemAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedReason, model.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, model.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscount>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscount>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<InvoiceLineItemAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, deserialized.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        InvoiceLineItemAdjustmentTieredPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<
+            string,
+            InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+        > expectedField = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<
+            string,
+            InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+        > expectedField = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void Validation_Works(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void Validation_Works(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class InvoiceLineItemAdjustmentTieredPercentageDiscountTierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new InvoiceLineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

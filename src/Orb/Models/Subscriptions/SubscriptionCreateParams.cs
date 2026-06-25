@@ -985,7 +985,8 @@ public record class Adjustment : ModelBase
                 newUsageDiscount: (x) => x.Currency,
                 newAmountDiscount: (x) => x.Currency,
                 newMinimum: (x) => x.Currency,
-                newMaximum: (x) => x.Currency
+                newMaximum: (x) => x.Currency,
+                tieredPercentageDiscount: (x) => x.Currency
             );
         }
     }
@@ -999,7 +1000,8 @@ public record class Adjustment : ModelBase
                 newUsageDiscount: (x) => x.IsInvoiceLevel,
                 newAmountDiscount: (x) => x.IsInvoiceLevel,
                 newMinimum: (x) => x.IsInvoiceLevel,
-                newMaximum: (x) => x.IsInvoiceLevel
+                newMaximum: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel
             );
         }
     }
@@ -1029,6 +1031,12 @@ public record class Adjustment : ModelBase
     }
 
     public Adjustment(NewMaximum value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Adjustment(TieredPercentageDiscount value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1145,6 +1153,29 @@ public record class Adjustment : ModelBase
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="TieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `TieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)] out TieredPercentageDiscount? value
+    )
+    {
+        value = this.Value as TieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -1162,7 +1193,8 @@ public record class Adjustment : ModelBase
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (TieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1172,7 +1204,8 @@ public record class Adjustment : ModelBase
         System::Action<NewUsageDiscount> newUsageDiscount,
         System::Action<NewAmountDiscount> newAmountDiscount,
         System::Action<NewMinimum> newMinimum,
-        System::Action<NewMaximum> newMaximum
+        System::Action<NewMaximum> newMaximum,
+        System::Action<TieredPercentageDiscount> tieredPercentageDiscount
     )
     {
         switch (this.Value)
@@ -1191,6 +1224,9 @@ public record class Adjustment : ModelBase
                 break;
             case NewMaximum value:
                 newMaximum(value);
+                break;
+            case TieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             default:
                 throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
@@ -1216,7 +1252,8 @@ public record class Adjustment : ModelBase
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (TieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1226,7 +1263,8 @@ public record class Adjustment : ModelBase
         System::Func<NewUsageDiscount, T> newUsageDiscount,
         System::Func<NewAmountDiscount, T> newAmountDiscount,
         System::Func<NewMinimum, T> newMinimum,
-        System::Func<NewMaximum, T> newMaximum
+        System::Func<NewMaximum, T> newMaximum,
+        System::Func<TieredPercentageDiscount, T> tieredPercentageDiscount
     )
     {
         return this.Value switch
@@ -1236,6 +1274,7 @@ public record class Adjustment : ModelBase
             NewAmountDiscount value => newAmountDiscount(value),
             NewMinimum value => newMinimum(value),
             NewMaximum value => newMaximum(value),
+            TieredPercentageDiscount value => tieredPercentageDiscount(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
@@ -1249,6 +1288,8 @@ public record class Adjustment : ModelBase
     public static implicit operator Adjustment(NewMinimum value) => new(value);
 
     public static implicit operator Adjustment(NewMaximum value) => new(value);
+
+    public static implicit operator Adjustment(TieredPercentageDiscount value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1271,7 +1312,8 @@ public record class Adjustment : ModelBase
             (newUsageDiscount) => newUsageDiscount.Validate(),
             (newAmountDiscount) => newAmountDiscount.Validate(),
             (newMinimum) => newMinimum.Validate(),
-            (newMaximum) => newMaximum.Validate()
+            (newMaximum) => newMaximum.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate()
         );
     }
 
@@ -1300,6 +1342,7 @@ public record class Adjustment : ModelBase
             NewAmountDiscount _ => 2,
             NewMinimum _ => 3,
             NewMaximum _ => 4,
+            TieredPercentageDiscount _ => 5,
             _ => -1,
         };
     }
@@ -1420,6 +1463,26 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
 
                 return new(element);
             }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredPercentageDiscount>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             default:
             {
                 return new Adjustment(element);
@@ -1434,6 +1497,604 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
     )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<TieredPercentageDiscount, TieredPercentageDiscountFromRaw>)
+)]
+public sealed record class TieredPercentageDiscount : JsonModel
+{
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    public required IReadOnlyList<Tier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Tier>>("tiers");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Tier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// If set, the adjustment will apply to every price on the subscription.
+    /// </summary>
+    public ApiEnum<bool, AppliesToAll>? AppliesToAll
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<bool, AppliesToAll>>("applies_to_all");
+        }
+        init { this._rawData.Set("applies_to_all", value); }
+    }
+
+    /// <summary>
+    /// The set of item IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToItemIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_item_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The set of price IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices in the specified currency will have the adjustment applied.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// A list of filters that determine which prices this adjustment will apply to.
+    /// </summary>
+    public IReadOnlyList<Filter>? Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Filter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// When false, this adjustment will be applied to a single price. Otherwise,
+    /// it will be applied at the invoice level, possibly to multiple prices.
+    /// </summary>
+    public bool? IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("is_invoice_level", value);
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices of the specified type will have the adjustment applied.
+    /// </summary>
+    public ApiEnum<string, PriceType>? PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, PriceType>>("price_type");
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+        this.AppliesToAll?.Validate();
+        _ = this.AppliesToItemIds;
+        _ = this.AppliesToPriceIds;
+        _ = this.Currency;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        this.PriceType?.Validate();
+    }
+
+    public TieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredPercentageDiscount(TieredPercentageDiscount tieredPercentageDiscount)
+        : base(tieredPercentageDiscount) { }
+#pragma warning restore CS8618
+
+    public TieredPercentageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredPercentageDiscount(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static TieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public TieredPercentageDiscount(IReadOnlyList<Tier> tiers)
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class TieredPercentageDiscountFromRaw : IFromRawJson<TieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public TieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPercentageDiscount.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<Tier, TierFromRaw>))]
+public sealed record class Tier : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (0-1) discounted from spend in this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend; null for the final open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public Tier() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Tier(Tier tier)
+        : base(tier) { }
+#pragma warning restore CS8618
+
+    public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Tier(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TierFromRaw.FromRawUnchecked"/>
+    public static Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TierFromRaw : IFromRawJson<Tier>
+{
+    /// <inheritdoc/>
+    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// If set, the adjustment will apply to every price on the subscription.
+/// </summary>
+[JsonConverter(typeof(AppliesToAllConverter))]
+public enum AppliesToAll
+{
+    True,
+}
+
+sealed class AppliesToAllConverter : JsonConverter<AppliesToAll>
+{
+    public override AppliesToAll Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<bool>(ref reader, options) switch
+        {
+            true => AppliesToAll.True,
+            _ => (AppliesToAll)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AppliesToAll value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AppliesToAll.True => true,
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
+public sealed record class Filter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, Field> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, Operator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public Filter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Filter(Filter filter)
+        : base(filter) { }
+#pragma warning restore CS8618
+
+    public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Filter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
+    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class FilterFromRaw : IFromRawJson<Filter>
+{
+    /// <inheritdoc/>
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(FieldConverter))]
+public enum Field
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class FieldConverter : JsonConverter<Field>
+{
+    public override Field Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => Field.PriceID,
+            "item_id" => Field.ItemID,
+            "price_type" => Field.PriceType,
+            "currency" => Field.Currency,
+            "pricing_unit_id" => Field.PricingUnitID,
+            _ => (Field)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Field.PriceID => "price_id",
+                Field.ItemID => "item_id",
+                Field.PriceType => "price_type",
+                Field.Currency => "currency",
+                Field.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(OperatorConverter))]
+public enum Operator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class OperatorConverter : JsonConverter<Operator>
+{
+    public override Operator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// If set, only prices of the specified type will have the adjustment applied.
+/// </summary>
+[JsonConverter(typeof(PriceTypeConverter))]
+public enum PriceType
+{
+    Usage,
+    FixedInAdvance,
+    FixedInArrears,
+    Fixed,
+    InArrears,
+}
+
+sealed class PriceTypeConverter : JsonConverter<PriceType>
+{
+    public override PriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" => PriceType.Usage,
+            "fixed_in_advance" => PriceType.FixedInAdvance,
+            "fixed_in_arrears" => PriceType.FixedInArrears,
+            "fixed" => PriceType.Fixed,
+            "in_arrears" => PriceType.InArrears,
+            _ => (PriceType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PriceType.Usage => "usage",
+                PriceType.FixedInAdvance => "fixed_in_advance",
+                PriceType.FixedInArrears => "fixed_in_arrears",
+                PriceType.Fixed => "fixed",
+                PriceType.InArrears => "in_arrears",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
 
@@ -4937,16 +5598,18 @@ public sealed record class BulkWithFiltersConfig : JsonModel
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<Filter> Filters
+    public required IReadOnlyList<BulkWithFiltersConfigFilter> Filters
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<Filter>>("filters");
+            return this._rawData.GetNotNullStruct<ImmutableArray<BulkWithFiltersConfigFilter>>(
+                "filters"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<Filter>>(
+            this._rawData.Set<ImmutableArray<BulkWithFiltersConfigFilter>>(
                 "filters",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -4956,16 +5619,18 @@ public sealed record class BulkWithFiltersConfig : JsonModel
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<Tier> Tiers
+    public required IReadOnlyList<BulkWithFiltersConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<Tier>>("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<BulkWithFiltersConfigTier>>(
+                "tiers"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<Tier>>(
+            this._rawData.Set<ImmutableArray<BulkWithFiltersConfigTier>>(
                 "tiers",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -5026,8 +5691,10 @@ class BulkWithFiltersConfigFromRaw : IFromRawJson<BulkWithFiltersConfig>
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
-public sealed record class Filter : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<BulkWithFiltersConfigFilter, BulkWithFiltersConfigFilterFromRaw>)
+)]
+public sealed record class BulkWithFiltersConfigFilter : JsonModel
 {
     /// <summary>
     /// Event property key to filter on
@@ -5062,46 +5729,51 @@ public sealed record class Filter : JsonModel
         _ = this.PropertyValue;
     }
 
-    public Filter() { }
+    public BulkWithFiltersConfigFilter() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Filter(Filter filter)
-        : base(filter) { }
+    public BulkWithFiltersConfigFilter(BulkWithFiltersConfigFilter bulkWithFiltersConfigFilter)
+        : base(bulkWithFiltersConfigFilter) { }
 #pragma warning restore CS8618
 
-    public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithFiltersConfigFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithFiltersConfigFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
-    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="BulkWithFiltersConfigFilterFromRaw.FromRawUnchecked"/>
+    public static BulkWithFiltersConfigFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FilterFromRaw : IFromRawJson<Filter>
+class BulkWithFiltersConfigFilterFromRaw : IFromRawJson<BulkWithFiltersConfigFilter>
 {
     /// <inheritdoc/>
-    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter.FromRawUnchecked(rawData);
+    public BulkWithFiltersConfigFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithFiltersConfigFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Tier, TierFromRaw>))]
-public sealed record class Tier : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<BulkWithFiltersConfigTier, BulkWithFiltersConfigTierFromRaw>)
+)]
+public sealed record class BulkWithFiltersConfigTier : JsonModel
 {
     /// <summary>
     /// Amount per unit
@@ -5136,46 +5808,49 @@ public sealed record class Tier : JsonModel
         _ = this.TierLowerBound;
     }
 
-    public Tier() { }
+    public BulkWithFiltersConfigTier() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Tier(Tier tier)
-        : base(tier) { }
+    public BulkWithFiltersConfigTier(BulkWithFiltersConfigTier bulkWithFiltersConfigTier)
+        : base(bulkWithFiltersConfigTier) { }
 #pragma warning restore CS8618
 
-    public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithFiltersConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithFiltersConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TierFromRaw.FromRawUnchecked"/>
-    public static Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="BulkWithFiltersConfigTierFromRaw.FromRawUnchecked"/>
+    public static BulkWithFiltersConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Tier(string unitAmount)
+    public BulkWithFiltersConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class TierFromRaw : IFromRawJson<Tier>
+class BulkWithFiltersConfigTierFromRaw : IFromRawJson<BulkWithFiltersConfigTier>
 {
     /// <inheritdoc/>
-    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier.FromRawUnchecked(rawData);
+    public BulkWithFiltersConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithFiltersConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -12748,7 +13423,8 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
                 newUsageDiscount: (x) => x.Currency,
                 newAmountDiscount: (x) => x.Currency,
                 newMinimum: (x) => x.Currency,
-                newMaximum: (x) => x.Currency
+                newMaximum: (x) => x.Currency,
+                tieredPercentageDiscount: (x) => x.Currency
             );
         }
     }
@@ -12762,7 +13438,8 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
                 newUsageDiscount: (x) => x.IsInvoiceLevel,
                 newAmountDiscount: (x) => x.IsInvoiceLevel,
                 newMinimum: (x) => x.IsInvoiceLevel,
-                newMaximum: (x) => x.IsInvoiceLevel
+                newMaximum: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel
             );
         }
     }
@@ -12792,6 +13469,15 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
     }
 
     public ReplaceAdjustmentAdjustment(NewMaximum value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public ReplaceAdjustmentAdjustment(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscount value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
@@ -12908,6 +13594,29 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ReplaceAdjustmentAdjustmentTieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `ReplaceAdjustmentAdjustmentTieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)] out ReplaceAdjustmentAdjustmentTieredPercentageDiscount? value
+    )
+    {
+        value = this.Value as ReplaceAdjustmentAdjustmentTieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -12925,7 +13634,8 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (ReplaceAdjustmentAdjustmentTieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -12935,7 +13645,8 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
         System::Action<NewUsageDiscount> newUsageDiscount,
         System::Action<NewAmountDiscount> newAmountDiscount,
         System::Action<NewMinimum> newMinimum,
-        System::Action<NewMaximum> newMaximum
+        System::Action<NewMaximum> newMaximum,
+        System::Action<ReplaceAdjustmentAdjustmentTieredPercentageDiscount> tieredPercentageDiscount
     )
     {
         switch (this.Value)
@@ -12954,6 +13665,9 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
                 break;
             case NewMaximum value:
                 newMaximum(value);
+                break;
+            case ReplaceAdjustmentAdjustmentTieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -12981,7 +13695,8 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
     ///     (NewUsageDiscount value) =&gt; {...},
     ///     (NewAmountDiscount value) =&gt; {...},
     ///     (NewMinimum value) =&gt; {...},
-    ///     (NewMaximum value) =&gt; {...}
+    ///     (NewMaximum value) =&gt; {...},
+    ///     (ReplaceAdjustmentAdjustmentTieredPercentageDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -12991,7 +13706,11 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
         System::Func<NewUsageDiscount, T> newUsageDiscount,
         System::Func<NewAmountDiscount, T> newAmountDiscount,
         System::Func<NewMinimum, T> newMinimum,
-        System::Func<NewMaximum, T> newMaximum
+        System::Func<NewMaximum, T> newMaximum,
+        System::Func<
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscount,
+            T
+        > tieredPercentageDiscount
     )
     {
         return this.Value switch
@@ -13001,6 +13720,9 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
             NewAmountDiscount value => newAmountDiscount(value),
             NewMinimum value => newMinimum(value),
             NewMaximum value => newMaximum(value),
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscount value => tieredPercentageDiscount(
+                value
+            ),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of ReplaceAdjustmentAdjustment"
             ),
@@ -13019,6 +13741,10 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
     public static implicit operator ReplaceAdjustmentAdjustment(NewMinimum value) => new(value);
 
     public static implicit operator ReplaceAdjustmentAdjustment(NewMaximum value) => new(value);
+
+    public static implicit operator ReplaceAdjustmentAdjustment(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscount value
+    ) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -13043,7 +13769,8 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
             (newUsageDiscount) => newUsageDiscount.Validate(),
             (newAmountDiscount) => newAmountDiscount.Validate(),
             (newMinimum) => newMinimum.Validate(),
-            (newMaximum) => newMaximum.Validate()
+            (newMaximum) => newMaximum.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate()
         );
     }
 
@@ -13072,6 +13799,7 @@ public record class ReplaceAdjustmentAdjustment : ModelBase
             NewAmountDiscount _ => 2,
             NewMinimum _ => 3,
             NewMaximum _ => 4,
+            ReplaceAdjustmentAdjustmentTieredPercentageDiscount _ => 5,
             _ => -1,
         };
     }
@@ -13192,6 +13920,27 @@ sealed class ReplaceAdjustmentAdjustmentConverter : JsonConverter<ReplaceAdjustm
 
                 return new(element);
             }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<ReplaceAdjustmentAdjustmentTieredPercentageDiscount>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             default:
             {
                 return new ReplaceAdjustmentAdjustment(element);
@@ -13206,6 +13955,693 @@ sealed class ReplaceAdjustmentAdjustmentConverter : JsonConverter<ReplaceAdjustm
     )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscount,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFromRaw
+    >)
+)]
+public sealed record class ReplaceAdjustmentAdjustmentTieredPercentageDiscount : JsonModel
+{
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    public required IReadOnlyList<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>
+            >("tiers");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>
+            >("tiers", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// If set, the adjustment will apply to every price on the subscription.
+    /// </summary>
+    public ApiEnum<
+        bool,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+    >? AppliesToAll
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<bool, ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+            >("applies_to_all");
+        }
+        init { this._rawData.Set("applies_to_all", value); }
+    }
+
+    /// <summary>
+    /// The set of item IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToItemIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_item_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The set of price IDs to which this adjustment applies.
+    /// </summary>
+    public IReadOnlyList<string>? AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices in the specified currency will have the adjustment applied.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// A list of filters that determine which prices this adjustment will apply to.
+    /// </summary>
+    public IReadOnlyList<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>? Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// When false, this adjustment will be applied to a single price. Otherwise,
+    /// it will be applied at the invoice level, possibly to multiple prices.
+    /// </summary>
+    public bool? IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_invoice_level");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("is_invoice_level", value);
+        }
+    }
+
+    /// <summary>
+    /// If set, only prices of the specified type will have the adjustment applied.
+    /// </summary>
+    public ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>? PriceType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+            >("price_type");
+        }
+        init { this._rawData.Set("price_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+        this.AppliesToAll?.Validate();
+        _ = this.AppliesToItemIds;
+        _ = this.AppliesToPriceIds;
+        _ = this.Currency;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        this.PriceType?.Validate();
+    }
+
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscount replaceAdjustmentAdjustmentTieredPercentageDiscount
+    )
+        : base(replaceAdjustmentAdjustmentTieredPercentageDiscount) { }
+#pragma warning restore CS8618
+
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ReplaceAdjustmentAdjustmentTieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static ReplaceAdjustmentAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscount(
+        IReadOnlyList<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> tiers
+    )
+        : this()
+    {
+        this.Tiers = tiers;
+    }
+}
+
+class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFromRaw
+    : IFromRawJson<ReplaceAdjustmentAdjustmentTieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplaceAdjustmentAdjustmentTieredPercentageDiscount.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw
+    >)
+)]
+public sealed record class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (0-1) discounted from spend in this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend; null for the final open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier replaceAdjustmentAdjustmentTieredPercentageDiscountTier
+    )
+        : base(replaceAdjustmentAdjustmentTieredPercentageDiscountTier) { }
+#pragma warning restore CS8618
+
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ReplaceAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw.FromRawUnchecked"/>
+    public static ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTierFromRaw
+    : IFromRawJson<ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>
+{
+    /// <inheritdoc/>
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// If set, the adjustment will apply to every price on the subscription.
+/// </summary>
+[JsonConverter(typeof(ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllConverter))]
+public enum ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+{
+    True,
+}
+
+sealed class ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllConverter
+    : JsonConverter<ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll>
+{
+    public override ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<bool>(ref reader, options) switch
+        {
+            true => ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+            _ => (ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True => true,
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw
+    >)
+)]
+public sealed record class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+    > Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+    > Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter replaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+    )
+        : base(replaceAdjustmentAdjustmentTieredPercentageDiscountFilter) { }
+#pragma warning restore CS8618
+
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw.FromRawUnchecked"/>
+    public static ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFromRaw
+    : IFromRawJson<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>
+{
+    /// <inheritdoc/>
+    public ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFieldConverter))]
+public enum ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFieldConverter
+    : JsonConverter<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField>
+{
+    public override ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            "item_id" => ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID,
+            "price_type" =>
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType,
+            "currency" => ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency,
+            "pricing_unit_id" =>
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID,
+            _ => (ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID =>
+                    "price_id",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID => "item_id",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType =>
+                    "price_type",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency =>
+                    "currency",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID =>
+                    "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorConverter))]
+public enum ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorConverter
+    : JsonConverter<ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator>
+{
+    public override ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" =>
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            "excludes" =>
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes,
+            _ => (ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes =>
+                    "includes",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes =>
+                    "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// If set, only prices of the specified type will have the adjustment applied.
+/// </summary>
+[JsonConverter(typeof(ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceTypeConverter))]
+public enum ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+{
+    Usage,
+    FixedInAdvance,
+    FixedInArrears,
+    Fixed,
+    InArrears,
+}
+
+sealed class ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceTypeConverter
+    : JsonConverter<ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType>
+{
+    public override ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "usage" => ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            "fixed_in_advance" =>
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance,
+            "fixed_in_arrears" =>
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears,
+            "fixed" => ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed,
+            "in_arrears" => ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears,
+            _ => (ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage => "usage",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance =>
+                    "fixed_in_advance",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears =>
+                    "fixed_in_arrears",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed => "fixed",
+                ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears =>
+                    "in_arrears",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
 

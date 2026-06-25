@@ -1739,6 +1739,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.ID,
                 monetaryAmountDiscount: (x) => x.ID,
                 monetaryPercentageDiscount: (x) => x.ID,
+                tieredPercentageDiscount: (x) => x.ID,
                 monetaryMinimum: (x) => x.ID,
                 monetaryMaximum: (x) => x.ID
             );
@@ -1753,6 +1754,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.Amount,
                 monetaryAmountDiscount: (x) => x.Amount,
                 monetaryPercentageDiscount: (x) => x.Amount,
+                tieredPercentageDiscount: (x) => x.Amount,
                 monetaryMinimum: (x) => x.Amount,
                 monetaryMaximum: (x) => x.Amount
             );
@@ -1767,6 +1769,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.IsInvoiceLevel,
                 monetaryAmountDiscount: (x) => x.IsInvoiceLevel,
                 monetaryPercentageDiscount: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel,
                 monetaryMinimum: (x) => x.IsInvoiceLevel,
                 monetaryMaximum: (x) => x.IsInvoiceLevel
             );
@@ -1781,6 +1784,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.Reason,
                 monetaryAmountDiscount: (x) => x.Reason,
                 monetaryPercentageDiscount: (x) => x.Reason,
+                tieredPercentageDiscount: (x) => x.Reason,
                 monetaryMinimum: (x) => x.Reason,
                 monetaryMaximum: (x) => x.Reason
             );
@@ -1795,6 +1799,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryAmountDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryPercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                tieredPercentageDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryMinimum: (x) => x.ReplacesAdjustmentID,
                 monetaryMaximum: (x) => x.ReplacesAdjustmentID
             );
@@ -1821,6 +1826,15 @@ public record class InvoiceLineItemAdjustment : ModelBase
 
     public InvoiceLineItemAdjustment(
         MonetaryPercentageDiscountAdjustment value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public InvoiceLineItemAdjustment(
+        InvoiceLineItemAdjustmentTieredPercentageDiscount value,
         JsonElement? element = null
     )
     {
@@ -1916,6 +1930,29 @@ public record class InvoiceLineItemAdjustment : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="InvoiceLineItemAdjustmentTieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `InvoiceLineItemAdjustmentTieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)] out InvoiceLineItemAdjustmentTieredPercentageDiscount? value
+    )
+    {
+        value = this.Value as InvoiceLineItemAdjustmentTieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryMinimumAdjustment"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -1973,6 +2010,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (InvoiceLineItemAdjustmentTieredPercentageDiscount value) =&gt; {...},
     ///     (MonetaryMinimumAdjustment value) =&gt; {...},
     ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
@@ -1983,6 +2021,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
         System::Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
         System::Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
         System::Action<MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
+        System::Action<InvoiceLineItemAdjustmentTieredPercentageDiscount> tieredPercentageDiscount,
         System::Action<MonetaryMinimumAdjustment> monetaryMinimum,
         System::Action<MonetaryMaximumAdjustment> monetaryMaximum
     )
@@ -1997,6 +2036,9 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 break;
             case MonetaryPercentageDiscountAdjustment value:
                 monetaryPercentageDiscount(value);
+                break;
+            case InvoiceLineItemAdjustmentTieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             case MonetaryMinimumAdjustment value:
                 monetaryMinimum(value);
@@ -2029,6 +2071,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (InvoiceLineItemAdjustmentTieredPercentageDiscount value) =&gt; {...},
     ///     (MonetaryMinimumAdjustment value) =&gt; {...},
     ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
@@ -2039,6 +2082,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
         System::Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
         System::Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
         System::Func<MonetaryPercentageDiscountAdjustment, T> monetaryPercentageDiscount,
+        System::Func<InvoiceLineItemAdjustmentTieredPercentageDiscount, T> tieredPercentageDiscount,
         System::Func<MonetaryMinimumAdjustment, T> monetaryMinimum,
         System::Func<MonetaryMaximumAdjustment, T> monetaryMaximum
     )
@@ -2048,6 +2092,9 @@ public record class InvoiceLineItemAdjustment : ModelBase
             MonetaryUsageDiscountAdjustment value => monetaryUsageDiscount(value),
             MonetaryAmountDiscountAdjustment value => monetaryAmountDiscount(value),
             MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
+            InvoiceLineItemAdjustmentTieredPercentageDiscount value => tieredPercentageDiscount(
+                value
+            ),
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
             _ => throw new OrbInvalidDataException(
@@ -2066,6 +2113,10 @@ public record class InvoiceLineItemAdjustment : ModelBase
 
     public static implicit operator InvoiceLineItemAdjustment(
         MonetaryPercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        InvoiceLineItemAdjustmentTieredPercentageDiscount value
     ) => new(value);
 
     public static implicit operator InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value) =>
@@ -2096,6 +2147,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
             (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
             (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
             (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate(),
             (monetaryMinimum) => monetaryMinimum.Validate(),
             (monetaryMaximum) => monetaryMaximum.Validate()
         );
@@ -2124,8 +2176,9 @@ public record class InvoiceLineItemAdjustment : ModelBase
             MonetaryUsageDiscountAdjustment _ => 0,
             MonetaryAmountDiscountAdjustment _ => 1,
             MonetaryPercentageDiscountAdjustment _ => 2,
-            MonetaryMinimumAdjustment _ => 3,
-            MonetaryMaximumAdjustment _ => 4,
+            InvoiceLineItemAdjustmentTieredPercentageDiscount _ => 3,
+            MonetaryMinimumAdjustment _ => 4,
+            MonetaryMaximumAdjustment _ => 5,
             _ => -1,
         };
     }
@@ -2213,6 +2266,27 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
 
                 return new(element);
             }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscount>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             case "minimum":
             {
                 try
@@ -2268,6 +2342,563 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceLineItemAdjustmentTieredPercentageDiscount,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFromRaw
+    >)
+)]
+public sealed record class InvoiceLineItemAdjustmentTieredPercentageDiscount : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    /// <summary>
+    /// The value applied by an adjustment.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
+        init { this._rawData.Set("amount", value); }
+    }
+
+    /// <summary>
+    /// The price IDs that this adjustment applies to.
+    /// </summary>
+    [System::Obsolete("deprecated")]
+    public required IReadOnlyList<string> AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The filters that determine which prices to apply this adjustment to.
+    /// </summary>
+    public required IReadOnlyList<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter> Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>
+            >("filters", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// True for adjustments that apply to an entire invoice, false for adjustments
+    /// that apply to only one price.
+    /// </summary>
+    public required bool IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_invoice_level");
+        }
+        init { this._rawData.Set("is_invoice_level", value); }
+    }
+
+    /// <summary>
+    /// The reason for the adjustment.
+    /// </summary>
+    public required string? Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
+        init { this._rawData.Set("reason", value); }
+    }
+
+    /// <summary>
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
+    /// </summary>
+    public required string? ReplacesAdjustmentID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_adjustment_id");
+        }
+        init { this._rawData.Set("replaces_adjustment_id", value); }
+    }
+
+    /// <summary>
+    /// The ordered, contiguous bands of cumulative eligible spend, each discounted
+    /// at its own percentage (progressive fill-a-tier), applied to the prices this
+    /// adjustment covers in a given billing period.
+    /// </summary>
+    public required IReadOnlyList<InvoiceLineItemAdjustmentTieredPercentageDiscountTier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>
+            >("tiers");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>
+            >("tiers", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Amount;
+        _ = this.AppliesToPriceIds;
+        foreach (var item in this.Filters)
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        _ = this.Reason;
+        _ = this.ReplacesAdjustmentID;
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+    }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount(
+        InvoiceLineItemAdjustmentTieredPercentageDiscount invoiceLineItemAdjustmentTieredPercentageDiscount
+    )
+        : base(invoiceLineItemAdjustmentTieredPercentageDiscount) { }
+#pragma warning restore CS8618
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    [SetsRequiredMembers]
+    InvoiceLineItemAdjustmentTieredPercentageDiscount(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemAdjustmentTieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItemAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemAdjustmentTieredPercentageDiscountFromRaw
+    : IFromRawJson<InvoiceLineItemAdjustmentTieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemAdjustmentTieredPercentageDiscount.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilter,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFromRaw
+    >)
+)]
+public sealed record class InvoiceLineItemAdjustmentTieredPercentageDiscountFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+    > Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+    > Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilter invoiceLineItemAdjustmentTieredPercentageDiscountFilter
+    )
+        : base(invoiceLineItemAdjustmentTieredPercentageDiscountFilter) { }
+#pragma warning restore CS8618
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceLineItemAdjustmentTieredPercentageDiscountFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItemAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFromRaw
+    : IFromRawJson<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemAdjustmentTieredPercentageDiscountFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFieldConverter))]
+public enum InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFieldConverter
+    : JsonConverter<InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+{
+    public override InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            "item_id" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.ItemID,
+            "price_type" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceType,
+            "currency" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.Currency,
+            "pricing_unit_id" =>
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID,
+            _ => (InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID => "price_id",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.ItemID => "item_id",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceType =>
+                    "price_type",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.Currency => "currency",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID =>
+                    "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperatorConverter))]
+public enum InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperatorConverter
+    : JsonConverter<InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+{
+    public override InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            "excludes" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes,
+            _ => (InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes =>
+                    "includes",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes =>
+                    "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// One band of a tiered percentage discount. Bounds are denominated in the discount's
+/// currency. `lower_bound` is the exclusive start of the band and `upper_bound`
+/// is the inclusive end; `upper_bound` is null only for the open-ended final tier.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTier,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTierFromRaw
+    >)
+)]
+public sealed record class InvoiceLineItemAdjustmentTieredPercentageDiscountTier : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (between 0 and 1) discounted from spend that falls within
+    /// this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend for this tier; null for the final
+    /// open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTier invoiceLineItemAdjustmentTieredPercentageDiscountTier
+    )
+        : base(invoiceLineItemAdjustmentTieredPercentageDiscountTier) { }
+#pragma warning restore CS8618
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceLineItemAdjustmentTieredPercentageDiscountTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemAdjustmentTieredPercentageDiscountTierFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItemAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemAdjustmentTieredPercentageDiscountTierFromRaw
+    : IFromRawJson<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemAdjustmentTieredPercentageDiscountTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(InvoiceLineItemSubLineItemConverter))]
