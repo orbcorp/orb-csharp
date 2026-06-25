@@ -24,8 +24,8 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+                    Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39,16 +39,16 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
         string expectedCurrency = "currency";
         List<string> expectedGroupingKeys = ["string"];
         string expectedMetricID = "metric_id";
-        List<PriceFilter> expectedPriceFilters =
+        List<AlertCreateForSubscriptionParamsPriceFilter> expectedPriceFilters =
         [
             new()
             {
-                Field = Field.PriceID,
-                Operator = Operator.Includes,
+                Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+                Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
-        List<ThresholdOverride> expectedThresholdOverrides =
+        List<AlertCreateForSubscriptionParamsThresholdOverride> expectedThresholdOverrides =
         [
             new() { GroupValues = ["string"], Thresholds = [new(0)] },
         ];
@@ -167,8 +167,8 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+                    Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -235,20 +235,22 @@ public class AlertCreateForSubscriptionParamsTypeTest : TestBase
     }
 }
 
-public class PriceFilterTest : TestBase
+public class AlertCreateForSubscriptionParamsPriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceFilter
+        var model = new AlertCreateForSubscriptionParamsPriceFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+            Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Field> expectedField = Field.PriceID;
-        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField> expectedField =
+            AlertCreateForSubscriptionParamsPriceFilterField.PriceID;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator> expectedOperator =
+            AlertCreateForSubscriptionParamsPriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -263,15 +265,15 @@ public class PriceFilterTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceFilter
+        var model = new AlertCreateForSubscriptionParamsPriceFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+            Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceFilter>(
+        var deserialized = JsonSerializer.Deserialize<AlertCreateForSubscriptionParamsPriceFilter>(
             json,
             ModelBase.SerializerOptions
         );
@@ -282,22 +284,24 @@ public class PriceFilterTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceFilter
+        var model = new AlertCreateForSubscriptionParamsPriceFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+            Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PriceFilter>(
+        var deserialized = JsonSerializer.Deserialize<AlertCreateForSubscriptionParamsPriceFilter>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Field> expectedField = Field.PriceID;
-        ApiEnum<string, Operator> expectedOperator = Operator.Includes;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField> expectedField =
+            AlertCreateForSubscriptionParamsPriceFilterField.PriceID;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator> expectedOperator =
+            AlertCreateForSubscriptionParamsPriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -312,10 +316,10 @@ public class PriceFilterTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceFilter
+        var model = new AlertCreateForSubscriptionParamsPriceFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+            Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -325,62 +329,62 @@ public class PriceFilterTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new PriceFilter
+        var model = new AlertCreateForSubscriptionParamsPriceFilter
         {
-            Field = Field.PriceID,
-            Operator = Operator.Includes,
+            Field = AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+            Operator = AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        PriceFilter copied = new(model);
+        AlertCreateForSubscriptionParamsPriceFilter copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class FieldTest : TestBase
+public class AlertCreateForSubscriptionParamsPriceFilterFieldTest : TestBase
 {
     [Theory]
-    [InlineData(Field.PriceID)]
-    [InlineData(Field.ItemID)]
-    [InlineData(Field.PriceType)]
-    [InlineData(Field.Currency)]
-    [InlineData(Field.PricingUnitID)]
-    public void Validation_Works(Field rawValue)
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.PriceID)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.ItemID)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.PriceType)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.Currency)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.PricingUnitID)]
+    public void Validation_Works(AlertCreateForSubscriptionParamsPriceFilterField rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Field> value = rawValue;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
     [Theory]
-    [InlineData(Field.PriceID)]
-    [InlineData(Field.ItemID)]
-    [InlineData(Field.PriceType)]
-    [InlineData(Field.Currency)]
-    [InlineData(Field.PricingUnitID)]
-    public void SerializationRoundtrip_Works(Field rawValue)
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.PriceID)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.ItemID)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.PriceType)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.Currency)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        AlertCreateForSubscriptionParamsPriceFilterField rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Field> value = rawValue;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -388,57 +392,55 @@ public class FieldTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Field>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
 }
 
-public class OperatorTest : TestBase
+public class AlertCreateForSubscriptionParamsPriceFilterOperatorTest : TestBase
 {
     [Theory]
-    [InlineData(Operator.Includes)]
-    [InlineData(Operator.Excludes)]
-    public void Validation_Works(Operator rawValue)
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterOperator.Includes)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterOperator.Excludes)]
+    public void Validation_Works(AlertCreateForSubscriptionParamsPriceFilterOperator rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Operator> value = rawValue;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
     [Theory]
-    [InlineData(Operator.Includes)]
-    [InlineData(Operator.Excludes)]
-    public void SerializationRoundtrip_Works(Operator rawValue)
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterOperator.Includes)]
+    [InlineData(AlertCreateForSubscriptionParamsPriceFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        AlertCreateForSubscriptionParamsPriceFilterOperator rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Operator> value = rawValue;
+        ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -446,26 +448,28 @@ public class OperatorTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Operator>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
 }
 
-public class ThresholdOverrideTest : TestBase
+public class AlertCreateForSubscriptionParamsThresholdOverrideTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+        var model = new AlertCreateForSubscriptionParamsThresholdOverride
+        {
+            GroupValues = ["string"],
+            Thresholds = [new(0)],
+        };
 
         List<string> expectedGroupValues = ["string"];
         List<Threshold> expectedThresholds = [new(0)];
@@ -485,13 +489,18 @@ public class ThresholdOverrideTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+        var model = new AlertCreateForSubscriptionParamsThresholdOverride
+        {
+            GroupValues = ["string"],
+            Thresholds = [new(0)],
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ThresholdOverride>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<AlertCreateForSubscriptionParamsThresholdOverride>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -499,13 +508,18 @@ public class ThresholdOverrideTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+        var model = new AlertCreateForSubscriptionParamsThresholdOverride
+        {
+            GroupValues = ["string"],
+            Thresholds = [new(0)],
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ThresholdOverride>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<AlertCreateForSubscriptionParamsThresholdOverride>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         List<string> expectedGroupValues = ["string"];
@@ -526,7 +540,11 @@ public class ThresholdOverrideTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+        var model = new AlertCreateForSubscriptionParamsThresholdOverride
+        {
+            GroupValues = ["string"],
+            Thresholds = [new(0)],
+        };
 
         model.Validate();
     }
@@ -534,9 +552,13 @@ public class ThresholdOverrideTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new ThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+        var model = new AlertCreateForSubscriptionParamsThresholdOverride
+        {
+            GroupValues = ["string"],
+            Thresholds = [new(0)],
+        };
 
-        ThresholdOverride copied = new(model);
+        AlertCreateForSubscriptionParamsThresholdOverride copied = new(model);
 
         Assert.Equal(model, copied);
     }
