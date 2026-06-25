@@ -1682,6 +1682,44 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+        value.Validate();
+    }
+
+    [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
@@ -1848,6 +1886,1348 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                 element,
                 ModelBase.SerializerOptions
             );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTest
+    : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > expectedAppliesToAll =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > expectedPriceType =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, model.AppliesToAll);
+        Assert.NotNull(model.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, model.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], model.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.NotNull(model.Filters);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, model.PriceType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > expectedAppliesToAll =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > expectedPriceType =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, deserialized.AppliesToAll);
+        Assert.NotNull(deserialized.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, deserialized.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], deserialized.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.NotNull(deserialized.Filters);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+
+                // Null should be interpreted as omitted for these properties
+                IsInvoiceLevel = null,
+            };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+
+                // Null should be interpreted as omitted for these properties
+                IsInvoiceLevel = null,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+            };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.False(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.False(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+
+                AppliesToAll = null,
+                AppliesToItemIds = null,
+                AppliesToPriceIds = null,
+                Currency = null,
+                Filters = null,
+                PriceType = null,
+            };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.True(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.True(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.True(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+
+                AppliesToAll = null,
+                AppliesToItemIds = null,
+                AppliesToPriceIds = null,
+                Currency = null,
+                Filters = null,
+                PriceType = null,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscount copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTierTest
+    : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+            };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+
+                UpperBound = null,
+            };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+
+                UpperBound = null,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterTest
+    : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > expectedField =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > expectedField =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilter copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterFieldTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceTypeTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -17304,6 +18684,44 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+        value.Validate();
+    }
+
+    [Fact]
     public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
@@ -17470,6 +18888,1348 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                 element,
                 ModelBase.SerializerOptions
             );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount()
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
+                element,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTest
+    : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > expectedAppliesToAll =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > expectedPriceType =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, model.AppliesToAll);
+        Assert.NotNull(model.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, model.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], model.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, model.Currency);
+        Assert.NotNull(model.Filters);
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, model.PriceType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > expectedAppliesToAll =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True;
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
+        string expectedCurrency = "currency";
+        List<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > expectedPriceType =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage;
+
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+        Assert.Equal(expectedAppliesToAll, deserialized.AppliesToAll);
+        Assert.NotNull(deserialized.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, deserialized.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToItemIds[i], deserialized.AppliesToItemIds[i]);
+        }
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.NotNull(deserialized.Filters);
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedPriceType, deserialized.PriceType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+
+                // Null should be interpreted as omitted for these properties
+                IsInvoiceLevel = null,
+            };
+
+        Assert.Null(model.IsInvoiceLevel);
+        Assert.False(model.RawData.ContainsKey("is_invoice_level"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+
+                // Null should be interpreted as omitted for these properties
+                IsInvoiceLevel = null,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+            };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.False(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.False(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.False(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.False(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+
+                AppliesToAll = null,
+                AppliesToItemIds = null,
+                AppliesToPriceIds = null,
+                Currency = null,
+                Filters = null,
+                PriceType = null,
+            };
+
+        Assert.Null(model.AppliesToAll);
+        Assert.True(model.RawData.ContainsKey("applies_to_all"));
+        Assert.Null(model.AppliesToItemIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_item_ids"));
+        Assert.Null(model.AppliesToPriceIds);
+        Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
+        Assert.Null(model.Currency);
+        Assert.True(model.RawData.ContainsKey("currency"));
+        Assert.Null(model.Filters);
+        Assert.True(model.RawData.ContainsKey("filters"));
+        Assert.Null(model.PriceType);
+        Assert.True(model.RawData.ContainsKey("price_type"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                IsInvoiceLevel = true,
+
+                AppliesToAll = null,
+                AppliesToItemIds = null,
+                AppliesToPriceIds = null,
+                Currency = null,
+                Filters = null,
+                PriceType = null,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount
+            {
+                Tiers =
+                [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
+                ],
+                AppliesToAll =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                        Operator =
+                            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage,
+            };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscount copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTierTest
+    : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+            };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+
+                UpperBound = null,
+            };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+
+                UpperBound = null,
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAllTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            bool,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterTest
+    : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > expectedField =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > expectedField =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter
+            {
+                Field =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            };
+
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilter copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterFieldTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.ItemID
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PriceType
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.Currency
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField.PricingUnitID
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperatorTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Includes
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator.Excludes
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceTypeTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears
+    )]
+    public void Validation_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Usage
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInAdvance
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.FixedInArrears
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.Fixed
+    )]
+    [InlineData(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType.InArrears
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }

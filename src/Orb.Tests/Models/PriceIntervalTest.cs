@@ -65,8 +65,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -210,8 +210,8 @@ public class PriceIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -388,8 +388,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -543,8 +543,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -695,8 +695,8 @@ public class PriceIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -881,8 +881,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1030,8 +1030,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1176,8 +1176,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1321,8 +1321,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1469,8 +1469,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1616,8 +1616,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Field.PriceID,
-                            Operator = Operator.Includes,
+                            Field = AllocationFilterField.PriceID,
+                            Operator = AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],

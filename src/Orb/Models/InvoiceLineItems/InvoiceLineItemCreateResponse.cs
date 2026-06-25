@@ -373,6 +373,7 @@ public record class Adjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.ID,
                 monetaryAmountDiscount: (x) => x.ID,
                 monetaryPercentageDiscount: (x) => x.ID,
+                tieredPercentageDiscount: (x) => x.ID,
                 monetaryMinimum: (x) => x.ID,
                 monetaryMaximum: (x) => x.ID
             );
@@ -387,6 +388,7 @@ public record class Adjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.Amount,
                 monetaryAmountDiscount: (x) => x.Amount,
                 monetaryPercentageDiscount: (x) => x.Amount,
+                tieredPercentageDiscount: (x) => x.Amount,
                 monetaryMinimum: (x) => x.Amount,
                 monetaryMaximum: (x) => x.Amount
             );
@@ -401,6 +403,7 @@ public record class Adjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.IsInvoiceLevel,
                 monetaryAmountDiscount: (x) => x.IsInvoiceLevel,
                 monetaryPercentageDiscount: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel,
                 monetaryMinimum: (x) => x.IsInvoiceLevel,
                 monetaryMaximum: (x) => x.IsInvoiceLevel
             );
@@ -415,6 +418,7 @@ public record class Adjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.Reason,
                 monetaryAmountDiscount: (x) => x.Reason,
                 monetaryPercentageDiscount: (x) => x.Reason,
+                tieredPercentageDiscount: (x) => x.Reason,
                 monetaryMinimum: (x) => x.Reason,
                 monetaryMaximum: (x) => x.Reason
             );
@@ -429,6 +433,7 @@ public record class Adjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryAmountDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryPercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                tieredPercentageDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryMinimum: (x) => x.ReplacesAdjustmentID,
                 monetaryMaximum: (x) => x.ReplacesAdjustmentID
             );
@@ -448,6 +453,12 @@ public record class Adjustment : ModelBase
     }
 
     public Adjustment(MonetaryPercentageDiscountAdjustment value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Adjustment(TieredPercentageDiscount value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -541,6 +552,29 @@ public record class Adjustment : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="TieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `TieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)] out TieredPercentageDiscount? value
+    )
+    {
+        value = this.Value as TieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryMinimumAdjustment"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -598,6 +632,7 @@ public record class Adjustment : ModelBase
     ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (TieredPercentageDiscount value) =&gt; {...},
     ///     (MonetaryMinimumAdjustment value) =&gt; {...},
     ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
@@ -608,6 +643,7 @@ public record class Adjustment : ModelBase
         System::Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
         System::Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
         System::Action<MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
+        System::Action<TieredPercentageDiscount> tieredPercentageDiscount,
         System::Action<MonetaryMinimumAdjustment> monetaryMinimum,
         System::Action<MonetaryMaximumAdjustment> monetaryMaximum
     )
@@ -622,6 +658,9 @@ public record class Adjustment : ModelBase
                 break;
             case MonetaryPercentageDiscountAdjustment value:
                 monetaryPercentageDiscount(value);
+                break;
+            case TieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             case MonetaryMinimumAdjustment value:
                 monetaryMinimum(value);
@@ -652,6 +691,7 @@ public record class Adjustment : ModelBase
     ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
     ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (TieredPercentageDiscount value) =&gt; {...},
     ///     (MonetaryMinimumAdjustment value) =&gt; {...},
     ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
@@ -662,6 +702,7 @@ public record class Adjustment : ModelBase
         System::Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
         System::Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
         System::Func<MonetaryPercentageDiscountAdjustment, T> monetaryPercentageDiscount,
+        System::Func<TieredPercentageDiscount, T> tieredPercentageDiscount,
         System::Func<MonetaryMinimumAdjustment, T> monetaryMinimum,
         System::Func<MonetaryMaximumAdjustment, T> monetaryMaximum
     )
@@ -671,6 +712,7 @@ public record class Adjustment : ModelBase
             MonetaryUsageDiscountAdjustment value => monetaryUsageDiscount(value),
             MonetaryAmountDiscountAdjustment value => monetaryAmountDiscount(value),
             MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
+            TieredPercentageDiscount value => tieredPercentageDiscount(value),
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
@@ -684,6 +726,8 @@ public record class Adjustment : ModelBase
 
     public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
         new(value);
+
+    public static implicit operator Adjustment(TieredPercentageDiscount value) => new(value);
 
     public static implicit operator Adjustment(MonetaryMinimumAdjustment value) => new(value);
 
@@ -709,6 +753,7 @@ public record class Adjustment : ModelBase
             (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
             (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
             (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate(),
             (monetaryMinimum) => monetaryMinimum.Validate(),
             (monetaryMaximum) => monetaryMaximum.Validate()
         );
@@ -737,8 +782,9 @@ public record class Adjustment : ModelBase
             MonetaryUsageDiscountAdjustment _ => 0,
             MonetaryAmountDiscountAdjustment _ => 1,
             MonetaryPercentageDiscountAdjustment _ => 2,
-            MonetaryMinimumAdjustment _ => 3,
-            MonetaryMaximumAdjustment _ => 4,
+            TieredPercentageDiscount _ => 3,
+            MonetaryMinimumAdjustment _ => 4,
+            MonetaryMaximumAdjustment _ => 5,
             _ => -1,
         };
     }
@@ -826,6 +872,26 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
 
                 return new(element);
             }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredPercentageDiscount>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             case "minimum":
             {
                 try
@@ -881,6 +947,498 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<TieredPercentageDiscount, TieredPercentageDiscountFromRaw>)
+)]
+public sealed record class TieredPercentageDiscount : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    /// <summary>
+    /// The value applied by an adjustment.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
+        init { this._rawData.Set("amount", value); }
+    }
+
+    /// <summary>
+    /// The price IDs that this adjustment applies to.
+    /// </summary>
+    [System::Obsolete("deprecated")]
+    public required IReadOnlyList<string> AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The filters that determine which prices to apply this adjustment to.
+    /// </summary>
+    public required IReadOnlyList<Filter> Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Filter>>("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Filter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// True for adjustments that apply to an entire invoice, false for adjustments
+    /// that apply to only one price.
+    /// </summary>
+    public required bool IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_invoice_level");
+        }
+        init { this._rawData.Set("is_invoice_level", value); }
+    }
+
+    /// <summary>
+    /// The reason for the adjustment.
+    /// </summary>
+    public required string? Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
+        init { this._rawData.Set("reason", value); }
+    }
+
+    /// <summary>
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
+    /// </summary>
+    public required string? ReplacesAdjustmentID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_adjustment_id");
+        }
+        init { this._rawData.Set("replaces_adjustment_id", value); }
+    }
+
+    /// <summary>
+    /// The ordered, contiguous bands of cumulative eligible spend, each discounted
+    /// at its own percentage (progressive fill-a-tier), applied to the prices this
+    /// adjustment covers in a given billing period.
+    /// </summary>
+    public required IReadOnlyList<Tier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Tier>>("tiers");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Tier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Amount;
+        _ = this.AppliesToPriceIds;
+        foreach (var item in this.Filters)
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        _ = this.Reason;
+        _ = this.ReplacesAdjustmentID;
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+    }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public TieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public TieredPercentageDiscount(TieredPercentageDiscount tieredPercentageDiscount)
+        : base(tieredPercentageDiscount) { }
+#pragma warning restore CS8618
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public TieredPercentageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    [SetsRequiredMembers]
+    TieredPercentageDiscount(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static TieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredPercentageDiscountFromRaw : IFromRawJson<TieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public TieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPercentageDiscount.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
+public sealed record class Filter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, Field> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, Operator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public Filter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Filter(Filter filter)
+        : base(filter) { }
+#pragma warning restore CS8618
+
+    public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Filter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
+    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class FilterFromRaw : IFromRawJson<Filter>
+{
+    /// <inheritdoc/>
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(FieldConverter))]
+public enum Field
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class FieldConverter : JsonConverter<Field>
+{
+    public override Field Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => Field.PriceID,
+            "item_id" => Field.ItemID,
+            "price_type" => Field.PriceType,
+            "currency" => Field.Currency,
+            "pricing_unit_id" => Field.PricingUnitID,
+            _ => (Field)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Field.PriceID => "price_id",
+                Field.ItemID => "item_id",
+                Field.PriceType => "price_type",
+                Field.Currency => "currency",
+                Field.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(OperatorConverter))]
+public enum Operator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class OperatorConverter : JsonConverter<Operator>
+{
+    public override Operator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// One band of a tiered percentage discount. Bounds are denominated in the discount's
+/// currency. `lower_bound` is the exclusive start of the band and `upper_bound`
+/// is the inclusive end; `upper_bound` is null only for the open-ended final tier.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<Tier, TierFromRaw>))]
+public sealed record class Tier : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (between 0 and 1) discounted from spend that falls within
+    /// this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend for this tier; null for the final
+    /// open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public Tier() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Tier(Tier tier)
+        : base(tier) { }
+#pragma warning restore CS8618
+
+    public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Tier(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TierFromRaw.FromRawUnchecked"/>
+    public static Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TierFromRaw : IFromRawJson<Tier>
+{
+    /// <inheritdoc/>
+    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(SubLineItemConverter))]

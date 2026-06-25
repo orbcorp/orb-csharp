@@ -585,7 +585,8 @@ public record class DiscountInterval : ModelBase
             return Match<System::DateTimeOffset?>(
                 amount: (x) => x.EndDate,
                 percentage: (x) => x.EndDate,
-                usage: (x) => x.EndDate
+                usage: (x) => x.EndDate,
+                tieredPercentage: (x) => x.EndDate
             );
         }
     }
@@ -597,7 +598,8 @@ public record class DiscountInterval : ModelBase
             return Match(
                 amount: (x) => x.StartDate,
                 percentage: (x) => x.StartDate,
-                usage: (x) => x.StartDate
+                usage: (x) => x.StartDate,
+                tieredPercentage: (x) => x.StartDate
             );
         }
     }
@@ -615,6 +617,12 @@ public record class DiscountInterval : ModelBase
     }
 
     public DiscountInterval(UsageDiscountInterval value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DiscountInterval(TieredPercentage value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -689,6 +697,27 @@ public record class DiscountInterval : ModelBase
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="TieredPercentage"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentage(out var value)) {
+    ///     // `value` is of type `TieredPercentage`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentage([NotNullWhen(true)] out TieredPercentage? value)
+    {
+        value = this.Value as TieredPercentage;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -704,7 +733,8 @@ public record class DiscountInterval : ModelBase
     /// instance.Switch(
     ///     (AmountDiscountInterval value) =&gt; {...},
     ///     (PercentageDiscountInterval value) =&gt; {...},
-    ///     (UsageDiscountInterval value) =&gt; {...}
+    ///     (UsageDiscountInterval value) =&gt; {...},
+    ///     (TieredPercentage value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -712,7 +742,8 @@ public record class DiscountInterval : ModelBase
     public void Switch(
         System::Action<AmountDiscountInterval> amount,
         System::Action<PercentageDiscountInterval> percentage,
-        System::Action<UsageDiscountInterval> usage
+        System::Action<UsageDiscountInterval> usage,
+        System::Action<TieredPercentage> tieredPercentage
     )
     {
         switch (this.Value)
@@ -725,6 +756,9 @@ public record class DiscountInterval : ModelBase
                 break;
             case UsageDiscountInterval value:
                 usage(value);
+                break;
+            case TieredPercentage value:
+                tieredPercentage(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
@@ -750,7 +784,8 @@ public record class DiscountInterval : ModelBase
     /// var result = instance.Match(
     ///     (AmountDiscountInterval value) =&gt; {...},
     ///     (PercentageDiscountInterval value) =&gt; {...},
-    ///     (UsageDiscountInterval value) =&gt; {...}
+    ///     (UsageDiscountInterval value) =&gt; {...},
+    ///     (TieredPercentage value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -758,7 +793,8 @@ public record class DiscountInterval : ModelBase
     public T Match<T>(
         System::Func<AmountDiscountInterval, T> amount,
         System::Func<PercentageDiscountInterval, T> percentage,
-        System::Func<UsageDiscountInterval, T> usage
+        System::Func<UsageDiscountInterval, T> usage,
+        System::Func<TieredPercentage, T> tieredPercentage
     )
     {
         return this.Value switch
@@ -766,6 +802,7 @@ public record class DiscountInterval : ModelBase
             AmountDiscountInterval value => amount(value),
             PercentageDiscountInterval value => percentage(value),
             UsageDiscountInterval value => usage(value),
+            TieredPercentage value => tieredPercentage(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of DiscountInterval"
             ),
@@ -778,6 +815,8 @@ public record class DiscountInterval : ModelBase
         new(value);
 
     public static implicit operator DiscountInterval(UsageDiscountInterval value) => new(value);
+
+    public static implicit operator DiscountInterval(TieredPercentage value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -798,7 +837,8 @@ public record class DiscountInterval : ModelBase
         this.Switch(
             (amount) => amount.Validate(),
             (percentage) => percentage.Validate(),
-            (usage) => usage.Validate()
+            (usage) => usage.Validate(),
+            (tieredPercentage) => tieredPercentage.Validate()
         );
     }
 
@@ -825,6 +865,7 @@ public record class DiscountInterval : ModelBase
             AmountDiscountInterval _ => 0,
             PercentageDiscountInterval _ => 1,
             UsageDiscountInterval _ => 2,
+            TieredPercentage _ => 3,
             _ => -1,
         };
     }
@@ -911,6 +952,26 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
 
                 return new(element);
             }
+            case "tiered_percentage":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<TieredPercentage>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
             default:
             {
                 return new DiscountInterval(element);
@@ -926,6 +987,482 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
+}
+
+[JsonConverter(typeof(JsonModelConverter<TieredPercentage, TieredPercentageFromRaw>))]
+public sealed record class TieredPercentage : JsonModel
+{
+    /// <summary>
+    /// The price interval ids that this discount interval applies to.
+    /// </summary>
+    public required IReadOnlyList<string> AppliesToPriceIntervalIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
+                "applies_to_price_interval_ids"
+            );
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_interval_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public JsonElement DiscountType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("discount_type");
+        }
+        init { this._rawData.Set("discount_type", value); }
+    }
+
+    /// <summary>
+    /// The end date of the discount interval.
+    /// </summary>
+    public required System::DateTimeOffset? EndDate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date");
+        }
+        init { this._rawData.Set("end_date", value); }
+    }
+
+    /// <summary>
+    /// The filters that determine which prices this discount interval applies to.
+    /// </summary>
+    public required IReadOnlyList<global::Orb.Models.SubscriptionChanges.Filter> Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<global::Orb.Models.SubscriptionChanges.Filter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<global::Orb.Models.SubscriptionChanges.Filter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The start date of the discount interval.
+    /// </summary>
+    public required System::DateTimeOffset StartDate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date");
+        }
+        init { this._rawData.Set("start_date", value); }
+    }
+
+    /// <summary>
+    /// Only available if discount_type is `tiered_percentage`. The ordered, contiguous
+    /// bands of cumulative eligible spend, each discounted at its own percentage.
+    /// </summary>
+    public required IReadOnlyList<global::Orb.Models.SubscriptionChanges.Tier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<global::Orb.Models.SubscriptionChanges.Tier>
+            >("tiers");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<global::Orb.Models.SubscriptionChanges.Tier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AppliesToPriceIntervalIds;
+        if (
+            !JsonElement.DeepEquals(
+                this.DiscountType,
+                JsonSerializer.SerializeToElement("tiered_percentage")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.EndDate;
+        foreach (var item in this.Filters)
+        {
+            item.Validate();
+        }
+        _ = this.StartDate;
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+    }
+
+    public TieredPercentage()
+    {
+        this.DiscountType = JsonSerializer.SerializeToElement("tiered_percentage");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TieredPercentage(TieredPercentage tieredPercentage)
+        : base(tieredPercentage) { }
+#pragma warning restore CS8618
+
+    public TieredPercentage(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.DiscountType = JsonSerializer.SerializeToElement("tiered_percentage");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TieredPercentage(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TieredPercentageFromRaw.FromRawUnchecked"/>
+    public static TieredPercentage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TieredPercentageFromRaw : IFromRawJson<TieredPercentage>
+{
+    /// <inheritdoc/>
+    public TieredPercentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TieredPercentage.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        global::Orb.Models.SubscriptionChanges.Filter,
+        global::Orb.Models.SubscriptionChanges.FilterFromRaw
+    >)
+)]
+public sealed record class Filter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, global::Orb.Models.SubscriptionChanges.Field> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.SubscriptionChanges.Field>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, global::Orb.Models.SubscriptionChanges.Operator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, global::Orb.Models.SubscriptionChanges.Operator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public Filter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Filter(global::Orb.Models.SubscriptionChanges.Filter filter)
+        : base(filter) { }
+#pragma warning restore CS8618
+
+    public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Filter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="global::Orb.Models.SubscriptionChanges.FilterFromRaw.FromRawUnchecked"/>
+    public static global::Orb.Models.SubscriptionChanges.Filter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class FilterFromRaw : IFromRawJson<global::Orb.Models.SubscriptionChanges.Filter>
+{
+    /// <inheritdoc/>
+    public global::Orb.Models.SubscriptionChanges.Filter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.SubscriptionChanges.Filter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.SubscriptionChanges.FieldConverter))]
+public enum Field
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class FieldConverter : JsonConverter<global::Orb.Models.SubscriptionChanges.Field>
+{
+    public override global::Orb.Models.SubscriptionChanges.Field Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => global::Orb.Models.SubscriptionChanges.Field.PriceID,
+            "item_id" => global::Orb.Models.SubscriptionChanges.Field.ItemID,
+            "price_type" => global::Orb.Models.SubscriptionChanges.Field.PriceType,
+            "currency" => global::Orb.Models.SubscriptionChanges.Field.Currency,
+            "pricing_unit_id" => global::Orb.Models.SubscriptionChanges.Field.PricingUnitID,
+            _ => (global::Orb.Models.SubscriptionChanges.Field)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.SubscriptionChanges.Field value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.SubscriptionChanges.Field.PriceID => "price_id",
+                global::Orb.Models.SubscriptionChanges.Field.ItemID => "item_id",
+                global::Orb.Models.SubscriptionChanges.Field.PriceType => "price_type",
+                global::Orb.Models.SubscriptionChanges.Field.Currency => "currency",
+                global::Orb.Models.SubscriptionChanges.Field.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(global::Orb.Models.SubscriptionChanges.OperatorConverter))]
+public enum Operator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class OperatorConverter : JsonConverter<global::Orb.Models.SubscriptionChanges.Operator>
+{
+    public override global::Orb.Models.SubscriptionChanges.Operator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => global::Orb.Models.SubscriptionChanges.Operator.Includes,
+            "excludes" => global::Orb.Models.SubscriptionChanges.Operator.Excludes,
+            _ => (global::Orb.Models.SubscriptionChanges.Operator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Orb.Models.SubscriptionChanges.Operator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::Orb.Models.SubscriptionChanges.Operator.Includes => "includes",
+                global::Orb.Models.SubscriptionChanges.Operator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// One band of a tiered percentage discount. Bounds are denominated in the discount's
+/// currency. `lower_bound` is the exclusive start of the band and `upper_bound`
+/// is the inclusive end; `upper_bound` is null only for the open-ended final tier.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        global::Orb.Models.SubscriptionChanges.Tier,
+        global::Orb.Models.SubscriptionChanges.TierFromRaw
+    >)
+)]
+public sealed record class Tier : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (between 0 and 1) discounted from spend that falls within
+    /// this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend for this tier; null for the final
+    /// open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public Tier() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Tier(global::Orb.Models.SubscriptionChanges.Tier tier)
+        : base(tier) { }
+#pragma warning restore CS8618
+
+    public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Tier(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="global::Orb.Models.SubscriptionChanges.TierFromRaw.FromRawUnchecked"/>
+    public static global::Orb.Models.SubscriptionChanges.Tier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TierFromRaw : IFromRawJson<global::Orb.Models.SubscriptionChanges.Tier>
+{
+    /// <inheritdoc/>
+    public global::Orb.Models.SubscriptionChanges.Tier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.SubscriptionChanges.Tier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(MutatedSubscriptionStatusConverter))]

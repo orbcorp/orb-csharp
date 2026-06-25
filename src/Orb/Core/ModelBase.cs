@@ -13,6 +13,7 @@ using CreditNotes = Orb.Models.CreditNotes;
 using Credits = Orb.Models.Customers.Credits;
 using Customers = Orb.Models.Customers;
 using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
+using InvoiceLineItems = Orb.Models.InvoiceLineItems;
 using Invoices = Orb.Models.Invoices;
 using Ledger = Orb.Models.Customers.Credits.Ledger;
 using Licenses = Orb.Models.Licenses;
@@ -44,6 +45,8 @@ public abstract record class ModelBase
             new FrozenDictionaryConverterFactory(),
             new ApiEnumConverter<string, Field>(),
             new ApiEnumConverter<string, Operator>(),
+            new ApiEnumConverter<string, AllocationFilterField>(),
+            new ApiEnumConverter<string, AllocationFilterOperator>(),
             new ApiEnumConverter<string, DiscountType>(),
             new ApiEnumConverter<string, AmountDiscountFilterField>(),
             new ApiEnumConverter<string, AmountDiscountFilterOperator>(),
@@ -55,6 +58,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Action>(),
             new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, InvoiceSource>(),
+            new ApiEnumConverter<string, LineItemAdjustmentTieredPercentageDiscountFilterField>(),
+            new ApiEnumConverter<
+                string,
+                LineItemAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
             new ApiEnumConverter<string, PaymentProvider>(),
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, DiscountDiscountType>(),
@@ -65,11 +73,23 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, CustomExpirationDurationUnit>(),
             new ApiEnumConverter<string, Country>(),
             new ApiEnumConverter<string, CustomerTaxIDType>(),
+            new ApiEnumConverter<string, TieredPercentageFilterField>(),
+            new ApiEnumConverter<string, TieredPercentageFilterOperator>(),
             new ApiEnumConverter<string, InvoiceCustomerBalanceTransactionAction>(),
             new ApiEnumConverter<string, InvoiceCustomerBalanceTransactionType>(),
             new ApiEnumConverter<string, InvoiceInvoiceSource>(),
+            new ApiEnumConverter<
+                string,
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
             new ApiEnumConverter<string, InvoicePaymentAttemptPaymentProvider>(),
             new ApiEnumConverter<string, InvoiceStatus>(),
+            new ApiEnumConverter<string, InvoiceLevelDiscountTieredPercentageFilterField>(),
+            new ApiEnumConverter<string, InvoiceLevelDiscountTieredPercentageFilterOperator>(),
             new ApiEnumConverter<string, MatrixSubLineItemType>(),
             new ApiEnumConverter<string, MaximumFilterField>(),
             new ApiEnumConverter<string, MaximumFilterOperator>(),
@@ -444,7 +464,19 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, UsageDiscountIntervalDiscountType>(),
             new ApiEnumConverter<string, UsageDiscountIntervalFilterField>(),
             new ApiEnumConverter<string, UsageDiscountIntervalFilterOperator>(),
+            new ApiEnumConverter<
+                string,
+                Beta::PlanVersionAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::PlanVersionAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
             new ApiEnumConverter<string, Beta::DurationUnit>(),
+            new ApiEnumConverter<bool, Beta::AppliesToAll>(),
+            new ApiEnumConverter<string, Beta::Field>(),
+            new ApiEnumConverter<string, Beta::Operator>(),
+            new ApiEnumConverter<string, Beta::PriceType>(),
             new ApiEnumConverter<string, Beta::Cadence>(),
             new ApiEnumConverter<string, Beta::ModelType>(),
             new ApiEnumConverter<string, Beta::BulkWithFiltersCadence>(),
@@ -456,6 +488,22 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Beta::MeteredAllowanceCadence>(),
             new ApiEnumConverter<string, Beta::PercentCadence>(),
             new ApiEnumConverter<string, Beta::EventOutputCadence>(),
+            new ApiEnumConverter<
+                bool,
+                Beta::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
+            new ApiEnumConverter<
+                string,
+                Beta::ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >(),
             new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePriceLicenseAllocationPriceModelType>(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceBulkWithFiltersCadence>(),
@@ -476,6 +524,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Beta::ReplacePricePriceMeteredAllowanceCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePricePricePercentCadence>(),
             new ApiEnumConverter<string, Beta::ReplacePricePriceEventOutputCadence>(),
+            new ApiEnumConverter<bool, ExternalPlanID::AppliesToAll>(),
+            new ApiEnumConverter<string, ExternalPlanID::Field>(),
+            new ApiEnumConverter<string, ExternalPlanID::Operator>(),
+            new ApiEnumConverter<string, ExternalPlanID::PriceType>(),
             new ApiEnumConverter<string, ExternalPlanID::Cadence>(),
             new ApiEnumConverter<string, ExternalPlanID::ModelType>(),
             new ApiEnumConverter<string, ExternalPlanID::BulkWithFiltersCadence>(),
@@ -487,6 +539,22 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExternalPlanID::MeteredAllowanceCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::PercentCadence>(),
             new ApiEnumConverter<string, ExternalPlanID::EventOutputCadence>(),
+            new ApiEnumConverter<
+                bool,
+                ExternalPlanID::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
+            new ApiEnumConverter<
+                string,
+                ExternalPlanID::ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >(),
             new ApiEnumConverter<
                 string,
                 ExternalPlanID::ReplacePriceLicenseAllocationPriceCadence
@@ -614,9 +682,13 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Backfills::BackfillCloseResponseStatus>(),
             new ApiEnumConverter<string, Backfills::BackfillFetchResponseStatus>(),
             new ApiEnumConverter<string, Backfills::BackfillRevertResponseStatus>(),
+            new ApiEnumConverter<string, InvoiceLineItems::Field>(),
+            new ApiEnumConverter<string, InvoiceLineItems::Operator>(),
             new ApiEnumConverter<string, Invoices::Action>(),
             new ApiEnumConverter<string, Invoices::Type>(),
             new ApiEnumConverter<string, Invoices::InvoiceSource>(),
+            new ApiEnumConverter<string, Invoices::Field>(),
+            new ApiEnumConverter<string, Invoices::Operator>(),
             new ApiEnumConverter<string, Invoices::PaymentProvider>(),
             new ApiEnumConverter<string, Invoices::InvoiceFetchUpcomingResponseStatus>(),
             new ApiEnumConverter<
@@ -655,6 +727,14 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ItemExternalConnectionExternalConnectionName>(),
             new ApiEnumConverter<string, ExternalConnectionName>(),
             new ApiEnumConverter<string, Metrics::Status>(),
+            new ApiEnumConverter<
+                string,
+                Plans::PlanAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Plans::PlanAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
             new ApiEnumConverter<string, Plans::PlanPlanPhaseDurationUnit>(),
             new ApiEnumConverter<string, Plans::PlanStatus>(),
             new ApiEnumConverter<string, Plans::TrialPeriodUnit>(),
@@ -669,6 +749,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Plans::MeteredAllowanceCadence>(),
             new ApiEnumConverter<string, Plans::PercentCadence>(),
             new ApiEnumConverter<string, Plans::EventOutputCadence>(),
+            new ApiEnumConverter<bool, Plans::AppliesToAll>(),
+            new ApiEnumConverter<string, Plans::Field>(),
+            new ApiEnumConverter<string, Plans::Operator>(),
+            new ApiEnumConverter<string, Plans::PriceType>(),
             new ApiEnumConverter<string, Plans::DurationUnit>(),
             new ApiEnumConverter<string, Plans::Status>(),
             new ApiEnumConverter<string, Plans::PlanListParamsStatus>(),
@@ -897,9 +981,15 @@ public abstract record class ModelBase
                 string,
                 Subscriptions::NewSubscriptionUnitWithProrationPriceModelType
             >(),
+            new ApiEnumConverter<string, Subscriptions::TieredPercentageFilterField>(),
+            new ApiEnumConverter<string, Subscriptions::TieredPercentageFilterOperator>(),
             new ApiEnumConverter<string, Subscriptions::SubscriptionStatus>(),
             new ApiEnumConverter<string, Subscriptions::DataViewMode>(),
             new ApiEnumConverter<string, Subscriptions::GroupedSubscriptionUsageDataViewMode>(),
+            new ApiEnumConverter<bool, Subscriptions::AppliesToAll>(),
+            new ApiEnumConverter<string, Subscriptions::Field>(),
+            new ApiEnumConverter<string, Subscriptions::Operator>(),
+            new ApiEnumConverter<string, Subscriptions::PriceType>(),
             new ApiEnumConverter<string, Subscriptions::Cadence>(),
             new ApiEnumConverter<string, Subscriptions::MatrixWithThresholdDiscountsCadence>(),
             new ApiEnumConverter<string, Subscriptions::TieredWithProrationCadence>(),
@@ -910,6 +1000,22 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::PercentCadence>(),
             new ApiEnumConverter<string, Subscriptions::EventOutputCadence>(),
             new ApiEnumConverter<string, Subscriptions::ExternalMarketplace>(),
+            new ApiEnumConverter<
+                bool,
+                Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >(),
             new ApiEnumConverter<string, Subscriptions::ReplacePricePriceBulkWithFiltersCadence>(),
             new ApiEnumConverter<
                 string,
@@ -956,10 +1062,42 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Subscriptions::PriceModelMeteredAllowanceCadence>(),
             new ApiEnumConverter<string, Subscriptions::PriceModelPercentCadence>(),
             new ApiEnumConverter<string, Subscriptions::PriceModelEventOutputCadence>(),
+            new ApiEnumConverter<
+                bool,
+                Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >(),
             new ApiEnumConverter<string, Subscriptions::ChangeOption>(),
             new ApiEnumConverter<
                 string,
                 Subscriptions::SubscriptionSchedulePlanChangeParamsChangeOption
+            >(),
+            new ApiEnumConverter<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountPriceType
             >(),
             new ApiEnumConverter<
                 string,
@@ -998,6 +1136,22 @@ public abstract record class ModelBase
                 Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputCadence
             >(),
             new ApiEnumConverter<string, Subscriptions::BillingCycleAlignment>(),
+            new ApiEnumConverter<
+                bool,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountFilterOperator
+            >(),
+            new ApiEnumConverter<
+                string,
+                Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountPriceType
+            >(),
             new ApiEnumConverter<
                 string,
                 Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersCadence
@@ -1047,6 +1201,8 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Alerts::AlertCreateForSubscriptionParamsType>(),
             new ApiEnumConverter<string, Alerts::Field>(),
             new ApiEnumConverter<string, Alerts::Operator>(),
+            new ApiEnumConverter<string, SubscriptionChanges::Field>(),
+            new ApiEnumConverter<string, SubscriptionChanges::Operator>(),
             new ApiEnumConverter<string, SubscriptionChanges::MutatedSubscriptionStatus>(),
             new ApiEnumConverter<
                 string,

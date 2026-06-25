@@ -48,8 +48,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -167,8 +167,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -299,8 +299,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -426,8 +426,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -544,8 +544,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -663,8 +663,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -787,8 +787,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -914,8 +914,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1041,8 +1041,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1179,8 +1179,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1306,8 +1306,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1443,8 +1443,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1567,8 +1567,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1686,8 +1686,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1811,8 +1811,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1955,8 +1955,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2076,8 +2076,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2195,8 +2195,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2325,8 +2325,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2443,8 +2443,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2567,8 +2567,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2700,8 +2700,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2825,8 +2825,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2956,8 +2956,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3084,8 +3084,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3212,8 +3212,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3347,8 +3347,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3484,8 +3484,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3615,8 +3615,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3740,8 +3740,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3866,8 +3866,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3993,8 +3993,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4112,8 +4112,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4237,8 +4237,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4361,8 +4361,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4483,8 +4483,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4618,8 +4618,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4748,8 +4748,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4869,8 +4869,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4991,8 +4991,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5118,8 +5118,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5248,8 +5248,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5378,8 +5378,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5519,8 +5519,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5649,8 +5649,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5789,8 +5789,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5916,8 +5916,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6038,8 +6038,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6166,8 +6166,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6313,8 +6313,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6437,8 +6437,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6559,8 +6559,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6692,8 +6692,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6813,8 +6813,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6940,8 +6940,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7076,8 +7076,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7204,8 +7204,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7338,8 +7338,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7469,8 +7469,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7600,8 +7600,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7738,8 +7738,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7878,8 +7878,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8012,8 +8012,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8140,8 +8140,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8269,8 +8269,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8399,8 +8399,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8521,8 +8521,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8649,8 +8649,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8779,8 +8779,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8895,8 +8895,8 @@ public class UnitTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9059,8 +9059,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9182,8 +9182,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9302,8 +9302,8 @@ public class UnitTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9469,8 +9469,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9589,8 +9589,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9701,8 +9701,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9810,8 +9810,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9925,8 +9925,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10037,8 +10037,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10745,8 +10745,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10874,8 +10874,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11050,8 +11050,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11185,8 +11185,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11318,8 +11318,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11497,8 +11497,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11629,8 +11629,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11753,8 +11753,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11874,8 +11874,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12001,8 +12001,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12125,8 +12125,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12844,8 +12844,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12962,8 +12962,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13126,8 +13126,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13249,8 +13249,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13371,8 +13371,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13538,8 +13538,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13658,8 +13658,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13770,8 +13770,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13879,8 +13879,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13994,8 +13994,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14106,8 +14106,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14820,8 +14820,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14946,8 +14946,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15119,8 +15119,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15253,8 +15253,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15386,8 +15386,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15562,8 +15562,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15690,8 +15690,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15810,8 +15810,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15927,8 +15927,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16050,8 +16050,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16170,8 +16170,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17203,8 +17203,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17320,8 +17320,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17488,8 +17488,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17611,8 +17611,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17735,8 +17735,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17906,8 +17906,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18026,8 +18026,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18138,8 +18138,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18247,8 +18247,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18362,8 +18362,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18474,8 +18474,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19178,8 +19178,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19300,8 +19300,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19469,8 +19469,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19597,8 +19597,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19723,8 +19723,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19895,8 +19895,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20020,8 +20020,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20137,8 +20137,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20251,8 +20251,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20371,8 +20371,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20488,8 +20488,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21199,8 +21199,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21326,8 +21326,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21499,8 +21499,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21633,8 +21633,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21767,8 +21767,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21943,8 +21943,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22071,8 +22071,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22191,8 +22191,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22308,8 +22308,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22431,8 +22431,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22551,8 +22551,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23537,8 +23537,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23663,8 +23663,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23836,8 +23836,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23970,8 +23970,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24103,8 +24103,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24279,8 +24279,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24407,8 +24407,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24527,8 +24527,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24644,8 +24644,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24767,8 +24767,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24887,8 +24887,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25805,8 +25805,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25943,8 +25943,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26127,8 +26127,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26272,8 +26272,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26417,8 +26417,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26604,8 +26604,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26743,8 +26743,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26874,8 +26874,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27002,8 +27002,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27136,8 +27136,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27267,8 +27267,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28396,8 +28396,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28522,8 +28522,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28695,8 +28695,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28829,8 +28829,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28962,8 +28962,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29138,8 +29138,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29266,8 +29266,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29386,8 +29386,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29503,8 +29503,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29626,8 +29626,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29746,8 +29746,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30664,8 +30664,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30801,8 +30801,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30987,8 +30987,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31131,8 +31131,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31275,8 +31275,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31467,8 +31467,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31605,8 +31605,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31735,8 +31735,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31862,8 +31862,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31995,8 +31995,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32125,8 +32125,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33132,8 +33132,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33256,8 +33256,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33428,8 +33428,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33559,8 +33559,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33690,8 +33690,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33865,8 +33865,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33990,8 +33990,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34107,8 +34107,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34221,8 +34221,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34341,8 +34341,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34458,8 +34458,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35260,8 +35260,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35378,8 +35378,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35547,8 +35547,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35673,8 +35673,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35798,8 +35798,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35970,8 +35970,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36090,8 +36090,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36202,8 +36202,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36311,8 +36311,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36426,8 +36426,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36538,8 +36538,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37326,8 +37326,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37451,8 +37451,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37622,8 +37622,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37754,8 +37754,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37886,8 +37886,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38060,8 +38060,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38186,8 +38186,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38304,8 +38304,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38419,8 +38419,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38540,8 +38540,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38658,8 +38658,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39364,8 +39364,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39508,8 +39508,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39703,8 +39703,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39854,8 +39854,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40005,8 +40005,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40203,8 +40203,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40348,8 +40348,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40485,8 +40485,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40619,8 +40619,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40759,8 +40759,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40896,8 +40896,8 @@ public class MatrixWithThresholdDiscountsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42454,8 +42454,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42575,8 +42575,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42742,8 +42742,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42870,8 +42870,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42998,8 +42998,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43168,8 +43168,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43290,8 +43290,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43404,8 +43404,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43515,8 +43515,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43632,8 +43632,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43746,8 +43746,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44627,8 +44627,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44746,8 +44746,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44913,8 +44913,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45039,8 +45039,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45165,8 +45165,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45335,8 +45335,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45455,8 +45455,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45567,8 +45567,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45676,8 +45676,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45791,8 +45791,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45903,8 +45903,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46665,8 +46665,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46789,8 +46789,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -46959,8 +46959,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47090,8 +47090,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47221,8 +47221,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -47394,8 +47394,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47519,8 +47519,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47636,8 +47636,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47750,8 +47750,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47870,8 +47870,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -47987,8 +47987,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -48793,8 +48793,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -48917,8 +48917,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -49087,8 +49087,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -49218,8 +49218,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -49349,8 +49349,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -49522,8 +49522,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -49647,8 +49647,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -49764,8 +49764,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -49878,8 +49878,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -49998,8 +49998,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -50115,8 +50115,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -51057,8 +51057,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -51181,8 +51181,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -51357,8 +51357,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -51488,8 +51488,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -51619,8 +51619,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -51798,8 +51798,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -51923,8 +51923,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -52040,8 +52040,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -52154,8 +52154,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -52274,8 +52274,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -52391,8 +52391,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -53195,8 +53195,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -53328,8 +53328,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -53513,8 +53513,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -53653,8 +53653,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -53793,8 +53793,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -53981,8 +53981,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -54115,8 +54115,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -54241,8 +54241,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -54364,8 +54364,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -54493,8 +54493,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -54619,8 +54619,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -55678,8 +55678,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -55803,8 +55803,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -55979,8 +55979,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -56111,8 +56111,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -56243,8 +56243,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -56422,8 +56422,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -56548,8 +56548,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -56666,8 +56666,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -56781,8 +56781,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -56902,8 +56902,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -57020,8 +57020,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -57832,8 +57832,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -57963,8 +57963,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -58142,8 +58142,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -58280,8 +58280,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -58418,8 +58418,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -58600,8 +58600,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -58732,8 +58732,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -58856,8 +58856,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -58977,8 +58977,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -59104,8 +59104,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -59228,8 +59228,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -60189,8 +60189,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -60317,8 +60317,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -60491,8 +60491,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -60626,8 +60626,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -60761,8 +60761,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -60938,8 +60938,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -61067,8 +61067,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -61188,8 +61188,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -61306,8 +61306,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -61430,8 +61430,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -61551,8 +61551,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -62481,8 +62481,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -62609,8 +62609,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -62785,8 +62785,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -62920,8 +62920,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -63055,8 +63055,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -63234,8 +63234,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -63363,8 +63363,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -63484,8 +63484,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -63602,8 +63602,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -63726,8 +63726,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -63847,8 +63847,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -64777,8 +64777,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -64912,8 +64912,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -65099,8 +65099,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -65241,8 +65241,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -65383,8 +65383,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -65573,8 +65573,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -65709,8 +65709,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -65837,8 +65837,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -65962,8 +65962,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -66093,8 +66093,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -66221,8 +66221,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -67395,8 +67395,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -67532,8 +67532,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -67721,8 +67721,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -67865,8 +67865,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -68009,8 +68009,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -68201,8 +68201,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -68339,8 +68339,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -68469,8 +68469,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -68596,8 +68596,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -68729,8 +68729,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -68859,8 +68859,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -70151,8 +70151,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -70282,8 +70282,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -70461,8 +70461,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -70599,8 +70599,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -70737,8 +70737,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -70919,8 +70919,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -71051,8 +71051,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -71175,8 +71175,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -71296,8 +71296,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -71423,8 +71423,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -71547,8 +71547,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -72508,8 +72508,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -72633,8 +72633,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -72809,8 +72809,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -72941,8 +72941,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -73073,8 +73073,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -73252,8 +73252,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -73378,8 +73378,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -73496,8 +73496,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -73611,8 +73611,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -73732,8 +73732,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -73850,8 +73850,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -74662,8 +74662,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -74788,8 +74788,8 @@ public class DailyCreditAllowanceTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -74960,8 +74960,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75093,8 +75093,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75226,8 +75226,8 @@ public class DailyCreditAllowanceTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -75401,8 +75401,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75528,8 +75528,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75647,8 +75647,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75763,8 +75763,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75885,8 +75885,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -76004,8 +76004,8 @@ public class DailyCreditAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -76940,8 +76940,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -77066,8 +77066,8 @@ public class MeteredAllowanceTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -77239,8 +77239,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -77373,8 +77373,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -77506,8 +77506,8 @@ public class MeteredAllowanceTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -77682,8 +77682,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -77810,8 +77810,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -77930,8 +77930,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -78047,8 +78047,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -78170,8 +78170,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -78290,8 +78290,8 @@ public class MeteredAllowanceTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -79192,8 +79192,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -79310,8 +79310,8 @@ public class MinimumCompositeTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -79479,8 +79479,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -79605,8 +79605,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -79730,8 +79730,8 @@ public class MinimumCompositeTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -79902,8 +79902,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -80022,8 +80022,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -80134,8 +80134,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -80243,8 +80243,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -80358,8 +80358,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -80470,8 +80470,8 @@ public class MinimumCompositeTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -81304,8 +81304,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -81427,8 +81427,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -81597,8 +81597,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -81726,8 +81726,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -81856,8 +81856,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -82029,8 +82029,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -82155,8 +82155,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -82273,8 +82273,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -82388,8 +82388,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -82509,8 +82509,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -82627,8 +82627,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -83553,8 +83553,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -83676,8 +83676,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -83845,8 +83845,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -83976,8 +83976,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -84106,8 +84106,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = Field.PriceID,
-                    Operator = Operator.Includes,
+                    Field = AllocationFilterField.PriceID,
+                    Operator = AllocationFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -84278,8 +84278,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -84403,8 +84403,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -84520,8 +84520,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -84634,8 +84634,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -84754,8 +84754,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -84871,8 +84871,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Field.PriceID,
-                        Operator = Operator.Includes,
+                        Field = AllocationFilterField.PriceID,
+                        Operator = AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
