@@ -13,7 +13,7 @@ namespace Orb.Models.Plans;
 /// <summary>
 /// This endpoint returns a list of all [plans](/core-concepts#plan-and-price) for
 /// an account in a list format. The list of plans is ordered starting from the most
-/// recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination),
+/// recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination)
 /// which lets the caller retrieve the next page of results if they exist.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
