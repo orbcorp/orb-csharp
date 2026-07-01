@@ -59,6 +59,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -1662,6 +1663,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -3239,6 +3241,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -4856,6 +4859,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -6466,6 +6470,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -8043,6 +8048,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -9654,6 +9660,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -11270,6 +11277,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -12875,6 +12883,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -14498,6 +14507,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -16110,6 +16120,7 @@ public class SubscriptionChangeCancelResponseTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,

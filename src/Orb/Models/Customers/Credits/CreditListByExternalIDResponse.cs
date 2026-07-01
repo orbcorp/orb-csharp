@@ -38,6 +38,27 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
         init { this._rawData.Set("balance", value); }
     }
 
+    /// <summary>
+    /// How this credit block was created: `allocation` (a subscription's recurring
+    /// credit allocation), `top_up` (an automatic balance-threshold top-up), or
+    /// `manual` (a manual credit ledger increment, including credits voided or expired
+    /// off another block).
+    /// </summary>
+    public required ApiEnum<
+        string,
+        CreditListByExternalIDResponseCreditBlockSource
+    > CreditBlockSource
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, CreditListByExternalIDResponseCreditBlockSource>
+            >("credit_block_source");
+        }
+        init { this._rawData.Set("credit_block_source", value); }
+    }
+
     public required System::DateTimeOffset? EffectiveDate
     {
         get
@@ -130,11 +151,28 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
+    /// <summary>
+    /// The credit allocation that funded a block. Extends the allocation resource
+    /// serialized on prices with the catalog-item attribution of the funding price.
+    /// </summary>
+    public CreditListByExternalIDResponseCreditAllocation? CreditAllocation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreditListByExternalIDResponseCreditAllocation>(
+                "credit_allocation"
+            );
+        }
+        init { this._rawData.Set("credit_allocation", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
         _ = this.Balance;
+        this.CreditBlockSource.Validate();
         _ = this.EffectiveDate;
         _ = this.ExpiryDate;
         foreach (var item in this.Filters)
@@ -145,6 +183,7 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
         _ = this.Metadata;
         _ = this.PerUnitCostBasis;
         this.Status.Validate();
+        this.CreditAllocation?.Validate();
     }
 
     public CreditListByExternalIDResponse() { }
@@ -185,6 +224,59 @@ class CreditListByExternalIDResponseFromRaw : IFromRawJson<CreditListByExternalI
     public CreditListByExternalIDResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CreditListByExternalIDResponse.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// How this credit block was created: `allocation` (a subscription's recurring credit
+/// allocation), `top_up` (an automatic balance-threshold top-up), or `manual` (a
+/// manual credit ledger increment, including credits voided or expired off another block).
+/// </summary>
+[JsonConverter(typeof(CreditListByExternalIDResponseCreditBlockSourceConverter))]
+public enum CreditListByExternalIDResponseCreditBlockSource
+{
+    Allocation,
+    TopUp,
+    Manual,
+}
+
+sealed class CreditListByExternalIDResponseCreditBlockSourceConverter
+    : JsonConverter<CreditListByExternalIDResponseCreditBlockSource>
+{
+    public override CreditListByExternalIDResponseCreditBlockSource Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "allocation" => CreditListByExternalIDResponseCreditBlockSource.Allocation,
+            "top_up" => CreditListByExternalIDResponseCreditBlockSource.TopUp,
+            "manual" => CreditListByExternalIDResponseCreditBlockSource.Manual,
+            _ => (CreditListByExternalIDResponseCreditBlockSource)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CreditListByExternalIDResponseCreditBlockSource value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CreditListByExternalIDResponseCreditBlockSource.Allocation => "allocation",
+                CreditListByExternalIDResponseCreditBlockSource.TopUp => "top_up",
+                CreditListByExternalIDResponseCreditBlockSource.Manual => "manual",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }
 
 /// <summary>
@@ -425,6 +517,372 @@ sealed class CreditListByExternalIDResponseStatusConverter
             {
                 CreditListByExternalIDResponseStatus.Active => "active",
                 CreditListByExternalIDResponseStatus.PendingPayment => "pending_payment",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// The credit allocation that funded a block. Extends the allocation resource serialized
+/// on prices with the catalog-item attribution of the funding price.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        CreditListByExternalIDResponseCreditAllocation,
+        CreditListByExternalIDResponseCreditAllocationFromRaw
+    >)
+)]
+public sealed record class CreditListByExternalIDResponseCreditAllocation : JsonModel
+{
+    public required bool AllowsRollover
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("allows_rollover");
+        }
+        init { this._rawData.Set("allows_rollover", value); }
+    }
+
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    public required CustomExpiration? CustomExpiration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration");
+        }
+        init { this._rawData.Set("custom_expiration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the catalog item this block was allocated from, derived from the
+    /// allocation's price.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    public IReadOnlyList<CreditListByExternalIDResponseCreditAllocationFilter>? Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<CreditListByExternalIDResponseCreditAllocationFilter>
+            >("filters");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<CreditListByExternalIDResponseCreditAllocationFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AllowsRollover;
+        _ = this.Currency;
+        this.CustomExpiration?.Validate();
+        _ = this.ItemID;
+        foreach (var item in this.Filters ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.LicenseTypeID;
+    }
+
+    public CreditListByExternalIDResponseCreditAllocation() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public CreditListByExternalIDResponseCreditAllocation(
+        CreditListByExternalIDResponseCreditAllocation creditListByExternalIDResponseCreditAllocation
+    )
+        : base(creditListByExternalIDResponseCreditAllocation) { }
+#pragma warning restore CS8618
+
+    public CreditListByExternalIDResponseCreditAllocation(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CreditListByExternalIDResponseCreditAllocation(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="CreditListByExternalIDResponseCreditAllocationFromRaw.FromRawUnchecked"/>
+    public static CreditListByExternalIDResponseCreditAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class CreditListByExternalIDResponseCreditAllocationFromRaw
+    : IFromRawJson<CreditListByExternalIDResponseCreditAllocation>
+{
+    /// <inheritdoc/>
+    public CreditListByExternalIDResponseCreditAllocation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CreditListByExternalIDResponseCreditAllocation.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        CreditListByExternalIDResponseCreditAllocationFilter,
+        CreditListByExternalIDResponseCreditAllocationFilterFromRaw
+    >)
+)]
+public sealed record class CreditListByExternalIDResponseCreditAllocationFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, CreditListByExternalIDResponseCreditAllocationFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, CreditListByExternalIDResponseCreditAllocationFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        CreditListByExternalIDResponseCreditAllocationFilterOperator
+    > Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, CreditListByExternalIDResponseCreditAllocationFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public CreditListByExternalIDResponseCreditAllocationFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public CreditListByExternalIDResponseCreditAllocationFilter(
+        CreditListByExternalIDResponseCreditAllocationFilter creditListByExternalIDResponseCreditAllocationFilter
+    )
+        : base(creditListByExternalIDResponseCreditAllocationFilter) { }
+#pragma warning restore CS8618
+
+    public CreditListByExternalIDResponseCreditAllocationFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CreditListByExternalIDResponseCreditAllocationFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="CreditListByExternalIDResponseCreditAllocationFilterFromRaw.FromRawUnchecked"/>
+    public static CreditListByExternalIDResponseCreditAllocationFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class CreditListByExternalIDResponseCreditAllocationFilterFromRaw
+    : IFromRawJson<CreditListByExternalIDResponseCreditAllocationFilter>
+{
+    /// <inheritdoc/>
+    public CreditListByExternalIDResponseCreditAllocationFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CreditListByExternalIDResponseCreditAllocationFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(CreditListByExternalIDResponseCreditAllocationFilterFieldConverter))]
+public enum CreditListByExternalIDResponseCreditAllocationFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class CreditListByExternalIDResponseCreditAllocationFilterFieldConverter
+    : JsonConverter<CreditListByExternalIDResponseCreditAllocationFilterField>
+{
+    public override CreditListByExternalIDResponseCreditAllocationFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+            "item_id" => CreditListByExternalIDResponseCreditAllocationFilterField.ItemID,
+            "price_type" => CreditListByExternalIDResponseCreditAllocationFilterField.PriceType,
+            "currency" => CreditListByExternalIDResponseCreditAllocationFilterField.Currency,
+            "pricing_unit_id" =>
+                CreditListByExternalIDResponseCreditAllocationFilterField.PricingUnitID,
+            _ => (CreditListByExternalIDResponseCreditAllocationFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CreditListByExternalIDResponseCreditAllocationFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CreditListByExternalIDResponseCreditAllocationFilterField.PriceID => "price_id",
+                CreditListByExternalIDResponseCreditAllocationFilterField.ItemID => "item_id",
+                CreditListByExternalIDResponseCreditAllocationFilterField.PriceType => "price_type",
+                CreditListByExternalIDResponseCreditAllocationFilterField.Currency => "currency",
+                CreditListByExternalIDResponseCreditAllocationFilterField.PricingUnitID =>
+                    "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(CreditListByExternalIDResponseCreditAllocationFilterOperatorConverter))]
+public enum CreditListByExternalIDResponseCreditAllocationFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class CreditListByExternalIDResponseCreditAllocationFilterOperatorConverter
+    : JsonConverter<CreditListByExternalIDResponseCreditAllocationFilterOperator>
+{
+    public override CreditListByExternalIDResponseCreditAllocationFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+            "excludes" => CreditListByExternalIDResponseCreditAllocationFilterOperator.Excludes,
+            _ => (CreditListByExternalIDResponseCreditAllocationFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        CreditListByExternalIDResponseCreditAllocationFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes => "includes",
+                CreditListByExternalIDResponseCreditAllocationFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

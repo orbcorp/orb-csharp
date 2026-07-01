@@ -14752,6 +14752,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -14961,6 +14967,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15010,6 +15022,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15037,6 +15055,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
         );
         List<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -15114,6 +15138,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15160,6 +15190,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15195,6 +15231,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
         );
         List<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -15272,6 +15314,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15305,6 +15353,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -15350,6 +15404,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15382,6 +15442,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -15430,6 +15496,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -15471,6 +15543,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
             };
@@ -15503,6 +15581,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
             };
@@ -15518,6 +15602,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -15563,6 +15653,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
 
@@ -15585,6 +15681,12 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTieredPercen
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,

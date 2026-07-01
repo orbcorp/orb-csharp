@@ -296,6 +296,22 @@ public record class SubscriptionCreateParams : ParamsBase
         init { this._rawBodyData.Set("auto_collection", value); }
     }
 
+    /// <summary>
+    /// Used to determine if invoices for this subscription will be automatically
+    /// issued. If true, invoices will be automatically issued. If false, invoices
+    /// will require manual approval. If `null` is specified, this defaults to the
+    /// behavior configured for this customer.
+    /// </summary>
+    public bool? AutoIssuance
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_issuance");
+        }
+        init { this._rawBodyData.Set("auto_issuance", value); }
+    }
+
     [System::Obsolete("deprecated")]
     public string? AwsRegion
     {

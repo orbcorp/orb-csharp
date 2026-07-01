@@ -138,6 +138,7 @@ public class SubscriptionCreateParamsTest : TestBase
             ],
             AlignBillingWithSubscriptionStartDate = true,
             AutoCollection = true,
+            AutoIssuance = true,
             AwsRegion = "aws_region",
             BillingCycleAnchorConfiguration = new()
             {
@@ -415,6 +416,7 @@ public class SubscriptionCreateParamsTest : TestBase
         ];
         bool expectedAlignBillingWithSubscriptionStartDate = true;
         bool expectedAutoCollection = true;
+        bool expectedAutoIssuance = true;
         string expectedAwsRegion = "aws_region";
         BillingCycleAnchorConfiguration expectedBillingCycleAnchorConfiguration = new()
         {
@@ -586,6 +588,7 @@ public class SubscriptionCreateParamsTest : TestBase
             parameters.AlignBillingWithSubscriptionStartDate
         );
         Assert.Equal(expectedAutoCollection, parameters.AutoCollection);
+        Assert.Equal(expectedAutoIssuance, parameters.AutoIssuance);
         Assert.Equal(expectedAwsRegion, parameters.AwsRegion);
         Assert.Equal(
             expectedBillingCycleAnchorConfiguration,
@@ -789,6 +792,7 @@ public class SubscriptionCreateParamsTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             AwsRegion = "aws_region",
             BillingCycleAnchorConfiguration = new()
             {
@@ -1077,6 +1081,7 @@ public class SubscriptionCreateParamsTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             AwsRegion = "aws_region",
             BillingCycleAnchorConfiguration = new()
             {
@@ -1255,6 +1260,8 @@ public class SubscriptionCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("add_prices"));
         Assert.Null(parameters.AutoCollection);
         Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.Null(parameters.AutoIssuance);
+        Assert.False(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.AwsRegion);
         Assert.False(parameters.RawBodyData.ContainsKey("aws_region"));
         Assert.Null(parameters.BillingCycleAnchorConfiguration);
@@ -1325,6 +1332,7 @@ public class SubscriptionCreateParamsTest : TestBase
             AddAdjustments = null,
             AddPrices = null,
             AutoCollection = null,
+            AutoIssuance = null,
             AwsRegion = null,
             BillingCycleAnchorConfiguration = null,
             CouponRedemptionCode = null,
@@ -1362,6 +1370,8 @@ public class SubscriptionCreateParamsTest : TestBase
         Assert.True(parameters.RawBodyData.ContainsKey("add_prices"));
         Assert.Null(parameters.AutoCollection);
         Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.Null(parameters.AutoIssuance);
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.AwsRegion);
         Assert.True(parameters.RawBodyData.ContainsKey("aws_region"));
         Assert.Null(parameters.BillingCycleAnchorConfiguration);
@@ -1560,6 +1570,7 @@ public class SubscriptionCreateParamsTest : TestBase
             ],
             AlignBillingWithSubscriptionStartDate = true,
             AutoCollection = true,
+            AutoIssuance = true,
             AwsRegion = "aws_region",
             BillingCycleAnchorConfiguration = new()
             {
@@ -2242,6 +2253,12 @@ public class AdjustmentTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2436,6 +2453,12 @@ public class AdjustmentTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2478,6 +2501,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2501,6 +2530,12 @@ public class TieredPercentageDiscountTest : TestBase
         );
         List<Subscriptions::Tier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -2569,6 +2604,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2609,6 +2650,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2639,6 +2686,12 @@ public class TieredPercentageDiscountTest : TestBase
         );
         List<Subscriptions::Tier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -2707,6 +2760,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2735,6 +2794,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -2775,6 +2840,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2802,6 +2873,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -2845,6 +2922,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = Subscriptions::AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -2875,6 +2958,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -2912,6 +3001,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
         };
@@ -2926,6 +3021,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -2970,6 +3071,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
 
@@ -2991,6 +3098,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -17900,6 +18013,12 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18099,6 +18218,12 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18145,6 +18270,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll =
                 Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18172,6 +18303,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
         );
         List<Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -18248,6 +18385,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll =
                 Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18293,6 +18436,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll =
                 Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18328,6 +18477,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
         );
         List<Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -18404,6 +18559,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll =
                 Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18436,6 +18597,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -18480,6 +18647,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll =
                 Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18511,6 +18684,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -18558,6 +18737,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll =
                 Subscriptions::ReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18598,6 +18783,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
         };
@@ -18629,6 +18820,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
         };
@@ -18643,6 +18840,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -18687,6 +18890,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
 
@@ -18708,6 +18917,12 @@ public class ReplaceAdjustmentAdjustmentTieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,

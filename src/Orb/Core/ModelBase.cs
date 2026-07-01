@@ -619,12 +619,27 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, ViewMode>(),
             new ApiEnumConverter<string, CostListByExternalIDParamsViewMode>(),
+            new ApiEnumConverter<string, Credits::CreditBlockSource>(),
             new ApiEnumConverter<string, Credits::Field>(),
             new ApiEnumConverter<string, Credits::Operator>(),
             new ApiEnumConverter<string, Credits::Status>(),
+            new ApiEnumConverter<string, Credits::CreditAllocationFilterField>(),
+            new ApiEnumConverter<string, Credits::CreditAllocationFilterOperator>(),
+            new ApiEnumConverter<
+                string,
+                Credits::CreditListByExternalIDResponseCreditBlockSource
+            >(),
             new ApiEnumConverter<string, Credits::CreditListByExternalIDResponseFilterField>(),
             new ApiEnumConverter<string, Credits::CreditListByExternalIDResponseFilterOperator>(),
             new ApiEnumConverter<string, Credits::CreditListByExternalIDResponseStatus>(),
+            new ApiEnumConverter<
+                string,
+                Credits::CreditListByExternalIDResponseCreditAllocationFilterField
+            >(),
+            new ApiEnumConverter<
+                string,
+                Credits::CreditListByExternalIDResponseCreditAllocationFilterOperator
+            >(),
             new ApiEnumConverter<string, Ledger::AffectedBlockFilterField>(),
             new ApiEnumConverter<string, Ledger::AffectedBlockFilterOperator>(),
             new ApiEnumConverter<string, Ledger::AmendmentLedgerEntryEntryStatus>(),
@@ -1229,12 +1244,18 @@ public abstract record class ModelBase
                 SubscriptionChanges::SubscriptionChangeCancelResponseStatus
             >(),
             new ApiEnumConverter<string, SubscriptionChanges::Status>(),
+            new ApiEnumConverter<string, CreditBlocks::CreditBlockSource>(),
             new ApiEnumConverter<string, CreditBlocks::Field>(),
             new ApiEnumConverter<string, CreditBlocks::Operator>(),
             new ApiEnumConverter<string, CreditBlocks::Status>(),
+            new ApiEnumConverter<string, CreditBlocks::CreditAllocationFilterField>(),
+            new ApiEnumConverter<string, CreditBlocks::CreditAllocationFilterOperator>(),
+            new ApiEnumConverter<string, CreditBlocks::BlockCreditBlockSource>(),
             new ApiEnumConverter<string, CreditBlocks::BlockFilterField>(),
             new ApiEnumConverter<string, CreditBlocks::BlockFilterOperator>(),
             new ApiEnumConverter<string, CreditBlocks::BlockStatus>(),
+            new ApiEnumConverter<string, CreditBlocks::BlockCreditAllocationFilterField>(),
+            new ApiEnumConverter<string, CreditBlocks::BlockCreditAllocationFilterOperator>(),
             new ApiEnumConverter<string, CreditBlocks::InvoiceStatus>(),
             new ApiEnumConverter<string, Licenses::LicenseCreateResponseStatus>(),
             new ApiEnumConverter<string, Licenses::LicenseRetrieveResponseStatus>(),
