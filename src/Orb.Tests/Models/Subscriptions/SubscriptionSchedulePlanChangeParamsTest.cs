@@ -141,6 +141,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
             ],
             AlignBillingWithPlanChangeDate = true,
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAlignment = Subscriptions::BillingCycleAlignment.Unchanged,
             BillingCycleAnchorConfiguration = new()
             {
@@ -416,6 +417,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
         ];
         bool expectedAlignBillingWithPlanChangeDate = true;
         bool expectedAutoCollection = true;
+        bool expectedAutoIssuance = true;
         ApiEnum<string, Subscriptions::BillingCycleAlignment> expectedBillingCycleAlignment =
             Subscriptions::BillingCycleAlignment.Unchanged;
         BillingCycleAnchorConfiguration expectedBillingCycleAnchorConfiguration = new()
@@ -584,6 +586,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
             parameters.AlignBillingWithPlanChangeDate
         );
         Assert.Equal(expectedAutoCollection, parameters.AutoCollection);
+        Assert.Equal(expectedAutoIssuance, parameters.AutoIssuance);
         Assert.Equal(expectedBillingCycleAlignment, parameters.BillingCycleAlignment);
         Assert.Equal(
             expectedBillingCycleAnchorConfiguration,
@@ -660,6 +663,8 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("align_billing_with_plan_change_date"));
         Assert.Null(parameters.AutoCollection);
         Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.Null(parameters.AutoIssuance);
+        Assert.False(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.BillingCycleAlignment);
         Assert.False(parameters.RawBodyData.ContainsKey("billing_cycle_alignment"));
         Assert.Null(parameters.BillingCycleAnchorConfiguration);
@@ -717,6 +722,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
             AddPrices = null,
             AlignBillingWithPlanChangeDate = null,
             AutoCollection = null,
+            AutoIssuance = null,
             BillingCycleAlignment = null,
             BillingCycleAnchorConfiguration = null,
             ChangeDate = null,
@@ -748,6 +754,8 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
         Assert.True(parameters.RawBodyData.ContainsKey("align_billing_with_plan_change_date"));
         Assert.Null(parameters.AutoCollection);
         Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.Null(parameters.AutoIssuance);
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.BillingCycleAlignment);
         Assert.True(parameters.RawBodyData.ContainsKey("billing_cycle_alignment"));
         Assert.Null(parameters.BillingCycleAnchorConfiguration);
@@ -945,6 +953,7 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
             ],
             AlignBillingWithPlanChangeDate = true,
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAlignment = Subscriptions::BillingCycleAlignment.Unchanged,
             BillingCycleAnchorConfiguration = new()
             {
@@ -1695,6 +1704,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -1904,6 +1919,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -1953,6 +1974,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -1980,6 +2007,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
         );
         List<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -2057,6 +2090,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -2103,6 +2142,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -2138,6 +2183,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
         );
         List<Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -2215,6 +2266,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -2248,6 +2305,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -2293,6 +2356,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -2325,6 +2394,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -2373,6 +2448,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -2414,6 +2495,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
             };
@@ -2446,6 +2533,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
             };
@@ -2461,6 +2554,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -2506,6 +2605,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
 
@@ -2528,6 +2633,12 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTieredPe
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -18697,6 +18808,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18906,6 +19023,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18955,6 +19078,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -18982,6 +19111,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
         );
         List<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -19059,6 +19194,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -19105,6 +19246,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -19140,6 +19287,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
         );
         List<Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -19217,6 +19370,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -19250,6 +19409,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -19295,6 +19460,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -19327,6 +19498,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -19375,6 +19552,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 AppliesToAll =
                     Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTieredPercentageDiscountAppliesToAll.True,
@@ -19416,6 +19599,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
             };
@@ -19448,6 +19637,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
             };
@@ -19463,6 +19658,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,
@@ -19508,6 +19709,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
                         Percentage = 0,
                         UpperBound = 0,
                     },
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                 ],
                 IsInvoiceLevel = true,
 
@@ -19530,6 +19737,12 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTier
             {
                 Tiers =
                 [
+                    new()
+                    {
+                        LowerBound = 0,
+                        Percentage = 0,
+                        UpperBound = 0,
+                    },
                     new()
                     {
                         LowerBound = 0,

@@ -16591,6 +16591,12 @@ public class AdjustmentAdjustmentTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -16785,6 +16791,12 @@ public class AdjustmentAdjustmentTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -16827,6 +16839,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -16850,6 +16868,12 @@ public class TieredPercentageDiscountTest : TestBase
         );
         List<TieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -16916,6 +16940,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -16956,6 +16986,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -16986,6 +17022,12 @@ public class TieredPercentageDiscountTest : TestBase
         );
         List<TieredPercentageDiscountTier> expectedTiers =
         [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
             new()
             {
                 LowerBound = 0,
@@ -17052,6 +17094,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -17080,6 +17128,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -17120,6 +17174,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -17147,6 +17207,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -17190,6 +17256,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             AppliesToAll = AppliesToAll.True,
             AppliesToItemIds = ["item_1", "item_2"],
@@ -17220,6 +17292,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -17257,6 +17335,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
         };
@@ -17271,6 +17355,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,
@@ -17315,6 +17405,12 @@ public class TieredPercentageDiscountTest : TestBase
                     Percentage = 0,
                     UpperBound = 0,
                 },
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
             ],
             IsInvoiceLevel = true,
 
@@ -17336,6 +17432,12 @@ public class TieredPercentageDiscountTest : TestBase
         {
             Tiers =
             [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
                 new()
                 {
                     LowerBound = 0,

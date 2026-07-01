@@ -75,6 +75,21 @@ public sealed record class MutatedSubscription : JsonModel
         init { this._rawData.Set("auto_collection", value); }
     }
 
+    /// <summary>
+    /// Determines whether invoices for this subscription will be automatically issued.
+    /// This resolves the effective setting for the subscription: a subscription-level
+    /// override if set, otherwise the customer-level setting, otherwise the account-level default.
+    /// </summary>
+    public required bool? AutoIssuance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("auto_issuance");
+        }
+        init { this._rawData.Set("auto_issuance", value); }
+    }
+
     public required BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
     {
         get
@@ -470,6 +485,7 @@ public sealed record class MutatedSubscription : JsonModel
             item.Validate();
         }
         _ = this.AutoCollection;
+        _ = this.AutoIssuance;
         this.BillingCycleAnchorConfiguration.Validate();
         _ = this.BillingCycleDay;
         _ = this.CreatedAt;

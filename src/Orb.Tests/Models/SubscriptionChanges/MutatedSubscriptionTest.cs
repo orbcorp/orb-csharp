@@ -52,6 +52,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -1602,6 +1603,7 @@ public class MutatedSubscriptionTest : TestBase
             },
         ];
         bool expectedAutoCollection = true;
+        bool expectedAutoIssuance = true;
         Models::BillingCycleAnchorConfiguration expectedBillingCycleAnchorConfiguration = new()
         {
             Day = 1,
@@ -3082,6 +3084,7 @@ public class MutatedSubscriptionTest : TestBase
             Assert.Equal(expectedAdjustmentIntervals[i], model.AdjustmentIntervals[i]);
         }
         Assert.Equal(expectedAutoCollection, model.AutoCollection);
+        Assert.Equal(expectedAutoIssuance, model.AutoIssuance);
         Assert.Equal(
             expectedBillingCycleAnchorConfiguration,
             model.BillingCycleAnchorConfiguration
@@ -3177,6 +3180,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -4741,6 +4745,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -6298,6 +6303,7 @@ public class MutatedSubscriptionTest : TestBase
             },
         ];
         bool expectedAutoCollection = true;
+        bool expectedAutoIssuance = true;
         Models::BillingCycleAnchorConfiguration expectedBillingCycleAnchorConfiguration = new()
         {
             Day = 1,
@@ -7778,6 +7784,7 @@ public class MutatedSubscriptionTest : TestBase
             Assert.Equal(expectedAdjustmentIntervals[i], deserialized.AdjustmentIntervals[i]);
         }
         Assert.Equal(expectedAutoCollection, deserialized.AutoCollection);
+        Assert.Equal(expectedAutoIssuance, deserialized.AutoIssuance);
         Assert.Equal(
             expectedBillingCycleAnchorConfiguration,
             deserialized.BillingCycleAnchorConfiguration
@@ -7882,6 +7889,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -9440,6 +9448,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -10105,6 +10114,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -10769,6 +10779,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -11436,6 +11447,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,
@@ -12102,6 +12114,7 @@ public class MutatedSubscriptionTest : TestBase
                 },
             ],
             AutoCollection = true,
+            AutoIssuance = true,
             BillingCycleAnchorConfiguration = new()
             {
                 Day = 1,

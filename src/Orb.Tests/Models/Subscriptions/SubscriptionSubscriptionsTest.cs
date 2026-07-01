@@ -55,6 +55,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -731,6 +732,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -1415,6 +1417,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -2105,6 +2108,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -2788,6 +2792,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -3472,6 +3477,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -4156,6 +4162,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
